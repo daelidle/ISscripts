@@ -95,6 +95,7 @@
                     if (!isSourceMonster) this.group[source].healing += damage;
                     break;
                 case 'physical':
+                case 'chaos':
                     if (!isSourceMonster) {
                         this.group[source].damageDealt += damage;
                         if (damage > this.group[source].maxHit) this.group[source].maxHit = damage;
