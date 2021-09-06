@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Damage Meter
 // @namespace    DaelIS
-// @version      0.1.0
+// @version      0.1.1
 // @description  Show a damage meter on group combat
 // @author       Dael
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DamageMeter/DamageMeter.user.js
@@ -113,11 +113,11 @@
             if (playerInfo['portion'] === "all") {
                 // Complete player message sent on login
                 const inCombat = this._parseCombatStatusFromActionQue(playerInfo['value']['actionQue']);
+                this._changeCombatStatus(inCombat);
                 if (inCombat) {
                     const name = playerInfo['value']['username'];
                     this.group[name] = new Player(name);
                 }
-                this._changeCombatStatus(inCombat);
             } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("group")) {
                 // Group info message
                 for (const [_, player] of Object.entries(playerInfo['value'])) {
@@ -160,7 +160,6 @@
 
         _changeCombatStatus(combatStatus){
             if (this.onCombat === combatStatus) return;
-            console.log("Changing combat status to "+combatStatus);
             this.onCombat = combatStatus;
             if (this.onCombat) {
                 this.combatStartTimestamp = new Date();
