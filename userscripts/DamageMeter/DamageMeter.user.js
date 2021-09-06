@@ -138,7 +138,7 @@
 
         _updateMeter(){
             let players = Object.values(this.group);
-            players.sort((a, b) => parseFloat(a.damageDealt) - parseFloat(b.damageDealt));
+            players = players.sort((a, b) => parseFloat(b.damageDealt) - parseFloat(a.damageDealt));
 
             let totalDamage = 0;
             players.forEach(player => totalDamage += player.damageDealt);
