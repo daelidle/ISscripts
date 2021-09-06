@@ -4,6 +4,8 @@
 // @version      0.1.0
 // @description  Show a damage meter on group combat
 // @author       Dael
+// @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DamageMeter/DamageMeter.user.js
+// @downloadURL  https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DamageMeter/DamageMeter.user.js
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
 // @resource     meterCSS https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DamageMeter/css/damagemeter.css
 // @match        *://*.idlescape.com/game*
