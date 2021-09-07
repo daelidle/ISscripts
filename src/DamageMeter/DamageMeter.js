@@ -100,6 +100,7 @@ class DamageMeter {
             this._resetGroup();
         } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("group")) {
             // Group info message
+            if (!('value' in playerInfo)) return;
             for (const [_, player] of Object.entries(playerInfo['value'])) {
                 let playerName = player.username;
                 let currentHP = player.combatStats.currentHealth;
