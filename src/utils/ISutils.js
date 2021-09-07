@@ -12,6 +12,9 @@ function isIronManCharacter(){
 }
 
 function injectCSS(css){
+    css = css.trim();
+    if (css.startsWith('http')) css = `<link href="${css}" rel="stylesheet" type="text/css">`;
+    else if (!css.startsWith('<style>')) css = `<style>${css}</style>`;
     const head = document.querySelector('head');
     head.insertAdjacentHTML('beforeend', css);
 }
