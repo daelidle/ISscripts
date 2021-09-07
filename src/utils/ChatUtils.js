@@ -18,8 +18,8 @@ function displayChatMessage(messages, channelNumber, username = '', level = 22) 
 
 function _generateChatMessage(message, username, level){
     const formattedTime = new Date().toISOString().substr(11, 8);
-    let messageHtml = `<div class="chat-message"><div class="chat-message" style="font-size: 14px;">`;
-    if (username !== null && username.length > 0) messageHtml += `<div class="chat-message-header"><span class="message-time-stamp">[${formattedTime}]</span><span class="message-username message-league-theme--2">${username}</span><span class="message-league-theme-2">[${level}]: </span></div>`;
-    messageHtml += `<span>${message}</span></div></div>`;
+    let messageHtml = `<div class="chat-message"><div class="chat-message" style="font-size: 14px;"><div class="chat-message-header"><span class="message-time-stamp">[${formattedTime}]</span>`;
+    if (username !== null && username.length > 0) messageHtml += `<span class="message-username message-league-theme--1">${username}</span><span class="message-league-theme-1">[${level}]: </span>`;
+    messageHtml += `</div><span>${message}</span></div></div>`;
     return messageHtml;
 }

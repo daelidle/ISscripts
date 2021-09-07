@@ -15,6 +15,8 @@ class Player {
     damageReceived = 0;
     healing = 0;
     maxHit = 0;
+    maxReceived = 0;
+    maxHeal = 0;
     type = playerTypes.DPS.PHYSICAL;
 
     constructor(name) {
@@ -73,7 +75,10 @@ class DamageMeter {
             case 'miss':
                 break;
             case 'heal':
-                if (!isSourceMonster) this.group[source].healing += damage;
+                if (!isSourceMonster) {
+                    this.group[source].healing += damage;
+                    if (damage > this.group[source].maxHeal) this.group[source].maxHeal = damage;
+                }
                 break;
             case 'physical':
             case 'chaos':
@@ -81,8 +86,10 @@ class DamageMeter {
                 if (!isSourceMonster) {
                     this.group[source].damageDealt += damage;
                     if (damage > this.group[source].maxHit) this.group[source].maxHit = damage;
+                } else {
+                    this.group[target].damageReceived += damage;
+                    if (damage > this.group[target].maxReceived) this.group[target].maxReceived = damage;
                 }
-                else this.group[target].damageReceived += damage;
                 break;
             default:
                 console.log(`New type of Hit ${damageType}`);
@@ -119,14 +126,20 @@ class DamageMeter {
     }
 
     _updateMeter(){
+        const groupStats = this._generateGroupStats();
+        this.ui._updateMeter(groupStats.players, groupStats.totalDamage, groupStats.combatDuration);
+    }
+
+    _generateGroupStats(){
         let players = Object.values(this.group);
         players = players.sort((a, b) => parseFloat(b.damageDealt) - parseFloat(a.damageDealt));
 
         let totalDamage = 0;
         players.forEach(player => totalDamage += player.damageDealt);
 
-        let elapsedSeconds = (new Date().getTime() - this.combatStartTimestamp.getTime()) / 1000;
-        this.ui._updateMeter(players, totalDamage, elapsedSeconds);
+        let combatDurationSeconds = (new Date().getTime() - this.combatStartTimestamp.getTime()) / 1000;
+
+        return {'players': players, 'totalDamage': totalDamage, 'combatDuration': combatDurationSeconds}
     }
 
     _parseCombatStatusFromActionQue(actionQue){
@@ -147,7 +160,27 @@ class DamageMeter {
             this._resetGroup();
         } else {
             this.combatFinishTimestamp = new Date();
+            let combatSummary = this._generateCombatSummaryMessages();
+            displayChatMessage(combatSummary, chatChannels.Activity);
         }
+    }
+
+    _generateCombatSummaryMessages(){
+        const groupStats = this._generateGroupStats();
+        let order = 1;
+        const messages = ["DAMAGE METER SUMMARY:"];
+        groupStats.players.forEach(player => {
+            let contribution = Math.round((player.damageDealt / groupStats.totalDamage) * 100);
+            let dps = (player.damageDealt / groupStats.combatDuration).toFixed(2);
+            let drps = (player.damageReceived / groupStats.combatDuration).toFixed(2);
+            let hps = (player.healing / groupStats.combatDuration).toFixed(2);
+            let playerSummary = `${order}. ${player.name} -- Total damage: ${player.damageDealt} | Average DPS: ${dps} | Max Hit: ${player.maxHit} | Group contribution: ${contribution}% <br/>
+            Total damage Received: ${player.damageReceived} | Average DRPS: ${drps} | Max Hit Received: ${player.maxReceived} <br/>
+            Total healing: ${player.healing} | Average HPS: ${hps} | Max Heal: ${player.maxHeal}`;
+            messages.push(playerSummary);
+            order++;
+        });
+        return messages;
     }
 
     _resetGroup(){
