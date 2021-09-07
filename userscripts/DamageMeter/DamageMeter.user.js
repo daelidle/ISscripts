@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Damage Meter
 // @namespace    DaelIS
-// @version      0.1.1
+// @version      0.1.2
 // @description  Show a damage meter on group combat
 // @author       Dael
 // @credits      UI design adapted from bsides's Horizoverlay FFXIV damage meter overlay (https://github.com/bsides/horizoverlay)
@@ -51,6 +51,7 @@
         onCombat = false;
         combatStartTimestamp = null;
         combatFinishTimestamp = null;
+        selfCharacterName;
 
         constructor() {
             this.group = {};
@@ -113,12 +114,10 @@
         _parseUpdatePlayer(playerInfo) {
             if (playerInfo['portion'] === "all") {
                 // Complete player message sent on login
+                this.selfCharacterName = playerInfo['value']['username'];
                 const inCombat = this._parseCombatStatusFromActionQue(playerInfo['value']['actionQue']);
                 this._changeCombatStatus(inCombat);
-                if (inCombat) {
-                    const name = playerInfo['value']['username'];
-                    this.group[name] = new Player(name);
-                }
+                this._resetGroup();
             } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("group")) {
                 // Group info message
                 for (const [_, player] of Object.entries(playerInfo['value'])) {
@@ -164,10 +163,15 @@
             this.onCombat = combatStatus;
             if (this.onCombat) {
                 this.combatStartTimestamp = new Date();
-                this.group = {};
+                this._resetGroup();
             } else {
                 this.combatFinishTimestamp = new Date();
             }
+        }
+
+        _resetGroup(){
+            this.group = {};
+            this.group[this.selfCharacterName] = new Player(this.selfCharacterName);
         }
     }
 
