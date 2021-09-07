@@ -77,6 +77,7 @@ class DamageMeter {
                 break;
             case 'physical':
             case 'chaos':
+            case 'fire':
                 if (!isSourceMonster) {
                     this.group[source].damageDealt += damage;
                     if (damage > this.group[source].maxHit) this.group[source].maxHit = damage;
