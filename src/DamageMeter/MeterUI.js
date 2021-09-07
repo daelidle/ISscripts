@@ -3,7 +3,7 @@ class UI {
     BASE_DAMAGE_METER_SCRIPT_NAME = "damage_meter";
 
     setupUI(){
-        injectCSS('https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/css/damagemeter.css');
+        injectCSS('https://gitcdn.link/repo/daelidle/ISscripts/main/src/DamageMeter/css/damagemeter.css');
         this._setUpMeterMutationObserver();
     }
 
