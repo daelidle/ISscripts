@@ -37,38 +37,60 @@ class UI {
         anchor.insertAdjacentHTML('beforeend', baseDiv);
     }
 
-    _updateMeter(players, totalDamage, combatDurationSeconds){
+    _updateMeter(players, meterType){
         if (players.length === 0) return;
         const anchor = document.getElementsByClassName(this.BASE_DAMAGE_METER_SCRIPT_NAME);
         if (anchor.length === 0) return;
 
         let playersHtml = '';
-        players.forEach((player, order) => playersHtml += this._generatePlayerHtml(player, order+1, totalDamage, combatDurationSeconds));
+        players.forEach(player => playersHtml += this._generatePlayerHtml(player, meterType));
         anchor[0].innerHTML = playersHtml;
     }
 
-    _generatePlayerHtml(player, order, totalDamage, combatDurationSeconds){
-        const contribution = Math.round((player.damageDealt / totalDamage) * 100);
-        const barPixels = contribution / 100 * 140;
-        const dps = (player.damageDealt / combatDurationSeconds).toFixed(2);
-        const dealtDamage = shortenNumber(player.damageDealt);
-        return `<div class="row job-dps" style="order: ${order};">
-                      <div class="name"><span class="rank">${order}. </span><span class="character-name ">${player.name}</span></div>
+    _generatePlayerHtml(player, meterType){
+        const barPixels = player.contribution / 100 * 140;
+        let amountString;
+        let perSecondString;
+        let maxString;
+        let cssClass;
+
+        switch (meterType) {
+            case meterTypes.DPS:
+                cssClass = 'job-dps';
+                amountString = 'DMG';
+                perSecondString = 'DPS';
+                maxString = 'Max Hit';
+                break;
+            case meterTypes.TANK:
+                cssClass = 'job-tank';
+                amountString = 'ABS';
+                perSecondString = 'APS';
+                maxString = 'Max ABS';
+                break;
+            case meterTypes.HEALER:
+                cssClass = 'job-healer';
+                amountString = 'HEAL';
+                perSecondString = 'HPS';
+                maxString = 'Max HEAL';
+                break;
+        }
+        return `<div class="row ${cssClass}" style="order: ${player.order};">
+                      <div class="name"><span class="rank">${player.order}. </span><span class="character-name ">${player.name}</span></div>
                       <div class="data-items highlight">
                          <div class="dps">
-                            <div><span class="damage-stats">${dealtDamage}</span><span class="label"> DMG</span></div>
+                            <div><span class="damage-stats">${player.amount}</span><span class="label"> ${amountString}</span></div>
                          </div>
                          <div class="dps">
-                            <div><span class="damage-stats">${dps}</span><span class="label"> DPS</span></div>
+                            <div><span class="damage-stats">${player.perSecond}</span><span class="label"> ${perSecondString}</span></div>
                          </div>
                       </div>
                       <div class="meterbar">
                          <div class="damage-percent-bg">
                             <div class="damage-percent-fg" style="width: ${barPixels}px;"></div>
                          </div>
-                         <div class="damage-percent">${contribution}%</div>
+                         <div class="damage-percent">${player.contribution}%</div>
                       </div>
-                      <div class="maxhit">Max Hit: ${player.maxHit}</div>
+                      <div class="maxhit">${maxString}: ${player.max}</div>
                    </div>`;
     }
 
