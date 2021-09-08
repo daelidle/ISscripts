@@ -95,6 +95,16 @@ class DamageMeter {
         //console.log("start attack animation");
     }
 
+    _parseCombatStatusFromActionQue(actionQue){
+        let inCombat = false;
+        actionQue.forEach(action => {
+            if ("action" in action){
+                inCombat = (action.action === "combat");
+            }
+        });
+        return inCombat;
+    }
+
     _updateMeter(){
         let uiPlayers = [];
         let type = this.currentType;
@@ -122,13 +132,18 @@ class DamageMeter {
         this.ui._updateMeter(uiPlayers, type);
     }
 
-    _parseCombatStatusFromActionQue(actionQue){
-        let inCombat = false;
-        actionQue.forEach(action => {
-            if ("action" in action){
-                inCombat = (action.action === "combat");
-            }
-        });
-        return inCombat;
+    changeMeterType(){
+        switch (this.currentType){
+            case meterTypes.DPS:
+                this.currentType = meterTypes.TANK;
+                break;
+            case meterTypes.TANK:
+                this.currentType = meterTypes.HEALER;
+                break;
+            case meterTypes.HEALER:
+                this.currentType = meterTypes.DPS;
+                break;
+        }
+        this._updateMeter();
     }
 }

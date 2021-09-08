@@ -159,3 +159,9 @@
     font-size: 12px;
     width: 70px;
 }
+.dm_switcher {
+    width: 20px;
+    height: 20px;
+    margin-top: 20px;
+    z-index: 1;
+}
