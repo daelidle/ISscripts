@@ -130,7 +130,8 @@ class Combat {
         let combatStats = this._generateCombatStats();
 
         let order = 1;
-        let message = `<div class="combatSummary"><p>Damage Meter - Combat Summary<span class="close_meter_message" id="${deleteMessageId}">X</span></p><div class="dm_summary_row"> <div class="dm_item">Player</div><div class="dm_item">Damage</div><div class="dm_item">DPS</div><div class="dm_item">Max Hit</div><div class="dm_item">Contribution</div><div class="dm_item">Absorbed</div><div class="dm_item">APS</div><div class="dm_item">Max Absorbed</div><div class="dm_item">Healing</div><div class="dm_item">HPS</div><div class="dm_item">Max Heal</div></div>`;
+        let combatDurationSeconds = timeForHumans((new Date().getTime() - this.combatStartTimestamp.getTime()) / 1000);
+        let message = `<div class="combatSummary"><p>Damage Meter - Combat Summary <span class="dm_summary_duration">(Fighting for ${combatDurationSeconds})</span><span class="close_meter_message" id="${deleteMessageId}">X</span></p><div class="dm_summary_row"> <div class="dm_item">Player</div><div class="dm_item">Damage</div><div class="dm_item">DPS</div><div class="dm_item">Max Hit</div><div class="dm_item">Contribution</div><div class="dm_item">Absorbed</div><div class="dm_item">APS</div><div class="dm_item">Max Absorbed</div><div class="dm_item">Healing</div><div class="dm_item">HPS</div><div class="dm_item">Max Heal</div></div>`;
         players.forEach(player => {
             let playerStats = combatStats[player.name];
             let playerSummary = `<div class="dm_summary_row">

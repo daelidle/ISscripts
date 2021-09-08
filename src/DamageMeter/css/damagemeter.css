@@ -168,4 +168,9 @@
 .close_meter_message{
     float: right;
     cursor: pointer;
+    margin-right: 10px;
+}
+.dm_summary_duration {
+    font-size: smaller;
+    margin-left: 1em;
 }

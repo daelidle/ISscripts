@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Damage Meter
 // @namespace    DaelIS
-// @version      0.2.1
+// @version      1.0.0
 // @description  Show a damage meter on group combat
 // @author       Dael
 // @credits      UI design adapted from bsides's Horizoverlay FFXIV damage meter overlay (https://github.com/bsides/horizoverlay)
