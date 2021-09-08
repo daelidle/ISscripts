@@ -149,3 +149,13 @@
 .damage_meter .row .meterbar {
     width: 140px;
 }
+.dm_summary_row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -0.5rem;
+}
+.dm_summary_row .dm_item {
+    margin: 0.5rem;
+    font-size: 12px;
+    width: 70px;
+}

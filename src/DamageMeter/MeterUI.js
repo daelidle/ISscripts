@@ -1,9 +1,10 @@
 class UI {
 
     BASE_DAMAGE_METER_SCRIPT_NAME = "damage_meter";
+    CSS_FILE_URL = 'https://gitcdn.link/repo/daelidle/ISscripts/main/src/DamageMeter/css/damagemeter.css';
 
     setupUI(){
-        injectCSS('https://gitcdn.link/repo/daelidle/ISscripts/main/src/DamageMeter/css/damagemeter.css');
+        injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
         this._setUpMeterMutationObserver();
     }
 

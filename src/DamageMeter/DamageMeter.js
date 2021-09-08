@@ -161,26 +161,37 @@ class DamageMeter {
         } else {
             this.combatFinishTimestamp = new Date();
             let combatSummary = this._generateCombatSummaryMessages();
-            displayChatMessage(combatSummary, chatChannels.Activity);
+            displayChatMessageRaw(combatSummary, chatChannels.Activity);
         }
     }
 
     _generateCombatSummaryMessages(){
         const groupStats = this._generateGroupStats();
         let order = 1;
-        const messages = ["DAMAGE METER SUMMARY:"];
+        let message = '<div class="combatSummary"> <p>Damage Meter - Combat Summary</p><div class="dm_summary_row"> <div class="dm_item">Player</div><div class="dm_item">Damage</div><div class="dm_item">DPS</div><div class="dm_item">Max Hit</div><div class="dm_item">Contribution</div><div class="dm_item">Tanked</div><div class="dm_item">TPS</div><div class="dm_item">Max Tanked Hit</div><div class="dm_item">Healing</div><div class="dm_item">HPS</div><div class="dm_item">Max Heal</div></div>';
         groupStats.players.forEach(player => {
             let contribution = Math.round((player.damageDealt / groupStats.totalDamage) * 100);
             let dps = (player.damageDealt / groupStats.combatDuration).toFixed(2);
-            let drps = (player.damageReceived / groupStats.combatDuration).toFixed(2);
+            let tps = (player.damageReceived / groupStats.combatDuration).toFixed(2);
             let hps = (player.healing / groupStats.combatDuration).toFixed(2);
-            let playerSummary = `${order}. ${player.name} -- Total damage: ${player.damageDealt} | Average DPS: ${dps} | Max Hit: ${player.maxHit} | Group contribution: ${contribution}% <br/>
-            Total damage Received: ${player.damageReceived} | Average DRPS: ${drps} | Max Hit Received: ${player.maxReceived} <br/>
-            Total healing: ${player.healing} | Average HPS: ${hps} | Max Heal: ${player.maxHeal}`;
-            messages.push(playerSummary);
+            let playerSummary = `<div class="dm_summary_row">
+                <div class="dm_item">${order}. ${player.name}</div>
+                <div class="dm_item">${player.damageDealt}</div>
+                <div class="dm_item">${dps}</div>
+                <div class="dm_item">${player.maxHit}</div>
+                <div class="dm_item">${contribution}%</div>
+                <div class="dm_item">${player.damageReceived}</div>
+                <div class="dm_item">${tps}</div>
+                <div class="dm_item">${player.maxReceived}</div>
+                <div class="dm_item">${player.healing}</div>
+                <div class="dm_item">${hps}</div>
+                <div class="dm_item">${player.maxHeal}</div>
+              </div>`;
+            message += playerSummary;
             order++;
         });
-        return messages;
+        message += '</div>';
+        return message;
     }
 
     _resetGroup(){

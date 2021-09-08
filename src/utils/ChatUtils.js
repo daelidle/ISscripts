@@ -5,15 +5,18 @@ const chatChannels = {
     IronManGeneral: 2
 }
 
-function displayChatMessage(messages, channelNumber, username = '', level = 22) {
-    let messagesHtml = '';
-    messages.forEach(message => messagesHtml += _generateChatMessage(message, username, level));
+function displayChatMessageRaw(html, channelNumber) {
     let chatChannels = document.getElementsByClassName("css-y1c0xs");
     if (chatChannels.length > channelNumber){
-        chatChannels[channelNumber].insertAdjacentHTML('beforeend', messagesHtml);
+        chatChannels[channelNumber].insertAdjacentHTML('beforeend', html);
         return true;
     }
     return false;
+}
+
+function displayChatMessage(message, channelNumber, username = '', level = 22) {
+    const messageHtml = _generateChatMessage(message, username, level);
+    return displayChatMessageRaw(messageHtml, channelNumber);
 }
 
 function _generateChatMessage(message, username, level){
