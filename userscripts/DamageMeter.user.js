@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Damage Meter
 // @namespace    DaelIS
-// @version      0.1.9
+// @version      0.2.0
 // @description  Show a damage meter on group combat
 // @author       Dael
 // @credits      UI design adapted from bsides's Horizoverlay FFXIV damage meter overlay (https://github.com/bsides/horizoverlay)
@@ -12,6 +12,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ChatUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/MeterUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/DamageMeter.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/Combat.js
 // @match        *://*.idlescape.com/game*
 // @grant        none
 // ==/UserScript==
