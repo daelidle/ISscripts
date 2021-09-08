@@ -83,9 +83,9 @@ class Combat {
             playerStats.maxHit = player.maxHit;
             playerStats.maxReceived = player.maxReceived;
             playerStats.maxHeal = player.maxHeal;
-            playerStats.contributionDealt = Math.round((player.damageDealt / totalDealt) * 100);
-            playerStats.contributionReceived = Math.round((player.damageReceived / totalReceived) * 100);
-            playerStats.contributionHeal = Math.round((player.healing / totalHeal) * 100);
+            playerStats.contributionDealt = (totalDealt === 0) ? 0 : Math.round((player.damageDealt / totalDealt) * 100);
+            playerStats.contributionReceived = (totalReceived === 0) ? 0 :  Math.round((player.damageReceived / totalReceived) * 100);
+            playerStats.contributionHeal =  (totalHeal === 0) ? 0 : Math.round((player.healing / totalHeal) * 100);
             playerStats.dps = (player.damageDealt / combatDurationSeconds).toFixed(2);
             playerStats.aps = (player.damageReceived / combatDurationSeconds).toFixed(2);
             playerStats.hps = (player.healing / combatDurationSeconds).toFixed(2);
