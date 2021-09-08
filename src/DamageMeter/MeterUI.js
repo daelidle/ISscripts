@@ -83,7 +83,7 @@ class UI {
                       <div class="name"><span class="rank">${player.order}. </span><span class="character-name ">${player.name}</span></div>
                       <div class="data-items highlight">
                          <div class="dps">
-                            <div><span class="damage-stats">${player.amount}</span><span class="label"> ${amountString}</span></div>
+                            <div><span class="damage-stats">${shortenNumber(player.amount)}</span><span class="label"> ${amountString}</span></div>
                          </div>
                          <div class="dps">
                             <div><span class="damage-stats">${player.perSecond}</span><span class="label"> ${perSecondString}</span></div>

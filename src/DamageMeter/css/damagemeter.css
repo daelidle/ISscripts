@@ -165,3 +165,7 @@
     margin-top: 20px;
     z-index: 1;
 }
+.close_meter_message{
+    float: right;
+    cursor: pointer;
+}

@@ -16,12 +16,13 @@ class Player {
 class Combat {
     group;
     onCombat = false;
-    combatStartTimestamp = null;
+    combatStartTimestamp;
     combatFinishTimestamp = null;
     selfCharacterName;
 
     constructor() {
         this.group = {};
+        this.combatStartTimestamp = new Date();
     }
 
     setSelfCharacterName(playerName){
@@ -114,21 +115,22 @@ class Combat {
         if (this.onCombat === combatStatus) return;
         this.onCombat = combatStatus;
         if (this.onCombat) {
-            this.combatStartTimestamp = new Date();
             this._resetCombat();
         } else {
             this.combatFinishTimestamp = new Date();
-            let combatSummary = this._generateCombatSummaryMessages();
+            const deleteMessageId = 'dm_delete_message_'+new Date().getTime();
+            let combatSummary = this._generateCombatSummaryMessages(deleteMessageId);
             displayChatMessageRaw(combatSummary, chatChannels.Activity);
+            document.getElementById(deleteMessageId).addEventListener("click",(event) => event.target.parentElement.parentElement.remove(), false);
         }
     }
 
-    _generateCombatSummaryMessages(){
+    _generateCombatSummaryMessages(deleteMessageId){
         let players = this._getPlayersOrderedByType(meterTypes.DPS);
         let combatStats = this._generateCombatStats();
 
         let order = 1;
-        let message = '<div class="combatSummary"> <p>Damage Meter - Combat Summary</p><div class="dm_summary_row"> <div class="dm_item">Player</div><div class="dm_item">Damage</div><div class="dm_item">DPS</div><div class="dm_item">Max Hit</div><div class="dm_item">Contribution</div><div class="dm_item">Absorbed</div><div class="dm_item">APS</div><div class="dm_item">Max Absorbed</div><div class="dm_item">Healing</div><div class="dm_item">HPS</div><div class="dm_item">Max Heal</div></div>';
+        let message = `<div class="combatSummary"><p>Damage Meter - Combat Summary<span class="close_meter_message" id="${deleteMessageId}">X</span></p><div class="dm_summary_row"> <div class="dm_item">Player</div><div class="dm_item">Damage</div><div class="dm_item">DPS</div><div class="dm_item">Max Hit</div><div class="dm_item">Contribution</div><div class="dm_item">Absorbed</div><div class="dm_item">APS</div><div class="dm_item">Max Absorbed</div><div class="dm_item">Healing</div><div class="dm_item">HPS</div><div class="dm_item">Max Heal</div></div>`;
         players.forEach(player => {
             let playerStats = combatStats[player.name];
             let playerSummary = `<div class="dm_summary_row">
@@ -152,6 +154,7 @@ class Combat {
     }
 
     _resetCombat(){
+        this.combatStartTimestamp = new Date();
         this.group = {};
         this.group[this.selfCharacterName] = new Player(this.selfCharacterName);
     }
