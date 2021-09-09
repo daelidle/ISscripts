@@ -14,6 +14,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/DamageMeter.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/Combat.js
 // @match        *://*.idlescape.com/game*
+// @match        *://idlescape.com/game*
 // @grant        none
 // ==/UserScript==
 (function() {

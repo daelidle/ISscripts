@@ -4,8 +4,9 @@
 // @version      1.0.0
 // @description  Display idlescape.xyz prices on inventory items
 // @author       Dael
-// @include      *://*idlescape.com/game*
 // @run-at       document-start
+// @match        *://*.idlescape.com/game*
+// @match        *://idlescape.com/game*
 // @grant        GM_xmlhttpRequest
 // @connect      api.idlescape.xyz
 // ==/UserScript==

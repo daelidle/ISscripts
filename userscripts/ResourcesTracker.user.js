@@ -6,6 +6,7 @@
 // @author       Dael
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
 // @match        *://*.idlescape.com/game*
+// @match        *://idlescape.com/game*
 // @grant        none
 // ==/UserScript==
 (function() {

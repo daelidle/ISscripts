@@ -5,6 +5,7 @@
 // @description  Hides Gathering Skills Nodes
 // @author       Dael
 // @match        *://*.idlescape.com/game*
+// @match        *://idlescape.com/game*
 // @grant        none
 // ==/UserScript==
 
