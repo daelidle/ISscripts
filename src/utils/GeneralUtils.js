@@ -51,22 +51,28 @@ function timeForHumans (seconds) {
     return returnText.trim();
 }
 
-function getXYZPriceData() {
-    GM_xmlhttpRequest({
-        method: "GET",
-        url: "https://api.idlescape.xyz/prices",
-        onload: (response) => {
-            const priceData = {};
-            try{
-                const apiPriceData = JSON.parse(response.responseText)['items'];
-                apiPriceData.forEach(data => {
-                    priceData[data["name"]] = data["price"];
-                });
-                return priceData;
-            } catch(e) {
-                //console.log("Api returned an invalid JSON: " + response.responseText);
-            }
-            return priceData;
-        }
-    });
+async function getApiPriceData() {
+    const apiEndPoint = "/api/market/manifest";
+    const priceData = {};
+
+    const manifest = await getJSON(apiEndPoint);
+    if (manifest.status.toLowerCase().includes("success")) {
+        const apiPriceData = manifest['manifest'];
+        apiPriceData.forEach(data => {
+            priceData[data["name"]] = data["minPrice"];
+        });
+    }
+
+    return priceData;
+}
+
+async function getJSON (url) {
+    let response;
+    try {
+        response = await fetch(url);
+        if(response.ok) return await response.json();
+    } catch(error) {
+        // console.log("Api returned an invalid JSON: "+ response);
+    }
+    return {};
 }
