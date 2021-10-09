@@ -20,13 +20,16 @@ class DisplayPricesInventory {
         const callback = function(mutationsList, observer) {
             if (document.getElementsByClassName("marketplace-content").length > 0) self._updateInventoryPrices();
             if (document.getElementsByClassName("scrollcrafting-main").length > 0) self._updateInventoryPrices();
+            if (document.getElementsByClassName("price").length === 0) self._updateInventoryPrices();
         };
 
         // Observe Play Area DOM changes
         const playAreaContainer = document.getElementsByClassName("play-area-container")[0];
+        const inventoryContainer = document.getElementsByClassName("inventory-container-all-items")[0];
         const config = {attributes: true, childList: true, subtree: true };
         const observer = new MutationObserver(callback);
         observer.observe(playAreaContainer, config);
+        observer.observe(inventoryContainer, config);
     }
 
     async getPriceData() {
