@@ -1,6 +1,7 @@
 class DisplayPricesInventory {
 
     priceDataRefreshRate = 10 * 60 * 1000;
+    cachedPrices = {};
 
     start() {
         const gameContainer = document.getElementsByClassName("play-area-container");
@@ -17,8 +18,8 @@ class DisplayPricesInventory {
     addMutationObserver(){
         const self = this;
         const callback = function(mutationsList, observer) {
-            if (document.getElementsByClassName("marketplace-content").length > 0) self.getPriceData();
-            if (document.getElementsByClassName("scrollcrafting-main").length > 0) self.getPriceData();
+            if (document.getElementsByClassName("marketplace-content").length > 0) self._updateInventoryPrices();
+            if (document.getElementsByClassName("scrollcrafting-main").length > 0) self._updateInventoryPrices();
         };
 
         // Observe Play Area DOM changes
@@ -29,14 +30,14 @@ class DisplayPricesInventory {
     }
 
     async getPriceData() {
-        const priceData = await getApiPriceData();
-        this._updateInventoryPrices(priceData);
+        this.cachedPrices = await getApiPriceData();
+        this._updateInventoryPrices();
     }
 
-    _updateInventoryPrices(priceData) {
-        this._addPriceToInventory(priceData);
-        this._addPriceToMarketplace(priceData);
-        this._addPriceToScrollcrafting(priceData);
+    _updateInventoryPrices() {
+        this._addPriceToInventory(this.cachedPrices);
+        this._addPriceToMarketplace(this.cachedPrices);
+        this._addPriceToScrollcrafting(this.cachedPrices);
     }
 
     _addPriceToInventory(priceData) {
