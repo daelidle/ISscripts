@@ -58,6 +58,12 @@ class DamageMeter {
             case 'physical':
             case 'chaos':
             case 'fire':
+            case 'ice':
+            case 'earth':
+            case 'light':
+            case 'dark':
+            case 'lightning':
+            case 'poison':
                 if (!isSourceMonster) this.combat.addDamageDealt(source, damage);
                 else this.combat.addDamageReceived(target, damage);
                 break;
@@ -77,7 +83,7 @@ class DamageMeter {
             this.combat._resetCombat();
         } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("group")) {
             // Group info message
-            if (!('value' in playerInfo)) return;
+            if (!('value' in playerInfo) || playerInfo['value'] === null) return;
             for (const [_, player] of Object.entries(playerInfo['value'])) {
                 let playerName = player.username;
                 let currentHP = player.combatStats.currentHealth;
