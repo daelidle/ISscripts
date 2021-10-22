@@ -19,7 +19,7 @@ class DamageMeter {
                 window.IdlescapeListener.messages.addEventListener("message", message => this.parseSocketMessage(message));
                 window.IdlescapeListener.messages.addEventListener("connected", () => onGameReady(() => this.ui.setupUI()));
                 window.IdlescapeListener.messages.addEventListener("disconnected", () => onGameReady(() => this.ui.setupUI()));
-                console.log('Idlescape Damage Meter: Attached to socket!');
+                console.log('Idlescape Damage Meter: Attached to IdlescapeSocketListener');
             }
         }, 100);
     }

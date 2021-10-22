@@ -48,6 +48,7 @@ function timeForHumans (seconds) {
         if ( levels[i][0] === 0 ) continue;
         returnText += ' ' + levels[i][0] + ' ' + (levels[i][0] === 1 ? levels[i][1].substr(0, levels[i][1].length-1): levels[i][1]);
     }
+    if (returnText.length === 0) returnText = 'less than a second';
     return returnText.trim();
 }
 

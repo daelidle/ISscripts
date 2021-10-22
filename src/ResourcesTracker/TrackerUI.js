@@ -30,7 +30,12 @@ class TrackerUI {
         }
 
         let itemsHtml = this._generateItemsHtml(trackedResources);
-        this._displayPopUp(itemsHtml, elapsedTime);
+        const title = 'Resources Tracker';
+        const message = `Resources variance tracked in ${elapsedTime}`;
+        const confirmLambda = () => {
+            displayPopup('Reset resource tracker?', 'Are you sure you want to reset Resource Tracker data?', () => { this._resetTracker(); }, () => {});
+        };
+        displayCompletePopup(title, message, itemsHtml, 'Reset', 'Close', confirmLambda, () => {});
     }
 
     _generateItemsHtml(trackedResources){
@@ -52,33 +57,10 @@ class TrackerUI {
         return itemsHtml;
     }
 
-    _displayPopUp(itemsHtml, elapsedTimeString){
-        const popUpId = "rgsSummary";
-        const popUpCloseId = 'rgsSummaryClose';
-        const popUpTemplate = `<div role="presentation" id="${popUpId}" class="MuiDialog-root donate-dialog feedback-dialog sell-item-dialog popup-dialog" style="position: fixed; z-index: 1300; inset: 0;">
-                       <div class="MuiBackdrop-root" aria-hidden="true" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"></div>
-                       <div tabindex="0" data-test="sentinelStart"></div>
-                       <div class="MuiDialog-container MuiDialog-scrollPaper" role="none presentation" tabindex="-1" style="opacity: 1;transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;">
-                          <div class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiPaper-elevation24 MuiPaper-rounded" role="dialog">
-                             <div class="MuiDialogTitle-root">
-                                <h2 class="MuiTypography-root MuiTypography-h6">Resources Tracker</h2>
-                             </div>
-                             <p class="MuiTypography-root MuiDialogContentText-root MuiTypography-body1 MuiTypography-colorTextSecondary"> Resources variance tracked in ${elapsedTimeString}</p>
-                             <div class="offline-progress-box all-items">
-                                ${itemsHtml}
-                             </div>
-                             <div class="MuiDialogActions-root MuiDialogActions-spacing">
-                                <div class="button-container-250px">
-                                   <div variant="contained" color="secondary" id="${popUpCloseId}" class="close-dialog-button idlescape-button idlescape-button-red">Close</div>
-                                </div>
-                             </div>
-                          </div>
-                       </div>
-                       <div tabindex="0" data-test="sentinelEnd"></div>
-                    </div>`;
-        document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend', popUpTemplate);
-        document.getElementById(popUpCloseId).addEventListener("click",function(){
-            document.getElementById(popUpId).remove();
-        },false);
+    _resetTracker(){
+        this.initialTime = new Date();
+        for (const [_, resource] of Object.entries(this.resources)) {
+            resource.reset();
+        }
     }
 }

@@ -9,6 +9,12 @@ class Resource {
     gain(){
         return (this.currentStockPile - this.initialStockPile) + (this.currentVault - this.initialVault) + (this.currentEquipped - this.initialEquipped);
     }
+
+    reset(){
+        this.initialStockPile = this.currentStockPile;
+        this.initialVault = this.currentVault;
+        this.initialEquipped = this.currentEquipped;
+    }
 }
 
 class ResourceTracker {
@@ -22,7 +28,7 @@ class ResourceTracker {
             if( typeof window.IdlescapeListener !== "undefined" ){
                 clearInterval(attachToSocket);
                 window.IdlescapeListener.messages.addEventListener("message", message => this.parseSocketMessage(message));
-                console.log('Resources Tracker Summary: Attached to socket!');
+                console.log('Resources Tracker Summary: Attached to IdlescapeSocketListener');
             }
         }, 100);
     }
