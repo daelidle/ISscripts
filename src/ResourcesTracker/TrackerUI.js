@@ -1,14 +1,13 @@
 class TrackerUI {
     _gameData = new IdlescapeGameData();
-    initialTime = new Date();
-    resources;
+    config;
 
-    constructor(resources) {
-        this.resources = resources;
+    constructor(config) {
+        this.config = config;
     }
 
     setupUI(){
-        const buttonId = "rgsTrigger";
+        const buttonId = "daelis_resource_tracker";
         const imageButtonHtml = `<img src="/images/money_icon.png" id="${buttonId}" alt="Resources Tracker" class="header-league-icon">`;
         document.getElementById('usersOnline').insertAdjacentHTML('beforeend', imageButtonHtml);
         let imageButton = document.getElementById(buttonId);
@@ -20,11 +19,11 @@ class TrackerUI {
 
     _showSummary(){
         let now = new Date();
-        let elapsedSeconds = (now.getTime() - this.initialTime.getTime()) / 1000;
+        let elapsedSeconds = (now.getTime() - this.config.initialTime.getTime()) / 1000;
         let elapsedTime = timeForHumans(elapsedSeconds);
 
         let trackedResources = [];
-        for (const [signature, resource] of Object.entries(this.resources).sort(function (a,b){return getItemFromItemSignature(a[0])['itemID'] - getItemFromItemSignature(b[0])['itemID'];})) {
+        for (const [signature, resource] of Object.entries(this.config.resources).sort(function (a,b){return getItemFromItemSignature(a[0])['itemID'] - getItemFromItemSignature(b[0])['itemID'];})) {
             let gain = resource.gain();
             if (gain !== 0) trackedResources[signature] = gain;
         }
@@ -33,7 +32,7 @@ class TrackerUI {
         const title = 'Resources Tracker';
         const message = `Resources variance tracked in ${elapsedTime}`;
         const confirmLambda = () => {
-            displayPopup('Reset resource tracker?', 'Are you sure you want to reset Resource Tracker data?', () => { this._resetTracker(); }, () => {});
+            displayPopup('Reset resource tracker?', 'Are you sure you want to reset Resource Tracker data?', () => { this.config.reset(); }, () => {});
         };
         displayCompletePopup(title, message, itemsHtml, 'Reset', 'Close', confirmLambda, () => {});
     }
@@ -55,12 +54,5 @@ class TrackerUI {
             itemsHtml += itemHtml;
         }
         return itemsHtml;
-    }
-
-    _resetTracker(){
-        this.initialTime = new Date();
-        for (const [_, resource] of Object.entries(this.resources)) {
-            resource.reset();
-        }
     }
 }

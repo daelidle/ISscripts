@@ -77,3 +77,11 @@ async function getJSON (url) {
     }
     return {};
 }
+
+function getReact(dom) {
+    for(let key in dom) {
+        if( key.startsWith("__reactInternalInstance$") ){
+            return dom[key];
+        }
+    }
+}

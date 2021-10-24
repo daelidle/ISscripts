@@ -1,29 +1,8 @@
-class Resource {
-    initialStockPile = 0;
-    initialVault = 0;
-    currentStockPile = 0;
-    currentVault = 0;
-    initialEquipped = 0;
-    currentEquipped = 0;
-
-    gain(){
-        return (this.currentStockPile - this.initialStockPile) + (this.currentVault - this.initialVault) + (this.currentEquipped - this.initialEquipped);
-    }
-
-    reset(){
-        this.initialStockPile = this.currentStockPile;
-        this.initialVault = this.currentVault;
-        this.initialEquipped = this.currentEquipped;
-    }
-}
-
 class ResourceTracker {
-    resources;
-    isInitialInventoryPopulated = false;
-    currentEquipment = {ring: '', body: '', helm: '', legs: '', hatchet: '', hoe: '', pickaxe: '', boots: '', gloves: '', necklace: '', shield: '', weapon: ''};
+    config;
 
-    constructor(resources) {
-        this.resources = resources;
+    constructor(config) {
+        this.config = config;
         let attachToSocket = setInterval(()=> {
             if( typeof window.IdlescapeListener !== "undefined" ){
                 clearInterval(attachToSocket);
@@ -68,20 +47,21 @@ class ResourceTracker {
     }
 
     _updateEquipment(position, item){
-        let previousItemSignature = (this.currentEquipment)[position];
+        let previousItemSignature = (this.config.currentEquipment)[position];
         let newItemSignature = generateItemSignature(item);
         if (previousItemSignature !== newItemSignature){
-            if (previousItemSignature !== '') this.resources[previousItemSignature].currentEquipped = 0;
-            if (newItemSignature !== '') this.resources[newItemSignature].currentEquipped = 1;
-            (this.currentEquipment)[position] = newItemSignature;
+            if (previousItemSignature !== '') this.config.resources[previousItemSignature].currentEquipped = 0;
+            if (newItemSignature !== '') this.config.resources[newItemSignature].currentEquipped = 1;
+            (this.config.currentEquipment)[position] = newItemSignature;
+            this.config.save();
         }
     }
 
     _updateCurrentResources(item, inventoryType){
         let itemSignature = generateItemSignature(item);
-        if (this.resources[itemSignature] === undefined) this.resources[itemSignature] = new Resource();
-        if (inventoryType === 'stockpile') this.resources[itemSignature].currentStockPile = item['stackSize'];
-        else if (inventoryType === 'vault') this.resources[itemSignature].currentVault = item['stackSize'];
+        if (this.config.resources[itemSignature] === undefined) this.config.resources[itemSignature] = new Resource();
+        if (inventoryType === 'stockpile') this.config.resources[itemSignature].currentStockPile = item['stackSize'];
+        else if (inventoryType === 'vault') this.config.resources[itemSignature].currentVault = item['stackSize'];
         else {
             console.log(`New Inventory Type! ${inventoryType} ->`);
             console.log(item);
@@ -89,34 +69,34 @@ class ResourceTracker {
     }
 
     _initialInventoryUpdate(message){
-        if (this.isInitialInventoryPopulated) return;
+        const needsInitialValues = (Object.keys(this.config.resources).length > 0);
 
         const inventoryItems = message['stockpile'];
         const vaultItems = message['vault'];
         const equipment = message['equipment'];
 
-        this._populateInitialItemsStackSize(inventoryItems, 'stockpile');
-        this._populateInitialItemsStackSize(vaultItems, 'vault');
-        this._populateInitialItemsStackSize(equipment, 'equipment');
-        this.isInitialInventoryPopulated = true;
+        this._populateInitialItemsStackSize(inventoryItems, 'stockpile', needsInitialValues);
+        this._populateInitialItemsStackSize(vaultItems, 'vault', needsInitialValues);
+        this._populateInitialItemsStackSize(equipment, 'equipment', needsInitialValues);
+        this.config.save();
     }
 
-    _populateInitialItemsStackSize(itemDictionary, inventoryType){
+    _populateInitialItemsStackSize(itemDictionary, inventoryType, needsInitialValues){
         for (const [id, item] of Object.entries(itemDictionary)) {
             let itemSignature = generateItemSignature(item);
-            if (this.resources[itemSignature] === undefined) this.resources[itemSignature] = new Resource();
+            if (this.config.resources[itemSignature] === undefined) this.config.resources[itemSignature] = new Resource();
             if (inventoryType === 'stockpile') {
-                this.resources[itemSignature].initialStockPile = item['stackSize'];
-                this.resources[itemSignature].currentStockPile = item['stackSize'];
+                if (!needsInitialValues) this.config.resources[itemSignature].initialStockPile = item['stackSize'];
+                this.config.resources[itemSignature].currentStockPile = item['stackSize'];
             } else if (inventoryType === 'vault'){
-                this.resources[itemSignature].initialVault = item['stackSize'];
-                this.resources[itemSignature].currentVault = item['stackSize'];
+                if (!needsInitialValues) this.config.resources[itemSignature].initialVault = item['stackSize'];
+                this.config.resources[itemSignature].currentVault = item['stackSize'];
             } else if (inventoryType === 'equipment'){
                 // equipment slot can be empty
                 if (itemSignature.length > 0){
-                    this.resources[itemSignature].initialEquipped = item['stackSize'];
-                    this.resources[itemSignature].currentEquipped = item['stackSize'];
-                    (this.currentEquipment)[id] = itemSignature;
+                    if (!needsInitialValues) this.config.resources[itemSignature].initialEquipped = item['stackSize'];
+                    this.config.resources[itemSignature].currentEquipped = item['stackSize'];
+                    (this.config.currentEquipment)[id] = itemSignature;
                 }
             } else console.log(`New Inventory Type! ${inventoryType}`);
         }
