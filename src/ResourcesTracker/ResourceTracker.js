@@ -69,6 +69,7 @@ class ResourceTracker {
     }
 
     _initialInventoryUpdate(message){
+        this.config.load(message.username);
         const needsInitialValues = (Object.keys(this.config.resources).length === 0);
 
         const inventoryItems = message['stockpile'];

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Resources Tracker
 // @namespace    DaelIS
-// @version      1.3.0
+// @version      1.3.1
 // @description  Show a summary for all resources gained/lost since you logged in
 // @author       Dael
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/ResourcesTracker.user.js
@@ -24,7 +24,7 @@
 
     // Intercept socket init
     IdlescapeSocketListener.attach();
-    const config = new TrackerConfig().load();
+    const config = new TrackerConfig();
     new ResourceTracker(config);
     onGameReady(() => new TrackerUI(config).setupUI());
 })();

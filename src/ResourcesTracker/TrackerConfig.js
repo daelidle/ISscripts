@@ -1,21 +1,29 @@
 class TrackerConfig {
-    localStorageKey = "daelis_tracker";
+    localStorageKeyPrefix;
+    storageKey;
+    username;
+
     initialTime;
     resources;
     currentEquipment;
 
     constructor() {
-        this.load();
+        this.username = '';
+        this.localStorageKeyPrefix = "daelis_tracker";
+        this.storageKey = '';
     }
 
-    load() {
-        if (localStorage.getItem(this.localStorageKey) === null) {
+    load(username) {
+        this.username = username;
+        this.storageKey = `${this.localStorageKeyPrefix}_${username}`;
+        const storedData = localStorage.getItem(this.storageKey);
+        if (storedData === null) {
             this.resources = {};
             this.initialTime = new Date();
             this.currentEquipment = {ring: '', body: '', helm: '', legs: '', hatchet: '', hoe: '', pickaxe: '', boots: '', gloves: '', necklace: '', shield: '', weapon: ''};
             this.save();
         } else {
-            const config = JSON.parse(localStorage.daelis_tracker, this._reviver);
+            const config = JSON.parse(storedData, this._reviver);
             this.resources = config.resources;
             this.initialTime = config.initialTime;
             this.currentEquipment = config.currentEquipment;
@@ -38,7 +46,7 @@ class TrackerConfig {
 
     save() {
         const config = {'initialTime': this.initialTime, 'resources': this.resources, 'currentEquipment': this.currentEquipment};
-        localStorage.daelis_tracker = JSON.stringify(config);
+        localStorage.setItem(this.storageKey, JSON.stringify(config));
     }
 
     reset() {
