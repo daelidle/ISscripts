@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Show prices on Inventory
 // @namespace    DaelIS
-// @version      1.1.1
+// @version      1.1.2
 // @description  Display Idlescape official api prices on inventory items
 // @author       Dael
 // @run-at       document-start
