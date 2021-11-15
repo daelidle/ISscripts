@@ -62,6 +62,7 @@ class ResourceTracker {
         if (this.config.resources[itemSignature] === undefined) this.config.resources[itemSignature] = new Resource();
         if (inventoryType === 'stockpile') this.config.resources[itemSignature].currentStockPile = item['stackSize'];
         else if (inventoryType === 'vault') this.config.resources[itemSignature].currentVault = item['stackSize'];
+        else if (inventoryType === 'tacklebox') this.config.resources[itemSignature].currentTackleBox = item['stackSize'];
         else {
             console.log(`New Inventory Type! ${inventoryType} ->`);
             console.log(item);
@@ -75,10 +76,12 @@ class ResourceTracker {
         const inventoryItems = message['stockpile'];
         const vaultItems = message['vault'];
         const equipment = message['equipment'];
+        const tackleBoxItems = message['tacklebox'];
 
         this._populateInitialItemsStackSize(inventoryItems, 'stockpile', needsInitialValues);
         this._populateInitialItemsStackSize(vaultItems, 'vault', needsInitialValues);
         this._populateInitialItemsStackSize(equipment, 'equipment', needsInitialValues);
+        this._populateInitialItemsStackSize(tackleBoxItems, 'tacklebox', needsInitialValues);
         this.config.save();
     }
 
@@ -99,6 +102,9 @@ class ResourceTracker {
                     this.config.resources[itemSignature].currentEquipped = item['stackSize'];
                     (this.config.currentEquipment)[id] = itemSignature;
                 }
+            } else if (inventoryType === 'tacklebox') {
+                if (needsInitialValues) this.config.resources[itemSignature].initialTackleBox = item['stackSize'];
+                this.config.resources[itemSignature].currentTackleBox = item['stackSize'];
             } else console.log(`New Inventory Type! ${inventoryType}`);
         }
     }

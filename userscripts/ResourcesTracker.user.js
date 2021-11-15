@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Resources Tracker
 // @namespace    DaelIS
-// @version      1.3.2
+// @version      1.3.3
 // @description  Show a summary for all resources gained/lost since you logged in
 // @author       Dael
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/ResourcesTracker.user.js
