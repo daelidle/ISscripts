@@ -40,16 +40,21 @@ class TrackerUI {
     _generateItemsHtml(trackedResources){
         let itemsHtml = '';
         for (const [signature, stack] of Object.entries(trackedResources)) {
-            let [id, augmentations, enchantmentID] = signature.split('_');
-            if (this._gameData.gameResources[id] === undefined) console.log(`can't find id ${id} on the gameResources`);
+            let item = getItemFromItemSignature(signature);
+            let itemResource = this._gameData.gameResources[item.itemID];
+            if (itemResource === undefined){
+                console.log(`can't find id ${item.itemID} on the gameResources`);
+                continue;
+            }
             let stacksColourClass = stack < 0 ? 'lightred-text' : '';
             let itemStack = shortenNumber(stack);
+            let icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
 
-            let itemHtml = `<div class="item ${this._gameData.gameResources[id]['class']}" data-tip="true">`;
-            if (augmentations > 0) itemHtml += `<img class="augmentation-glow-background" src="/images/augmentation_glow.png" style="position: absolute;">`;
-            itemHtml += `<img src="${this._gameData.gameResources[id]['icon']}" class="item-icon" alt="${this._gameData.gameResources[id]['name']}"><div class="centered ${stacksColourClass}">${itemStack}</div>`;
-            if (enchantmentID > 0) itemHtml += `<div class="item-enchant"><img src="${this._gameData.enchantments[enchantmentID]['buffIcon']}"></div>`;
-            if (augmentations > 0) itemHtml += `<div class="item-augment" style="color: rgb(227, 251, 227);">+${augmentations}</div>`;
+            let itemHtml = `<div class="item ${itemResource['class']}" data-tip="true">`;
+            if (item.augmentations > 0) itemHtml += `<img class="augmentation-glow-background" src="/images/augmentation_glow.png" style="position: absolute;">`;
+            itemHtml += `<img src="${icon}" class="item-icon" alt="${itemResource.name}"><div class="centered ${stacksColourClass}">${itemStack}</div>`;
+            if (item.enchantmentID > 0) itemHtml += `<div class="item-enchant"><img src="${this._gameData.enchantments[item.enchantmentID]['buffIcon']}"></div>`;
+            if (item.augmentations > 0) itemHtml += `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>`;
             itemHtml += `<span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></span></div>`;
             itemsHtml += itemHtml;
         }
