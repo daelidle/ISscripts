@@ -66,6 +66,12 @@ class State {
     }
 
     _setInitialState(initialState) {
+        try {
+            initialState['2fa_secret'] = null;
+            initialState['email'] = null;
+            initialState['settings']['security']['email'] = null;
+        } catch {}
+
         this.state = initialState;
     }
 
