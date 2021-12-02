@@ -85,3 +85,7 @@ function getReact(dom) {
         }
     }
 }
+
+function isDictionary(variable) {
+    return (variable.constructor === Object);
+}
