@@ -87,5 +87,6 @@ function getReact(dom) {
 }
 
 function isDictionary(variable) {
+    if (variable === undefined || variable === null) return false;
     return (variable.constructor === Object);
 }
