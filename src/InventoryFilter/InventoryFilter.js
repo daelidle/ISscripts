@@ -91,7 +91,9 @@ class InventoryFilter {
     _setUpMeterMutationObserver(){
         const self = this;
         const callback = function(mutationsList, observer) {
-            self._injectFilterHtml();
+            const searchForItem = document.getElementById('searchForItem');
+            if (searchForItem === null) self._resetFilters();
+            else self._injectFilterHtml();
         };
 
         // Observe Play Area DOM changes
@@ -99,5 +101,10 @@ class InventoryFilter {
         const config = {attributes: true, childList: true, subtree: true };
         const observer = new MutationObserver(callback);
         observer.observe(playAreaContainer, config);
+    }
+
+    _resetFilters() {
+        this.currentFilter = [];
+        this.currentInputValue = '';
     }
 }
