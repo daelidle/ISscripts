@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Inventory Filter
 // @namespace    DaelIS
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds an advanced icon powered inventory filter
 // @author       Dael
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/InventoryFilter.user.js
