@@ -47,7 +47,7 @@ class InventoryFilter {
                 <img class="daelis-inventory-filter-image" src="/images/misc/keys/Complete_Disc.png" data-filter="key" alt="key">  
                 <img class="daelis-inventory-filter-image" src="/images/mining/iron_pickaxe.png" data-filter="mining" alt="mining">
                 <img class="daelis-inventory-filter-image" src="/images/farming/mysterious_seed.png" data-filter="seed" alt="seed">  
-                <img class="daelis-inventory-filter-image" src="/images/heat_icon.png" data-filter="heat" alt="heat">  
+                <img class="daelis-inventory-filter-image" src="/images/heat_icon.png" data-filter="^heat" alt="heat">  
                 <img class="daelis-inventory-filter-image" src="/images/runecrafting/mind_rune.png" data-filter="rune" alt="rune">  
                 <img class="daelis-inventory-filter-image" src="/images/christmas/snow_essence.png" data-filter="christmas" alt="christmas">  
                 <input class="inventory-sort-entry" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" margin="dense" dense="true" variant="outlined" type="search" name="daelis_filter_custom_values" id="daelis_filter_custom_values" value="">
