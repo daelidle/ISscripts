@@ -4,11 +4,15 @@ class LoadoutUI {
     tabClassPrefix = 'daelis_loadout_tab_';
     loadoutAliasButton = 'daelis_loadout_alias';
     config;
-    _gameData = new IdlescapeGameData();
+    gameData = new IdlescapeGameData();
     selectedLoadout = null;
+    loadoutType;
+    LOADOUT_GEAR = 0;
+    LOADOUT_FOOD = 1;
 
     constructor(config) {
         this.config = config;
+        this.loadoutType = this.LOADOUT_GEAR;
     }
 
     setupUI() {
@@ -72,15 +76,25 @@ class LoadoutUI {
     }
 
     _showLoadoutUI() {
-        if (Object.keys(this.config.gearLoadouts).length === 0) {
+        if ((this.loadoutType === this.LOADOUT_GEAR && Object.keys(this.config.gearLoadouts).length === 0) ||
+            (this.loadoutType === this.LOADOUT_FOOD && Object.keys(this.config.foodLoadouts).length === 0)) {
             this._showNoLoadoutUi();
             return;
         }
 
         let tabsHtml = '<div class="nav-tab-container">';
         let loadoutsHtml = '';
-        for (const [id, loadout] of Object.entries(this.config.gearLoadouts)) {
-            loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${this._generateLoadoutHtml(loadout)}</div>`;
+        let loadouts;
+        let loadoutGenerator;
+        if (this.loadoutType === this.LOADOUT_GEAR) {
+            loadouts = this.config.gearLoadouts;
+            loadoutGenerator = new LoadoutUIGear();
+        } else {
+            loadouts = this.config.foodLoadouts;
+            loadoutGenerator = new LoadoutUIFood();
+        }
+        for (const [id, loadout] of Object.entries(loadouts)) {
+            loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${loadoutGenerator.generateLoadoutHtml(loadout, this.gameData)}</div>`;
             let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} (${id})` : id;
             tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${tabLabel}</div>`;
         }
@@ -92,8 +106,11 @@ class LoadoutUI {
             </div>
         </div>`;
         loadoutsHtml = `${tabsHtml}<br/>${loadoutsHtml}<br/>${actionButtons}`;
-        displayCompletePopup('Loadouts', loadoutsHtml, null, 'Load', 'Close', ()=>{this._onLoadClicked()}, ()=>{});
-        this.selectedLoadout = Object.keys(this.config.gearLoadouts)[0];
+        const loadoutType = (this.loadoutType === this.LOADOUT_GEAR) ? 'Gear' : 'Food';
+        const changeTypeId = 'daelis_loadout_change_type';
+        const title = `${loadoutType} Loadouts <img id="${changeTypeId}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlxJREFUWIXFlklrFEEUxyfECOJBkBzcIgiCC6KHePAgBEN1tSS56ZxUjAsaBEHxYKiuoVAQQYl48ZCj14DgJ5Cg4BcQRHG5iIoLaDTRJF2L/+oZMt3VM+ChuvLgXaaL+f1f1dtqtUrN9ERMXqJcPSBc76mW1cFilo4Cbpouvx8Ven9QAZSlx9oClIm4/BoJvS+YgHrd9AI8kxdBE/kFN7E3mIghYdaURHD1mQqzu3BwcNr0UZ6OQeEkrqrh19WNKFFzznN8ivnirgxO2PJB/PDWUVm5R4l8VYsSvQNR/wgNb+XDbwhIH7pXg5J54dsR7YIDV5TJsxAgv7Xh6nF9xvT6TkQEdRIuc3AN7sXsY14V4fJ85XAOOLrjygEnKc75hLeSuwBH9JcLh6oUAPh44d2ZvFI6BEVpTsBpnwLIdbMBIp5lVeZGvqIyUdMt+IcRYTb5FPDfRif/7jw+pdetCnw1bEj86ifJ8uHBC6av66ExYfrrwqz1Dcck3GZ3g2Y/UI86HDE9+HCvVTIfiTDbfQrAf57IleXPTvD7+dKJG3rCp4A40adyVTdXVMfVlNMXFghf9LrLdRWAyO+4cNrQR3zCmxx9pvQEGEK3XTjG9LB3uNAb8d9Pc0PppZ2GvMOioOBLvj0bwYXRr27VSnM61DaEDcy2atuKnweHJ+oJTf4MZO8Ss/nNdjdztpV57AbXCJMTPr05HZcOlJKDCL0F4NeOiNnorl7vOxG72ijTW6HwjXNds4euBhxSqNEBRP7OSZbxYAKs2d4P8Pv2nqhHggqwNoznQGe8aQdH1ax/pK8dpsV8yIIAAAAASUVORK5CYII=">`;
+        const popUpIds = displayCompletePopup(title, loadoutsHtml, null, 'Load', 'Close', ()=>{this._onLoadClicked()}, ()=>{});
+        this.selectedLoadout = Object.keys(loadouts)[0];
         document.getElementsByClassName(this.loadoutClassPrefix+this.selectedLoadout)[0].classList.remove('hidden');
         document.getElementsByClassName(this.tabClassPrefix+this.selectedLoadout)[0].classList.add('selected-tab');
         const that = this;
@@ -102,6 +119,9 @@ class LoadoutUI {
         },false));
         document.getElementById(this.loadoutAliasButton).addEventListener("click",function(){
             that._onRenameClicked(this);
+        },false);
+        document.getElementById(changeTypeId).addEventListener("click",function(){
+            that._onChangeTypeClicked(popUpIds);
         },false);
     }
 
@@ -132,6 +152,12 @@ class LoadoutUI {
             }, ()=>{});
     }
 
+    _onChangeTypeClicked(popUpIds) {
+        this.loadoutType = (this.loadoutType === this.LOADOUT_GEAR) ? this.LOADOUT_FOOD : this.LOADOUT_GEAR;
+        document.getElementById(popUpIds.popUpId).remove();
+        this._showLoadoutUI();
+    }
+
     _assignAlias(newAlias){
         this.config.alias[this.selectedLoadout] = newAlias;
         this.config.save();
@@ -140,76 +166,5 @@ class LoadoutUI {
 
     _showNoLoadoutUi(){
         displayPopup('Loadouts', 'Create a loadout first. Write on chat "/loadout save 1"', ()=>{}, ()=>{});
-    }
-
-    _generateLoadoutHtml(loadout) {
-        const gearSet = {};
-        loadout.forEach(item=> {
-            const itemResource = this._gameData.gameResources[item.item_id];
-            gearSet[itemResource.slot] = this._generateItemHtml(item, itemResource);
-        });
-        return `<div class="combat-gear">
-          <img src="/images/combat/combat_stick_figure.png" alt="Combat stick figure">
-          <div id="gear-helmet" class="combat-gear-item">
-            ${gearSet['helm']||''}
-          </div>
-          <div id="gear-cape" class="combat-gear-item">
-            ${gearSet['cape']||''}
-          </div>
-          <div id="gear-amulet" class="combat-gear-item">
-          ${gearSet['necklace']||''}
-          </div>
-          <div id="gear-arrows" class="combat-gear-item">
-          ${gearSet['arrows']||''}
-          </div>
-          <div id="gear-weapon" class="combat-gear-item">
-          ${gearSet['weapon']||''}
-          </div>
-          <div id="gear-body" class="combat-gear-item">
-          ${gearSet['body']||''}
-          </div>
-          <div id="gear-shield" class="combat-gear-item">
-          ${gearSet['shield']||''}
-          </div>
-          <div id="gear-legs" class="combat-gear-item">
-          ${gearSet['legs']||''}
-          </div>
-          <div id="gear-gloves" class="combat-gear-item">
-          ${gearSet['gloves']||''}
-          </div>
-          <div id="gear-boots" class="combat-gear-item">
-          ${gearSet['boots']||''}
-          </div>
-          <div id="gear-ring" class="combat-gear-item">
-          ${gearSet['ring']||''}
-          </div>
-          <div id="gear-pickaxe" class="combat-gear-item">
-          ${gearSet['pickaxe']||''}
-          </div>
-          <div id="gear-hatchet" class="combat-gear-item">
-          ${gearSet['hatchet']||''}
-          </div>
-          <div id="gear-hoe" class="combat-gear-item">
-          ${gearSet['hoe']||''}
-          </div>
-          <div id="gear-tacklebox" class="combat-gear-item">
-          ${gearSet['tacklebox']||''}
-          </div>
-        </div>`;
-    }
-
-    _generateItemHtml(item, itemResource) {
-        if (item === null || item === undefined) return '<div></div>';
-
-        const enchantment =  (item.enchantment_id !== null) ? `<div class="item-enchant"><img src="${this._gameData.enchantments[item.enchantment_id]['buffIcon']}"></div>` : '';
-        const augment =  (item.augmentations !== null) ? `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>` : '';
-        const icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
-        return `<div class=" item equipped-item">
-                    <img src="${icon}" alt="${itemResource.name}" class="item-icon">
-                    <div class="centered"></div>
-                    ${enchantment}
-                    ${augment}
-                    <span style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"></span>
-                </div>`;
     }
 }

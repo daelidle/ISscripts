@@ -1,5 +1,5 @@
 function displayPopup(title, message, confirmLambda, cancelLambda){
-    displayCompletePopup(title, message, null, 'Confirm', 'Cancel', confirmLambda, cancelLambda);
+    return displayCompletePopup(title, message, null, 'Confirm', 'Cancel', confirmLambda, cancelLambda);
 }
 
 function displayCompletePopup(title, message, extendedMessage, confirmString, cancelString, confirmLambda, cancelLambda){
@@ -39,4 +39,6 @@ function displayCompletePopup(title, message, extendedMessage, confirmString, ca
         confirmLambda();
         document.getElementById(popUpId).remove();
     },false);
+
+    return {'popUpId': popUpId, 'popUpCancel': popUpCancel, 'popUpConfirm': popUpConfirm};
 }

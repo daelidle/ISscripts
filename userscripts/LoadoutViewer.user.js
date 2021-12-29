@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Loadout Viewer
 // @namespace    DaelIS
-// @version      1.0.2
+// @version      1.0.3
 // @description  Show currently saved Loadouts
 // @author       Dael
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/LoadoutViewer.user.js
@@ -10,6 +10,8 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutViewer.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutConfig.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutUI.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutUIGear.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutUIFood.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/GeneralUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/UiUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/data/IdlescapeGameData.js
