@@ -72,14 +72,14 @@ class LoadoutUI {
     }
 
     _showLoadoutUI() {
-        if (Object.keys(this.config.loadouts).length === 0) {
+        if (Object.keys(this.config.gearLoadouts).length === 0) {
             this._showNoLoadoutUi();
             return;
         }
 
         let tabsHtml = '<div class="nav-tab-container">';
         let loadoutsHtml = '';
-        for (const [id, loadout] of Object.entries(this.config.loadouts)) {
+        for (const [id, loadout] of Object.entries(this.config.gearLoadouts)) {
             loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${this._generateLoadoutHtml(loadout)}</div>`;
             let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} (${id})` : id;
             tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${tabLabel}</div>`;
@@ -93,7 +93,7 @@ class LoadoutUI {
         </div>`;
         loadoutsHtml = `${tabsHtml}<br/>${loadoutsHtml}<br/>${actionButtons}`;
         displayCompletePopup('Loadouts', loadoutsHtml, null, 'Load', 'Close', ()=>{this._onLoadClicked()}, ()=>{});
-        this.selectedLoadout = Object.keys(this.config.loadouts)[0];
+        this.selectedLoadout = Object.keys(this.config.gearLoadouts)[0];
         document.getElementsByClassName(this.loadoutClassPrefix+this.selectedLoadout)[0].classList.remove('hidden');
         document.getElementsByClassName(this.tabClassPrefix+this.selectedLoadout)[0].classList.add('selected-tab');
         const that = this;

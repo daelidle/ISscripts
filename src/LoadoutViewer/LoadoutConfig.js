@@ -4,7 +4,8 @@ class LoadoutConfig {
     username;
 
     alias;
-    loadouts = {};
+    gearLoadouts = {};
+    foodLoadouts = {}
 
     constructor() {
         this.username = '';

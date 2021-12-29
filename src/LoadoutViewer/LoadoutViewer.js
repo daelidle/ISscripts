@@ -33,10 +33,16 @@ class LoadoutViewer {
     }
 
     _processLoadoutsMessage(loadouts){
-        this.config.loadouts = {};
+        this.config.gearLoadouts = {};
+        this.config.foodLoadouts = {};
         loadouts.forEach(item=> {
-            if (!(item.loadout_id in this.config.loadouts)) this.config.loadouts[item.loadout_id] = [];
-            this.config.loadouts[item.loadout_id].push(item);
+            if (item.loadout_id > 0) {
+                if (!(item.loadout_id in this.config.gearLoadouts)) this.config.gearLoadouts[item.loadout_id] = [];
+                this.config.gearLoadouts[item.loadout_id].push(item);
+            } else {
+                if (!(item.loadout_id in this.config.foodLoadouts)) this.config.foodLoadouts[item.loadout_id] = [];
+                this.config.foodLoadouts[item.loadout_id].push(item);
+            }
         })
     }
 }
