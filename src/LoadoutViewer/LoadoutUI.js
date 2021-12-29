@@ -2,6 +2,7 @@ class LoadoutUI {
     iconClass = "daelis_loadout_viewer";
     loadoutClassPrefix = 'daelis_loadout_loadout_';
     tabClassPrefix = 'daelis_loadout_tab_';
+    loadoutAliasButton = 'daelis_loadout_alias';
     config;
     _gameData = new IdlescapeGameData();
     selectedLoadout = null;
@@ -80,11 +81,18 @@ class LoadoutUI {
         let loadoutsHtml = '';
         for (const [id, loadout] of Object.entries(this.config.loadouts)) {
             loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${this._generateLoadoutHtml(loadout)}</div>`;
-            tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${id}</div>`;
+            let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} (${id})` : id;
+            tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${tabLabel}</div>`;
         }
         tabsHtml += '</div>';
-        loadoutsHtml = `${tabsHtml}<br/>${loadoutsHtml}`;
-        displayCompletePopup('Loadouts', loadoutsHtml, null, 'Load', 'Close', ()=>{this.onLoadClicked()}, ()=>{});
+        const actionButtons = `<div class="MuiDialogActions-root MuiDialogActions-spacing" style="display: flex;">
+            <div class="button-container-250px">
+                <div variant="contained" color="secondary" id="${this.loadoutAliasButton}"
+                     class="close-dialog-button idlescape-button idlescape-button-blue">Assign Alias</div>
+            </div>
+        </div>`;
+        loadoutsHtml = `${tabsHtml}<br/>${loadoutsHtml}<br/>${actionButtons}`;
+        displayCompletePopup('Loadouts', loadoutsHtml, null, 'Load', 'Close', ()=>{this._onLoadClicked()}, ()=>{});
         this.selectedLoadout = Object.keys(this.config.loadouts)[0];
         document.getElementsByClassName(this.loadoutClassPrefix+this.selectedLoadout)[0].classList.remove('hidden');
         document.getElementsByClassName(this.tabClassPrefix+this.selectedLoadout)[0].classList.add('selected-tab');
@@ -92,6 +100,9 @@ class LoadoutUI {
         document.querySelectorAll(`[class^="${this.tabClassPrefix}"]`).forEach(tab => tab.addEventListener("click",function(){
             that._onTabClicked(this);
         },false));
+        document.getElementById(this.loadoutAliasButton).addEventListener("click",function(){
+            that._onRenameClicked(this);
+        },false);
     }
 
     _onTabClicked(tab){
@@ -102,12 +113,28 @@ class LoadoutUI {
         document.getElementsByClassName(this.loadoutClassPrefix+this.selectedLoadout)[0].classList.remove('hidden');
     }
 
-    onLoadClicked() {
+    _onLoadClicked() {
         const messageInput = document.getElementsByClassName('chat-message-entry-input');
         console.log(messageInput);
         if (messageInput.length === 0) return;
 
         setReactNativeValue(messageInput[0], `/loadout load ${this.selectedLoadout}`);
+    }
+
+    _onRenameClicked() {
+        const inputId = 'daelis_loadout_rename_input';
+        const title = `Do you want to assign a new Alias to Loadout #${this.selectedLoadout}?`;
+        const message = `<input class="" autocomplete="off" margin="dense" dense="true" variant="outlined" type="search" name="${inputId}" id="${inputId}" value="" style="">`;
+        const that = this;
+        displayPopup(title, message, ()=>{
+            const alias = document.getElementById(inputId).value;
+            that._assignAlias(alias);
+            }, ()=>{});
+    }
+
+    _assignAlias(newAlias){
+        this.config.alias[this.selectedLoadout] = newAlias;
+        this.config.save();
     }
 
     _showNoLoadoutUi(){
