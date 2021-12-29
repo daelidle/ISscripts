@@ -9,6 +9,7 @@ class LoadoutUI {
     loadoutType;
     LOADOUT_GEAR = 0;
     LOADOUT_FOOD = 1;
+    MAX_LOADOUTS = 5;
 
     constructor(config) {
         this.config = config;
@@ -76,12 +77,6 @@ class LoadoutUI {
     }
 
     _showLoadoutUI() {
-        if ((this.loadoutType === this.LOADOUT_GEAR && Object.keys(this.config.gearLoadouts).length === 0) ||
-            (this.loadoutType === this.LOADOUT_FOOD && Object.keys(this.config.foodLoadouts).length === 0)) {
-            this._showNoLoadoutUi();
-            return;
-        }
-
         let tabsHtml = '<div class="nav-tab-container">';
         let loadoutsHtml = '';
         let loadouts;
@@ -98,6 +93,7 @@ class LoadoutUI {
             let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} (${id})` : id;
             tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${tabLabel}</div>`;
         }
+        if (Object.keys(loadouts).length < this.MAX_LOADOUTS) tabsHtml += `<div class="${this.tabClassPrefix}add nav-tab-flex text-center noselect" data-id="add">+</div>`;
         tabsHtml += '</div>';
         const actionButtons = `<div class="MuiDialogActions-root MuiDialogActions-spacing" style="display: flex;">
             <div class="button-container-250px">
@@ -110,23 +106,46 @@ class LoadoutUI {
         const changeTypeId = 'daelis_loadout_change_type';
         const title = `${loadoutType} Loadouts <img id="${changeTypeId}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlxJREFUWIXFlklrFEEUxyfECOJBkBzcIgiCC6KHePAgBEN1tSS56ZxUjAsaBEHxYKiuoVAQQYl48ZCj14DgJ5Cg4BcQRHG5iIoLaDTRJF2L/+oZMt3VM+ChuvLgXaaL+f1f1dtqtUrN9ERMXqJcPSBc76mW1cFilo4Cbpouvx8Ven9QAZSlx9oClIm4/BoJvS+YgHrd9AI8kxdBE/kFN7E3mIghYdaURHD1mQqzu3BwcNr0UZ6OQeEkrqrh19WNKFFzznN8ivnirgxO2PJB/PDWUVm5R4l8VYsSvQNR/wgNb+XDbwhIH7pXg5J54dsR7YIDV5TJsxAgv7Xh6nF9xvT6TkQEdRIuc3AN7sXsY14V4fJ85XAOOLrjygEnKc75hLeSuwBH9JcLh6oUAPh44d2ZvFI6BEVpTsBpnwLIdbMBIp5lVeZGvqIyUdMt+IcRYTb5FPDfRif/7jw+pdetCnw1bEj86ifJ8uHBC6av66ExYfrrwqz1Dcck3GZ3g2Y/UI86HDE9+HCvVTIfiTDbfQrAf57IleXPTvD7+dKJG3rCp4A40adyVTdXVMfVlNMXFghf9LrLdRWAyO+4cNrQR3zCmxx9pvQEGEK3XTjG9LB3uNAb8d9Pc0PppZ2GvMOioOBLvj0bwYXRr27VSnM61DaEDcy2atuKnweHJ+oJTf4MZO8Ss/nNdjdztpV57AbXCJMTPr05HZcOlJKDCL0F4NeOiNnorl7vOxG72ijTW6HwjXNds4euBhxSqNEBRP7OSZbxYAKs2d4P8Pv2nqhHggqwNoznQGe8aQdH1ax/pK8dpsV8yIIAAAAASUVORK5CYII=">`;
         const popUpIds = displayCompletePopup(title, loadoutsHtml, null, 'Load', 'Close', ()=>{this._onLoadClicked()}, ()=>{});
-        this.selectedLoadout = Object.keys(loadouts)[0];
-        document.getElementsByClassName(this.loadoutClassPrefix+this.selectedLoadout)[0].classList.remove('hidden');
-        document.getElementsByClassName(this.tabClassPrefix+this.selectedLoadout)[0].classList.add('selected-tab');
         const that = this;
+        this.selectedLoadout = Object.keys(loadouts)[0];
+        if (this.selectedLoadout !== undefined){
+            document.getElementsByClassName(this.loadoutClassPrefix+this.selectedLoadout)[0].classList.remove('hidden');
+            document.getElementsByClassName(this.tabClassPrefix+this.selectedLoadout)[0].classList.add('selected-tab');
+            document.getElementById(this.loadoutAliasButton).addEventListener("click",function(){
+                that._onRenameClicked(this);
+            },false);
+        } else {
+            document.getElementById(this.loadoutAliasButton).classList.add('hidden');
+        }
         document.querySelectorAll(`[class^="${this.tabClassPrefix}"]`).forEach(tab => tab.addEventListener("click",function(){
-            that._onTabClicked(this);
+            that._onTabClicked(this, popUpIds);
         },false));
-        document.getElementById(this.loadoutAliasButton).addEventListener("click",function(){
-            that._onRenameClicked(this);
-        },false);
         document.getElementById(changeTypeId).addEventListener("click",function(){
             that._onChangeTypeClicked(popUpIds);
         },false);
     }
 
-    _onTabClicked(tab){
-        this.selectedLoadout = tab.dataset.id;
+    _onTabClicked(tab, popUpIds){
+        const id = tab.dataset.id;
+        console.log(tab);
+        console.log(id);
+        if (id === 'add') {
+            let nextId;
+            if (this.loadoutType === this.LOADOUT_GEAR) {
+                const loadout = Object.keys(this.config.gearLoadouts);
+                if (loadout.length === 0) nextId = 1;
+                else nextId = parseInt(loadout[loadout.length - 1]) + 1;
+            } else {
+                const loadout = Object.keys(this.config.foodLoadouts);
+                if (loadout.length === 0) nextId = -1;
+                else nextId = parseInt(loadout[0]) - 1;
+            }
+            const messageInput = document.getElementsByClassName('chat-message-entry-input');
+            setReactNativeValue(messageInput[0], `/loadout save ${nextId}`);
+            document.getElementById(popUpIds.popUpId).remove();
+            return;
+        }
+        this.selectedLoadout = id;
         tab.parentNode.querySelectorAll(`[class^="${this.tabClassPrefix}"]`).forEach(tab => tab.classList.remove('selected-tab'));
         document.querySelectorAll(`[class^="${this.loadoutClassPrefix}"]`).forEach(loadout => loadout.classList.add('hidden'));
         tab.classList.add('selected-tab');
@@ -135,7 +154,6 @@ class LoadoutUI {
 
     _onLoadClicked() {
         const messageInput = document.getElementsByClassName('chat-message-entry-input');
-        console.log(messageInput);
         if (messageInput.length === 0) return;
 
         setReactNativeValue(messageInput[0], `/loadout load ${this.selectedLoadout}`);
@@ -162,9 +180,5 @@ class LoadoutUI {
         this.config.alias[this.selectedLoadout] = newAlias;
         this.config.save();
         document.getElementsByClassName(this.tabClassPrefix+this.selectedLoadout)[0].innerHTML = `${newAlias} (${this.selectedLoadout})`;
-    }
-
-    _showNoLoadoutUi(){
-        displayPopup('Loadouts', 'Create a loadout first. Write on chat "/loadout save 1"', ()=>{}, ()=>{});
     }
 }

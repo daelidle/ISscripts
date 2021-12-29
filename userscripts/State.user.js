@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape State Exposer
 // @namespace    DaelIS
-// @version      1.0.0
+// @version      1.0.1
 // @description  Expose Idlescape state to Window
 // @author       Dael
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/State.user.js

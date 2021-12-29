@@ -21,6 +21,7 @@ class State {
             case "update players online":
             case "update monster":
             case "server time update":
+            case "update node":
                 break;
             case "update player":
                 this.parseUpdatePlayerMessage(message);
