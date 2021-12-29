@@ -59,8 +59,8 @@ class LoadoutUIGear {
     _generateItemHtml(item, itemResource, gameData) {
         if (item === null || item === undefined) return '<div></div>';
 
-        const enchantment =  (item.enchantment_id !== null) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantment_id]['buffIcon']}"></div>` : '';
-        const augment =  (item.augmentations !== null) ? `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>` : '';
+        const enchantment =  (item.enchantment_id !== null && item.enchantment_id !== undefined) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantment_id]['buffIcon']}"></div>` : '';
+        const augment =  (item.augmentations !== null && item.augmentations !== undefined) ? `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>` : '';
         const icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
         return `<div class=" item equipped-item">
                     <img src="${icon}" alt="${itemResource.name}" class="item-icon">

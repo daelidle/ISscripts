@@ -13,8 +13,8 @@ class LoadoutUIFood {
     }
 
     _generateItemHtml(item, itemResource, gameData) {
-        const enchantment =  (item.enchantment_id !== null) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantment_id]['buffIcon']}" alt=""></div>` : '';
-        const augment =  (item.augmentations !== null) ? `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>` : '';
+        const enchantment =  (item.enchantment_id !== null && item.enchantment_id !== undefined) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantment_id]['buffIcon']}" alt=""></div>` : '';
+        const augment =  (item.augmentations !== null && item.augmentations !== undefined) ? `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>` : '';
         const icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
         return `<div class="combat-consumable">
                     <div class="combat-inventory-item cooking-ingredient">
