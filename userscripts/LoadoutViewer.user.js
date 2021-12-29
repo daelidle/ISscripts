@@ -4,8 +4,8 @@
 // @version      1.0.0
 // @description  Show currently saved Loadouts
 // @author       Dael
-// @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/LoadoutViewer.user.user.js
-// @downloadURL  https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/LoadoutViewer.user.user.js
+// @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/LoadoutViewer.user.js
+// @downloadURL  https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/LoadoutViewer.user.js
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutViewer.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutConfig.js
