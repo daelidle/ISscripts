@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape Loadout Viewer
 // @namespace    DaelIS
-// @version      1.0.0
+// @version      1.0.1
 // @description  Show currently saved Loadouts
 // @author       Dael
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/LoadoutViewer.user.js

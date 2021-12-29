@@ -135,6 +135,7 @@ class LoadoutUI {
     _assignAlias(newAlias){
         this.config.alias[this.selectedLoadout] = newAlias;
         this.config.save();
+        document.getElementsByClassName(this.tabClassPrefix+this.selectedLoadout)[0].innerHTML = `${newAlias} (${this.selectedLoadout})`;
     }
 
     _showNoLoadoutUi(){
