@@ -1,7 +1,10 @@
 class LoadoutUI {
     iconClass = "daelis_loadout_viewer";
+    loadoutClassPrefix = 'daelis_loadout_loadout_';
+    tabClassPrefix = 'daelis_loadout_tab_';
     config;
     _gameData = new IdlescapeGameData();
+    selectedLoadout = null;
 
     constructor(config) {
         this.config = config;
@@ -30,6 +33,10 @@ class LoadoutUI {
             left: 2%;
             min-width: 40px;
             height: 40px;
+        }
+        
+        div[class^="${this.loadoutClassPrefix}"] .combat-gear {
+            width: 350px;
         }
 
         </style>`;
@@ -68,16 +75,39 @@ class LoadoutUI {
             this._showNoLoadoutUi();
             return;
         }
-        const tabClassPrefix = 'daelis_loadout_tab_';
-        let tabsHtml = '<ul>';
+
+        let tabsHtml = '<div class="nav-tab-container">';
         let loadoutsHtml = '';
         for (const [id, loadout] of Object.entries(this.config.loadouts)) {
-            loadoutsHtml += `<div class="${tabClassPrefix}${id} hidden">${this._generateLoadoutHtml(loadout)}</div>`;
-            tabsHtml += `<li data-id="${id}">${id}</li>`;
+            loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${this._generateLoadoutHtml(loadout)}</div>`;
+            tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${id}</div>`;
         }
-        tabsHtml += '</ul>';
-        displayPopup('Loadouts', loadoutsHtml, ()=>{}, ()=>{});
-        document.getElementsByClassName(tabClassPrefix+Object.keys(this.config.loadouts)[0])[0].classList.remove('hidden');
+        tabsHtml += '</div>';
+        loadoutsHtml = `${tabsHtml}<br/>${loadoutsHtml}`;
+        displayCompletePopup('Loadouts', loadoutsHtml, null, 'Load', 'Close', ()=>{this.onLoadClicked()}, ()=>{});
+        this.selectedLoadout = Object.keys(this.config.loadouts)[0];
+        document.getElementsByClassName(this.loadoutClassPrefix+this.selectedLoadout)[0].classList.remove('hidden');
+        document.getElementsByClassName(this.tabClassPrefix+this.selectedLoadout)[0].classList.add('selected-tab');
+        const that = this;
+        document.querySelectorAll(`[class^="${this.tabClassPrefix}"]`).forEach(tab => tab.addEventListener("click",function(){
+            that._onTabClicked(this);
+        },false));
+    }
+
+    _onTabClicked(tab){
+        this.selectedLoadout = tab.dataset.id;
+        tab.parentNode.querySelectorAll(`[class^="${this.tabClassPrefix}"]`).forEach(tab => tab.classList.remove('selected-tab'));
+        document.querySelectorAll(`[class^="${this.loadoutClassPrefix}"]`).forEach(loadout => loadout.classList.add('hidden'));
+        tab.classList.add('selected-tab');
+        document.getElementsByClassName(this.loadoutClassPrefix+this.selectedLoadout)[0].classList.remove('hidden');
+    }
+
+    onLoadClicked() {
+        const messageInput = document.getElementsByClassName('chat-message-entry-input');
+        console.log(messageInput);
+        if (messageInput.length === 0) return;
+
+        setReactNativeValue(messageInput[0], `/loadout load ${this.selectedLoadout}`);
     }
 
     _showNoLoadoutUi(){
@@ -91,50 +121,51 @@ class LoadoutUI {
             gearSet[itemResource.slot] = this._generateItemHtml(item, itemResource);
         });
         return `<div class="combat-gear">
+          <img src="/images/combat/combat_stick_figure.png" alt="Combat stick figure">
           <div id="gear-helmet" class="combat-gear-item">
-            ${gearSet['helm']}
+            ${gearSet['helm']||''}
           </div>
           <div id="gear-cape" class="combat-gear-item">
-            ${gearSet['cape']}
+            ${gearSet['cape']||''}
           </div>
           <div id="gear-amulet" class="combat-gear-item">
-          ${gearSet['necklace']}
+          ${gearSet['necklace']||''}
           </div>
           <div id="gear-arrows" class="combat-gear-item">
-          ${gearSet['arrows']}
+          ${gearSet['arrows']||''}
           </div>
           <div id="gear-weapon" class="combat-gear-item">
-          ${gearSet['weapon']}
+          ${gearSet['weapon']||''}
           </div>
           <div id="gear-body" class="combat-gear-item">
-          ${gearSet['body']}
+          ${gearSet['body']||''}
           </div>
           <div id="gear-shield" class="combat-gear-item">
-          ${gearSet['shield']}
+          ${gearSet['shield']||''}
           </div>
           <div id="gear-legs" class="combat-gear-item">
-          ${gearSet['legs']}
+          ${gearSet['legs']||''}
           </div>
           <div id="gear-gloves" class="combat-gear-item">
-          ${gearSet['gloves']}
+          ${gearSet['gloves']||''}
           </div>
           <div id="gear-boots" class="combat-gear-item">
-          ${gearSet['boots']}
+          ${gearSet['boots']||''}
           </div>
           <div id="gear-ring" class="combat-gear-item">
-          ${gearSet['ring']}
+          ${gearSet['ring']||''}
           </div>
           <div id="gear-pickaxe" class="combat-gear-item">
-          ${gearSet['pickaxe']}
+          ${gearSet['pickaxe']||''}
           </div>
           <div id="gear-hatchet" class="combat-gear-item">
-          ${gearSet['hatchet']}
+          ${gearSet['hatchet']||''}
           </div>
           <div id="gear-hoe" class="combat-gear-item">
-          ${gearSet['hoe']}
+          ${gearSet['hoe']||''}
           </div>
           <div id="gear-tacklebox" class="combat-gear-item">
-          ${gearSet['tacklebox']}
+          ${gearSet['tacklebox']||''}
           </div>
         </div>`;
     }

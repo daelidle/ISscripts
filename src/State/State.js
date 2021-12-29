@@ -18,10 +18,9 @@ class State {
     parseSocketMessage(message){
         switch (message.event){
             case "update farming plot size":
-                break;
             case "update players online":
-                break;
             case "update monster":
+            case "server time update":
                 break;
             case "update player":
                 this.parseUpdatePlayerMessage(message);
