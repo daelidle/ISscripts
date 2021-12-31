@@ -151,10 +151,18 @@ class LoadoutUI {
     }
 
     _onLoadClicked() {
-        const messageInput = document.getElementsByClassName('chat-message-entry-input');
+        let activeChatContainer = null;
+        Array.from(document.getElementsByClassName('chat-message-container')).forEach(container => {
+            if (container.style.visibility === 'visible') activeChatContainer = container;
+        });
+        if (activeChatContainer === 0) return;
+
+        const messageInput = activeChatContainer.getElementsByClassName('chat-message-entry-input');
         if (messageInput.length === 0) return;
 
         setReactNativeValue(messageInput[0], `/loadout load ${this.selectedLoadout}`);
+        messageInput[0].setAttribute('tabindex', '-1');
+        messageInput[0].focus();
     }
 
     _onRenameClicked() {

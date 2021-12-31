@@ -1,13 +1,9 @@
 class NoGatheringIronman {
 
     onGameReady(){
-        console.log('NGIM onGameReady');
         if (!this.isValidPlayer()) return;
-        console.log('NGIM Valid Player');
         this.injectCSS();
-        console.log('NGIM injected css');
         this.blockGatheringSkills();
-        console.log('NGIM blocked gathering skills');
     }
 
     _isValidSkill(skillDOM){
