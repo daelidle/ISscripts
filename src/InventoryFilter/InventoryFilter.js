@@ -37,6 +37,7 @@ class InventoryFilter {
 
         const filterHtml = `
             <div id="daelis-inventory-filter">
+                <img class="daelis-inventory-filter-image" src="/images/combat/attack_icon.png" data-filter="equipment|key|consumable" alt="combat">
                 <img class="daelis-inventory-filter-image" src="/images/combat/equipment/stygian_platebody.png" data-filter="equipment" alt="equipment">  
                 <img class="daelis-inventory-filter-image" src="/images/misc/elite/Elite_Scroll_Chaos.png" data-filter="scroll" alt="scroll">  
                 <img class="daelis-inventory-filter-image" src="/images/cooking/cooking_icon.png" data-filter="cooking" alt="cooking">  
