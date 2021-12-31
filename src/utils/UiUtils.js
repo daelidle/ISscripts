@@ -2,13 +2,13 @@ function displayPopup(title, message, confirmLambda, cancelLambda){
     return displayCompletePopup(title, message, null, 'Confirm', 'Cancel', confirmLambda, cancelLambda);
 }
 
-function displayCompletePopup(title, message, extendedMessage, confirmString, cancelString, confirmLambda, cancelLambda){
+function displayCompletePopup(title, message, extendedMessage, confirmString, cancelString, confirmLambda, cancelLambda, customClass= ''){
     const timestamp = new Date().getTime();
     const popUpId = `DaelISPopup${timestamp}`;
     const popUpCancel = `DaelISCancel${timestamp}`;
     const popUpConfirm = `DaelISConfirm${timestamp}`;
     const extraMessage = extendedMessage === null ? '' : `<div class="offline-progress-box all-items">${extendedMessage}</div>`;
-    const popUpHTML = `<div role="presentation" id="${popUpId}" class="MuiDialog-root feedback-dialog sell-item-dialog popup-dialog" style="position: fixed; z-index: 1300; inset: 0;">
+    const popUpHTML = `<div role="presentation" id="${popUpId}" class="MuiDialog-root feedback-dialog sell-item-dialog popup-dialog ${customClass}" style="position: fixed; z-index: 1300; inset: 0;">
                        <div class="MuiBackdrop-root" aria-hidden="true" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"></div>
                        <div tabindex="0" data-test="sentinelStart"></div>
                        <div class="MuiDialog-container MuiDialog-scrollPaper" role="none presentation" tabindex="-1" style="opacity: 1;transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;">

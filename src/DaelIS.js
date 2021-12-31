@@ -4,6 +4,7 @@ class DaelIS {
     extensions;
     bannedExtensions;
     state;
+    configUi;
 
     LocalStorageConfigurationKey = "DaelISConfig";
     defaultConfiguration = {
@@ -17,13 +18,13 @@ class DaelIS {
 
     constructor() {
         IdlescapeSocketListener.attach();
-        this.config = loadConfig(this.LocalStorageConfigurationKey);
-        if (this.config === null) this.config = this.defaultConfiguration;
+        this._configurationLoad();
 
         this.bannedExtensions = ['State'];
         this.extensions = {};
         this.activeExtensions = {};
         this.state = new State();
+        this.configUi = null;
         this.setupSocketListener();
         onGameReady(() => this.onGameReady());
         onGameReady(() => this.setupDisconnectTracker());
@@ -89,10 +90,24 @@ class DaelIS {
     }
 
     onGameReady() {
+        if (this.configUi === null) this.configUi = new DaelISConfigUI(this);
+        this.configUi.injectMenuOption();
         Object.values(this.activeExtensions).forEach(extension => {
             if (typeof (extension.onGameReady) == "function") {
                 extension.onGameReady();
             }
         });
+    }
+
+    _configurationLoad(){
+        this.config = loadConfig(this.LocalStorageConfigurationKey);
+        if (this.config === null) {
+            this.config = this.defaultConfiguration;
+            saveConfig(this.LocalStorageConfigurationKey, this.config);
+        }
+    }
+
+    _configurationSave(){
+        saveConfig(this.LocalStorageConfigurationKey, this.config);
     }
 }
