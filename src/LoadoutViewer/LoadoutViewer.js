@@ -1,19 +1,18 @@
 class LoadoutViewer {
 
+    ui;
     config;
 
-    constructor(config) {
-        this.config = config;
-        let attachToSocket = setInterval(() => {
-            if (typeof window.IdlescapeListener !== "undefined") {
-                clearInterval(attachToSocket);
-                window.IdlescapeListener.messages.addEventListener("message", message => this.parseSocketMessage(message));
-                console.log('Loadout Viewer: Attached to IdlescapeSocketListener');
-            }
-        }, 100);
+    constructor() {
+        this.config = new LoadoutConfig();
+        this.ui = new LoadoutUI(this.config);
     }
 
-    parseSocketMessage(message){
+    onGameReady() {
+        this.ui.setupUI()
+    }
+
+    onMessage(message){
         switch (message.event){
             case "update player":
                 this.parseUpdatePlayerMessage(message);

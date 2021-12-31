@@ -127,8 +127,6 @@ class LoadoutUI {
 
     _onTabClicked(tab, popUpIds){
         const id = tab.dataset.id;
-        console.log(tab);
-        console.log(id);
         if (id === 'add') {
             let nextId;
             if (this.loadoutType === this.LOADOUT_GEAR) {

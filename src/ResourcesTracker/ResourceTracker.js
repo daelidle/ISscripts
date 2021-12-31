@@ -1,18 +1,17 @@
 class ResourceTracker {
     config;
+    ui;
 
-    constructor(config) {
-        this.config = config;
-        let attachToSocket = setInterval(()=> {
-            if( typeof window.IdlescapeListener !== "undefined" ){
-                clearInterval(attachToSocket);
-                window.IdlescapeListener.messages.addEventListener("message", message => this.parseSocketMessage(message));
-                console.log('Resources Tracker Summary: Attached to IdlescapeSocketListener');
-            }
-        }, 100);
+    constructor() {
+        this.config = new TrackerConfig();
+        this.ui = new TrackerUI(this.config);
     }
 
-    parseSocketMessage(message){
+    onGameReady() {
+        this.ui.setupUI();
+    }
+
+    onMessage(message){
         switch (message.event){
             case "update player":
                 this.parseUpdatePlayerMessage(message);

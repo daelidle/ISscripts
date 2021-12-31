@@ -4,11 +4,7 @@ class InventoryFilter {
     currentInputValue = '';
     originalFilterInput = null;
 
-    constructor() {
-        this.setupUI();
-    }
-
-    setupUI(){
+    onGameReady(){
         this._applyCSS();
         this._setUpMeterMutationObserver();
     }

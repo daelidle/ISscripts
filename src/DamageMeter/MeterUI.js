@@ -1,4 +1,4 @@
-class UI {
+class MeterUI {
 
     BASE_DAMAGE_METER_SCRIPT_NAME = "damage_meter";
     CSS_FILE_URL = 'https://daelidle.github.io/ISscripts/src/DamageMeter/css/damagemeter.css';

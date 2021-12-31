@@ -1,36 +1,22 @@
 class State {
-
-    state = {};
+    state;
 
     constructor() {
-        if (window.ISstate === undefined) {
-            this._applyNewState();
-            let attachToSocket = setInterval(()=> {
-                if( typeof window.IdlescapeListener !== "undefined" ){
-                    clearInterval(attachToSocket);
-                    window.IdlescapeListener.messages.addEventListener("message", message => this.parseSocketMessage(message));
-                    console.log('Idlescape State: Attached to IdlescapeSocketListener');
-                }
-            }, 100);
-        }
+        this.state = {};
+        this._exposeUpdatedState();
     }
 
-    parseSocketMessage(message){
+    onMessage(message){
         switch (message.event){
-            case "update farming plot size":
-            case "update players online":
-            case "update monster":
-            case "server time update":
-            case "update node":
-                break;
             case "update player":
                 this.parseUpdatePlayerMessage(message);
+                this._exposeUpdatedState();
                 break;
             case "update inventory":
                 this.parseUpdateInventoryMessage(message);
+                this._exposeUpdatedState();
                 break;
             default:
-                if (message.event.includes("update")) console.log(`Unknown message: ${message.event} -> ${JSON.stringify(message.data)}`);
                 break;
         }
     }
@@ -43,9 +29,7 @@ class State {
             this._updateState(messagePortion, message.data['value']);
         } else {
             console.log(`Unknown Update Player message: ${message.data}`);
-            return;
         }
-        this._applyNewState();
     }
 
     parseUpdateInventoryMessage(message){
@@ -62,7 +46,6 @@ class State {
         } else if (action === "delete"){
             this.state[inventoryType] = this.state[inventoryType].filter(inventoryItem => inventoryItem.id !== item.id);
         }
-        this._applyNewState();
     }
 
     _setInitialState(initialState) {
@@ -85,7 +68,7 @@ class State {
         statePortion[portion[portion.length-1]] = newState;
     }
 
-    _applyNewState(){
+    _exposeUpdatedState(){
         window.ISstate = this.state;
     }
 }

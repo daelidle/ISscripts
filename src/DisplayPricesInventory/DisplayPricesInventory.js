@@ -1,18 +1,12 @@
 class DisplayPricesInventory {
-
     priceDataRefreshRate = 10 * 60 * 1000;
     cachedPrices = {};
 
-    start() {
-        const gameContainer = document.getElementsByClassName("play-area-container");
-        if(gameContainer.length === 0) {
-            setTimeout(this.start, 500);
-        } else {
-            if (isIronManCharacter()) return;
-            this.addMutationObserver();
-            this.getPriceData();
-            setInterval(() => { this.getPriceData(); }, this.priceDataRefreshRate);
-        }
+    onGameReady() {
+        if (isIronManCharacter()) return;
+        this.addMutationObserver();
+        this.getPriceData();
+        setInterval(() => { this.getPriceData(); }, this.priceDataRefreshRate);
     }
 
     addMutationObserver(){
@@ -25,7 +19,7 @@ class DisplayPricesInventory {
 
         // Observe Play Area DOM changes
         const playAreaContainer = document.getElementsByClassName("play-area-container")[0];
-        const inventoryContainer = document.getElementsByClassName("inventory-container-all-items")[0];
+        const inventoryContainer = document.getElementsByClassName("game-right-panel")[0];
         const config = {attributes: true, childList: true, subtree: true };
         const observer = new MutationObserver(callback);
         observer.observe(playAreaContainer, config);

@@ -9,22 +9,18 @@ class DamageMeter {
     currentType;
     ui;
 
-    constructor(ui) {
-        this.ui = ui;
+    constructor() {
+        this.ui = new MeterUI();
         this.combat = new Combat();
         this.currentType = meterTypes.DPS;
-        let attachToSocket = setInterval(()=> {
-            if( typeof window.IdlescapeListener !== "undefined" ){
-                clearInterval(attachToSocket);
-                window.IdlescapeListener.messages.addEventListener("message", message => this.parseSocketMessage(message));
-                window.IdlescapeListener.messages.addEventListener("connected", () => onGameReady(() => this.ui.setupUI()));
-                window.IdlescapeListener.messages.addEventListener("disconnected", () => onGameReady(() => this.ui.setupUI()));
-                console.log('Idlescape Damage Meter: Attached to IdlescapeSocketListener');
-            }
-        }, 100);
+        window.damageMeter = this;
     }
 
-    parseSocketMessage(message){
+    onGameReady(){
+        this.ui.setupUI();
+    }
+
+    onMessage(message){
         switch (message.event){
             case "combat hit":
                 this._parseCombatHit(message.data);
