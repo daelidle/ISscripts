@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         DaelIS Userscripts
+// @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
 // @version      1.0.0
 // @description  Collection of utilities and QOL improvements for Idlescape.
