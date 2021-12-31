@@ -8,6 +8,7 @@
 // @downloadURL  https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DaelIS.user.js
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelIS.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelISConfigUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/MeterUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/DamageMeter.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/Combat.js
