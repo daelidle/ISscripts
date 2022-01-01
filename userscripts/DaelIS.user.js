@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      1.0.4
+// @version      1.0.5
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
+// @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DaelIS.user.js
 // @downloadURL  https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DaelIS.user.js
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
