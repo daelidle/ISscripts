@@ -8,6 +8,7 @@ class TrackerUI {
 
     setupUI(){
         const buttonId = "daelis_resource_tracker";
+        if (document.getElementById(buttonId) !== null) return;
         const imageButtonHtml = `<img src="/images/money_icon.png" id="${buttonId}" alt="Resources Tracker" class="header-league-icon">`;
         document.getElementById('usersOnline').insertAdjacentHTML('beforeend', imageButtonHtml);
         let imageButton = document.getElementById(buttonId);
