@@ -26,8 +26,7 @@ class DaelIS {
         this.state = new State();
         this.configUi = null;
         this.setupSocketListener();
-        onGameReady(() => this.onGameReady());
-        onGameReady(() => this.setupDisconnectTracker());
+        onGameReady(() => this.onFirstGameReady());
     }
 
     addExtension(extension) {
@@ -54,7 +53,7 @@ class DaelIS {
         const callback = function(mutationsList, observer) {
             const loadingAnimation = document.getElementsByClassName("loading-animation");
             if (loadingAnimation.length > 0) {
-                onGameReady(() => that.onGameReady());
+                onGameReady(() => that.onGameReady(false));
             }
         };
 
@@ -89,14 +88,19 @@ class DaelIS {
         });
     }
 
-    onGameReady() {
-        if (this.configUi === null) this.configUi = new DaelISConfigUI(this);
-        this.configUi.injectMenuOption();
+    onGameReady(isFirstGameReady) {
         Object.values(this.activeExtensions).forEach(extension => {
             if (typeof (extension.onGameReady) == "function") {
-                extension.onGameReady();
+                extension.onGameReady(isFirstGameReady);
             }
         });
+    }
+
+    onFirstGameReady(){
+        this.setupDisconnectTracker();
+        this.configUi = new DaelISConfigUI(this);
+        this.configUi.injectMenuOption();
+        this.onGameReady(true);
     }
 
     _configurationLoad(){

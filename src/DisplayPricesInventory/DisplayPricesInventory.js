@@ -2,7 +2,7 @@ class DisplayPricesInventory {
     priceDataRefreshRate = 10 * 60 * 1000;
     cachedPrices = {};
 
-    onGameReady() {
+    onGameReady(isFirstGameReady) {
         if (isIronManCharacter()) return;
         this.addMutationObserver();
         this.getPriceData();

@@ -8,8 +8,8 @@ class LoadoutViewer {
         this.ui = new LoadoutUI(this.config);
     }
 
-    onGameReady() {
-        this.ui.setupUI()
+    onGameReady(isFirstGameReady) {
+        this.ui.setupUI(isFirstGameReady)
     }
 
     onMessage(message){

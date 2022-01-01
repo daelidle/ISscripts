@@ -1,8 +1,8 @@
 class NoGatheringIronman {
 
-    onGameReady(){
+    onGameReady(isFirstGameReady){
         if (!this.isValidPlayer()) return;
-        this.injectCSS();
+        if (isFirstGameReady) this.injectCSS();
         this.blockGatheringSkills();
     }
 

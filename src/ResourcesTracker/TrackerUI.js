@@ -6,7 +6,7 @@ class TrackerUI {
         this.config = config;
     }
 
-    setupUI(){
+    setupUI(isFirstGameReady){
         const buttonId = "daelis_resource_tracker";
         if (document.getElementById(buttonId) !== null) return;
         const imageButtonHtml = `<img src="/images/money_icon.png" id="${buttonId}" alt="Resources Tracker" class="header-league-icon">`;

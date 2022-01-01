@@ -16,8 +16,8 @@ class LoadoutUI {
         this.loadoutType = this.LOADOUT_GEAR;
     }
 
-    setupUI() {
-        this._setupCss();
+    setupUI(isFirstGameReady) {
+        if (isFirstGameReady) this._setupCss();
         this._setUpMeterMutationObserver();
     }
 

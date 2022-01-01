@@ -3,8 +3,8 @@ class MeterUI {
     BASE_DAMAGE_METER_SCRIPT_NAME = "damage_meter";
     CSS_FILE_URL = 'https://daelidle.github.io/ISscripts/src/DamageMeter/css/damagemeter.css';
 
-    setupUI(){
-        injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
+    setupUI(isFirstGameReady){
+        if (isFirstGameReady) injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
         this._setUpMeterMutationObserver();
     }
 

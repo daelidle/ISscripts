@@ -4,8 +4,8 @@ class InventoryFilter {
     currentInputValue = '';
     originalFilterInput = null;
 
-    onGameReady(){
-        this._applyCSS();
+    onGameReady(isFirstGameReady){
+        if (isFirstGameReady) this._applyCSS();
         this._setUpMeterMutationObserver();
     }
 

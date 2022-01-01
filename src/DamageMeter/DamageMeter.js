@@ -16,8 +16,8 @@ class DamageMeter {
         window.damageMeter = this;
     }
 
-    onGameReady(){
-        this.ui.setupUI();
+    onGameReady(isFirstGameReady){
+        this.ui.setupUI(isFirstGameReady);
     }
 
     onMessage(message){
