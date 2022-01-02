@@ -1,4 +1,10 @@
 class NoGatheringIronman {
+    IRONMAN_LEAGUE = 2;
+    daelis;
+
+    constructor(daelis) {
+        this.daelis = daelis;
+    }
 
     onGameReady(isFirstGameReady){
         if (!this.isValidPlayer()) return;
@@ -6,37 +12,14 @@ class NoGatheringIronman {
         this.blockGatheringSkills();
     }
 
-    _isValidSkill(skillDOM){
-        if (skillDOM.getElementsByClassName("max-skill-glow").length > 0) return false;
-        if (skillDOM.getElementsByClassName("max-skill-glow30").length > 0) return false;
-        if (skillDOM.getElementsByClassName("mastery-bar").length > 0) return false;
-
-        let skillInfo = skillDOM.getElementsByClassName("CircularProgressbar-text");
-        if (skillInfo.length === 0) skillInfo = skillDOM.getElementsByClassName("skill-level-bar-exp-level");
-        if (skillInfo.length === 0) skillInfo = skillDOM.getElementsByClassName("skill-level-bar-ni-exp-level");
-
-        const skillLevel = skillInfo[0].innerHTML;
-        return parseInt(skillLevel) === 1;
-    }
-
     isValidPlayer(){
-        if (!isIronManCharacter()) return false;
-        let miningSkill = false;
-        let foragingSkill = false;
-        let fishingSkill = false;
+        const state = this.daelis.getPlayerState();
+        if (state.league !== this.IRONMAN_LEAGUE) return false;
+        if (state.skills.mining.experience !== 0) return false;
+        if (state.skills.foraging.experience !== 0) return false;
+        if (state.skills.fishing.experience !== 0) return false;
 
-        if (document.querySelectorAll('[data-for="miningHeader"]').length > 0) {
-            // Medium and Large Screens
-            document.querySelectorAll('[data-for="miningHeader"]').forEach(e=> { miningSkill = this._isValidSkill(e) });
-            document.querySelectorAll('[data-for="foragingHeader"]').forEach(e=> { foragingSkill = this._isValidSkill(e) });
-            document.querySelectorAll('[data-for="fishingHeader"]').forEach(e=> { fishingSkill = this._isValidSkill(e) });
-        } else {
-            // Mobile mode
-            document.querySelectorAll('[data-for="miningHeadernavDrawer"]').forEach(e=> { miningSkill = this._isValidSkill(e) });
-            document.querySelectorAll('[data-for="foragingHeaderundefined"]').forEach(e=> { foragingSkill = this._isValidSkill(e) });
-            document.querySelectorAll('[data-for="fishingHeaderundefined"]').forEach(e=> { fishingSkill = this._isValidSkill(e) });
-        }
-        return miningSkill && foragingSkill && fishingSkill;
+        return true;
     }
 
     injectCSS(){
