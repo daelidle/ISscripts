@@ -12,12 +12,8 @@ class Resource {
         this.initialStockPile = values.initialStockPile;
         this.initialVault = values.initialVault;
         this.initialEquipped = values.initialEquipped;
-        this.currentStockPile = values.currentStockPile;
-        this.currentVault = values.currentVault;
-        this.currentEquipped = values.currentEquipped;
         if (values.initialTackleBox !== undefined){
             this.initialTackleBox = values.initialTackleBox;
-            this.currentTackleBox = values.currentTackleBox;
         }
         return this;
     }

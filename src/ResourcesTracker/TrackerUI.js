@@ -1,12 +1,14 @@
 class TrackerUI {
     _gameData = new IdlescapeGameData();
     config;
+    tracker;
 
-    constructor(config) {
+    constructor(config, tracker) {
         this.config = config;
+        this.tracker = tracker;
     }
 
-    setupUI(isFirstGameReady){
+    setupUI(){
         const buttonId = "daelis_resource_tracker";
         if (document.getElementById(buttonId) !== null) return;
         const imageButtonHtml = `<img src="/images/money_icon.png" id="${buttonId}" alt="Resources Tracker" class="header-league-icon">`;
@@ -22,6 +24,7 @@ class TrackerUI {
         let now = new Date();
         let elapsedSeconds = (now.getTime() - this.config.initialTime.getTime()) / 1000;
         let elapsedTime = timeForHumans(elapsedSeconds);
+        this.tracker.readCurrentResources();
 
         let trackedResources = [];
         for (const [signature, resource] of Object.entries(this.config.resources).sort(function (a,b){return getItemFromItemSignature(a[0])['itemID'] - getItemFromItemSignature(b[0])['itemID'];})) {

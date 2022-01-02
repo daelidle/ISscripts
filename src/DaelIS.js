@@ -36,6 +36,10 @@ class DaelIS {
         }
     }
 
+    getPlayerState(){
+        return this.state.state;
+    }
+
     setupSocketListener() {
         let attachToSocket = setInterval(() => {
             if (typeof window.IdlescapeListener !== "undefined") {
