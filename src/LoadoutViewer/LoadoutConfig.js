@@ -1,21 +1,17 @@
 class LoadoutConfig {
-    localStorageKeyPrefix;
     storageKey;
-    username;
+    daelis;
 
     alias;
-    gearLoadouts = {};
-    foodLoadouts = {}
 
-    constructor() {
-        this.username = '';
-        this.localStorageKeyPrefix = "daelis_loadouts";
+    constructor(daelis) {
+        this.daelis = daelis;
         this.storageKey = '';
     }
 
-    load(username) {
-        this.username = username;
-        this.storageKey = `${this.localStorageKeyPrefix}_${username}`;
+    load() {
+        const localStorageKeyPrefix = "daelis_loadouts";
+        this.storageKey = `${localStorageKeyPrefix}_${this.daelis.getPlayerState().username}`;
         const storedData = localStorage.getItem(this.storageKey);
         if (storedData === null) {
             this.alias = {};
