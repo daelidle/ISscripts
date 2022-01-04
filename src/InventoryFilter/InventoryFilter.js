@@ -100,7 +100,7 @@ class InventoryFilter {
         };
 
         // Observe Play Area DOM changes
-        const playAreaContainer = document.getElementsByClassName("game-right-panel")[0];
+        const playAreaContainer = document.getElementsByClassName("combine-main-area")[0];
         const config = {attributes: true, childList: true, subtree: true };
         const observer = new MutationObserver(callback);
         observer.observe(playAreaContainer, config);
