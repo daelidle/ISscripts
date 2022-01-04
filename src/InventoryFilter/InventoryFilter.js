@@ -1,4 +1,5 @@
 class InventoryFilter {
+    filterClear = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/InventoryFilter/filter_remove.png';
 
     currentFilter = [];
     currentInputValue = '';
@@ -10,10 +11,13 @@ class InventoryFilter {
     }
 
     _onClickedFilter(element){
-        const added = element.classList.toggle("daelis-inventory-filter-image-clicked");
         const clickedFilter = element.dataset.filter;
-        if (added) this.currentFilter.push(clickedFilter);
-        else this.currentFilter = this.currentFilter.filter(filter => filter !== clickedFilter);
+        if (clickedFilter === 'clearFilter') this._resetFilters();
+        else {
+            const added = element.classList.toggle("daelis-inventory-filter-image-clicked");
+            if (added) this.currentFilter.push(clickedFilter);
+            else this.currentFilter = this.currentFilter.filter(filter => filter !== clickedFilter);
+        }
         this._applyFilter();
     }
 
@@ -24,7 +28,7 @@ class InventoryFilter {
 
     _applyFilter(){
         let filter = this.currentFilter.join('|');
-        if (this.currentInputValue.length > 0) filter = `${filter}|${this.currentInputValue}`;
+        if (this.currentInputValue.length > 0) filter = this.currentInputValue;
         setReactNativeValue(this.originalFilterInput, filter);
     }
 
@@ -46,8 +50,9 @@ class InventoryFilter {
                 <img class="daelis-inventory-filter-image" src="/images/farming/mysterious_seed.png" data-filter="seed" alt="seed">  
                 <img class="daelis-inventory-filter-image" src="/images/heat_icon.png" data-filter="^heat" alt="heat">  
                 <img class="daelis-inventory-filter-image" src="/images/runecrafting/mind_rune.png" data-filter="rune" alt="rune">  
-                <img class="daelis-inventory-filter-image" src="/images/christmas/snow_essence.png" data-filter="christmas" alt="christmas">  
-                <input class="inventory-sort-entry" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" margin="dense" dense="true" variant="outlined" type="search" name="daelis_filter_custom_values" id="daelis_filter_custom_values" value="">
+                <img class="daelis-inventory-filter-image" src="/images/christmas/snow_essence.png" data-filter="christmas" alt="christmas">
+                <img class="daelis-inventory-filter-image" src="${this.filterClear}" data-filter="clearFilter" alt="clear filter">    
+                <input class="inventory-sort-entry" placeholder="Custom Filter" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" margin="dense" dense="true" variant="outlined" type="search" name="daelis_filter_custom_values" id="daelis_filter_custom_values" value="">
             </div>
         `;
 
@@ -80,6 +85,7 @@ class InventoryFilter {
                 }
                 #daelis_filter_custom_values {
                     flex-grow: 4;
+                    margin-left: 5px;
                 }
             </style>`;
         injectCSS(css);
@@ -103,5 +109,6 @@ class InventoryFilter {
     _resetFilters() {
         this.currentFilter = [];
         this.currentInputValue = '';
+        Array.from(document.getElementsByClassName('daelis-inventory-filter-image-clicked')).forEach(filter => filter.classList.remove('daelis-inventory-filter-image-clicked'));
     }
 }
