@@ -1,41 +1,44 @@
 class DisplayPricesInventory {
     static meta = {name: 'Display Prices Inventory', description: 'Display minimum buy prices on items on inventory, marketplace and scrollcrafting screens', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DisplayPricesInventory/meta_image.png'};
-    priceDataRefreshRate = 10 * 60 * 1000;
-    cachedPrices = {};
+    daelis;
+    observer
+
+    constructor(daelis) {
+        this.daelis = daelis;
+    }
 
     onGameReady(isFirstGameReady) {
         if (isIronManCharacter()) return;
         this.addMutationObserver();
-        this.getPriceData();
-        setInterval(() => { this.getPriceData(); }, this.priceDataRefreshRate);
+        this._updateInventoryPrices();
+        const refreshRate = 10 * 60 * 1000;
+        setInterval(() => { this._updateInventoryPrices(); }, refreshRate);
     }
 
     addMutationObserver(){
         const self = this;
         const callback = function(mutationsList, observer) {
-            if (document.getElementsByClassName("marketplace-content").length > 0) self._updateInventoryPrices();
-            if (document.getElementsByClassName("scrollcrafting-main").length > 0) self._updateInventoryPrices();
-            if (document.getElementsByClassName("price").length === 0) self._updateInventoryPrices();
+            if (document.getElementsByClassName("marketplace-content").length > 0 ||
+                document.getElementsByClassName("scrollcrafting-main").length > 0 ||
+                document.getElementsByClassName("inventory-panel").length > 0) self._updateInventoryPrices();
         };
 
         // Observe Play Area DOM changes
         const playAreaContainer = document.getElementsByClassName("play-area-container")[0];
         const inventoryContainer = document.getElementsByClassName("game-right-panel")[0];
         const config = {attributes: true, childList: true, subtree: true };
-        const observer = new MutationObserver(callback);
-        observer.observe(playAreaContainer, config);
-        observer.observe(inventoryContainer, config);
-    }
-
-    async getPriceData() {
-        this.cachedPrices = await getApiPriceData();
-        this._updateInventoryPrices();
+        this.observer = new MutationObserver(callback);
+        this.observer.observe(playAreaContainer, config);
+        this.observer.observe(inventoryContainer, config);
     }
 
     _updateInventoryPrices() {
-        this._addPriceToInventory(this.cachedPrices);
-        this._addPriceToMarketplace(this.cachedPrices);
-        this._addPriceToScrollcrafting(this.cachedPrices);
+        const itemPrices = this.daelis.getItemPrices();
+        this.observer.disconnect();
+        this._addPriceToInventory(itemPrices);
+        this._addPriceToMarketplace(itemPrices);
+        this._addPriceToScrollcrafting(itemPrices);
+        this.addMutationObserver();
     }
 
     _addPriceToInventory(priceData) {

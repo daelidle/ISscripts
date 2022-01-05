@@ -52,21 +52,6 @@ function timeForHumans (seconds) {
     return returnText.trim();
 }
 
-async function getApiPriceData() {
-    const apiEndPoint = "/api/market/manifest";
-    const priceData = {};
-
-    const manifest = await getJSON(apiEndPoint);
-    if (manifest.status.toLowerCase().includes("success")) {
-        const apiPriceData = manifest['manifest'];
-        apiPriceData.forEach(data => {
-            priceData[data["name"]] = data["minPrice"];
-        });
-    }
-
-    return priceData;
-}
-
 async function getJSON (url) {
     let response;
     try {
