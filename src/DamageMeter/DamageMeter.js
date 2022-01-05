@@ -5,6 +5,7 @@ const meterTypes = {
 }
 
 class DamageMeter {
+    static meta = {name: 'Damage Meter', description: 'Shows a damage meter on solo/group combat screen with additional combat information', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/meta_image.png'};
     combat;
     currentType;
     ui;

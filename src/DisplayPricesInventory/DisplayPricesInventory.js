@@ -1,4 +1,5 @@
 class DisplayPricesInventory {
+    static meta = {name: 'Display Prices Inventory', description: 'Display minimum buy prices on items on inventory, marketplace and scrollcrafting screens', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DisplayPricesInventory/meta_image.png'};
     priceDataRefreshRate = 10 * 60 * 1000;
     cachedPrices = {};
 

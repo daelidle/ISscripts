@@ -1,4 +1,5 @@
 class ResourceTracker {
+    static meta = {name: 'Resource Tracker', description: 'Displays a modal with all the resources variations in the same way as offline progress.', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/ResourcesTracker/meta_image.png'};
     config;
     ui;
 

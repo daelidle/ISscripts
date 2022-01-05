@@ -1,4 +1,5 @@
 class InventoryFilter {
+    static meta = {name: 'Inventory Filter', description: 'Adds icons to inventory filter to allow easy filtering using just clicks.', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/InventoryFilter/meta_image.png'};
     filterClear = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/InventoryFilter/filter_remove.png';
 
     currentFilter = [];

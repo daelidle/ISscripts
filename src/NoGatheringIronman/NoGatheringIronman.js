@@ -1,4 +1,5 @@
 class NoGatheringIronman {
+    static meta = {name: 'No Gathering Ironman Helper', description: 'Hides all gathering nodes from characters that are IronMan with 0 exp on Mining, Foraging and Fishing.', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/NoGatheringIronman/meta_image.png'};
     IRONMAN_LEAGUE = 2;
     daelis;
 

@@ -1,4 +1,5 @@
 class LoadoutViewer {
+    static meta = {name: 'Loadout Viewer', description: 'Displays current stored gear and food loaouts and helps with switching and creating new ones. Also allows to assign an alias to loadouts for better identifying them.', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/LoadoutViewer/meta_image.png'};
     LOADOUT_GEAR = 0;
     LOADOUT_FOOD = 1;
 
