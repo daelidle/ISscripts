@@ -50,6 +50,7 @@ class ResourceTracker {
     }
 
     readCurrentResources() {
+        Object.values(this.config.resources).forEach(resource => resource.clearCurrentValues());
         const state = this.config.daelis.getPlayerState();
         this._populateCurrentItemsStackSize(state.stockpile, 'stockpile');
         this._populateCurrentItemsStackSize(state.vault, 'vault');
@@ -58,7 +59,7 @@ class ResourceTracker {
     }
 
     _populateCurrentItemsStackSize(itemDictionary, inventoryType){
-        for (const [id, item] of Object.entries(itemDictionary)) {
+        Object.values(itemDictionary).forEach( item => {
             let itemSignature = generateItemSignature(item);
             if (this.config.resources[itemSignature] === undefined) this.config.resources[itemSignature] = new Resource();
             switch (inventoryType) {
@@ -77,6 +78,6 @@ class ResourceTracker {
                 default:
                     console.log(`New Inventory Type! ${inventoryType}`);
             }
-        }
+        });
     }
 }

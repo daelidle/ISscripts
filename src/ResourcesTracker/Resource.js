@@ -31,4 +31,11 @@ class Resource {
         this.initialEquipped = this.currentEquipped;
         this.initialTackleBox = this.currentTackleBox;
     }
+
+    clearCurrentValues(){
+        this.currentStockPile = 0;
+        this.currentVault = 0;
+        this.currentEquipped = 0;
+        this.currentTackleBox = 0;
+    }
 }
