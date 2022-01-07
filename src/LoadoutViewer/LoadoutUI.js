@@ -46,7 +46,39 @@ class LoadoutUI {
         div[class^="${this.loadoutClassPrefix}"] .combat-gear {
             width: 350px;
         }
+        
+        div[class^="${this.tabClassPrefix}"] span {
+            font-size: small;
+        }
+        
+        #${this.changeTypeId} {
+            width: 25px;
+        }
+        
+        .daelis-loadout-icons {
+            display: flex;
+            width: 100%;
+            padding: 10px;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .daelis-loadout-icon { 
+            width: 35px;
+            height: 35px;
+            margin-left: 1px;
+            margin-right: 1px;
+            padding: 1px;
+            cursor: pointer;
+        }
+        
+        .daelis-loadout-icon-selected {
+            border: 1px solid grey;
+        }
 
+        .daelis_black_bg {
+            background-color: rgba(0,0,0,.7);
+            border: 2px solid hsla(0,0%,75.3%,.2);
+        }
         </style>`;
         injectCSS(css);
     }
@@ -93,7 +125,7 @@ class LoadoutUI {
         }
         for (const [id, loadout] of Object.entries(loadouts)) {
             loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${loadoutGenerator.generateLoadoutHtml(loadout, this.gameData)}</div>`;
-            let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} (${id})` : id;
+            let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} <span>(${id})</span>` : id;
             tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${tabLabel}</div>`;
         }
         if (Object.keys(loadouts).length < this.MAX_LOADOUTS) tabsHtml += `<div class="${this.tabClassPrefix}add nav-tab-flex text-center noselect" data-id="add">+</div>`;

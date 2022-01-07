@@ -73,14 +73,14 @@ class LoadoutViewer {
     }
 
     _onRenameClicked() {
-        const inputId = 'daelis_loadout_rename_input';
-        const title = `Do you want to assign a new Alias to Loadout #${this.selectedLoadout}?`;
-        const message = `<input class="" autocomplete="off" margin="dense" dense="true" variant="outlined" type="search" name="${inputId}" id="${inputId}" value="" style="">`;
+        const aliasUI = new LoadoutUIAlias();
+        const generatedHtml = aliasUI.generateAliasPopupHtml(this.selectedLoadout);
         const that = this;
-        displayPopup(title, message, ()=>{
-            const alias = document.getElementById(inputId).value;
+        displayPopup(generatedHtml.title, generatedHtml.body, ()=>{
+            const alias = document.getElementById(aliasUI.inputId).value;
             that._assignAlias(alias);
         }, ()=>{});
+        aliasUI.setUpTriggers();
     }
 
     _onChangeTypeClicked(popUpIds) {
