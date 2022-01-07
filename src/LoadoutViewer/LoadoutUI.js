@@ -26,7 +26,7 @@ class LoadoutUI {
     _setupCss(){
         const css = `<style>
     
-        img.${(this.iconClass)} {
+        img.${this.iconClass} {
             cursor: pointer;
             position: absolute;
             top: 170px;
@@ -35,7 +35,7 @@ class LoadoutUI {
             height: 50px
         }
         
-        .play-area-container img.${(this.iconClass)} {
+        .play-area-container img.${this.iconClass} {
             float: left;
             top: 50%;
             left: 2%;
@@ -43,6 +43,10 @@ class LoadoutUI {
             height: 40px;
         }
         
+        .combat-fight-container img.${this.iconClass} {
+            display: none;
+        }
+                
         div[class^="${this.loadoutClassPrefix}"] .combat-gear {
             width: 350px;
         }
