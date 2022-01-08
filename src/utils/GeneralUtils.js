@@ -89,3 +89,29 @@ function isDictionary(variable) {
     if (variable === undefined || variable === null) return false;
     return (variable.constructor === Object);
 }
+
+function _fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        document.execCommand('copy');
+    } catch (err) {
+        console.error('_fallbackCopyTextToClipboard: Could not copy text', err);
+    }
+
+    document.body.removeChild(textArea);
+}
+
+function copyTextToClipboard(text) {
+    if (!navigator.clipboard) {
+        _fallbackCopyTextToClipboard(text);
+        return;
+    }
+    navigator.clipboard.writeText(text).then(function() {}, function(err) { console.error('copyTextToClipboard: Could not copy text: ', err);});
+}

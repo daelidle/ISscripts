@@ -1,6 +1,5 @@
 class InventoryFilter {
     static meta = {name: 'Inventory Filter', description: 'Adds icons to inventory filter to allow easy filtering using just clicks.', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/InventoryFilter/meta_image.png'};
-    filterClear = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/InventoryFilter/filter_remove.png';
 
     currentFilter = [];
     currentInputValue = '';
@@ -14,6 +13,7 @@ class InventoryFilter {
     _onClickedFilter(element){
         const clickedFilter = element.dataset.filter;
         if (clickedFilter === 'clearFilter') this._resetFilters();
+        else if (clickedFilter === 'copy') this._copyFilteredInventoryToClipboard();
         else {
             const added = element.classList.toggle("daelis-inventory-filter-image-clicked");
             if (added) this.currentFilter.push(clickedFilter);
@@ -40,6 +40,9 @@ class InventoryFilter {
         const daelisFilter = document.getElementById('daelis-inventory-filter');
         if (daelisFilter !== null) return;
 
+        const filterClear = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/InventoryFilter/filter_remove.png';
+        const filterCopy = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/InventoryFilter/copy.png';
+
         const filterHtml = `
             <div id="daelis-inventory-filter">
                 <img class="daelis-inventory-filter-image" src="/images/combat/attack_icon.png" data-filter="equipment|key|consumable" alt="combat">
@@ -52,8 +55,9 @@ class InventoryFilter {
                 <img class="daelis-inventory-filter-image" src="/images/heat_icon.png" data-filter="^heat" alt="heat">  
                 <img class="daelis-inventory-filter-image" src="/images/runecrafting/mind_rune.png" data-filter="rune" alt="rune">  
                 <img class="daelis-inventory-filter-image" src="/images/christmas/snow_essence.png" data-filter="christmas" alt="christmas">
-                <img class="daelis-inventory-filter-image" src="${this.filterClear}" data-filter="clearFilter" alt="clear filter">    
+                <img class="daelis-inventory-filter-image" src="${filterClear}" data-filter="clearFilter" alt="clear filter">    
                 <input class="inventory-sort-entry" placeholder="Custom Filter" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" margin="dense" dense="true" variant="outlined" type="search" name="daelis_filter_custom_values" id="daelis_filter_custom_values" value="">
+                <img class="daelis-inventory-filter-image" src="${filterCopy}" data-filter="copy" alt="Copy inventory to clipboard">
             </div>
         `;
 
@@ -111,5 +115,19 @@ class InventoryFilter {
         this.currentFilter = [];
         this.currentInputValue = '';
         Array.from(document.getElementsByClassName('daelis-inventory-filter-image-clicked')).forEach(filter => filter.classList.remove('daelis-inventory-filter-image-clicked'));
+    }
+
+    _copyFilteredInventoryToClipboard(separator=',') {
+        let inventory = document.getElementsByClassName("inventory-container-all-items")[0];
+        if (inventory === undefined) return;
+
+        let clipboardString = '';
+        Array.from(inventory.getElementsByClassName('item')).forEach(item => {
+            let reactItem = getReact(item);
+            let name = reactItem.return.pendingProps.item.name;
+            let quantity = reactItem.return.pendingProps.quantity;
+            clipboardString += `${name}${separator}${quantity}\n`;
+        });
+        copyTextToClipboard(clipboardString);
     }
 }
