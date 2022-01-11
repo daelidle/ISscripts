@@ -3,6 +3,11 @@ class MeterUI {
     BASE_DAMAGE_METER_SCRIPT_NAME = "damage_meter";
     CSS_FILE_URL = 'https://daelidle.github.io/ISscripts/src/DamageMeter/css/damagemeter.css';
     meterSwitchIcon = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/meter_switch.png';
+    config;
+
+    constructor(config) {
+        this.config = config;
+    }
 
     setupUI(isFirstGameReady){
         if (isFirstGameReady) injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
@@ -98,6 +103,21 @@ class MeterUI {
                       </div>
                       <div class="maxhit">${maxString}: ${player.max}</div>
                    </div>`;
+    }
+
+    showExtensionSettings(){
+        const title = "Damage Meter Configuration";
+        const checked = (this.config.showActivitySummary) ? 'checked' : '';
+        const message = `<div class="daelidle_config_extensions "><input type="checkbox" class="daelis_meter_config" data-field="showActivitySummary" ${checked}>showActivitySummary</div>`;
+        displayPopup(title, message, () => this._processNewConfig(), () => {});
+    }
+
+    _processNewConfig(){
+        const showActivitySummary = document.getElementsByClassName('daelis_meter_config')[0];
+        if (showActivitySummary === undefined) return;
+
+        this.config.showActivitySummary = showActivitySummary.checked;
+        this.config.save();
     }
 
 }

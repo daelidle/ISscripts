@@ -9,15 +9,20 @@ class DamageMeter {
     combat;
     currentType;
     ui;
+    config;
+    daelis;
 
-    constructor() {
-        this.ui = new MeterUI();
-        this.combat = new Combat();
+    constructor(daelis) {
+        this.daelis = daelis;
+        this.config = new MeterConfig(daelis);
+        this.ui = new MeterUI(this.config);
+        this.combat = new Combat(this.config);
         this.currentType = meterTypes.DPS;
         window.damageMeter = this;
     }
 
     onGameReady(isFirstGameReady){
+        if (isFirstGameReady) this.config.load();
         this.ui.setupUI(isFirstGameReady);
     }
 
@@ -148,5 +153,9 @@ class DamageMeter {
                 break;
         }
         this._updateMeter();
+    }
+
+    showExtensionSettings(){
+        this.ui.showExtensionSettings();
     }
 }

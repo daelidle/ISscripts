@@ -7,6 +7,7 @@ class DaelISConfigUI {
     extensionListClass = 'daelidle_config_extensions';
     extensionClass = 'daelidle_config_extension';
     extensionImageContainerClass = 'daelis_config_extension_image';
+    extensionSettingsClass = 'daelis_config_extension_settings_button';
 
     constructor(daelis) {
         this.daelis = daelis;
@@ -40,11 +41,25 @@ class DaelISConfigUI {
         configHtml += '</div>';
         displayCompletePopup('DaelIS Configuration', configHtml, null, 'Save config', 'Cancel', () => this._processNewConfig(), ()=>{}, this.customPopupClass);
         document.querySelectorAll(`.${this.extensionImageContainerClass} img`).forEach(image => image.addEventListener("click",() => BigPicture({el: image})),false);
+        document.querySelectorAll(`.${this.extensionSettingsClass}`).forEach(button => button.addEventListener("click", event => this._handleExtensionSettingsClick(event.target),false));
+    }
+
+    _handleExtensionSettingsClick(button){
+        const extensionName = button.dataset.extension;
+        const extension = this.daelis.activeExtensions[extensionName];
+        extension.showExtensionSettings();
     }
 
     _generateExtensionHtml(extension){
         const extensionName = extension.name;
         const checked = (extensionName in this.daelis.activeExtensions) ? 'checked' : '';
+        let extensionConfig = '';
+        if (checked) {
+            const extensionInstance = this.daelis.activeExtensions[extensionName];
+            if (typeof (extensionInstance.showExtensionSettings) == "function") {
+                extensionConfig = `<div variant="contained" color="secondary" data-extension="${extensionName}" class="idlescape-button idlescape-button-blue ${this.extensionSettingsClass}">Extension Settings</div>`;
+            }
+        }
         let name = extensionName;
         let description = '';
         let image = '';
@@ -59,6 +74,7 @@ class DaelISConfigUI {
                 ${description}
                 <input type="checkbox" class="${(this.extensionCheckboxClass)}" data-name="${extensionName}" ${checked}>
                 ${name}
+                ${extensionConfig}
                 </div>`;
     }
 

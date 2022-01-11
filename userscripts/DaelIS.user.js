@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      1.1.5
+// @version      1.1.6
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
@@ -12,6 +12,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelIS.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelISConfigUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/MeterUI.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/MeterConfig.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/DamageMeter.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/Combat.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DisplayPricesInventory/DisplayPricesInventory.js

@@ -19,10 +19,12 @@ class Combat {
     combatStartTimestamp;
     combatFinishTimestamp = null;
     selfCharacterName;
+    config;
 
-    constructor() {
+    constructor(config) {
         this.group = {};
         this.combatStartTimestamp = new Date();
+        this.config = config;
     }
 
     setSelfCharacterName(playerName){
@@ -118,10 +120,12 @@ class Combat {
             this._resetCombat();
         } else {
             this.combatFinishTimestamp = new Date();
-            const deleteMessageId = 'dm_delete_message_'+new Date().getTime();
-            let combatSummary = this._generateCombatSummaryMessages(deleteMessageId);
-            displayChatMessageRaw(combatSummary, chatChannels.Activity);
-            document.getElementById(deleteMessageId).addEventListener("click",(event) => event.target.parentElement.parentElement.remove(), false);
+            if (this.config.showActivitySummary){
+                const deleteMessageId = 'dm_delete_message_'+new Date().getTime();
+                let combatSummary = this._generateCombatSummaryMessages(deleteMessageId);
+                displayChatMessageRaw(combatSummary, chatChannels.Activity);
+                document.getElementById(deleteMessageId).addEventListener("click",(event) => event.target.parentElement.parentElement.remove(), false);
+            }
         }
     }
 
