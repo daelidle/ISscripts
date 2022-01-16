@@ -184,5 +184,11 @@ class LoadoutUI {
         setReactNativeValue(messageInput[0], message);
         messageInput[0].setAttribute('tabindex', '-1');
         messageInput[0].focus();
+
+        const hiddenChat = document.getElementsByClassName('play-area-chat-container-hidden');
+        if (hiddenChat.length > 0){
+            hiddenChat[0].classList.remove('play-area-chat-container-hidden');
+            hiddenChat[0].classList.add('play-area-chat-container');
+        }
     }
 }
