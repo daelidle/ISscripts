@@ -127,7 +127,7 @@ class LoadoutUI {
             loadouts = foodLoadouts;
             loadoutGenerator = new LoadoutUIFood();
         }
-        for (const [id, loadout] of Object.entries(loadouts)) {
+        for (const [id, loadout] of Object.entries(loadouts).sort()) {
             loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${loadoutGenerator.generateLoadoutHtml(loadout, this.gameData)}</div>`;
             let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} <span>(${id})</span>` : id;
             tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${tabLabel}</div>`;
