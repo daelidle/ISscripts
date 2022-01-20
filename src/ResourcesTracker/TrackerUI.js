@@ -39,6 +39,12 @@ class TrackerUI {
             displayPopup('Reset resource tracker?', 'Are you sure you want to reset Resource Tracker data?', () => { this.config.reset(); }, () => {});
         };
         displayCompletePopup(title, message, itemsHtml, 'Reset', 'Close', confirmLambda, () => {});
+        tippy('.daelis-tooltip-item', {
+            content(reference) {
+                return generateTooltip(JSON.parse(reference.dataset.item));
+            },
+            allowHTML: true,
+        });
     }
 
     _generateItemsHtml(trackedResources){
@@ -54,7 +60,7 @@ class TrackerUI {
             let itemStack = shortenNumber(stack);
             let icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
 
-            let itemHtml = `<div class="item ${itemResource['class']}" data-tip="true">`;
+            let itemHtml = `<div class="item ${itemResource['class']} daelis-tooltip-item" data-item='${JSON.stringify(item)}' data-tip="true">`;
             if (item.augmentations > 0) itemHtml += `<img class="augmentation-glow-background" src="/images/augmentation_glow.png" style="position: absolute;">`;
             itemHtml += `<img src="${icon}" class="item-icon" alt="${itemResource.name}"><div class="centered ${stacksColourClass}">${itemStack}</div>`;
             if (item.enchantmentID > 0) itemHtml += `<div class="item-enchant"><img src="${this._gameData.enchantments[item.enchantmentID]['buffIcon']}"></div>`;

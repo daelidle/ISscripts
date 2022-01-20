@@ -3,7 +3,8 @@ class LoadoutUIGear {
     generateLoadoutHtml(loadout, gameData) {
         const gearSet = {};
         loadout.forEach(item=> {
-            const itemResource = gameData.gameResources[item.item_id];
+            item = normalizeItem(item);
+            const itemResource = gameData.gameResources[item.itemID];
             gearSet[itemResource.slot] = this._generateItemHtml(item, itemResource, gameData);
         });
         return `<div class="combat-gear">
@@ -59,10 +60,10 @@ class LoadoutUIGear {
     _generateItemHtml(item, itemResource, gameData) {
         if (item === null || item === undefined) return '<div></div>';
 
-        const enchantment =  (item.enchantment_id !== null && item.enchantment_id !== undefined) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantment_id]['buffIcon']}"></div>` : '';
+        const enchantment =  (item.enchantmentID !== null && item.enchantmentID !== undefined) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantmentID]['buffIcon']}"></div>` : '';
         const augment =  (item.augmentations !== null && item.augmentations !== undefined) ? `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>` : '';
         const icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
-        return `<div class=" item equipped-item">
+        return `<div class=" item equipped-item daelis-tooltip-item" data-item='${JSON.stringify(item)}'>
                     <img src="${icon}" alt="${itemResource.name}" class="item-icon">
                     <div class="centered"></div>
                     ${enchantment}

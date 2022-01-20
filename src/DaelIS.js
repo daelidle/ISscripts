@@ -110,6 +110,7 @@ class DaelIS {
         this.setupDisconnectTracker();
         this.configUi = new DaelISConfigUI(this);
         this.configUi.injectMenuOption();
+        this.injectCSS();
         this.onGameReady(true);
     }
 
@@ -123,5 +124,17 @@ class DaelIS {
 
     _configurationSave(){
         saveConfig(this.LocalStorageConfigurationKey, this.config);
+    }
+
+    injectCSS() {
+        const css = `<style>
+            .tippy-content {
+                padding: 0;
+            }
+            .tippy-arrow {
+                color: white;
+            }
+        </style>`;
+        injectCSS(css);
     }
 }

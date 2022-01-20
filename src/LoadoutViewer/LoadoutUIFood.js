@@ -3,7 +3,8 @@ class LoadoutUIFood {
     generateLoadoutHtml(loadout, gameData) {
         let foodSetHtml = '';
         loadout.forEach(item=> {
-            const itemResource = gameData.gameResources[item.item_id];
+            item = normalizeItem(item);
+            const itemResource = gameData.gameResources[item.itemID];
             foodSetHtml += this._generateItemHtml(item, itemResource, gameData);
         });
         return `
@@ -13,10 +14,10 @@ class LoadoutUIFood {
     }
 
     _generateItemHtml(item, itemResource, gameData) {
-        const enchantment =  (item.enchantment_id !== null && item.enchantment_id !== undefined) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantment_id]['buffIcon']}" alt=""></div>` : '';
+        const enchantment =  (item.enchantmentID !== null && item.enchantmentID !== undefined) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantmentID]['buffIcon']}" alt=""></div>` : '';
         const augment =  (item.augmentations !== null && item.augmentations !== undefined) ? `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>` : '';
         const icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
-        return `<div class="combat-consumable">
+        return `<div class="combat-consumable daelis-tooltip-item" data-item='${JSON.stringify(item)}'>
                     <div class="combat-inventory-item cooking-ingredient">
                         <img src="${icon}" alt="${itemResource.name}">
                         ${enchantment}

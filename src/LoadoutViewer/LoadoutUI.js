@@ -162,6 +162,13 @@ class LoadoutUI {
         document.getElementById(this.changeTypeId).addEventListener("click",function(){
             onChangedTypeClicked();
         },false);
+
+        tippy('.daelis-tooltip-item', {
+            content(reference) {
+                return generateTooltip(JSON.parse(reference.dataset.item));
+            },
+            allowHTML: true,
+        });
     }
 
     selectedTabUiChanges(selectedLoadout){

@@ -1,13 +1,16 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      1.1.8
+// @version      1.1.9
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
 // @updateURL    https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DaelIS.user.js
 // @downloadURL  https://raw.githubusercontent.com/daelidle/ISscripts/main/userscripts/DaelIS.user.js
 // @require      https://cdn.jsdelivr.net/npm/bigpicture@2.5.3/dist/BigPicture.min.js
+// @require      data:text/javascript;base64,dGhpcy5nbG9iYWxUaGlzID0gdGhpczs=
+// @require      https://unpkg.com/@popperjs/core@2
+// @require      https://unpkg.com/tippy.js@6
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelIS.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelISConfigUI.js
@@ -34,6 +37,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ConfigUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/GeneralUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ItemUtils.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/TooltipsUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/UiUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/data/IdlescapeGameData.js
 // @match        *://*.idlescape.com/game*
@@ -43,6 +47,10 @@
 // ==/UserScript==
 (function() {
     'use strict';
+
+    /* The base64 javascript require is a workaround for a tampermonkey issue:
+     * https://github.com/Tampermonkey/tampermonkey/issues/1176
+     */
 
     const daelIS = new DaelIS();
     daelIS.addExtension(DamageMeter);
