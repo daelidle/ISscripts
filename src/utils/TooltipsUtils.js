@@ -73,6 +73,7 @@ class SeedTooltip {
     }
 
     generateStatsSectionHtml(itemResource, item, gameData) {
+        if (itemResource.yield === undefined) return '';
         let yieldHtml = '';
         itemResource.yield.forEach(production => {
             if (production.chance >= 1){
