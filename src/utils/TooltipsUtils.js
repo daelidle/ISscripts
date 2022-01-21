@@ -203,25 +203,26 @@ class EquipmentTooltip {
     }
 
     generateEnchantSectionHtml(itemResource, item, gameData) {
-        if (item.enchantmentID === undefined || item.enchantmentID === null) return '';
-
         const enchantment = gameData.enchantments[item.enchantmentID];
-        const appliedEnchants = item.enchantmentStrength;
+        const appliedEnchants = item.enchantmentStrength ?? 0;
         let enchantsHtml = '';
         for (let slot = 0; slot < itemResource.enchantmentTier; slot++) {
             enchantsHtml += '<div class="item-enchant-slot-slot">';
             if (slot < appliedEnchants) enchantsHtml += '<div class="item-enchant-slot-slot"><img src="/images/16px/enchantment_filled.png"></div>';
             enchantsHtml += '<img class="item-enchant-slot-image" src="/images/16px/enchantmentslot_socket.png"></div>';
         }
-        return `<span><hr><br></span>
-              <span>
+        const enchantmentText = (enchantment === undefined) ? '' :
+            `<span>
                 <div class="item-enchant-text">
                   <b class="enchanted-text">${enchantment.name}</b>
                   <br>
                   <span class="enchanted-description"></span>
                 </div>
                 <br>
-              </span>
+              </span>`;
+
+        return `<span><hr><br></span>
+              ${enchantmentText}                  
               <span>
                 <div class="item-enchant-slot-container">
                     ${enchantsHtml}
@@ -238,27 +239,28 @@ class EliteScrollTooltip {
     }
 
     generateStatsSectionHtml(itemResource, item, gameData) {
-
         let encounters = 1;
         let treasureHunter = 0;
         let eliteStats = 1;
         let loot = 1;
-        itemResource.augmentationStats.forEach(stat => {
-            switch (stat.description) {
-                case 'Encounters:':
-                    encounters = encounters + stat.value * item.augmentations;
-                    break;
-                case 'Treasure Hunter:':
-                    treasureHunter = treasureHunter + stat.value * item.augmentations;
-                    break;
-                case 'Elite Stats:':
-                    eliteStats = eliteStats + stat.value * item.augmentations;
-                    break;
-                case 'Loot:':
-                    loot = loot + stat.value * item.augmentations;
-                    break;
-            }
-        });
+        if (item.augmentations !== undefined && item.augmentations > 0){
+            itemResource.augmentationStats.forEach(stat => {
+                switch (stat.description) {
+                    case 'Encounters:':
+                        encounters += stat.value * item.augmentations;
+                        break;
+                    case 'Treasure Hunter:':
+                        treasureHunter += stat.value * item.augmentations;
+                        break;
+                    case 'Elite Stats:':
+                        eliteStats += stat.value * item.augmentations;
+                        break;
+                    case 'Loot:':
+                        loot += stat.value * item.augmentations;
+                        break;
+                }
+            });
+        }
         return `<span><hr><br></span>
                     <span>
                         <span class="">Encounters: ${encounters}</span>
