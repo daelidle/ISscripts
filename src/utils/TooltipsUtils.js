@@ -118,13 +118,12 @@ class FoodTooltip {
         if (item.enchantmentID === undefined || item.enchantmentID === null) return '';
 
         const stacks = 1 + 2 * item.augmentations;
-        const enchantment = gameData.enchantments[item.enchantmentID].name;
+        const enchantment = gameData.enchantments[item.enchantmentID];
         const isCombatEnchantment = gameData.enchantments[item.enchantmentID].combat;
         const combatHtml = isCombatEnchantment ? '<span><b>Buff only granted when consumed in combat.</b><br></span>' : '';
         return `<span><hr><br></span>
-                            <span>Grants ${stacks} stacks of <b class="enchanted-text">${enchantment}</b> when consumed.
-                            <br>
-                            </span>
+                            <span>Grants ${stacks} stacks of <b class="enchanted-text">${enchantment.name}</b> when consumed.<br></span>
+                            <span>${enchantment.tooltip.replace('NaN%', `${Math.round(enchantment.strengthPerLevel * 2 * 100)}%`).replace('NaN', enchantment.strengthPerLevel * 2)}<br></span>
                             ${combatHtml}`;
     }
 }
@@ -216,7 +215,7 @@ class EquipmentTooltip {
                 <div class="item-enchant-text">
                   <b class="enchanted-text">${enchantment.name}</b>
                   <br>
-                  <span class="enchanted-description"></span>
+                  <span class="enchanted-description">${enchantment.tooltip.replace('NaN%', `${Math.round(enchantment.strengthPerLevel * appliedEnchants * 100)}%`).replace('NaN', enchantment.strengthPerLevel * appliedEnchants)}</span>
                 </div>
                 <br>
               </span>`;
