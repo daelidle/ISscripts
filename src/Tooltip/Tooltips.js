@@ -1,9 +1,13 @@
 class Tooltip {
-
+    CSS_FILE_URL = 'https://daelidle.github.io/ISscripts/src/Tooltip/css/daelis-tooltip.css';
     gameData;
 
     constructor() {
         this.gameData = new IdlescapeGameData();
+    }
+
+    injectCSS(){
+        injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
     }
 
     generateTooltip(item) {
@@ -15,12 +19,11 @@ class Tooltip {
         const itemType = tooltipGenerator.getItemType(itemResource);
         const secondaryType = tooltipGenerator.getSecondaryType(itemResource);
         const weaponInfo = tooltipGenerator.getWeaponInfo(itemResource);
-        const stats = tooltipGenerator.getStats(itemResource, item);
+        const stats = tooltipGenerator.getStats(itemResource, item, this.gameData);
         const enchant = tooltipGenerator.getEnchantSection(itemResource, item, this.gameData);
         const requiredStats = tooltipGenerator.getRequiredStatsLevel(itemResource);
         const itemSkill = tooltipGenerator.getItemSkillSection(itemResource, item, this.gameData);
         const effects = tooltipGenerator.getItemEffects(itemResource, item, this.gameData);
-        console.log(stats);
 
         return `
             <div class="daelis-wow-tooltip">
@@ -42,12 +45,24 @@ class Tooltip {
                     <div class="dwt-stats-other dwt-columns">
                         ${stats.otherStats ?? ''}
                     </div>
+                    <div class="dwt-stats-seed dwt-columns">
+                        ${stats.seedStats ?? ''}
+                    </div>
+                    <div class="dwt-stats-yield dwt-columns">
+                        ${stats.yieldStats ?? ''}
+                    </div>
+                    <div class="dwt-stats-food">
+                        ${stats.foodStats ?? ''}
+                    </div>
+                    <div class="dwt-stats-elite-scrolls dwt-columns">
+                        ${stats.eliteScrollStats ?? ''}
+                    </div>
                 </div>
                 <div class="dwt-enchant">
                     ${enchant ?? ''}
                 </div>
                 <div class="dwt-requirements">
-                    <span>Requires ${requiredStats}</span>
+                    ${requiredStats ?? ''}
                 </div>
                 <div class="dwt-item-skill">
                     ${itemSkill ?? ''}
@@ -94,7 +109,7 @@ class Tooltip {
 
 class DefaultTooltip {
     getItemType(itemResource){
-        return stringCapitalize(itemResource.slot);
+        return stringCapitalize(itemResource.class);
     }
     getSecondaryType(itemResource){
         return '';
@@ -103,9 +118,12 @@ class DefaultTooltip {
         return '';
     }
     getStats(item, itemResource){
-        return '';
+        return {};
     }
     getEnchantSection(itemResource, item, gameData){
+        return '';
+    }
+    getRequiredStatsLevel(){
         return '';
     }
     getItemSkillSection(itemResource, item, gameData){

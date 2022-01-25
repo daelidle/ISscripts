@@ -25,10 +25,10 @@ class EquipmentTooltip {
             }
         }
 
-        return requiredStats.join(", ");
+        return `<span>Requires ${requiredStats.join(", ")}</span>`;
     }
 
-    getStats(itemResource, item){
+    getStats(itemResource, item, gameData){
         const itemStats = this._parseStats(itemResource, item);
         let attackStats = '';
         if (Object.keys(itemStats.attackStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.attackStats)) attackStats += `<span>+${bonus} ${type}</span>`;
@@ -80,7 +80,7 @@ class EquipmentTooltip {
 
         if (enchantment !== undefined){
             const appliedEnchants = item.enchantmentStrength ?? 0;
-            const enchantStrengthText = (appliedEnchants === slots) ? appliedEnchants : `${appliedEnchants}/${slots}`;
+            const enchantStrengthText = (appliedEnchants == slots) ? appliedEnchants : `${appliedEnchants}/${slots}`;
             return `<span class="dwt-enchant-active">${enchantment.name} ${enchantStrengthText}</span>`;
         } else if (slots !== undefined && slots > 0) {
             return `<span class="dwt-enchant-unactive">Enchant slots: ${slots}</span>`;
@@ -101,7 +101,9 @@ class EquipmentTooltip {
 
         const ability = gameData.abilities[itemResource.relatedAbility];
         if (ability !== undefined){
-            itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${ability.oldDescription}</span></div>`;
+            let description = ability.oldDescription;
+            if (description.split('-').length > 1) description = description.split('-')[1].trim();
+            itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${description}</span></div>`;
         }
 
         const enchantment = gameData.enchantments[item.enchantmentID];

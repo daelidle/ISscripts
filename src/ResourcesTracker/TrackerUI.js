@@ -39,9 +39,10 @@ class TrackerUI {
             displayPopup('Reset resource tracker?', 'Are you sure you want to reset Resource Tracker data?', () => { this.config.reset(); }, () => {});
         };
         displayCompletePopup(title, message, itemsHtml, 'Reset', 'Close', confirmLambda, () => {});
+        const daelis = this.config.daelis;
         tippy('.daelis-tooltip-item', {
             content(reference) {
-                return generateTooltip(JSON.parse(reference.dataset.item));
+                return daelis.generateTooltip(JSON.parse(reference.dataset.item));
             },
             allowHTML: true,
         });

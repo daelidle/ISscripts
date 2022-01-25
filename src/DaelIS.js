@@ -5,6 +5,7 @@ class DaelIS {
     bannedExtensions;
     state;
     prices;
+    tooltip;
     configUi;
 
     LocalStorageConfigurationKey = "DaelISConfig";
@@ -21,11 +22,12 @@ class DaelIS {
         IdlescapeSocketListener.attach();
         this._configurationLoad();
 
-        this.bannedExtensions = ['State', 'Prices'];
+        this.bannedExtensions = ['State', 'Prices', 'Tooltip'];
         this.extensions = {};
         this.activeExtensions = {};
         this.state = new State();
         this.prices = new Prices();
+        this.tooltip = new Tooltip();
         this.configUi = null;
         this.setupSocketListener();
         onGameReady(() => this.onFirstGameReady());
@@ -44,6 +46,10 @@ class DaelIS {
 
     getItemPrices(){
         return this.prices.cachedPrices;
+    }
+
+    generateTooltip(item){
+        return this.tooltip.generateTooltip(item);
     }
 
     setupSocketListener() {
@@ -110,6 +116,7 @@ class DaelIS {
         this.setupDisconnectTracker();
         this.configUi = new DaelISConfigUI(this);
         this.configUi.injectMenuOption();
+        this.tooltip.injectCSS();
         this.injectCSS();
         this.onGameReady(true);
     }

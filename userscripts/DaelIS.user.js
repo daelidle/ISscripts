@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      1.1.10
+// @version      1.2.0
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
@@ -33,11 +33,16 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/ResourcesTracker/TrackerConfig.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/ResourcesTracker/TrackerUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/State/State.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/EliteScrollTooltip.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/EquipmentTooltip.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/FoodTooltip.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/SeedTooltip.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/Tooltips.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ChatUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ConfigUtils.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/EnchantUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/GeneralUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ItemUtils.js
-// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/TooltipsUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/UiUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/data/IdlescapeGameData.js
 // @match        *://*.idlescape.com/game*

@@ -163,9 +163,10 @@ class LoadoutUI {
             onChangedTypeClicked();
         },false);
 
+        const daelis = this.config.daelis;
         tippy('.daelis-tooltip-item', {
             content(reference) {
-                return generateTooltip(JSON.parse(reference.dataset.item));
+                return daelis.generateTooltip(JSON.parse(reference.dataset.item));
             },
             allowHTML: true,
         });

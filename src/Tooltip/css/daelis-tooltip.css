@@ -50,3 +50,6 @@ body{
     font-style: italic;
     font-size: 11px;
 }
+.dwt-enchant-unactive {
+    color: #9d9d9d;
+}

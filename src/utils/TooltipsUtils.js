@@ -94,8 +94,6 @@ class SeedTooltip {
     }
 }
 
-
-
 class FoodTooltip {
 
     generateExtraFlavorTextSectionHtml(itemResource, item){
