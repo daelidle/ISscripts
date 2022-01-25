@@ -115,3 +115,7 @@ function copyTextToClipboard(text) {
     }
     navigator.clipboard.writeText(text).then(function() {}, function(err) { console.error('copyTextToClipboard: Could not copy text: ', err);});
 }
+
+function stringCapitalize(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
