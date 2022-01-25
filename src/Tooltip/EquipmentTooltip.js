@@ -59,6 +59,10 @@ class EquipmentTooltip {
         if (itemResource.defenseBonus !== undefined){
             for (const [type, bonus] of Object.entries(itemResource.defenseBonus)) if (bonus > 0) defenseStats[defenseStatsNormalizer[type]] = bonus;
         }
+        if (itemResource.toolBoost !== undefined && itemResource.toolBoost > 0) otherStats['Fishing'] = itemResource.toolBoost;
+        if (itemResource.gatherSearch !== undefined && itemResource.gatherSearch > 0) otherStats['Bait Power'] = itemResource.gatherSearch;
+        if (itemResource.gatherSpeed !== undefined && itemResource.gatherSpeed > 0) otherStats['Reel Power'] = itemResource.gatherSpeed;
+        if (itemResource.gatherBonus !== undefined && itemResource.gatherBonus > 0) otherStats['Bonus Rarity'] = itemResource.gatherBonus;
         if (item.augmentations !== undefined && item.augmentations > 0 && itemResource.augmentationStats !== undefined){
             itemResource.augmentationStats.forEach(stat => {
                 let statName = augmentStatsNormalizer[stat.description];

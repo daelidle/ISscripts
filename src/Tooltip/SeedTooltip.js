@@ -1,7 +1,7 @@
 class SeedTooltip {
 
     getItemType(itemResource){
-        return stringCapitalize(itemResource.slot);
+        return stringCapitalize(itemResource.class);
     }
 
     getSecondaryType(itemResource){
