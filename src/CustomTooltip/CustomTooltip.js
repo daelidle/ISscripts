@@ -22,7 +22,7 @@ class CustomTooltip {
 
     _setupTooltipDelegates(){
         const that = this;
-        // Equipped items, marketplace general listing, inventory/vault in this order
+        // Equipped items, marketplace general listing, farming seeds, inventory/vault in this order
         tippy.delegate('.game-content', {
             target: '.item',
             content(element) {
@@ -34,7 +34,9 @@ class CustomTooltip {
                 } else if (element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
                     const marketItem = getReact(element.parentElement).return.pendingProps.item;
                     item = {itemID: marketItem.id};
-                } else {
+                } else if (element.dataset.for.includes('farming-seed')) {
+                    item = getReact(element.parentElement).return.pendingProps.item;
+                }else {
                     item = getReact(element).return.pendingProps.item;
                 }
                 return that.daelis.generateTooltip(item);

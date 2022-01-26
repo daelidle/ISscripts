@@ -14,6 +14,7 @@
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelIS.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelISConfigUI.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/CustomTooltip/CustomTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/MeterUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/MeterConfig.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/DamageMeter.js
@@ -58,6 +59,7 @@
      */
 
     const daelIS = new DaelIS();
+    daelIS.addExtension(CustomTooltip);
     daelIS.addExtension(DamageMeter);
     daelIS.addExtension(DisplayPricesInventory);
     daelIS.addExtension(InventoryFilter);
