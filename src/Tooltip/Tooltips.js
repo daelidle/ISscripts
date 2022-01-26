@@ -109,7 +109,7 @@ class Tooltip {
 
 class DefaultTooltip {
     getItemType(itemResource){
-        return stringCapitalize(itemResource.class);
+        return stringCapitalize(itemResource.class.replace('-', ' '));
     }
     getSecondaryType(itemResource){
         return '';

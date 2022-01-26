@@ -22,6 +22,7 @@ class CustomTooltip {
 
     _setupTooltipDelegates(){
         const that = this;
+        // Equipped items, marketplace general listing, inventory/vault in this order
         tippy.delegate('.game-content', {
             target: '.item',
             content(element) {
@@ -40,6 +41,7 @@ class CustomTooltip {
             },
             allowHTML: true,
         });
+        // Combat food
         tippy.delegate('.game-content', {
             target: '.combat-consumable',
             content(element) {
@@ -52,12 +54,34 @@ class CustomTooltip {
             },
             allowHTML: true,
         });
+        // Marketplace buy item list
         tippy.delegate('.game-content', {
             target: '.marketplace-table-cell-div',
             content(element) {
                 if (!element.classList.contains('marketplace-table-cell-div')) return;
 
                 const item = getReact(element.parentElement.parentElement).return.pendingProps.item;
+                return that.daelis.generateTooltip(item);
+            },
+            allowHTML: true,
+        });
+        // Event and General Shop in this order
+        tippy.delegate('.game-content', {
+            target: '.game-shop-item',
+            content(element) {
+                if (!element.classList.contains('game-shop-item')) return;
+
+                let item = getReact(element.parentElement).return.pendingProps.item;
+                if (item !== undefined) {
+                    delete item.name;
+                    if (item.itemID === undefined) {
+                        const enchantmentID = that.daelis.gameData.enchantments[item.enchantmentID];
+                        return `<div class="daelis-wow-tooltip">${getEnchantDescription(enchantmentID, 2)}</div>`;
+                    }
+                } else {
+                    item = getReact(element.parentElement).return.pendingProps;
+                    item = {itemID: item.id};
+                }
                 return that.daelis.generateTooltip(item);
             },
             allowHTML: true,
