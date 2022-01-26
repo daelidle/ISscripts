@@ -13,8 +13,8 @@ class Tooltip {
     generateTooltip(item) {
         const itemResource = this.gameData.gameResources[item.itemID];
         const nameRarityClass = this.getItemNameColorByRarity(itemResource);
-        const name = itemResource.name;
-        const augment = (item.augmentations !== undefined && item.augmentations !== null) ? ` +${item.augmentations}` : '';
+        const name = (item.name !== undefined) ? item.name : itemResource.name;
+        const augment = (item.augmentations !== undefined && item.augmentations !== null && item.augmentations > 0) ? ` +${item.augmentations}` : '';
         const tooltipGenerator = this._getTooltipType(itemResource);
         const itemType = tooltipGenerator.getItemType(itemResource);
         const secondaryType = tooltipGenerator.getSecondaryType(itemResource);
