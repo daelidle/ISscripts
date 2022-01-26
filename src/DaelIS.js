@@ -7,9 +7,11 @@ class DaelIS {
     prices;
     tooltip;
     configUi;
+    gameData;
 
     LocalStorageConfigurationKey = "DaelISConfig";
     defaultConfiguration = {
+        "CustomTooltip.js": true,
         "DisplayPricesInventory": true,
         "ResourceTracker": true,
         "InventoryFilter": true,
@@ -29,6 +31,7 @@ class DaelIS {
         this.prices = new Prices();
         this.tooltip = new Tooltip();
         this.configUi = null;
+        this.gameData = new IdlescapeGameData();
         this.setupSocketListener();
         onGameReady(() => this.onFirstGameReady());
     }
