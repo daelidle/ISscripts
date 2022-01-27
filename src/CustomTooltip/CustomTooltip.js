@@ -40,6 +40,7 @@ class CustomTooltip {
                 return that.daelis.generateTooltip(item);
             },
             allowHTML: true,
+            sticky: true,
         });
     }
 
