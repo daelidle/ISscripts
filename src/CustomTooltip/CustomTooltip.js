@@ -21,42 +21,57 @@ class CustomTooltip {
     }
 
     _setupTooltipDelegates(){
+        this._setupGeneralItemDelegates();
+        this._setupCombatFoodDelegate();
+        this._setupMarketplaceBuyItemDelegate();
+        this._setupEventAndGeneralShopDelegate();
+        this._setupChatItemDelegate();
+    }
+
+    _setupChatItemDelegate() {
         const that = this;
-        // Equipped items, marketplace general listing, farming seeds, inventory/vault in this order
         tippy.delegate('.game-content', {
-            target: '.item',
+            target: '.chat-item',
             content(element) {
-                if (!element.classList.contains('item')) return;
-                let item;
-                if (element.classList.contains('equipped-item')) {
-                    element = element.parentElement;
-                    item = getReact(element).return.pendingProps.equippedItem;
-                } else if (element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
-                    const marketItem = getReact(element.parentElement).return.pendingProps.item;
-                    item = {itemID: marketItem.id};
-                } else if (element.dataset.for.includes('farming-seed')) {
-                    item = getReact(element.parentElement).return.pendingProps.item;
-                }else {
-                    item = getReact(element).return.pendingProps.item;
+                if (!element.classList.contains('chat-item')) return;
+
+                let item = getReact(element).return.pendingProps.item;
+                if (item === undefined) return ''; // Item-set
+                return that.daelis.generateTooltip(item);
+            },
+            allowHTML: true,
+        });
+    }
+
+    _setupEventAndGeneralShopDelegate() {
+        const that = this;
+
+        tippy.delegate('.game-content', {
+            target: '.game-shop-item',
+            content(element) {
+                if (!element.classList.contains('game-shop-item')) return;
+
+                let item = getReact(element.parentElement).return.pendingProps.item;
+                if (item !== undefined) {
+                    // Event Shop
+                    delete item.name;
+                    if (item.itemID === undefined) {
+                        const enchantmentID = that.daelis.gameData.enchantments[item.enchantmentID];
+                        return `<div class="daelis-wow-tooltip">${getEnchantDescription(enchantmentID, 2)}</div>`;
+                    }
+                } else {
+                    // General Shop
+                    item = getReact(element.parentElement).return.pendingProps;
+                    item = {itemID: item.id};
                 }
                 return that.daelis.generateTooltip(item);
             },
             allowHTML: true,
         });
-        // Combat food
-        tippy.delegate('.game-content', {
-            target: '.combat-consumable',
-            content(element) {
-                if (!element.classList.contains('combat-consumable')) return;
+    }
 
-                const foodId = getReact(element).child.key.replace('combatInventoryItem','');
-                const foodArray = getReact(element.parentElement).return.pendingProps.combatInventory;
-                const item = foodArray[foodId];
-                return that.daelis.generateTooltip(item);
-            },
-            allowHTML: true,
-        });
-        // Marketplace buy item list
+    _setupMarketplaceBuyItemDelegate() {
+        const that = this;
         tippy.delegate('.game-content', {
             target: '.marketplace-table-cell-div',
             content(element) {
@@ -67,27 +82,54 @@ class CustomTooltip {
             },
             allowHTML: true,
         });
-        // Event and General Shop in this order
-        tippy.delegate('.game-content', {
-            target: '.game-shop-item',
-            content(element) {
-                if (!element.classList.contains('game-shop-item')) return;
+    }
 
-                let item = getReact(element.parentElement).return.pendingProps.item;
-                if (item !== undefined) {
-                    delete item.name;
-                    if (item.itemID === undefined) {
-                        const enchantmentID = that.daelis.gameData.enchantments[item.enchantmentID];
-                        return `<div class="daelis-wow-tooltip">${getEnchantDescription(enchantmentID, 2)}</div>`;
+    _setupCombatFoodDelegate() {
+        const that = this;
+        tippy.delegate('.game-content', {
+            target: '.combat-consumable',
+            content(element) {
+                if (!element.classList.contains('combat-consumable')) return;
+
+                const foodId = getReact(element).child.key.replace('combatInventoryItem', '');
+                const foodArray = getReact(element.parentElement).return.pendingProps.combatInventory;
+                const item = foodArray[foodId];
+                return that.daelis.generateTooltip(item);
+            },
+            allowHTML: true,
+        });
+    }
+
+    _setupGeneralItemDelegates() {
+        const that = this;
+        tippy.delegate('body', {
+            target: '.item',
+            content(element) {
+                if (!element.classList.contains('item')) return;
+                let item;
+                if (element.classList.contains('equipped-item')) {
+                    // Equipped item
+                    item = getReact(element.parentElement).return.pendingProps.equippedItem;
+                    if (item === undefined){
+                        // Chat-linked Equipment
+                        item = getReact(element.lastElementChild).return.return.pendingProps.item
                     }
+                } else if (element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
+                    // Marketplace general listing
+                    const marketItem = getReact(element.parentElement).return.pendingProps.item;
+                    item = {itemID: marketItem.id};
+                } else if (element.dataset.for.includes('farming-seed')) {
+                    // Farming seeds
+                    item = getReact(element.parentElement).return.pendingProps.item;
                 } else {
-                    item = getReact(element.parentElement).return.pendingProps;
-                    item = {itemID: item.id};
+                    // Inventory and Vault
+                    item = getReact(element).return.pendingProps.item;
                 }
                 return that.daelis.generateTooltip(item);
             },
             allowHTML: true,
         });
+        return that;
     }
 
     _initializeIdCaches() {
