@@ -106,6 +106,7 @@ class CustomTooltip {
             target: '.item',
             content(element) {
                 if (!element.classList.contains('item')) return;
+                if (element.classList.contains('daelis-tooltip-item')) return;
                 let item;
                 if (element.classList.contains('equipped-item')) {
                     // Equipped item
@@ -114,11 +115,11 @@ class CustomTooltip {
                         // Chat-linked Equipment
                         item = getReact(element.lastElementChild).return.return.pendingProps.item
                     }
-                } else if (element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
+                } else if (element.dataset.for !== undefined && element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
                     // Marketplace general listing
                     const marketItem = getReact(element.parentElement).return.pendingProps.item;
                     item = {itemID: marketItem.id};
-                } else if (element.dataset.for.includes('farming-seed')) {
+                } else if (element.dataset.for !== undefined && element.dataset.for.includes('farming-seed')) {
                     // Farming seeds
                     item = getReact(element.parentElement).return.pendingProps.item;
                 } else {

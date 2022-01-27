@@ -42,7 +42,7 @@ class FoodTooltip {
     getItemSkillSection(itemResource, item, gameData) {
         if (itemResource.isEdible === undefined || itemResource.isEdible === false) return '';
         const augments = item.augmentations ?? 0;
-        return `<span>Heals: ${itemResource.healing * (1 + augments)} hp</span>`;
+        return `<span>Use: Heals ${itemResource.healing * (1 + augments)} hp</span>`;
     }
 
     getItemEffects(itemResource, item, gameData){

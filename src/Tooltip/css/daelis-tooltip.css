@@ -1,5 +1,5 @@
 .daelis-wow-tooltip {
-    width: 280px;
+    width: 300px;
     background: #080d21eb;
     font-family: Verdana,"Open Sans",Arial,"Helvetica Neue",Helvetica,sans-serif;
     font-size: 12px;
@@ -14,10 +14,19 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+.dwt-columns > span:nth-child(even) {
+    text-align: right;
+}
+.dwt-columns > span {
+    min-width: 50%;
+}
 .dwt-name {
     font-size: 14px;
     line-height: 19px;
     font-weight: normal;
+}
+.dwt-rarity-legendary {
+    color: #ff8000;
 }
 .dwt-rarity-epic {
     color: #a335ee;
@@ -28,14 +37,14 @@
 .dwt-rarity-uncommon {
     color: #1eff00;
 }
-.dwt-rarity-legendary {
-    color: #ff8000;
-}
 .dwt-stats {
     margin-top: 5px;
 }
 .dwt-enchant, .dwt-item-skill {
     color: #1eff00;
+}
+.dwt-enchant-unactive {
+    color: #9d9d9d;
 }
 .dwt-effects {
     color: #9d9d9d;
@@ -45,7 +54,4 @@
     color: #ffd100;
     font-style: italic;
     font-size: 11px;
-}
-.dwt-enchant-unactive {
-    color: #9d9d9d;
 }

@@ -64,6 +64,7 @@ class Tooltip {
             "Black Knight's Trial", "Giant Scroll", "Stew Stained Page", "Cluster-Cluck", "Demonic Trial", "Shapeless Scroll", "Mysterious Seed", "Shrimp Bauble", 'Ladle', 'Greater Ladle', 'Lesser Ladle', 'Torn Goblin  Settlement Map', 'Scrap of Stained Parchment'];
         if (legendaryItems.includes(itemResource.name)) return 'dwt-rarity-legendary';
         if (epicItems.includes(itemResource.name)) return 'dwt-rarity-epic';
+        if (itemResource.tags === undefined) itemResource.tags = [];
         if (itemResource.tags.includes('stygian') || rareItems.includes(itemResource.name)) return 'dwt-rarity-rare';
         if (itemResource.tags.includes('obsidian') || itemResource.tags.includes('runite') || uncommonItems.includes(itemResource.name)) return 'dwt-rarity-uncommon';
         return 'dwt-rarity-common';
