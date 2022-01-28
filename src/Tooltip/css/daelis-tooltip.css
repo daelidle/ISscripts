@@ -37,6 +37,9 @@
 .dwt-rarity-uncommon {
     color: #1eff00;
 }
+.dwt-stats {
+    min-height: 5px;
+}
 .dwt-stats-offensive, .dwt-stats-defensive, .dwt-stats-other {
     margin-top: 5px;
 }
@@ -57,4 +60,7 @@
     color: #ffd100;
     font-style: italic;
     font-size: 11px;
+}
+.tippy-box {
+    background-color: transparent;
 }

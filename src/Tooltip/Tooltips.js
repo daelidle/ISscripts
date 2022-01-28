@@ -55,14 +55,14 @@ class Tooltip {
     }
 
     getItemNameColorByRarity(itemResource){
-        const legendaryItems = ["Ocean's Embrace", "Prismatic Ring", "Prismatic Necklace"];
+        const legendaryItems = ["Ocean's Embrace", "Prismatic Ring", "Prismatic Necklace", 'Ancient Fishing Rod','Ancient Harpoon','Ancient Fishing Net'];
         const epicItems = ["Moss Maul", "King's Crown", "Shard of Kalanahmatti", "Fire Orb", "Shapeless Scythe", "Ancient Fire Amulet", "Ancient Nature Amulet", "Black Knight Titan's Helm", "Crystal Mace", "Signet Ring", 'Titanic Gauntlet', 'World Walkers', "Giant King's Jewel", "Giant's Keep Key", "Infernal Lance"];
         const rareItems = ['Searing Ladle', 'Decayed Cloak', 'Festive Shroud', 'Nature Fragment', 'Ice Fragment', 'Fire Fragment', 'Chaos Fragment', 'Corrupted Fragment', 'Crest of Chaos', "Ancient Treasure", "Black Opal",
-            "Modified Diving Gloves", "Forgotten Soul", "Mantle of Flame", "Black Knight's Gauntlets", "Black Opal Ring", "Black Opal Necklace"];
+            "Modified Diving Gloves", "Forgotten Soul", "Mantle of Flame", "Black Knight's Gauntlets", "Black Opal Ring", "Black Opal Necklace", 'Supreme Tacklebox', 'Burning Feather'];
         const uncommonItems = ['Black Knight Great Helm', 'Dark Key Piece', 'Dark Fortress Key', 'Corrupted Ring', "Naga's Bracelet", "Fisherman's Smock", "Fisherman's Bucket Hat", "Fisherman's Waders", 'Geode', 'Satchel', "Bird's Nest", "Sunken Treasure", "Yew Log",
             "Ichor", "Diamond", "Ruby", "Air Talisman", "Earth Talisman", "Fire Talisman", "Water Talisman", "Blood Talisman", "Death Talisman", "Chaos Talisman", "Nature Talisman", "Mind Talisman", "Cosmic Talisman", "Chorus of Souls", "Giant Scraps", "Corroded Scroll",
             "Black Knight's Trial", "Giant Scroll", "Stew Stained Page", "Cluster-Cluck", "Demonic Trial", "Shapeless Scroll", "Mysterious Seed", "Shrimp Bauble", 'Ladle', 'Greater Ladle', 'Lesser Ladle', 'Torn Goblin  Settlement Map', 'Scrap of Stained Parchment',
-            'Taproot Scroll'];
+            'Taproot Scroll', 'Pro Tacklebox', "Aquamarine", 'Mystical Driftwood', 'Molten Ashes', 'Infernal Flame'];
         if (legendaryItems.includes(itemResource.name)) return 'dwt-rarity-legendary';
         if (epicItems.includes(itemResource.name)) return 'dwt-rarity-epic';
         if (itemResource.tags === undefined) itemResource.tags = [];
