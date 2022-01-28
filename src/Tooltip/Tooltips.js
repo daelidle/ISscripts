@@ -24,6 +24,8 @@ class Tooltip {
         const requiredStats = tooltipGenerator.getRequiredStatsLevel(itemResource);
         const itemSkill = tooltipGenerator.getItemSkillSection(itemResource, item, this.gameData);
         const effects = tooltipGenerator.getItemEffects(itemResource, item, this.gameData);
+        let quantity = parseInt(item?.stackSize ?? 1);
+        if (parseInt(item.itemID) == 7050) quantity = parseInt(item.christmasSpirit ?? 1);
 
         return `
             <div class="daelis-wow-tooltip">
@@ -48,7 +50,7 @@ class Tooltip {
                 <div class="dwt-effects">${effects ?? ''}</div>
                 <div class="dwt-flavor">${itemResource?.extraTooltipInfo ?? ''}</div>
                 <div class="dwt-prices dwt-columns">
-                    <span class="dwt-quantity">Quantity: ${parseInt(item?.stackSize ?? 1).toLocaleString()}</span>
+                    <span class="dwt-quantity">Quantity: ${quantity.toLocaleString()}</span>
                     <span class="dwt-prices-vendor">Vendor: ${parseInt(itemResource?.value ?? 0).toLocaleString()}<img src="https://www.idlescape.com/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;"></span>
                 </div>
             </div>`;

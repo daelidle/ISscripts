@@ -41,6 +41,7 @@ class CustomTooltip {
             },
             allowHTML: true,
             sticky: true,
+            inlinePositioning: true
         });
     }
 
