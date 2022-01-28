@@ -6,7 +6,8 @@ class LoadoutUI {
     tabClassPrefix = 'daelis_loadout_tab_';
     loadoutAliasButton = 'daelis_loadout_alias';
     changeTypeId = 'daelis_loadout_change_type';
-    MAX_LOADOUTS = 5;
+    MAX_FOOD_LOADOUTS = 5;
+    MAX_GEAR_LOADOUTS = 10;
 
     gameData;
     config;
@@ -83,6 +84,16 @@ class LoadoutUI {
             background-color: rgba(0,0,0,.7);
             border: 2px solid hsla(0,0%,75.3%,.2);
         }
+        .daelis-tab-container{
+            flex-wrap: wrap;
+            height: auto;
+            flex-basis: auto;
+        }
+        .daelis-tab-container > div{
+            min-width: 80px;
+            height: 30px;
+            flex: 0 1 auto;
+        }
         </style>`;
         injectCSS(css);
     }
@@ -116,23 +127,26 @@ class LoadoutUI {
     }
 
     generateLoadoutsPanelHtml(gearLoadouts, foodLoadouts){
-        let tabsHtml = '<div class="nav-tab-container">';
+        let tabsHtml = '<div class="nav-tab-container daelis-tab-container">';
         let loadoutsHtml = '';
         let loadouts;
         let loadoutGenerator;
+        let maxLoadouts;
         if (this.viewer.loadoutType === this.viewer.LOADOUT_GEAR) {
             loadouts = gearLoadouts;
             loadoutGenerator = new LoadoutUIGear();
+            maxLoadouts = this.MAX_GEAR_LOADOUTS;
         } else {
             loadouts = foodLoadouts;
             loadoutGenerator = new LoadoutUIFood();
+            maxLoadouts = this.MAX_FOOD_LOADOUTS;
         }
         for (const [id, loadout] of Object.entries(loadouts).sort()) {
             loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${loadoutGenerator.generateLoadoutHtml(loadout, this.gameData)}</div>`;
             let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} <span>(${id})</span>` : id;
             tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${tabLabel}</div>`;
         }
-        if (Object.keys(loadouts).length < this.MAX_LOADOUTS) tabsHtml += `<div class="${this.tabClassPrefix}add nav-tab-flex text-center noselect" data-id="add">+</div>`;
+        if (Object.keys(loadouts).length < maxLoadouts) tabsHtml += `<div class="${this.tabClassPrefix}add nav-tab-flex text-center noselect" data-id="add">+</div>`;
         tabsHtml += '</div>';
         const actionButtons = `<div class="MuiDialogActions-root MuiDialogActions-spacing" style="display: flex;">
             <div class="button-container-250px">

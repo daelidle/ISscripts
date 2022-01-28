@@ -79,7 +79,7 @@ class Tooltip {
                 return new FoodTooltip();
             case 'equipment':
                 return new EquipmentTooltip();
-            case 'gem':
+            case 'elite-scroll':
                 if (itemResource.isChampScroll === undefined || itemResource.isChampScroll === false) break;
                 return new EliteScrollTooltip();
             default:
