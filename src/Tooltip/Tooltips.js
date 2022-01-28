@@ -48,7 +48,7 @@ class Tooltip {
                 <div class="dwt-effects">${effects ?? ''}</div>
                 <div class="dwt-flavor">${itemResource?.extraTooltipInfo ?? ''}</div>
                 <div class="dwt-prices dwt-columns">
-                    <span class="dwt-quantity">Quantity: ${item?.stackSize ?? 1}</span>
+                    <span class="dwt-quantity">Quantity: ${parseInt(item?.stackSize ?? 1).toLocaleString()}</span>
                     <span class="dwt-prices-vendor">Vendor: ${parseInt(itemResource?.value ?? 0).toLocaleString()}<img src="https://www.idlescape.com/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;"></span>
                 </div>
             </div>`;
@@ -61,7 +61,8 @@ class Tooltip {
             "Modified Diving Gloves", "Forgotten Soul", "Mantle of Flame", "Black Knight's Gauntlets", "Black Opal Ring", "Black Opal Necklace"];
         const uncommonItems = ['Black Knight Great Helm', 'Dark Key Piece', 'Dark Fortress Key', 'Corrupted Ring', "Naga's Bracelet", "Fisherman's Smock", "Fisherman's Bucket Hat", "Fisherman's Waders", 'Geode', 'Satchel', "Bird's Nest", "Sunken Treasure", "Yew Log",
             "Ichor", "Diamond", "Ruby", "Air Talisman", "Earth Talisman", "Fire Talisman", "Water Talisman", "Blood Talisman", "Death Talisman", "Chaos Talisman", "Nature Talisman", "Mind Talisman", "Cosmic Talisman", "Chorus of Souls", "Giant Scraps", "Corroded Scroll",
-            "Black Knight's Trial", "Giant Scroll", "Stew Stained Page", "Cluster-Cluck", "Demonic Trial", "Shapeless Scroll", "Mysterious Seed", "Shrimp Bauble", 'Ladle', 'Greater Ladle', 'Lesser Ladle', 'Torn Goblin  Settlement Map', 'Scrap of Stained Parchment'];
+            "Black Knight's Trial", "Giant Scroll", "Stew Stained Page", "Cluster-Cluck", "Demonic Trial", "Shapeless Scroll", "Mysterious Seed", "Shrimp Bauble", 'Ladle', 'Greater Ladle', 'Lesser Ladle', 'Torn Goblin  Settlement Map', 'Scrap of Stained Parchment',
+            'Taproot Scroll'];
         if (legendaryItems.includes(itemResource.name)) return 'dwt-rarity-legendary';
         if (epicItems.includes(itemResource.name)) return 'dwt-rarity-epic';
         if (itemResource.tags === undefined) itemResource.tags = [];

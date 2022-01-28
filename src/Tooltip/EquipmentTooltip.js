@@ -25,7 +25,7 @@ class EquipmentTooltip {
             }
         }
 
-        return `<span>Requires ${requiredStats.join(", ")}</span>`;
+        return (requiredStats.length === 0) ? '' : `<span>Requires ${requiredStats.join(", ")}</span>`;
     }
 
     getStats(itemResource, item, gameData){

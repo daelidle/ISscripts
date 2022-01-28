@@ -18,7 +18,7 @@
     text-align: right;
 }
 .dwt-columns > span {
-    min-width: 50%;
+    min-width: 34%;
 }
 .dwt-name {
     font-size: 14px;
@@ -37,8 +37,11 @@
 .dwt-rarity-uncommon {
     color: #1eff00;
 }
-.dwt-stats {
+.dwt-stats-offensive, .dwt-stats-defensive, .dwt-stats-other {
     margin-top: 5px;
+}
+.dwt-stats-offensive:empty, .dwt-stats-defensive:empty, .dwt-stats-other:empty {
+    margin-top: 0;
 }
 .dwt-enchant, .dwt-item-skill {
     color: #1eff00;
