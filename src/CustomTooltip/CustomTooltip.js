@@ -131,6 +131,7 @@ class CustomTooltip {
                 return that.daelis.generateTooltip(item);
             },
             allowHTML: true,
+            zIndex: 1000001,
         });
         return that;
     }
