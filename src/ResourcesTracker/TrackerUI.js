@@ -42,7 +42,7 @@ class TrackerUI {
         const daelis = this.config.daelis;
         tippy('.daelis-tooltip-item', {
             content(reference) {
-                return daelis.generateTooltip(JSON.parse(reference.dataset.item));
+                return daelis.generateTooltip(JSON.parse(atob(reference.dataset.item)));
             },
             allowHTML: true,
         });
@@ -61,7 +61,7 @@ class TrackerUI {
             let itemStack = shortenNumber(stack);
             let icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
 
-            let itemHtml = `<div class="item ${itemResource['class']} daelis-tooltip-item" data-item='${JSON.stringify(item)}' data-tip="true">`;
+            let itemHtml = `<div class="item ${itemResource['class']} daelis-tooltip-item" data-item='${btoa(JSON.stringify(item))}' data-tip="true">`;
             if (item.augmentations > 0) itemHtml += `<img class="augmentation-glow-background" src="/images/augmentation_glow.png" style="position: absolute;">`;
             itemHtml += `<img src="${icon}" class="item-icon" alt="${itemResource.name}"><div class="centered ${stacksColourClass}">${itemStack}</div>`;
             if (item.enchantmentID > 0) itemHtml += `<div class="item-enchant"><img src="${this._gameData.enchantments[item.enchantmentID]['buffIcon']}"></div>`;

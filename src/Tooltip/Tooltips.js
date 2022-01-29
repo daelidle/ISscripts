@@ -28,7 +28,7 @@ class Tooltip {
         if (parseInt(item.itemID) == 7050) quantity = parseInt(item.christmasSpirit ?? 1);
 
         return `
-            <div class="daelis-wow-tooltip">
+            <div class="daelis-wow-tooltip" data-item="${btoa(JSON.stringify(item))}">
                 <div class="dwt-name ${nameRarityClass}">${name}${augment}</div>
                 <div class="dwt-item-type dwt-columns">
                     <span>${itemType}</span>

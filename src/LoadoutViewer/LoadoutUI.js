@@ -180,7 +180,7 @@ class LoadoutUI {
         const daelis = this.config.daelis;
         tippy('.daelis-tooltip-item', {
             content(reference) {
-                return daelis.generateTooltip(JSON.parse(reference.dataset.item));
+                return daelis.generateTooltip(JSON.parse(atob(reference.dataset.item)));
             },
             allowHTML: true,
         });
