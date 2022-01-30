@@ -79,10 +79,12 @@ class CustomTooltip {
             content(element) {
                 if (!element.classList.contains('marketplace-table-cell-div')) return;
 
-                const item = getReact(element.parentElement.parentElement).return.pendingProps.item;
-                return that.daelis.generateTooltip(item);
+                that._generateMarketplaceBuyItemTooltip(element);
             },
             allowHTML: true,
+            onTrigger(instance) {
+                instance.setContent(that._generateMarketplaceBuyItemTooltip(instance.reference));
+            },
         });
     }
 
@@ -93,12 +95,12 @@ class CustomTooltip {
             content(element) {
                 if (!element.classList.contains('combat-consumable')) return;
 
-                const foodId = getReact(element).child.key.replace('combatInventoryItem', '');
-                const foodArray = getReact(element.parentElement).return.pendingProps.combatInventory;
-                const item = foodArray[foodId];
-                return that.daelis.generateTooltip(item);
+                return that._generateCombatFoodTooltip(element);
             },
             allowHTML: true,
+            onTrigger(instance) {
+                instance.setContent(that._generateCombatFoodTooltip(instance.reference));
+            },
         });
     }
 
@@ -112,7 +114,6 @@ class CustomTooltip {
             allowHTML: true,
             zIndex: 1000001,
             onTrigger(instance) {
-                // Refresh tooltip data as quantities can change
                 instance.setContent(that._generateGeneralItemsTooltip(instance.reference));
             },
         });
@@ -146,6 +147,18 @@ class CustomTooltip {
                 item = getReact(element).return.pendingProps.item;
             }
         }
+        return this.daelis.generateTooltip(item);
+    }
+
+    _generateMarketplaceBuyItemTooltip(element){
+        const item = getReact(element.parentElement.parentElement).return.pendingProps.item;
+        return this.daelis.generateTooltip(item);
+    }
+
+    _generateCombatFoodTooltip(element){
+        const foodId = getReact(element).child.key.replace('combatInventoryItem', '');
+        const foodArray = getReact(element.parentElement).return.pendingProps.combatInventory;
+        const item = foodArray[foodId];
         return this.daelis.generateTooltip(item);
     }
 
