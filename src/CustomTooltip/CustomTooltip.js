@@ -107,33 +107,40 @@ class CustomTooltip {
         tippy.delegate('body', {
             target: '.item',
             content(element) {
-                if (!element.classList.contains('item')) return;
-                if (element.classList.contains('daelis-tooltip-item')) return;
-                let item;
-                if (element.classList.contains('equipped-item')) {
-                    // Equipped item
-                    item = getReact(element.parentElement).return.pendingProps.equippedItem;
-                    if (item === undefined){
-                        // Chat-linked Equipment
-                        item = getReact(element.lastElementChild).return.return.pendingProps.item
-                    }
-                } else if (element.dataset.for !== undefined && element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
-                    // Marketplace general listing
-                    const marketItem = getReact(element.parentElement).return.pendingProps.item;
-                    item = {itemID: marketItem.id};
-                } else if (element.dataset.for !== undefined && element.dataset.for.includes('farming-seed')) {
-                    // Farming seeds
-                    item = getReact(element.parentElement).return.pendingProps.item;
-                } else {
-                    // Inventory and Vault
-                    item = getReact(element).return.pendingProps.item;
-                }
-                return that.daelis.generateTooltip(item);
+                return that._generateGeneralItemsTooltip(element);
             },
             allowHTML: true,
             zIndex: 1000001,
+            onTrigger(instance) {
+                // Refresh tooltip data as quantities can change
+                instance.setContent(that._generateGeneralItemsTooltip(instance.reference));
+            },
         });
-        return that;
+    }
+
+    _generateGeneralItemsTooltip(element){
+        if (!element.classList.contains('item')) return;
+        if (element.classList.contains('daelis-tooltip-item')) return;
+        let item;
+        if (element.classList.contains('equipped-item')) {
+            // Equipped item
+            item = getReact(element.parentElement).return.pendingProps.equippedItem;
+            if (item === undefined){
+                // Chat-linked Equipment
+                item = getReact(element.lastElementChild).return.return.pendingProps.item
+            }
+        } else if (element.dataset.for !== undefined && element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
+            // Marketplace general listing
+            const marketItem = getReact(element.parentElement).return.pendingProps.item;
+            item = {itemID: marketItem.id};
+        } else if (element.dataset.for !== undefined && element.dataset.for.includes('farming-seed')) {
+            // Farming seeds
+            item = getReact(element.parentElement).return.pendingProps.item;
+        } else {
+            // Inventory and Vault
+            item = getReact(element).return.pendingProps.item;
+        }
+        return this.daelis.generateTooltip(item);
     }
 
     _initializeIdCaches() {
