@@ -46,7 +46,7 @@ class EquipmentTooltip {
 
     _parseStats(itemResource, item) {
         const augmentStatsNormalizer = {"Strength (Melee):":"Melee strength","Strength (Range):":"Range strength","Strength (Magic):":"Magic strength","Attack (Accuracy):":"Accuracy","Defense (Stab):":"Stab defense","Defense (Slash):":"Slash defense","Defense (Crush):":"Crush defense","Defense (Range):":"Range defense","Defense (Magic):":"Magic defense","Cooking Skill:":"Cooking","Smithing Skill:":"Smithing","Mining Skill:":"Mining","Foraging Skill:":"Foraging","Farming Skill:":"Farming","Fishing Skill:":"Fishing","Bait Power:":"Bait Power","Reel Power:":"Reel Power","Bonus Rarity:":"Bonus Rarity","Christmas (Event):":"Christmas"};
-        const defenseStatsNormalizer = {"stab": "Stab defense","slash": "Slash defense","crush": "Crush defense","magic": "Magic defense","range": "Range defense"};
+        const defenseStatsNormalizer = {"stab": "Stab defense","slash": "Slash defense","crush": "Crush defense","magic": "Magic defense","range": "Range defense","christmas": "Christmas"};
         const attackStatsNormalizer = {"melee": "Melee strength","range": "Range strength","magic": "Magic strength", "Attack (Accuracy):":"Accuracy"};
         const accuracy = itemResource.attackBonus?.accuracy ?? 0;
         const attackStats = {};

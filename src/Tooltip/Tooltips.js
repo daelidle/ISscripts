@@ -83,9 +83,9 @@ class Tooltip {
             case 'equipment':
                 return new EquipmentTooltip();
             case 'elite-scroll':
-                if (itemResource.isChampScroll === undefined || itemResource.isChampScroll === false) break;
                 return new EliteScrollTooltip();
             default:
+                if (itemResource.slot !== undefined) return new EquipmentTooltip();
                 break;
         }
         return new DefaultTooltip();
