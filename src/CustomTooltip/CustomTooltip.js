@@ -129,16 +129,22 @@ class CustomTooltip {
                 // Chat-linked Equipment
                 item = getReact(element.lastElementChild).return.return.pendingProps.item
             }
-        } else if (element.dataset.for !== undefined && element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
-            // Marketplace general listing
-            const marketItem = getReact(element.parentElement).return.pendingProps.item;
-            item = {itemID: marketItem.id};
-        } else if (element.dataset.for !== undefined && element.dataset.for.includes('farming-seed')) {
-            // Farming seeds
-            item = getReact(element.parentElement).return.pendingProps.item;
-        } else {
-            // Inventory and Vault
-            item = getReact(element).return.pendingProps.item;
+        } else if (element.dataset.for !== undefined){
+            if (element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
+                // Marketplace general listing
+                const marketItem = getReact(element.parentElement).return.pendingProps.item;
+                item = {itemID: marketItem.id};
+            } else if (element.dataset.for.includes('farming-seed')) {
+                // Farming seeds
+                item = getReact(element.parentElement).return.pendingProps.item;
+            } else if (element.dataset.for.includes('offline-progress')) {
+                // Offline progress popup
+                item = getReact(element.lastElementChild).return.return.pendingProps.item;
+                item.itemID = item.id;
+            } else if (element.dataset.for.includes('stockpile') || element.dataset.for.includes('vault')) {
+                // Inventory and Vault
+                item = getReact(element).return.pendingProps.item;
+            }
         }
         return this.daelis.generateTooltip(item);
     }
