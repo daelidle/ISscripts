@@ -26,22 +26,53 @@ class CustomTooltip {
         this._setupMarketplaceBuyItemDelegate();
         this._setupEventAndGeneralShopDelegate();
         this._setupChatItemDelegate();
+        this._setupCraftingDelegate();
     }
 
-    _setupChatItemDelegate() {
+    _setupGeneralItemDelegates() {
         const that = this;
-        tippy.delegate('.game-content', {
-            target: '.chat-item',
+        tippy.delegate('body', {
+            target: '.item',
             content(element) {
-                if (!element.classList.contains('chat-item')) return;
-
-                let item = getReact(element).return.pendingProps.item;
-                if (item === undefined) return ''; // Item-set
-                return that.daelis.generateTooltip(item);
+                return that._generateGeneralItemsTooltip(element);
             },
             allowHTML: true,
-            sticky: true,
-            inlinePositioning: true
+            zIndex: 1000001,
+            onTrigger(instance) {
+                instance.setContent(that._generateGeneralItemsTooltip(instance.reference));
+            },
+        });
+    }
+
+    _setupCombatFoodDelegate() {
+        const that = this;
+        tippy.delegate('.game-content', {
+            target: '.combat-consumable',
+            content(element) {
+                if (!element.classList.contains('combat-consumable')) return;
+
+                return that._generateCombatFoodTooltip(element);
+            },
+            allowHTML: true,
+            onTrigger(instance) {
+                instance.setContent(that._generateCombatFoodTooltip(instance.reference));
+            },
+        });
+    }
+
+    _setupMarketplaceBuyItemDelegate() {
+        const that = this;
+        tippy.delegate('.game-content', {
+            target: '.marketplace-table-cell-div',
+            content(element) {
+                if (!element.classList.contains('marketplace-table-cell-div')) return;
+
+                that._generateMarketplaceBuyItemTooltip(element);
+            },
+            allowHTML: true,
+            onTrigger(instance) {
+                instance.setContent(that._generateMarketplaceBuyItemTooltip(instance.reference));
+            },
         });
     }
 
@@ -72,49 +103,35 @@ class CustomTooltip {
         });
     }
 
-    _setupMarketplaceBuyItemDelegate() {
+    _setupChatItemDelegate() {
         const that = this;
         tippy.delegate('.game-content', {
-            target: '.marketplace-table-cell-div',
+            target: '.chat-item',
             content(element) {
-                if (!element.classList.contains('marketplace-table-cell-div')) return;
+                if (!element.classList.contains('chat-item')) return;
 
-                that._generateMarketplaceBuyItemTooltip(element);
+                let item = getReact(element).return.pendingProps.item;
+                if (item === undefined) return ''; // Item-set
+                return that.daelis.generateTooltip(item);
             },
             allowHTML: true,
-            onTrigger(instance) {
-                instance.setContent(that._generateMarketplaceBuyItemTooltip(instance.reference));
-            },
+            sticky: true,
+            inlinePositioning: true
         });
     }
 
-    _setupCombatFoodDelegate() {
+    _setupCraftingDelegate() {
         const that = this;
         tippy.delegate('.game-content', {
-            target: '.combat-consumable',
+            target: '.crafting-item',
             content(element) {
-                if (!element.classList.contains('combat-consumable')) return;
+                if (!element.classList.contains('crafting-item')) return;
 
-                return that._generateCombatFoodTooltip(element);
+                return that._generateCraftingTooltip(element);
             },
             allowHTML: true,
             onTrigger(instance) {
-                instance.setContent(that._generateCombatFoodTooltip(instance.reference));
-            },
-        });
-    }
-
-    _setupGeneralItemDelegates() {
-        const that = this;
-        tippy.delegate('body', {
-            target: '.item',
-            content(element) {
-                return that._generateGeneralItemsTooltip(element);
-            },
-            allowHTML: true,
-            zIndex: 1000001,
-            onTrigger(instance) {
-                instance.setContent(that._generateGeneralItemsTooltip(instance.reference));
+                instance.setContent(that._generateCraftingTooltip(instance.reference));
             },
         });
     }
@@ -162,6 +179,12 @@ class CustomTooltip {
         return this.daelis.generateTooltip(item);
     }
 
+    _generateCraftingTooltip(element){
+        let item = getReact(element.parentElement).return.pendingProps.item;
+        item.itemID = item.id;
+        return this.daelis.generateTooltip(item);
+    }
+
     _initializeIdCaches() {
         for (const [id, item] of Object.entries(this.daelis.gameData.gameResources)) this.cacheIds.items[item.name] = parseInt(id);
         for (const [id, enchant] of Object.entries(this.daelis.gameData.enchantments)) this.cacheIds.enchants[enchant.name] = parseInt(id);
@@ -171,4 +194,6 @@ class CustomTooltip {
         const hideDefaultTooltips = '.item-tooltip {display: none;}';
         injectCSS(hideDefaultTooltips);
     }
+
+
 }
