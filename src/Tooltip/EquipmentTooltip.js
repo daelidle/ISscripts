@@ -100,6 +100,41 @@ class EquipmentTooltip {
         return '';
     }
 
+    getItemSetSection(itemResource, item, gameData, equippedItems){
+        if (itemResource.itemSet === undefined) return '';
+
+        const set = gameData.sets[itemResource.itemSet];
+        if (set === undefined) return '';
+
+        let numEquipped = 0;
+        let coloredSetItemList = '';
+        set.items.forEach(setItem => {
+            let activeClass = 'dwt-set-item-unequipped';
+            if (equippedItems[setItem.slot]?.itemID == setItem.id) {
+                numEquipped++;
+                activeClass = 'dwt-set-item-equipped';
+            }
+            coloredSetItemList += `<div class="dwt-item-set-item ${activeClass}"> 
+                <span class="dwt-item-set-item-name">${setItem.name}</span>
+                </div>`;
+        });
+
+        let coloredEffectsList = '';
+        set.effects.forEach(effect => {
+            const activeClass = (effect.equippedRequirements <= numEquipped) ? 'dwt-set-effect-active' : 'dwt-set-effect-inactive';
+            const effectName = (effect.name.length == 0) ? '' : `${effect.name} - `;
+            coloredEffectsList += `<div class="dwt-item-set-effect ${activeClass}">
+                <span class="dwt-item-set-effect-required-pieces">(${effect.equippedRequirements}) Set: </span> 
+                <span class="dwt-item-set-effect-name">${effectName}</span>
+                <span class="dwt-item-set-effect-description">${effect.description}</span>
+                </div>`;
+        });
+
+        return `<div class="dwt-item-set-name">${set.name} (${numEquipped}/${set.items.length})</div>
+                <div class="dwt-item-set-item-list">${coloredSetItemList}</div>
+                <div class="dwt-item-set-effects-list">${coloredEffectsList}</div>`;
+    }
+
     getItemEffects(itemResource, item, gameData){
         let itemEffects = '';
 

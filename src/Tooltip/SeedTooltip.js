@@ -4,14 +4,6 @@ class SeedTooltip {
         return stringCapitalize(itemResource.class);
     }
 
-    getSecondaryType(itemResource){
-        return '';
-    }
-
-    getWeaponInfo(itemResource){
-        return '';
-    }
-
     getRequiredStatsLevel(itemResource){
         if (itemResource.level === undefined) return '';
         return `<span>Requires ${itemResource.level} Farming</span>`
@@ -35,17 +27,5 @@ class SeedTooltip {
         }
 
         return {seedStats: seedStats, yieldStats: yieldStats};
-    }
-
-    getEnchantSection(itemResource, item, gameData) {
-        return '';
-    }
-
-    getItemSkillSection(itemResource, item, gameData) {
-        return '';
-    }
-
-    getItemEffects(itemResource, item, gameData){
-        return '';
     }
 }

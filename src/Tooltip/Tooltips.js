@@ -1,9 +1,9 @@
 class Tooltip {
     CSS_FILE_URL = 'https://daelidle.github.io/ISscripts/src/Tooltip/css/daelis-tooltip.css';
-    gameData;
+    daelis;
 
-    constructor() {
-        this.gameData = new IdlescapeGameData();
+    constructor(daelis) {
+        this.daelis = daelis;
     }
 
     injectCSS(){
@@ -11,19 +11,20 @@ class Tooltip {
     }
 
     generateTooltip(item) {
-        const itemResource = this.gameData.gameResources[item.itemID];
+        const itemResource = this.daelis.gameData.gameResources[item.itemID];
         const nameRarityClass = this.getItemNameColorByRarity(itemResource);
-        const name = (item.name !== undefined) ? item.name : itemResource.name;
+        const name = item?.name ?? itemResource.name;
         const augment = (item.augmentations !== undefined && item.augmentations !== null && item.augmentations > 0) ? ` +${item.augmentations}` : '';
         const tooltipGenerator = this._getTooltipType(itemResource);
         const itemType = tooltipGenerator.getItemType(itemResource);
-        const secondaryType = tooltipGenerator.getSecondaryType(itemResource);
-        const weaponInfo = tooltipGenerator.getWeaponInfo(itemResource);
-        const stats = tooltipGenerator.getStats(itemResource, item, this.gameData);
-        const enchant = tooltipGenerator.getEnchantSection(itemResource, item, this.gameData);
-        const requiredStats = tooltipGenerator.getRequiredStatsLevel(itemResource);
-        const itemSkill = tooltipGenerator.getItemSkillSection(itemResource, item, this.gameData);
-        const effects = tooltipGenerator.getItemEffects(itemResource, item, this.gameData);
+        const secondaryType = tooltipGenerator.getSecondaryType?.(itemResource);
+        const weaponInfo = tooltipGenerator.getWeaponInfo?.(itemResource);
+        const stats = tooltipGenerator.getStats?.(itemResource, item, this.daelis.gameData) ?? {};
+        const enchant = tooltipGenerator.getEnchantSection?.(itemResource, item, this.daelis.gameData);
+        const requiredStats = tooltipGenerator.getRequiredStatsLevel?.(itemResource);
+        const itemSkill = tooltipGenerator.getItemSkillSection?.(itemResource, item, this.daelis.gameData);
+        const itemSet = tooltipGenerator.getItemSetSection?.(itemResource, item, this.daelis.gameData, this.daelis.getPlayerState().equipment);
+        const effects = tooltipGenerator.getItemEffects?.(itemResource, item, this.daelis.gameData);
         let quantity = parseInt(item?.stackSize ?? 1);
         if (parseInt(item.itemID) == 7050) quantity = parseInt(item.christmasSpirit ?? 1);
 
@@ -47,6 +48,7 @@ class Tooltip {
                 <div class="dwt-enchant">${enchant ?? ''}</div>
                 <div class="dwt-requirements">${requiredStats ?? ''}</div>
                 <div class="dwt-item-skill">${itemSkill ?? ''}</div>
+                <div class="dwt-item-set">${itemSet ?? ''}</div>
                 <div class="dwt-effects">${effects ?? ''}</div>
                 <div class="dwt-flavor">${itemResource?.extraTooltipInfo ?? ''}</div>
                 <div class="dwt-prices dwt-columns">
@@ -95,26 +97,5 @@ class Tooltip {
 class DefaultTooltip {
     getItemType(itemResource){
         return stringCapitalize(itemResource.class.replace('-', ' '));
-    }
-    getSecondaryType(itemResource){
-        return '';
-    }
-    getWeaponInfo(itemResource){
-        return '';
-    }
-    getStats(item, itemResource){
-        return {};
-    }
-    getEnchantSection(itemResource, item, gameData){
-        return '';
-    }
-    getRequiredStatsLevel(){
-        return '';
-    }
-    getItemSkillSection(itemResource, item, gameData){
-        return '';
-    }
-    getItemEffects(itemResource, item, gameData) {
-        return '';
     }
 }

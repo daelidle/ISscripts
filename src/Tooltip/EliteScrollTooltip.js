@@ -4,18 +4,6 @@ class EliteScrollTooltip {
         return 'Elite Scroll';
     }
 
-    getSecondaryType(itemResource){
-        return '';
-    }
-
-    getWeaponInfo(itemResource){
-        return '';
-    }
-
-    getRequiredStatsLevel(itemResource) {
-        return '';
-    }
-
     getStats(itemResource, item, gameData){
         let encounters = 1;
         let treasureHunter = 0;
@@ -48,17 +36,5 @@ class EliteScrollTooltip {
         `;
 
         return {eliteScrollStats: eliteScrollStats};
-    }
-
-    getEnchantSection(itemResource, item, gameData) {
-        return '';
-    }
-
-    getItemSkillSection(itemResource, item, gameData) {
-        return '';
-    }
-
-    getItemEffects(itemResource, item, gameData){
-        return '';
     }
 }

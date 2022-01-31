@@ -7,18 +7,6 @@ class FoodTooltip {
         return types.join(", ");
     }
 
-    getSecondaryType(itemResource){
-        return '';
-    }
-
-    getWeaponInfo(itemResource){
-        return '';
-    }
-
-    getRequiredStatsLevel(itemResource){
-        return '';
-    }
-
     getStats(itemResource, item, gameData){
         if (itemResource.isEdible === undefined || itemResource.isEdible === false) return '';
         if (item.enchantmentID === undefined || item.enchantmentID === null) return '';

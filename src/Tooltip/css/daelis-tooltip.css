@@ -43,13 +43,13 @@
 .dwt-stats-offensive, .dwt-stats-defensive, .dwt-stats-other {
     margin-top: 5px;
 }
-.dwt-stats-offensive:empty, .dwt-stats-defensive:empty, .dwt-stats-other:empty {
+.dwt-stats-offensive:empty, .dwt-stats-defensive:empty, .dwt-stats-other:empty, .dwt-item-set:empty, .dwt-item-set-effects-list:empty {
     margin-top: 0;
 }
-.dwt-enchant, .dwt-item-skill {
+.dwt-enchant, .dwt-item-skill, .dwt-set-item-equipped, .dwt-set-effect-active {
     color: #1eff00;
 }
-.dwt-enchant-unactive {
+.dwt-enchant-unactive, .dwt-set-effect-inactive, .dwt-set-item-unequipped {
     color: #9d9d9d;
 }
 .dwt-effects {
@@ -63,4 +63,13 @@
 }
 .tippy-box {
     background-color: transparent;
+}
+.dwt-item-set-name {
+    color: #ffd100;
+}
+.dwt-item-set, .dwt-item-set-effects-list {
+    margin-top: 10px;
+}
+.dwt-item-set-item {
+    margin-left: 10px;
 }
