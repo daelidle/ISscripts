@@ -12,7 +12,7 @@ class EquipmentTooltip {
     getWeaponInfo(itemResource){
         if (itemResource.attackSpeed !== undefined) {
             return `<span>${stringCapitalize(itemResource.style)} Damage</span>
-                <span>Speed ${itemResource.attackSpeed}</span>`;
+                <span>Speed ${itemResource.attackSpeed.toFixed(2)}</span>`;
         }
         return '';
     }

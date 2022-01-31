@@ -19,8 +19,10 @@ class SeedTooltip {
 
     getStats(itemResource, item, gameData){
         if (itemResource.farmingExperience === undefined && itemResource.time === undefined) return '';
+        const seedHeight = item.seedHeight ?? itemResource.seedHeight;
+        const seedWidth = item.seedWidth ?? itemResource.seedWidth;
         let seedStats = `<span>Experience: ${itemResource.farmingExperience}</span>
-                      <span>Plot Size: ${itemResource.seedHeight}x${itemResource.seedWidth}</span>
+                      <span>Plot Size: ${seedWidth}x${seedHeight}</span>
                       <span>Harvest Time: ${itemResource.time} minutes</span>`;
 
         let yieldStats = '';
