@@ -139,39 +139,24 @@ class CustomTooltip {
     _generateGeneralItemsTooltip(element){
         if (!element.classList.contains('item')) return;
         if (element.classList.contains('daelis-tooltip-item')) return;
-        let item;
-        if (element.classList.contains('equipped-item')) {
-            // Equipped item
-            item = getReact(element.parentElement).return.pendingProps.equippedItem;
-            if (item === undefined){
-                // Chat-linked Equipment
-                item = getReact(element.lastElementChild).return.return.pendingProps.item
-            }
-        } else if (element.dataset.for !== undefined){
-            if (element.dataset.for.startsWith('marketplaceBuyItemTooltip')) {
-                // Marketplace general listing
-                const marketItem = getReact(element.parentElement).return.pendingProps.item;
-                item = {itemID: marketItem.id};
-            } else if (element.dataset.for.includes('farming-seed')) {
-                // Farming seeds
-                item = getReact(element.parentElement).return.pendingProps.item;
-            } else if (element.dataset.for.includes('offline-progress')) {
-                // Offline progress popup
-                item = getReact(element.lastElementChild).return.return.pendingProps.item;
-                item.itemID = item.id;
-            } else if (element.dataset.for.includes('stockpile') || element.dataset.for.includes('vault')) {
-                // Inventory and Vault
-                item = getReact(element).return.pendingProps.item;
-            } else if (element.dataset.for.includes('enchantingitem') || element.dataset.for.includes('augmentingitem')) {
-                // Enchanting and Augmenting
-                item = getReact(element).return.pendingProps.item;
-            } else if (element.dataset.for.includes('chest content')) {
-                // Dungeon loot
-                item = getReact(element.lastElementChild).return.return.pendingProps.item;
-                item.itemID = item.id;
+
+        let item = false;
+        let react = getReact(element);
+        if (react.pendingProps.hasOwnProperty("children") && Array.isArray(react.pendingProps.children)) {
+            let childrenLength = react.pendingProps.children.length;
+            let lastReactChild = react.pendingProps.children[childrenLength - 1];
+
+            if (lastReactChild.hasOwnProperty("props") && lastReactChild.props.hasOwnProperty("item")) item = lastReactChild.props.item;
+            if (!item.hasOwnProperty("itemID") && item.hasOwnProperty("id")) item.itemID = item.id;
+
+            // Item object without stackSize can be found in offline/chest/dungeon prompts
+            if (!item.hasOwnProperty("stackSize")) {
+                let stackText = element.querySelector(".centered");
+                if (stackText !== null) item.stackSize = expandNumber(stackText.innerText);
             }
         }
-        return this.daelis.generateTooltip(item);
+
+        return item !== false ? this.daelis.generateTooltip(item) : null;
     }
 
     _generateMarketplaceBuyItemTooltip(element){

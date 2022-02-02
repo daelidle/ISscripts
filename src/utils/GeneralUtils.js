@@ -33,6 +33,12 @@ function shortenNumber(number){
     return Math.floor(scaled) + suffix;
 }
 
+function expandNumber(numberString){
+    const SYMBOLS = {"K": '000', "M": '000000', "B": '000000000', "T": '000000000000', "P": '000000000000000', "E": '000000000000000000'};
+    for (const [shortSymbol, zeroes] of Object.entries(SYMBOLS)) numberString = numberString.replace(shortSymbol, zeroes);
+    return parseInt(numberString);
+}
+
 function timeForHumans (seconds) {
     // https://stackoverflow.com/questions/8211744/convert-time-interval-given-in-seconds-into-more-human-readable-form
     let levels = [
