@@ -27,6 +27,7 @@ class Tooltip {
         const effects = tooltipGenerator.getItemEffects?.(itemResource, item, this.daelis.gameData);
         let quantity = parseInt(item?.stackSize ?? 1);
         if (parseInt(item.itemID) == 7050) quantity = parseInt(item.christmasSpirit ?? 1);
+        const heatSpan = (itemResource.heat !== undefined) ? ` <span class="dwt-heat">${itemResource.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
 
         return `
             <div class="daelis-wow-tooltip" data-item="${btoa(JSON.stringify(item))}">
@@ -53,7 +54,7 @@ class Tooltip {
                 <div class="dwt-flavor">${itemResource?.extraTooltipInfo ?? ''}</div>
                 <div class="dwt-prices dwt-columns">
                     <span class="dwt-quantity">Quantity: ${quantity.toLocaleString()}</span>
-                    <span class="dwt-prices-vendor">Vendor: ${parseInt(itemResource?.value ?? 0).toLocaleString()}<img src="https://www.idlescape.com/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;"></span>
+                    <span class="dwt-prices-vendor">Vendor: ${parseInt(itemResource?.value ?? 0).toLocaleString()}<img src="https://www.idlescape.com/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;">${heatSpan}</span>
                 </div>
             </div>`;
     }

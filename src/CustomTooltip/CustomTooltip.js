@@ -162,6 +162,9 @@ class CustomTooltip {
             } else if (element.dataset.for.includes('stockpile') || element.dataset.for.includes('vault')) {
                 // Inventory and Vault
                 item = getReact(element).return.pendingProps.item;
+            } else if (element.dataset.for.includes('enchantingitem') || element.dataset.for.includes('augmentingitem')) {
+                // Enchanting and Augmenting
+                item = getReact(element).return.pendingProps.item;
             } else if (element.dataset.for.includes('chest content')) {
                 // Dungeon loot
                 item = getReact(element.lastElementChild).return.return.pendingProps.item;

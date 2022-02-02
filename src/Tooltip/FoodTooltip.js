@@ -11,7 +11,8 @@ class FoodTooltip {
         if (itemResource.isEdible === undefined || itemResource.isEdible === false) return '';
         if (item.enchantmentID === undefined || item.enchantmentID === null) return '';
 
-        const stacks = 1 + 2 * parseInt(item.augmentations ?? 0);
+        const stackMultiplier = (parseInt(item.enchantmentID) == 8007) ? 4 : 2; // Flame resistance special multiplier
+        const stacks = 1 + stackMultiplier * parseInt(item.augmentations ?? 0);
         const isCombatEnchantment = gameData.enchantments[item.enchantmentID].combat;
         const combatHtml = isCombatEnchantment ? '<div>Buff only granted when consumed in combat.</div>' : '';
         const foodStats = `<div>${stacks} buff stacks</div>${combatHtml}`;
