@@ -17,7 +17,7 @@ class LoadoutUIFood {
         const enchantment =  (item.enchantmentID !== null && item.enchantmentID !== undefined) ? `<div class="item-enchant"><img src="${gameData.enchantments[item.enchantmentID]['buffIcon']}" alt=""></div>` : '';
         const augment =  (item.augmentations !== null && item.augmentations !== undefined) ? `<div class="item-augment" style="color: rgb(227, 251, 227);">+${item.augmentations}</div>` : '';
         const icon = itemResource.itemIcon !== undefined ? itemResource.itemIcon : itemResource.itemImage;
-        return `<div class="combat-consumable daelis-tooltip-item" data-item='${btoa(JSON.stringify(item))}'>
+        return `<div class="combat-consumable daelis-tooltip-item" data-item='${base64encode(JSON.stringify(item))}'>
                     <div class="combat-inventory-item cooking-ingredient">
                         <img src="${icon}" alt="${itemResource.name}">
                         ${enchantment}

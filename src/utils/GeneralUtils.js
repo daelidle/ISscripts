@@ -60,6 +60,15 @@ function getNumberSeparators(locale, separatorType) {
         .value;
 }
 
+function base64encode( str ) {
+    return window.btoa(unescape(encodeURIComponent( str )));
+}
+
+function base64decode( str ) {
+    return decodeURIComponent(escape(window.atob( str )));
+}
+
+
 function timeForHumans (seconds) {
     // https://stackoverflow.com/questions/8211744/convert-time-interval-given-in-seconds-into-more-human-readable-form
     let levels = [

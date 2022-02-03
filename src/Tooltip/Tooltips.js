@@ -30,7 +30,7 @@ class Tooltip {
         const heatSpan = (itemResource.heat !== undefined) ? ` <span class="dwt-heat">${itemResource.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
 
         return `
-            <div class="daelis-wow-tooltip" data-item="${btoa(JSON.stringify(item))}">
+            <div class="daelis-wow-tooltip" data-item="${base64encode(JSON.stringify(item))}">
                 <div class="dwt-name ${nameRarityClass}">${name}${augment}</div>
                 <div class="dwt-item-type dwt-columns">
                     <span>${itemType}</span>
