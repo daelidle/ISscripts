@@ -34,9 +34,30 @@ function shortenNumber(number){
 }
 
 function expandNumber(numberString){
-    const SYMBOLS = {"K": '000', "M": '000000', "B": '000000000', "T": '000000000000', "P": '000000000000000', "E": '000000000000000000'};
-    for (const [shortSymbol, zeroes] of Object.entries(SYMBOLS)) numberString = numberString.replace(shortSymbol, zeroes);
-    return parseInt(numberString);
+    const currentLocale = Intl.NumberFormat().resolvedOptions().locale;
+    const decimalSeparator = getNumberSeparators(currentLocale, 'decimal');
+    const groupSeparator = getNumberSeparators(currentLocale, 'group');
+    numberString = numberString.replace(groupSeparator, '');
+    if (decimalSeparator !== '.') numberString = numberString.replace(decimalSeparator, '.');
+
+    const baseNumber = parseFloat(numberString);
+    let scale = 0;
+    if (numberString.includes('K')) scale = 3;
+    else if (numberString.includes('M')) scale = 6;
+    else if (numberString.includes('B')) scale = 9;
+    else if (numberString.includes('T')) scale = 12;
+    else if (numberString.includes('P')) scale = 15;
+    else if (numberString.includes('E')) scale = 18;
+
+    return baseNumber * Math.pow(10, scale);
+}
+
+function getNumberSeparators(locale, separatorType) {
+    const numberWithGroupAndDecimalSeparator = 10000000.1;
+    return Intl.NumberFormat(locale)
+        .formatToParts(numberWithGroupAndDecimalSeparator)
+        .find(part => part.type === separatorType)
+        .value;
 }
 
 function timeForHumans (seconds) {
