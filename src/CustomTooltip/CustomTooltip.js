@@ -110,13 +110,14 @@ class CustomTooltip {
             content(element) {
                 if (!element.classList.contains('chat-item')) return;
 
-                let item = getReact(element).return.pendingProps.item;
-                if (item === undefined) return ''; // Item-set
-                return that.daelis.generateTooltip(item);
+                return that._generateChatItemTooltip(element);
             },
             allowHTML: true,
             sticky: true,
-            inlinePositioning: true
+            inlinePositioning: true,
+            onTrigger(instance) {
+                instance.setContent(that._generateChatItemTooltip(instance.reference));
+            }
         });
     }
 
@@ -168,6 +169,12 @@ class CustomTooltip {
         const foodId = getReact(element).child.key.replace('combatInventoryItem', '');
         const foodArray = getReact(element.parentElement).return.pendingProps.combatInventory;
         const item = foodArray[foodId];
+        return this.daelis.generateTooltip(item);
+    }
+
+    _generateChatItemTooltip(element) {
+        let item = getReact(element).return.pendingProps.item;
+        if (item === undefined) return ''; // Item-set
         return this.daelis.generateTooltip(item);
     }
 
