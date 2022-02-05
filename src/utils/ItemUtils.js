@@ -36,3 +36,35 @@ function normalizeItem(item){
     }
     return item;
 }
+
+function generateDescriptiveAbilityText(ability, enchantments) {
+    const damageElement = (ability.hasOwnProperty('damageElement') && ability.damageElement.length > 1) ? stringCapitalize(ability.damageElement) : 'Physical';
+    const twoStrikeSkills = [22, 25];
+    const isTwoAttacksAbility = twoStrikeSkills.includes(ability.id);
+    const abilityProperties = [];
+    if (ability.hasOwnProperty('baseSpeedCoeff') && ability.baseSpeedCoeff != 1){
+        const adjective = (ability.baseSpeedCoeff > 1)  ? 'slower' : 'faster';
+        const value = Math.round(Math.abs((ability.baseSpeedCoeff - 1) * 100));
+        abilityProperties.push(`${isTwoAttacksAbility ? 'are': 'is'} ${value}% ${adjective}`);
+    }
+    if (ability.hasOwnProperty('baseDamageCoeff') && ability.baseDamageCoeff != 1){
+        const adjective = (ability.baseDamageCoeff > 1)  ? 'more' : 'less';
+        const value = Math.round(Math.abs((ability.baseDamageCoeff - 1) * 100));
+        abilityProperties.push(`${isTwoAttacksAbility ? 'deal': 'deals'} ${value}% ${adjective} damage`);
+    }
+    if (ability.hasOwnProperty('baseAccuracyCoeff') && ability.baseAccuracyCoeff != 1){
+        const adjective = (ability.baseAccuracyCoeff > 1)  ? 'more' : 'less';
+        const value = Math.round(Math.abs((ability.baseAccuracyCoeff - 1) * 100));
+        abilityProperties.push(`${isTwoAttacksAbility ? 'are': 'is'} ${value}% ${adjective} accurate`);
+    }
+    let properties = new Intl.ListFormat('en-GB', { style: 'long', type: 'conjunction' }).format(abilityProperties);
+    if (properties.length > 0) properties = `that ${properties}`;
+    if (ability.hasOwnProperty('cooldown')) properties += ` with a cooldown of at least ${ability.cooldown} seconds.`;
+    if (ability.hasOwnProperty('enchantmentApplySelf') && ability.enchantmentApplySelf !== null) properties += ` ${_generateDescriptiveBuffAbility(ability, enchantments)}.`;
+    return `${isTwoAttacksAbility ? 'Two ': ''}${damageElement} ${isTwoAttacksAbility ? 'attacks': 'attack'} ${properties}`;
+}
+
+function _generateDescriptiveBuffAbility(itemResource, enchantments){
+    const enchantName = enchantments[itemResource.enchantmentApplySelf]?.name ?? 'unknown';
+    return `Applies ${itemResource.enchantmentAmountSelf} stacks of ${enchantName} ${itemResource.enchantmentStrengthSelf}`;
+}

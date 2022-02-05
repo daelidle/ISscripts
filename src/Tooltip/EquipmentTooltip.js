@@ -140,11 +140,7 @@ class EquipmentTooltip {
 
         const ability = gameData.abilities[itemResource.relatedAbility];
         if (ability !== undefined){
-            let description = ability.oldDescription;
-            const splitDescription = description.split('-');
-            if (splitDescription.length > 1) {
-                description = splitDescription[splitDescription.length-1].trim();
-            }
+            let description = generateDescriptiveAbilityText(ability, gameData.enchantments);
             itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${description}</span></div>`;
         }
 
