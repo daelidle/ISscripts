@@ -169,6 +169,7 @@ class CustomTooltip {
         const foodId = getReact(element).child.key.replace('combatInventoryItem', '');
         const foodArray = getReact(element.parentElement).return.pendingProps.combatInventory;
         const item = foodArray[foodId];
+        if (item === undefined) return null;
         return this.daelis.generateTooltip(item);
     }
 

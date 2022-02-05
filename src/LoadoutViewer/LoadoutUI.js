@@ -6,6 +6,7 @@ class LoadoutUI {
     tabClassPrefix = 'daelis_loadout_tab_';
     loadoutAliasButton = 'daelis_loadout_alias';
     changeTypeId = 'daelis_loadout_change_type';
+    loadoutQuickCombatFoodClass = 'daelis_loadout_quick_food';
     MAX_FOOD_LOADOUTS = 5;
     MAX_GEAR_LOADOUTS = 10;
 
@@ -94,6 +95,12 @@ class LoadoutUI {
             height: 30px;
             flex: 0 1 auto;
         }
+        .${this.loadoutQuickCombatFoodClass} {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
         </style>`;
         injectCSS(css);
     }
@@ -117,6 +124,29 @@ class LoadoutUI {
                     }
                 }
             });
+
+            const emptyFoodSlots = document.getElementsByClassName("combat-empty-slot");
+            if (emptyFoodSlots.length > 0){
+                let loadouts = ui.viewer._readLoadoutsFromState().foodLoadouts;
+                loadouts = Object.keys(loadouts).sort();
+                let count = 0;
+                for (let i = emptyFoodSlots.length - 1; i >= 0; i--) {
+                    if (emptyFoodSlots[i].getElementsByClassName(ui.loadoutQuickCombatFoodClass).length == 0){
+                        const loadoutId = loadouts[count];
+                        if (loadoutId === undefined) break;
+                        const alias = (loadoutId in ui.config.alias) ? ui.config.alias[loadoutId] : loadoutId;
+                        const combatFoodLoadoutUI = `<div class="${ui.loadoutQuickCombatFoodClass}" data-loadoutid="${loadoutId}">${alias}</div>`;
+                        emptyFoodSlots[i].insertAdjacentHTML('afterbegin', combatFoodLoadoutUI);
+                    }
+                    count++;
+                }
+                for (const quickCombatLoadout of document.getElementsByClassName(ui.loadoutQuickCombatFoodClass)){
+                    quickCombatLoadout.addEventListener("click",() => {
+                        ui.viewer.selectedLoadout = quickCombatLoadout.dataset.loadoutid;
+                        ui.viewer._onLoadClicked();
+                    },false);
+                }
+            }
         }
 
         // Observe Play Area DOM changes
