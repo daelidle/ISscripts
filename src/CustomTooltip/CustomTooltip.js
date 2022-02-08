@@ -1,4 +1,6 @@
 class CustomTooltip {
+    static compareEquipmentKey = 'Shift';
+    static compactTooltipKey = 'Control';
     static meta = {
         name: 'Custom Tooltip',
         description: 'Change the look and feel of the game tooltips to a custom one.',
@@ -195,9 +197,9 @@ class CustomTooltip {
     }
 
     _generateTooltip(item){
-        const shorterVersion = this.pressedKeys.includes('Control');
-        const itemTooltip = this.daelis.generateTooltip(item, shorterVersion);
-        if (this.pressedKeys.includes('Alt')){
+        const compactVersion = this.pressedKeys.includes(CustomTooltip.compactTooltipKey);
+        const itemTooltip = this.daelis.generateTooltip(item, compactVersion);
+        if (this.pressedKeys.includes(CustomTooltip.compareEquipmentKey)){
             const itemResource = this.daelis.gameData.gameResources[item.itemID];
             if (itemResource !== undefined && itemResource.hasOwnProperty('slot')){
                 const equippedItemOnSameSlot = this.daelis.getPlayerState().equipment[itemResource.slot];

@@ -50,8 +50,8 @@ class DaelIS {
         return this.prices.cachedPrices;
     }
 
-    generateTooltip(item, shorterVersion = false){
-        return this.tooltip.generateTooltip(item, shorterVersion);
+    generateTooltip(item, compactVersion = false){
+        return this.tooltip.generateTooltip(item, compactVersion);
     }
 
     setupSocketListener() {

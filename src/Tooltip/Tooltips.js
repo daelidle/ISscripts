@@ -10,7 +10,7 @@ class Tooltip {
         injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
     }
 
-    generateTooltip(item, shorterVersion) {
+    generateTooltip(item, compactVersion) {
         const itemResource = this.daelis.gameData.gameResources[item.itemID];
         const nameRarityClass = this.getItemNameColorByRarity(itemResource);
         const name = item?.name ?? itemResource.name;
@@ -29,7 +29,7 @@ class Tooltip {
         if (parseInt(item.itemID) == 7050) quantity = parseInt(item.christmasSpirit ?? 1);
         const heatSpan = (itemResource.heat !== undefined) ? ` <span class="dwt-heat">${itemResource.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
         let flavor = itemResource?.extraTooltipInfo;
-        if (shorterVersion) {
+        if (compactVersion) {
             itemSet = undefined;
             effects = undefined;
             flavor = undefined;
