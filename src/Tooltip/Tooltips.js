@@ -10,7 +10,7 @@ class Tooltip {
         injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
     }
 
-    generateTooltip(item) {
+    generateTooltip(item, shorterVersion) {
         const itemResource = this.daelis.gameData.gameResources[item.itemID];
         const nameRarityClass = this.getItemNameColorByRarity(itemResource);
         const name = item?.name ?? itemResource.name;
@@ -23,11 +23,17 @@ class Tooltip {
         const enchant = tooltipGenerator.getEnchantSection?.(itemResource, item, this.daelis.gameData);
         const requiredStats = tooltipGenerator.getRequiredStatsLevel?.(itemResource);
         const itemSkill = tooltipGenerator.getItemSkillSection?.(itemResource, item, this.daelis.gameData);
-        const itemSet = tooltipGenerator.getItemSetSection?.(itemResource, item, this.daelis.gameData, this.daelis.getPlayerState().equipment);
-        const effects = tooltipGenerator.getItemEffects?.(itemResource, item, this.daelis.gameData);
+        let itemSet = tooltipGenerator.getItemSetSection?.(itemResource, item, this.daelis.gameData, this.daelis.getPlayerState().equipment);
+        let effects = tooltipGenerator.getItemEffects?.(itemResource, item, this.daelis.gameData);
         let quantity = parseInt(item?.stackSize ?? 1);
         if (parseInt(item.itemID) == 7050) quantity = parseInt(item.christmasSpirit ?? 1);
         const heatSpan = (itemResource.heat !== undefined) ? ` <span class="dwt-heat">${itemResource.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
+        let flavor = itemResource?.extraTooltipInfo;
+        if (shorterVersion) {
+            itemSet = undefined;
+            effects = undefined;
+            flavor = undefined;
+        }
 
         return `
             <div class="daelis-wow-tooltip" data-item="${base64encode(JSON.stringify(item))}">
@@ -51,7 +57,7 @@ class Tooltip {
                 <div class="dwt-item-skill">${itemSkill ?? ''}</div>
                 <div class="dwt-item-set">${itemSet ?? ''}</div>
                 <div class="dwt-effects">${effects ?? ''}</div>
-                <div class="dwt-flavor">${itemResource?.extraTooltipInfo ?? ''}</div>
+                <div class="dwt-flavor">${flavor ?? ''}</div>
                 <div class="dwt-prices dwt-columns">
                     <span class="dwt-quantity">Quantity: ${quantity.toLocaleString()}</span>
                     <span class="dwt-prices-vendor">Vendor: ${parseInt(itemResource?.value ?? 0).toLocaleString()}<img src="https://www.idlescape.com/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;">${heatSpan}</span>

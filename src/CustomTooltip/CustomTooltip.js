@@ -6,10 +6,12 @@ class CustomTooltip {
     };
     daelis;
     cacheIds;
+    pressedKeys;
 
     constructor(daelis) {
         this.daelis = daelis;
         this.cacheIds = {items: {}, enchants: {}};
+        this.pressedKeys = [];
     }
 
     onGameReady(isFirstGameReady){
@@ -18,6 +20,7 @@ class CustomTooltip {
             this._applyCSS();
             this._setupTooltipDelegates();
         }
+        this._setUpKeyPressedEventListener();
     }
 
     _setupTooltipDelegates(){
@@ -38,6 +41,7 @@ class CustomTooltip {
             },
             allowHTML: true,
             zIndex: 1000001,
+            maxWidth: 'none',
             onTrigger(instance) {
                 instance.setContent(that._generateGeneralItemsTooltip(instance.reference));
             },
@@ -54,6 +58,7 @@ class CustomTooltip {
                 return that._generateCombatFoodTooltip(element);
             },
             allowHTML: true,
+            maxWidth: 'none',
             onTrigger(instance) {
                 instance.setContent(that._generateCombatFoodTooltip(instance.reference));
             },
@@ -70,6 +75,7 @@ class CustomTooltip {
                 that._generateMarketplaceBuyItemTooltip(element);
             },
             allowHTML: true,
+            maxWidth: 'none',
             onTrigger(instance) {
                 instance.setContent(that._generateMarketplaceBuyItemTooltip(instance.reference));
             },
@@ -97,9 +103,10 @@ class CustomTooltip {
                     item = getReact(element.parentElement).return.pendingProps;
                     item = {itemID: item.id};
                 }
-                return that.daelis.generateTooltip(item);
+                return that._generateTooltip(item);
             },
             allowHTML: true,
+            maxWidth: 'none',
         });
     }
 
@@ -115,6 +122,7 @@ class CustomTooltip {
             allowHTML: true,
             sticky: true,
             inlinePositioning: true,
+            maxWidth: 'none',
             onTrigger(instance) {
                 instance.setContent(that._generateChatItemTooltip(instance.reference));
             }
@@ -131,6 +139,7 @@ class CustomTooltip {
                 return that._generateCraftingTooltip(element);
             },
             allowHTML: true,
+            maxWidth: 'none',
             onTrigger(instance) {
                 instance.setContent(that._generateCraftingTooltip(instance.reference));
             },
@@ -157,12 +166,12 @@ class CustomTooltip {
             }
         }
 
-        return item !== false ? this.daelis.generateTooltip(item) : null;
+        return item !== false ? this._generateTooltip(item) : null;
     }
 
     _generateMarketplaceBuyItemTooltip(element){
         const item = getReact(element.parentElement.parentElement).return.pendingProps.item;
-        return this.daelis.generateTooltip(item);
+        return this._generateTooltip(item);
     }
 
     _generateCombatFoodTooltip(element){
@@ -170,19 +179,35 @@ class CustomTooltip {
         const foodArray = getReact(element.parentElement).return.pendingProps.combatInventory;
         const item = foodArray[foodId];
         if (item === undefined) return null;
-        return this.daelis.generateTooltip(item);
+        return this._generateTooltip(item);
     }
 
     _generateChatItemTooltip(element) {
         let item = getReact(element).return.pendingProps.item;
         if (item === undefined) return ''; // Item-set
-        return this.daelis.generateTooltip(item);
+        return this._generateTooltip(item);
     }
 
     _generateCraftingTooltip(element){
         let item = getReact(element.parentElement).return.pendingProps.item;
         item.itemID = item.id;
-        return this.daelis.generateTooltip(item);
+        return this._generateTooltip(item);
+    }
+
+    _generateTooltip(item){
+        const shorterVersion = this.pressedKeys.includes('Control');
+        const itemTooltip = this.daelis.generateTooltip(item, shorterVersion);
+        if (this.pressedKeys.includes('Alt')){
+            const itemResource = this.daelis.gameData.gameResources[item.itemID];
+            if (itemResource !== undefined && itemResource.hasOwnProperty('slot')){
+                const equippedItemOnSameSlot = this.daelis.getPlayerState().equipment[itemResource.slot];
+                if (equippedItemOnSameSlot !== undefined){
+                    const equippedItemToCompareTooltip = this.daelis.generateTooltip(equippedItemOnSameSlot, true);
+                    return `<div style="display: flex"><div>${itemTooltip}</div><div style="zoom: 80%;">${equippedItemToCompareTooltip}</div></div>`;
+                }
+            }
+        }
+        return itemTooltip;
     }
 
     _initializeIdCaches() {
@@ -196,4 +221,15 @@ class CustomTooltip {
     }
 
 
+    _setUpKeyPressedEventListener() {
+        window.addEventListener("keydown", (event) => {
+            if (!this.pressedKeys.includes(event.key)){
+                this.pressedKeys.push(event.key);
+            }
+        }, true);
+
+        window.addEventListener("keyup", (event) => {
+            this.pressedKeys = this.pressedKeys.filter(filter => filter !== event.key);
+        }, true);
+    }
 }
