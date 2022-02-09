@@ -184,7 +184,12 @@ class LoadoutUI {
                      class="close-dialog-button idlescape-button idlescape-button-blue">Assign Alias</div>
             </div>
         </div>`;
-        loadoutsHtml = `${tabsHtml}<br/>${loadoutsHtml}<br/>${actionButtons}`;
+
+        const combatSettings = this.config.daelis.getPlayerState().settings.combat;
+        const abilitySpan = (combatSettings.enableSpecialAttacks) ? '<span style="color: green">enabled</span>' :  '<span style="color: red">disabled</span>';
+        const stateInfo = `<div>Abilities: ${abilitySpan} Autoeat: ${combatSettings.autoEatThreshold}%</div>`;
+
+        loadoutsHtml = `${tabsHtml}<br/>${stateInfo}<br/>${loadoutsHtml}<br/>${actionButtons}`;
         const loadoutType = (this.viewer.loadoutType === this.viewer.LOADOUT_GEAR) ? 'Gear' : 'Food';
         const title = `${loadoutType} Loadouts <img id="${this.changeTypeId}" src="${this.loadoutTypeSwitch}" alt="Change loadout type">`;
         return {'title': title, 'loadoutsHtml': loadoutsHtml}
