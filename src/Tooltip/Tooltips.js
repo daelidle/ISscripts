@@ -95,6 +95,7 @@ class Tooltip {
                 return new EliteScrollTooltip();
             default:
                 if (itemResource.slot !== undefined) return new EquipmentTooltip();
+                if (itemResource.isIngredient !== undefined) return new FoodTooltip();
                 break;
         }
         return new DefaultTooltip();
