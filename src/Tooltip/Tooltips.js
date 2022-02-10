@@ -86,7 +86,7 @@ class Tooltip {
 
     _getTooltipType(itemResource){
         if (itemResource.hasOwnProperty('slot')) return new EquipmentTooltip();
-        if (itemResource.hasOwnProperty('isIngredient')) return new FoodTooltip();
+        if (itemResource.hasOwnProperty('isIngredient') || itemResource.hasOwnProperty('isEdible')) return new FoodTooltip();
         if (itemResource.hasOwnProperty('isBossToken')) return new DungeonKeyTooltip();
         if (itemResource.hasOwnProperty('isChampScroll')) return new EliteScrollTooltip();
         if (itemResource.hasOwnProperty('farmingExperience')) return new SeedTooltip();
@@ -96,6 +96,10 @@ class Tooltip {
 
 class DefaultTooltip {
     getItemType(itemResource){
+        if (itemResource.hasOwnProperty('isBook')) return 'Book';
+        const irrelevantTags = ['misc', 'tool', 'unique', 'junk'];
+        const tags = itemResource.tags.filter(tag => !irrelevantTags.includes(tag)) ?? [];
+        if (tags.length > 0) return stringCapitalize(tags.shift());
         return stringCapitalize(itemResource.class.replace('-', ' '));
     }
 }
