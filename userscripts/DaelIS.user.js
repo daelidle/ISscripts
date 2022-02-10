@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      1.2.26
+// @version      1.2.27
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
@@ -34,6 +34,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/ResourcesTracker/TrackerConfig.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/ResourcesTracker/TrackerUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/State/State.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/DungeonKeyTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/EliteScrollTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/EquipmentTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/FoodTooltip.js

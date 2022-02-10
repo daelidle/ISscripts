@@ -51,6 +51,7 @@ class Tooltip {
                     <div class="dwt-stats-yield dwt-columns">${stats.yieldStats ?? ''}</div>
                     <div class="dwt-stats-food">${stats.foodStats ?? ''}</div>
                     <div class="dwt-stats-elite-scrolls dwt-columns">${stats.eliteScrollStats ?? ''}</div>
+                    <div class="dwt-stats-dungeon-key dwt-columns">${stats.dungeonKeyStats ?? ''}</div>
                 </div>
                 <div class="dwt-enchant">${enchant ?? ''}</div>
                 <div class="dwt-requirements">${requiredStats ?? ''}</div>
@@ -84,20 +85,11 @@ class Tooltip {
     }
 
     _getTooltipType(itemResource){
-        switch (itemResource.class){
-            case 'seed':
-                return new SeedTooltip();
-            case 'cooking-ingredient':
-                return new FoodTooltip();
-            case 'equipment':
-                return new EquipmentTooltip();
-            case 'elite-scroll':
-                return new EliteScrollTooltip();
-            default:
-                if (itemResource.slot !== undefined) return new EquipmentTooltip();
-                if (itemResource.isIngredient !== undefined) return new FoodTooltip();
-                break;
-        }
+        if (itemResource.hasOwnProperty('slot')) return new EquipmentTooltip();
+        if (itemResource.hasOwnProperty('isIngredient')) return new FoodTooltip();
+        if (itemResource.hasOwnProperty('isBossToken')) return new DungeonKeyTooltip();
+        if (itemResource.hasOwnProperty('isChampScroll')) return new EliteScrollTooltip();
+        if (itemResource.hasOwnProperty('farmingExperience')) return new SeedTooltip();
         return new DefaultTooltip();
     }
 }
