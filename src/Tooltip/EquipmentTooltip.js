@@ -72,7 +72,10 @@ class EquipmentTooltip {
                 } else if (Object.values(defenseStatsNormalizer).includes(statName)){
                     if (defenseStats[statName] === undefined) defenseStats[statName] = 0;
                     defenseStats[statName] += stat.value * item.augmentations;
-                } else otherStats[statName] = stat.value * item.augmentations;
+                } else {
+                    if (otherStats[statName] === undefined) otherStats[statName] = 0;
+                    otherStats[statName] += stat.value * item.augmentations;
+                }
             })
         }
         return {attackStats: attackStats, defenseStats: defenseStats, otherStats: otherStats};
