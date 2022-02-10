@@ -127,6 +127,12 @@ class CustomTooltip {
             maxWidth: 'none',
             onTrigger(instance) {
                 instance.setContent(that._generateChatItemTooltip(instance.reference));
+            },
+            onBeforeUpdate(instance, partialProps) {
+                const referenceNode = instance?.popperInstance?.state?.rects?.reference;
+                if (referenceNode !== undefined && referenceNode.x == 0 && referenceNode.y == 0 && referenceNode.width == 0 && referenceNode.height == 0){
+                    instance.destroy();
+                }
             }
         });
     }
