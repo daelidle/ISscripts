@@ -8,6 +8,7 @@
     text-shadow: 0 0 8px #000;
     margin: 0 6px;
     max-width: 140px;
+    z-index: 1;
 }
 .damage_meter .row.job-dps .data-items:before {
     background: rgba(244, 67, 54, 0.5);
