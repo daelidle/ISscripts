@@ -98,12 +98,7 @@ class EquipmentTooltip {
     getItemSkillSection(itemResource, item, gameData) {
         const ability = gameData.abilities[itemResource.relatedAbility];
         if (ability !== undefined){
-            let abilityStatusClass = 'dwt-ability-active';
-            if (ability.hasOwnProperty('requireEquipmentEnchantID')) {
-                if (!item.hasOwnProperty('enchantmentID') || item.enchantmentID !== ability.requireEquipmentEnchantID || item.enchantmentStrength !== ability.requireEquipmentEnchantStrength){
-                    abilityStatusClass = 'dwt-ability-inactive';
-                }
-            }
+            const abilityStatusClass = this._abilityIsActiveOnItem(item, ability) ? 'dwt-ability-active': 'dwt-ability-inactive';
             return `<span class="${abilityStatusClass}">Equip: ${ability.abilityName}</span>`;
         }
         return '';
@@ -149,14 +144,8 @@ class EquipmentTooltip {
 
         const ability = gameData.abilities[itemResource.relatedAbility];
         if (ability !== undefined){
-            let isActiveAbility = true;
-            if (ability.hasOwnProperty('requireEquipmentEnchantID')) {
-                if (!item.hasOwnProperty('enchantmentID') || item.enchantmentID !== ability.requireEquipmentEnchantID || item.enchantmentStrength !== ability.requireEquipmentEnchantStrength){
-                    isActiveAbility = false;
-                }
-            }
-            if (isActiveAbility){
-                let description = generateDescriptiveAbilityText(ability, gameData.enchantments);
+            if (this._abilityIsActiveOnItem(item, ability)){
+                const description = generateDescriptiveAbilityText(ability, gameData.enchantments);
                 itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${description}</span></div>`;
             }
         }
@@ -167,5 +156,16 @@ class EquipmentTooltip {
             itemEffects += `<div><span class="dwt-effects-name">${enchantment.name}:</span> <span class="dwt-effects-description">${description}</span></div>`;
         }
         return itemEffects;
+    }
+
+    _abilityIsActiveOnItem(item, ability){
+        if (ability.hasOwnProperty('requireEquipmentEnchantID')) {
+            if (!item.hasOwnProperty('enchantmentID') || item.enchantmentID !== ability.requireEquipmentEnchantID || item.enchantmentStrength !== ability.requireEquipmentEnchantStrength) {
+                if (!ability.hasOwnProperty('requireEquipmentID') || ability.requireEquipmentID === item.itemID) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
