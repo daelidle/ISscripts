@@ -50,7 +50,7 @@
     color: #1eff00;
 }
 .dwt-ability-inactive {
-    color: darkred;
+    color: red;
 }
 .dwt-enchant-unactive, .dwt-set-effect-inactive, .dwt-set-item-unequipped {
     color: #9d9d9d;
