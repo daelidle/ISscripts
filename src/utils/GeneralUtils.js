@@ -156,3 +156,10 @@ function stringCapitalize(string){
     if (string.length == 0) return '';
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+function digitToEnglish(number) {
+    if (number > 9) return;
+
+    const units = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    return units[number];
+}

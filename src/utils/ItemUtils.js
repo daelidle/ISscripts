@@ -39,32 +39,32 @@ function normalizeItem(item){
 
 function generateDescriptiveAbilityText(ability, enchantments) {
     const damageElement = (ability.hasOwnProperty('damageElement') && ability.damageElement.length > 1) ? stringCapitalize(ability.damageElement) : 'Physical';
-    const twoStrikeSkills = [22, 25];
-    const isTwoAttacksAbility = twoStrikeSkills.includes(ability.id);
+    const strikes = ability.hasOwnProperty('multiCast') ? ability.multiCast : 1;
+
     const abilityProperties = [];
-    if (ability.hasOwnProperty('baseSpeedCoeff') && ability.baseSpeedCoeff != 1){
+    if (ability.hasOwnProperty('baseSpeedCoeff') && ability.baseSpeedCoeff !== 1){
         const adjective = (ability.baseSpeedCoeff > 1)  ? 'slower' : 'faster';
         const value = Math.round(Math.abs((ability.baseSpeedCoeff - 1) * 100));
-        abilityProperties.push(`${isTwoAttacksAbility ? 'are': 'is'} ${value}% ${adjective}`);
+        abilityProperties.push(`${strikes > 1 ? 'are': 'is'} ${value}% ${adjective}`);
     }
-    if (ability.hasOwnProperty('baseDamageCoeff') && ability.baseDamageCoeff != 1){
+    if (ability.hasOwnProperty('baseDamageCoeff') && ability.baseDamageCoeff !== 1){
         const adjective = (ability.baseDamageCoeff > 1)  ? 'more' : 'less';
         const value = Math.round(Math.abs((ability.baseDamageCoeff - 1) * 100));
-        abilityProperties.push(`${isTwoAttacksAbility ? 'deal': 'deals'} ${value}% ${adjective} damage`);
+        abilityProperties.push(`${strikes > 1 ? 'deal': 'deals'} ${value}% ${adjective} damage`);
     }
-    if (ability.hasOwnProperty('baseAccuracyCoeff') && ability.baseAccuracyCoeff != 1){
+    if (ability.hasOwnProperty('baseAccuracyCoeff') && ability.baseAccuracyCoeff !== 1){
         const adjective = (ability.baseAccuracyCoeff > 1)  ? 'more' : 'less';
         const value = Math.round(Math.abs((ability.baseAccuracyCoeff - 1) * 100));
-        abilityProperties.push(`${isTwoAttacksAbility ? 'are': 'is'} ${value}% ${adjective} accurate`);
+        abilityProperties.push(`${strikes > 1 ? 'are': 'is'} ${value}% ${adjective} accurate`);
     }
+
     let properties = new Intl.ListFormat('en-GB', { style: 'long', type: 'conjunction' }).format(abilityProperties);
     if (properties.length > 0) properties = `that ${properties}`;
     if (ability.hasOwnProperty('cooldown')) properties += ` with a cooldown of at least ${ability.cooldown} seconds.`;
-    if (ability.hasOwnProperty('enchantmentApplySelf') && ability.enchantmentApplySelf !== null) properties += ` ${_generateDescriptiveBuffAbility(ability, enchantments)}.`;
-    return `${isTwoAttacksAbility ? 'Two ': ''}${damageElement} ${isTwoAttacksAbility ? 'attacks': 'attack'} ${properties}`;
-}
-
-function _generateDescriptiveBuffAbility(itemResource, enchantments){
-    const enchantName = enchantments[itemResource.enchantmentApplySelf]?.name ?? 'unknown';
-    return `Applies ${itemResource.enchantmentAmountSelf} stacks of ${enchantName} ${itemResource.enchantmentStrengthSelf}`;
+    if (ability.hasOwnProperty('overrideFirstAuto')) properties += ` Replaces the first auto-attack in the rotation.`;
+    if (ability.hasOwnProperty('enchantmentApplySelf') && ability.enchantmentApplySelf !== null) {
+        const enchantName = enchantments[ability.enchantmentApplySelf]?.name ?? 'unknown';
+        properties += ` Applies ${ability.enchantmentAmountSelf} stacks of ${enchantName} ${ability.enchantmentStrengthSelf}`;
+    }
+    return `${strikes > 1 ? `${stringCapitalize(digitToEnglish(strikes))} ` : ''}${damageElement} ${strikes > 1 ? 'attacks': 'attack'} ${properties}`;
 }

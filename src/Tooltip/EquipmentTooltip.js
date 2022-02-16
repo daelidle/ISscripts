@@ -98,7 +98,13 @@ class EquipmentTooltip {
     getItemSkillSection(itemResource, item, gameData) {
         const ability = gameData.abilities[itemResource.relatedAbility];
         if (ability !== undefined){
-            return `<span>Equip: ${ability.abilityName}</span>`;
+            let abilityStatusClass = 'dwt-ability-active';
+            if (ability.hasOwnProperty('requireEquipmentEnchantID')) {
+                if (!item.hasOwnProperty('enchantmentID') || item.enchantmentID !== ability.requireEquipmentEnchantID || item.enchantmentStrength !== ability.requireEquipmentEnchantStrength){
+                    abilityStatusClass = 'dwt-ability-inactive';
+                }
+            }
+            return `<span class="${abilityStatusClass}">Equip: ${ability.abilityName}</span>`;
         }
         return '';
     }
@@ -143,8 +149,16 @@ class EquipmentTooltip {
 
         const ability = gameData.abilities[itemResource.relatedAbility];
         if (ability !== undefined){
-            let description = generateDescriptiveAbilityText(ability, gameData.enchantments);
-            itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${description}</span></div>`;
+            let isActiveAbility = true;
+            if (ability.hasOwnProperty('requireEquipmentEnchantID')) {
+                if (!item.hasOwnProperty('enchantmentID') || item.enchantmentID !== ability.requireEquipmentEnchantID || item.enchantmentStrength !== ability.requireEquipmentEnchantStrength){
+                    isActiveAbility = false;
+                }
+            }
+            if (isActiveAbility){
+                let description = generateDescriptiveAbilityText(ability, gameData.enchantments);
+                itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${description}</span></div>`;
+            }
         }
 
         const enchantment = gameData.enchantments[item.enchantmentID];
