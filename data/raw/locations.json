@@ -1,0 +1,1452 @@
+{
+  "10": {
+    "name": "Clay Pit",
+    "id": 10,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "mining": {
+      "name": "Clay Pit",
+      "level": 1,
+      "time": 5000,
+      "skill": "mining",
+      "activeMessage": "Mining in the clay pit",
+      "itemImage": "/images/mining/Place-ClayPits.png",
+      "imageIsBackground": true,
+      "loot": [
+        108,
+        101,
+        102,
+        109,
+        110,
+        11011
+      ],
+      "skillIcon": "images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    }
+  },
+  "11": {
+    "name": "City Outskirts",
+    "id": 11,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "mining": {
+      "name": "City Outskirts",
+      "level": 10,
+      "time": 8000,
+      "skill": "mining",
+      "activeMessage": "Mining in the city outskirts",
+      "itemImage": "/images/mining/Place-CityOutskirts.png",
+      "imageIsBackground": true,
+      "loot": [
+        101,
+        102,
+        108,
+        109,
+        110,
+        103,
+        112,
+        11011
+      ],
+      "skillIcon": "images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    },
+    "combat": {
+      "encounters": [
+        {
+          "weight": 4,
+          "monsters": [
+            {
+              "id": 5,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 10,
+              "statOverride": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "12": {
+    "name": "Grasslands",
+    "combatName": "Farm",
+    "id": 12,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "foraging": {
+      "name": "Grasslands",
+      "level": 1,
+      "time": 6000,
+      "skill": "foraging",
+      "itemImage": "/images/foraging/grasslands.png",
+      "imageIsBackground": true,
+      "loot": [
+        151,
+        2016,
+        2021,
+        2023,
+        155,
+        2027,
+        158,
+        301,
+        302,
+        11012
+      ],
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    },
+    "combat": {
+      "encounters": [
+        {
+          "weight": 3,
+          "monsters": [
+            {
+              "id": 1,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "monsters": [
+            {
+              "id": 2,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 3,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "monsters": [
+            {
+              "id": 4,
+              "statOverride": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "13": {
+    "name": "Volcano",
+    "combatName": "Lava Maze",
+    "id": 13,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "mining": {
+      "name": "Volcano",
+      "level": 60,
+      "time": 15000,
+      "skill": "mining",
+      "activeMessage": "Mining in a volcano",
+      "itemImage": "/images/mining/Place-Volcano.png",
+      "imageIsBackground": true,
+      "loot": [
+        111,
+        105,
+        106,
+        107,
+        113,
+        104
+      ],
+      "skillIcon": "images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    },
+    "combat": {
+      "encounters": [
+        {
+          "weight": 2,
+          "monsters": [
+            {
+              "id": 8,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "monsters": [
+            {
+              "id": 9,
+              "statOverride": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "14": {
+    "name": "Village",
+    "id": 14,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "mining": {
+      "name": "Village",
+      "level": 20,
+      "time": 8000,
+      "skill": "mining",
+      "activeMessage": "Mining near a small village",
+      "itemImage": "/images/mining/Place-Village.png",
+      "imageIsBackground": true,
+      "loot": [
+        109,
+        103,
+        112,
+        11011
+      ],
+      "skillIcon": "images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    }
+  },
+  "15": {
+    "name": "Desert",
+    "id": 15,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "mining": {
+      "name": "Desert",
+      "level": 30,
+      "time": 12000,
+      "skill": "mining",
+      "activeMessage": "Mining out in the desert",
+      "itemImage": "/images/mining/Place-Desert.png",
+      "imageIsBackground": true,
+      "loot": [
+        110,
+        105,
+        111,
+        112,
+        2013,
+        113,
+        103,
+        104,
+        108
+      ],
+      "skillIcon": "images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    }
+  },
+  "16": {
+    "name": "The Tangle",
+    "id": 16,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "foraging": {
+      "name": "The Tangle",
+      "level": 30,
+      "time": 12000,
+      "skill": "foraging",
+      "itemImage": "/images/foraging/the_tangle.png",
+      "imageIsBackground": true,
+      "loot": [
+        2022,
+        159,
+        2026,
+        175,
+        2028,
+        176,
+        153,
+        301,
+        302,
+        303,
+        304,
+        305,
+        11012
+      ],
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    }
+  },
+  "17": {
+    "name": "Underground",
+    "id": 17,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "mining": {
+      "name": "Underground",
+      "level": 40,
+      "time": 12000,
+      "skill": "mining",
+      "activeMessage": "Mining underground",
+      "itemImage": "/images/mining/Place-Underground.png",
+      "imageIsBackground": true,
+      "loot": [
+        104,
+        105,
+        111,
+        113,
+        2013,
+        109,
+        103,
+        112
+      ],
+      "skillIcon": "images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    }
+  },
+  "18": {
+    "name": "Frozen Tundra",
+    "id": 18,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "foraging": {
+      "name": "Frozen Tundra",
+      "level": 50,
+      "time": 15000,
+      "skill": "foraging",
+      "itemImage": "/images/foraging/frozen_tundra.png",
+      "imageIsBackground": true,
+      "loot": [
+        2022,
+        159,
+        2027,
+        158,
+        2029,
+        154,
+        152,
+        301,
+        173,
+        305
+      ],
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    }
+  },
+  "19": {
+    "name": "Hidden Mine",
+    "id": 19,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "mining": {
+      "name": "Hidden Mine",
+      "level": 50,
+      "time": 15000,
+      "skill": "mining",
+      "activeMessage": "Mining in a secret spot",
+      "itemImage": "/images/mining/Place-HiddenLocation.png",
+      "imageIsBackground": true,
+      "loot": [
+        106,
+        111,
+        109,
+        104,
+        105,
+        107,
+        113
+      ],
+      "skillIcon": "images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    }
+  },
+  "20": {
+    "name": "The Deep Pit",
+    "id": 20,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "mining": {
+      "name": "Deep Pit",
+      "level": 70,
+      "time": 20000,
+      "skill": "mining",
+      "hasDangerousEncounters": true,
+      "lockout": {
+        "skill": "mining",
+        "name": "deepPit",
+        "duration": 15,
+        "trigger": "death",
+        "message": "The demons bar your passage."
+      },
+      "activeMessage": "Mining further than you should",
+      "itemImage": "/images/mining/Place-DeepMine.png",
+      "extraTooltipInfo": "Warning: This mining location is dangerous.",
+      "imageIsBackground": true,
+      "loot": [
+        107,
+        113,
+        104,
+        114
+      ],
+      "skillIcon": "images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    }
+  },
+  "21": {
+    "name": "Verdant Valley",
+    "id": 21,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "foraging": {
+      "name": "Verdant Valley",
+      "level": 10,
+      "time": 8000,
+      "skill": "foraging",
+      "itemImage": "/images/foraging/verdant_valley.png",
+      "imageIsBackground": true,
+      "loot": [
+        2016,
+        2021,
+        151,
+        2025,
+        157,
+        2029,
+        154,
+        170,
+        301,
+        302,
+        303,
+        11012
+      ],
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    }
+  },
+  "22": {
+    "name": "Fungal Grotto",
+    "id": 22,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "foraging": {
+      "name": "Fungal Grotto",
+      "level": 20,
+      "time": 8000,
+      "skill": "foraging",
+      "itemImage": "/images/foraging/fungal_grotto.png",
+      "imageIsBackground": true,
+      "loot": [
+        2020,
+        161,
+        2023,
+        155,
+        2021,
+        151,
+        301,
+        170,
+        171,
+        172,
+        175,
+        176,
+        11012
+      ],
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    }
+  },
+  "23": {
+    "name": "Caves",
+    "id": 23,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "combat": {
+      "encounters": [
+        {
+          "weight": 4,
+          "monsters": [
+            {
+              "id": 3,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 4,
+          "monsters": [
+            {
+              "id": 7,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 7,
+              "statOverride": [
+                {
+                  "path": "name",
+                  "replace": "Greater Imp"
+                },
+                {
+                  "path": "combatStats.maxHealth",
+                  "mul": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "24": {
+    "name": "Misty Marsh",
+    "id": 24,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "foraging": {
+      "name": "Misty Marsh",
+      "level": 40,
+      "time": 12000,
+      "skill": "foraging",
+      "itemImage": "/images/foraging/misty_marsh.png",
+      "imageIsBackground": true,
+      "loot": [
+        2023,
+        155,
+        2024,
+        160,
+        2030,
+        156,
+        153,
+        171,
+        172,
+        301,
+        303,
+        304
+      ],
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    }
+  },
+  "25": {
+    "name": "Haunted Woods",
+    "id": 25,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "foraging": {
+      "name": "Haunted Woods",
+      "level": 60,
+      "time": 15000,
+      "skill": "foraging",
+      "itemImage": "/images/foraging/haunted_woods.png",
+      "imageIsBackground": true,
+      "loot": [
+        2020,
+        161,
+        2024,
+        160,
+        152,
+        172,
+        173,
+        174,
+        301,
+        304,
+        305,
+        306
+      ],
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    }
+  },
+  "26": {
+    "name": "Living Forest",
+    "id": 26,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "foraging": {
+      "name": "Living Forest",
+      "level": 70,
+      "time": 20000,
+      "skill": "foraging",
+      "hasDangerousEncounters": true,
+      "lockout": {
+        "skill": "foraging",
+        "name": "livingForest",
+        "duration": 15,
+        "trigger": "death",
+        "message": "The forest vines grow in front of you, preventing entry."
+      },
+      "itemImage": "/images/foraging/living_forest.png",
+      "extraTooltipInfo": "Warning: This foraging location is dangerous.",
+      "imageIsBackground": true,
+      "loot": [
+        2016,
+        2025,
+        157,
+        2026,
+        175,
+        2028,
+        176,
+        174,
+        302,
+        303,
+        304,
+        305,
+        306,
+        177
+      ],
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    }
+  },
+  "27": {
+    "name": "Valley of Giants",
+    "id": 27,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "combat": {
+      "encounters": [
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 13,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 14,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 15,
+              "statOverride": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "28": {
+    "name": "Corrupted Lands",
+    "id": 28,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "combat": {
+      "encounters": [
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 20,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 4,
+          "monsters": [
+            {
+              "id": 21,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 4,
+          "monsters": [
+            {
+              "id": 22,
+              "statOverride": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "29": {
+    "name": "Chaos Wastes",
+    "id": 29,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "groupSize": 2
+  },
+  "30": {
+    "name": "Elven Encampment",
+    "id": 30,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "groupSize": 2,
+    "locationCombatStatOverride": 2
+  },
+  "31": {
+    "name": "Unearthed Catacombs",
+    "id": 31,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "groupSize": 2,
+    "locationCombatStatOverride": 2
+  },
+  "32": {
+    "name": "Forgotten Temple",
+    "id": 32,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "groupSize": 2,
+    "locationCombatStatOverride": 2
+  },
+  "50": {
+    "name": "Shallow Pond",
+    "id": 50,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "fishing": {
+      "name": "Shallow Pond",
+      "tool": "net",
+      "level": 1,
+      "time": 8500,
+      "skill": "fishing",
+      "itemImage": "/images/fishing/net_fishing.jpg",
+      "imageIsBackground": true,
+      "loot": [
+        60,
+        61,
+        72,
+        71,
+        11030
+      ],
+      "class": "none",
+      "skillIcon": "images/fishing/fishing_logo.png",
+      "actionButton": "Fish"
+    }
+  },
+  "51": {
+    "name": "Lazy River",
+    "id": 51,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "fishing": {
+      "name": "Lazy River",
+      "id": 101,
+      "level": 20,
+      "time": 9500,
+      "skill": "fishing",
+      "itemImage": "/images/fishing/fly_fishing.jpg",
+      "imageIsBackground": true,
+      "loot": [
+        62,
+        63,
+        73,
+        71,
+        72,
+        11030,
+        11031
+      ],
+      "class": "none",
+      "skillIcon": "images/fishing/fishing_logo.png",
+      "actionButton": "Fish"
+    }
+  },
+  "52": {
+    "name": "Still Lake",
+    "id": 52,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "fishing": {
+      "name": "Still Lake",
+      "id": 102,
+      "level": 50,
+      "time": 10500,
+      "skill": "fishing",
+      "itemImage": "/images/fishing/cage_fishing.jpg",
+      "imageIsBackground": true,
+      "loot": [
+        64,
+        68,
+        77,
+        74,
+        73,
+        72,
+        71,
+        11030,
+        11031,
+        11032
+      ],
+      "class": "none",
+      "skillIcon": "images/fishing/fishing_logo.png",
+      "actionButton": "Fish"
+    }
+  },
+  "53": {
+    "name": "Open Ocean",
+    "id": 53,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "fishing": {
+      "name": "Open Ocean",
+      "id": 103,
+      "level": 65,
+      "time": 11500,
+      "skill": "fishing",
+      "itemImage": "/images/fishing/harpoon_fishing.jpg",
+      "imageIsBackground": true,
+      "loot": [
+        65,
+        66,
+        67,
+        69,
+        70,
+        71,
+        75,
+        76,
+        11030,
+        11031,
+        11032,
+        11036
+      ],
+      "class": "none",
+      "skillIcon": "images/fishing/fishing_logo.png",
+      "actionButton": "Fish"
+    }
+  },
+  "54": {
+    "name": "Stormy Seas",
+    "id": 54,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "fishing": {
+      "name": "Stormy Seas",
+      "id": 104,
+      "level": 85,
+      "time": 12500,
+      "skill": "fishing",
+      "hasDangerousEncounters": true,
+      "lockout": {
+        "skill": "fishing",
+        "name": "stormySeas",
+        "duration": 10,
+        "trigger": "death",
+        "message": "The seas are too stormy to sail on right now."
+      },
+      "extraTooltipInfo": "This is an ancient location with enhanced ancient drops. Warning: This fishing location is dangerous.",
+      "itemImage": "/images/fishing/stormy_fishing.png",
+      "imageIsBackground": true,
+      "loot": [
+        65,
+        66,
+        67,
+        69,
+        70,
+        71,
+        75,
+        76,
+        11030,
+        11031,
+        11032,
+        11036
+      ],
+      "class": "none",
+      "skillIcon": "images/fishing/fishing_logo.png",
+      "actionButton": "Fish"
+    }
+  },
+  "400": {
+    "name": "Bronze Bar Smithing",
+    "id": 400,
+    "smithing": {
+      "name": "Bronze bar",
+      "activeMessage": "Smelting bronze bars",
+      "skill": "smithing",
+      "level": 1,
+      "requiredResources": {
+        "2": 1,
+        "101": 1,
+        "102": 1
+      },
+      "value": 25,
+      "experience": 10,
+      "time": 6000,
+      "loot": [
+        201
+      ],
+      "tradeable": true,
+      "itemImage": "/images/smithing/bronze_bar.png",
+      "class": "bar",
+      "extraTooltipInfo": "Used as a crafting material.",
+      "skillIcon": "images/smithing/smithing_icon.png",
+      "actionButton": "Smelt"
+    }
+  },
+  "401": {
+    "name": "Iron Bar Smithing",
+    "id": 401,
+    "smithing": {
+      "name": "Iron bar",
+      "activeMessage": "Smelting iron bars",
+      "skill": "smithing",
+      "level": 15,
+      "requiredResources": {
+        "2": 5,
+        "103": 3
+      },
+      "value": 100,
+      "experience": 100,
+      "time": 12000,
+      "loot": [
+        202
+      ],
+      "tradeable": true,
+      "itemImage": "/images/smithing/iron_bar.png",
+      "class": "bar",
+      "extraTooltipInfo": "Used as a crafting material.",
+      "skillIcon": "images/smithing/smithing_icon.png",
+      "actionButton": "Smelt"
+    }
+  },
+  "402": {
+    "name": "Gold Bar Smithing",
+    "id": 402,
+    "smithing": {
+      "name": "Gold bar",
+      "activeMessage": "Smelting gold bars",
+      "skill": "smithing",
+      "level": 30,
+      "requiredResources": {
+        "2": 20,
+        "104": 10
+      },
+      "value": 1500,
+      "experience": 100,
+      "time": 20000,
+      "loot": [
+        203
+      ],
+      "tradeable": true,
+      "itemImage": "/images/smithing/gold_bar.png",
+      "class": "bar",
+      "extraTooltipInfo": "Used as a crafting material.",
+      "skillIcon": "images/smithing/smithing_icon.png",
+      "actionButton": "Smelt"
+    }
+  },
+  "403": {
+    "name": "Mithril Bar Smithing",
+    "id": 403,
+    "smithing": {
+      "name": "Mithril bar",
+      "activeMessage": "Smelting mithril bars",
+      "skill": "smithing",
+      "level": 50,
+      "requiredResources": {
+        "2": 50,
+        "105": 5
+      },
+      "value": 500,
+      "experience": 200,
+      "time": 30000,
+      "loot": [
+        204
+      ],
+      "tradeable": true,
+      "itemImage": "/images/smithing/mithril_bar.png",
+      "class": "bar",
+      "extraTooltipInfo": "Used as a crafting material.",
+      "skillIcon": "images/smithing/smithing_icon.png",
+      "actionButton": "Smelt"
+    }
+  },
+  "404": {
+    "name": "Adamantite Bar Smithing",
+    "id": 404,
+    "smithing": {
+      "name": "Adamantite bar",
+      "activeMessage": "Smelting adamantite bars",
+      "skill": "smithing",
+      "level": 60,
+      "requiredResources": {
+        "2": 100,
+        "106": 10
+      },
+      "value": 3000,
+      "experience": 300,
+      "time": 44000,
+      "loot": [
+        205
+      ],
+      "tradeable": true,
+      "itemImage": "/images/smithing/adamantite_bar.png",
+      "class": "bar",
+      "extraTooltipInfo": "Used as a crafting material.",
+      "skillIcon": "images/smithing/smithing_icon.png",
+      "actionButton": "Smelt"
+    }
+  },
+  "405": {
+    "name": "Runite Bar Smithing",
+    "id": 405,
+    "smithing": {
+      "name": "Runite bar",
+      "activeMessage": "Smelting runite bars",
+      "skill": "smithing",
+      "level": 85,
+      "requiredResources": {
+        "2": 200,
+        "107": 15
+      },
+      "value": 9000,
+      "experience": 1000,
+      "time": 90000,
+      "loot": [
+        206
+      ],
+      "tradeable": true,
+      "itemImage": "/images/smithing/runite_bar.png",
+      "class": "bar",
+      "extraTooltipInfo": "Used as a crafting material.",
+      "skillIcon": "images/smithing/smithing_icon.png",
+      "actionButton": "Smelt"
+    }
+  },
+  "406": {
+    "name": "Stygian Bar Smithing",
+    "id": 406,
+    "smithing": {
+      "name": "Stygian bar",
+      "activeMessage": "Smelting stygian bars",
+      "skill": "smithing",
+      "level": 90,
+      "requiredResources": {
+        "2": 500,
+        "114": 25,
+        "800": 10
+      },
+      "value": 12000,
+      "experience": 1500,
+      "time": 106000,
+      "loot": [
+        207
+      ],
+      "tradeable": true,
+      "itemImage": "/images/smithing/stygian_bar.png",
+      "class": "bar",
+      "extraTooltipInfo": "Used as a crafting material.",
+      "skillIcon": "images/smithing/smithing_icon.png",
+      "actionButton": "Smelt"
+    }
+  },
+  "407": {
+    "name": "Magic Ice Bar Smithing",
+    "id": 407,
+    "christmasEvent": true,
+    "smithing": {
+      "name": "Magic Ice Bar",
+      "activeMessage": "Smelting magic ice bars",
+      "skill": "smithing",
+      "active": false,
+      "level": 1,
+      "requiredResources": {
+        "2": 100,
+        "7013": 2
+      },
+      "experience": 100,
+      "time": 106000,
+      "loot": [
+        7034
+      ],
+      "tradeable": true,
+      "itemImage": "/images/christmas/ice_bar.png",
+      "class": "bar",
+      "extraTooltipInfo": "Used as a crafting material.",
+      "skillIcon": "images/smithing/smithing_icon.png",
+      "actionButton": "Smelt"
+    }
+  },
+  "600": {
+    "name": "North Pole Quarry",
+    "id": 600,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "christmasEvent": true,
+    "mining": {
+      "name": "North Pole Quarry",
+      "level": 1,
+      "time": 20000,
+      "skill": "mining",
+      "hasDangerousEncounters": true,
+      "active": false,
+      "lockout": {
+        "skill": "mining",
+        "name": "northPoleQuarry",
+        "duration": 1,
+        "trigger": "death",
+        "message": "Elves clubbed you."
+      },
+      "activeMessage": "Mining in a igloo",
+      "itemImage": "/images/christmas/locations/north_pole_quarry.png",
+      "imageIsBackground": true,
+      "loot": [
+        7013,
+        7000,
+        109,
+        2015,
+        111,
+        105,
+        103,
+        113
+      ],
+      "extraTooltipInfo": "THIS IS AN EVENT ZONE",
+      "skillIcon": "/images/mining/iron_pickaxe.png",
+      "actionButton": "Mine"
+    }
+  },
+  "601": {
+    "name": "Evergreen Forest",
+    "id": 601,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "christmasEvent": true,
+    "foraging": {
+      "name": "Evergreen Forest",
+      "level": 1,
+      "time": 20000,
+      "skill": "foraging",
+      "hasDangerousEncounters": true,
+      "active": false,
+      "lockout": {
+        "skill": "foraging",
+        "name": "evergreenForest",
+        "duration": 1,
+        "trigger": "death",
+        "message": "A trunk is on you."
+      },
+      "itemImage": "/images/christmas/locations/evergreen_forest.png",
+      "imageIsBackground": true,
+      "loot": [
+        7011,
+        7000,
+        170,
+        171,
+        301,
+        302,
+        303,
+        2016,
+        180,
+        2027,
+        158
+      ],
+      "extraTooltipInfo": "THIS IS AN EVENT ZONE",
+      "skillIcon": "images/foraging/foraging_icon.png",
+      "actionButton": "Forage"
+    }
+  },
+  "602": {
+    "name": "Gummy Lake",
+    "id": 602,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "christmasEvent": true,
+    "fishing": {
+      "name": "Gummy Lake",
+      "tool": "net",
+      "level": 1,
+      "time": 10000,
+      "skill": "fishing",
+      "hasDangerousEncounters": true,
+      "active": false,
+      "lockout": {
+        "skill": "fishing",
+        "name": "gummyLake",
+        "duration": 1,
+        "trigger": "death",
+        "message": "You get fished by a fish."
+      },
+      "itemImage": "/images/christmas/locations/gummy_lake.png",
+      "imageIsBackground": true,
+      "loot": [
+        7039,
+        7006,
+        7000,
+        2015,
+        7004,
+        11030,
+        11031,
+        11036
+      ],
+      "class": "none",
+      "skillIcon": "images/fishing/fishing_logo.png",
+      "extraTooltipInfo": "THIS IS AN EVENT ZONE",
+      "actionButton": "Fish"
+    }
+  },
+  "603": {
+    "name": "Santa's Workshop",
+    "id": 603,
+    "locationIcon": "",
+    "locationCoords": [
+      0,
+      0
+    ],
+    "christmasEvent": true,
+    "combat": {
+      "active": false,
+      "encounters": [
+        {
+          "weight": 0.1,
+          "monsters": [
+            {
+              "id": 70,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 0.45,
+          "monsters": [
+            {
+              "id": 71,
+              "statOverride": []
+            }
+          ]
+        },
+        {
+          "weight": 0.45,
+          "monsters": [
+            {
+              "id": 72,
+              "statOverride": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "604": {
+    "name": "The Durian Locker",
+    "id": 604,
+    "scrollID": 8000,
+    "announceMonstersLeft": true
+  },
+  "605": {
+    "name": "Living Armory",
+    "id": 605,
+    "scrollID": 8001,
+    "announceMonstersLeft": true
+  },
+  "606": {
+    "name": "Giant's Hills",
+    "id": 606,
+    "scrollID": 8002,
+    "announceMonstersLeft": true
+  },
+  "607": {
+    "name": "Corroded Battlefield",
+    "id": 607,
+    "scrollID": 8003,
+    "announceMonstersLeft": true
+  },
+  "608": {
+    "name": "Goblin Kitchen",
+    "id": 608,
+    "scrollID": 8004,
+    "announceMonstersLeft": true
+  },
+  "609": {
+    "name": "Ot_to's Farm",
+    "id": 609,
+    "scrollID": 8005,
+    "announceMonstersLeft": true
+  },
+  "610": {
+    "name": "The Pit",
+    "id": 610,
+    "scrollID": 8006,
+    "announceMonstersLeft": true
+  },
+  "611": {
+    "name": "Sacred Grove",
+    "id": 611,
+    "scrollID": 8007,
+    "announceMonstersLeft": true
+  },
+  "612": {
+    "name": "The Gauntlet",
+    "id": 612,
+    "scrollID": 8008,
+    "announceMonstersLeft": true
+  },
+  "613": {
+    "name": "Chaotic Rift",
+    "id": 613,
+    "scrollID": 8009,
+    "announceMonstersLeft": true
+  },
+  "614": {
+    "name": "Stormier Seas",
+    "id": 614,
+    "scrollID": 8010,
+    "announceMonstersLeft": true
+  },
+  "700": {
+    "name": "Giant's Keep",
+    "id": 700,
+    "scrollID": 9000
+  },
+  "701": {
+    "name": "Goblin Village",
+    "id": 701,
+    "scrollID": 9006
+  },
+  "702": {
+    "name": "Black Knight's Fortress",
+    "id": 702,
+    "scrollID": 9008
+  },
+  "703": {
+    "name": "Ancient Barrows",
+    "id": 703,
+    "scrollID": 9010
+  },
+  "704": {
+    "name": "Palace of Flames",
+    "id": 704,
+    "scrollID": 9011
+  },
+  "705": {
+    "name": "Krampus' Lair",
+    "id": 705,
+    "scrollID": 9012,
+    "christmasEvent": true
+  },
+  "9001": {
+    "name": "The Duel Arena",
+    "id": 9001,
+    "combat": {
+      "password": "it's time to d-d-d-d-duel",
+      "encounters": [
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 1,
+              "statOverride": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "9002": {
+    "name": "The Testing Arena",
+    "id": 9002,
+    "combat": {
+      "password": "it's time to t-t-t-test",
+      "encounters": [
+        {
+          "weight": 1,
+          "monsters": [
+            {
+              "id": 206,
+              "statOverride": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

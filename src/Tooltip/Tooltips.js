@@ -68,7 +68,7 @@ class Tooltip {
 
     getItemNameColorByRarity(itemResource){
         const legendaryItems = ["Ocean's Embrace", "Prismatic Ring", "Prismatic Necklace", 'Ancient Fishing Rod','Ancient Harpoon','Ancient Fishing Net'];
-        const epicItems = ["Moss Maul", "King's Crown", "Shard of Kalanahmatti", "Fire Orb", "Shapeless Scythe", "Ancient Fire Amulet", "Ancient Nature Amulet", "Black Knight Titan's Helm", "Crystal Mace", "Signet Ring", 'Titanic Gauntlet', 'World Walkers',
+        const epicItems = ["Moss Maul", "King's Crown", "Shard of Kalanahmatti", "Fire Orb", "Shapeless Scythe", "Ancient Fire Amulet", "Ancient Nature Amulet", "Black Knight Titan's Helm", "Crystal Mace", "Signet Ring", 'Titanic Gauntlet', 'Awakened World Shaper', 'World Walkers',
             "Giant King's Jewel", "Giant's Keep Key", "Infernal Lance", 'Kalanahmatti'];
         const rareItems = ['Searing Ladle', 'Decayed Cloak', 'Festive Shroud', 'Nature Fragment', 'Ice Fragment', 'Fire Fragment', 'Chaos Fragment', 'Corrupted Fragment', 'Crest of Chaos', "Ancient Treasure", "Black Opal",
             "Modified Diving Gloves", "Forgotten Soul", "Mantle of Flame", "Black Knight's Gauntlets", "Black Opal Ring", "Black Opal Necklace", 'Supreme Tacklebox', 'Burning Feather', 'Zero Edge', 'RISE OF INFO'];

@@ -1,0 +1,132 @@
+{
+  "zero edge": {
+    "name": "Zero Edge",
+    "effects": [
+      {
+        "name": "Aspect of Lightning",
+        "description": "Converts auto attack element to lightning",
+        "equippedRequirements": 1
+      }
+    ],
+    "items": [
+      {
+        "id": 1512,
+        "name": "Zero Edge",
+        "slot": "weapon"
+      }
+    ]
+  },
+  "shrimp": {
+    "name": "Shrimp Lord",
+    "effects": [
+      {
+        "name": "",
+        "description": "Grants 2 passive Demon Skin",
+        "equippedRequirements": 3
+      },
+      {
+        "name": "",
+        "description": "Grants 4 passive Demon Skin",
+        "equippedRequirements": 4
+      }
+    ],
+    "items": [
+      {
+        "id": 1540,
+        "name": "Shrimp Carapace",
+        "slot": "body"
+      },
+      {
+        "id": 1541,
+        "name": "Shrimp Greaves",
+        "slot": "legs"
+      },
+      {
+        "id": 1542,
+        "name": "Shrimp Helm",
+        "slot": "helm"
+      },
+      {
+        "id": 1543,
+        "name": "Shrimp Shell",
+        "slot": "shield"
+      }
+    ]
+  },
+  "phoenix": {
+    "name": "Phoenix",
+    "effects": [
+      {
+        "name": "Phoenix's Flame",
+        "description": "Gives a chance that increases with augments for a fatal blow to be rendered non-fatal; if this happens the Resurrection Sickness debuff (reduced healing, offensive, and defensive stats) with stacks equal to the hitpoints will be applied.",
+        "equippedRequirements": 1
+      }
+    ],
+    "items": [
+      {
+        "id": 1555,
+        "name": "Mantle of Flame",
+        "slot": "cape"
+      }
+    ]
+  },
+  "jolly": {
+    "name": "Jolly",
+    "effects": [
+      {
+        "name": "Jolly buff",
+        "description": "Enables combat in Krampus' Lair",
+        "equippedRequirements": 2
+      }
+    ],
+    "items": [
+      {
+        "id": 7032,
+        "name": "Merry Maker's Mittens",
+        "slot": "gloves"
+      },
+      {
+        "id": 7033,
+        "name": "Mistletoe Treads",
+        "slot": "boots"
+      }
+    ]
+  },
+  "fishing set": {
+    "name": "Fisherman",
+    "effects": [
+      {
+        "name": "Master Fisherman",
+        "description": "Increases all fishing stats by 10%",
+        "equippedRequirements": 3
+      },
+      {
+        "name": "Legendary Angler",
+        "description": "Replaces Master Fisherman. Increases all fishing stats by 25%.",
+        "equippedRequirements": 4
+      }
+    ],
+    "items": [
+      {
+        "id": 11005,
+        "name": "Ocean's Embrace",
+        "slot": "tacklebox"
+      },
+      {
+        "id": 12000,
+        "name": "Fisherman's Smock",
+        "slot": "body"
+      },
+      {
+        "id": 12001,
+        "name": "Fisherman's Bucket Hat",
+        "slot": "helm"
+      },
+      {
+        "id": 12002,
+        "name": "Fisherman's Waders",
+        "slot": "legs"
+      }
+    ]
+  }
+}
