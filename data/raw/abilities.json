@@ -341,7 +341,7 @@
     "enchantmentAmountSelf": 10,
     "enchantmentChanceToApplySelf": 1,
     "maxTargets": 10,
-    "maxRetarget": 2
+    "maxRetarget": 1
   },
   "12": {
     "id": 12,
