@@ -28,8 +28,8 @@ class DisplayPricesInventory {
         const inventoryContainer = document.getElementsByClassName("game-right-panel")[0];
         const config = {attributes: true, childList: true, subtree: true };
         this.observer = new MutationObserver(callback);
-        this.observer.observe(playAreaContainer, config);
-        this.observer.observe(inventoryContainer, config);
+        if(playAreaContainer !== undefined) { this.observer.observe(playAreaContainer, config); }
+        if(inventoryContainer !== undefined) { this.observer.observe(inventoryContainer, config); }
     }
 
     _updateInventoryPrices() {
