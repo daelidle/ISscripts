@@ -73,8 +73,8 @@ class MarketplaceFilter {
                     width: 100%;
                 }
                 .daelis-marketplace-filter-image { 
-                    width: 35px;
-                    height: 35px;
+                    width: 33px;
+                    height: 33px;
                     margin-left: 1px;
                     margin-right: 1px;
                     padding: 1px;
