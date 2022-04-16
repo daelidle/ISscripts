@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      1.2.34
+// @version      1.2.35
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
@@ -27,6 +27,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutUIAlias.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutUIGear.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/LoadoutViewer/LoadoutUIFood.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/MarketplaceFilter/MarketplaceFilter.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/NoGatheringIronman/NoGatheringIronman.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Prices/Prices.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/ResourcesTracker/Resource.js
@@ -65,6 +66,7 @@
     daelIS.addExtension(DisplayPricesInventory);
     daelIS.addExtension(InventoryFilter);
     daelIS.addExtension(LoadoutViewer);
+    daelIS.addExtension(MarketplaceFilter);
     daelIS.addExtension(ResourceTracker);
     daelIS.addExtension(NoGatheringIronman);
 })();
