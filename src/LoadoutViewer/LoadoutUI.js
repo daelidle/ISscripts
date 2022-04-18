@@ -125,28 +125,7 @@ class LoadoutUI {
                 }
             });
 
-            const emptyFoodSlots = document.getElementsByClassName("combat-empty-slot");
-            if (emptyFoodSlots.length > 0){
-                let loadouts = ui.viewer._readLoadoutsFromState().foodLoadouts;
-                loadouts = Object.keys(loadouts).sort();
-                let count = 0;
-                for (let i = emptyFoodSlots.length - 1; i >= 0; i--) {
-                    if (emptyFoodSlots[i].getElementsByClassName(ui.loadoutQuickCombatFoodClass).length == 0){
-                        const loadoutId = loadouts[count];
-                        if (loadoutId === undefined) break;
-                        const alias = (loadoutId in ui.config.alias) ? ui.config.alias[loadoutId] : loadoutId;
-                        const combatFoodLoadoutUI = `<div class="${ui.loadoutQuickCombatFoodClass}" data-loadoutid="${loadoutId}">${alias}</div>`;
-                        emptyFoodSlots[i].insertAdjacentHTML('afterbegin', combatFoodLoadoutUI);
-                    }
-                    count++;
-                }
-                for (const quickCombatLoadout of document.getElementsByClassName(ui.loadoutQuickCombatFoodClass)){
-                    quickCombatLoadout.addEventListener("click",() => {
-                        ui.viewer.selectedLoadout = quickCombatLoadout.dataset.loadoutid;
-                        ui.viewer._onLoadClicked();
-                    },false);
-                }
-            }
+            ui._setupQuickFoodLoadouts(ui);
         }
 
         // Observe Play Area DOM changes
@@ -154,6 +133,31 @@ class LoadoutUI {
         const config = {attributes: true, childList: true, subtree: true };
         const observer = new MutationObserver(callback);
         observer.observe(mainAreaContainer, config);
+    }
+
+    _setupQuickFoodLoadouts(ui) {
+        const emptyFoodSlots = document.getElementsByClassName("combat-empty-slot");
+        if (emptyFoodSlots.length > 0) {
+            let loadouts = ui.viewer._readLoadoutsFromState().foodLoadouts;
+            loadouts = Object.keys(loadouts).sort((a, b) => parseInt(a) - parseInt(b));
+            let count = 0;
+            for (let i = emptyFoodSlots.length - 1; i >= 0; i--) {
+                if (emptyFoodSlots[i].getElementsByClassName(ui.loadoutQuickCombatFoodClass).length === 0) {
+                    const loadoutId = loadouts[count];
+                    if (loadoutId === undefined) break;
+                    const alias = (loadoutId in ui.config.alias) ? ui.config.alias[loadoutId] : loadoutId;
+                    const combatFoodLoadoutUI = `<div class="${ui.loadoutQuickCombatFoodClass}" data-loadoutid="${loadoutId}">${alias}</div>`;
+                    emptyFoodSlots[i].insertAdjacentHTML('afterbegin', combatFoodLoadoutUI);
+                }
+                count++;
+            }
+            for (const quickCombatLoadout of document.getElementsByClassName(ui.loadoutQuickCombatFoodClass)) {
+                quickCombatLoadout.addEventListener("click", () => {
+                    ui.viewer.selectedLoadout = quickCombatLoadout.dataset.loadoutid;
+                    ui.viewer._onLoadClicked();
+                }, false);
+            }
+        }
     }
 
     generateLoadoutsPanelHtml(gearLoadouts, foodLoadouts){
@@ -171,7 +175,8 @@ class LoadoutUI {
             loadoutGenerator = new LoadoutUIFood();
             maxLoadouts = this.MAX_FOOD_LOADOUTS;
         }
-        for (const [id, loadout] of Object.entries(loadouts).sort()) {
+        const sortedLoadouts = Object.entries(loadouts).sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
+        for (const [id, loadout] of sortedLoadouts) {
             loadoutsHtml += `<div class="${(this.loadoutClassPrefix)}${id} hidden">${loadoutGenerator.generateLoadoutHtml(loadout, this.gameData)}</div>`;
             let tabLabel = (id in this.config.alias) ? `${this.config.alias[id]} <span>(${id})</span>` : id;
             tabsHtml += `<div class="${this.tabClassPrefix}${id} nav-tab-flex text-center noselect" data-id="${id}">${tabLabel}</div>`;
