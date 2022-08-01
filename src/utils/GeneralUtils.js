@@ -101,7 +101,7 @@ async function getJSON (url) {
 
 function getReact(dom) {
     for(let key in dom) {
-        if( key.startsWith("__reactInternalInstance$") ){
+        if( key.startsWith("__reactFiber$") ){
             return dom[key];
         }
     }

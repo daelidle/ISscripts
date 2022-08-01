@@ -80,7 +80,7 @@ class DamageMeter {
         if (playerInfo['portion'] === "all") {
             // Complete player message sent on login
             this.combat.setSelfCharacterName(playerInfo['value']['username']);
-            const inCombat = this._parseCombatStatusFromActionQue(playerInfo['value']['actionQue']);
+            const inCombat = this._parseCombatStatusFromActionQueue(playerInfo['value']['actionQueue']);
             this.combat._changeCombatStatus(inCombat);
             this.combat._resetCombat();
         } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("group")) {
@@ -92,9 +92,9 @@ class DamageMeter {
                 if (!this.combat.isPlayerOnGroup(playerName)) this.combat.addPlayerToGroup(playerName);
                 this.combat.setPlayerCurrentHP(playerName, currentHP);
             }
-        } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("actionQue")) {
+        } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("actionQueue")) {
             // New Action message
-            const combatStatus = this._parseCombatStatusFromActionQue(playerInfo['value']);
+            const combatStatus = this._parseCombatStatusFromActionQueue(playerInfo['value']);
             this.combat._changeCombatStatus(combatStatus);
         }
     }
@@ -103,14 +103,10 @@ class DamageMeter {
         //console.log("start attack animation");
     }
 
-    _parseCombatStatusFromActionQue(actionQue){
-        let inCombat = false;
-        actionQue.forEach(action => {
-            if ("action" in action){
-                inCombat = (action.action === "combat");
-            }
-        });
-        return inCombat;
+    _parseCombatStatusFromActionQueue(actionQueue) {
+        if (actionQueue === null) return false;
+        if (!actionQueue.hasOwnProperty('actionType')) return false;
+        return actionQueue.actionType === 'Action-Combat';
     }
 
     _updateMeter(){

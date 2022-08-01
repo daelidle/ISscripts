@@ -66,7 +66,9 @@ class Tooltip {
             </div>`;
     }
 
-    getItemNameColorByRarity(itemResource){
+    getItemNameColorByRarity(itemResource) {
+        if (itemResource === undefined || itemResource === null || !itemResource.hasOwnProperty('name')) return 'dwt-rarity-common';
+
         const legendaryItems = ["Ocean's Embrace", "Prismatic Ring", "Prismatic Necklace", 'Ancient Fishing Rod','Ancient Harpoon','Ancient Fishing Net'];
         const epicItems = ["Moss Maul", "King's Crown", "Shard of Kalanahmatti", "Fire Orb", "Shapeless Scythe", "Ancient Fire Amulet", "Ancient Nature Amulet", "Black Knight Titan's Helm", "Crystal Mace", "Signet Ring", 'Titanic Gauntlet', 'Awakened World Shaper', 'World Walkers',
             "Giant King's Jewel", "Giant's Keep Key", "Infernal Lance", 'Kalanahmatti'];
@@ -85,6 +87,7 @@ class Tooltip {
     }
 
     _getTooltipType(itemResource){
+        if (itemResource === undefined || itemResource === null) return new DefaultTooltip();
         if (itemResource.hasOwnProperty('slot')) return new EquipmentTooltip();
         if (itemResource.hasOwnProperty('isIngredient') || itemResource.hasOwnProperty('isEdible')) return new FoodTooltip();
         if (itemResource.hasOwnProperty('isBossToken')) return new DungeonKeyTooltip();
@@ -96,6 +99,7 @@ class Tooltip {
 
 class DefaultTooltip {
     getItemType(itemResource){
+        if (itemResource === undefined || itemResource === null) return 'Unknown Item';
         if (itemResource.hasOwnProperty('isBook')) return 'Book';
         const irrelevantTags = ['misc', 'tool', 'unique', 'junk'];
         const tags = itemResource.tags.filter(tag => !irrelevantTags.includes(tag)) ?? [];
