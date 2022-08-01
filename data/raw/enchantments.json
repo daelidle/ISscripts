@@ -4,7 +4,6 @@
     "name": "",
     "strengthPerLevel": 0,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/misc/unknown_buff.png",
     "tooltip": "This isn't an enchantment. What are you doing?"
   },
@@ -13,7 +12,6 @@
     "name": "Embers",
     "strengthPerLevel": 0.1,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/embers_icon.png",
     "tooltip": "Gain a NaN% chance to instantly burn Logs and Branches for double heat every foraging action."
   },
@@ -22,16 +20,14 @@
     "name": "Prospector",
     "strengthPerLevel": 10,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/prospector_icon.png",
     "tooltip": "Increases your chance to find gems by a mysterious amount. Stronger enchantments are stronger chances."
   },
   "3": {
     "id": 3,
     "name": "Scholar",
-    "strengthPerLevel": 0.2,
+    "strengthPerLevel": 0.15,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/scholar_icon.png",
     "tooltip": "Gain NaN% more experience, but NO items. Only works on Mastery experience."
   },
@@ -40,7 +36,6 @@
     "name": "Gathering",
     "strengthPerLevel": 0.1,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/gathering_icon.png",
     "tooltip": "Gain a NaN% chance to find an extra resource while gathering."
   },
@@ -49,7 +44,6 @@
     "name": "Superheating",
     "strengthPerLevel": 0.01,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/superheated_icon.png",
     "tooltip": "Gain a NaN% chance to instantly smelt an ore into a bar when mining."
   },
@@ -59,16 +53,14 @@
     "strengthPerLevel": 0.1,
     "strengthCap": 1,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/pyromancy.png",
     "tooltip": "Use NaN% less heat when cooking and smithing."
   },
   "7": {
     "id": 7,
     "name": "Wealth",
-    "strengthPerLevel": 0.2,
+    "strengthPerLevel": 0.15,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/wealth_icon.png",
     "tooltip": "Automatically sell gathering and production resources for NaN% more gold than their normal value when you find or create them. Does not apply to crafting."
   },
@@ -78,7 +70,6 @@
     "strengthPerLevel": 0.04,
     "strengthCap": 0.5,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/haste_icon.png",
     "tooltip": "Increases non-combat action speed by NaN%."
   },
@@ -87,7 +78,6 @@
     "name": "Naturalist",
     "strengthPerLevel": 0.2,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/naturalist_icon.png",
     "tooltip": "Increase your chance to gain chests while gathering by NaN%."
   },
@@ -96,43 +86,67 @@
     "name": "Acrobatics",
     "strengthPerLevel": 0.01,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/misc/unknown_buff.png",
     "tooltip": "This isn't an enchantment. What are you doing?"
   },
   "11": {
     "id": 11,
     "name": "Critical Strike",
-    "strengthPerLevel": 0.05,
+    "strengthPerLevel": 0.025,
     "combat": true,
-    "consumable": true,
+    "statBuffs": [
+      {
+        "path": "offensiveCritical.chance",
+        "additivePerLevel": 0.01,
+        "multiplicativePerLevel": 0
+      },
+      {
+        "path": "offensiveCritical.damageMultiplier",
+        "additivePerLevel": 0.01,
+        "multiplicativePerLevel": 0
+      }
+    ],
     "buffIcon": "/images/magic/buffs/critical_strike_icon.png",
-    "tooltip": "Gain a NaN% chance on hit to critically strike, dealing 130% damage."
+    "tooltip": "Increases critical chance and damage multiplier by NaN%."
   },
   "12": {
     "id": 12,
     "name": "Poisoning",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/misc/unknown_buff.png",
     "tooltip": "Apply poison for NaN damage per second."
   },
   "13": {
     "id": 13,
     "name": "Accuracy",
-    "strengthPerLevel": 0.05,
+    "strengthPerLevel": 0.025,
     "combat": true,
-    "consumable": true,
+    "statBuffs": [
+      {
+        "path": "offensiveAccuracyAffinityRating.melee",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.025
+      },
+      {
+        "path": "offensiveAccuracyAffinityRating.magic",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.025
+      },
+      {
+        "path": "offensiveAccuracyAffinityRating.range",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.025
+      }
+    ],
     "buffIcon": "/images/magic/buffs/accuracy_icon.png",
-    "tooltip": "Increase the players accuracy bonus NaN%."
+    "tooltip": "Multiplies the player's accuracy for all three combat styles by NaN%."
   },
   "14": {
     "id": 14,
     "name": "Deflect",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/misc/unknown_buff.png",
     "tooltip": "This isn't an enchantment. What are you doing?"
   },
@@ -141,7 +155,6 @@
     "name": "Force",
     "strengthPerLevel": 0.1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/force_icon.png",
     "tooltip": "Gain NaN% of the shield's average melee defense as accuracy. The shield no longer provides any defensive bonuses."
   },
@@ -150,7 +163,6 @@
     "name": "Healing",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/healing_icon.png",
     "tooltip": "Passive healing is increased by NaN health per minute."
   },
@@ -159,34 +171,44 @@
     "name": "Weakening",
     "strengthPerLevel": 5,
     "combat": false,
-    "consumable": false,
     "buffIcon": "/images/magic/buffs/weakening_icon.png",
     "tooltip": "Decreases the level requirements of the item by NaN."
   },
   "18": {
     "id": 18,
     "name": "Reinforcement",
-    "strengthPerLevel": 0.05,
+    "strengthPerLevel": 8,
     "combat": true,
-    "consumable": true,
+    "statBuffs": [
+      {
+        "path": "armor.agility",
+        "additivePerLevel": 8,
+        "multiplicativePerLevel": 0
+      }
+    ],
     "buffIcon": "/images/magic/buffs/reinforcement_icon.png",
-    "tooltip": "Reduce the enemy's chance to hit by NaN%."
+    "tooltip": "Increases agility by NaN."
   },
   "19": {
     "id": 19,
     "name": "Protection",
-    "strengthPerLevel": 0.04,
+    "strengthPerLevel": 8,
     "combat": true,
-    "consumable": true,
+    "statBuffs": [
+      {
+        "path": "armor.protection",
+        "additivePerLevel": 8,
+        "multiplicativePerLevel": 0
+      }
+    ],
     "buffIcon": "/images/magic/buffs/protection_icon.png",
-    "tooltip": "Reduces all damage taken by NaN%."
+    "tooltip": "Increases protection by NaN."
   },
   "20": {
     "id": 20,
     "name": "Counterattack",
     "strengthPerLevel": 0.02,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/misc/unknown_buff.png",
     "tooltip": "This isn't an enchantment. What are you doing?"
   },
@@ -195,7 +217,6 @@
     "name": "Recklessness",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/recklessness_icon.png",
     "tooltip": "Increase outgoing damage by NaN."
   },
@@ -204,7 +225,6 @@
     "name": "Efficiency",
     "strengthPerLevel": 0.01,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/efficiency_icon.png",
     "tooltip": "Gain NaN% chance to produce an extra item during cooking and smithing."
   },
@@ -213,7 +233,6 @@
     "name": "Fishing",
     "strengthPerLevel": 0.025,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/fishing.png",
     "tooltip": "Increases fish catch chance by NaN%."
   },
@@ -222,7 +241,6 @@
     "name": "Cooking",
     "strengthPerLevel": 0.04,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/cooking_icon.png",
     "tooltip": "Decrease chance to burn food while cooking by NaN%."
   },
@@ -231,7 +249,6 @@
     "name": "Crafting",
     "strengthPerLevel": 0.02,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/crafting_icon.png",
     "tooltip": "Each crafted item costs NaN% less ingredients"
   },
@@ -240,7 +257,6 @@
     "name": "Refining",
     "strengthPerLevel": 10,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/refining_icon.png",
     "tooltip": "Gain a mysterious chance to find gems while smithing."
   },
@@ -249,16 +265,14 @@
     "name": "Runecrafting",
     "strengthPerLevel": 0.05,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/runecrafting_icon.png",
     "tooltip": "Reduces essence used in Runecrafting by NaN%."
   },
   "28": {
     "id": 28,
     "name": "Chances",
-    "strengthPerLevel": 0.01,
+    "strengthPerLevel": 0.001,
     "combat": false,
-    "consumable": false,
     "buffIcon": "/images/magic/buffs/chances-icon.png",
     "tooltip": "Increased chance of successful augmentation by NaN%."
   },
@@ -267,7 +281,6 @@
     "name": "Shrimp Lord",
     "strengthPerLevel": 0.05,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/shrimlord_icon.png",
     "tooltip": "Gain NaN% chance per cooking action to gain one Raw Shrimp."
   },
@@ -276,7 +289,6 @@
     "name": "Enlightenment",
     "strengthPerLevel": 1,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/enlightenment_icon.png",
     "tooltip": "Gain NaN more essence per action where essence is acquired."
   },
@@ -285,16 +297,14 @@
     "name": "Prolonging",
     "strengthPerLevel": 0.1,
     "combat": false,
-    "consumable": false,
     "buffIcon": "/images/magic/buffs/prolonging_icon.png",
-    "tooltip": "Grants NaN% more buff stacks from consumables."
+    "tooltip": "Grants NaN% chance that a buff stack is not lost."
   },
   "32": {
     "id": 32,
     "name": "Treasure Hunter",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/treasurehunter_icon.png",
     "tooltip": "Increases your chance of finding items from slain enemies by NaN%."
   },
@@ -304,7 +314,6 @@
     "strengthPerLevel": 0.05,
     "strengthCap": 0.8,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/inferno_icon.png",
     "tooltip": "Gain a NaN% chance per smithing/cooking action to complete another smithing/cooking action."
   },
@@ -313,25 +322,22 @@
     "name": "Destructive Testing",
     "strengthPerLevel": 5,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/destructivetesting_icon.png",
     "tooltip": "Sand, Stone and Clay mined will be destroyed and provide NaN mining experience per piece."
   },
   "35": {
     "id": 35,
     "name": "Nature",
-    "strengthPerLevel": 0.05,
+    "strengthPerLevel": 0.1,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/nature_icon.png",
-    "tooltip": "Gain a NaN% chance to generate a random log or branch every foraging action."
+    "tooltip": "Access hidden tree nodes and gain a NaN% chance to find a tree related node while Foraging."
   },
   "36": {
     "id": 36,
     "name": "Root Digging",
     "strengthPerLevel": 10,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/rootdigging_icon.png",
     "tooltip": "Gain a chance to find gems while foraging. Stronger enchantments are stronger chances."
   },
@@ -340,7 +346,6 @@
     "name": "Patience",
     "strengthPerLevel": 0.3,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/patience_icon.png",
     "tooltip": "Increases the efficiency of slower attacks."
   },
@@ -349,7 +354,6 @@
     "name": "Overhealing",
     "strengthPerLevel": 0.01,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/overhealing_icon.png",
     "tooltip": "Heal for NaN% of overkill damage on a target."
   },
@@ -358,7 +362,6 @@
     "name": "Farming",
     "strengthPerLevel": 0.01,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/farming_icon.png",
     "tooltip": "Gain a NaN% chance to get double the yield when harvesting."
   },
@@ -367,25 +370,22 @@
     "name": "Gold Digger",
     "strengthPerLevel": 1000,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/golddigger_icon.png",
     "tooltip": "Gain a fixed 10% chance per harvested plant to get NaN Gold Coins."
   },
   "41": {
     "id": 41,
     "name": "Fertilizing",
-    "strengthPerLevel": 0.01,
+    "strengthPerLevel": 0.025,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/fertilizing_icon.png",
-    "tooltip": "Gain NaN% increased harvest speed."
+    "tooltip": "Increase minimum harvest yield by NaN%."
   },
   "42": {
     "id": 42,
     "name": "Cultivation",
     "strengthPerLevel": 0.01,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/cultivation_icon.png",
     "tooltip": "Gain a NaN% chance to get a seed back when harvesting."
   },
@@ -394,52 +394,56 @@
     "name": "Corruption",
     "strengthPerLevel": 5,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/cultivation_icon.png",
     "tooltip": "Consumes ichor received in combat to heal for NaN health."
   },
   "44": {
     "id": 44,
     "name": "Fortitude",
-    "strengthPerLevel": 4.5,
+    "strengthPerLevel": 8,
     "combat": true,
-    "consumable": false,
+    "statBuffs": [
+      {
+        "path": "armor.stamina",
+        "additivePerLevel": 8,
+        "multiplicativePerLevel": 0
+      }
+    ],
     "buffIcon": "/images/magic/buffs/overhealing_icon.png",
-    "tooltip": "Increases max health by NaN."
+    "tooltip": "Increases stamina by NaN."
   },
   "45": {
     "id": 45,
     "name": "Aspect of Flame",
     "strengthPerLevel": 0.05,
     "combat": true,
-    "consumable": false,
+    "damageConversion": "Fire",
     "buffIcon": "/images/magic/buffs/embers_icon.png",
-    "tooltip": "Converts NaN% of damage into fire damage. COSMETIC ONLY UNTIL C2.0P2"
+    "tooltip": "Converts NaN% of damage into fire damage."
   },
   "46": {
     "id": 46,
     "name": "Aspect of Lightning",
     "strengthPerLevel": 0.05,
     "combat": true,
-    "consumable": false,
+    "damageConversion": "Lightning",
     "buffIcon": "/images/magic/buffs/embers_icon.png",
-    "tooltip": "Converts NaN% of damage into lightning damage. COSMETIC ONLY UNTIL C2.0P2"
+    "tooltip": "Converts NaN% of damage into lightning damage."
   },
   "47": {
     "id": 47,
     "name": "Aspect of Chaos",
     "strengthPerLevel": 0.05,
     "combat": true,
-    "consumable": false,
+    "damageConversion": "Chaos",
     "buffIcon": "/images/magic/buffs/embers_icon.png",
-    "tooltip": "Converts NaN% of damage into chaos damage. COSMETIC ONLY UNTIL C2.0P2"
+    "tooltip": "Converts NaN% of damage into chaos damage."
   },
   "48": {
     "id": 48,
     "name": "Fishing Magnetism",
     "strengthPerLevel": 2,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/fishingmagnetism_icon.png",
     "tooltip": "Increases bonus rarity by NaN and decreases both bait and reel power by the same amount. Increases chance to find known rare nodes."
   },
@@ -448,7 +452,6 @@
     "name": "Pungent Bait",
     "strengthPerLevel": 3,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/pungentbait_icon.png",
     "tooltip": "Increases bait power by NaN."
   },
@@ -457,7 +460,6 @@
     "name": "Reinforced Line",
     "strengthPerLevel": 3,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/reinforcedline_icon.png",
     "tooltip": "Increases reel power by NaN."
   },
@@ -466,7 +468,6 @@
     "name": "Bait Preservation",
     "strengthPerLevel": 0.04,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/preservation_icon.png",
     "tooltip": "Increases chance to preserve bait by NaN%."
   },
@@ -475,7 +476,6 @@
     "name": "Oil Spill",
     "strengthPerLevel": 0.075,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/oilspill_icon.png",
     "tooltip": "Gives a NaN% chance to try and extract fish oil from a fish based on the fish's size. There is a chance that fish oil may not be created if the fish is too small."
   },
@@ -484,7 +484,6 @@
     "name": "Deadliest Catch",
     "strengthPerLevel": 0.05,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/deadliestcatch_icon.png",
     "tooltip": "Increases bonuses from using bait by NaN% but decreases bait preservation chance by NaN%. Increases chance to find known rare resources."
   },
@@ -493,16 +492,54 @@
     "name": "Master Chef",
     "strengthPerLevel": 0.04,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/masterchef_icon.png",
     "tooltip": "Decreases chance to burn food while cooking by NaN% of your effective cooking level."
+  },
+  "55": {
+    "id": 55,
+    "name": "Herbalist",
+    "strengthPerLevel": 0.1,
+    "combat": false,
+    "buffIcon": "/images/magic/buffs/rootdigging_icon.png",
+    "tooltip": "Access hidden plant nodes and gain a NaN% chance to find a plant related node while Foraging."
+  },
+  "56": {
+    "id": 56,
+    "name": "Seed Harvesting",
+    "strengthPerLevel": 0.1,
+    "combat": false,
+    "buffIcon": "/images/magic/buffs/rootdigging_icon.png",
+    "tooltip": "Access hidden seed nodes and gain a NaN% chance to find a seed related node while Foraging."
+  },
+  "57": {
+    "id": 57,
+    "name": "Metallurgy",
+    "strengthPerLevel": 0.6,
+    "combat": false,
+    "buffIcon": "/images/magic/buffs/rootdigging_icon.png",
+    "tooltip": "Decreases the forge's heat intensity required to smelt a bar."
+  },
+  "58": {
+    "id": 58,
+    "name": "Pure Metals",
+    "strengthPerLevel": 0.04,
+    "combat": false,
+    "buffIcon": "/images/magic/buffs/rootdigging_icon.png",
+    "tooltip": "Reduces the amount of materials required to smelt a bar by NaN%."
+  },
+  "59": {
+    "id": 59,
+    "name": "Essence Concentration",
+    "strengthPerLevel": 1,
+    "combat": false,
+    "buffIcon": "/images/magic/buffs/rootdigging_icon.png",
+    "tooltip": "Increases the number of runes crafted per action by NaN as well as increases essence cost by NaN.\n\t\t\t)}%."
   },
   "1000": {
     "id": 1000,
     "name": "Impenetrable Defense",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": false,
     "buffIcon": "/images/magic/buffs/impenetrabledefence_icon.png",
     "tooltip": "All damage taken is reduced to 1."
   },
@@ -511,16 +548,14 @@
     "name": "Nimble",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/nimble.png",
     "tooltip": "Increases defense by about NaN%."
   },
   "2001": {
     "id": 2001,
     "name": "Demon Skin",
-    "strengthPerLevel": 1,
+    "strengthPerLevel": 10,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/demon_skin.png",
     "tooltip": "All damage taken is reduced by NaN."
   },
@@ -529,7 +564,6 @@
     "name": "Intuition",
     "strengthPerLevel": 0.05,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/xp_increased.png",
     "tooltip": "Gain NaN% increased experience while doing most things."
   },
@@ -538,7 +572,6 @@
     "name": "schfftph fzzz",
     "strengthPerLevel": 0.0005,
     "combat": false,
-    "consumable": false,
     "buffIcon": "/images/magic/buffs/shrimlord_icon.png",
     "tooltip": "fzzglglfzzglgl kakfzz"
   },
@@ -547,7 +580,6 @@
     "name": "Christmas Spirit",
     "strengthPerLevel": 1,
     "combat": false,
-    "consumable": false,
     "buffIcon": "/images/christmas/snow.png",
     "tooltip": "Merry Christmas! Santa Claus has buffed the server with Christmas Spirit!"
   },
@@ -556,7 +588,6 @@
     "name": "Easter",
     "strengthPerLevel": 1,
     "combat": false,
-    "consumable": false,
     "buffIcon": "/images/cooking/34573r_3gg.png",
     "tooltip": "Happy Easter! Code: iSawItFirst"
   },
@@ -565,7 +596,6 @@
     "name": "Weakness",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/weakening_icon.png",
     "tooltip": "You feel weak! Strength is lowered."
   },
@@ -574,7 +604,6 @@
     "name": "Corrosion",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/protection_icon.png",
     "tooltip": "Your armor is corroded! Defense is lowered."
   },
@@ -583,8 +612,7 @@
     "name": "Sick",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
-    "buffIcon": "/images/magic/debuffs/sick.png",
+    "buffIcon": "/images/magic/buffs/prolonging_icon.png",
     "tooltip": "You feel sick! Healing from items is reduced."
   },
   "8003": {
@@ -592,7 +620,6 @@
     "name": "Blind",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/accuracy_icon.png",
     "tooltip": "You can't see! Accuracy is reduced."
   },
@@ -601,7 +628,6 @@
     "name": "Stunned",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/patience_icon.png",
     "tooltip": "You've been stunned! Most stats reduced."
   },
@@ -610,7 +636,6 @@
     "name": "Resurrection Sickness",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/debuffs/resurrection_sickness.png",
     "tooltip": "You're feeling weak after missing your appointment with death. Most stats and healing reduced."
   },
@@ -619,7 +644,6 @@
     "name": "Overheating",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "hideStacks": true,
     "buffIcon": "/images/magic/debuffs/overheating.png",
     "tooltip": "This zone is dangerous, you're overheating! Offensive stats reduced. This effect can be mitigated by Flame Resistance food buff."
@@ -629,7 +653,6 @@
     "name": "Flame Resistance",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "stackMult": 2,
     "buffIcon": "/images/magic/buffs/flame_resistance.png",
     "tooltip": "Grants some resistance to intense heat."
@@ -639,7 +662,6 @@
     "name": "Regeneration",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/overhealing_icon.png",
     "tooltip": "Regenerate NaN health per second."
   },
@@ -648,7 +670,6 @@
     "name": "Poisoned",
     "strengthPerLevel": 1,
     "combat": true,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/overhealing_icon.png",
     "tooltip": "Lose NaN health per second."
   },
@@ -657,8 +678,6 @@
     "name": "Giant's Strength",
     "strengthPerLevel": 20,
     "combat": true,
-    "consumable": true,
-    "setBonus": true,
     "buffIcon": "/images/magic/buffs/overhealing_icon.png",
     "tooltip": "Giant's Strength Set Bonus: +NaN Strength."
   },
@@ -666,26 +685,83 @@
     "id": 10001,
     "name": "Master Fisherman",
     "strengthPerLevel": 0.1,
+    "setRequirements": [
+      {
+        "count": 3,
+        "strength": 1
+      },
+      {
+        "count": 4,
+        "strength": 0
+      }
+    ],
     "combat": false,
-    "consumable": true,
+    "statBuffs": [
+      {
+        "path": "fishing",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.1
+      },
+      {
+        "path": "fishingBaitPower",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.1
+      },
+      {
+        "path": "fishingRarityPower",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.1
+      },
+      {
+        "path": "fishingReelPower",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.1
+      }
+    ],
     "buffIcon": "/images/magic/buffs/fishing.png",
-    "tooltip": "Fishing Set increases fishing stats by NaN%. Does not affect bait."
+    "tooltip": "Increases fishing stats by NaN%. Does not affect bait."
   },
   "10002": {
     "id": 10002,
     "name": "Legendary Angler",
     "strengthPerLevel": 0.25,
+    "setRequirements": [
+      {
+        "count": 4,
+        "strength": 1
+      }
+    ],
     "combat": false,
-    "consumable": true,
+    "statBuffs": [
+      {
+        "path": "fishing",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.25
+      },
+      {
+        "path": "fishingBaitPower",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.25
+      },
+      {
+        "path": "fishingRarityPower",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.25
+      },
+      {
+        "path": "fishingReelPower",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.25
+      }
+    ],
     "buffIcon": "/images/magic/buffs/fishing.png",
-    "tooltip": "Fishing Set increases fishing stats by NaN%. Does not affect bait."
+    "tooltip": "Overrides Master Fisherman. Increases fishing stats by NaN%. Does not affect bait."
   },
   "10003": {
     "id": 10003,
     "name": "Jolly",
     "strengthPerLevel": 1,
     "combat": false,
-    "consumable": true,
     "buffIcon": "/images/magic/buffs/fishing.png",
     "tooltip": "Ho ho ho! Christmas 2021 Set Bonus!"
   },
@@ -694,8 +770,105 @@
     "name": "Phoenix's Flame",
     "strengthPerLevel": 1,
     "combat": false,
-    "consumable": true,
+    "setRequirements": [
+      {
+        "count": 1,
+        "strength": 1
+      }
+    ],
     "buffIcon": "/images/magic/buffs/pyromancy.png",
     "tooltip": "Gives a chance for a fatal blow to be rendered non-fatal; if this happens the Resurrection Sickness debuff with stacks equal to the damage ignored will be applied."
+  },
+  "10005": {
+    "id": 10005,
+    "name": "Master Forager",
+    "strengthPerLevel": 0.1,
+    "combat": false,
+    "setRequirements": [
+      {
+        "count": 3,
+        "strength": 1
+      },
+      {
+        "count": 4,
+        "strength": 0
+      }
+    ],
+    "statBuffs": [
+      {
+        "path": "foraging",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.1
+      }
+    ],
+    "buffIcon": "/images/magic/buffs/fishing.png",
+    "tooltip": "Increases foraging stats by NaN%."
+  },
+  "10006": {
+    "id": 10006,
+    "name": "Legendary Lumberjack",
+    "strengthPerLevel": 0.25,
+    "setRequirements": [
+      {
+        "count": 4,
+        "strength": 1
+      }
+    ],
+    "combat": false,
+    "statBuffs": [
+      {
+        "path": "foraging",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.25
+      }
+    ],
+    "buffIcon": "/images/magic/buffs/fishing.png",
+    "tooltip": "Overrides Master Forager. Increases foraging stats by NaN%."
+  },
+  "10007": {
+    "id": 10007,
+    "name": "Master Miner",
+    "strengthPerLevel": 0.1,
+    "setRequirements": [
+      {
+        "count": 3,
+        "strength": 1
+      },
+      {
+        "count": 4,
+        "strength": 0
+      }
+    ],
+    "combat": false,
+    "statBuffs": [
+      {
+        "path": "mining",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.1
+      }
+    ],
+    "buffIcon": "/images/magic/buffs/fishing.png",
+    "tooltip": "Increases mining stats by NaN%."
+  },
+  "10008": {
+    "id": 10008,
+    "name": "Legendary Rockbreaker",
+    "strengthPerLevel": 0.25,
+    "setRequirements": [
+      {
+        "count": 4,
+        "strength": 1
+      }
+    ],
+    "combat": false,
+    "statBuffs": [
+      {
+        "path": "mining",
+        "additivePerLevel": 0,
+        "multiplicativePerLevel": 0.25
+      }
+    ],
+    "buffIcon": "/images/magic/buffs/fishing.png",
+    "tooltip": "Overrides Master Miner. Increases mining stats by NaN%."
   }
 }
