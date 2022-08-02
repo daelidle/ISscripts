@@ -12,24 +12,15 @@ class Tooltip {
 
     generateTooltip(item, compactVersion) {
         const itemResource = this.daelis.gameData.gameResources[item.itemID];
+        const enchantments = this.daelis.gameData.enchantments;
         const tooltipData = new TooltipData(item, itemResource);
         const tooltipGenerator = this._getTooltipType(itemResource);
-        tooltipGenerator.fillTooltipData(tooltipData, item, itemResource);
-
-        const itemType = tooltipGenerator.getItemType?.(itemResource);
-        const secondaryType = tooltipGenerator.getSecondaryType?.(itemResource);
-        const weaponInfo = tooltipGenerator.getWeaponInfo?.(itemResource);
-        const stats = tooltipGenerator.getStats?.(itemResource, item, this.daelis.gameData) ?? {};
-        const enchant = tooltipGenerator.getEnchantSection?.(itemResource, item, this.daelis.gameData);
-        const requiredStats = tooltipGenerator.getRequiredStatsLevel?.(itemResource);
-        const itemSkill = tooltipGenerator.getItemSkillSection?.(itemResource, item, this.daelis.gameData);
-        let itemSet = tooltipGenerator.getItemSetSection?.(itemResource, item, this.daelis.gameData, this.daelis.getPlayerState().equipment);
-        let effects = tooltipGenerator.getItemEffects?.(itemResource, item, this.daelis.gameData);
+        tooltipGenerator.fillTooltipData(tooltipData, item, itemResource, enchantments);
 
         const heatSpan = (tooltipData.heat > 0) ? ` <span class="dwt-heat">${tooltipData.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
         return `
             <div class="daelis-wow-tooltip" data-item="${base64encode(JSON.stringify(item))}">
-                <div class="dwt-name ${tooltipData.rarity.cssClassName}">${tooltipData.name}${tooltipData.augment > 0 ? '+'+tooltipData.augment : ''}</div>
+                <div class="dwt-name ${tooltipData.rarity.cssClassName}">${tooltipData.name}${tooltipData.augment > 0 ? ' +'+tooltipData.augment : ''}</div>
                 <div class="dwt-item-type dwt-columns">
                     <span>${tooltipData.type}</span>
                     <span>${tooltipData.weapon_subtype}</span>
@@ -63,11 +54,11 @@ class Tooltip {
 
     _getTooltipType(itemResource){
         if (itemResource === undefined || itemResource === null) return new DefaultTooltip();
-        if (itemResource.hasOwnProperty('slot')) return new EquipmentTooltip();
-        if (itemResource.hasOwnProperty('isIngredient') || itemResource.hasOwnProperty('isEdible')) return new FoodTooltip();
-        if (itemResource.hasOwnProperty('isBossToken')) return new DungeonKeyTooltip();
-        if (itemResource.hasOwnProperty('isChampScroll')) return new EliteScrollTooltip();
-        if (itemResource.hasOwnProperty('farmingExperience')) return new SeedTooltip();
+        if (itemResource.hasOwnProperty('equipmentStats')) return new EquipmentTooltip();
+        if (itemResource.tags.includes('ingredient') || itemResource.tags.includes('consumable')) return new FoodTooltip();
+        if (itemResource.tags.includes('dungeon')) return new DungeonKeyTooltip();
+        if (itemResource.tags.includes('elite')) return new EliteScrollTooltip();
+        if (itemResource.tags.includes('seed')) return new SeedTooltip();
         return new DefaultTooltip();
     }
 }
