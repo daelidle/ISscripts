@@ -84,6 +84,7 @@ class InventoryFilter {
                     margin-right: 1px;
                     padding: 1px;
                     cursor: pointer;
+                    pointer-events: all !important;
                 }
                 .daelis-inventory-filter-image-clicked {
                     border: 1px solid grey;
