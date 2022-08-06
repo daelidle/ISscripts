@@ -18,7 +18,9 @@ class Combat {
     onCombat = false;
     combatStartTimestamp;
     combatFinishTimestamp = null;
+    selfCharacterId;
     selfCharacterName;
+    characterIdToName = {};
     config;
 
     constructor(config) {
@@ -27,39 +29,51 @@ class Combat {
         this.config = config;
     }
 
-    setSelfCharacterName(playerName){
+    setSelfCharacterId(playerId, playerName){
         this.selfCharacterName = playerName;
+        this.selfCharacterId = playerId;
+        this.characterIdToName[playerId] = playerName;
     }
 
     inCombat(){
         return this.onCombat;
     }
 
-    isPlayerOnGroup(playerName){
-        return (playerName in this.group);
+    isPlayerOnGroup(playerId){
+        return (playerId in this.characterIdToName);
     }
 
-    addPlayerToGroup(playerName){
+    addPlayerToGroup(playerId, playerName){
+        this.characterIdToName[playerId] = playerName;
         this.group[playerName] = new Player(playerName);
     }
 
-    setPlayerCurrentHP(playerName, hp){
+    setPlayerCurrentHP(playerId, hp){
+        const playerName = this._getPlayerName(playerId);
         this.group[playerName].currentHP = hp;
     }
 
-    addDamageDealt(playerName, damage) {
+    addDamageDealt(playerId, damage) {
+        const playerName = this._getPlayerName(playerId);
+        console.log(JSON.stringify(this.group));
         this.group[playerName].damageDealt += damage;
         if (damage > this.group[playerName].maxHit) this.group[playerName].maxHit = damage;
     }
 
-    addDamageReceived(playerName, damage) {
+    addDamageReceived(playerId, damage) {
+        const playerName = this._getPlayerName(playerId);
         this.group[playerName].damageReceived += damage;
         if (damage > this.group[playerName].maxReceived) this.group[playerName].maxReceived = damage;
     }
 
-    addHealing(playerName, healing) {
+    addHealing(playerId, healing) {
+        const playerName = this._getPlayerName(playerId);
         this.group[playerName].healing += healing;
         if (healing > this.group[playerName].maxHeal) this.group[playerName].maxHeal = healing;
+    }
+
+    _getPlayerName(playerId) {
+        return this.characterIdToName[playerId];
     }
 
     _generateCombatStats(){

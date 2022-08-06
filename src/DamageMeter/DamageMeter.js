@@ -28,11 +28,8 @@ class DamageMeter {
 
     onMessage(message){
         switch (message.event){
-            case "combat hit":
+            case "combat:splotch":
                 this._parseCombatHit(message.data);
-                break;
-            case "start attack animation":
-                this._parseAttackAnimation(message.data);
                 break;
             case "update player":
                 this._parseUpdatePlayer(message.data);
@@ -45,19 +42,19 @@ class DamageMeter {
     _parseCombatHit(combatHit) {
         if (!this.combat.inCombat()) return;
         let damageType = combatHit.damageType;
-        let source = combatHit.source;
-        let target = combatHit.target;
+        let attackerId = combatHit.attackerID;
+        let defenderId = combatHit.id;
         let damage = combatHit.hit;
         let isCritical = combatHit.crit;
-        let isSourceMonster = !this.combat.isPlayerOnGroup(source);
+        let isSourceMonster = !this.combat.isPlayerOnGroup(attackerId);
 
         switch (damageType) {
             case 'miss':
                 break;
             case 'heal':
-                if (!isSourceMonster) this.combat.addHealing(source, damage);
+                if (!isSourceMonster) this.combat.addHealing(attackerId, damage);
                 break;
-            case 'physical':
+            case 'Melee':
             case 'chaos':
             case 'fire':
             case 'ice':
@@ -66,11 +63,10 @@ class DamageMeter {
             case 'dark':
             case 'lightning':
             case 'poison':
-                if (!isSourceMonster) this.combat.addDamageDealt(source, damage);
-                else this.combat.addDamageReceived(target, damage);
-                break;
             default:
                 console.log(`New type of Hit ${damageType}`);
+                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, damage);
+                else this.combat.addDamageReceived(defenderId, damage);
                 break;
         }
         this._updateMeter();
@@ -79,7 +75,7 @@ class DamageMeter {
     _parseUpdatePlayer(playerInfo) {
         if (playerInfo['portion'] === "all") {
             // Complete player message sent on login
-            this.combat.setSelfCharacterName(playerInfo['value']['username']);
+            this.combat.setSelfCharacterId(playerInfo['value']['id'], playerInfo['value']['username']);
             const inCombat = this._parseCombatStatusFromActionQueue(playerInfo['value']['actionQueue']);
             this.combat._changeCombatStatus(inCombat);
             this.combat._resetCombat();
@@ -87,20 +83,16 @@ class DamageMeter {
             // Group info message
             if (!('value' in playerInfo) || playerInfo['value'] === null) return;
             for (const [_, player] of Object.entries(playerInfo['value'])) {
-                let playerName = player.username;
+                let playerId = player.id;
                 let currentHP = player.combatStats.currentHealth;
-                if (!this.combat.isPlayerOnGroup(playerName)) this.combat.addPlayerToGroup(playerName);
-                this.combat.setPlayerCurrentHP(playerName, currentHP);
+                if (!this.combat.isPlayerOnGroup(playerId)) this.combat.addPlayerToGroup(playerId);
+                this.combat.setPlayerCurrentHP(playerId, currentHP);
             }
         } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("actionQueue")) {
             // New Action message
             const combatStatus = this._parseCombatStatusFromActionQueue(playerInfo['value']);
             this.combat._changeCombatStatus(combatStatus);
         }
-    }
-
-    _parseAttackAnimation(message) {
-        //console.log("start attack animation");
     }
 
     _parseCombatStatusFromActionQueue(actionQueue) {
