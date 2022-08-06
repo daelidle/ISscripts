@@ -1,10 +1,13 @@
 class EliteScrollTooltip {
 
-    getItemType(itemResource){
-        return 'Elite Scroll';
+    fillTooltipData(tooltipData, item, itemResource) {
+        if (!itemResource) return;
+
+        tooltipData.type = 'Elite Scroll';
+        tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource)};
     }
 
-    getStats(itemResource, item, gameData){
+    getStats(item, itemResource){
         let encounters = 1;
         let treasureHunter = 0;
         let eliteStats = 1;

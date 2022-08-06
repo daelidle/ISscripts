@@ -33,9 +33,8 @@ class TooltipData {
         this.flavor = itemResource?.extraTooltipInfo ?? '';
     }
 
-    getRarity(itemResource){
-        const rarityTags = ['legendary', 'epic', 'rare', 'uncommon', 'common', 'junk'];
-        const tags = itemResource.tags.filter(tag => rarityTags.includes(tag));
-        return itemRarity.getByTag(tags.shift());
+    getRarity(itemResource) {
+        const rarity = itemResource?.rarity ?? 'common';
+        return itemRarity.getByTag(rarity);
     }
 }
