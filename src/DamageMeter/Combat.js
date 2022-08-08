@@ -3,6 +3,8 @@ class Player {
     currentHP = 0;
     damageDealt = 0;
     damageReceived = 0;
+    damageDealtBreakdown = {Melee: 0}
+    damageReceivedBreakdown = {Melee: 0}
     healing = 0;
     maxHit = 0;
     maxReceived = 0;
@@ -53,16 +55,17 @@ class Combat {
         this.group[playerName].currentHP = hp;
     }
 
-    addDamageDealt(playerId, damage) {
+    addDamageDealt(playerId, damage, damageType) {
         const playerName = this._getPlayerName(playerId);
-        console.log(JSON.stringify(this.group));
         this.group[playerName].damageDealt += damage;
+        this.group[playerName].damageDealtBreakdown[damageType] += damage;
         if (damage > this.group[playerName].maxHit) this.group[playerName].maxHit = damage;
     }
 
-    addDamageReceived(playerId, damage) {
+    addDamageReceived(playerId, damage, damageType) {
         const playerName = this._getPlayerName(playerId);
         this.group[playerName].damageReceived += damage;
+        this.group[playerName].damageReceivedBreakdown[damageType] += damage;
         if (damage > this.group[playerName].maxReceived) this.group[playerName].maxReceived = damage;
     }
 
