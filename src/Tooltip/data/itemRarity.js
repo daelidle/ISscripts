@@ -12,7 +12,7 @@ class itemRarity {
     }
 
     static getByTag(rarityTag) {
-        const rarity = Object.keys(itemRarity).filter(rarity => rarity.tag === rarityTag);
+        const rarity = Object.values(itemRarity).filter(rarity => rarity.tag === rarityTag);
         return rarity.length > 0 ? rarity.shift() : itemRarity.Common;
     }
 }

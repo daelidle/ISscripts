@@ -1,13 +1,13 @@
 class FoodTooltip {
 
-    fillTooltipData(tooltipData, item, itemResource, enchantments) {
+    fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
         if (!itemResource) return;
 
         tooltipData.type = this.getItemType(itemResource);
         tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource)};
-        tooltipData.enchant = this.getEnchantSection(item, enchantments);
-        tooltipData.itemSkill = this.getItemSkillSection(item, enchantments);
-        tooltipData.effects = this.getItemEffects(item, itemResource, enchantments);
+        tooltipData.enchant = this.getEnchantSection(item, gameData.enchantments);
+        tooltipData.itemSkill = this.getItemSkillSection(item, gameData.enchantments);
+        tooltipData.effects = this.getItemEffects(item, itemResource, gameData.enchantments);
     }
 
     getItemType(itemResource){
@@ -21,8 +21,9 @@ class FoodTooltip {
         if (!itemResource.hasOwnProperty('healing')) return '';
         const augments = item.augmentations ?? 0;
         const healing = `<div class="dwt-healing-use">Use: Heals ${itemResource.healing.hp * (1 + augments)} hp</div>`;
+        const healTick = Math.floor(itemResource.healing.perTick * Math.max(1, (1 + augments) / 2));
         const tickDelay = (itemResource.healing.tickDelay / 1000).toFixed(1);
-        const healOverTime = `<div>Also applies a Heal over Time effect healing ${itemResource.healing.perTick} hp every
+        const healOverTime = `<div>Also applies a Heal over Time effect healing ${healTick} hp every
                                 ${tickDelay}s over ${itemResource.healing.totalTicks * tickDelay} seconds.</div>`;
         const cooldown = `<div>Cooldown: ${(itemResource.healing.cooldown / 1000).toFixed(1)}s</div>`;
         return {foodStats: `${healing}${healOverTime}${cooldown}`};

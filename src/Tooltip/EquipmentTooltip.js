@@ -1,18 +1,32 @@
 class EquipmentTooltip {
 
+    fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
+        if (!itemResource) return;
+
+        tooltipData.type = this.getItemType(itemResource);
+        tooltipData.weapon_subtype = this.getSecondaryType(itemResource);
+        tooltipData.weapon_speed_and_type = this.getWeaponInfo(itemResource);
+        tooltipData.requiredStats = this.getRequiredStatsLevel(itemResource);
+        tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource)};
+        tooltipData.itemSet = this.getItemSetSection(item, itemResource, gameData.sets, equippedItems);
+        tooltipData.enchant = this.getEnchantSection(item, itemResource, gameData.enchantments);
+        tooltipData.itemSkill = this.getItemSkillSection(item, itemResource, gameData.abilities);
+        tooltipData.effects = this.getItemEffects(item, itemResource, gameData.abilities, gameData.enchantments);
+    }
+
     getItemType(itemResource){
-        return stringCapitalize(itemResource.slot);
+        return stringCapitalize(itemResource.equipmentStats.slot);
     }
 
     getSecondaryType(itemResource){
-        if (itemResource.slot.toUpperCase() === "WEAPON") return itemResource.oneHanded ? "Main Hand" : "Two-Handed";
+        if (itemResource.equipmentStats.slot.toUpperCase() === "WEAPON") return itemResource.oneHanded ? "Main Hand" : "Two-Handed";
         return '';
     }
 
     getWeaponInfo(itemResource){
-        if (itemResource.attackSpeed !== undefined) {
-            return `<span>${stringCapitalize(itemResource.style)} Damage</span>
-                <span>Speed ${itemResource.attackSpeed.toFixed(2)}</span>`;
+        if (itemResource.equipmentStats.attackSpeed !== undefined) {
+            return `<span>${stringCapitalize(itemResource.equipmentStats?.style)} Damage</span>
+                <span>Speed ${itemResource.equipmentStats.attackSpeed.toFixed(2)}</span>`;
         }
         return '';
     }
@@ -28,7 +42,7 @@ class EquipmentTooltip {
         return (requiredStats.length === 0) ? '' : `<span>Requires ${requiredStats.join(", ")}</span>`;
     }
 
-    getStats(itemResource, item, gameData){
+    getStats(item, itemResource, gameData){
         const itemStats = this._parseStats(itemResource, item);
         let attackStats = '';
         if (Object.keys(itemStats.attackStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.attackStats)) attackStats += `<span>+${bonus} ${type}</span>`;
@@ -44,7 +58,7 @@ class EquipmentTooltip {
         return {attackStats: attackStats, defenseStats: defenseStats, otherStats: otherStats};
     }
 
-    _parseStats(itemResource, item) {
+    _parseStats(item, itemResource) {
         const augmentStatsNormalizer = {"Strength (Melee):":"Melee strength","Strength (Range):":"Range strength","Strength (Magic):":"Magic strength","Attack (Accuracy):":"Accuracy","Defense (Stab):":"Stab defense","Defense (Slash):":"Slash defense","Defense (Crush):":"Crush defense","Defense (Range):":"Range defense","Defense (Magic):":"Magic defense","Cooking Skill:":"Cooking","Smithing Skill:":"Smithing","Mining Skill:":"Mining","Foraging Skill:":"Foraging","Farming Skill:":"Farming","Fishing Skill:":"Fishing","Bait Power:":"Bait Power","Reel Power:":"Reel Power","Bonus Rarity:":"Bonus Rarity","Christmas (Event):":"Christmas"};
         const defenseStatsNormalizer = {"stab": "Stab defense","slash": "Slash defense","crush": "Crush defense","magic": "Magic defense","range": "Range defense","christmas": "Christmas"};
         const attackStatsNormalizer = {"melee": "Melee strength","range": "Range strength","magic": "Magic strength", "Attack (Accuracy):":"Accuracy"};
@@ -81,13 +95,13 @@ class EquipmentTooltip {
         return {attackStats: attackStats, defenseStats: defenseStats, otherStats: otherStats};
     }
 
-    getEnchantSection(itemResource, item, gameData) {
-        const enchantment = gameData.enchantments[item.enchantmentID];
+    getEnchantSection(item, itemResource, enchantments) {
+        const enchantment = enchantments[item.enchantmentID];
         const slots = itemResource.enchantmentTier;
 
         if (enchantment !== undefined){
             const appliedEnchants = item.enchantmentStrength ?? 0;
-            const enchantStrengthText = (appliedEnchants == slots) ? appliedEnchants : `${appliedEnchants}/${slots}`;
+            const enchantStrengthText = (appliedEnchants === slots) ? appliedEnchants : `${appliedEnchants}/${slots}`;
             return `<span class="dwt-enchant-active">${enchantment.name} ${enchantStrengthText}</span>`;
         } else if (slots !== undefined && slots > 0) {
             return `<span class="dwt-enchant-unactive">Enchant slots: ${slots}</span>`;
@@ -95,26 +109,29 @@ class EquipmentTooltip {
         return '';
     }
 
-    getItemSkillSection(itemResource, item, gameData) {
-        const ability = gameData.abilities[itemResource.relatedAbility];
-        if (ability !== undefined){
+    getItemSkillSection(item, itemResource, abilities) {
+        let skillSection = '';
+        const itemAbilities = itemResource.equipmentStats?.grantedAbility ?? [];
+        itemAbilities.forEach(abilityId => {
+            const ability = abilities[abilityId];
             const abilityStatusClass = this._abilityIsActiveOnItem(item, ability) ? 'dwt-ability-active': 'dwt-ability-inactive';
-            return `<span class="${abilityStatusClass}">Equip: ${ability.abilityName}</span>`;
-        }
-        return '';
+            skillSection += `<div class="${abilityStatusClass}">Equip: ${ability.abilityName}</div>`;
+        });
+
+        return skillSection;
     }
 
-    getItemSetSection(itemResource, item, gameData, equippedItems){
+    getItemSetSection(item, itemResource, sets, equippedItems){
         if (itemResource.itemSet === undefined) return '';
 
-        const set = gameData.sets[itemResource.itemSet];
+        const set = sets[itemResource.itemSet];
         if (set === undefined) return '';
 
         let numEquipped = 0;
         let coloredSetItemList = '';
         set.items.forEach(setItem => {
             let activeClass = 'dwt-set-item-unequipped';
-            if (equippedItems[setItem.slot]?.itemID == setItem.id) {
+            if (equippedItems[setItem.slot]?.itemID === setItem.id) {
                 numEquipped++;
                 activeClass = 'dwt-set-item-equipped';
             }
@@ -126,7 +143,7 @@ class EquipmentTooltip {
         let coloredEffectsList = '';
         set.effects.forEach(effect => {
             const activeClass = (effect.equippedRequirements <= numEquipped) ? 'dwt-set-effect-active' : 'dwt-set-effect-inactive';
-            const effectName = (effect.name.length == 0) ? '' : `${effect.name} - `;
+            const effectName = (effect.name.length === 0) ? '' : `${effect.name} - `;
             coloredEffectsList += `<div class="dwt-item-set-effect ${activeClass}">
                 <span class="dwt-item-set-effect-required-pieces">(${effect.equippedRequirements}) Set: </span> 
                 <span class="dwt-item-set-effect-name">${effectName}</span>
@@ -139,18 +156,19 @@ class EquipmentTooltip {
                 <div class="dwt-item-set-effects-list">${coloredEffectsList}</div>`;
     }
 
-    getItemEffects(itemResource, item, gameData){
+    getItemEffects(item, itemResource, abilities, enchantments){
         let itemEffects = '';
 
-        const ability = gameData.abilities[itemResource.relatedAbility];
-        if (ability !== undefined){
-            if (this._abilityIsActiveOnItem(item, ability)){
-                const description = generateDescriptiveAbilityText(ability, gameData.enchantments);
+        const itemAbilities = itemResource.equipmentStats?.grantedAbility ?? [];
+        itemAbilities.forEach(abilityId => {
+            const ability = abilities[abilityId];
+            if (this._abilityIsActiveOnItem(item, ability)) {
+                const description = generateDescriptiveAbilityText(ability, enchantments);
                 itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${description}</span></div>`;
             }
-        }
+        });
 
-        const enchantment = gameData.enchantments[item.enchantmentID];
+        const enchantment = enchantments[item.enchantmentID];
         if (enchantment !== undefined){
             const description = getEnchantDescription(enchantment, item.enchantmentStrength);
             itemEffects += `<div><span class="dwt-effects-name">${enchantment.name}:</span> <span class="dwt-effects-description">${description}</span></div>`;

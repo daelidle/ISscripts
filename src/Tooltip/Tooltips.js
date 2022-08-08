@@ -11,11 +11,12 @@ class Tooltip {
     }
 
     generateTooltip(item, compactVersion) {
-        const itemResource = this.daelis.gameData.gameResources[item.itemID];
-        const enchantments = this.daelis.gameData.enchantments;
+        const gameData = this.daelis.gameData;
+        const itemResource = gameData.gameResources[item.itemID];
+        const equippedItems = this.daelis.getPlayerState().equipment;
         const tooltipData = new TooltipData(item, itemResource);
         const tooltipGenerator = this._getTooltipType(itemResource);
-        tooltipGenerator.fillTooltipData(tooltipData, item, itemResource, enchantments);
+        tooltipGenerator.fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems);
 
         const heatSpan = (tooltipData.heat > 0) ? ` <span class="dwt-heat">${tooltipData.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
         return `
@@ -25,7 +26,7 @@ class Tooltip {
                     <span>${tooltipData.type}</span>
                     <span>${tooltipData.weapon_subtype}</span>
                 </div>
-                <div class="dwt-weapon-info dwt-columns">${tooltipData.weapon_subtype}</div>
+                <div class="dwt-weapon-info dwt-columns">${tooltipData.weapon_speed_and_type}</div>
                 <div class="dwt-stats">
                     <div class="dwt-stats-offensive dwt-columns">${tooltipData.stats.attackStats}</div>
                     <div class="dwt-stats-defensive dwt-columns">${tooltipData.stats.defenseStats}</div>
@@ -64,7 +65,7 @@ class Tooltip {
 }
 
 class DefaultTooltip {
-    fillTooltipData(tooltipData, item, itemResource) {
+    fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
         if (!itemResource) return;
         const irrelevantTags = ['misc', 'tool', 'unique', 'junk'];
         const rarityTags = ['epic', 'legendary', 'rare', 'uncommon', 'common', 'junk'];

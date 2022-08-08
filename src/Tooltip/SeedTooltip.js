@@ -1,7 +1,15 @@
 class SeedTooltip {
 
-    getItemType(itemResource){
-        return stringCapitalize(itemResource.class);
+    fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
+        if (!itemResource) return;
+
+        tooltipData.type = this.getItemType();
+        tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource, gameData)};
+        tooltipData.requiredStats = this.getRequiredStatsLevel(itemResource);
+    }
+
+    getItemType(){
+        return 'Seed';
     }
 
     getRequiredStatsLevel(itemResource){
@@ -9,7 +17,7 @@ class SeedTooltip {
         return `<span>Requires ${itemResource.level} Farming</span>`
     }
 
-    getStats(itemResource, item, gameData){
+    getStats(item, itemResource, gameData){
         if (itemResource.farmingExperience === undefined && itemResource.time === undefined) return '';
         const seedHeight = item.seedHeight ?? itemResource.seedHeight;
         const seedWidth = item.seedWidth ?? itemResource.seedWidth;
@@ -21,7 +29,7 @@ class SeedTooltip {
         if (itemResource.yield !== undefined){
             itemResource.yield.forEach(production => {
                 if (production.chance >= 1){
-                    yieldStats += `<span>${production.min}-${production.max} ${gameData.gameResources[production.ingredient].name}</span>`;
+                    yieldStats += `<span>${production.min}-${production.max} ${gameData.gameResources[production.id].name}</span>`;
                 }
             });
         }

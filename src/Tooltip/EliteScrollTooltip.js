@@ -1,6 +1,6 @@
 class EliteScrollTooltip {
 
-    fillTooltipData(tooltipData, item, itemResource) {
+    fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
         if (!itemResource) return;
 
         tooltipData.type = 'Elite Scroll';
