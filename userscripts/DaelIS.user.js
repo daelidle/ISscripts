@@ -46,6 +46,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/Tooltips.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ChatUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ConfigUtils.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/DamageUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/EnchantUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/GeneralUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ItemUtils.js

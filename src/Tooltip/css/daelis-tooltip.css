@@ -43,10 +43,10 @@
 .dwt-stats {
     min-height: 5px;
 }
-.dwt-stats-offensive, .dwt-stats-defensive, .dwt-stats-other {
+.dwt-stats-attack, .dwt-stats-strength, .dwt-stats-defensive, .dwt-stats-skills {
     margin-top: 5px;
 }
-.dwt-stats-offensive:empty, .dwt-stats-defensive:empty, .dwt-stats-other:empty, .dwt-item-set:empty, .dwt-item-set-effects-list:empty {
+.dwt-stats-attack:empty, .dwt-stats-strength:empty, .dwt-stats-defensive:empty, .dwt-stats-skills:empty, .dwt-item-set:empty, .dwt-item-set-effects-list:empty {
     margin-top: 0;
 }
 .dwt-enchant, .dwt-item-skill, .dwt-set-item-equipped, .dwt-set-effect-active, .dwt-ability-active, .dwt-healing-use {

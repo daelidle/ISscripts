@@ -6,7 +6,7 @@ class EquipmentTooltip {
         tooltipData.type = this.getItemType(itemResource);
         tooltipData.weapon_subtype = this.getSecondaryType(itemResource);
         tooltipData.weapon_speed_and_type = this.getWeaponInfo(itemResource);
-        tooltipData.requiredStats = this.getRequiredStatsLevel(itemResource);
+        tooltipData.requiredStats = this.getRequiredStatsLevel(item, itemResource, gameData.enchantments);
         tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource)};
         tooltipData.itemSet = this.getItemSetSection(item, itemResource, gameData.sets, equippedItems);
         tooltipData.enchant = this.getEnchantSection(item, itemResource, gameData.enchantments);
@@ -31,10 +31,13 @@ class EquipmentTooltip {
         return '';
     }
 
-    getRequiredStatsLevel(itemResource){
+    getRequiredStatsLevel(item, itemResource, enchantments){
         let requiredStats = [];
         if (itemResource.requiredLevel !== undefined){
-            for (const [skill, level] of Object.entries(itemResource.requiredLevel)) {
+            const enchantment = enchantments[item.enchantmentID];
+            const hasWeakening = enchantment?.name.toLowerCase() === 'weakening';
+            for (let [skill, level] of Object.entries(itemResource.requiredLevel)) {
+                if (hasWeakening) level -= item.enchantmentStrength * enchantment.strengthPerLevel;
                 if (level > 1) requiredStats.push(`${level} ${stringCapitalize(skill)}`);
             }
         }
@@ -42,57 +45,63 @@ class EquipmentTooltip {
         return (requiredStats.length === 0) ? '' : `<span>Requires ${requiredStats.join(", ")}</span>`;
     }
 
-    getStats(item, itemResource, gameData){
-        const itemStats = this._parseStats(itemResource, item);
+    getStats(item, itemResource){
+        const itemStats = this._parseStats(item, itemResource);
+        let strengthStats = '';
+        if (Object.keys(itemStats.strengthStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.strengthStats)) strengthStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
         let attackStats = '';
-        if (Object.keys(itemStats.attackStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.attackStats)) attackStats += `<span>+${bonus} ${type}</span>`;
+        if (Object.keys(itemStats.attackStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.attackStats)) attackStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
         let defenseStats = '';
-        if (Object.keys(itemStats.defenseStats).length > 0) {
-            for (const [type, bonus] of Object.entries(itemStats.defenseStats)){
-                const sign = (bonus > 0) ? '+' : '';
-                defenseStats += `<span>${sign}${bonus} ${type}</span>`;
-            }
-        }
-        let otherStats = '';
-        if (Object.keys(itemStats.otherStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.otherStats)) otherStats += `<span>+${bonus} ${type}</span>`;
-        return {attackStats: attackStats, defenseStats: defenseStats, otherStats: otherStats};
+        if (Object.keys(itemStats.defenseStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.defenseStats)) defenseStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
+        let skillStats = '';
+        if (Object.keys(itemStats.skillStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.skillStats)) skillStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
+        return {strengthStats: strengthStats, attackStats: attackStats, defenseStats: defenseStats, skillStats: skillStats};
     }
 
     _parseStats(item, itemResource) {
-        const augmentStatsNormalizer = {"Strength (Melee):":"Melee strength","Strength (Range):":"Range strength","Strength (Magic):":"Magic strength","Attack (Accuracy):":"Accuracy","Defense (Stab):":"Stab defense","Defense (Slash):":"Slash defense","Defense (Crush):":"Crush defense","Defense (Range):":"Range defense","Defense (Magic):":"Magic defense","Cooking Skill:":"Cooking","Smithing Skill:":"Smithing","Mining Skill:":"Mining","Foraging Skill:":"Foraging","Farming Skill:":"Farming","Fishing Skill:":"Fishing","Bait Power:":"Bait Power","Reel Power:":"Reel Power","Bonus Rarity:":"Bonus Rarity","Christmas (Event):":"Christmas"};
-        const defenseStatsNormalizer = {"stab": "Stab defense","slash": "Slash defense","crush": "Crush defense","magic": "Magic defense","range": "Range defense","christmas": "Christmas"};
-        const attackStatsNormalizer = {"melee": "Melee strength","range": "Range strength","magic": "Magic strength", "Attack (Accuracy):":"Accuracy"};
-        const accuracy = itemResource.attackBonus?.accuracy ?? 0;
-        const attackStats = {};
-        const defenseStats = {};
-        const otherStats = {};
-        if (itemResource.strengthBonus !== undefined){
-            for (const [type, bonus] of Object.entries(itemResource.strengthBonus)) if (bonus > 0) attackStats[attackStatsNormalizer[type]] = bonus;
-            if (accuracy > 0) attackStats["Accuracy"] = accuracy;
-        }
-        if (itemResource.defenseBonus !== undefined){
-            for (const [type, bonus] of Object.entries(itemResource.defenseBonus)) if (bonus > 0) defenseStats[defenseStatsNormalizer[type]] = bonus;
-        }
-        if (itemResource.toolBoost !== undefined && itemResource.toolBoost > 0) otherStats['Fishing'] = itemResource.toolBoost;
-        if (itemResource.gatherSearch !== undefined && itemResource.gatherSearch > 0) otherStats['Bait Power'] = itemResource.gatherSearch;
-        if (itemResource.gatherSpeed !== undefined && itemResource.gatherSpeed > 0) otherStats['Reel Power'] = itemResource.gatherSpeed;
-        if (itemResource.gatherBonus !== undefined && itemResource.gatherBonus > 0) otherStats['Bonus Rarity'] = itemResource.gatherBonus;
-        if (item.augmentations !== undefined && item.augmentations > 0 && itemResource.augmentationStats !== undefined){
-            itemResource.augmentationStats.forEach(stat => {
-                let statName = augmentStatsNormalizer[stat.description];
-                if (Object.values(attackStatsNormalizer).includes(statName)) {
-                    if (attackStats[statName] === undefined) attackStats[statName] = 0;
-                    attackStats[statName] += stat.value * item.augmentations;
-                } else if (Object.values(defenseStatsNormalizer).includes(statName)){
-                    if (defenseStats[statName] === undefined) defenseStats[statName] = 0;
-                    defenseStats[statName] += stat.value * item.augmentations;
-                } else {
-                    if (otherStats[statName] === undefined) otherStats[statName] = 0;
-                    otherStats[statName] += stat.value * item.augmentations;
+        const indexedStats = {};
+        const ignoredStats = ['itemSet'];
+        for (const [statName, statValue] of Object.entries(itemResource.equipmentStats)) {
+            if (ignoredStats.includes(statName)) continue;
+            if (Array.isArray(statValue)){ // Affinities and toolboxes
+                statValue.forEach(stats => {
+                    if ('affinity' in stats) indexedStats[`${statName}.${stats.affinity}`] = stats.rating;
+                    else if ('skill' in stats) indexedStats[`${statName}.${stats.skill}`] = stats.boost;
+                });
+            } else if (isDictionary(statValue)) {
+                for (const [subStatName, subStatValue] of Object.entries(statValue)) {
+                    indexedStats[`${statName}.${subStatName}`] = subStatValue;
                 }
-            })
+            }
         }
-        return {attackStats: attackStats, defenseStats: defenseStats, otherStats: otherStats};
+        if (itemResource.ammunitionMults?.damageMul) indexedStats['damageMul'] = itemResource.ammunitionMults.damageMul;
+        if (itemResource.ammunitionMults?.accuracyMult) indexedStats['accuracyMult'] = itemResource.ammunitionMults.accuracyMult;
+        itemResource.equipmentStats.augmentationBonus?.forEach(augmentationBonus => {
+            if (!(augmentationBonus.stat in indexedStats)) indexedStats[augmentationBonus.stat] = 0;
+            indexedStats[augmentationBonus.stat] += augmentationBonus.value * (item.augmentations || 0);
+        });
+        return this._generateLabeledStats(indexedStats);
+    }
+
+    _generateLabeledStats(indexedStats){
+        const strengthStatsLabels = {'weaponBonus.strength': 'Strength', 'weaponBonus.intellect': 'Intellect', 'weaponBonus.dexterity': 'Dexterity',
+            'damageMul': 'x Damage', ...DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', 'Affinity')};
+        const attackStatsLabels = {'accuracyMult': 'x Accuracy', ...DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', 'Accuracy')};
+        const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina',
+            ...DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', 'Def. Affinity')};
+        const skillStatsLabels = {'toolBoost.fishing': 'Fishing', 'toolBoost.fishingBaitPower': 'Bait', 'toolBoost.fishingReelPower': 'Reel', 'toolBoost.fishingRarityPower': 'Bonus Rarity',
+            'toolBoost.mining': 'Mining', 'toolBoost.foraging': 'Foraging', 'toolBoost.farming': 'Farming', 'toolBoost.cooking': 'Cooking', 'toolBoost.smithing': 'Smithing' };
+
+        const strengthStats = {};
+        for (const [indexStat, label] of Object.entries(strengthStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) strengthStats[label] = indexedStats[indexStat];
+        const attackStats = {};
+        for (const [indexStat, label] of Object.entries(attackStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) attackStats[label] = indexedStats[indexStat];
+        const defenseStats = {};
+        for (const [indexStat, label] of Object.entries(defenseStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) defenseStats[label] = indexedStats[indexStat];
+        const skillStats = {};
+        for (const [indexStat, label] of Object.entries(skillStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) skillStats[label] = indexedStats[indexStat];
+
+        return {strengthStats: strengthStats, attackStats: attackStats, defenseStats: defenseStats, skillStats: skillStats};
     }
 
     getEnchantSection(item, itemResource, enchantments) {

@@ -28,9 +28,10 @@ class Tooltip {
                 </div>
                 <div class="dwt-weapon-info dwt-columns">${tooltipData.weapon_speed_and_type}</div>
                 <div class="dwt-stats">
-                    <div class="dwt-stats-offensive dwt-columns">${tooltipData.stats.attackStats}</div>
+                    <div class="dwt-stats-strength dwt-columns">${tooltipData.stats.strengthStats}</div>
+                    <div class="dwt-stats-attack dwt-columns">${tooltipData.stats.attackStats}</div>
                     <div class="dwt-stats-defensive dwt-columns">${tooltipData.stats.defenseStats}</div>
-                    <div class="dwt-stats-other dwt-columns">${tooltipData.stats.otherStats}</div>
+                    <div class="dwt-stats-skills dwt-columns">${tooltipData.stats.skillStats}</div>
                     <div class="dwt-stats-seed dwt-columns">${tooltipData.stats.seedStats}</div>
                     <div class="dwt-stats-yield dwt-columns">${tooltipData.stats.yieldStats}</div>
                     <div class="dwt-stats-food">${tooltipData.stats.foodStats}</div>
