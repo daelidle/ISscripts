@@ -54,20 +54,8 @@ class DamageMeter {
             case 'heal':
                 if (!isSourceMonster) this.combat.addHealing(attackerId, damage);
                 break;
-            case 'Melee':
-            /*case 'chaos':
-            case 'fire':
-            case 'ice':
-            case 'earth':
-            case 'light':
-            case 'dark':
-            case 'lightning':
-            case 'poison':*/
-                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, damage, damageType);
-                else this.combat.addDamageReceived(defenderId, damage, damageType);
-                break;
             default:
-                console.log(`New type of Hit ${damageType}`);
+                if (!(damageType in DamageUtils.allDamageTypes)) console.log(`New type of Hit ${damageType}`);
                 if (!isSourceMonster) this.combat.addDamageDealt(attackerId, damage, damageType);
                 else this.combat.addDamageReceived(defenderId, damage, damageType);
                 break;

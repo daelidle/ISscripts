@@ -31,6 +31,7 @@ class LoadoutUI {
         img.${this.iconClass} {
             cursor: pointer;
             position: absolute;
+            pointer-events: all !important;
             top: 170px;
             left: .9%;
             min-width: 50px;
