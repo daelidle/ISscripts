@@ -59,6 +59,7 @@ class Tooltip {
         if (itemResource === undefined || itemResource === null) return new DefaultTooltip();
         if (itemResource.hasOwnProperty('equipmentStats')) return new EquipmentTooltip();
         if (itemResource.hasOwnProperty('fishingBait')) return new FishingBaitTooltip();
+        if (itemResource.tags.includes('ammunition')) return new AmmunitionTooltip();
         if (itemResource.tags.includes('ingredient') || itemResource.tags.includes('consumable')) return new FoodTooltip();
         if (itemResource.tags.includes('dungeon')) return new DungeonKeyTooltip();
         if (itemResource.tags.includes('elite')) return new EliteScrollTooltip();

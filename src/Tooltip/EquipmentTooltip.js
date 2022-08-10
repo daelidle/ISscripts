@@ -60,7 +60,7 @@ class EquipmentTooltip {
 
     _parseStats(item, itemResource) {
         const indexedStats = {};
-        const ignoredStats = ['itemSet'];
+        const ignoredStats = ['itemSet', 'slot', 'grantedAbility'];
         for (const [statName, statValue] of Object.entries(itemResource.equipmentStats)) {
             if (ignoredStats.includes(statName)) continue;
             if (Array.isArray(statValue)){ // Affinities and toolboxes
@@ -74,8 +74,6 @@ class EquipmentTooltip {
                 }
             }
         }
-        if (itemResource.ammunitionMults?.damageMul) indexedStats['damageMul'] = itemResource.ammunitionMults.damageMul;
-        if (itemResource.ammunitionMults?.accuracyMult) indexedStats['accuracyMult'] = itemResource.ammunitionMults.accuracyMult;
         itemResource.equipmentStats.augmentationBonus?.forEach(augmentationBonus => {
             if (!(augmentationBonus.stat in indexedStats)) indexedStats[augmentationBonus.stat] = 0;
             indexedStats[augmentationBonus.stat] += augmentationBonus.value * (item.augmentations || 0);
@@ -85,8 +83,8 @@ class EquipmentTooltip {
 
     _generateLabeledStats(indexedStats){
         const strengthStatsLabels = {'weaponBonus.strength': 'Strength', 'weaponBonus.intellect': 'Intellect', 'weaponBonus.dexterity': 'Dexterity',
-            'damageMul': 'x Damage', ...DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', 'Affinity')};
-        const attackStatsLabels = {'accuracyMult': 'x Accuracy', ...DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', 'Accuracy')};
+            ...DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', 'Affinity')};
+        const attackStatsLabels = {...DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', 'Accuracy')};
         const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina',
             ...DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', 'Def. Affinity')};
         const skillStatsLabels = {'toolBoost.fishing': 'Fishing', 'toolBoost.fishingBaitPower': 'Bait', 'toolBoost.fishingReelPower': 'Reel', 'toolBoost.fishingRarityPower': 'Bonus Rarity',
