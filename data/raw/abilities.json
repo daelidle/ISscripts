@@ -5,6 +5,7 @@
     "abilityImage": "/images/combat/ability_icons/basic_melee.png",
     "description": "A basic melee auto attack",
     "damageType": "Melee",
+    "autoAttackStyle": "Melee",
     "damageScaling": [
       {
         "affinity": "Melee",
@@ -29,6 +30,7 @@
     "abilityImage": "/images/combat/ability_icons/basic_magic.png",
     "description": "A basic magic auto attack",
     "damageType": "Magic",
+    "autoAttackStyle": "Magic",
     "damageScaling": [
       {
         "affinity": "Magic",
@@ -53,6 +55,7 @@
     "abilityImage": "/images/combat/ability_icons/basic_range.png",
     "description": "A basic range auto attack",
     "damageType": "Range",
+    "autoAttackStyle": "Range",
     "damageScaling": [
       {
         "affinity": "Range",
@@ -269,6 +272,586 @@
     "baseMinimumDamageCoeff": 0.25,
     "baseMaximumDamageCoeff": 0.5,
     "baseAccuracyCoeff": 1.5,
+    "selfBuff": {
+      "enchantmentApply": 18,
+      "enchantmentStrength": 2,
+      "enchantmentChanceToApply": 1,
+      "enchantmentAmount": 4
+    },
+    "maxTargets": 1
+  },
+  "10": {
+    "id": 10,
+    "abilityName": "Greater Chaos Rend",
+    "abilityImage": "/images/combat/ability_icons/chaos_melee.png",
+    "description": "A greater chaos melee attack",
+    "damageType": "Melee",
+    "damageScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.25,
+    "baseMinimumDamageCoeff": 0.75,
+    "baseMaximumDamageCoeff": 1.25,
+    "baseAccuracyCoeff": 0.9,
+    "maxTargets": 3
+  },
+  "11": {
+    "id": 11,
+    "abilityName": "Lesser Chaos Rend",
+    "abilityImage": "/images/combat/ability_icons/chaos_melee.png",
+    "description": "A lesser chaos melee attack",
+    "damageType": "Melee",
+    "cooldown": 30000,
+    "damageScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.25,
+    "baseMinimumDamageCoeff": 0.33,
+    "baseMaximumDamageCoeff": 0.9,
+    "baseAccuracyCoeff": 0.8,
+    "maxTargets": 3
+  },
+  "12": {
+    "id": 12,
+    "abilityName": "Artillery",
+    "abilityImage": "/images/combat/ability_icons/artillery.png",
+    "description": "An extremely heavy hitting ranged AOE attack",
+    "damageType": "Range",
+    "cooldown": 30000,
+    "useRangedAmmo": true,
+    "damageScaling": [
+      {
+        "affinity": "Range",
+        "scaling": 1
+      },
+      {
+        "affinity": "Blunt",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Range",
+        "scaling": 1
+      },
+      {
+        "affinity": "Blunt",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.75,
+    "baseMinimumDamageCoeff": 1.5,
+    "baseMaximumDamageCoeff": 4,
+    "baseAccuracyCoeff": 0.75,
+    "maxTargets": 5
+  },
+  "13": {
+    "id": 13,
+    "abilityName": "Shatter Strike",
+    "abilityImage": "/images/combat/ability_icons/shatterstrike.png",
+    "description": "An extremely heavy hitting melee attack",
+    "damageType": "Melee",
+    "cooldown": 30000,
+    "damageScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Blunt",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Blunt",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.75,
+    "baseMinimumDamageCoeff": 1.5,
+    "baseMaximumDamageCoeff": 3,
+    "baseAccuracyCoeff": 0.75,
+    "maxTargets": 1
+  },
+  "14": {
+    "id": 14,
+    "abilityName": "Crystal Fracture",
+    "abilityImage": "/images/combat/ability_icons/shatterstrike.png",
+    "description": "A heavy hitting chaotic melee attack",
+    "damageType": "Melee",
+    "cooldown": 30000,
+    "damageScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Blunt",
+        "scaling": 1.333
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Blunt",
+        "scaling": 1.333
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.25,
+    "baseMinimumDamageCoeff": 0.9,
+    "baseMaximumDamageCoeff": 1.33,
+    "baseAccuracyCoeff": 1.05,
+    "maxTargets": 1
+  },
+  "15": {
+    "id": 15,
+    "abilityName": "Crystal Fracture",
+    "abilityImage": "/images/combat/ability_icons/shatterstrike.png",
+    "description": "A heavy hitting chaotic melee attack",
+    "damageType": "Melee",
+    "cooldown": 30000,
+    "damageScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Blunt",
+        "scaling": 1.333
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Blunt",
+        "scaling": 1.333
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.25,
+    "baseMinimumDamageCoeff": 0.9,
+    "baseMaximumDamageCoeff": 1.33,
+    "baseAccuracyCoeff": 1.05,
+    "maxTargets": 1
+  },
+  "16": {
+    "id": 16,
+    "abilityName": "Lightning Edge",
+    "abilityImage": "/images/combat/ability_icons/lightning_strike.png",
+    "description": "Strike as quick as lightning!",
+    "damageType": "Melee",
+    "cooldown": 10000,
+    "damageScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Slashing",
+        "scaling": 1.333
+      },
+      {
+        "affinity": "Lightning",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Slashing",
+        "scaling": 1.333
+      },
+      {
+        "affinity": "Lightning",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 0.5,
+    "baseMinimumDamageCoeff": 0.6,
+    "baseMaximumDamageCoeff": 0.6,
+    "baseAccuracyCoeff": 1,
+    "maxTargets": 1
+  },
+  "17": {
+    "id": 17,
+    "abilityName": "Entropic Burst",
+    "abilityImage": "/images/combat/ability_icons/chaos_missile_2.png",
+    "description": "All things eventually come to an end.",
+    "damageType": "Magic",
+    "cooldown": 10000,
+    "damageScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Chaos",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 0.5,
+    "baseMinimumDamageCoeff": 0.75,
+    "baseMaximumDamageCoeff": 0.5,
+    "baseAccuracyCoeff": 1.75,
+    "maxTargets": 1
+  },
+  "18": {
+    "id": 18,
+    "abilityName": "Flamethrower",
+    "abilityImage": "/images/combat/ability_icons/flamethrower.png",
+    "description": "Fire a gout of intense flame! AOE",
+    "damageType": "Magic",
+    "cooldown": 10000,
+    "damageScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Fire",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Fire",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.25,
+    "baseMinimumDamageCoeff": 1.5,
+    "baseMaximumDamageCoeff": 2.5,
+    "baseAccuracyCoeff": 0.66,
+    "maxTargets": 3
+  },
+  "19": {
+    "id": 19,
+    "abilityName": "Regal Might",
+    "abilityImage": "/images/combat/ability_icons/regal_might.png",
+    "description": "These fools are beneath you, ignore them.",
+    "damageType": "Magic",
+    "cooldown": 60000,
+    "damageScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Ice",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Ice",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 0.5,
+    "baseMinimumDamageCoeff": 0.25,
+    "baseMaximumDamageCoeff": 0.5,
+    "baseAccuracyCoeff": 3,
+    "selfBuff": {
+      "enchantmentApply": 19,
+      "enchantmentStrength": 2,
+      "enchantmentChanceToApply": 1,
+      "enchantmentAmount": 4
+    },
+    "maxTargets": 1
+  },
+  "20": {
+    "id": 20,
+    "abilityName": "Krakatoa",
+    "abilityImage": "/images/combat/ability_icons/krakatoa.png",
+    "description": "Kra-ka-to-ahhhh!",
+    "damageType": "Magic",
+    "cooldown": 30000,
+    "damageScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Fire",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Fire",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.33,
+    "baseMinimumDamageCoeff": 2,
+    "baseMaximumDamageCoeff": 3,
+    "baseAccuracyCoeff": 1.25,
+    "maxTargets": 5
+  },
+  "21": {
+    "id": 21,
+    "abilityName": "Triple Shot",
+    "abilityImage": "/images/combat/ability_icons/tripleshot.png",
+    "description": "Fire three arrows at once!",
+    "damageType": "Range",
+    "cooldown": 30000,
+    "useRangedAmmo": true,
+    "damageScaling": [
+      {
+        "affinity": "Range",
+        "scaling": 1
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Range",
+        "scaling": 1
+      }
+    ],
+    "baseSpeedCoeff": 1,
+    "baseMinimumDamageCoeff": 1,
+    "baseMaximumDamageCoeff": 1,
+    "baseAccuracyCoeff": 0.75,
+    "maxTargets": 3
+  },
+  "22": {
+    "id": 22,
+    "abilityName": "Cleave",
+    "abilityImage": "/images/combat/ability_icons/cleave.png",
+    "description": "A cleave through two enemies at once",
+    "damageType": "Melee",
+    "cooldown": 30000,
+    "damageScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Slashing",
+        "scaling": 1.333
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      },
+      {
+        "affinity": "Slashing",
+        "scaling": 1.333
+      }
+    ],
+    "baseSpeedCoeff": 1.15,
+    "baseMinimumDamageCoeff": 0.75,
+    "baseMaximumDamageCoeff": 1,
+    "baseAccuracyCoeff": 1,
+    "maxTargets": 2
+  },
+  "23": {
+    "id": 23,
+    "abilityName": "Deadshot",
+    "abilityImage": "/images/combat/ability_icons/deadshot_alt.png",
+    "description": "One shot, one kill.",
+    "damageType": "Range",
+    "cooldown": 30000,
+    "useRangedAmmo": true,
+    "damageScaling": [
+      {
+        "affinity": "Range",
+        "scaling": 1
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Range",
+        "scaling": 1.33
+      }
+    ],
+    "baseSpeedCoeff": 1.33,
+    "baseMinimumDamageCoeff": 1.5,
+    "baseMaximumDamageCoeff": 2,
+    "baseAccuracyCoeff": 2.25,
+    "maxTargets": 1
+  },
+  "24": {
+    "id": 24,
+    "abilityName": "Retreating Shot",
+    "abilityImage": "/images/combat/ability_icons/camo.png",
+    "description": "Fire a distraction shot and retreat from the frontline temporarily",
+    "damageType": "Range",
+    "cooldown": 30000,
+    "useRangedAmmo": true,
+    "damageScaling": [
+      {
+        "affinity": "Range",
+        "scaling": 1
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Range",
+        "scaling": 1
+      }
+    ],
+    "baseSpeedCoeff": 0.5,
+    "baseMinimumDamageCoeff": 0.25,
+    "baseMaximumDamageCoeff": 0.75,
+    "baseAccuracyCoeff": 0.75,
+    "maxTargets": 1
+  },
+  "25": {
+    "id": 25,
+    "abilityName": "Apocalyptic Ritual",
+    "abilityImage": "/images/combat/ability_icons/apocalypse.png",
+    "description": "Release a hellish wave of energy that will destroy nearly everything in its wake",
+    "damageType": "Magic",
+    "cooldown": 120000,
+    "runeCost": [
+      {
+        "itemID": 512,
+        "amount": 50
+      }
+    ],
+    "damageScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Fire",
+        "scaling": 1.5
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Magic",
+        "scaling": 1
+      },
+      {
+        "affinity": "Fire",
+        "scaling": 1.5
+      }
+    ],
+    "baseSpeedCoeff": 5,
+    "baseMinimumDamageCoeff": 3.5,
+    "baseMaximumDamageCoeff": 12.5,
+    "baseAccuracyCoeff": 5,
+    "maxTargets": 10
+  },
+  "26": {
+    "id": 26,
+    "abilityName": "Bulwark",
+    "abilityImage": "/images/combat/ability_icons/deflect.png",
+    "description": "Ready yourself to defend against the next attack!",
+    "damageType": "Melee",
+    "cooldown": 30000,
+    "damageScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      }
+    ],
+    "accuracyScaling": [
+      {
+        "affinity": "Melee",
+        "scaling": 1
+      }
+    ],
+    "baseSpeedCoeff": 0.9,
+    "baseMinimumDamageCoeff": 0.1,
+    "baseMaximumDamageCoeff": 0.25,
+    "baseAccuracyCoeff": 5,
+    "selfBuff": {
+      "enchantmentApply": 19,
+      "enchantmentStrength": 2,
+      "enchantmentChanceToApply": 1,
+      "enchantmentAmount": 1
+    },
     "maxTargets": 1
   }
 }

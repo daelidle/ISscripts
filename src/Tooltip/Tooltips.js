@@ -61,11 +61,11 @@ class Tooltip {
         if (itemResource.hasOwnProperty('equipmentStats')) return new EquipmentTooltip();
         if (itemResource.hasOwnProperty('fishingBait')) return new FishingBaitTooltip();
         if (itemResource.hasOwnProperty('canBeOpened')) return new ChestTooltip();
-        if (itemResource.tags.includes('ammunition')) return new AmmunitionTooltip();
-        if (itemResource.tags.includes('ingredient') || itemResource.tags.includes('consumable')) return new FoodTooltip();
-        if (itemResource.tags.includes('dungeon')) return new DungeonKeyTooltip();
-        if (itemResource.tags.includes('elite')) return new EliteScrollTooltip();
-        if (itemResource.tags.includes('seed')) return new SeedTooltip();
+        if (itemResource.tags?.includes('ammunition')) return new AmmunitionTooltip();
+        if (itemResource.tags?.includes('ingredient') || itemResource.tags?.includes('consumable')) return new FoodTooltip();
+        if (itemResource.tags?.includes('dungeon')) return new DungeonKeyTooltip();
+        if (itemResource.tags?.includes('elite')) return new EliteScrollTooltip();
+        if (itemResource.tags?.includes('seed')) return new SeedTooltip();
         return new DefaultTooltip();
     }
 
@@ -77,10 +77,14 @@ class Tooltip {
 class DefaultTooltip {
     fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
         if (!itemResource) return;
-        const irrelevantTags = ['misc', 'tool', 'unique', 'junk'];
-        const rarityTags = ['epic', 'legendary', 'rare', 'uncommon', 'common', 'junk'];
-        const tags = itemResource.tags.filter(tag => !irrelevantTags.includes(tag) && !rarityTags.includes(tag));
-        if (tags.length > 0) tooltipData.type = stringCapitalize(tags.shift());
-        else tooltipData.type = stringCapitalize(itemResource.class.replace('-', ' '));
+        if (itemResource.hasOwnProperty('tags')){
+            const irrelevantTags = ['misc', 'tool', 'unique', 'junk'];
+            const tags = itemResource.tags.filter(tag => !irrelevantTags.includes(tag));
+            if (tags.length > 0){
+                tooltipData.type = stringCapitalize(tags.shift());
+                return;
+            }
+        }
+        tooltipData.type = stringCapitalize(itemResource.class.replace('-', ' '));
     }
 }

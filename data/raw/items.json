@@ -713,7 +713,7 @@
   "150": {
     "id": 150,
     "name": "Fertilizer",
-    "value": 100,
+    "value": 15,
     "tradeable": true,
     "class": "seed",
     "craftingLevel": 1,
@@ -736,9 +736,12 @@
         "110": 10
       }
     ],
+    "craftingMultiplier": [
+      4
+    ],
     "itemImage": "/images/farming/fertilizer.png",
     "extraTooltipInfo": "Stinky sack of nutrients. Makes plants grow faster.",
-    "craftingDescription": "Stinky sack of nutrients. Makes plants grow faster.",
+    "craftingDescription": "Stinky sack of nutrients. Makes plants grow faster. Crafts in batches of 4.",
     "tags": [],
     "category": "General"
   },
@@ -2719,6 +2722,7 @@
     "requiredLevel": {
       "mining": 80
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/mining/stygian_pickaxe.png",
     "tool": true,
     "class": "equipment",
@@ -4693,7 +4697,7 @@
       "attackSpeed": 2.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.1
         },
         {
@@ -4805,7 +4809,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.1
         },
         {
@@ -5038,7 +5042,7 @@
       "attackSpeed": 3.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.1
         },
         {
@@ -5142,7 +5146,7 @@
       "attackSpeed": 2.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.33
         },
         {
@@ -5254,7 +5258,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.15
         },
         {
@@ -5487,7 +5491,7 @@
       "attackSpeed": 3.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.25
         },
         {
@@ -5591,7 +5595,7 @@
       "attackSpeed": 2.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.66
         },
         {
@@ -5703,7 +5707,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.3
         },
         {
@@ -5936,7 +5940,7 @@
       "attackSpeed": 3.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.5
         },
         {
@@ -6040,7 +6044,7 @@
       "attackSpeed": 2.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.99
         },
         {
@@ -6152,7 +6156,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.45
         },
         {
@@ -6385,7 +6389,7 @@
       "attackSpeed": 3.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.75
         },
         {
@@ -6489,7 +6493,7 @@
       "attackSpeed": 2.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 1.32
         },
         {
@@ -6601,7 +6605,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.6
         },
         {
@@ -6834,7 +6838,7 @@
       "attackSpeed": 3.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 1
         },
         {
@@ -6938,7 +6942,7 @@
       "attackSpeed": 2.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 1.6500000000000001
         },
         {
@@ -7050,7 +7054,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.75
         },
         {
@@ -7283,7 +7287,7 @@
       "attackSpeed": 3.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 1.25
         },
         {
@@ -7387,7 +7391,7 @@
       "attackSpeed": 2.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 1.98
         },
         {
@@ -7499,7 +7503,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.9
         },
         {
@@ -7732,7 +7736,7 @@
       "attackSpeed": 3.4,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 1.5
         },
         {
@@ -11058,67 +11062,22 @@
     ],
     "equipmentStats": {
       "slot": "boots",
-      "offensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "defensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "offensiveAccuracyAffinityRating": [
-        {
-          "affinity": "Melee",
-          "rating": 0
-        },
-        {
-          "affinity": "Magic",
-          "rating": 0
-        },
-        {
-          "affinity": "Range",
-          "rating": 0
-        }
-      ],
-      "offensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "defensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "weaponBonus": {
-        "strength": 0,
-        "intellect": 0,
-        "dexterity": 0
-      },
       "armorBonus": {
-        "protection": 0,
-        "resistance": 0,
+        "protection": 6,
+        "resistance": 6,
         "agility": 0,
         "stamina": 0
-      }
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1131": {
@@ -11147,67 +11106,22 @@
     ],
     "equipmentStats": {
       "slot": "boots",
-      "offensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "defensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "offensiveAccuracyAffinityRating": [
-        {
-          "affinity": "Melee",
-          "rating": 0
-        },
-        {
-          "affinity": "Magic",
-          "rating": 0
-        },
-        {
-          "affinity": "Range",
-          "rating": 0
-        }
-      ],
-      "offensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "defensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "weaponBonus": {
-        "strength": 0,
-        "intellect": 0,
-        "dexterity": 0
-      },
       "armorBonus": {
-        "protection": 0,
-        "resistance": 0,
+        "protection": 8,
+        "resistance": 8,
         "agility": 0,
         "stamina": 0
-      }
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1132": {
@@ -11237,67 +11151,22 @@
     ],
     "equipmentStats": {
       "slot": "boots",
-      "offensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "defensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "offensiveAccuracyAffinityRating": [
-        {
-          "affinity": "Melee",
-          "rating": 0
-        },
-        {
-          "affinity": "Magic",
-          "rating": 0
-        },
-        {
-          "affinity": "Range",
-          "rating": 0
-        }
-      ],
-      "offensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "defensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "weaponBonus": {
-        "strength": 0,
-        "intellect": 0,
-        "dexterity": 0
-      },
       "armorBonus": {
-        "protection": 0,
-        "resistance": 0,
+        "protection": 10,
+        "resistance": 10,
         "agility": 0,
         "stamina": 0
-      }
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1133": {
@@ -11326,67 +11195,22 @@
     ],
     "equipmentStats": {
       "slot": "boots",
-      "offensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "defensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "offensiveAccuracyAffinityRating": [
-        {
-          "affinity": "Melee",
-          "rating": 0
-        },
-        {
-          "affinity": "Magic",
-          "rating": 0
-        },
-        {
-          "affinity": "Range",
-          "rating": 0
-        }
-      ],
-      "offensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "defensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "weaponBonus": {
-        "strength": 0,
-        "intellect": 0,
-        "dexterity": 0
-      },
       "armorBonus": {
-        "protection": 0,
-        "resistance": 0,
+        "protection": 12,
+        "resistance": 12,
         "agility": 0,
         "stamina": 0
-      }
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1134": {
@@ -11416,67 +11240,22 @@
     ],
     "equipmentStats": {
       "slot": "boots",
-      "offensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "defensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "offensiveAccuracyAffinityRating": [
-        {
-          "affinity": "Melee",
-          "rating": 0
-        },
-        {
-          "affinity": "Magic",
-          "rating": 0
-        },
-        {
-          "affinity": "Range",
-          "rating": 0
-        }
-      ],
-      "offensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "defensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "weaponBonus": {
-        "strength": 1,
-        "intellect": 0,
-        "dexterity": 0
-      },
       "armorBonus": {
-        "protection": 0,
-        "resistance": 0,
+        "protection": 14,
+        "resistance": 14,
         "agility": 0,
         "stamina": 0
-      }
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1135": {
@@ -11506,67 +11285,22 @@
     ],
     "equipmentStats": {
       "slot": "boots",
-      "offensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "defensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "offensiveAccuracyAffinityRating": [
-        {
-          "affinity": "Melee",
-          "rating": 0
-        },
-        {
-          "affinity": "Magic",
-          "rating": 0
-        },
-        {
-          "affinity": "Range",
-          "rating": 0
-        }
-      ],
-      "offensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "defensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "weaponBonus": {
-        "strength": 2,
-        "intellect": 0,
-        "dexterity": 0
-      },
       "armorBonus": {
-        "protection": 0,
-        "resistance": 0,
+        "protection": 16,
+        "resistance": 16,
         "agility": 0,
         "stamina": 0
-      }
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1136": {
@@ -11595,67 +11329,22 @@
     ],
     "equipmentStats": {
       "slot": "boots",
-      "offensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "defensiveCritical": {
-        "chance": 0,
-        "damageMultiplier": 1
-      },
-      "offensiveAccuracyAffinityRating": [
-        {
-          "affinity": "Melee",
-          "rating": 0
-        },
-        {
-          "affinity": "Magic",
-          "rating": 0
-        },
-        {
-          "affinity": "Range",
-          "rating": 0
-        }
-      ],
-      "offensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "defensiveDamageAffinity": [
-        {
-          "affinity": "Melee",
-          "rating": 1
-        },
-        {
-          "affinity": "Magic",
-          "rating": 1
-        },
-        {
-          "affinity": "Range",
-          "rating": 1
-        }
-      ],
-      "weaponBonus": {
-        "strength": 4,
-        "intellect": 0,
-        "dexterity": 0
-      },
       "armorBonus": {
-        "protection": 0,
-        "resistance": 0,
+        "protection": 18,
+        "resistance": 18,
         "agility": 0,
         "stamina": 0
-      }
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1150": {
@@ -11684,7 +11373,63 @@
         "strength": 2,
         "intellect": 0,
         "dexterity": 0
-      }
+      },
+      "offensiveAccuracyAffinityRating": [
+        {
+          "affinity": "Melee",
+          "rating": 2
+        },
+        {
+          "affinity": "Magic",
+          "rating": 2
+        },
+        {
+          "affinity": "Range",
+          "rating": 2
+        }
+      ],
+      "defensiveDamageAffinity": [
+        {
+          "affinity": "Melee",
+          "rating": 1.05
+        },
+        {
+          "affinity": "Magic",
+          "rating": 1.05
+        },
+        {
+          "affinity": "Range",
+          "rating": 1.05
+        }
+      ],
+      "armorBonus": {
+        "protection": 4,
+        "resistance": 4,
+        "agility": 0,
+        "stamina": 0
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.strength",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.intellect",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.dexterity",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1151": {
@@ -11713,7 +11458,63 @@
         "strength": 3,
         "intellect": 0,
         "dexterity": 0
-      }
+      },
+      "offensiveAccuracyAffinityRating": [
+        {
+          "affinity": "Melee",
+          "rating": 3
+        },
+        {
+          "affinity": "Magic",
+          "rating": 3
+        },
+        {
+          "affinity": "Range",
+          "rating": 3
+        }
+      ],
+      "defensiveDamageAffinity": [
+        {
+          "affinity": "Melee",
+          "rating": 1.06
+        },
+        {
+          "affinity": "Magic",
+          "rating": 1.06
+        },
+        {
+          "affinity": "Range",
+          "rating": 1.06
+        }
+      ],
+      "armorBonus": {
+        "protection": 6,
+        "resistance": 6,
+        "agility": 0,
+        "stamina": 0
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.strength",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.intellect",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.dexterity",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1152": {
@@ -11743,7 +11544,63 @@
         "strength": 5,
         "intellect": 0,
         "dexterity": 0
-      }
+      },
+      "offensiveAccuracyAffinityRating": [
+        {
+          "affinity": "Melee",
+          "rating": 5
+        },
+        {
+          "affinity": "Magic",
+          "rating": 5
+        },
+        {
+          "affinity": "Range",
+          "rating": 5
+        }
+      ],
+      "defensiveDamageAffinity": [
+        {
+          "affinity": "Melee",
+          "rating": 1.07
+        },
+        {
+          "affinity": "Magic",
+          "rating": 1.07
+        },
+        {
+          "affinity": "Range",
+          "rating": 1.07
+        }
+      ],
+      "armorBonus": {
+        "protection": 10,
+        "resistance": 10,
+        "agility": 0,
+        "stamina": 0
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.strength",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.intellect",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.dexterity",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1153": {
@@ -11772,7 +11629,63 @@
         "strength": 6,
         "intellect": 0,
         "dexterity": 0
-      }
+      },
+      "offensiveAccuracyAffinityRating": [
+        {
+          "affinity": "Melee",
+          "rating": 6
+        },
+        {
+          "affinity": "Magic",
+          "rating": 6
+        },
+        {
+          "affinity": "Range",
+          "rating": 6
+        }
+      ],
+      "defensiveDamageAffinity": [
+        {
+          "affinity": "Melee",
+          "rating": 1.08
+        },
+        {
+          "affinity": "Magic",
+          "rating": 1.08
+        },
+        {
+          "affinity": "Range",
+          "rating": 1.08
+        }
+      ],
+      "armorBonus": {
+        "protection": 12,
+        "resistance": 12,
+        "agility": 0,
+        "stamina": 0
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.strength",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.intellect",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.dexterity",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1154": {
@@ -11801,7 +11714,63 @@
         "strength": 7,
         "intellect": 0,
         "dexterity": 0
-      }
+      },
+      "offensiveAccuracyAffinityRating": [
+        {
+          "affinity": "Melee",
+          "rating": 7
+        },
+        {
+          "affinity": "Magic",
+          "rating": 7
+        },
+        {
+          "affinity": "Range",
+          "rating": 7
+        }
+      ],
+      "defensiveDamageAffinity": [
+        {
+          "affinity": "Melee",
+          "rating": 1.09
+        },
+        {
+          "affinity": "Magic",
+          "rating": 1.09
+        },
+        {
+          "affinity": "Range",
+          "rating": 1.09
+        }
+      ],
+      "armorBonus": {
+        "protection": 14,
+        "resistance": 14,
+        "agility": 0,
+        "stamina": 0
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.strength",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.intellect",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.dexterity",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1155": {
@@ -11830,7 +11799,63 @@
         "strength": 8,
         "intellect": 0,
         "dexterity": 0
-      }
+      },
+      "offensiveAccuracyAffinityRating": [
+        {
+          "affinity": "Melee",
+          "rating": 8
+        },
+        {
+          "affinity": "Magic",
+          "rating": 8
+        },
+        {
+          "affinity": "Range",
+          "rating": 8
+        }
+      ],
+      "defensiveDamageAffinity": [
+        {
+          "affinity": "Melee",
+          "rating": 1.1
+        },
+        {
+          "affinity": "Magic",
+          "rating": 1.1
+        },
+        {
+          "affinity": "Range",
+          "rating": 1.1
+        }
+      ],
+      "armorBonus": {
+        "protection": 16,
+        "resistance": 16,
+        "agility": 0,
+        "stamina": 0
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.strength",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.intellect",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.dexterity",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1156": {
@@ -11856,7 +11881,63 @@
         "strength": 9,
         "intellect": 0,
         "dexterity": 0
-      }
+      },
+      "offensiveAccuracyAffinityRating": [
+        {
+          "affinity": "Melee",
+          "rating": 9
+        },
+        {
+          "affinity": "Magic",
+          "rating": 9
+        },
+        {
+          "affinity": "Range",
+          "rating": 9
+        }
+      ],
+      "defensiveDamageAffinity": [
+        {
+          "affinity": "Melee",
+          "rating": 1.11
+        },
+        {
+          "affinity": "Magic",
+          "rating": 1.11
+        },
+        {
+          "affinity": "Range",
+          "rating": 1.11
+        }
+      ],
+      "armorBonus": {
+        "protection": 18,
+        "resistance": 18,
+        "agility": 0,
+        "stamina": 0
+      },
+      "augmentationBonus": [
+        {
+          "stat": "armorBonus.protection",
+          "value": 0.1
+        },
+        {
+          "stat": "armorBonus.resistance",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.strength",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.intellect",
+          "value": 0.1
+        },
+        {
+          "stat": "weaponBonus.dexterity",
+          "value": 0.1
+        }
+      ]
     }
   },
   "1157": {
@@ -11878,7 +11959,7 @@
     },
     "itemImage": "/images/combat/equipment/range/hide_body.png",
     "class": "equipment",
-    "visual": "platebody",
+    "visual": "rangebody",
     "craftingDescription": "Requires Defense level of 1 to wield.",
     "tags": [
       "armor",
@@ -12424,8 +12505,10 @@
       "defense": 1
     },
     "itemImage": "/images/combat/equipment/range/hide_coif.png",
+    "itemIcon": "/images/combat/equipment/range/hide_coif_icon.png",
     "class": "equipment",
-    "visual": "platebody",
+    "twoSided": true,
+    "visual": "range-med-helm",
     "craftingDescription": "Requires Defense level of 1 to wield.",
     "tags": [
       "armor",
@@ -12509,9 +12592,11 @@
       "strength": 1,
       "defense": 10
     },
-    "itemImage": "/images/combat/equipment/range/fur_coif.png",
+    "itemImage": "/images/combat/equipment/range/hide_coif.png",
+    "itemIcon": "/images/combat/equipment/range/fur_coif.png",
     "class": "equipment",
-    "visual": "platebody",
+    "twoSided": true,
+    "visual": "range-med-helm",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -12596,9 +12681,11 @@
       "strength": 1,
       "defense": 20
     },
-    "itemImage": "/images/combat/equipment/range/thick_hide_coif.png",
+    "itemImage": "/images/combat/equipment/range/hide_coif.png",
+    "itemIcon": "/images/combat/equipment/range/thick_hide_coif.png",
     "class": "equipment",
-    "visual": "platebody",
+    "twoSided": true,
+    "visual": "range-med-helm",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -12683,9 +12770,11 @@
       "strength": 1,
       "defense": 30
     },
-    "itemImage": "/images/combat/equipment/range/leather_coif.png",
+    "itemImage": "/images/combat/equipment/range/hide_coif.png",
+    "itemIcon": "/images/combat/equipment/range/leather_coif.png",
     "class": "equipment",
-    "visual": "platebody",
+    "twoSided": true,
+    "visual": "range-med-helm",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -12770,9 +12859,11 @@
       "strength": 1,
       "defense": 40
     },
-    "itemImage": "/images/combat/equipment/range/reinforced_leather_coif.png",
+    "itemImage": "/images/combat/equipment/range/hide_coif.png",
+    "itemIcon": "/images/combat/equipment/range/reinforced_leather_coif.png",
     "class": "equipment",
-    "visual": "platebody",
+    "twoSided": true,
+    "visual": "range-med-helm",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -12858,9 +12949,11 @@
       "strength": 1,
       "defense": 50
     },
-    "itemImage": "/images/combat/equipment/range/chitin_coif.png",
+    "itemImage": "/images/combat/equipment/range/hide_coif.png",
+    "itemIcon": "/images/combat/equipment/range/chitin_coif.png",
     "class": "equipment",
-    "visual": "platebody",
+    "twoSided": true,
+    "visual": "range-med-helm",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -12946,9 +13039,11 @@
       "strength": 1,
       "defense": 60
     },
-    "itemImage": "/images/combat/equipment/range/scale_coif.png",
+    "itemImage": "/images/combat/equipment/range/hide_coif.png",
+    "itemIcon": "/images/combat/equipment/range/scale_coif.png",
     "class": "equipment",
-    "visual": "platebody",
+    "twoSided": true,
+    "visual": "range-med-helm",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -13033,9 +13128,10 @@
       "strength": 1,
       "defense": 1
     },
+    "itemIcon": "/images/combat/equipment/range/hide_legs.png",
     "itemImage": "/images/combat/equipment/range/hide_legs.png",
     "class": "equipment",
-    "visual": "platebody",
+    "visual": "platelegs",
     "craftingDescription": "Requires Defense level of 1 to wield.",
     "tags": [
       "armor",
@@ -13110,9 +13206,10 @@
       "strength": 1,
       "defense": 10
     },
-    "itemImage": "/images/combat/equipment/range/fur_legs.png",
+    "itemIcon": "/images/combat/equipment/range/fur_legs.png",
+    "itemImage": "/images/combat/equipment/range/hide_legs.png",
     "class": "equipment",
-    "visual": "platebody",
+    "visual": "platelegs",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -13188,9 +13285,10 @@
       "strength": 1,
       "defense": 20
     },
-    "itemImage": "/images/combat/equipment/range/thick_hide_legs.png",
+    "itemIcon": "/images/combat/equipment/range/thick_hide_legs.png",
+    "itemImage": "/images/combat/equipment/range/hide_legs.png",
     "class": "equipment",
-    "visual": "platebody",
+    "visual": "platelegs",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -13266,9 +13364,10 @@
       "strength": 1,
       "defense": 30
     },
-    "itemImage": "/images/combat/equipment/range/leather_legs.png",
+    "itemIcon": "/images/combat/equipment/range/leather_legs.png",
+    "itemImage": "/images/combat/equipment/range/hide_legs.png",
     "class": "equipment",
-    "visual": "platebody",
+    "visual": "platelegs",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -13344,9 +13443,10 @@
       "strength": 1,
       "defense": 40
     },
-    "itemImage": "/images/combat/equipment/range/reinforced_leather_legs.png",
+    "itemIcon": "/images/combat/equipment/range/reinforced_leather_legs.png",
+    "itemImage": "/images/combat/equipment/range/hide_legs.png",
     "class": "equipment",
-    "visual": "platebody",
+    "visual": "platelegs",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -13423,9 +13523,10 @@
       "strength": 1,
       "defense": 50
     },
-    "itemImage": "/images/combat/equipment/range/chitin_legs.png",
+    "itemIcon": "/images/combat/equipment/range/chitin_legs.png",
+    "itemImage": "/images/combat/equipment/range/hide_legs.png",
     "class": "equipment",
-    "visual": "platebody",
+    "visual": "platelegs",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -13502,9 +13603,10 @@
       "strength": 1,
       "defense": 60
     },
-    "itemImage": "/images/combat/equipment/range/scale_legs.png",
+    "itemIcon": "/images/combat/equipment/range/scale_legs.png",
+    "itemImage": "/images/combat/equipment/range/hide_legs.png",
     "class": "equipment",
-    "visual": "platebody",
+    "visual": "platelegs",
     "craftingDescription": "Requires Defense level of 10 to wield.",
     "tags": [
       "armor",
@@ -15437,10 +15539,10 @@
       "range": 1
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_wood.png",
-    "itemIcon": "/images/combat/equipment/range/bow_wood.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood_recurve.png",
+    "itemIcon": "/images/combat/equipment/range/bow_wood_recurve.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "recurvebow",
     "craftingDescription": "Recurve Bow WIP",
     "category": "Range",
     "tags": [
@@ -15505,7 +15607,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 0.1
         },
         {
@@ -15541,10 +15643,10 @@
       "range": 10
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_oak.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood_recurve.png",
     "itemIcon": "/images/combat/equipment/range/bow_oak.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "recurvebow",
     "craftingDescription": "Recurve Bow WIP",
     "category": "Range",
     "tags": [
@@ -15609,7 +15711,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 0.5
         },
         {
@@ -15645,10 +15747,10 @@
       "range": 20
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_oak.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood_recurve.png",
     "itemIcon": "/images/combat/equipment/range/bow_oak.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "recurvebow",
     "craftingDescription": "Recurve Bow WIP",
     "category": "Range",
     "tags": [
@@ -15713,7 +15815,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 1
         },
         {
@@ -15749,10 +15851,10 @@
       "range": 30
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_willow.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood_recurve.png",
     "itemIcon": "/images/combat/equipment/range/bow_willow.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "recurvebow",
     "craftingDescription": "Recurve Bow WIP",
     "category": "Range",
     "tags": [
@@ -15817,7 +15919,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 1.5
         },
         {
@@ -15853,10 +15955,10 @@
       "range": 40
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_yew.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood_recurve.png",
     "itemIcon": "/images/combat/equipment/range/bow_yew.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "recurvebow",
     "craftingDescription": "Recurve Bow WIP",
     "category": "Range",
     "tags": [
@@ -15921,7 +16023,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 2
         },
         {
@@ -15957,10 +16059,10 @@
       "range": 50
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_yew.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood_recurve.png",
     "itemIcon": "/images/combat/equipment/range/bow_yew.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "recurvebow",
     "craftingDescription": "Recurve Bow WIP",
     "category": "Range",
     "tags": [
@@ -16025,7 +16127,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 2.5
         },
         {
@@ -16061,10 +16163,10 @@
       "range": 60
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_elder.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood_recurve.png",
     "itemIcon": "/images/combat/equipment/range/bow_elder.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "recurvebow",
     "craftingDescription": "Recurve Bow WIP",
     "category": "Range",
     "tags": [
@@ -16129,7 +16231,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 3
         },
         {
@@ -16168,7 +16270,7 @@
     "itemImage": "/images/combat/equipment/range/bow_wood.png",
     "itemIcon": "/images/combat/equipment/range/bow_wood.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "longbow",
     "craftingDescription": "Longbow WIP",
     "category": "Range",
     "tags": [
@@ -16241,7 +16343,7 @@
       "attackSpeed": 2.8,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 0.1
         },
         {
@@ -16277,10 +16379,10 @@
       "range": 10
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_oak.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood.png",
     "itemIcon": "/images/combat/equipment/range/bow_oak.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "longbow",
     "craftingDescription": "Longbow WIP",
     "category": "Range",
     "tags": [
@@ -16353,7 +16455,7 @@
       "attackSpeed": 2.8,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 0.5
         },
         {
@@ -16389,10 +16491,10 @@
       "range": 20
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_oak.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood.png",
     "itemIcon": "/images/combat/equipment/range/bow_oak.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "longbow",
     "craftingDescription": "Longbow WIP",
     "category": "Range",
     "tags": [
@@ -16465,7 +16567,7 @@
       "attackSpeed": 2.8,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 1
         },
         {
@@ -16501,10 +16603,10 @@
       "range": 30
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_willow.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood.png",
     "itemIcon": "/images/combat/equipment/range/bow_willow.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "longbow",
     "craftingDescription": "Longbow WIP",
     "category": "Range",
     "tags": [
@@ -16577,7 +16679,7 @@
       "attackSpeed": 2.8,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 1.5
         },
         {
@@ -16613,10 +16715,10 @@
       "range": 40
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_yew.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood.png",
     "itemIcon": "/images/combat/equipment/range/bow_yew.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "longbow",
     "craftingDescription": "Longbow WIP",
     "category": "Range",
     "tags": [
@@ -16689,7 +16791,7 @@
       "attackSpeed": 2.8,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 2
         },
         {
@@ -16725,10 +16827,10 @@
       "range": 50
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_yew.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood.png",
     "itemIcon": "/images/combat/equipment/range/bow_yew.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "longbow",
     "craftingDescription": "Longbow WIP",
     "category": "Range",
     "tags": [
@@ -16801,7 +16903,7 @@
       "attackSpeed": 2.8,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 2.5
         },
         {
@@ -16837,10 +16939,10 @@
       "range": 60
     },
     "skill": "crafting",
-    "itemImage": "/images/combat/equipment/range/bow_elder.png",
+    "itemImage": "/images/combat/equipment/range/bow_wood.png",
     "itemIcon": "/images/combat/equipment/range/bow_elder.png",
     "class": "equipment",
-    "visual": "scimitar",
+    "visual": "longbow",
     "craftingDescription": "Longbow WIP",
     "category": "Range",
     "tags": [
@@ -16913,7 +17015,7 @@
       "attackSpeed": 2.8,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 3
         },
         {
@@ -17027,7 +17129,7 @@
       "attackSpeed": 3.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 0.1
         },
         {
@@ -17141,7 +17243,7 @@
       "attackSpeed": 3.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 0.5
         },
         {
@@ -17255,7 +17357,7 @@
       "attackSpeed": 3.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 1
         },
         {
@@ -17369,7 +17471,7 @@
       "attackSpeed": 3.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 1.5
         },
         {
@@ -17483,7 +17585,7 @@
       "attackSpeed": 3.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 2
         },
         {
@@ -17597,7 +17699,7 @@
       "attackSpeed": 3.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 2.5
         },
         {
@@ -17711,7 +17813,7 @@
       "attackSpeed": 3.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 3
         },
         {
@@ -17824,7 +17926,7 @@
       "attackSpeed": 2.5,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 0.1
         },
         {
@@ -17937,7 +18039,7 @@
       "attackSpeed": 2.5,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 0.5
         },
         {
@@ -18050,7 +18152,7 @@
       "attackSpeed": 2.5,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 1
         },
         {
@@ -18163,7 +18265,7 @@
       "attackSpeed": 2.5,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 1.5
         },
         {
@@ -18276,7 +18378,7 @@
       "attackSpeed": 2.5,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 2
         },
         {
@@ -18389,7 +18491,7 @@
       "attackSpeed": 2.5,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 2.5
         },
         {
@@ -18502,7 +18604,7 @@
       "attackSpeed": 2.5,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 3
         },
         {
@@ -18617,7 +18719,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 0.1
         },
         {
@@ -18732,7 +18834,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 0.5
         },
         {
@@ -18847,7 +18949,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 1
         },
         {
@@ -18962,7 +19064,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 1.5
         },
         {
@@ -19077,7 +19179,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 2
         },
         {
@@ -19192,7 +19294,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 2.5
         },
         {
@@ -19307,7 +19409,7 @@
       "attackSpeed": 2.2,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 3
         },
         {
@@ -19421,7 +19523,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 0.1
         },
         {
@@ -19535,7 +19637,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 0.5
         },
         {
@@ -19649,7 +19751,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 1
         },
         {
@@ -19763,7 +19865,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 1.5
         },
         {
@@ -19877,7 +19979,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 2
         },
         {
@@ -19991,7 +20093,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 2.5
         },
         {
@@ -20105,7 +20207,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 3
         },
         {
@@ -20184,7 +20286,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 0.1
         },
         {
@@ -20263,7 +20365,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 0.5
         },
         {
@@ -20342,7 +20444,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 1
         },
         {
@@ -20421,7 +20523,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 1.5
         },
         {
@@ -20500,7 +20602,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 2
         },
         {
@@ -20579,7 +20681,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 2.5
         },
         {
@@ -20658,7 +20760,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 3
         },
         {
@@ -24283,6 +24385,7 @@
     "craftingLevel": 90,
     "craftingExperience": 192000,
     "value": 7500000,
+    "forcedAugmentChance": 1,
     "itemImage": "/images/combat/equipment/titanic_gauntlet.png",
     "craftingDescription": "This gauntlet could become so much more if wielded by one with a strong will.",
     "extraTooltipInfo": "This gauntlet could become so much more if wielded by one with a strong will.",
@@ -24443,7 +24546,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 6.5
         },
         {
@@ -24451,7 +24554,7 @@
           "value": 6.5
         },
         {
-          "stat": "offensiveAccuracyAffinityRating.chaos",
+          "stat": "offensiveAccuracyAffinityRating.Chaos",
           "value": 3.5
         }
       ]
@@ -25441,7 +25544,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.75
         },
         {
@@ -25553,7 +25656,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 1.25
         },
         {
@@ -25665,7 +25768,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 0.75
         },
         {
@@ -25775,7 +25878,7 @@
       },
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.melee",
+          "stat": "offensiveAccuracyAffinityRating.Melee",
           "value": 1.25
         },
         {
@@ -25892,7 +25995,7 @@
       "attackSpeed": 2.8,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.range",
+          "stat": "offensiveAccuracyAffinityRating.Range",
           "value": 6.5
         },
         {
@@ -25900,7 +26003,7 @@
           "value": 6.5
         },
         {
-          "stat": "offensiveAccuracyAffinityRating.nature",
+          "stat": "offensiveAccuracyAffinityRating.Nature",
           "value": 3.5
         }
       ]
@@ -25998,7 +26101,7 @@
       "attackSpeed": 3,
       "augmentationBonus": [
         {
-          "stat": "offensiveAccuracyAffinityRating.magic",
+          "stat": "offensiveAccuracyAffinityRating.Magic",
           "value": 6.5
         },
         {
@@ -26006,7 +26109,7 @@
           "value": 6.5
         },
         {
-          "stat": "offensiveAccuracyAffinityRating.ice",
+          "stat": "offensiveAccuracyAffinityRating.Ice",
           "value": 3.5
         }
       ]
@@ -26031,7 +26134,7 @@
     "categories": [
       "hatchet"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1601,
     "level": 61,
     "experience": 4200,
@@ -26043,7 +26146,7 @@
     "skillIcon": "/images/enchanting/enchanting_logo.png",
     "class": "enchanted-scroll",
     "actionButton": "Craft",
-    "extraTooltipInfo": "Gain a 10% chance to instantly burn Logs and Branches for double heat every foraging action.",
+    "extraTooltipInfo": "Gain a 10% chance to gain heat from Logs and Branches without burning them every foraging action.",
     "tags": [],
     "requiredResources": [
       {
@@ -26062,7 +26165,7 @@
     "categories": [
       "pickaxe"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1602,
     "level": 25,
     "experience": 1500,
@@ -26095,11 +26198,11 @@
       "ring",
       "necklace"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1603,
     "level": 88,
     "experience": 6500,
-    "baseSuccessChance": 0.4,
+    "baseSuccessChance": 0.6,
     "tradeable": true,
     "value": 2000,
     "itemImage": "/images/enchanting/scroll_of_the_scholar.png",
@@ -26111,10 +26214,10 @@
     "tags": [],
     "requiredResources": [
       {
-        "111": 1000,
-        "516": 90,
-        "518": 90,
-        "519": 90,
+        "111": 1300,
+        "516": 110,
+        "518": 110,
+        "519": 110,
         "1600": 1
       }
     ]
@@ -26128,7 +26231,7 @@
       "ring",
       "necklace"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1604,
     "level": 64,
     "experience": 4300,
@@ -26162,7 +26265,7 @@
     "categories": [
       "pickaxe"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1605,
     "level": 76,
     "experience": 5400,
@@ -26195,7 +26298,7 @@
       "ring",
       "necklace"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1606,
     "level": 7,
     "experience": 600,
@@ -26228,7 +26331,7 @@
       "ring",
       "necklace"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1607,
     "level": 37,
     "experience": 2300,
@@ -26261,11 +26364,11 @@
       "ring",
       "necklace"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1608,
     "level": 94,
     "experience": 7500,
-    "baseSuccessChance": 0.4,
+    "baseSuccessChance": 0.8,
     "tradeable": true,
     "value": 2000,
     "itemImage": "/images/enchanting/scroll_of_haste.png",
@@ -26277,11 +26380,11 @@
     "tags": [],
     "requiredResources": [
       {
-        "111": 1100,
-        "510": 100,
-        "516": 100,
-        "518": 100,
-        "519": 100,
+        "111": 2000,
+        "510": 200,
+        "516": 200,
+        "518": 200,
+        "519": 200,
         "1600": 1
       }
     ]
@@ -26295,7 +26398,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1609,
     "level": 49,
     "experience": 3200,
@@ -26329,7 +26432,7 @@
     "categories": [
       "weapon"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1610,
     "level": 100,
     "experience": 1,
@@ -26359,7 +26462,7 @@
     "categories": [
       "weapon"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1611,
     "level": 52,
     "experience": 3300,
@@ -26395,7 +26498,7 @@
     "categories": [
       "weapon"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1612,
     "level": 100,
     "experience": 1,
@@ -26425,7 +26528,7 @@
     "categories": [
       "weapon"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1613,
     "level": 28,
     "experience": 1600,
@@ -26460,7 +26563,7 @@
     "categories": [
       "shield"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1614,
     "level": 100,
     "experience": 1,
@@ -26488,7 +26591,7 @@
     "categories": [
       "shield"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1615,
     "level": 79,
     "experience": 5500,
@@ -26521,7 +26624,7 @@
       "shield",
       "combat-talisman"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1616,
     "level": 10,
     "experience": 700,
@@ -26533,7 +26636,7 @@
     "skillIcon": "/images/enchanting/enchanting_logo.png",
     "class": "enchanted-scroll",
     "actionButton": "Craft",
-    "extraTooltipInfo": "Passive healing is increased by 0.5 health per minute.",
+    "extraTooltipInfo": "Passive healing is increased by 50% per enchantment level",
     "tags": [],
     "requiredResources": [
       {
@@ -26557,7 +26660,7 @@
       "shield",
       "weapon"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1617,
     "level": 4,
     "experience": 300,
@@ -26593,7 +26696,7 @@
       "body",
       "legs"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1618,
     "level": 13,
     "experience": 800,
@@ -26627,7 +26730,7 @@
       "body",
       "legs"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1619,
     "level": 31,
     "experience": 1700,
@@ -26661,7 +26764,7 @@
       "body",
       "legs"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1620,
     "level": 100,
     "experience": 1,
@@ -26691,7 +26794,7 @@
       "body",
       "legs"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1621,
     "level": 81,
     "experience": 5600,
@@ -26724,11 +26827,11 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1622,
     "level": 91,
     "experience": 6600,
-    "baseSuccessChance": 0.4,
+    "baseSuccessChance": 0.8,
     "tradeable": true,
     "value": 2000,
     "itemImage": "/images/enchanting/scroll_of_efficiency.png",
@@ -26740,12 +26843,12 @@
     "tags": [],
     "requiredResources": [
       {
-        "111": 1100,
-        "510": 90,
-        "511": 90,
-        "512": 90,
-        "513": 90,
-        "517": 90,
+        "111": 1500,
+        "510": 130,
+        "511": 130,
+        "512": 130,
+        "513": 130,
+        "517": 130,
         "1600": 1
       }
     ]
@@ -26759,7 +26862,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1623,
     "level": 55,
     "experience": 3400,
@@ -26792,7 +26895,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1624,
     "level": 40,
     "experience": 2400,
@@ -26825,7 +26928,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1625,
     "level": 67,
     "experience": 4400,
@@ -26857,7 +26960,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1626,
     "level": 34,
     "experience": 1800,
@@ -26891,7 +26994,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1627,
     "level": 43,
     "experience": 2500,
@@ -26924,7 +27027,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1628,
     "level": 70,
     "experience": 4500,
@@ -26957,7 +27060,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1629,
     "level": 1,
     "experience": 80,
@@ -26991,7 +27094,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1630,
     "level": 73,
     "experience": 4600,
@@ -27025,7 +27128,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1631,
     "level": 58,
     "experience": 3500,
@@ -27059,11 +27162,11 @@
       "combat-boots",
       "combat-gloves"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1632,
     "level": 85,
     "experience": 5700,
-    "baseSuccessChance": 0.4,
+    "baseSuccessChance": 0.45,
     "tradeable": true,
     "value": 2000,
     "itemImage": "/images/enchanting/scroll_of_treasure_hunter.png",
@@ -27075,10 +27178,10 @@
     "tags": [],
     "requiredResources": [
       {
-        "111": 1000,
-        "516": 80,
-        "517": 80,
-        "519": 80,
+        "111": 1200,
+        "516": 100,
+        "517": 100,
+        "519": 100,
         "1600": 1
       }
     ]
@@ -27092,7 +27195,7 @@
       "boots",
       "gloves"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1633,
     "level": 46,
     "experience": 2600,
@@ -27124,7 +27227,7 @@
     "categories": [
       "pickaxe"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1634,
     "level": 16,
     "experience": 900,
@@ -27157,7 +27260,7 @@
     "categories": [
       "hatchet"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1635,
     "level": 19,
     "experience": 1000,
@@ -27190,7 +27293,7 @@
     "categories": [
       "hatchet"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1636,
     "level": 22,
     "experience": 1000,
@@ -27223,7 +27326,7 @@
       "body",
       "legs"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1637,
     "level": 82,
     "experience": 5600,
@@ -27255,7 +27358,7 @@
     "categories": [
       "weapon"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1638,
     "level": 11,
     "experience": 700,
@@ -27289,7 +27392,7 @@
     "categories": [
       "hoe"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1639,
     "level": 72,
     "experience": 4600,
@@ -27321,7 +27424,7 @@
     "categories": [
       "hoe"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1640,
     "level": 36,
     "experience": 2300,
@@ -27353,11 +27456,11 @@
     "categories": [
       "hoe"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1641,
     "level": 90,
     "experience": 6600,
-    "baseSuccessChance": 0.4,
+    "baseSuccessChance": 0.7,
     "tradeable": true,
     "value": 2000,
     "itemImage": "/images/enchanting/scroll_of_fertilizing.png",
@@ -27369,12 +27472,12 @@
     "tags": [],
     "requiredResources": [
       {
-        "111": 1100,
-        "510": 90,
-        "511": 90,
-        "513": 90,
-        "517": 90,
-        "519": 90,
+        "111": 1400,
+        "510": 120,
+        "511": 120,
+        "513": 120,
+        "517": 120,
+        "519": 120,
         "1600": 1
       }
     ]
@@ -27387,7 +27490,7 @@
     "categories": [
       "hoe"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1642,
     "level": 12,
     "experience": 800,
@@ -27445,7 +27548,7 @@
     "categories": [
       "tacklebox"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1644,
     "level": 14,
     "experience": 850,
@@ -27476,7 +27579,7 @@
     "categories": [
       "tacklebox"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1645,
     "level": 23,
     "experience": 1250,
@@ -27507,7 +27610,7 @@
     "categories": [
       "tacklebox"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1646,
     "level": 33,
     "experience": 1750,
@@ -27539,7 +27642,7 @@
     "categories": [
       "tacklebox"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1647,
     "level": 47,
     "experience": 2800,
@@ -27571,7 +27674,7 @@
     "categories": [
       "tacklebox"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1648,
     "level": 69,
     "experience": 4450,
@@ -27603,7 +27706,7 @@
     "categories": [
       "tacklebox"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1649,
     "level": 71,
     "experience": 4550,
@@ -27635,7 +27738,7 @@
     "categories": [
       "ladle"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1650,
     "level": 84,
     "experience": 5650,
@@ -27667,7 +27770,7 @@
     "categories": [
       "hatchet"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1651,
     "level": 84,
     "experience": 5650,
@@ -27699,7 +27802,7 @@
     "categories": [
       "hatchet"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1652,
     "level": 84,
     "experience": 5650,
@@ -27731,14 +27834,14 @@
     "categories": [
       "tongs"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1653,
     "level": 84,
     "experience": 5650,
     "baseSuccessChance": 0.4,
     "tradeable": true,
     "value": 2000,
-    "itemImage": "/images/enchanting/scroll_of_root_digging.png",
+    "itemImage": "/images/enchanting/scroll_of_inferno.png",
     "enchantName": "metallurgy",
     "skillIcon": "/images/enchanting/enchanting_logo.png",
     "class": "enchanted-scroll",
@@ -27763,14 +27866,14 @@
     "categories": [
       "tongs"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1654,
     "level": 84,
     "experience": 5650,
     "baseSuccessChance": 0.4,
     "tradeable": true,
     "value": 2000,
-    "itemImage": "/images/enchanting/scroll_of_root_digging.png",
+    "itemImage": "/images/enchanting/scroll_of_inferno.png",
     "enchantName": "pureMetals",
     "skillIcon": "/images/enchanting/enchanting_logo.png",
     "class": "enchanted-scroll",
@@ -27796,7 +27899,7 @@
       "gloves",
       "boots"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 1655,
     "level": 84,
     "experience": 5650,
@@ -27804,7 +27907,7 @@
     "tradeable": true,
     "value": 2000,
     "itemImage": "/images/enchanting/scroll_of_runecrafting.png",
-    "enchantName": "runecrafting",
+    "enchantName": "essenceConcentration",
     "skillIcon": "/images/enchanting/enchanting_logo.png",
     "class": "enchanted-scroll",
     "actionButton": "Craft",
@@ -27947,6 +28050,10 @@
         "306": 10
       }
     ],
+    "ingredientTags": [
+      "spice",
+      "grain"
+    ],
     "itemImage": "/images/cooking/ashes.png",
     "craftingDescription": "The remnants of life.",
     "extraTooltipInfo": "The remnants of life.",
@@ -28031,6 +28138,9 @@
     "craftingExperience": 18,
     "value": 10,
     "tradeable": true,
+    "ingredientTags": [
+      "dairy"
+    ],
     "itemImage": "/images/cooking/butter.png",
     "craftingDescription": "I can't believe it",
     "category": "General",
@@ -29380,6 +29490,10 @@
       8
     ],
     "craftingExperience": 60,
+    "ingredientTags": [
+      "spice",
+      "grain"
+    ],
     "itemImage": "/images/cooking/water_dust.png",
     "craftingDescription": "Each craft results in 8 dust. Crushed up water runes. Not exactly a delicacy, but it might have some sort of effect when cooked.",
     "extraTooltipInfo": "Crushed up water runes. Not exactly a delicacy, but it might have some sort of effect when cooked.",
@@ -29400,39 +29514,66 @@
     "id": 3001,
     "value": 1,
     "tradeable": true,
+    "craftingLevel": 1,
+    "craftingExperience": 1,
+    "requiredResources": [
+      {
+        "110": 3
+      }
+    ],
     "itemImage": "/images/cooking/alchemy/empty_vial.png",
-    "extraTooltipInfo": "An empty vial to pour a potion into. Using more than one in a recipe will not positively affect the produced potion.",
+    "craftingDescription": "A basic glass vial used in alchemy.",
+    "extraTooltipInfo": "An empty vial to pour a standard potion into. Using more than one in a recipe will not positively affect the produced potion.",
     "class": "cooking-ingredient",
     "tags": [
       "ingredient",
       "alchemy"
-    ]
+    ],
+    "category": "General"
   },
   "3002": {
     "name": "Empty Large Vial",
     "id": 3002,
     "value": 1,
     "tradeable": true,
+    "craftingLevel": 1,
+    "craftingExperience": 1,
+    "requiredResources": [
+      {
+        "110": 3
+      }
+    ],
     "itemImage": "/images/cooking/alchemy/empty_large_vial.png",
-    "extraTooltipInfo": "A large empty vial to pour a potion into. Using more than one in a recipe will not positively affect the produced potion.",
+    "craftingDescription": "A large glass vial used in alchemy.",
+    "extraTooltipInfo": "A large empty vial to pour a large potion into. Using more than one in a recipe will not positively affect the produced potion.",
     "class": "cooking-ingredient",
     "tags": [
       "ingredient",
       "alchemy"
-    ]
+    ],
+    "category": "General"
   },
   "3003": {
     "name": "Empty Reinforced Vial",
     "id": 3003,
     "value": 1,
     "tradeable": true,
+    "craftingLevel": 1,
+    "craftingExperience": 1,
+    "requiredResources": [
+      {
+        "110": 3
+      }
+    ],
     "itemImage": "/images/cooking/alchemy/empty_reinforced_vial.png",
-    "extraTooltipInfo": "A reinforced empty vial to pour a potion into. Using more than one in a recipe will not positively affect the produced potion.",
+    "craftingDescription": "A reinforced glass vial used in alchemy.",
+    "extraTooltipInfo": "A reinforced empty vial to pour a concentrated potion into. Using more than one in a recipe will not positively affect the produced potion.",
     "class": "cooking-ingredient",
     "tags": [
       "ingredient",
       "alchemy"
-    ]
+    ],
+    "category": "General"
   },
   "4000": {
     "id": 4000,
@@ -29586,7 +29727,7 @@
     "time": 5000,
     "requiredResources": [
       {
-        "4020": 10
+        "4020": 5
       }
     ],
     "itemImage": "/images/combat/materials/rough_cloth.png",
@@ -29602,7 +29743,7 @@
     "time": 5000,
     "requiredResources": [
       {
-        "4020": 25
+        "4020": 10
       }
     ],
     "itemImage": "/images/combat/materials/restored_cloth.png",
@@ -29618,7 +29759,7 @@
     "time": 5000,
     "requiredResources": [
       {
-        "4021": 10
+        "4021": 5
       }
     ],
     "itemImage": "/images/combat/materials/rough_cloth.png",
@@ -29634,7 +29775,7 @@
     "time": 5000,
     "requiredResources": [
       {
-        "4022": 10
+        "4022": 5
       }
     ],
     "itemImage": "/images/combat/materials/imbued_cloth.png",
@@ -29650,7 +29791,7 @@
     "time": 5000,
     "requiredResources": [
       {
-        "4023": 10
+        "4023": 5
       }
     ],
     "itemImage": "/images/combat/materials/greater_cloth.png",
@@ -29666,7 +29807,7 @@
     "time": 5000,
     "requiredResources": [
       {
-        "4024": 10
+        "4024": 5
       }
     ],
     "itemImage": "/images/combat/materials/major_cloth.png",
@@ -29682,7 +29823,7 @@
     "time": 5000,
     "requiredResources": [
       {
-        "4025": 10
+        "4025": 5
       }
     ],
     "itemImage": "/images/combat/materials/elder_cloth.png",
@@ -31527,7 +31668,7 @@
     "categories": [
       "christmas elf gear"
     ],
-    "time": 60000,
+    "time": 15000,
     "id": 7036,
     "enchantmentID": 7000,
     "level": 1,
@@ -31714,6 +31855,7 @@
     "augmentationCost": {
       "8001": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_BK.png",
     "extraTooltipInfo": "A dark scroll for a darker trial. Will you face it and reap the rewards?",
     "class": "elite-scroll",
@@ -31733,6 +31875,7 @@
     "augmentationCost": {
       "8002": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Giant.png",
     "extraTooltipInfo": "A gargantuan task for only the mightiest of heroes; are you counted amongst them?",
     "class": "elite-scroll",
@@ -31752,6 +31895,7 @@
     "augmentationCost": {
       "8003": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Corroded.png",
     "extraTooltipInfo": "The stench of decay hangs heavy about this squalid parchment. Are you ready to break the seal?",
     "class": "elite-scroll",
@@ -31771,6 +31915,7 @@
     "augmentationCost": {
       "8004": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Goblin.png",
     "extraTooltipInfo": "A repulsive taunt from a repulsive creature. Will you break the seal?",
     "class": "elite-scroll",
@@ -31790,6 +31935,7 @@
     "augmentationCost": {
       "8005": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Chicken.png",
     "extraTooltipInfo": "The secret location of Ot_to's prized hen house. Want to find out what's inside?",
     "class": "elite-scroll",
@@ -31809,6 +31955,7 @@
     "augmentationCost": {
       "8006": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Demon.png",
     "extraTooltipInfo": "Unknown markings surround the stately seal binding this scroll closed. Are you sure you want to break the seal?",
     "class": "elite-scroll",
@@ -31828,6 +31975,7 @@
     "augmentationCost": {
       "8007": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Spriggan.png",
     "extraTooltipInfo": "The parchment feels alive in your hands. Will you be able to conquer nature?",
     "class": "elite-scroll",
@@ -31847,6 +31995,7 @@
     "augmentationCost": {
       "8008": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/Elite_Scroll.png",
     "extraTooltipInfo": "Can you do what no one has ever done before?",
     "class": "elite-scroll",
@@ -31866,6 +32015,7 @@
     "augmentationCost": {
       "8009": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Chaos.png",
     "extraTooltipInfo": "The scroll appears to be shifting in and out of reality. Do you dare unravel its secrets?",
     "class": "elite-scroll",
@@ -31885,6 +32035,7 @@
     "augmentationCost": {
       "8010": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Fish.png",
     "extraTooltipInfo": "It's soaking wet but the parchment seems untearable. Will you dive in?",
     "class": "elite-scroll",
@@ -31904,6 +32055,7 @@
     "augmentationCost": {
       "8011": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Fish.png",
     "extraTooltipInfo": "It's soaking wet but the parchment seems untearable. Will you dive in?",
     "class": "elite-scroll",
@@ -31921,8 +32073,9 @@
     "enchantmentTier": 0,
     "maxAugLevel": 20,
     "augmentationCost": {
-      "8011": 1
+      "8012": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Fish.png",
     "extraTooltipInfo": "It's soaking wet but the parchment seems untearable. Will you dive in?",
     "class": "elite-scroll",
@@ -31940,8 +32093,9 @@
     "enchantmentTier": 0,
     "maxAugLevel": 20,
     "augmentationCost": {
-      "8013": 1
+      "8012": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Fish.png",
     "extraTooltipInfo": "It's soaking wet but the parchment seems untearable. Will you dive in?",
     "class": "elite-scroll",
@@ -31959,8 +32113,9 @@
     "enchantmentTier": 0,
     "maxAugLevel": 20,
     "augmentationCost": {
-      "8013": 1
+      "8014": 1
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/elite/Elite_Scroll_Fish.png",
     "extraTooltipInfo": "It's soaking wet but the parchment seems untearable. Will you dive in?",
     "class": "elite-scroll",
@@ -31989,6 +32144,7 @@
     "tradeable": true,
     "craftingLevel": 85,
     "craftingExperience": 120000,
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/keys/Complete_Disc.png",
     "category": "Dungeon",
     "craftingDescription": "Grants one-time access to the Giant's Keep dungeon. This is a 5 person encounter.",
@@ -32125,6 +32281,7 @@
     },
     "craftingLevel": 30,
     "craftingExperience": 12000,
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/keys/goblin_map.png",
     "category": "Dungeon",
     "craftingDescription": "Grants one-time access to the Goblin Settlement dungeon. This is a trio encounter.",
@@ -32169,6 +32326,7 @@
     },
     "craftingLevel": 50,
     "craftingExperience": 24000,
+    "forcedAugmentChance": 1,
     "itemImage": "/images/misc/keys/fortress_key.png",
     "category": "Dungeon",
     "craftingDescription": "Grants one-time access to the Dark Fortress dungeon. This is a trio encounter.",
@@ -32213,6 +32371,7 @@
     },
     "craftingLevel": 50,
     "craftingExperience": 30000,
+    "forcedAugmentChance": 1,
     "itemImage": "images/misc/keys/cursed_spade.png",
     "category": "Dungeon",
     "craftingDescription": "Bringing the pieces together makes them emit a sickly pallor. Is it worth reassembling it?",
@@ -32242,6 +32401,7 @@
     },
     "craftingLevel": 60,
     "craftingExperience": 40000,
+    "forcedAugmentChance": 1,
     "itemImage": "images/misc/keys/flame_feather.png",
     "category": "Dungeon",
     "craftingDescription": "Grants one-time access to the Palace of Flames dungeon. This is a duo encounter.",
@@ -32338,10 +32498,11 @@
     "tradeable": true,
     "maxAugLevel": 10,
     "augmentationCost": {
-      "1": 1
+      "9016": 1
     },
     "craftingLevel": 80,
     "craftingExperience": 80000,
+    "forcedAugmentChance": 1,
     "itemImage": "images/misc/keys/lockstone.png",
     "category": "Dungeon",
     "craftingDescription": "Repairing the lockstone appears to activate some sort of latent power within it.",
@@ -32363,10 +32524,11 @@
     "tradeable": true,
     "maxAugLevel": 10,
     "augmentationCost": {
-      "1": 1
+      "9017": 1
     },
-    "craftingLevel": 60,
+    "craftingLevel": 74,
     "craftingExperience": 80000,
+    "forcedAugmentChance": 1,
     "itemImage": "images/misc/keys/lockstone.png",
     "category": "Dungeon",
     "craftingDescription": "A full map that leads to an old castle.",
@@ -32388,10 +32550,11 @@
     "tradeable": true,
     "maxAugLevel": 10,
     "augmentationCost": {
-      "1": 1
+      "9018": 1
     },
-    "craftingLevel": 60,
-    "craftingExperience": 80000,
+    "craftingLevel": 80,
+    "craftingExperience": 60000,
+    "forcedAugmentChance": 1,
     "itemImage": "images/misc/keys/lockstone.png",
     "category": "Dungeon",
     "craftingDescription": "A full map that leads to an old castle.",
@@ -32413,10 +32576,11 @@
     "tradeable": true,
     "maxAugLevel": 10,
     "augmentationCost": {
-      "1": 1
+      "9019": 1
     },
-    "craftingLevel": 60,
+    "craftingLevel": 92,
     "craftingExperience": 80000,
+    "forcedAugmentChance": 1,
     "itemImage": "images/misc/keys/lockstone.png",
     "category": "Dungeon",
     "craftingDescription": "A full map that leads to an old castle.",
@@ -32597,7 +32761,18 @@
     "tradeable": true,
     "itemImage": "/images/fishing/bait/bucket.png",
     "class": "gem",
-    "extraTooltipInfo": "A bucket of soil with worms inside! At least it isn't just a can of worms!.",
+    "extraTooltipInfo": "A bucket of soil with worms inside! At least it isn't just a can of worms!",
+    "canBeOpened": true,
+    "tags": []
+  },
+  "10009": {
+    "name": "Box of Skill Books",
+    "id": 10009,
+    "value": 1,
+    "tradeable": true,
+    "itemImage": "/images/misc/gold_lockbox.png",
+    "class": "gem",
+    "extraTooltipInfo": "An ornate lockbox containing a variety of skill books. Testing Item.",
     "canBeOpened": true,
     "tags": []
   },
@@ -32641,6 +32816,24 @@
         {
           "skill": "fishingReelPower",
           "boost": 5
+        }
+      ],
+      "augmentationBonus": [
+        {
+          "stat": "toolBoost.fishing",
+          "value": 0.5
+        },
+        {
+          "stat": "toolBoost.fishingBaitPower",
+          "value": 1
+        },
+        {
+          "stat": "toolBoost.fishingReelPower",
+          "value": 1
+        },
+        {
+          "stat": "toolBoost.fishingRarityPower",
+          "value": 0.5
         }
       ]
     },
@@ -32697,6 +32890,24 @@
         {
           "skill": "fishingRarityPower",
           "boost": 3
+        }
+      ],
+      "augmentationBonus": [
+        {
+          "stat": "toolBoost.fishing",
+          "value": 1
+        },
+        {
+          "stat": "toolBoost.fishingBaitPower",
+          "value": 1.5
+        },
+        {
+          "stat": "toolBoost.fishingReelPower",
+          "value": 2
+        },
+        {
+          "stat": "toolBoost.fishingRarityPower",
+          "value": 1
         }
       ]
     },
@@ -32755,6 +32966,24 @@
           "skill": "fishingRarityPower",
           "boost": 6
         }
+      ],
+      "augmentationBonus": [
+        {
+          "stat": "toolBoost.fishing",
+          "value": 1.5
+        },
+        {
+          "stat": "toolBoost.fishingBaitPower",
+          "value": 2.5
+        },
+        {
+          "stat": "toolBoost.fishingReelPower",
+          "value": 3
+        },
+        {
+          "stat": "toolBoost.fishingRarityPower",
+          "value": 1.5
+        }
       ]
     },
     "requiredResources": [
@@ -32812,6 +33041,24 @@
         {
           "skill": "fishingRarityPower",
           "boost": 10
+        }
+      ],
+      "augmentationBonus": [
+        {
+          "stat": "toolBoost.fishing",
+          "value": 2
+        },
+        {
+          "stat": "toolBoost.fishingBaitPower",
+          "value": 3.5
+        },
+        {
+          "stat": "toolBoost.fishingReelPower",
+          "value": 4
+        },
+        {
+          "stat": "toolBoost.fishingRarityPower",
+          "value": 2
         }
       ]
     },
@@ -32874,6 +33121,24 @@
           "skill": "fishingRarityPower",
           "boost": 15
         }
+      ],
+      "augmentationBonus": [
+        {
+          "stat": "toolBoost.fishing",
+          "value": 2.5
+        },
+        {
+          "stat": "toolBoost.fishingBaitPower",
+          "value": 4.5
+        },
+        {
+          "stat": "toolBoost.fishingReelPower",
+          "value": 5
+        },
+        {
+          "stat": "toolBoost.fishingRarityPower",
+          "value": 3.5
+        }
       ]
     },
     "requiredResources": [
@@ -32908,6 +33173,7 @@
     "requiredLevel": {
       "fishing": 80
     },
+    "forcedAugmentChance": 1,
     "itemImage": "/images/fishing/Master_Tacklebox.png",
     "tool": true,
     "class": "equipment",
@@ -32941,6 +33207,24 @@
       "itemSet": [
         10001,
         10002
+      ],
+      "augmentationBonus": [
+        {
+          "stat": "toolBoost.fishing",
+          "value": 5
+        },
+        {
+          "stat": "toolBoost.fishingBaitPower",
+          "value": 7
+        },
+        {
+          "stat": "toolBoost.fishingReelPower",
+          "value": 7.5
+        },
+        {
+          "stat": "toolBoost.fishingRarityPower",
+          "value": 6
+        }
       ]
     },
     "requiredResources": [
@@ -33919,6 +34203,102 @@
       "book"
     ]
   },
+  "13003": {
+    "id": 13003,
+    "name": "Spell Tome - Fire Ball",
+    "itemImage": "/images/combat/ability_book/red.png",
+    "value": 42000,
+    "extraTooltipInfo": "A basic tome from the Academy formerly used for teaching aspiring mages how to control and utilize fire. Be careful where you practice it!",
+    "relatedAbility": 7,
+    "class": "gem",
+    "tags": [
+      "book"
+    ]
+  },
+  "13004": {
+    "id": 13004,
+    "name": "Spell Tome - Flamethrower",
+    "itemImage": "/images/combat/ability_book/red.png",
+    "value": 42000,
+    "extraTooltipInfo": "An intermediate tome from the Academy formerly used for teaching mages how to utilize flames in a more lively manner.",
+    "relatedAbility": 18,
+    "class": "gem",
+    "tags": [
+      "book"
+    ]
+  },
+  "13005": {
+    "id": 13005,
+    "name": "Ballistics 101",
+    "itemImage": "/images/combat/ability_book/range.png",
+    "value": 42000,
+    "extraTooltipInfo": "A textbook that explains the basic principles regarding how something that goes up usually comes back down.",
+    "relatedAbility": 12,
+    "class": "gem",
+    "tags": [
+      "book"
+    ]
+  },
+  "13006": {
+    "id": 13006,
+    "name": "Projectile Based Diplomacy - I",
+    "itemImage": "/images/combat/ability_book/range.png",
+    "value": 42000,
+    "extraTooltipInfo": "A book that outline the merits of using projectiles, preferably several at once, to really get your point across.",
+    "relatedAbility": 21,
+    "class": "gem",
+    "tags": [
+      "book"
+    ]
+  },
+  "13007": {
+    "id": 13007,
+    "name": "Projectile Based Diplomacy - II",
+    "itemImage": "/images/combat/ability_book/range.png",
+    "value": 42000,
+    "extraTooltipInfo": "A book that outline the merits of using projectiles, even just a single well placed one, to really get your point across.",
+    "relatedAbility": 23,
+    "class": "gem",
+    "tags": [
+      "book"
+    ]
+  },
+  "13008": {
+    "id": 13008,
+    "name": "Projectile Based Diplomacy - III",
+    "itemImage": "/images/combat/ability_book/range.png",
+    "value": 42000,
+    "extraTooltipInfo": "A book that outline the merits of using projectiles, especially when trying to distract and divert, to really get your point across.",
+    "relatedAbility": 24,
+    "class": "gem",
+    "tags": [
+      "book"
+    ]
+  },
+  "13009": {
+    "id": 13009,
+    "name": "Apocalyptic Tome",
+    "itemImage": "/images/combat/ability_book/highmagic.png",
+    "value": 42000,
+    "extraTooltipInfo": "A spell tome that contains the necessary rituals and rites for summoning your own miniature apocalypse.",
+    "relatedAbility": 25,
+    "class": "gem",
+    "tags": [
+      "book"
+    ]
+  },
+  "13010": {
+    "id": 13010,
+    "name": "Intermediate Combat Manual - Volume 1",
+    "itemImage": "/images/combat/ability_book/melee.png",
+    "value": 42000,
+    "extraTooltipInfo": "A manual on how to hit two enemies at once in one swing.",
+    "relatedAbility": 22,
+    "class": "gem",
+    "tags": [
+      "book"
+    ]
+  },
   "15000": {
     "id": 15000,
     "name": "Slayer's Mark",
@@ -33957,9 +34337,7 @@
     "value": 150,
     "extraTooltipInfo": "A tooth taken from a slain monster; might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25001": {
     "id": 25001,
@@ -33969,9 +34347,7 @@
     "value": 250,
     "extraTooltipInfo": "A horn taken from a slain monster; might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25002": {
     "id": 25002,
@@ -33981,9 +34357,7 @@
     "value": 500,
     "extraTooltipInfo": "A sturdy horn taken from a slain monster; might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25003": {
     "id": 25003,
@@ -33993,9 +34367,7 @@
     "value": 1000,
     "extraTooltipInfo": "Some old coins. Might be worth something to a collector",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25004": {
     "id": 25004,
@@ -34005,9 +34377,7 @@
     "value": 2500,
     "extraTooltipInfo": "A rather heavy, yet primitive, gold coin. This could easily be sold for a tidy sum.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25005": {
     "id": 25005,
@@ -34017,9 +34387,7 @@
     "value": 5000,
     "extraTooltipInfo": "Some sort of token taken from the undead. Someone might be interested in it.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25006": {
     "id": 25006,
@@ -34029,9 +34397,7 @@
     "value": 5000,
     "extraTooltipInfo": "A trinket taken from the Elves; might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25007": {
     "id": 25007,
@@ -34041,9 +34407,7 @@
     "value": 5000,
     "extraTooltipInfo": "A mostly intact wing. Someone might be interested in it.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25008": {
     "id": 25008,
@@ -34053,9 +34417,7 @@
     "value": 15000,
     "extraTooltipInfo": "A rather ornate trinket; it should be worth a bit.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25009": {
     "id": 25009,
@@ -34065,9 +34427,7 @@
     "value": 100,
     "extraTooltipInfo": "Useless metal scraps made from some poor quality material. Could probably be sold to someone for cheap.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25010": {
     "id": 25010,
@@ -34077,9 +34437,7 @@
     "value": 25000,
     "extraTooltipInfo": "An exotic trinket from some unknown origin. Should be worth quite a bit to the right person.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25011": {
     "id": 25011,
@@ -34089,9 +34447,7 @@
     "value": 35000,
     "extraTooltipInfo": "A statue made from some sort of gem-like material depicting a small demon. May be worth quite a bit if you can find a buyer.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25012": {
     "id": 25012,
@@ -34101,9 +34457,7 @@
     "value": 100,
     "extraTooltipInfo": "Claws taken from a slain monster; might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25013": {
     "id": 25013,
@@ -34113,9 +34467,7 @@
     "value": 10000,
     "extraTooltipInfo": "Slightly magical blood taken from something. May be valuable to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25014": {
     "id": 25014,
@@ -34125,9 +34477,7 @@
     "value": 1000,
     "extraTooltipInfo": "Shattered pieces of equipment that probably is not worth salvaging by you; perhaps someone else may want to buy it.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25015": {
     "id": 25015,
@@ -34137,9 +34487,7 @@
     "value": 3000,
     "extraTooltipInfo": "Eggs from some creature. Probably best to get rid of this quickly.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25016": {
     "id": 25016,
@@ -34149,9 +34497,7 @@
     "value": 7500,
     "extraTooltipInfo": "Shiny dwarven coins that are of no use to you. A vendor could exchange the currency.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25017": {
     "id": 25017,
@@ -34160,12 +34506,7 @@
     "itemImage": "/images/combat/materials/junk/bone_shards.png",
     "value": 350,
     "extraTooltipInfo": "Splinters of bone taken from a slain creature. Might be worth something to someone.",
-    "class": "junk",
-    "tags": [
-      "junk",
-      "shard",
-      "fragment"
-    ]
+    "class": "junk"
   },
   "25018": {
     "id": 25018,
@@ -34175,9 +34516,7 @@
     "value": 17500,
     "extraTooltipInfo": "A giant heart, probably taken from a giant or similarly large creature. Superstitious suggests makinga meal with it will increase your attractiveness, but sadly that would mean nothing to you.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25019": {
     "id": 25019,
@@ -34187,9 +34526,7 @@
     "value": 4000,
     "extraTooltipInfo": "Scraps of some ancient piece of equipment. Its origin is unknown, but it may be worth something to the right person.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25020": {
     "id": 25020,
@@ -34199,9 +34536,7 @@
     "value": 12500,
     "extraTooltipInfo": "It appears to be a rune not created through conventional means. It is no use to you but someone may want it.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25021": {
     "id": 25021,
@@ -34211,9 +34546,7 @@
     "value": 1250,
     "extraTooltipInfo": "Pieces of light armor that is too damaged to salvage. Might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25022": {
     "id": 25022,
@@ -34223,9 +34556,7 @@
     "value": 1500,
     "extraTooltipInfo": "Pieces of armor that is too damaged to salvage. Might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25023": {
     "id": 25023,
@@ -34235,9 +34566,7 @@
     "value": 1750,
     "extraTooltipInfo": "Pieces of heavy armor that is too damaged to salvage. Might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25024": {
     "id": 25024,
@@ -34247,9 +34576,7 @@
     "value": 750,
     "extraTooltipInfo": "A tusk taken from a slain monster; might be worth something to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25025": {
     "id": 25025,
@@ -34258,12 +34585,7 @@
     "itemImage": "/images/combat/materials/junk/gem_shards.png",
     "value": 2250,
     "extraTooltipInfo": "Useless pieces of shattered gems. Not quite fine enough to be considered dust, but too small for you to properly refine or cut. Might be worth something to a vendor.",
-    "class": "junk",
-    "tags": [
-      "junk",
-      "shard",
-      "fragment"
-    ]
+    "class": "junk"
   },
   "25026": {
     "id": 25026,
@@ -34273,9 +34595,7 @@
     "value": 225,
     "extraTooltipInfo": "A useless eating utensil used by goblins. Everyone knows you should just eat your meals whole! A vendor may want this.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25027": {
     "id": 25027,
@@ -34285,9 +34605,7 @@
     "value": 10000,
     "extraTooltipInfo": "A chunk of stone that appears to be imbued with life. Useless to you, but must be valuable to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25028": {
     "id": 25028,
@@ -34297,9 +34615,7 @@
     "value": 10000,
     "extraTooltipInfo": "A chunk of stone that appears to be imbued with flame. Useless to you, but must be valuable to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25029": {
     "id": 25029,
@@ -34309,9 +34625,7 @@
     "value": 10000,
     "extraTooltipInfo": "A chunk of stone that appears to be imbued with ice. Useless to you, but must be valuable to someone.",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "25030": {
     "id": 25030,
@@ -34321,9 +34635,7 @@
     "value": 1000000,
     "extraTooltipInfo": "I wonder who added this in?",
     "class": "junk",
-    "tags": [
-      "junk"
-    ]
+    "rarity": "junk"
   },
   "100000": {
     "name": "ban_hamer",
