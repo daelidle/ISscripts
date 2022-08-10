@@ -21,7 +21,7 @@ class Tooltip {
         const heatSpan = (tooltipData.heat > 0) ? ` <span class="dwt-heat">${tooltipData.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
         return `
             <div class="daelis-wow-tooltip" data-item="${base64encode(JSON.stringify(item))}">
-                <div class="dwt-name ${tooltipData.rarity.cssClassName}">${tooltipData.name}${tooltipData.augment > 0 ? ' +'+tooltipData.augment : ''}</div>
+                <div class="dwt-name"><span class="${tooltipData.rarity.cssClassName}">${tooltipData.name}${tooltipData.augment > 0 ? ' +'+tooltipData.augment : ''}</span>${tooltipData.soulbound}</div>
                 <div class="dwt-item-type dwt-columns">
                     <span>${tooltipData.type}</span>
                     <span>${tooltipData.weapon_subtype}</span>

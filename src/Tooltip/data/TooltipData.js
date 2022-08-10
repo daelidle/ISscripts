@@ -17,6 +17,7 @@ class TooltipData {
     itemSkill = '';
     itemSet = '';
     effects = '';
+    soulbound = '';
 
 
     constructor(item, itemResource) {
@@ -31,6 +32,7 @@ class TooltipData {
         this.heat = parseInt(itemResource?.heat ?? 0);
         this.vendor = parseInt(itemResource?.value ?? 0);
         this.flavor = itemResource?.extraTooltipInfo ?? '';
+        this.soulbound = item.soulBound ? '<span class="dwt-soulbound">Soulbound</span>' : '';
     }
 
     getRarity(itemResource) {
