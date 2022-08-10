@@ -70,7 +70,7 @@ class Tooltip {
     }
 
     static formatStat(statValue) {
-        return (statValue > 0 ? '+' : '') + statValue;
+        return (statValue > 0 ? '+' : '') + statValue.toFixed(2).replace('.00', '');
     }
 }
 
