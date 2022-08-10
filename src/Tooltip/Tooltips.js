@@ -35,6 +35,7 @@ class Tooltip {
                     <div class="dwt-stats-seed dwt-columns">${tooltipData.stats.seedStats}</div>
                     <div class="dwt-stats-yield dwt-columns">${tooltipData.stats.yieldStats}</div>
                     <div class="dwt-stats-food">${tooltipData.stats.foodStats}</div>
+                    <div class="dwt-stats-chest">${tooltipData.stats.chestStats}</div>
                     <div class="dwt-stats-bait dwt-columns">${tooltipData.stats.baitStats}</div>
                     <div class="dwt-stats-elite-scrolls dwt-columns">${tooltipData.stats.eliteScrollStats}</div>
                     <div class="dwt-stats-dungeon-key dwt-columns">${tooltipData.stats.dungeonKeyStats}</div>
@@ -59,6 +60,7 @@ class Tooltip {
         if (itemResource === undefined || itemResource === null) return new DefaultTooltip();
         if (itemResource.hasOwnProperty('equipmentStats')) return new EquipmentTooltip();
         if (itemResource.hasOwnProperty('fishingBait')) return new FishingBaitTooltip();
+        if (itemResource.hasOwnProperty('canBeOpened')) return new ChestTooltip();
         if (itemResource.tags.includes('ammunition')) return new AmmunitionTooltip();
         if (itemResource.tags.includes('ingredient') || itemResource.tags.includes('consumable')) return new FoodTooltip();
         if (itemResource.tags.includes('dungeon')) return new DungeonKeyTooltip();

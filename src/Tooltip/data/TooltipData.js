@@ -11,7 +11,7 @@ class TooltipData {
     weapon_subtype = '';
     weapon_speed_and_type = '';
     stats = {strengthStats:'', attackStats: '', defenseStats: '', skillStats: '', seedStats: '', yieldStats: '', foodStats: '',
-        eliteScrollStats: '', dungeonKeyStats: '', baitStats: ''};
+        eliteScrollStats: '', dungeonKeyStats: '', baitStats: '', chestStats: ''};
     enchant = '';
     requiredStats = '';
     itemSkill = '';

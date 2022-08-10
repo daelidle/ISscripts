@@ -38,6 +38,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/data/itemRarity.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/data/TooltipData.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/AmmunitionTooltip.j
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/ChestTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/DungeonKeyTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/EliteScrollTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/Tooltip/FishingBaitTooltip.js
