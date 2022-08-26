@@ -1,5 +1,11 @@
 class EquipmentTooltip {
 
+    affinityLabels = {
+        Accuracy: "Accuracy",
+        OffensiveAffinity: "Offense",
+        DefensiveAffinity: "Defense"
+    }
+
     fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
         if (!itemResource) return;
 
@@ -46,16 +52,14 @@ class EquipmentTooltip {
     }
 
     getStats(item, itemResource){
-        const itemStats = this._parseStats(item, itemResource);
-        let strengthStats = '';
-        if (Object.keys(itemStats.strengthStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.strengthStats)) strengthStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
-        let attackStats = '';
-        if (Object.keys(itemStats.attackStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.attackStats)) attackStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
-        let defenseStats = '';
-        if (Object.keys(itemStats.defenseStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.defenseStats)) defenseStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
-        let skillStats = '';
-        if (Object.keys(itemStats.skillStats).length > 0) for (const [type, bonus] of Object.entries(itemStats.skillStats)) skillStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
-        return {strengthStats: strengthStats, attackStats: attackStats, defenseStats: defenseStats, skillStats: skillStats};
+        const indexedStats = this._parseStats(item, itemResource);
+        const itemStats = this._generateLabeledStats(indexedStats);
+        const stats = {};
+        if (Object.keys(itemStats.strengthStats).length > 0) stats.strengthStats = this._generateHtmlStats(itemStats.strengthStats);
+        if (Object.keys(itemStats.attackStats).length > 0) stats.attackStats = this._generateHtmlStats(itemStats.attackStats);
+        if (Object.keys(itemStats.defenseStats).length > 0) stats.defenseStats = this._generateHtmlStats(itemStats.defenseStats);
+        if (Object.keys(itemStats.skillStats).length > 0) stats.skillStats = this._generateHtmlStats(itemStats.skillStats);
+        return stats;
     }
 
     _parseStats(item, itemResource) {
@@ -78,15 +82,15 @@ class EquipmentTooltip {
             if (!(augmentationBonus.stat in indexedStats)) indexedStats[augmentationBonus.stat] = 0;
             indexedStats[augmentationBonus.stat] += augmentationBonus.value * (item.augmentations || 0);
         });
-        return this._generateLabeledStats(indexedStats);
+        return indexedStats;
     }
 
     _generateLabeledStats(indexedStats){
         const strengthStatsLabels = {'weaponBonus.strength': 'Strength', 'weaponBonus.intellect': 'Intellect', 'weaponBonus.dexterity': 'Dexterity',
-            ...DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', 'Affinity')};
-        const attackStatsLabels = {...DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', 'Accuracy')};
+            ...DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', this.affinityLabels.OffensiveAffinity)};
+        const attackStatsLabels = {...DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', this.affinityLabels.Accuracy)};
         const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina',
-            ...DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', 'Def. Affinity')};
+            ...DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', this.affinityLabels.DefensiveAffinity)};
         const skillStatsLabels = {'toolBoost.fishing': 'Fishing', 'toolBoost.fishingBaitPower': 'Bait', 'toolBoost.fishingReelPower': 'Reel', 'toolBoost.fishingRarityPower': 'Bonus Rarity',
             'toolBoost.mining': 'Mining', 'toolBoost.foraging': 'Foraging', 'toolBoost.farming': 'Farming', 'toolBoost.cooking': 'Cooking', 'toolBoost.smithing': 'Smithing' };
 
@@ -100,6 +104,16 @@ class EquipmentTooltip {
         for (const [indexStat, label] of Object.entries(skillStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) skillStats[label] = indexedStats[indexStat];
 
         return {strengthStats: strengthStats, attackStats: attackStats, defenseStats: defenseStats, skillStats: skillStats};
+    }
+
+    _generateHtmlStats(itemStats){
+        let htmlStats = '';
+        for (const [type, bonus] of Object.entries(itemStats)) {
+            if (type.includes(this.affinityLabels.OffensiveAffinity) || type.includes(this.affinityLabels.DefensiveAffinity)){
+                if (bonus !== 1) htmlStats += `<span>${bonus}x ${type}</span>`;
+            } else htmlStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
+        }
+        return htmlStats;
     }
 
     getEnchantSection(item, itemResource, enchantments) {
