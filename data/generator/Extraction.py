@@ -11,7 +11,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="[%(levelname)8s][%(filename)s:%(lineno)s - %(funcName)s()] %(message)s",
 )
-idlescape_site = "https://www.idlescape.com"
+idlescape_site = "https://dev.idlescape.com"
 output_dir = Path(__file__).resolve().parent.parent.joinpath("raw")
 
 
