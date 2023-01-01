@@ -31,7 +31,7 @@ class DamageMeter {
             case "combat:splotch":
                 this._parseCombatHit(message.data);
                 break;
-            case "update player":
+            case "update:player":
                 this._parseUpdatePlayer(message.data);
                 break;
             default:

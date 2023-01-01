@@ -84,10 +84,10 @@ class DisplayPricesInventory {
             const newNode = document.createElement("div");
             newNode.className = "price";
             newNode.style.position = "absolute";
-            newNode.style.top = "-4px";
-            newNode.style.left = "1px";
+            newNode.style.top = "-1px";
+            newNode.style.left = "2px";
             newNode.style.color = "#ffc107";
-            newNode.style.fontSize = "11px";
+            newNode.style.fontSize = "10px";
             const lastNode = item.lastElementNode;
             item.insertBefore(newNode, lastNode);
             const enchantNode = item.getElementsByClassName("item-enchant").item(0);

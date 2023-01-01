@@ -1,7 +1,10 @@
 class DungeonKeyTooltip {
 
-    getItemType(itemResource){
-        return 'Dungeon Key';
+    fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
+        if (!itemResource) return;
+
+        tooltipData.type = 'Dungeon Key';
+        tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource)};
     }
 
     getStats(itemResource, item, gameData){

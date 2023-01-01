@@ -12,7 +12,7 @@ class TrackerUI {
         const buttonId = "daelis_resource_tracker";
         if (document.getElementById(buttonId) !== null) return;
         const imageButtonHtml = `<img src="/images/money_icon.png" id="${buttonId}" alt="Resources Tracker" class="header-league-icon" style="pointer-events: all !important;">`;
-        document.getElementById('usersOnline').insertAdjacentHTML('beforeend', imageButtonHtml);
+        document.getElementById('usersOnline').insertAdjacentHTML('afterend', imageButtonHtml);
         let imageButton = document.getElementById(buttonId);
         let that = this;
         imageButton.addEventListener("click",function(){

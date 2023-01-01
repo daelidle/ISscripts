@@ -8,11 +8,11 @@ class State {
 
     onMessage(message){
         switch (message.event){
-            case "update player":
+            case "update:player":
                 this.parseUpdatePlayerMessage(message);
                 this._exposeUpdatedState();
                 break;
-            case "update inventory":
+            case "update:inventory":
                 this.parseUpdateInventoryMessage(message);
                 this._exposeUpdatedState();
                 break;
