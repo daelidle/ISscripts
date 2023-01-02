@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         [Test Server] Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      2.0.2
+// @version      2.0.3
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/test-server/assets/images/config-icon.png
@@ -21,12 +21,6 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DamageMeter/Combat.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DisplayPricesInventory/DisplayPricesInventory.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/InventoryFilter/InventoryFilter.js
-// @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/LoadoutViewer/LoadoutViewer.js
-// @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/LoadoutViewer/LoadoutConfig.js
-// @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/LoadoutViewer/LoadoutUI.js
-// @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/LoadoutViewer/LoadoutUIAlias.js
-// @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/LoadoutViewer/LoadoutUIGear.js
-// @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/LoadoutViewer/LoadoutUIFood.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/MarketplaceFilter/MarketplaceFilter.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/NoGatheringIronman/NoGatheringIronman.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/Prices/Prices.js
@@ -69,7 +63,6 @@
     daelIS.addExtension(DamageMeter);
     daelIS.addExtension(DisplayPricesInventory);
     daelIS.addExtension(InventoryFilter);
-    daelIS.addExtension(LoadoutViewer);
     daelIS.addExtension(MarketplaceFilter);
     daelIS.addExtension(ResourceTracker);
     daelIS.addExtension(NoGatheringIronman);

@@ -49,13 +49,13 @@ class DamageMeter {
         let isSourceMonster = !this.combat.isPlayerOnGroup(attackerId);
 
         switch (damageType) {
-            case 'miss':
+            case 'Miss':
                 break;
-            case 'heal':
+            case 'Heal':
                 if (!isSourceMonster) this.combat.addHealing(attackerId, damage);
                 break;
             default:
-                if (!(damageType in DamageUtils.allDamageTypes)) console.log(`New type of Hit ${damageType}`);
+                if (!DamageUtils.allDamageTypes.includes(damageType)) console.log(`New type of Hit ${damageType}`);
                 if (!isSourceMonster) this.combat.addDamageDealt(attackerId, damage, damageType);
                 else this.combat.addDamageReceived(defenderId, damage, damageType);
                 break;
