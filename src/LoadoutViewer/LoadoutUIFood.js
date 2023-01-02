@@ -4,7 +4,7 @@ class LoadoutUIFood {
         let foodSetHtml = '';
         loadout.forEach(item=> {
             item = normalizeItem(item);
-            const itemResource = gameData.gameResources[item.itemID];
+            const itemResource = gameData.items[item.itemID];
             foodSetHtml += this._generateItemHtml(item, itemResource, gameData);
         });
         return `

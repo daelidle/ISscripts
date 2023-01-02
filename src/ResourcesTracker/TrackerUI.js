@@ -52,9 +52,9 @@ class TrackerUI {
         let itemsHtml = '';
         for (const [signature, stack] of Object.entries(trackedResources)) {
             let item = getItemFromItemSignature(signature);
-            let itemResource = this._gameData.gameResources[item.itemID];
+            let itemResource = this._gameData.items[item.itemID];
             if (itemResource === undefined){
-                console.log(`can't find id ${item.itemID} on the gameResources`);
+                console.log(`can't find item with id ${item.itemID} on the gameData`);
                 continue;
             }
             let stacksColourClass = stack < 0 ? 'lightred-text' : '';

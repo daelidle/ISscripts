@@ -12,7 +12,7 @@ class Tooltip {
 
     generateTooltip(item, compactVersion) {
         const gameData = this.daelis.gameData;
-        const itemResource = gameData.gameResources[item.itemID];
+        const itemResource = gameData.items[item.itemID];
         const equippedItems = this.daelis.getPlayerState().equipment;
         const tooltipData = new TooltipData(item, itemResource);
         const tooltipGenerator = this._getTooltipType(itemResource);

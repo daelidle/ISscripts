@@ -29,7 +29,7 @@ class SeedTooltip {
         if (itemResource.yield !== undefined){
             itemResource.yield.forEach(production => {
                 if (production.chance >= 1){
-                    yieldStats += `<span>${production.min}-${production.max} ${gameData.gameResources[production.id].name}</span>`;
+                    yieldStats += `<span>${production.min}-${production.max} ${gameData.items[production.id].name}</span>`;
                 }
             });
         }

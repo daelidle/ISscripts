@@ -4,7 +4,7 @@ class LoadoutUIGear {
         const gearSet = {};
         loadout.forEach(item=> {
             item = normalizeItem(item);
-            const itemResource = gameData.gameResources[item.itemID];
+            const itemResource = gameData.items[item.itemID];
             gearSet[itemResource.slot] = this._generateItemHtml(item, itemResource, gameData);
         });
         return `<div class="combat-gear">

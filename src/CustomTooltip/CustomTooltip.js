@@ -97,8 +97,8 @@ class CustomTooltip {
                     // Event Shop
                     delete item.name;
                     if (item.itemID === undefined) {
-                        const enchantmentID = that.daelis.gameData.enchantments[item.enchantmentID];
-                        return `<div class="daelis-wow-tooltip">${getEnchantDescription(enchantmentID, 2)}</div>`;
+                        const enchantment = that.daelis.gameData.enchantments[item.enchantmentID];
+                        return `<div class="daelis-wow-tooltip">${enchantment.getTooltip(2, enchantment.strengthPerLevel)}</div>`;
                     }
                 } else {
                     // General Shop
@@ -206,7 +206,7 @@ class CustomTooltip {
         const compactVersion = this.pressedKeys.includes(CustomTooltip.compactTooltipKey);
         const itemTooltip = this.daelis.generateTooltip(item, compactVersion);
         if (this.pressedKeys.includes(CustomTooltip.compareEquipmentKey)){
-            const itemResource = this.daelis.gameData.gameResources[item.itemID];
+            const itemResource = this.daelis.gameData.items[item.itemID];
             if (itemResource !== undefined && itemResource.hasOwnProperty('slot')){
                 const equippedItemOnSameSlot = this.daelis.getPlayerState().equipment[itemResource.slot];
                 if (equippedItemOnSameSlot !== undefined){
@@ -219,7 +219,7 @@ class CustomTooltip {
     }
 
     _initializeIdCaches() {
-        for (const [id, item] of Object.entries(this.daelis.gameData.gameResources)) this.cacheIds.items[item.name] = parseInt(id);
+        for (const [id, item] of Object.entries(this.daelis.gameData.items)) this.cacheIds.items[item.name] = parseInt(id);
         for (const [id, enchant] of Object.entries(this.daelis.gameData.enchantments)) this.cacheIds.enchants[enchant.name] = parseInt(id);
     }
 

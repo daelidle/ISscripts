@@ -25,7 +25,7 @@ class TooltipIdsUser {
     _initializeIdCaches() {
         this.gameItems = {};
         this.gameEnchants = {};
-        for (const [id, item] of Object.entries(this.gameData.gameResources)) this.gameItems[item.name] = parseInt(id);
+        for (const [id, item] of Object.entries(this.gameData.items)) this.gameItems[item.name] = parseInt(id);
         for (const [id, enchant] of Object.entries(this.gameData.enchantments)) this.gameEnchants[enchant.name] = parseInt(id);
     }
 

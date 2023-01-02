@@ -7,7 +7,7 @@ function displayCompletePopup(title, message, extendedMessage, confirmString, ca
     const popUpId = `DaelISPopup${timestamp}`;
     const popUpCancel = `DaelISCancel${timestamp}`;
     const popUpConfirm = `DaelISConfirm${timestamp}`;
-    const extraMessage = extendedMessage === null ? '' : `<div class="offline-progress-box all-items">${extendedMessage}</div>`;
+    const extraMessage = extendedMessage === null ? '' : `<div class="offline-progress-box all-items" style="padding: 15px;">${extendedMessage}</div>`;
     const popUpHTML = `<div role="presentation" id="${popUpId}" class="MuiDialog-root feedback-dialog sell-item-dialog popup-dialog ${customClass}" style="position: fixed; z-index: 1300; inset: 0;">
                        <div class="MuiBackdrop-root" aria-hidden="true" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"></div>
                        <div tabindex="0" data-test="sentinelStart"></div>

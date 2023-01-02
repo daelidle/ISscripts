@@ -54,7 +54,7 @@ class FoodTooltip {
 
         const enchantment = enchantments[item.enchantmentID];
         if (enchantment !== undefined){
-            const description = getEnchantDescription(enchantment, item.enchantmentStrength);
+            const description = enchantment.getTooltip(item.enchantmentStrength, enchantment.strengthPerLevel);
             return `<div><span class="dwt-effects-name">${enchantment.name}:</span> <span class="dwt-effects-description">${description}</span></div>`;
         }
         return '';

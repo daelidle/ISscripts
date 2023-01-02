@@ -7,7 +7,7 @@ const itemSets = require('../raw/sets.json');
 let jsFileContent =
 `class IdlescapeGameData {
     enchantments = ${JSON.stringify(dataMinedEnchants)};
-    gameResources = ${JSON.stringify(dataMinedItems)};
+    items = ${JSON.stringify(dataMinedItems)};
     locations = ${JSON.stringify(dataMinedLocations)};
     abilities = ${JSON.stringify(dataMinedAbilities)};
     sets = ${JSON.stringify(itemSets)};
