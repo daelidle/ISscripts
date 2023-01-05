@@ -56,8 +56,10 @@ class EquipmentTooltip {
         const itemStats = this._generateLabeledStats(indexedStats);
         const stats = {};
         if (Object.keys(itemStats.strengthStats).length > 0) stats.strengthStats = this._generateHtmlStats(itemStats.strengthStats);
-        if (Object.keys(itemStats.attackStats).length > 0) stats.attackStats = this._generateHtmlStats(itemStats.attackStats);
+        if (Object.keys(itemStats.strengthAffinities).length > 0) stats.strengthAffinities = this._generateHtmlStats(itemStats.strengthAffinities);
+        if (Object.keys(itemStats.attackAffinities).length > 0) stats.attackAffinities = this._generateHtmlStats(itemStats.attackAffinities);
         if (Object.keys(itemStats.defenseStats).length > 0) stats.defenseStats = this._generateHtmlStats(itemStats.defenseStats);
+        if (Object.keys(itemStats.defenseAffinities).length > 0) stats.defenseAffinities = this._generateHtmlStats(itemStats.defenseAffinities);
         if (Object.keys(itemStats.skillStats).length > 0) stats.skillStats = this._generateHtmlStats(itemStats.skillStats);
         return stats;
     }
@@ -86,31 +88,39 @@ class EquipmentTooltip {
     }
 
     _generateLabeledStats(indexedStats){
-        const strengthStatsLabels = {'weaponBonus.strength': 'Strength', 'weaponBonus.intellect': 'Intellect', 'weaponBonus.dexterity': 'Dexterity',
-            ...DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', this.affinityLabels.OffensiveAffinity)};
-        const attackStatsLabels = {...DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', this.affinityLabels.Accuracy)};
-        const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina',
-            ...DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', this.affinityLabels.DefensiveAffinity)};
+        const strengthStatsLabels = {'weaponBonus.strength': 'Strength', 'weaponBonus.intellect': 'Intellect', 'weaponBonus.dexterity': 'Dexterity'};
+        const strengthAffinitiesLabels = DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', this.affinityLabels.OffensiveAffinity);
+        const attackAffinitiesLabels = DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', this.affinityLabels.Accuracy);
+        const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina'};
+        const defenseAffinitiesLabels = DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', this.affinityLabels.DefensiveAffinity);
         const skillStatsLabels = {'toolBoost.fishing': 'Fishing', 'toolBoost.fishingBaitPower': 'Bait', 'toolBoost.fishingReelPower': 'Reel', 'toolBoost.fishingRarityPower': 'Bonus Rarity',
             'toolBoost.mining': 'Mining', 'toolBoost.foraging': 'Foraging', 'toolBoost.farming': 'Farming', 'toolBoost.cooking': 'Cooking', 'toolBoost.smithing': 'Smithing' };
 
-        const strengthStats = {};
-        for (const [indexStat, label] of Object.entries(strengthStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) strengthStats[label] = indexedStats[indexStat];
-        const attackStats = {};
-        for (const [indexStat, label] of Object.entries(attackStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) attackStats[label] = indexedStats[indexStat];
-        const defenseStats = {};
-        for (const [indexStat, label] of Object.entries(defenseStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) defenseStats[label] = indexedStats[indexStat];
-        const skillStats = {};
-        for (const [indexStat, label] of Object.entries(skillStatsLabels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) skillStats[label] = indexedStats[indexStat];
+        const strengthStats = this._mapStatValuesToLabels(strengthStatsLabels, indexedStats);
+        const strengthAffinities = this._mapStatValuesToLabels(strengthAffinitiesLabels, indexedStats);
+        const attackAffinities = this._mapStatValuesToLabels(attackAffinitiesLabels, indexedStats);
+        const defenseStats = this._mapStatValuesToLabels(defenseStatsLabels, indexedStats);
+        const defenseAffinities = this._mapStatValuesToLabels(defenseAffinitiesLabels, indexedStats);
+        const skillStats = this._mapStatValuesToLabels(skillStatsLabels, indexedStats);
 
-        return {strengthStats: strengthStats, attackStats: attackStats, defenseStats: defenseStats, skillStats: skillStats};
+        return {strengthStats: strengthStats, strengthAffinities: strengthAffinities, attackAffinities: attackAffinities,
+            defenseStats: defenseStats, defenseAffinities: defenseAffinities, skillStats: skillStats};
+    }
+
+    _mapStatValuesToLabels(labels, indexedStats){
+        const stats = {};
+        for (const [indexStat, label] of Object.entries(labels)) if (indexStat in indexedStats && indexedStats[indexStat] !== 0) stats[label] = indexedStats[indexStat];
+        return stats;
     }
 
     _generateHtmlStats(itemStats){
         let htmlStats = '';
         for (const [type, bonus] of Object.entries(itemStats)) {
             if (type.includes(this.affinityLabels.OffensiveAffinity) || type.includes(this.affinityLabels.DefensiveAffinity)){
-                if (bonus !== 1) htmlStats += `<span>${bonus}x ${type}</span>`;
+                if (bonus !== 1) {
+                    const htmlClass = bonus > 1 ? 'dwt-stat-positive' : 'dwt-stat-negative';
+                    htmlStats += `<span class="${htmlClass}">${bonus.toFixed(2)}x ${type}</span>`;
+                }
             } else htmlStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
         }
         return htmlStats;

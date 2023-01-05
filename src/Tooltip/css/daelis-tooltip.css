@@ -43,10 +43,11 @@
 .dwt-stats {
     min-height: 5px;
 }
-.dwt-stats-attack, .dwt-stats-strength, .dwt-stats-defensive, .dwt-stats-skills {
+.dwt-stats-attack, .dwt-stats-strength, .dwt-stats-defensive, .dwt-stats-skills, .dwt-stats-strengthAffinities, .dwt-stats-defensiveAffinities {
     margin-top: 5px;
 }
-.dwt-stats-attack:empty, .dwt-stats-strength:empty, .dwt-stats-defensive:empty, .dwt-stats-skills:empty, .dwt-item-set:empty, .dwt-item-set-effects-list:empty {
+.dwt-stats-attack:empty, .dwt-stats-strength:empty, .dwt-stats-defensive:empty, .dwt-stats-skills:empty, .dwt-item-set:empty,
+.dwt-item-set-effects-list:empty, .dwt-stats-defensiveAffinities:empty, .dwt-stats-strengthAffinities:empty {
     margin-top: 0;
 }
 .dwt-enchant, .dwt-item-skill, .dwt-set-item-equipped, .dwt-set-effect-active, .dwt-ability-active, .dwt-healing-use, .dwt-chest-use {
@@ -55,6 +56,15 @@
 .dwt-ability-inactive {
     color: red;
 }
+
+.dwt-stat-positive {
+    color: #1eff00;
+}
+
+.dwt-stat-negative {
+    color: orange;
+}
+
 .dwt-enchant-unactive, .dwt-set-effect-inactive, .dwt-set-item-unequipped, .dwt-soulbound {
     color: #9d9d9d;
 }

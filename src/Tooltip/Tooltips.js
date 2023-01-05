@@ -14,7 +14,8 @@ class Tooltip {
         const gameData = this.daelis.gameData;
         const itemResource = gameData.items[item.itemID];
         const equippedItems = this.daelis.getPlayerState().equipment;
-        const tooltipData = new TooltipData(item, itemResource);
+        const tooltipData = new TooltipData();
+        this._initializeGenericData(tooltipData, item, itemResource);
         const tooltipGenerator = this._getTooltipType(itemResource);
         tooltipGenerator.fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems);
 
@@ -29,8 +30,10 @@ class Tooltip {
                 <div class="dwt-weapon-info dwt-columns">${tooltipData.weapon_speed_and_type}</div>
                 <div class="dwt-stats">
                     <div class="dwt-stats-strength dwt-columns">${tooltipData.stats.strengthStats}</div>
-                    <div class="dwt-stats-attack dwt-columns">${tooltipData.stats.attackStats}</div>
+                    <div class="dwt-stats-strengthAffinities dwt-columns">${tooltipData.stats.strengthAffinities}</div>
+                    <div class="dwt-stats-attack dwt-columns">${tooltipData.stats.attackAffinities}</div>
                     <div class="dwt-stats-defensive dwt-columns">${tooltipData.stats.defenseStats}</div>
+                    <div class="dwt-stats-defensiveAffinities dwt-columns">${tooltipData.stats.defenseAffinities}</div>
                     <div class="dwt-stats-skills dwt-columns">${tooltipData.stats.skillStats}</div>
                     <div class="dwt-stats-seed dwt-columns">${tooltipData.stats.seedStats}</div>
                     <div class="dwt-stats-yield dwt-columns">${tooltipData.stats.yieldStats}</div>
@@ -54,6 +57,22 @@ class Tooltip {
                     </span>                    
                 </div>
             </div>`;
+    }
+
+    _initializeGenericData(tooltipData, item, itemResource){
+        if (!itemResource) {
+            tooltipData.name = 'Unknown Item';
+            return;
+        }
+        tooltipData.name = item?.name ?? itemResource.name;
+        const rarity = itemResource?.rarity ?? 'common';
+        tooltipData.rarity = itemRarity.getByTag(rarity);
+        tooltipData.augment = parseInt(item?.augmentations ?? 0);
+        tooltipData.quantity = (parseInt(item.itemID) === 7050) ? parseInt(item.christmasSpirit ?? 1) : parseInt(item?.stackSize ?? 1);
+        tooltipData.heat = parseInt(itemResource?.heat ?? 0);
+        tooltipData.vendor = parseInt(itemResource?.value ?? 0);
+        tooltipData.flavor = itemResource?.extraTooltipInfo ?? '';
+        tooltipData.soulbound = item.soulBound ? '<span class="dwt-soulbound">Soulbound</span>' : '';
     }
 
     _getTooltipType(itemResource){
