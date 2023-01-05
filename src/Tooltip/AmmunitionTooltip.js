@@ -16,8 +16,8 @@ class AmmunitionTooltip {
         const damageMultiplier = itemResource.ammunitionMults?.damageMult ?? 0;
         const accuracyMultiplier = itemResource.ammunitionMults?.accuracyMult ?? 0;
         let strengthStats = '';
-        if (damageMultiplier) strengthStats += `<span>${Tooltip.formatStat(damageMultiplier)}x Damage</span>`;
-        if (accuracyMultiplier) strengthStats += `<span>${Tooltip.formatStat(accuracyMultiplier)}x Accuracy</span>`;
+        if (damageMultiplier) strengthStats += `<span>${damageMultiplier.toFixed(2)}x Damage</span>`;
+        if (accuracyMultiplier) strengthStats += `<span>${accuracyMultiplier.toFixed(2)}x Accuracy</span>`;
 
         return {strengthStats: strengthStats};
     }

@@ -67,13 +67,12 @@ class EquipmentTooltip {
 
     _parseStats(item, itemResource) {
         const indexedStats = {};
-        const ignoredStats = ['itemSet', 'slot', 'grantedAbility'];
+        const ignoredStats = ['itemSet', 'slot', 'attackSpeed', 'grantedAbility', 'augmentationBonus'];
         for (const [statName, statValue] of Object.entries(itemResource.equipmentStats)) {
             if (ignoredStats.includes(statName)) continue;
-            if (Array.isArray(statValue)){ // Affinities and toolboxes
+            if (Array.isArray(statValue)){ // Tools
                 statValue.forEach(stats => {
-                    if ('affinity' in stats) indexedStats[`${statName}.${stats.affinity}`] = stats.rating;
-                    else if ('skill' in stats) indexedStats[`${statName}.${stats.skill}`] = stats.boost;
+                    if ('skill' in stats) indexedStats[`${statName}.${stats.skill}`] = stats.boost;
                 });
             } else if (isDictionary(statValue)) {
                 for (const [subStatName, subStatValue] of Object.entries(statValue)) {
@@ -89,10 +88,10 @@ class EquipmentTooltip {
     }
 
     _generateLabeledStats(indexedStats){
-        const strengthStatsLabels = {'weaponBonus.strength': 'Strength', 'weaponBonus.intellect': 'Intellect', 'weaponBonus.dexterity': 'Dexterity'};
+        const strengthStatsLabels = {'weaponBonus.strength': 'Strength', 'weaponBonus.intellect': 'Intellect', 'weaponBonus.dexterity': 'Dexterity', 'offensiveCritical.chance': 'Offensive Crit', 'offensiveCritical.damageMultiplier': 'Crit Mult'};
         const strengthAffinitiesLabels = DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', this.affinityLabels.OffensiveAffinity);
         const attackAffinitiesLabels = DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', this.affinityLabels.Accuracy);
-        const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina'};
+        const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina', 'defensiveCritical.chance': 'Defensive Crit', 'defensiveCritical.damageMultiplier': 'Crit Mult'};
         const defenseAffinitiesLabels = DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', this.affinityLabels.DefensiveAffinity);
         const skillStatsLabels = {'toolBoost.fishing': 'Fishing', 'toolBoost.fishingBaitPower': 'Bait', 'toolBoost.fishingReelPower': 'Reel', 'toolBoost.fishingRarityPower': 'Bonus Rarity',
             'toolBoost.mining': 'Mining', 'toolBoost.foraging': 'Foraging', 'toolBoost.farming': 'Farming', 'toolBoost.cooking': 'Cooking', 'toolBoost.smithing': 'Smithing' };
@@ -122,7 +121,10 @@ class EquipmentTooltip {
                     const htmlClass = bonus > 1 ? 'dwt-stat-positive' : 'dwt-stat-negative';
                     htmlStats += `<span class="${htmlClass}">${bonus.toFixed(2)}x ${type}</span>`;
                 }
-            } else htmlStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
+            }
+            else if (type === 'Offensive Crit' || type === 'Defensive Crit') htmlStats += `<span>${(bonus * 100).toFixed(2).replace('.00', '')}% ${type}</span>`;
+            else if (type === 'Crit Mult') htmlStats += `<span">${bonus.toFixed(2)}x ${type}</span>`;
+            else htmlStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
         }
         return htmlStats;
     }
