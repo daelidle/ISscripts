@@ -18,6 +18,7 @@ class EquipmentTooltip {
         tooltipData.enchant = this.getEnchantSection(item, itemResource, gameData.enchantments);
         tooltipData.itemSkill = this.getItemSkillSection(item, itemResource, gameData.abilities);
         tooltipData.effects = this.getItemEffects(item, itemResource, gameData.abilities, gameData.enchantments);
+        tooltipData.soulbound = this.getSoulBoundSection(item);
     }
 
     getItemType(itemResource){
@@ -205,6 +206,17 @@ class EquipmentTooltip {
             itemEffects += `<div><span class="dwt-effects-name">${enchantment.name}:</span> <span class="dwt-effects-description">${description}</span></div>`;
         }
         return itemEffects;
+    }
+
+    getSoulBoundSection(item) {
+        if (!item.soulBound) return '';
+        let soulBoundHtml = '<div class="dwt-soulbound-label">Soulbound</div>';
+        if (item.itemLevel) soulBoundHtml += `<div class="dwt-soulbound-level">Item Level ${item.itemLevel}</div>`;
+        if (item.itemExperience) {
+            const nextLevelExperience = Math.round(1000 + item.itemLevel * 150 ** (1.3333333 + item.itemLevel / 10));
+            soulBoundHtml += `<div class="dwt-soulbound-exp">Item XP ${item.itemExperience} / ${nextLevelExperience}</div>`;
+        }
+        return soulBoundHtml;
     }
 
     _abilityIsActiveOnItem(item, ability){

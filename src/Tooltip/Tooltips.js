@@ -22,12 +22,13 @@ class Tooltip {
         const heatSpan = (tooltipData.heat > 0) ? ` <span class="dwt-heat">${tooltipData.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
         return `
             <div class="daelis-wow-tooltip" data-item="${base64encode(JSON.stringify(item))}">
-                <div class="dwt-name"><span class="${tooltipData.rarity.cssClassName}">${tooltipData.name}${tooltipData.augment > 0 ? ' +'+tooltipData.augment : ''}</span>${tooltipData.soulbound}</div>
+                <div class="dwt-name"><span class="${tooltipData.rarity.cssClassName}">${tooltipData.name}${tooltipData.augment > 0 ? ' +'+tooltipData.augment : ''}</span></div>
                 <div class="dwt-item-type dwt-columns">
                     <span>${tooltipData.type}</span>
                     <span>${tooltipData.weapon_subtype}</span>
                 </div>
                 <div class="dwt-weapon-info dwt-columns">${tooltipData.weapon_speed_and_type}</div>
+                <div class="dwt-soulbound-block">${tooltipData.soulbound}</div>
                 <div class="dwt-stats">
                     <div class="dwt-stats-strength dwt-columns">${tooltipData.stats.strengthStats}</div>
                     <div class="dwt-stats-strengthAffinities dwt-columns">${tooltipData.stats.strengthAffinities}</div>
@@ -72,7 +73,6 @@ class Tooltip {
         tooltipData.heat = parseInt(itemResource?.heat ?? 0);
         tooltipData.vendor = parseInt(itemResource?.value ?? 0);
         tooltipData.flavor = itemResource?.extraTooltipInfo ?? '';
-        tooltipData.soulbound = item.soulBound ? '<span class="dwt-soulbound">Soulbound</span>' : '';
     }
 
     _getTooltipType(itemResource){

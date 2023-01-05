@@ -80,9 +80,14 @@
 .tippy-box {
     background-color: transparent;
 }
-.dwt-item-set-name {
+.dwt-item-set-name, .dwt-soulbound-block {
     color: #ffd100;
 }
+
+.dwt-soulbound-level, .dwt-soulbound-exp {
+    font-size: 10px;
+}
+
 .dwt-item-set, .dwt-item-set-effects-list {
     margin-top: 10px;
 }
