@@ -1,4 +1,5 @@
 class FoodTooltip {
+    FOOD_DEFAULT_ENCHANT_STRENGTH = 1;
 
     fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
         if (!itemResource) return;
@@ -28,7 +29,7 @@ class FoodTooltip {
     getEnchantSection(item, enchantments) {
         if (!item.enchantmentID) return '';
 
-        const enchantmentStrength = item.stackStrength || 1;
+        const enchantmentStrength = item.stackStrength || this.FOOD_DEFAULT_ENCHANT_STRENGTH;
         const enchantment = enchantments[item.enchantmentID];
         return `<span class="dwt-enchant-active">${enchantment.name} ${enchantmentStrength}</span>`;
     }
@@ -50,7 +51,7 @@ class FoodTooltip {
 
         const enchantment = enchantments[item.enchantmentID];
         if (enchantment !== undefined){
-            const description = enchantment.getTooltip(item.enchantmentStrength, enchantment.strengthPerLevel);
+            const description = enchantment.getTooltip(item.stackStrength ?? this.FOOD_DEFAULT_ENCHANT_STRENGTH, enchantment.strengthPerLevel);
             return `<div><span class="dwt-effects-name">${enchantment.name}:</span> <span class="dwt-effects-description">${description}</span></div>`;
         }
         return '';

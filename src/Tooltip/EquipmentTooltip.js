@@ -26,7 +26,7 @@ class EquipmentTooltip {
     }
 
     getSecondaryType(itemResource){
-        if (itemResource.equipmentStats.slot.toUpperCase() === "WEAPON") return itemResource.oneHanded ? "Main Hand" : "Two-Handed";
+        if (itemResource.equipmentStats.slot.toUpperCase() === "WEAPON") return itemResource.equipmentStats.oneHanded ? "Main Hand" : "Two-Handed";
         return '';
     }
 
