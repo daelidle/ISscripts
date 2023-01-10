@@ -66,6 +66,10 @@ class Tooltip {
                         <img src="/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;">
                     </span>
                 </div>
+                <div class="dwt-not-tradeable dwt-columns">
+                    <span></span>
+                    <span class="${tooltipData.tradeable ? 'hidden' : ''}">Cannot be traded</span>
+                </div>
             </div>`;
     }
 
@@ -83,6 +87,7 @@ class Tooltip {
         tooltipData.vendor = parseInt(itemResource?.value ?? 0);
         tooltipData.market = (item.type === '$' && item.price) ? parseInt(item.price) : 0;
         tooltipData.flavor = itemResource?.extraTooltipInfo ?? '';
+        tooltipData.tradeable = itemResource?.tradeable ?? true;
     }
 
     _getTooltipType(itemResource){
@@ -95,6 +100,7 @@ class Tooltip {
         if (itemResource.tags?.includes('dungeon')) return new DungeonKeyTooltip();
         if (itemResource.tags?.includes('elite')) return new EliteScrollTooltip();
         if (itemResource.tags?.includes('seed')) return new SeedTooltip();
+        if (itemResource.tags?.includes('book')) return new BookTooltip();
         return new DefaultTooltip();
     }
 

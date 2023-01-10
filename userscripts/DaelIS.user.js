@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         [Test Server] Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      2.0.9
+// @version      2.0.10
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/test-server/assets/images/config-icon.png
@@ -32,6 +32,7 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/Tooltip/data/itemRarity.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/Tooltip/data/TooltipData.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/Tooltip/AmmunitionTooltip.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/Tooltip/BookTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/Tooltip/ChestTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/Tooltip/DungeonKeyTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/Tooltip/EliteScrollTooltip.js

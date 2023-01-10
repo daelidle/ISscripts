@@ -19,4 +19,5 @@ class TooltipData {
     itemSet = '';
     effects = '';
     soulbound = '';
+    tradeable = true;
 }

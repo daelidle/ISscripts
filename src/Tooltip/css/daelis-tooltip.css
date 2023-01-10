@@ -95,3 +95,7 @@
 .dwt-item-set-item {
     margin-left: 10px;
 }
+
+.dwt-not-tradeable {
+    color: red;
+}
