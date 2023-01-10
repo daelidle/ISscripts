@@ -4,9 +4,9 @@ class TooltipData {
     augment = 0;
     quantity = 1;
     vendor = 0;
+    market = 0;
     heat = 0;
     flavor = '';
-
     type = '';
     weapon_subtype = '';
     weapon_speed_and_type = '';

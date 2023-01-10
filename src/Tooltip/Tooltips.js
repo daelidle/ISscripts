@@ -19,7 +19,6 @@ class Tooltip {
         const tooltipGenerator = this._getTooltipType(itemResource);
         tooltipGenerator.fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems);
 
-        const heatSpan = (tooltipData.heat > 0) ? ` <span class="dwt-heat">${tooltipData.heat}<img src="/images/heat_small_icon.png" alt="heat" class="icon16"></span>` : '';
         return `
             <div class="daelis-wow-tooltip" data-item="${base64encode(JSON.stringify(item))}">
                 <div class="dwt-name"><span class="${tooltipData.rarity.cssClassName}">${tooltipData.name}${tooltipData.augment > 0 ? ' +'+tooltipData.augment : ''}</span></div>
@@ -52,10 +51,20 @@ class Tooltip {
                 <div class="dwt-flavor">${compactVersion ? '' : tooltipData.flavor}</div>
                 <div class="dwt-prices dwt-columns">
                     <span class="dwt-quantity">Quantity: ${tooltipData.quantity.toLocaleString()}</span>
-                    <span class="dwt-prices-vendor">Vendor: ${tooltipData.vendor.toLocaleString()}
-                        <img src="https://www.idlescape.com/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;">
-                        ${heatSpan}
+                    <span>
+                        <span class="dwt-prices-vendor">Vendor: ${tooltipData.vendor.toLocaleString()}
+                            <img src="/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;">
+                        </span>                          
+                        <span class="dwt-heat ${(tooltipData.heat > 0) ? '' : 'hidden'}">${tooltipData.heat}
+                            <img src="/images/heat_small_icon.png" alt="heat" class="icon16">
+                        </span>
                     </span>                    
+                </div>
+                <div class="dwt-prices-marketplace dwt-columns">
+                    <span></span>
+                    <span class="dwt-prices-marketplace ${(tooltipData.market > 0) ? '' : 'hidden'}">Marketplace: ${tooltipData.market.toLocaleString()}
+                        <img src="/images/gold_coin.png" alt="coins" class="icon16" style="vertical-align: middle;height: 16px;width: 16px;margin-right: 2px;">
+                    </span>
                 </div>
             </div>`;
     }
@@ -69,9 +78,10 @@ class Tooltip {
         const rarity = itemResource?.rarity ?? 'common';
         tooltipData.rarity = itemRarity.getByTag(rarity);
         tooltipData.augment = parseInt(item?.augmentations ?? 0);
-        tooltipData.quantity = (parseInt(item.itemID) === 7050) ? parseInt(item.christmasSpirit ?? 1) : parseInt(item?.stackSize ?? 1);
+        tooltipData.quantity = (item.hasOwnProperty('christmasSpirit')) ? item.christmasSpirit ?? 1 : item?.stackSize ?? 1;
         tooltipData.heat = parseInt(itemResource?.heat ?? 0);
         tooltipData.vendor = parseInt(itemResource?.value ?? 0);
+        tooltipData.market = (item.type === '$' && item.price) ? parseInt(item.price) : 0;
         tooltipData.flavor = itemResource?.extraTooltipInfo ?? '';
     }
 
