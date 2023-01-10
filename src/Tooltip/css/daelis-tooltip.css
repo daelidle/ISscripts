@@ -50,11 +50,8 @@
 .dwt-item-set-effects-list:empty, .dwt-stats-defensiveAffinities:empty, .dwt-stats-strengthAffinities:empty {
     margin-top: 0;
 }
-.dwt-enchant, .dwt-item-skill, .dwt-set-item-equipped, .dwt-set-effect-active, .dwt-ability-active, .dwt-healing-use, .dwt-chest-use {
+.dwt-enchant, .dwt-item-skill, .dwt-set-item-equipped, .dwt-set-effect-active, .dwt-healing-use, .dwt-chest-use {
     color: #1eff00;
-}
-.dwt-ability-inactive {
-    color: red;
 }
 
 .dwt-stat-positive {
@@ -82,6 +79,10 @@
 }
 .dwt-item-set-name, .dwt-soulbound-block {
     color: #ffd100;
+}
+
+.dwt-ability-active {
+    color: #0070dd;
 }
 
 .dwt-soulbound-level, .dwt-soulbound-exp {

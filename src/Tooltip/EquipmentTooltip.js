@@ -14,7 +14,7 @@ class EquipmentTooltip {
         tooltipData.weapon_speed_and_type = this.getWeaponInfo(itemResource);
         tooltipData.requiredStats = this.getRequiredStatsLevel(item, itemResource, gameData.enchantments);
         tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource)};
-        tooltipData.itemSet = this.getItemSetSection(item, itemResource, gameData.sets, equippedItems);
+        tooltipData.itemSet = this.getItemSetSection(itemResource, gameData.enchantments, gameData.items, equippedItems);
         tooltipData.enchant = this.getEnchantSection(item, itemResource, gameData.enchantments);
         tooltipData.itemSkill = this.getItemSkillSection(item, itemResource, gameData.abilities);
         tooltipData.effects = this.getItemEffects(item, itemResource, gameData.abilities, gameData.enchantments);
@@ -148,59 +148,51 @@ class EquipmentTooltip {
         const itemAbilities = itemResource.equipmentStats?.grantedAbility ?? [];
         itemAbilities.forEach(abilityId => {
             const ability = abilities[abilityId];
-            const abilityStatusClass = this._abilityIsActiveOnItem(item, ability) ? 'dwt-ability-active': 'dwt-ability-inactive';
-            skillSection += `<div class="${abilityStatusClass}">Equip: ${ability.abilityName}</div>`;
+            skillSection += `<div class="dwt-ability-active">Equip: ${ability.abilityName}</div>`;
         });
 
         return skillSection;
     }
 
-    getItemSetSection(item, itemResource, sets, equippedItems){
-        if (itemResource.itemSet === undefined) return '';
+    getItemSetSection(itemResource, enchantments, items, equippedItems){
+        if (!(itemResource?.equipmentStats?.itemSet)) return '';
 
-        const set = sets[itemResource.itemSet];
-        if (set === undefined) return '';
+        const equippedSetPieces = {};
+        Object.values(equippedItems).forEach(equippedItem => {
+            const equippedItemSets = items[equippedItem.itemID]?.equipmentStats?.itemSet ?? [];
+            equippedItemSets.forEach(set => {
+                if (itemResource.equipmentStats.itemSet.includes(set)) {
+                    if (!equippedSetPieces[set]) equippedSetPieces[set] = 0;
+                    equippedSetPieces[set]++;
+                }
+            });
+        });
 
-        let numEquipped = 0;
-        let coloredSetItemList = '';
-        set.items.forEach(setItem => {
-            let activeClass = 'dwt-set-item-unequipped';
-            if (equippedItems[setItem.slot]?.itemID === setItem.id) {
-                numEquipped++;
-                activeClass = 'dwt-set-item-equipped';
+        let setHtml = '';
+        itemResource.equipmentStats.itemSet.forEach(setEnchant => {
+            const itemSet = enchantments[setEnchant];
+            if (itemSet){
+                itemSet.setRequirements.forEach(setRequirement => {
+                    if (setRequirement.strength === 0) return;
+                    setHtml += `<div class="dwt-item-set-name">${itemSet.name} (${equippedSetPieces[setEnchant] ?? 0}/${setRequirement.count})</div>`;
+                    const activeClass = (equippedSetPieces[setEnchant] ?? 0 >= setRequirement.count) ? 'dwt-set-effect-active' : 'dwt-set-effect-inactive';
+                    const description = itemSet.getTooltip(setRequirement.strength, itemSet.strengthPerLevel);
+                    setHtml += `<div class="dwt-item-set-effect ${activeClass}"><span class="dwt-item-set-effect-description">${description}</span></div>`;
+                });
             }
-            coloredSetItemList += `<div class="dwt-item-set-item ${activeClass}"> 
-                <span class="dwt-item-set-item-name">${setItem.name}</span>
-                </div>`;
         });
-
-        let coloredEffectsList = '';
-        set.effects.forEach(effect => {
-            const activeClass = (effect.equippedRequirements <= numEquipped) ? 'dwt-set-effect-active' : 'dwt-set-effect-inactive';
-            const effectName = (effect.name.length === 0) ? '' : `${effect.name} - `;
-            coloredEffectsList += `<div class="dwt-item-set-effect ${activeClass}">
-                <span class="dwt-item-set-effect-required-pieces">(${effect.equippedRequirements}) Set: </span> 
-                <span class="dwt-item-set-effect-name">${effectName}</span>
-                <span class="dwt-item-set-effect-description">${effect.description}</span>
-                </div>`;
-        });
-
-        return `<div class="dwt-item-set-name">${set.name} (${numEquipped}/${set.items.length})</div>
-                <div class="dwt-item-set-item-list">${coloredSetItemList}</div>
-                <div class="dwt-item-set-effects-list">${coloredEffectsList}</div>`;
+        return setHtml;
     }
 
     getItemEffects(item, itemResource, abilities, enchantments){
         let itemEffects = '';
 
-        const itemAbilities = itemResource.equipmentStats?.grantedAbility ?? [];
+        /*const itemAbilities = itemResource.equipmentStats?.grantedAbility ?? [];
         itemAbilities.forEach(abilityId => {
             const ability = abilities[abilityId];
-            if (this._abilityIsActiveOnItem(item, ability)) {
-                const description = generateDescriptiveAbilityText(ability, enchantments);
-                itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${description}</span></div>`;
-            }
-        });
+            const description = generateDescriptiveAbilityText(ability, enchantments);
+            itemEffects += `<div><span class="dwt-effects-name">${ability.abilityName}:</span> <span class="dwt-effects-description">${description}</span></div>`;
+        });*/
 
         const enchantment = enchantments[item.enchantmentID];
         if (enchantment !== undefined){
@@ -219,16 +211,5 @@ class EquipmentTooltip {
             soulBoundHtml += `<div class="dwt-soulbound-exp">Item XP ${item.itemExperience} / ${nextLevelExperience}</div>`;
         }
         return soulBoundHtml;
-    }
-
-    _abilityIsActiveOnItem(item, ability){
-        if (ability.hasOwnProperty('requireEquipmentEnchantID')) {
-            if (!item.hasOwnProperty('enchantmentID') || item.enchantmentID !== ability.requireEquipmentEnchantID || item.enchantmentStrength !== ability.requireEquipmentEnchantStrength) {
-                if (!ability.hasOwnProperty('requireEquipmentID') || ability.requireEquipmentID === item.itemID) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
