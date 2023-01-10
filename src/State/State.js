@@ -37,12 +37,10 @@ class State {
         const inventoryType = message.data['inventory'];
         const action = message.data['action'];
 
-        if (action === "update"){
+        if (action === "update" || action === "increase"){
             for (const [position, inventoryItem] of Object.entries(this.state[inventoryType])) {
                 if (inventoryItem.id === item.id) this.state[inventoryType][position] = item;
             }
-        } else if (action === "increase") {
-            this.state[inventoryType].push(item);
         } else if (action === "delete"){
             this.state[inventoryType] = this.state[inventoryType].filter(inventoryItem => inventoryItem.id !== item.id);
         }
