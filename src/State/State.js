@@ -1,8 +1,10 @@
 class State {
     state;
+    initialStateReceived;
 
     constructor() {
         this.state = {};
+        this.initialStateReceived = false;
         this._exposeUpdatedState();
     }
 
@@ -33,6 +35,8 @@ class State {
     }
 
     parseUpdateInventoryMessage(message){
+        if (!this.initialStateReceived) return;
+
         const item = message.data['item'];
         const inventoryType = message.data['inventory'];
         const action = message.data['action'];
@@ -54,9 +58,12 @@ class State {
         } catch {}
 
         this.state = initialState;
+        this.initialStateReceived = true;
     }
 
     _updateState(portion, newState) {
+        if (!this.initialStateReceived) return;
+
         let statePortion = this.state;
         for (let i = 0; i < (portion.length-1); i++) {
             if (!(portion[i] in statePortion)) statePortion[portion[i]] = {};
@@ -68,5 +75,9 @@ class State {
 
     _exposeUpdatedState(){
         window.ISstate = this.state;
+    }
+
+    isStateInitialized(){
+      return this.initialStateReceived;
     }
 }

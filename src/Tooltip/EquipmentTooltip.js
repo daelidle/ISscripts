@@ -93,7 +93,7 @@ class EquipmentTooltip {
         const strengthStatsLabels = {'weaponBonus.strength': 'Strength', 'weaponBonus.intellect': 'Intellect', 'weaponBonus.dexterity': 'Dexterity', 'offensiveCritical.chance': 'Offensive Crit', 'offensiveCritical.damageMultiplier': 'Crit Mult'};
         const strengthAffinitiesLabels = DamageUtils.generateAffinityDictionary('offensiveDamageAffinity', this.affinityLabels.OffensiveAffinity);
         const attackAffinitiesLabels = DamageUtils.generateAffinityDictionary('offensiveAccuracyAffinityRating', this.affinityLabels.Accuracy);
-        const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina', 'defensiveCritical.chance': 'Defensive Crit', 'defensiveCritical.damageMultiplier': 'Crit Mult'};
+        const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina', 'defensiveCritical.chance': 'Crit Avoidance', 'defensiveCritical.damageMultiplier': 'Crit Reduction'};
         const defenseAffinitiesLabels = DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', this.affinityLabels.DefensiveAffinity);
         const skillStatsLabels = {'toolBoost.fishing': 'Fishing', 'toolBoost.fishingBaitPower': 'Bait', 'toolBoost.fishingReelPower': 'Reel', 'toolBoost.fishingRarityPower': 'Bonus Rarity',
             'toolBoost.mining': 'Mining', 'toolBoost.foraging': 'Foraging', 'toolBoost.farming': 'Farming', 'toolBoost.cooking': 'Cooking', 'toolBoost.smithing': 'Smithing' };
@@ -124,8 +124,9 @@ class EquipmentTooltip {
                     htmlStats += `<span class="${htmlClass}">${bonus.toFixed(2)}x ${type}</span>`;
                 }
             }
-            else if (type === 'Offensive Crit' || type === 'Defensive Crit') htmlStats += `<span>${(bonus * 100).toFixed(2).replace('.00', '')}% ${type}</span>`;
+            else if (type === 'Offensive Crit' || type === 'Crit Avoidance') htmlStats += `<span>${(bonus * 100).toFixed(2).replace('.00', '')}% ${type}</span>`;
             else if (type === 'Crit Mult') htmlStats += `<span">${bonus.toFixed(2)}x ${type}</span>`;
+            else if (type === 'Crit Reduction') htmlStats += `<span">${((1 - bonus) * 100).toFixed(2)}% ${type}</span>`;
             else htmlStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
         }
         return htmlStats;

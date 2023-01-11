@@ -16,7 +16,7 @@ class DaelIS {
         "ResourceTracker": true,
         "InventoryFilter": true,
         "LoadoutViewer": true,
-        "DamageMeter": false,
+        "DamageMeter": true,
         "NoGatheringIronman": false
     }
 
@@ -99,6 +99,8 @@ class DaelIS {
 
     onMessage(message) {
         this.state.onMessage(message);
+        if (!this.state.isStateInitialized()) return;
+
         Object.values(this.activeExtensions).forEach(extension => {
             if (typeof (extension.onMessage) == "function") {
                 extension.onMessage(message);
