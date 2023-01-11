@@ -256,10 +256,10 @@ class IdlescapeGameData {
         18: {
             id: 18,
             name: 'Reinforcement',
-            strengthPerLevel: 8,
+            strengthPerLevel: 12,
             combat: true,
             scrollID: 1618,
-            statBuffs: [{ path: 'armor.agility', additivePerLevel: 8, multiplicativePerLevel: 0 }],
+            statBuffs: [{ path: 'armor.agility', additivePerLevel: 12, multiplicativePerLevel: 0 }],
             // client
             buffIcon: '/images/magic/buffs/reinforcement_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
@@ -269,10 +269,10 @@ class IdlescapeGameData {
         19: {
             id: 19,
             name: 'Protection',
-            strengthPerLevel: 8,
+            strengthPerLevel: 10,
             combat: true,
             scrollID: 1619,
-            statBuffs: [{ path: 'armor.protection', additivePerLevel: 8, multiplicativePerLevel: 0 }],
+            statBuffs: [{ path: 'armor.protection', additivePerLevel: 10, multiplicativePerLevel: 0 }],
             // client
             buffIcon: '/images/magic/buffs/protection_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
@@ -302,9 +302,11 @@ class IdlescapeGameData {
             // client
             buffIcon: '/images/magic/buffs/recklessness_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases maximum damage and decreases minimum damage by ${Math.round(
-                    enchantmentStrength * strengthPerLevel * 100
-                )}%.`,
+                `Increases maximum damage and decreases minimum damage by ${(
+                    enchantmentStrength *
+                    strengthPerLevel *
+                    100
+                ).toFixed(1)}%.`,
             // endclient
         }, // recklessness, increase incoming and outgoing damage
         22: {
@@ -318,7 +320,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Gain ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}% chance to produce an extra item during cooking and smithing.`,
+                )}% chance to produce an extra item during cooking, smithing, and scrollcrafting.`,
             // endclient
         }, // efficiency, chance to produce extra item
         23: {
@@ -330,7 +332,7 @@ class IdlescapeGameData {
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases fish catch chance by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+                `Increases fish catch chance by ${(enchantmentStrength * strengthPerLevel * 100).toFixed(1)}%.`,
             // endclient
         }, // fishing, increased catch rate
         24: {
@@ -919,6 +921,32 @@ class IdlescapeGameData {
                 `Gives access to a secondary drop table while gathering with rewards scaling on enchantment strength.`,
             // endclient
         }, // archaeology
+        68: {
+            id: 68,
+            name: 'Empowered Superheating',
+            strengthPerLevel: 0.01,
+            combat: false,
+            // client
+            buffIcon: '/images/magic/buffs/superheated_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Gain a ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}% chance to instantly smelt an ore into a bar when mining; uses 1.5x the base heat required. Rolls before Superheating and does not stack with it; does not require a fire rune.`,
+            // endclient
+        }, // smelt when mining
+        69: {
+            id: 69,
+            name: 'Empowered Gathering',
+            strengthPerLevel: 0.1,
+            combat: false,
+            // client
+            buffIcon: '/images/magic/buffs/gathering_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Gain a ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}% chance to find an extra resource while gathering. Rolls before Gathering and does not stack with it; does not require a nature rune.`,
+            // endclient
+        }, // double resources
 
         // mostly monster effects
         1000: {
@@ -947,7 +975,7 @@ class IdlescapeGameData {
         2001: {
             id: 2001,
             name: 'Demon Skin',
-            strengthPerLevel: 33,
+            strengthPerLevel: 9,
             setRequirements: [
                 { count: 3, strength: 2 },
                 { count: 4, strength: 4 },
@@ -1352,7 +1380,10 @@ class IdlescapeGameData {
             id: 10009,
             name: 'Protective Plates',
             strengthPerLevel: 0.1,
-            setRequirements: [{ count: 2, strength: 1 }],
+            setRequirements: [
+                { count: 2, strength: 1 },
+                { count: 3, strength: 2 },
+            ],
             combat: false,
             statBuffs: [{ path: 'armor.protection', additivePerLevel: 0, multiplicativePerLevel: 0.1 }],
             // client
@@ -1385,6 +1416,32 @@ class IdlescapeGameData {
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Increases resistance by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+            // endclient
+        },
+        10012: {
+            id: 10012,
+            name: 'Dextrous Shot',
+            strengthPerLevel: 0.1,
+            setRequirements: [{ count: 3, strength: 1 }],
+            combat: false,
+            statBuffs: [{ path: 'weapon.dexterity', additivePerLevel: 0, multiplicativePerLevel: 0.15 }],
+            // client
+            buffIcon: '/images/magic/buffs/fishing.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases dexterity by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+            // endclient
+        },
+        10013: {
+            id: 10013,
+            name: "Wizard's Wisdom",
+            strengthPerLevel: 0.1,
+            setRequirements: [{ count: 3, strength: 1 }],
+            combat: false,
+            statBuffs: [{ path: 'weapon.intellect', additivePerLevel: 0, multiplicativePerLevel: 0.15 }],
+            // client
+            buffIcon: '/images/magic/buffs/fishing.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases intellect by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
             // endclient
         },
     };
@@ -3057,6 +3114,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 3: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3072,6 +3133,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 4: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3087,6 +3152,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 5: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3102,6 +3171,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 6: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3117,6 +3190,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 7: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3132,6 +3209,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 8: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3147,6 +3228,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 9: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3162,6 +3247,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 10: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3177,6 +3266,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 11: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3192,6 +3285,10 @@ class IdlescapeGameData {
             talisman: true,
             tradeable: true,
             value: 20000,
+            craftingExperience: 1000,
+            craftingLevel: 50,
+            requiredResources: [{ 520: 1, 12: 50000 }],
+            category: 'Skilling',
 
 
 
@@ -3352,6 +3449,20 @@ class IdlescapeGameData {
             class: 'rune',
             tags: ['ammunition', 'magic', 'runecrafting'],
             requiredResources: [{ 12: 400, 113: 1 }],
+        },
+        520: {
+            id: 520,
+            name: 'Unstable Talisman',
+            value: 25000,
+
+
+
+            itemImage: '/images/runecrafting/unstable_talisman.png',
+            extraTooltipInfo:
+                'An unstable talisman that is brimming with potential. Requires essence in order to condense it into a normal talisman, though some essence may be lost in the conversion process.',
+            class: 'rune',
+            tags: ['magic', 'runecrafting'],
+            rarity: 'uncommon',
         },
         600: {
             id: 600,
@@ -4545,8 +4656,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Lesser_Magic_Tome_embossed.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Adds 10 to your effective enchanting level.',
-            extraTooltipInfo: 'Adds 10 to your effective enchanting level.',
+            craftingDescription: 'Increases max augmentation level by 2.',
+            extraTooltipInfo: 'Increases max augmentation level by 2.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 10 }] },
@@ -4566,8 +4677,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Major_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Adds 20 to your enchanting level.',
-            extraTooltipInfo: 'Adds 20 to your enchanting level.',
+            craftingDescription: 'Increases max augmentation level by 4.',
+            extraTooltipInfo: 'Increases max augmentation level by 4.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 20 }] },
@@ -4587,8 +4698,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Greater_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Adds 30 to your enchanting level.',
-            extraTooltipInfo: 'Adds 30 to your enchanting level.',
+            craftingDescription: 'Increases max augmentation level by 6.',
+            extraTooltipInfo: 'Increases max augmentation level by 6.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 30 }] },
@@ -4608,8 +4719,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Adds 40 to your enchanting level.',
-            extraTooltipInfo: 'Adds 40 to your enchanting level.',
+            craftingDescription: 'Increases max augmentation level by 8.',
+            extraTooltipInfo: 'Increases max augmentation level by 8.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 40 }] },
@@ -4629,8 +4740,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Adds 50 to your enchanting level.',
-            extraTooltipInfo: 'Adds 50 to your enchanting level.',
+            craftingDescription: 'Increases max augmentation level by 10.',
+            extraTooltipInfo: 'Increases max augmentation level by 10.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 50 }] },
@@ -5388,7 +5499,7 @@ class IdlescapeGameData {
             name: 'Obsidian Scimitar',
             id: 1008,
             enchantmentTier: 5,
-            augmentationCost: { 202: 20, 204: 20, 303: 4, 304: 4 },
+            augmentationCost: { 202: 10, 204: 10, 303: 2, 304: 2, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 92000,
@@ -5432,7 +5543,7 @@ class IdlescapeGameData {
             name: 'Obsidian Battleaxe',
             id: 1009,
             enchantmentTier: 5,
-            augmentationCost: { 202: 25, 204: 25, 303: 8, 304: 8 },
+            augmentationCost: { 202: 12, 204: 12, 303: 4, 304: 4, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 116000,
@@ -5480,7 +5591,7 @@ class IdlescapeGameData {
             name: 'Obsidian Daggers',
             id: 1010,
             enchantmentTier: 5,
-            augmentationCost: { 202: 15, 204: 15, 303: 3, 304: 3 },
+            augmentationCost: { 202: 8, 204: 8, 303: 2, 304: 2, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 68000,
@@ -5533,7 +5644,7 @@ class IdlescapeGameData {
             name: 'Obsidian Greatsword',
             id: 1011,
             enchantmentTier: 5,
-            augmentationCost: { 202: 30, 204: 30, 303: 6, 304: 6 },
+            augmentationCost: { 202: 15, 204: 15, 303: 3, 304: 3, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 140000,
@@ -6448,7 +6559,7 @@ class IdlescapeGameData {
             name: 'Obsidian Helm',
             id: 1052,
             enchantmentTier: 5,
-            augmentationCost: { 202: 15, 204: 15 },
+            augmentationCost: { 202: 8, 204: 8, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 68000,
@@ -6709,7 +6820,7 @@ class IdlescapeGameData {
             name: 'Obsidian Full Helm',
             id: 1062,
             enchantmentTier: 5,
-            augmentationCost: { 202: 20, 204: 20 },
+            augmentationCost: { 202: 10, 204: 10, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 89600,
@@ -6987,7 +7098,7 @@ class IdlescapeGameData {
             name: 'Obsidian Shield',
             id: 1072,
             enchantmentTier: 5,
-            augmentationCost: { 202: 25, 204: 25 },
+            augmentationCost: { 202: 14, 204: 14, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 116000,
@@ -7341,7 +7452,7 @@ class IdlescapeGameData {
             name: 'Obsidian Breastplate',
             id: 1094,
             enchantmentTier: 5,
-            augmentationCost: { 202: 35, 204: 35 },
+            augmentationCost: { 202: 20, 204: 20, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 164000,
@@ -7380,7 +7491,7 @@ class IdlescapeGameData {
             name: 'Obsidian Chainmail',
             id: 1095,
             enchantmentTier: 5,
-            augmentationCost: { 202: 25, 204: 25 },
+            augmentationCost: { 202: 15, 204: 15, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 116000,
@@ -7805,7 +7916,7 @@ class IdlescapeGameData {
             name: 'Obsidian Plate Leggings',
             id: 1112,
             enchantmentTier: 5,
-            augmentationCost: { 202: 20, 204: 20 },
+            augmentationCost: { 202: 15, 204: 15, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 92000,
@@ -8058,7 +8169,7 @@ class IdlescapeGameData {
             name: 'Obsidian Boots',
             id: 1132,
             enchantmentTier: 5,
-            augmentationCost: { 202: 20, 204: 20 },
+            augmentationCost: { 202: 10, 204: 10, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 68000,
@@ -8215,7 +8326,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
-                weaponBonus: { strength: 2, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 2, intellect: 2, dexterity: 2 },
                 offensiveAccuracyAffinityRating: { Melee: 2, Magic: 2, Range: 2 },
                 defensiveDamageAffinity: { Melee: 1.01, Magic: 1.01, Range: 1.01 },
                 armorBonus: { protection: 4, resistance: 4, agility: 0, stamina: 0 },
@@ -8248,7 +8359,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
-                weaponBonus: { strength: 3, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 3, intellect: 3, dexterity: 3 },
                 offensiveAccuracyAffinityRating: { Melee: 3, Magic: 3, Range: 3 },
                 defensiveDamageAffinity: { Melee: 1.02, Magic: 1.02, Range: 1.02 },
                 armorBonus: { protection: 6, resistance: 6, agility: 0, stamina: 0 },
@@ -8265,7 +8376,7 @@ class IdlescapeGameData {
             name: 'Obsidian Gloves',
             id: 1152,
             enchantmentTier: 5,
-            augmentationCost: { 202: 40, 204: 40 },
+            augmentationCost: { 202: 20, 204: 20, 209: 1 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 8000,
@@ -8281,7 +8392,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
-                weaponBonus: { strength: 5, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 5, intellect: 5, dexterity: 5 },
                 offensiveAccuracyAffinityRating: { Melee: 5, Magic: 5, Range: 5 },
                 defensiveDamageAffinity: { Melee: 1.02, Magic: 1.02, Range: 1.02 },
                 armorBonus: { protection: 10, resistance: 10, agility: 0, stamina: 0 },
@@ -8315,7 +8426,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
-                weaponBonus: { strength: 6, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 6, intellect: 6, dexterity: 6 },
                 offensiveAccuracyAffinityRating: { Melee: 6, Magic: 6, Range: 6 },
                 defensiveDamageAffinity: { Melee: 1.02, Magic: 1.02, Range: 1.02 },
                 armorBonus: { protection: 12, resistance: 12, agility: 0, stamina: 0 },
@@ -8348,7 +8459,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
-                weaponBonus: { strength: 7, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 7, intellect: 7, dexterity: 7 },
                 offensiveAccuracyAffinityRating: { Melee: 7, Magic: 7, Range: 7 },
                 defensiveDamageAffinity: { Melee: 1.02, Magic: 1.02, Range: 1.02 },
                 armorBonus: { protection: 14, resistance: 14, agility: 0, stamina: 0 },
@@ -8382,7 +8493,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
-                weaponBonus: { strength: 8, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 8, intellect: 8, dexterity: 8 },
                 offensiveAccuracyAffinityRating: { Melee: 8, Magic: 8, Range: 8 },
                 defensiveDamageAffinity: { Melee: 1.02, Magic: 1.02, Range: 1.02 },
                 armorBonus: { protection: 16, resistance: 16, agility: 0, stamina: 0 },
@@ -8412,7 +8523,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
-                weaponBonus: { strength: 9, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 9, intellect: 9, dexterity: 9 },
                 offensiveAccuracyAffinityRating: { Melee: 9, Magic: 9, Range: 9 },
                 defensiveDamageAffinity: { Melee: 1.03, Magic: 1.03, Range: 1.03 },
                 armorBonus: { protection: 18, resistance: 18, agility: 0, stamina: 0 },
@@ -8459,7 +8570,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4007: 80 }],
             category: 'Range',
@@ -8497,7 +8608,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4004: 80 }],
             category: 'Range',
@@ -8535,7 +8646,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4004: 100, 4008: 30 }],
             category: 'Range',
@@ -8573,7 +8684,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4012: 180 }],
             category: 'Range',
@@ -8611,7 +8722,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4005: 33, 4012: 225 }],
             category: 'Range',
@@ -8649,7 +8760,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4002: 150, 4003: 25 }],
             category: 'Range',
@@ -8688,7 +8799,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4009: 200, 4010: 30 }],
             category: 'Range',
@@ -8731,7 +8842,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.dexterity', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4007: 25 }],
             category: 'Range',
@@ -8773,7 +8884,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.dexterity', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4004: 25 }],
             category: 'Range',
@@ -8815,7 +8926,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.dexterity', value: 0.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4004: 35, 4008: 10 }],
             category: 'Range',
@@ -8857,7 +8968,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.dexterity', value: 0.3 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4012: 48 }],
             category: 'Range',
@@ -8899,7 +9010,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.dexterity', value: 0.4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4005: 6, 4012: 66 }],
             category: 'Range',
@@ -8941,7 +9052,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.dexterity', value: 0.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4002: 45, 4003: 10 }],
             category: 'Range',
@@ -8984,7 +9095,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.dexterity', value: 0.6 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4009: 35, 4010: 5 }],
             category: 'Range',
@@ -9024,7 +9135,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4007: 50 }],
             category: 'Range',
@@ -9063,7 +9174,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4004: 50 }],
             category: 'Range',
@@ -9102,7 +9213,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4004: 65, 4008: 5 }],
             category: 'Range',
@@ -9141,7 +9252,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.6 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4012: 106 }],
             category: 'Range',
@@ -9180,7 +9291,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.8 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4005: 12, 4012: 120 }],
             category: 'Range',
@@ -9219,7 +9330,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4002: 150, 4003: 5 }],
             category: 'Range',
@@ -9259,7 +9370,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
                 ],
-                itemSet: [10010],
+                itemSet: [10010, 10012],
             },
             requiredResources: [{ 4009: 125, 4010: 10 }],
             category: 'Range',
@@ -9300,7 +9411,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.1 },
                     { stat: 'weaponBonus.intellect', value: 0.1 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4013: 80 }],
             category: 'Magic',
@@ -9341,7 +9452,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 3 / 20 },
                     { stat: 'weaponBonus.intellect', value: 0.1 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4014: 80 }],
             category: 'Magic',
@@ -9382,7 +9493,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.3 },
                     { stat: 'weaponBonus.intellect', value: 0.2 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4015: 118 }],
             category: 'Magic',
@@ -9423,7 +9534,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 9 / 20 },
                     { stat: 'weaponBonus.intellect', value: 0.3 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4016: 174 }],
             category: 'Magic',
@@ -9464,7 +9575,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.6 },
                     { stat: 'weaponBonus.intellect', value: 0.4 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4017: 256 }],
             category: 'Magic',
@@ -9506,7 +9617,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 3 / 4 },
                     { stat: 'weaponBonus.intellect', value: 0.5 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4018: 376 }],
             category: 'Magic',
@@ -9548,7 +9659,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.9 },
                     { stat: 'weaponBonus.intellect', value: 0.6 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4019: 554 }],
             category: 'Magic',
@@ -9591,7 +9702,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.1 },
                     { stat: 'weaponBonus.intellect', value: 0.1 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4013: 25 }],
             category: 'Magic',
@@ -9633,7 +9744,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.1 },
                     { stat: 'weaponBonus.intellect', value: 0.1 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4014: 25 }],
             category: 'Magic',
@@ -9675,7 +9786,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.1 },
                     { stat: 'weaponBonus.intellect', value: 0.2 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4015: 35 }],
             category: 'Magic',
@@ -9717,7 +9828,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 3 / 20 },
                     { stat: 'weaponBonus.intellect', value: 0.3 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4016: 48 }],
             category: 'Magic',
@@ -9759,7 +9870,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.2 },
                     { stat: 'weaponBonus.intellect', value: 0.4 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4017: 66 }],
             category: 'Magic',
@@ -9801,7 +9912,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 1 / 4 },
                     { stat: 'weaponBonus.intellect', value: 0.5 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4018: 91 }],
             category: 'Magic',
@@ -9844,7 +9955,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.3 },
                     { stat: 'weaponBonus.intellect', value: 0.6 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4019: 125 }],
             category: 'Magic',
@@ -9885,7 +9996,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.1 },
                     { stat: 'weaponBonus.intellect', value: 0.1 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4013: 50 }],
             category: 'Magic',
@@ -9926,7 +10037,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.1 },
                     { stat: 'weaponBonus.intellect', value: 0.1 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4014: 50 }],
             category: 'Magic',
@@ -9967,7 +10078,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 3 / 20 },
                     { stat: 'weaponBonus.intellect', value: 0.2 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4015: 73 }],
             category: 'Magic',
@@ -10008,7 +10119,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 9 / 40 },
                     { stat: 'weaponBonus.intellect', value: 0.3 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4016: 106 }],
             category: 'Magic',
@@ -10049,7 +10160,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.3 },
                     { stat: 'weaponBonus.intellect', value: 0.4 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4017: 153 }],
             category: 'Magic',
@@ -10090,7 +10201,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 3 / 8 },
                     { stat: 'weaponBonus.intellect', value: 0.5 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4018: 222 }],
             category: 'Magic',
@@ -10132,7 +10243,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 9 / 20 },
                     { stat: 'weaponBonus.intellect', value: 0.6 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             requiredResources: [{ 4019: 323 }],
             category: 'Magic',
@@ -12153,7 +12264,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 0.1 },
                     { stat: 'weaponBonus.intellect', value: 0.1 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
         },
         1242: {
@@ -12194,7 +12305,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 0.5 },
                     { stat: 'weaponBonus.intellect', value: 0.5 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
         },
         1243: {
@@ -12235,7 +12346,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 1 },
                     { stat: 'weaponBonus.intellect', value: 1 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
         },
         1244: {
@@ -12276,7 +12387,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 1.5 },
                     { stat: 'weaponBonus.intellect', value: 1.5 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
         },
         1245: {
@@ -12317,7 +12428,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 2 },
                     { stat: 'weaponBonus.intellect', value: 2 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
         },
         1246: {
@@ -12358,7 +12469,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 2.5 },
                     { stat: 'weaponBonus.intellect', value: 2.5 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             rarity: 'uncommon',
         },
@@ -12400,7 +12511,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 3 },
                     { stat: 'weaponBonus.intellect', value: 3 },
                 ],
-                itemSet: [10011],
+                itemSet: [10011, 10013],
             },
             rarity: 'rare',
         },
@@ -13079,7 +13190,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/combat/equipment/forgotten-soul-axe.png',
             itemIcon: '/images/combat/equipment/forgotten-soul-sad-icon.png',
-            extraTooltipInfo: 'Long forgotten in the waves.',
+            extraTooltipInfo: 'Long forgotten in the waves. Can you throw it?',
             class: 'equipment',
             visual: 'forgotten-soul-axe',
             category: ['weapon', 'combat'],
@@ -13089,9 +13200,9 @@ class IdlescapeGameData {
                 slot: 'weapon',
                 offensiveCritical: { chance: 7 / 200, damageMultiplier: 1.13 },
                 offensiveAccuracyAffinityRating: {
-                    Melee: 55,
+                    Melee: 24,
                     Magic: -12,
-                    Range: -12,
+                    Range: 55,
                     Piercing: -4,
                     Blunt: 132,
                     Slashing: 88,
@@ -13099,17 +13210,19 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 0.1,
-                    Range: 0.1,
+                    Range: 1,
                     Piercing: 1 / 4,
                     Blunt: 1.25,
                     Slashing: 3 / 4,
                 },
-                weaponBonus: { strength: 107, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 72, intellect: 0, dexterity: 107 },
                 oneHanded: true,
                 attackSpeed: 2.7,
                 augmentationBonus: [
                     { stat: 'offensiveAccuracyAffinityRating.Melee', value: 0.9 },
                     { stat: 'weaponBonus.strength', value: 3 },
+                    { stat: 'offensiveAccuracyAffinityRating.Range', value: 0.9 },
+                    { stat: 'weaponBonus.dexterity', value: 3 },
                 ],
             },
             rarity: 'rare',
@@ -13127,7 +13240,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/combat/equipment/forgotten-soul-scimitar.png',
             itemIcon: '/images/combat/equipment/forgotten-soul-crazy-icon.png',
-            extraTooltipInfo: 'Driven mad by its endless drifting.',
+            extraTooltipInfo: 'Driven mad by its endless drifting. Appears to channel magical energy.',
             class: 'equipment',
             visual: 'forgotten-soul-scim',
             category: ['weapon', 'combat'],
@@ -13136,20 +13249,22 @@ class IdlescapeGameData {
                 grantedAbility: [35],
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
-                offensiveAccuracyAffinityRating: { Melee: 66, Magic: -14, Range: -14, Slashing: 77 },
+                offensiveAccuracyAffinityRating: { Melee: 48, Magic: 66, Range: -14, Slashing: 77 },
                 offensiveDamageAffinity: {
                     Melee: 1,
-                    Magic: 1 / 4,
+                    Magic: 1,
                     Range: 0.1,
                     Piercing: 1 / 4,
                     Blunt: 1 / 4,
                     Slashing: 1.33,
                 },
-                weaponBonus: { strength: 71, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 64, intellect: 71, dexterity: 0 },
                 oneHanded: true,
                 augmentationBonus: [
                     { stat: 'offensiveAccuracyAffinityRating.Melee', value: 1.98 },
                     { stat: 'weaponBonus.strength', value: 1.98 },
+                    { stat: 'offensiveAccuracyAffinityRating.Magic', value: 1.98 },
+                    { stat: 'weaponBonus.intellect', value: 1.98 },
                 ],
                 attackSpeed: 2.1,
             },
@@ -13169,8 +13284,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/forgotten-soul-two-handed.png',
             itemIcon: '/images/combat/equipment/forgotten-soul-mad-icon.png',
             class: 'equipment',
-            extraTooltipInfo:
-                "Perhaps forgotten, absolutely enraged. Ability: 'Soul Steal' - A poison attack that is 50% more accurate and does 25% less damage with a 15% chance to heal the player for 1/6 of the damage dealt.",
+            extraTooltipInfo: 'Perhaps forgotten, absolutely enraged. Only good for melee!',
             visual: 'forgotten-soul-two',
             category: ['weapon', 'combat'],
             tags: ['melee', 'weapon', 'twohand', 'crafting'],
@@ -13187,7 +13301,7 @@ class IdlescapeGameData {
                     Slashing: 132,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.05,
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 33 / 50,
@@ -18194,7 +18308,7 @@ class IdlescapeGameData {
             category: 'Dungeon',
             class: 'cooking-ingredient',
             tags: ['ingredient', 'cooking', 'crafting'],
-            requiredResources: [{ 513: 128, 2014: 12 }],
+            requiredResources: [{ 513: 32, 2014: 12 }],
             rarity: 'uncommon',
         },
         3001: {
@@ -18270,7 +18384,7 @@ class IdlescapeGameData {
             tradeable: true,
             size: 3,
             difficulty: 3,
-            alchemyEnchantment: 4,
+            alchemyEnchantment: 69,
             alchemySize: 1.5,
             experience: 35,
             ingredientTags: ['fruit'],
@@ -18519,6 +18633,22 @@ class IdlescapeGameData {
             ingredientTags: ['vegetable'],
             itemImage: '/images/cooking/alchemy/ingredients/ghost_shrooms.png',
             extraTooltipInfo: 'A handful of very pale, small mushrooms that emit the barest amount of light.',
+            class: 'cooking-ingredient',
+            tags: ['ingredient', 'alchemy', 'cooking'],
+        },
+        3021: {
+            name: 'Yellow Pepper',
+            id: 3021,
+            value: 160,
+            tradeable: true,
+            size: 2,
+            difficulty: 3,
+            alchemySize: 2,
+            experience: 30,
+            alchemyEnchantment: 68,
+            ingredientTags: ['vegetable'],
+            itemImage: '/images/cooking/alchemy/ingredients/yellow_pepper.png',
+            extraTooltipInfo: 'It may be a yellow pepper, but it is Red Hot! ... Sorry.',
             class: 'cooking-ingredient',
             tags: ['ingredient', 'alchemy', 'cooking'],
         },
@@ -19117,10 +19247,10 @@ class IdlescapeGameData {
                 { chance: 1, id: 4000, min: 1, max: 8 },
                 { chance: 3 / 4, id: 4001, min: 1, max: 8 },
                 { chance: 1 / 4, id: 4002, min: 1, max: 8 },
-                { chance: 1 / 4, id: 4003, min: 1, max: 8 },
+                { chance: 1 / 16, id: 4003, min: 1, max: 2 },
                 { chance: 1 / 4, id: 4008, min: 1, max: 6 },
                 { chance: 1 / 4, id: 4009, min: 1, max: 6 },
-                { chance: 1 / 4, id: 4010, min: 1, max: 6 },
+                { chance: 1 / 16, id: 4010, min: 1, max: 2 },
             ],
             class: 'seed',
             category: 'Farming',
@@ -19262,6 +19392,7 @@ class IdlescapeGameData {
             tags: [],
             augmentingFailItem: 9015,
             augmentingForcedAmount: 1,
+            forcedAugmentChance: 0.5,
         },
         5001: {
             id: 5001,
@@ -20577,7 +20708,7 @@ class IdlescapeGameData {
             maxAugLevel: 10,
             augmentationCost: { 9007: 5 },
             craftingLevel: 30,
-            craftingExperience: 12000,
+            craftingExperience: 6000,
             forcedAugmentChance: 1,
 
 
@@ -20613,7 +20744,7 @@ class IdlescapeGameData {
             maxAugLevel: 10,
             augmentationCost: { 9009: 3 },
             craftingLevel: 50,
-            craftingExperience: 24000,
+            craftingExperience: 12000,
             forcedAugmentChance: 1,
 
 
@@ -20650,7 +20781,7 @@ class IdlescapeGameData {
             maxAugLevel: 10,
             augmentationCost: { 800: 250, 4000: 10 },
             craftingLevel: 50,
-            craftingExperience: 30000,
+            craftingExperience: 15000,
             forcedAugmentChance: 1,
             champEncounter: 3006,
 
@@ -20675,7 +20806,7 @@ class IdlescapeGameData {
             maxAugLevel: 10,
             augmentationCost: { 5: 10000, 113: 250, 512: 500, 9013: 1 },
             craftingLevel: 60,
-            craftingExperience: 40000,
+            craftingExperience: 20000,
             forcedAugmentChance: 1,
             champEncounter: 3007,
 
@@ -20759,7 +20890,7 @@ class IdlescapeGameData {
             maxAugLevel: 10,
             augmentationCost: { 9016: 1 },
             craftingLevel: 80,
-            craftingExperience: 80000,
+            craftingExperience: 40000,
             forcedAugmentChance: 1,
             champEncounter: 3004,
 
@@ -20783,7 +20914,7 @@ class IdlescapeGameData {
             maxAugLevel: 10,
             augmentationCost: { 9017: 1 },
             craftingLevel: 74,
-            craftingExperience: 80000,
+            craftingExperience: 40000,
             forcedAugmentChance: 1,
             champEncounter: 3005,
 
@@ -20806,7 +20937,7 @@ class IdlescapeGameData {
             maxAugLevel: 10,
             augmentationCost: { 9018: 1 },
             craftingLevel: 80,
-            craftingExperience: 60000,
+            craftingExperience: 30000,
             forcedAugmentChance: 1,
             champEncounter: 3008,
 
@@ -20829,7 +20960,7 @@ class IdlescapeGameData {
             maxAugLevel: 10,
             augmentationCost: { 9019: 1 },
             craftingLevel: 92,
-            craftingExperience: 80000,
+            craftingExperience: 40000,
             forcedAugmentChance: 1,
             champEncounter: 3009,
 
@@ -21819,7 +21950,7 @@ class IdlescapeGameData {
             name: "Miner's Smock",
             id: 12003,
             enchantmentTier: 3,
-            forcedEnchant: 50,
+            forcedEnchant: 68,
             forcedEnchantAmount: 3,
             augmentationCost: { 12010: 10 },
             requiredResources: [{ 12010: 150 }],
@@ -21850,7 +21981,7 @@ class IdlescapeGameData {
             name: "Miner's Lantern Helmet",
             id: 12004,
             enchantmentTier: 3,
-            forcedEnchant: 51,
+            forcedEnchant: 2,
             forcedEnchantAmount: 3,
             augmentationCost: { 12010: 10 },
             requiredResources: [{ 12010: 150 }],
@@ -21881,7 +22012,7 @@ class IdlescapeGameData {
             name: "Miner's Trousers",
             id: 12005,
             enchantmentTier: 3,
-            forcedEnchant: 49,
+            forcedEnchant: 67,
             forcedEnchantAmount: 3,
             augmentationCost: { 12010: 10 },
             requiredResources: [{ 12010: 150 }],
@@ -22250,7 +22381,6 @@ class IdlescapeGameData {
         25000: {
             id: 25000,
             name: 'Monster Tooth',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/tooth.png',
             value: 150,
             extraTooltipInfo: 'A tooth taken from a slain monster; might be worth something to someone.',
@@ -22261,7 +22391,6 @@ class IdlescapeGameData {
         25001: {
             id: 25001,
             name: 'Monster Horn',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/horn.png',
             value: 250,
             extraTooltipInfo: 'A horn taken from a slain monster; might be worth something to someone.',
@@ -22272,7 +22401,6 @@ class IdlescapeGameData {
         25002: {
             id: 25002,
             name: 'Sturdy Horn',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/horn_2.png',
             value: 500,
             extraTooltipInfo: 'A sturdy horn taken from a slain monster; might be worth something to someone.',
@@ -22283,7 +22411,6 @@ class IdlescapeGameData {
         25003: {
             id: 25003,
             name: 'Old Coins',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/old_coins.png',
             value: 1000,
             extraTooltipInfo: 'Some old coins. Might be worth something to a collector',
@@ -22294,7 +22421,6 @@ class IdlescapeGameData {
         25004: {
             id: 25004,
             name: 'Primitive Coin',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/primitive_coin.png',
             value: 2500,
             extraTooltipInfo: 'A rather heavy, yet primitive, gold coin. This could easily be sold for a tidy sum.',
@@ -22305,7 +22431,6 @@ class IdlescapeGameData {
         25005: {
             id: 25005,
             name: 'Undead Token',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/undead_token.png',
             value: 5000,
             extraTooltipInfo: 'Some sort of token taken from the undead. Someone might be interested in it.',
@@ -22316,7 +22441,6 @@ class IdlescapeGameData {
         25006: {
             id: 25006,
             name: 'Woodland Trinket',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/woodland_trinket.png',
             value: 5000,
             extraTooltipInfo: 'A trinket taken from the Elves; might be worth something to someone.',
@@ -22327,7 +22451,6 @@ class IdlescapeGameData {
         25007: {
             id: 25007,
             name: 'Intact Wing',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/wing.png',
             value: 5000,
             extraTooltipInfo: 'A mostly intact wing. Someone might be interested in it.',
@@ -22338,7 +22461,6 @@ class IdlescapeGameData {
         25008: {
             id: 25008,
             name: 'Ornate Trinket',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/ornate_trinket.png',
             value: 15000,
             extraTooltipInfo: 'A rather ornate trinket; it should be worth a bit.',
@@ -22349,7 +22471,6 @@ class IdlescapeGameData {
         25009: {
             id: 25009,
             name: 'Useless Metal Scraps',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/metal_scraps.png',
             value: 100,
             extraTooltipInfo:
@@ -22361,7 +22482,6 @@ class IdlescapeGameData {
         25010: {
             id: 25010,
             name: 'Exotic Trinket',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/exotic_trinket.png',
             value: 25000,
             extraTooltipInfo:
@@ -22373,7 +22493,6 @@ class IdlescapeGameData {
         25011: {
             id: 25011,
             name: 'Demonic Statue',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/demonic_statue.png',
             value: 35000,
             extraTooltipInfo:
@@ -22385,7 +22504,6 @@ class IdlescapeGameData {
         25012: {
             id: 25012,
             name: 'Monster Claws',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/claws.png',
             value: 100,
             extraTooltipInfo: 'Claws taken from a slain monster; might be worth something to someone.',
@@ -22396,7 +22514,6 @@ class IdlescapeGameData {
         25013: {
             id: 25013,
             name: 'Bottled Blood',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/blood.png',
             value: 10000,
             extraTooltipInfo: 'Slightly magical blood taken from something. May be valuable to someone.',
@@ -22407,7 +22524,6 @@ class IdlescapeGameData {
         25014: {
             id: 25014,
             name: 'Broken Armaments',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/broken_sword.png',
             value: 1000,
             extraTooltipInfo:
@@ -22419,7 +22535,6 @@ class IdlescapeGameData {
         25015: {
             id: 25015,
             name: 'Creature Eggs',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/eggs.png',
             value: 3000,
             extraTooltipInfo: 'Eggs from some creature. Probably best to get rid of this quickly.',
@@ -22430,7 +22545,6 @@ class IdlescapeGameData {
         25016: {
             id: 25016,
             name: 'Dwarven Coins',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/dwarven_coins.png',
             value: 7500,
             extraTooltipInfo: 'Shiny dwarven coins that are of no use to you. A vendor could exchange the currency.',
@@ -22441,7 +22555,6 @@ class IdlescapeGameData {
         25017: {
             id: 25017,
             name: 'Bone Shards',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/bone_shards.png',
             value: 350,
             extraTooltipInfo: 'Splinters of bone taken from a slain creature. Might be worth something to someone.',
@@ -22452,7 +22565,6 @@ class IdlescapeGameData {
         25018: {
             id: 25018,
             name: 'Giant Heart',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/giant_heart.png',
             value: 17500,
             extraTooltipInfo:
@@ -22464,7 +22576,6 @@ class IdlescapeGameData {
         25019: {
             id: 25019,
             name: 'Ancient Armor Scraps',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/ancient_armor_scraps.png',
             value: 4000,
             extraTooltipInfo:
@@ -22476,7 +22587,6 @@ class IdlescapeGameData {
         25020: {
             id: 25020,
             name: 'Unknown Rune',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/unknown_rune.png',
             value: 12500,
             extraTooltipInfo:
@@ -22488,7 +22598,6 @@ class IdlescapeGameData {
         25021: {
             id: 25021,
             name: 'Light Armor Scraps',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/armor_scraps_2.png',
             value: 1250,
             extraTooltipInfo: 'Pieces of light armor that is too damaged to salvage. Might be worth something to someone.',
@@ -22499,7 +22608,6 @@ class IdlescapeGameData {
         25022: {
             id: 25022,
             name: 'Armor Scraps',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/armor_scraps_3.png',
             value: 1500,
             extraTooltipInfo: 'Pieces of armor that is too damaged to salvage. Might be worth something to someone.',
@@ -22510,7 +22618,6 @@ class IdlescapeGameData {
         25023: {
             id: 25023,
             name: 'Heavy Armor Scraps',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/armor_scraps.png',
             value: 1750,
             extraTooltipInfo: 'Pieces of heavy armor that is too damaged to salvage. Might be worth something to someone.',
@@ -22521,7 +22628,6 @@ class IdlescapeGameData {
         25024: {
             id: 25024,
             name: 'Tusk',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/tusk.png',
             value: 750,
             extraTooltipInfo: 'A tusk taken from a slain monster; might be worth something to someone.',
@@ -22532,7 +22638,6 @@ class IdlescapeGameData {
         25025: {
             id: 25025,
             name: 'Gem Shards',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/gem_shards.png',
             value: 2250,
             extraTooltipInfo:
@@ -22544,7 +22649,6 @@ class IdlescapeGameData {
         25026: {
             id: 25026,
             name: 'Goblin Fork',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/fork.png',
             value: 225,
             extraTooltipInfo:
@@ -22556,7 +22660,6 @@ class IdlescapeGameData {
         25027: {
             id: 25027,
             name: 'Nature Stone',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/nature_stone.png',
             value: 10000,
             extraTooltipInfo:
@@ -22568,7 +22671,6 @@ class IdlescapeGameData {
         25028: {
             id: 25028,
             name: 'Fire Stone',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/fire_stone.png',
             value: 10000,
             extraTooltipInfo:
@@ -22580,7 +22682,6 @@ class IdlescapeGameData {
         25029: {
             id: 25029,
             name: 'Ice Stone',
-            tradeable: true,
             itemImage: '/images/combat/materials/junk/nature_rune.png',
             value: 10000,
             extraTooltipInfo:
@@ -22592,7 +22693,6 @@ class IdlescapeGameData {
         25030: {
             id: 25030,
             name: 'A Diamond Plated Bug',
-            tradeable: true,
             itemImage: '/images/chaticons/chat-icon-bugtester-diamond.png',
             value: 1000000,
             extraTooltipInfo: 'I wonder who added this in?',
@@ -22704,6 +22804,7 @@ class IdlescapeGameData {
             name: 'Clay Pit',
             locID: 50,
             actionType: 'Action-Mining',
+            actionVerb: 'Mine',
             baseDuration: 5000,
             activeMessage: 'Mining in the Clay Pit',
             locationImage: '/images/mining/clay_pit.jpg',
@@ -22716,7 +22817,7 @@ class IdlescapeGameData {
             },
             extraTooltipInfo: 'WIP',
             loot: [
-                { id: 113, frequency: 30, minAmount: 1 }, // rune slate
+                // { id: 113, frequency: 30, minAmount: 2, maxAmount: 5 }, // rune slate
                 { id: 108, frequency: 40, minAmount: 1 }, //clay
                 { id: 101, frequency: 20, minAmount: 1 }, //copper
                 { id: 102, frequency: 20, minAmount: 1 }, //tin
@@ -22730,6 +22831,7 @@ class IdlescapeGameData {
             name: 'City Outskirts Mine',
             locID: 51,
             actionType: 'Action-Mining',
+            actionVerb: 'Mine',
             baseDuration: 8000,
             activeMessage: 'Mining in the City Outskirts Mine',
             locationImage: '/images/mining/city_outskirts_quarry.jpg',
@@ -22757,6 +22859,7 @@ class IdlescapeGameData {
             name: 'Village Quarry',
             locID: 52,
             actionType: 'Action-Mining',
+            actionVerb: 'Mine',
             baseDuration: 8000,
             activeMessage: 'Mining in the Village Quarry',
             locationImage: '/images/mining/village_quarry.jpg',
@@ -22780,6 +22883,7 @@ class IdlescapeGameData {
             name: 'Desert Mine',
             locID: 53,
             actionType: 'Action-Mining',
+            actionVerb: 'Mine',
             baseDuration: 12000,
             activeMessage: 'Mining in the Desert Mine',
             locationImage: '/images/mining/desert_mine.jpg',
@@ -22808,6 +22912,7 @@ class IdlescapeGameData {
             name: 'Underground Mine',
             locID: 54,
             actionType: 'Action-Mining',
+            actionVerb: 'Mine',
             baseDuration: 12000,
             activeMessage: 'Mining in the Underground Mine',
             locationImage: '/images/mining/underground_mine.jpg',
@@ -22823,7 +22928,7 @@ class IdlescapeGameData {
                 { id: 105, frequency: 30, minAmount: 1 }, //mithril
                 { id: 104, frequency: 17.5, minAmount: 1 }, //gold
                 { id: 111, frequency: 12.5, minAmount: 1 }, //silver
-                { id: 113, frequency: 15, minAmount: 1 }, // rune slate
+                { id: 113, frequency: 15, minAmount: 1, maxAmount: 2 }, // rune slate
                 { id: 2013, frequency: 10, minAmount: 1, maxAmount: 3 }, //salt
                 { id: 109, frequency: 5, minAmount: 1, maxAmount: 3 }, //stone
                 { id: 103, frequency: 5, minAmount: 1 }, //iron
@@ -22835,6 +22940,7 @@ class IdlescapeGameData {
             name: 'Hidden Mine',
             locID: 55,
             actionType: 'Action-Mining',
+            actionVerb: 'Mine',
             baseDuration: 15000,
             activeMessage: 'Mining in the Hidden Mine',
             locationImage: '/images/mining/hidden_mine.jpg',
@@ -22861,6 +22967,7 @@ class IdlescapeGameData {
             name: 'Volcano Mine',
             locID: 56,
             actionType: 'Action-Mining',
+            actionVerb: 'Mine',
             baseDuration: 15000,
             activeMessage: 'Mining in the Volcano Mine',
             locationImage: '/images/mining/volcano_mine.jpg',
@@ -22882,10 +22989,38 @@ class IdlescapeGameData {
             ],
 
         },
+        57: {
+            name: 'Slate Spires',
+            locID: 57,
+            actionType: 'Action-Mining',
+            actionVerb: 'Mine',
+            baseDuration: 7000,
+            activeMessage: 'Mining at the Slate Spires',
+            locationImage: '/images/mining/slate_spires.jpg',
+            accessRequirements: {
+                requiredSkills: [{ skill: 'mining', level: 1 }],
+                requiredItems: [],
+                consumeRequiredItems: false,
+                requiredEquipment: [],
+                maxGroupSize: 1,
+            },
+            extraTooltipInfo: 'WIP',
+            loot: [
+                { id: 113, frequency: 50, minAmount: 1, maxAmount: 2 }, // rune slate
+                // { id: 108, frequency: 40, minAmount: 1 }, //clay
+                // { id: 101, frequency: 20, minAmount: 1 }, //copper
+                // { id: 102, frequency: 20, minAmount: 1 }, //tin
+                { id: 109, frequency: 10, minAmount: 1, maxAmount: 2 }, //stone
+                { id: 110, frequency: 10, minAmount: 1, maxAmount: 2 }, //sand
+                // { id: 11011, frequency: 1, minAmount: 1 }, //fat nightcrawler
+            ],
+
+        },
         80: {
             name: 'Deep Pit',
             locID: 80,
             actionType: 'Action-Mining',
+            actionVerb: 'Mine',
             baseDuration: 20000,
             activeMessage: 'Mining in the Deep Pit',
             locationImage: '/images/mining/deep_pit.jpg',
@@ -22900,9 +23035,10 @@ class IdlescapeGameData {
 
             loot: [
                 { id: 107, frequency: 50, minAmount: 1 }, //runite
-                { id: 113, frequency: 25, minAmount: 1, maxAmount: 2 }, // rune slate
-                { id: 104, frequency: 25, minAmount: 1, maxAmount: 2 }, //gold
-                { id: 114, frequency: 10, minAmount: 1 }, // stygian
+                { id: 113, frequency: 15, minAmount: 1, maxAmount: 3 }, // rune slate
+                { id: 104, frequency: 15, minAmount: 1, maxAmount: 2 }, //gold
+                { id: 114, frequency: 15, minAmount: 1 }, // stygian
+                { id: 115, frequency: 5, minAmount: 1 }, // void stone
             ],
         },
 
@@ -22911,6 +23047,7 @@ class IdlescapeGameData {
             name: 'Grasslands',
             locID: 101,
             actionType: 'Action-Foraging',
+            actionVerb: 'Forage',
             baseDuration: 6000,
             activeMessage: 'Foraging in the Grasslands',
             locationImage: '/images/foraging/grasslands.jpg',
@@ -22937,7 +23074,7 @@ class IdlescapeGameData {
                         { id: 155, frequency: 1 / 4, minAmount: 1 }, //potato seed
                         { id: 2027, frequency: 10, minAmount: 1 }, //wildberry
                         { id: 158, frequency: 1 / 4, minAmount: 1 }, //wildberry bush seed
-                        { id: 301, frequency: 10, minAmount: 1 }, //branch
+                        { id: 301, frequency: 10, minAmount: 1, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 1 }, //log
                         { id: 11012, frequency: 1 / 4, minAmount: 2, maxAmount: 4 }, //glowbug
                     ],
@@ -22950,7 +23087,7 @@ class IdlescapeGameData {
                     maximumBaseAmount: 32,
                     loot: [
                         { id: 2016, frequency: 1 / 2, minAmount: 1 }, //honey
-                        { id: 301, frequency: 10, minAmount: 1 }, //branch
+                        { id: 301, frequency: 10, minAmount: 1, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 1 }, //log
                         { id: 11012, frequency: 1 / 4, minAmount: 2, maxAmount: 4 }, //glowbug
                     ],
@@ -22964,7 +23101,7 @@ class IdlescapeGameData {
                     maximumBaseAmount: 32,
                     loot: [
                         { id: 2016, frequency: 1 / 2, minAmount: 1 }, //honey
-                        { id: 301, frequency: 10, minAmount: 2 }, //branch
+                        { id: 301, frequency: 10, minAmount: 2, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 1 }, //log
                         { id: 11012, frequency: 1 / 4, minAmount: 2, maxAmount: 4 }, //glowbug
                     ],
@@ -23017,6 +23154,7 @@ class IdlescapeGameData {
             name: 'Verdant Valley',
             locID: 102,
             actionType: 'Action-Foraging',
+            actionVerb: 'Forage',
             baseDuration: 8000,
             activeMessage: 'Foraging in the Verdant Valley',
             locationImage: '/images/foraging/verdant_valley.jpg',
@@ -23044,7 +23182,7 @@ class IdlescapeGameData {
                         { id: 2029, frequency: 2, minAmount: 1 }, //wheat
                         { id: 154, frequency: 1 / 4, minAmount: 1 }, //wheat seed
                         { id: 170, frequency: 1 / 8, minAmount: 1 }, //tree seed
-                        { id: 301, frequency: 10, minAmount: 1 }, //branch
+                        { id: 301, frequency: 10, minAmount: 1, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 1 }, //log
                         { id: 303, frequency: 10, minAmount: 1 }, //oak log
                         { id: 11012, frequency: 1 / 4, minAmount: 2, maxAmount: 4 }, //glowbug
@@ -23063,7 +23201,7 @@ class IdlescapeGameData {
                     maximumBaseAmount: 32,
                     loot: [
                         { id: 2016, frequency: 2, minAmount: 1 }, //honey
-                        { id: 301, frequency: 10, minAmount: 1 }, //branch
+                        { id: 301, frequency: 10, minAmount: 1, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 1 }, //log
                         { id: 170, frequency: 1 / 16, minAmount: 1 }, //tree seed
                         { id: 11012, frequency: 1 / 4, minAmount: 2, maxAmount: 4 }, //glowbug
@@ -23078,7 +23216,7 @@ class IdlescapeGameData {
                     maximumBaseAmount: 32,
                     loot: [
                         { id: 2016, frequency: 2, minAmount: 1 }, //honey
-                        { id: 301, frequency: 8, minAmount: 1 }, //branch
+                        { id: 301, frequency: 8, minAmount: 1, maxAmount: 3 }, //branch
                         { id: 303, frequency: 10, minAmount: 1 }, //oak log
                         { id: 170, frequency: 1 / 16, minAmount: 1 }, //tree seed
                         { id: 11012, frequency: 1 / 4, minAmount: 2, maxAmount: 4 }, //glowbug
@@ -23093,7 +23231,7 @@ class IdlescapeGameData {
                     maximumBaseAmount: 32,
                     loot: [
                         { id: 2016, frequency: 2, minAmount: 2 }, //honey
-                        { id: 301, frequency: 8, minAmount: 2 }, //branch
+                        { id: 301, frequency: 8, minAmount: 2, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 2 }, //log
                         { id: 303, frequency: 10, minAmount: 1 }, //oak log
                     ],
@@ -23163,6 +23301,7 @@ class IdlescapeGameData {
             name: 'Fungal Grotto',
             locID: 103,
             actionType: 'Action-Foraging',
+            actionVerb: 'Forage',
             baseDuration: 8000,
             activeMessage: 'Foraging in the Fungal Grotto',
             locationImage: '/images/foraging/fungal_grotto.jpg',
@@ -23188,7 +23327,7 @@ class IdlescapeGameData {
                         { id: 155, frequency: 1 / 4, minAmount: 1 }, //potato seed
                         { id: 2021, frequency: 1, minAmount: 1 }, //carrot
                         { id: 151, frequency: 1 / 4, minAmount: 1 }, //carrot seed
-                        { id: 301, frequency: 5, minAmount: 1 }, //branch
+                        { id: 301, frequency: 5, minAmount: 1, maxAmount: 3 }, //branch
                         { id: 170, frequency: 1 / 8, minAmount: 1 }, //tree seed
                         { id: 171, frequency: 1 / 8, minAmount: 1 }, //oak tree seed
                         { id: 172, frequency: 1 / 8, minAmount: 1 }, //willow tree seed
@@ -23254,7 +23393,7 @@ class IdlescapeGameData {
                     minimumBaseAmount: 4,
                     maximumBaseAmount: 32,
                     loot: [
-                        { id: 301, frequency: 5, minAmount: 2 }, //branch
+                        { id: 301, frequency: 5, minAmount: 2, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 1 }, //log
                         { id: 303, frequency: 10, minAmount: 1 }, //oak log
                         { id: 304, frequency: 10, minAmount: 1 }, //willow log
@@ -23268,6 +23407,7 @@ class IdlescapeGameData {
             name: 'The Tangle',
             locID: 104,
             actionType: 'Action-Foraging',
+            actionVerb: 'Forage',
             baseDuration: 12000,
             activeMessage: 'Foraging in The Tangle',
             locationImage: '/images/foraging/the_tangle.jpg',
@@ -23294,7 +23434,7 @@ class IdlescapeGameData {
                         { id: 2028, frequency: 1, minAmount: 1 }, //banana
                         { id: 175, frequency: 1 / 8, minAmount: 1 }, //banana tree seed
                         { id: 153, frequency: 1 / 4, minAmount: 1 }, //sugarcane seed
-                        { id: 301, frequency: 5, minAmount: 1 }, //branch
+                        { id: 301, frequency: 5, minAmount: 1, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 1 }, //log
                         { id: 303, frequency: 10, minAmount: 1 }, //oak log
                         { id: 304, frequency: 10, minAmount: 1 }, //willow log
@@ -23303,6 +23443,7 @@ class IdlescapeGameData {
                         { id: 3010, frequency: 4, minAmount: 1, maxAmount: 5 }, //tangle root
                         { id: 3008, frequency: 4, minAmount: 1, maxAmount: 5 }, //thorny root
                         { id: 3009, frequency: 4, minAmount: 1, maxAmount: 5 }, //thorny vine
+                        { id: 3021, frequency: 4, minAmount: 1 }, //yellow pepper
                     ],
                 },
                 {
@@ -23328,7 +23469,7 @@ class IdlescapeGameData {
                     minimumBaseAmount: 16,
                     maximumBaseAmount: 64,
                     loot: [
-                        { id: 301, frequency: 5, minAmount: 1 }, //branch
+                        { id: 301, frequency: 5, minAmount: 1, maxAmount: 3 }, //branch
                         { id: 302, frequency: 10, minAmount: 1 }, //log
                         { id: 303, frequency: 10, minAmount: 1 }, //oak log
                         { id: 304, frequency: 10, minAmount: 1 }, //willow log
@@ -23343,6 +23484,7 @@ class IdlescapeGameData {
                     minimumBaseAmount: 2,
                     maximumBaseAmount: 10,
                     loot: [
+                        { id: 3021, frequency: 1, minAmount: 1 }, //yellow pepper
                         { id: 2022, frequency: 4, minAmount: 1 }, //chili pepper
                         { id: 159, frequency: 1 / 4, minAmount: 1 }, //chili pepper seed
                     ],
@@ -23372,6 +23514,7 @@ class IdlescapeGameData {
                         { id: 3010, frequency: 4, minAmount: 1, maxAmount: 5 }, //tangle root
                         { id: 3008, frequency: 4, minAmount: 1, maxAmount: 5 }, //thorny root
                         { id: 3009, frequency: 4, minAmount: 1, maxAmount: 5 }, //thorny vine
+                        { id: 3021, frequency: 4, minAmount: 1, maxAmount: 5 }, //yellow pepper
                     ],
                     tags: ['plants'],
                 },
@@ -23382,6 +23525,7 @@ class IdlescapeGameData {
             name: 'Misty Marsh',
             locID: 105,
             actionType: 'Action-Foraging',
+            actionVerb: 'Forage',
             baseDuration: 12000,
             activeMessage: 'Foraging in the Misty Marsh',
             locationImage: '/images/foraging/misty_marsh.jpg',
@@ -23464,6 +23608,7 @@ class IdlescapeGameData {
             name: 'Frozen Tundra',
             locID: 106,
             actionType: 'Action-Foraging',
+            actionVerb: 'Forage',
             baseDuration: 15000,
             activeMessage: 'Foraging in the Frozen Tundra',
             locationImage: '/images/foraging/frozen_tundra.jpg',
@@ -23484,6 +23629,7 @@ class IdlescapeGameData {
                     maximumBaseAmount: 16,
                     loot: [
                         { id: 2022, frequency: 1, minAmount: 1 }, //chili pepper
+                        { id: 3021, frequency: 1, minAmount: 1 }, //yellow pepper
                         { id: 159, frequency: 1 / 4, minAmount: 1 }, //chili pepper seed
                         { id: 2027, frequency: 1, minAmount: 1 }, //wildberry
                         { id: 158, frequency: 1 / 4, minAmount: 1 }, //wildberry bush seed
@@ -23505,6 +23651,7 @@ class IdlescapeGameData {
                     maximumBaseAmount: 64,
                     loot: [
                         { id: 2022, frequency: 1, minAmount: 1 }, //chili pepper
+                        { id: 3021, frequency: 1, minAmount: 1 }, //yellow pepper
                         { id: 159, frequency: 1 / 4, minAmount: 1 }, //chili pepper seed
                         { id: 2027, frequency: 1, minAmount: 1 }, //wildberry
                         { id: 158, frequency: 1 / 4, minAmount: 1 }, //wildberry bush seed
@@ -23525,6 +23672,7 @@ class IdlescapeGameData {
                     loot: [
                         { id: 3013, frequency: 1, minAmount: 1, maxAmount: 5 }, //frost flower
                         { id: 3013, frequency: 1, minAmount: 1, maxAmount: 5 }, //mana berry
+                        { id: 3021, frequency: 1, minAmount: 1, maxAmount: 5 }, //yellow pepper
                     ],
                     tags: ['plants'],
                 },
@@ -23535,6 +23683,7 @@ class IdlescapeGameData {
             name: 'Haunted Woods',
             locID: 107,
             actionType: 'Action-Foraging',
+            actionVerb: 'Forage',
             baseDuration: 15000,
             activeMessage: 'Foraging in the Haunted Woods',
             locationImage: '/images/foraging/haunted_woods.jpg',
@@ -23643,6 +23792,7 @@ class IdlescapeGameData {
             name: 'Living Forest',
             locID: 108,
             actionType: 'Action-Foraging',
+            actionVerb: 'Forage',
             baseDuration: 20000,
             activeMessage: 'Foraging in the Living Forest',
             locationImage: '/images/foraging/living_forest.jpg',
@@ -23746,6 +23896,7 @@ class IdlescapeGameData {
             name: 'Shallow Pond',
             locID: 151,
             actionType: 'Action-Fishing',
+            actionVerb: 'Fish',
             baseDuration: 8500,
             activeMessage: 'Fishing in the Shallow Pond',
             locationImage: '/images/fishing/shallow_pond.jpg',
@@ -23770,7 +23921,7 @@ class IdlescapeGameData {
                         { id: 72, frequency: -10, maxFrequency: 15 }, //minnow
                         { id: 71, frequency: 1, maxFrequency: 30 }, //seaweed
                         { id: 4020, frequency: 1, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 11030, frequency: -10, maxFrequency: 9 }, //rotten driftwood
+                        { id: 11030, frequency: 1, maxFrequency: 9 }, //rotten driftwood
                     ],
                 },
                 {
@@ -23792,7 +23943,7 @@ class IdlescapeGameData {
                         { id: 72, frequency: -1, maxFrequency: 25 }, //minnow
                         { id: 71, frequency: 1, maxFrequency: 6 }, //seaweed
                         { id: 4020, frequency: 1, maxFrequency: 3, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 11030, frequency: -3, maxFrequency: 9 }, //rotten driftwood
+                        { id: 11030, frequency: 1, maxFrequency: 9 }, //rotten driftwood
                     ],
                 },
                 {
@@ -23827,6 +23978,7 @@ class IdlescapeGameData {
             name: 'Lazy River',
             locID: 152,
             actionType: 'Action-Fishing',
+            actionVerb: 'Fish',
             baseDuration: 9500,
             activeMessage: 'Fishing in the Lazy River',
             locationImage: '/images/fishing/lazy_river.jpg',
@@ -23853,8 +24005,8 @@ class IdlescapeGameData {
                         { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
                         { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
                         { id: 72, frequency: 1, maxFrequency: 10 }, //minnow
-                        { id: 11030, frequency: -5, maxFrequency: 15 }, //rotten driftwood
-                        { id: 11031, frequency: -25, maxFrequency: 5 }, //sturdy driftwood
+                        { id: 11030, frequency: 1, maxFrequency: 15 }, //rotten driftwood
+                        { id: 11031, frequency: -5, maxFrequency: 5 }, //sturdy driftwood
                     ],
                 },
                 {
@@ -23871,8 +24023,8 @@ class IdlescapeGameData {
                         { id: 4020, frequency: 1, maxFrequency: 3, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
                         { id: 4021, frequency: -5, maxFrequency: 3, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
                         { id: 72, frequency: 5, maxFrequency: 25 }, //minnow
-                        { id: 11030, frequency: -5, maxFrequency: 15 }, //rotten driftwood
-                        { id: 11031, frequency: -25, maxFrequency: 5 }, //sturdy driftwood
+                        { id: 11030, frequency: 1, maxFrequency: 15 }, //rotten driftwood
+                        { id: 11031, frequency: -5, maxFrequency: 5 }, //sturdy driftwood
                     ],
                 },
                 {
@@ -23885,8 +24037,8 @@ class IdlescapeGameData {
                         { id: 62, frequency: 3, maxFrequency: 9 },
                         { id: 63, frequency: 6, maxFrequency: 16 },
                         { id: 73, frequency: 9, maxFrequency: 42 }, //tigerfish
-                        { id: 11030, frequency: -20, maxFrequency: 9 }, //rotten driftwood
-                        { id: 11031, frequency: -20, maxFrequency: 9 }, //sturdy driftwood
+                        { id: 11030, frequency: -1, maxFrequency: 15 }, //rotten driftwood
+                        { id: 11031, frequency: -1, maxFrequency: 15 }, //sturdy driftwood
                         { id: 11032, frequency: -50, maxFrequency: 0.75 }, //aquamarine
                     ],
                 },
@@ -23910,6 +24062,7 @@ class IdlescapeGameData {
             name: 'Still Lake',
             locID: 153,
             actionType: 'Action-Fishing',
+            actionVerb: 'Fish',
             baseDuration: 10500,
             activeMessage: 'Fishing in the Still Lake',
             locationImage: '/images/fishing/still_lake.jpg',
@@ -24010,6 +24163,7 @@ class IdlescapeGameData {
             name: 'Open Ocean',
             locID: 154,
             actionType: 'Action-Fishing',
+            actionVerb: 'Fish',
             baseDuration: 11500,
             activeMessage: 'Fishing in the Open Ocean',
             locationImage: '/images/fishing/open_ocean.jpg',
@@ -24113,7 +24267,7 @@ class IdlescapeGameData {
                         { id: 11030, frequency: 3, maxFrequency: 25 }, //rotten driftwood
                         { id: 11031, frequency: 3, maxFrequency: 30 }, //sturdy driftwood
                         { id: 11032, frequency: -30, maxFrequency: 0.75 }, //aquamarine
-                        { id: 11036, frequency: -15, maxFrequency: 2.5 }, //mystical drift wood
+                        { id: 11036, frequency: -15, maxFrequency: 5 }, //mystical drift wood
                     ],
                 },
                 {
@@ -24131,7 +24285,7 @@ class IdlescapeGameData {
                         { id: 11030, frequency: 15, maxFrequency: 25 }, //rotten driftwood
                         { id: 11031, frequency: 5, maxFrequency: 40 }, //sturdy driftwood
                         { id: 11032, frequency: -30, maxFrequency: 1.25 }, //aquamarine
-                        { id: 11036, frequency: -15, maxFrequency: 10 }, //mystical drift wood
+                        { id: 11036, frequency: -1, maxFrequency: 15 }, //mystical drift wood
                         { id: 67, frequency: -25, maxFrequency: 50 }, //megalodon
                         { id: 75, frequency: 3, maxFrequency: 75 }, //great white
                         { id: 76, frequency: 5, maxFrequency: 100 }, //hammerhead
@@ -24149,7 +24303,7 @@ class IdlescapeGameData {
                         { id: 67, frequency: 5, maxFrequency: 50 }, //megalodon
                         { id: 75, frequency: 5, maxFrequency: 25 }, //great white
                         { id: 76, frequency: 5, maxFrequency: 10 }, //hammerhead
-                        { id: 11036, frequency: -15, maxFrequency: 15 }, //mystical drift wood
+                        { id: 11036, frequency: -1, maxFrequency: 20 }, //mystical drift wood
                         { id: 4023, frequency: -5, maxFrequency: 7.5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
                         { id: 4024, frequency: -10, maxFrequency: 4.5, minAmount: 1, maxAmount: 3 }, //aquatic fiber 5
                     ],
@@ -24162,7 +24316,7 @@ class IdlescapeGameData {
                     maxFrequency: 2.5,
                     loot: [
                         { id: 11031, frequency: 5, maxFrequency: 25 }, //sturdy driftwood
-                        { id: 11036, frequency: -15, maxFrequency: 35 }, //mystical drift wood
+                        { id: 11036, frequency: -1, maxFrequency: 50 }, //mystical drift wood
                         { id: 11032, frequency: -30, maxFrequency: 2.5 }, //aquamarine
                         { id: 67, frequency: -25, maxFrequency: 50 }, //megalodon
                         { id: 75, frequency: 3, maxFrequency: 75 }, //great white
@@ -24192,6 +24346,7 @@ class IdlescapeGameData {
             name: 'Stormy Seas',
             locID: 155,
             actionType: 'Action-Fishing',
+            actionVerb: 'Fish',
             baseDuration: 11500,
             activeMessage: 'Fishing in the Stormy Seas',
             locationImage: '/images/fishing/stormy_fishing.jpg',
@@ -24226,7 +24381,7 @@ class IdlescapeGameData {
                         { id: 11030, frequency: 1, maxFrequency: 20 }, //rotten driftwood
                         { id: 11031, frequency: 1, maxFrequency: 20 }, //sturdy driftwood
                         { id: 11032, frequency: -45, maxFrequency: 1.5 }, //aquamarine
-                        { id: 11036, frequency: -35, maxFrequency: 3 }, //mystical drift wood
+                        { id: 11036, frequency: -35, maxFrequency: 8 }, //mystical drift wood
                     ],
                 },
                 {
@@ -24263,7 +24418,7 @@ class IdlescapeGameData {
                         { id: 67, frequency: 15, maxFrequency: 100 }, //megalodon
                         { id: 69, frequency: 50, maxFrequency: 250 }, //tentacle meat
                         { id: 11032, frequency: -100, maxFrequency: 2 }, //aquamarine
-                        { id: 11036, frequency: -75, maxFrequency: 15 }, //mystical drift wood
+                        { id: 11036, frequency: -1, maxFrequency: 25 }, //mystical drift wood
                     ],
                 },
                 {
@@ -24275,7 +24430,7 @@ class IdlescapeGameData {
                     loot: [
                         { id: 69, frequency: 25, maxFrequency: 150 }, //tentacle meat
                         { id: 11032, frequency: -105, maxFrequency: 5 }, //aquamarine
-                        { id: 11036, frequency: -95, maxFrequency: 10 }, //mystical drift wood
+                        { id: 11036, frequency: -1, maxFrequency: 25 }, //mystical drift wood
                     ],
                 },
                 {
@@ -24301,7 +24456,7 @@ class IdlescapeGameData {
                         { id: 11030, frequency: 1, maxFrequency: 3 }, //rotten driftwood
                         { id: 11031, frequency: 1, maxFrequency: 3 }, //sturdy driftwood
                         { id: 11032, frequency: -45, maxFrequency: 1.25 }, //aquamarine
-                        { id: 11036, frequency: -40, maxFrequency: 5 }, //mystical drift wood
+                        { id: 11036, frequency: -40, maxFrequency: 20 }, //mystical drift wood
                     ],
                 },
                 {
@@ -24381,6 +24536,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the Farm',
             locationImage: '/images/combat/locations/farm.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         1001: {
@@ -24390,6 +24548,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the Caves',
             locationImage: '/images/combat/locations/cave.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         1002: {
@@ -24399,6 +24560,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the City',
             locationImage: '/images/combat/locations/city.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         1003: {
@@ -24408,6 +24572,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the Lava Maze',
             locationImage: '/images/combat/locations/lava_maze.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         1004: {
@@ -24417,6 +24584,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the Corrupted Lands',
             locationImage: '/images/combat/locations/corrupted_lands.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         1005: {
@@ -24426,6 +24596,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the Valley of Giants',
             locationImage: '/images/combat/locations/valley_of_giants_3.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         1006: {
@@ -24459,6 +24632,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the Fallen Academy',
             locationImage: '/images/combat/locations/fallen_academy.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         1009: {
@@ -24480,6 +24656,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the Elven Encampment',
             locationImage: '/images/combat/locations/elven_encampment.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
 
@@ -24491,6 +24670,9 @@ class IdlescapeGameData {
             baseDuration: 1000,
             activeMessage: 'Fighting in the Living Armory',
             locationImage: '/images/combat/locations/living_armory.png',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2001: {
@@ -24499,6 +24681,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: "Fighting in the Giant's Hills",
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2002: {
@@ -24507,6 +24692,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting on the Corroded Battlefield',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2003: {
@@ -24515,6 +24703,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Goblin Kitchen',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2004: {
@@ -24523,6 +24714,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: "Fighting in Ot_to's Farm",
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2005: {
@@ -24531,6 +24725,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in The Pit',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2006: {
@@ -24539,6 +24736,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Sacred Grove',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2007: {
@@ -24547,6 +24747,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Chaotic Rift',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2008: {
@@ -24555,6 +24758,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Stormier Seas',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2009: {
@@ -24563,6 +24769,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Obsidian Research Facility',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2010: {
@@ -24571,6 +24780,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Fallen Wizard Tower',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2011: {
@@ -24579,6 +24791,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Nox Woods',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         2012: {
@@ -24587,6 +24802,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Royal Encampment',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
 
@@ -24597,6 +24815,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Gazing too deeply into the abyss',
+            accessRequirements: {
+                maxGroupSize: 1,
+            },
 
         },
         3001: {
@@ -24605,6 +24826,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Raiding a Goblin Settlement',
+            accessRequirements: {
+                maxGroupSize: 3,
+            },
 
         },
         3002: {
@@ -24613,6 +24837,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting through the Dark Fortress',
+            accessRequirements: {
+                maxGroupSize: 3,
+            },
 
         },
         3003: {
@@ -24621,6 +24848,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: "Challenging the Giant's Keep",
+            accessRequirements: {
+                maxGroupSize: 5,
+            },
 
         },
         // TODO Dungeon locations
@@ -24630,6 +24860,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Exploring the Elder Ruins',
+            accessRequirements: {
+                maxGroupSize: 4,
+            },
 
         },
         3005: {
@@ -24638,6 +24871,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Unturning stones at the Overgrown Castle',
+            accessRequirements: {
+                maxGroupSize: 3,
+            },
 
         },
         3006: {
@@ -24646,6 +24882,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Grave Robbing in the Ancient Barrows',
+            accessRequirements: {
+                maxGroupSize: 2,
+            },
 
         },
         3007: {
@@ -24654,6 +24893,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Extinguishing the Palace of Flame',
+            accessRequirements: {
+                maxGroupSize: 2,
+            },
 
         },
         3008: {
@@ -24662,6 +24904,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Treading water at the Eye of the Storm',
+            accessRequirements: {
+                maxGroupSize: 5,
+            },
 
         },
         3009: {
@@ -24670,6 +24915,9 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Facing the Maelstrom',
+            accessRequirements: {
+                maxGroupSize: 5,
+            },
 
         },
 
@@ -24702,1502 +24950,1322 @@ class IdlescapeGameData {
     abilities =  {
         1: {
             id: 1,
-            abilityName: "Melee Auto Attack",
-            abilityImage: "/images/combat/ability_icons/basic_melee.png",
-            description: "A completely standard melee attack that benefits from no particular style or skill. It is the most basic of attacks.",
-            damageType: "Melee",
-            autoAttackStyle: "Melee",
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
+            abilityName: 'Melee Auto Attack',
+            abilityImage: '/images/combat/ability_icons/basic_melee.png',
+            description:
+                'A completely standard melee attack that benefits from no particular style or skill. It is the most basic of attacks.',
+            damageType: 'Melee',
+            autoAttackStyle: 'Melee',
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         2: {
             id: 2,
-            abilityName: "Magic Auto Attack",
-            abilityImage: "/images/combat/ability_icons/basic_magic.png",
-            description: "An unattuned magical attack that draws from the magical abilities of its caster or their equipment without favoring any elemental affinity.",
-            damageType: "Magic",
-            autoAttackStyle: "Magic",
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }],
+            abilityName: 'Magic Auto Attack',
+            abilityImage: '/images/combat/ability_icons/basic_magic.png',
+            description:
+                'An unattuned magical attack that draws from the magical abilities of its caster or their equipment without favoring any elemental affinity.',
+            damageType: 'Magic',
+            autoAttackStyle: 'Magic',
+
+            damageScaling: [{ affinity: 'Magic', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         3: {
             id: 3,
-            abilityName: "Range Auto Attack",
-            abilityImage: "/images/combat/ability_icons/basic_range.png",
-            description: "Fire a basic, unspecialized projectile. This projectile is fully mundane and can be fired infinitely without needing to restock.",
-            damageType: "Range",
-            autoAttackStyle: "Range",
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
+            abilityName: 'Range Auto Attack',
+            abilityImage: '/images/combat/ability_icons/basic_range.png',
+            description:
+                'Fire a basic, unspecialized projectile. This projectile is fully mundane and can be fired infinitely without needing to restock.',
+            damageType: 'Range',
+            autoAttackStyle: 'Range',
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         4: {
             id: 4,
-            abilityName: "Slash",
-            abilityImage: "/images/combat/ability_icons/cleave.png",
-            description: "Use the blade of your weapon to slash at your target.",
-            damageType: "Melee",
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
+            abilityName: 'Slash',
+            abilityImage: '/images/combat/ability_icons/cleave.png',
+            description: 'Use the blade of your weapon to slash at your target.',
+            damageType: 'Melee',
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         5: {
             id: 5,
-            abilityName: "Stab",
-            abilityImage: "/images/combat/ability_icons/stab.png",
-            description: "Use the tip of your weapon to stab your target.",
-            damageType: "Melee",
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.333
-            }],
+            abilityName: 'Stab',
+            abilityImage: '/images/combat/ability_icons/stab.png',
+            description: 'Use the tip of your weapon to stab your target.',
+            damageType: 'Melee',
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         6: {
             id: 6,
-            abilityName: "Crush",
-            abilityImage: "/images/combat/ability_icons/crush.png",
-            description: "Use the weight of your weapon to crush your target.",
-            damageType: "Melee",
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
+            abilityName: 'Crush',
+            abilityImage: '/images/combat/ability_icons/crush.png',
+            description: 'Use the weight of your weapon to crush your target.',
+            damageType: 'Melee',
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         7: {
             id: 7,
-            abilityName: "Fire Ball",
-            abilityImage: "/images/combat/ability_icons/fireball.png",
-            description: "Harness a ball of fire to throw at your enemies. Not a good idea to play catch with.",
-            damageType: "Magic",
-            cooldown: 3e4,
-            runeCost: [{
-                itemID: 512,
-                amount: 2
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.333
-            }],
+            abilityName: 'Fire Ball',
+            abilityImage: '/images/combat/ability_icons/fireball.png',
+            description: 'Harness a ball of fire to throw at your enemies. Not a good idea to play catch with.',
+            damageType: 'Magic',
+            cooldown: 30000,
+            runeCost: [{ itemID: 512, amount: 2 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.2,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         8: {
             id: 8,
-            abilityName: "Ice Shard",
-            abilityImage: "/images/combat/ability_icons/ice_shard.png",
-            description: "Launch a magically hardened ice into your opponent to deal an impressive amount of piercing and ice damage.",
-            damageType: "Magic",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.1
-            }, {
-                affinity: "Ice",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.1
-            }, {
-                affinity: "Ice",
-                scaling: 1.333
-            }],
+            abilityName: 'Ice Shard',
+            abilityImage: '/images/combat/ability_icons/ice_shard.png',
+            description:
+                'Launch a magically hardened ice into your opponent to deal an impressive amount of piercing and ice damage.',
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.1 },
+                { affinity: 'Ice', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.1 },
+                { affinity: 'Ice', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.2,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         9: {
             id: 9,
             abilityName: "Nature's Sanctuary",
-            abilityImage: "/images/combat/ability_icons/reinforce.png",
-            description: "Manifest some of nature's power to defend yourself and deal minor nature damage to your opponent.",
-            damageType: "Magic",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Nature",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Nature",
-                scaling: 1.333
-            }],
+            abilityImage: '/images/combat/ability_icons/reinforce.png',
+            description:
+                "Manifest some of nature's power to defend yourself and deal minor nature damage to your opponent.",
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.2,
-            baseMinimumDamageCoeff: .25,
-            baseMaximumDamageCoeff: .5,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 0.5,
             baseAccuracyCoeff: 1.5,
+
             selfBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 8009,
                 enchantmentStrength: 1,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 4
+                enchantmentAmount: 4,
             },
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         10: {
+            // Boss version of Chaos Rend
             id: 10,
-            abilityName: "Greater Chaos Rend",
-            abilityImage: "/images/combat/ability_icons/chaos_melee.png",
-            description: "A greater chaos melee attack",
-            damageType: "Melee",
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Chaos",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Chaos",
-                scaling: 1.333
-            }],
+            abilityName: 'Greater Chaos Rend',
+            abilityImage: '/images/combat/ability_icons/chaos_melee.png',
+            description: 'A greater chaos melee attack',
+            damageType: 'Melee',
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Chaos', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Chaos', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.25,
-            baseMinimumDamageCoeff: .75,
+            baseMinimumDamageCoeff: 0.75,
             baseMaximumDamageCoeff: 1.25,
-            baseAccuracyCoeff: .9,
-            maxTargets: 3
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 3,
         },
         11: {
+            // Player version of Chaos Rend
             id: 11,
-            abilityName: "Lesser Chaos Rend",
-            abilityImage: "/images/combat/ability_icons/chaos_melee.png",
-            description: "Though an imperfect copy of an attack known only to the Giant King, it is far from weak. Tear forth a new rend in reality and hope nothing is on the other side.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Chaos",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Chaos",
-                scaling: 1.333
-            }],
+            abilityName: 'Lesser Chaos Rend',
+            abilityImage: '/images/combat/ability_icons/chaos_melee.png',
+            description:
+                'Though an imperfect copy of an attack known only to the Giant King, it is far from weak. Tear forth a new rend in reality and hope nothing is on the other side.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Chaos', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Chaos', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.05,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1.15,
-            baseAccuracyCoeff: .8,
-            maxTargets: 1
+            baseAccuracyCoeff: 0.8,
+
+            maxTargets: 1,
         },
         12: {
             id: 12,
-            abilityName: "Artillery",
-            abilityImage: "/images/combat/ability_icons/artillery.png",
-            description: "Fire a barrage of explosive projectiles into the midst of your enemies, allowing you to deal an extreme amount of damage to multiple targets.",
-            damageType: "Range",
-            cooldown: 3e4,
-            useRangedAmmo: !0,
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
+            abilityName: 'Artillery',
+            abilityImage: '/images/combat/ability_icons/artillery.png',
+            description:
+                'Fire a barrage of explosive projectiles into the midst of your enemies, allowing you to deal an extreme amount of damage to multiple targets.',
+            damageType: 'Range',
+            cooldown: 30000,
+            useRangedAmmo: true,
+
+            damageScaling: [
+                { affinity: 'Range', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Range', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.75,
             baseMinimumDamageCoeff: 1.5,
             baseMaximumDamageCoeff: 4,
-            baseAccuracyCoeff: .75,
-            maxTargets: 5
+            baseAccuracyCoeff: 0.75,
+
+            maxTargets: 5,
         },
         13: {
             id: 13,
-            abilityName: "Shatter Strike",
-            abilityImage: "/images/combat/ability_icons/shatterstrike.png",
-            description: "Put your might into a single heavy hitting crushing attack at the expense of speed and accuracy.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
+            abilityName: 'Shatter Strike',
+            abilityImage: '/images/combat/ability_icons/shatterstrike.png',
+            description: 'Put your might into a single heavy hitting crushing attack at the expense of speed and accuracy.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.75,
             baseMinimumDamageCoeff: 1.5,
             baseMaximumDamageCoeff: 3,
-            baseAccuracyCoeff: .75,
-            maxTargets: 1
+            baseAccuracyCoeff: 0.75,
+
+            maxTargets: 1,
         },
         14: {
             id: 14,
-            abilityName: "Crystal Fracture",
-            abilityImage: "/images/combat/ability_icons/shatterstrike.png",
-            description: "Harness the strength of chaotic crystals to fracture your foes with an impressive crushing strike.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }, {
-                affinity: "Chaos",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }, {
-                affinity: "Chaos",
-                scaling: 1.333
-            }],
+            abilityName: 'Crystal Fracture',
+            abilityImage: '/images/combat/ability_icons/shatterstrike.png',
+            description:
+                'Harness the strength of chaotic crystals to fracture your foes with an impressive crushing strike.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+                { affinity: 'Chaos', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+                { affinity: 'Chaos', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.25,
-            baseMinimumDamageCoeff: .9,
+            baseMinimumDamageCoeff: 0.9,
             baseMaximumDamageCoeff: 1.33,
             baseAccuracyCoeff: 1.05,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         15: {
             id: 15,
-            abilityName: "Titanic Strike",
-            abilityImage: "/images/combat/ability_icons/titanicstrike.png",
-            description: "A slow but incredibly heavy hitting blunt attack.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1.1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.66
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1.1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.66
-            }],
+            abilityName: 'Titanic Strike',
+            abilityImage: '/images/combat/ability_icons/titanicstrike.png',
+            description: 'A slow but incredibly heavy hitting blunt attack.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1.1 },
+                { affinity: 'Blunt', scaling: 1.66 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1.1 },
+                { affinity: 'Blunt', scaling: 1.66 },
+            ],
+
             baseSpeedCoeff: 1.66,
             baseMinimumDamageCoeff: 1.1,
             baseMaximumDamageCoeff: 2.25,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         16: {
             id: 16,
-            abilityName: "Lightning Strike",
-            abilityImage: "/images/combat/ability_icons/lightning_strike.png",
-            description: "Strike as quick as lightning!",
-            damageType: "Melee",
-            cooldown: 1e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }, {
-                affinity: "Lightning",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }, {
-                affinity: "Lightning",
-                scaling: 1.333
-            }],
-            baseSpeedCoeff: .6,
-            baseMinimumDamageCoeff: .6,
-            baseMaximumDamageCoeff: .6,
+            abilityName: 'Lightning Strike',
+            abilityImage: '/images/combat/ability_icons/lightning_strike.png',
+            description: 'Strike as quick as lightning!',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Lightning', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Lightning', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.6,
+            baseMinimumDamageCoeff: 0.6,
+            baseMaximumDamageCoeff: 0.6,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         17: {
             id: 17,
-            abilityName: "Entropic Burst",
-            abilityImage: "/images/combat/ability_icons/chaos_missile_2.png",
-            description: "All things eventually come to an end.",
-            damageType: "Magic",
-            cooldown: 1e4,
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1.1
-            }, {
-                affinity: "Chaos",
-                scaling: 1.5
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1.1
-            }, {
-                affinity: "Chaos",
-                scaling: 1.5
-            }],
-            baseSpeedCoeff: .5,
-            baseMinimumDamageCoeff: .75,
-            baseMaximumDamageCoeff: .5,
+            abilityName: 'Entropic Burst',
+            abilityImage: '/images/combat/ability_icons/chaos_missile_2.png',
+            description: 'All things eventually come to an end.',
+            damageType: 'Magic',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1.1 },
+                { affinity: 'Chaos', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1.1 },
+                { affinity: 'Chaos', scaling: 1.5 },
+            ],
+
+            baseSpeedCoeff: 0.5,
+            baseMinimumDamageCoeff: 0.75,
+            baseMaximumDamageCoeff: 0.5,
             baseAccuracyCoeff: 1.75,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         18: {
             id: 18,
-            abilityName: "Flamethrower",
-            abilityImage: "/images/combat/ability_icons/flamethrower.png",
-            description: "Fire an intense gout of flame!",
-            damageType: "Magic",
-            cooldown: 1e4,
-            runeCost: [{
-                itemID: 512,
-                amount: 5
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.333
-            }],
+            abilityName: 'Flamethrower',
+            abilityImage: '/images/combat/ability_icons/flamethrower.png',
+            description: 'Fire an intense gout of flame!',
+            damageType: 'Magic',
+            cooldown: 10000,
+            runeCost: [{ itemID: 512, amount: 5 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.25,
             baseMinimumDamageCoeff: 1.5,
             baseMaximumDamageCoeff: 2.5,
-            baseAccuracyCoeff: .66,
-            maxTargets: 3
+            baseAccuracyCoeff: 0.66,
+
+            maxTargets: 3,
         },
         19: {
             id: 19,
-            abilityName: "Regal Might",
-            abilityImage: "/images/combat/ability_icons/regal_might.png",
-            description: "Harness your regal power to summon a small magical ice storm to deal minor ice damage and increase your defenses somewhat.",
-            damageType: "Magic",
-            cooldown: 6e4,
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Ice",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Ice",
-                scaling: 1.333
-            }],
-            baseSpeedCoeff: .5,
-            baseMinimumDamageCoeff: .25,
-            baseMaximumDamageCoeff: .5,
+            abilityName: 'Regal Might',
+            abilityImage: '/images/combat/ability_icons/regal_might.png',
+            description:
+                'Harness your regal power to summon a small magical ice storm to deal minor ice damage and increase your defenses somewhat.',
+            damageType: 'Magic',
+            cooldown: 60000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.5,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 0.5,
             baseAccuracyCoeff: 3,
+
             selfBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 8010,
                 enchantmentStrength: 2,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 4
+                enchantmentAmount: 4,
             },
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         20: {
             id: 20,
-            abilityName: "Krakatoa",
-            abilityImage: "/images/combat/ability_icons/krakatoa.png",
-            description: "Kra-ka-to-ahhhh! Let loose a magical blast of fire from your head. This is definitely safe!",
-            damageType: "Magic",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.333
-            }],
+            abilityName: 'Krakatoa',
+            abilityImage: '/images/combat/ability_icons/krakatoa.png',
+            description: 'Kra-ka-to-ahhhh! Let loose a magical blast of fire from your head. This is definitely safe!',
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.33,
             baseMinimumDamageCoeff: 2,
             baseMaximumDamageCoeff: 3,
             baseAccuracyCoeff: 1.25,
-            maxTargets: 5
+
+            maxTargets: 5,
         },
         21: {
             id: 21,
-            abilityName: "Triple Shot",
-            abilityImage: "/images/combat/ability_icons/tripleshot.png",
-            description: "Quickly fire up to three arrows at the enemy party! Only one arrow can strike each target.",
-            damageType: "Range",
-            cooldown: 3e4,
-            useRangedAmmo: !0,
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
+            abilityName: 'Triple Shot',
+            abilityImage: '/images/combat/ability_icons/tripleshot.png',
+            description: 'Quickly fire up to three arrows at the enemy party! Only one arrow can strike each target.',
+            damageType: 'Range',
+            cooldown: 30000,
+            useRangedAmmo: true,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1,
-            baseAccuracyCoeff: .75,
-            maxTargets: 3
+            baseAccuracyCoeff: 0.75,
+
+            maxTargets: 3,
         },
         22: {
             id: 22,
-            abilityName: "Cleave",
-            abilityImage: "/images/combat/ability_icons/cleave.png",
-            description: "Let loose a mighty swing to strike up to two enemies at once! Due to having to cleave through two enemies, this attack deals slightly less damage than a single target attack.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
+            abilityName: 'Cleave',
+            abilityImage: '/images/combat/ability_icons/cleave.png',
+            description:
+                'Let loose a mighty swing to strike up to two enemies at once! Due to having to cleave through two enemies, this attack deals slightly less damage than a single target attack.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.15,
-            baseMinimumDamageCoeff: .66,
+            baseMinimumDamageCoeff: 0.66,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 2
+
+            maxTargets: 2,
         },
         23: {
             id: 23,
-            abilityName: "Deadshot",
-            abilityImage: "/images/combat/ability_icons/deadshot_alt.png",
+            abilityName: 'Deadshot',
+            abilityImage: '/images/combat/ability_icons/deadshot_alt.png',
             description: "One shot, one kill. Fire a well placed arrow at an enemy's weakspot.",
-            damageType: "Range",
-            cooldown: 3e4,
-            useRangedAmmo: !0,
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1.33
-            }],
+            damageType: 'Range',
+            cooldown: 30000,
+            useRangedAmmo: true,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1.33 }],
+
             baseSpeedCoeff: 1.33,
             baseMinimumDamageCoeff: 1.5,
             baseMaximumDamageCoeff: 2,
             baseAccuracyCoeff: 2.25,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         24: {
             id: 24,
-            abilityName: "Retreating Shot",
-            abilityImage: "/images/combat/ability_icons/camo.png",
-            description: "Fire a distraction shot and retreat from the frontline temporarily, reducing the chance for enemies to target you. (WIP)",
-            damageType: "Range",
-            cooldown: 3e4,
-            useRangedAmmo: !0,
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
-            baseSpeedCoeff: .5,
-            baseMinimumDamageCoeff: .25,
-            baseMaximumDamageCoeff: .75,
-            baseAccuracyCoeff: .75,
-            maxTargets: 1
+            abilityName: 'Retreating Shot',
+            abilityImage: '/images/combat/ability_icons/camo.png',
+            description:
+                'Fire a distraction shot and retreat from the frontline temporarily, reducing the chance for enemies to target you. (WIP)',
+            damageType: 'Range',
+            cooldown: 30000,
+            useRangedAmmo: true,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
+            baseSpeedCoeff: 0.5,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 0.75,
+            baseAccuracyCoeff: 0.75,
+
+            maxTargets: 1,
         },
         25: {
             id: 25,
-            abilityName: "Apocalyptic Ritual",
-            abilityImage: "/images/combat/ability_icons/apocalypse.png",
-            description: "Release a hellish wave of sulphuric flames to destroy nearly everything in its wake. Magic of this scale may destroy the entire enemy party, but the incredibly long incantation time leaves the caster wide open to counter attacks.",
-            damageType: "Magic",
-            cooldown: 12e4,
-            runeCost: [{
-                itemID: 512,
-                amount: 50
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.5
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.5
-            }],
+            abilityName: 'Apocalyptic Ritual',
+            abilityImage: '/images/combat/ability_icons/apocalypse.png',
+            description:
+                'Release a hellish wave of sulphuric flames to destroy nearly everything in its wake. Magic of this scale may destroy the entire enemy party, but the incredibly long incantation time leaves the caster wide open to counter attacks.',
+            damageType: 'Magic',
+            cooldown: 120000,
+            runeCost: [{ itemID: 512, amount: 50 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.5 },
+            ],
+
             baseSpeedCoeff: 5,
             baseMinimumDamageCoeff: 3.5,
             baseMaximumDamageCoeff: 12.5,
             baseAccuracyCoeff: 5,
-            maxTargets: 10
+
+            maxTargets: 10,
         },
         26: {
             id: 26,
-            abilityName: "Bulwark",
-            abilityImage: "/images/combat/ability_icons/bulwark.png",
-            description: "Ready yourself to defend against the next attack!",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            baseSpeedCoeff: .5,
-            baseMinimumDamageCoeff: .1,
-            baseMaximumDamageCoeff: .1,
+            abilityName: 'Bulwark',
+            abilityImage: '/images/combat/ability_icons/bulwark.png',
+            description: 'Ready yourself to defend against the next attack!',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
+            baseSpeedCoeff: 0.5,
+            baseMinimumDamageCoeff: 0.1,
+            baseMaximumDamageCoeff: 0.1,
             baseAccuracyCoeff: 5,
+
             selfBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 14,
                 enchantmentStrength: 6,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 1
+                enchantmentAmount: 1,
             },
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         27: {
             id: 27,
-            abilityName: "Piercing Ammo",
-            abilityImage: "/images/combat/ability_icons/piercing_shot.png",
-            description: "Use piercing ammo to deal additional piercing damage at the expense of lower base damage.",
-            damageType: "Range",
-            useRangedAmmo: !0,
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.33
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
+            abilityName: 'Piercing Ammo',
+            abilityImage: '/images/combat/ability_icons/piercing_shot.png',
+            description: 'Use piercing ammo to deal additional piercing damage at the expense of lower base damage.',
+            damageType: 'Range',
+            useRangedAmmo: true,
+
+            damageScaling: [
+                { affinity: 'Range', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.33 },
+            ],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .9,
-            baseMaximumDamageCoeff: .9,
+            baseMinimumDamageCoeff: 0.9,
+            baseMaximumDamageCoeff: 0.9,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         28: {
             id: 28,
-            abilityName: "Heavy Ammo",
-            abilityImage: "/images/combat/ability_icons/piercing_shot.png",
-            description: "Use heavy ammo to deal additional blunt damage at the expense of lower base damage.",
-            damageType: "Range",
-            useRangedAmmo: !0,
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.33
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
+            abilityName: 'Heavy Ammo',
+            abilityImage: '/images/combat/ability_icons/piercing_shot.png',
+            description: 'Use heavy ammo to deal additional blunt damage at the expense of lower base damage.',
+            damageType: 'Range',
+            useRangedAmmo: true,
+
+            damageScaling: [
+                { affinity: 'Range', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.33 },
+            ],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .9,
-            baseMaximumDamageCoeff: .9,
+            baseMinimumDamageCoeff: 0.9,
+            baseMaximumDamageCoeff: 0.9,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         29: {
             id: 29,
-            abilityName: "Serrated Ammo",
-            abilityImage: "/images/combat/ability_icons/piercing_shot.png",
-            description: "Use serrated ammo to deal additional slashing damage at the expense of lower base damage.",
-            damageType: "Range",
-            useRangedAmmo: !0,
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.33
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1
-            }],
+            abilityName: 'Serrated Ammo',
+            abilityImage: '/images/combat/ability_icons/piercing_shot.png',
+            description: 'Use serrated ammo to deal additional slashing damage at the expense of lower base damage.',
+            damageType: 'Range',
+            useRangedAmmo: true,
+
+            damageScaling: [
+                { affinity: 'Range', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.33 },
+            ],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .9,
-            baseMaximumDamageCoeff: .9,
+            baseMinimumDamageCoeff: 0.9,
+            baseMaximumDamageCoeff: 0.9,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         30: {
             id: 30,
-            abilityName: "Lesser Fire Bolt",
-            abilityImage: "/images/combat/ability_icons/fire_bolt.png",
-            description: "Attune your magic to fire to deal additional fire damage at the expense of lower base damage.",
-            damageType: "Magic",
-            runeCost: [{
-                itemID: 512,
-                amount: 1
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.33
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }],
+            abilityName: 'Lesser Fire Bolt',
+            abilityImage: '/images/combat/ability_icons/fire_bolt.png',
+            description: 'Attune your magic to fire to deal additional fire damage at the expense of lower base damage.',
+            damageType: 'Magic',
+            runeCost: [{ itemID: 512, amount: 1 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.33 },
+            ],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .9,
-            baseMaximumDamageCoeff: .9,
+            baseMinimumDamageCoeff: 0.9,
+            baseMaximumDamageCoeff: 0.9,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         31: {
             id: 31,
-            abilityName: "Lesser Ice Bolt",
-            abilityImage: "/images/combat/ability_icons/ice_bolt.png",
-            description: "Attune your magic to ice to deal additional ice damage at the expense of lower base damage.",
-            damageType: "Magic",
-            runeCost: [{
-                itemID: 513,
-                amount: 1
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Ice",
-                scaling: 1.33
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }],
+            abilityName: 'Lesser Ice Bolt',
+            abilityImage: '/images/combat/ability_icons/ice_bolt.png',
+            description: 'Attune your magic to ice to deal additional ice damage at the expense of lower base damage.',
+            damageType: 'Magic',
+            runeCost: [{ itemID: 513, amount: 1 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.33 },
+            ],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .9,
-            baseMaximumDamageCoeff: .9,
+            baseMinimumDamageCoeff: 0.9,
+            baseMaximumDamageCoeff: 0.9,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         32: {
             id: 32,
-            abilityName: "Lesser Nature Bolt",
-            abilityImage: "/images/combat/ability_icons/nature_bolt.png",
-            description: "Attune your magic to ice to deal additional nature damage at the expense of lower base damage.",
-            damageType: "Magic",
-            runeCost: [{
-                itemID: 517,
-                amount: 1
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Nature",
-                scaling: 1.33
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }],
+            abilityName: 'Lesser Nature Bolt',
+            abilityImage: '/images/combat/ability_icons/nature_bolt.png',
+            description: 'Attune your magic to ice to deal additional nature damage at the expense of lower base damage.',
+            damageType: 'Magic',
+            runeCost: [{ itemID: 517, amount: 1 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 1.33 },
+            ],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .9,
-            baseMaximumDamageCoeff: .9,
+            baseMinimumDamageCoeff: 0.9,
+            baseMaximumDamageCoeff: 0.9,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         33: {
             id: 33,
-            abilityName: "Lesser Earth Bolt",
-            abilityImage: "/images/combat/ability_icons/earth_bolt.png",
-            description: "Attune your magic to earth to deal additional blunt damage at the expense of lower base damage.",
-            damageType: "Magic",
-            runeCost: [{
-                itemID: 511,
-                amount: 1
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.4
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }],
+            abilityName: 'Lesser Earth Bolt',
+            abilityImage: '/images/combat/ability_icons/earth_bolt.png',
+            description: 'Attune your magic to earth to deal additional blunt damage at the expense of lower base damage.',
+            damageType: 'Magic',
+            runeCost: [{ itemID: 511, amount: 1 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.4 },
+            ],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .8,
-            baseMaximumDamageCoeff: .8,
+            baseMinimumDamageCoeff: 0.8,
+            baseMaximumDamageCoeff: 0.8,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         34: {
             id: 34,
-            abilityName: "Lesser Air Bolt",
-            abilityImage: "/images/combat/ability_icons/air_bolt.png",
-            description: "Attune your magic to air to deal additional slashing damage at the expense of lower base damage.",
-            damageType: "Magic",
-            runeCost: [{
-                itemID: 510,
-                amount: 1
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.4
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }],
+            abilityName: 'Lesser Air Bolt',
+            abilityImage: '/images/combat/ability_icons/air_bolt.png',
+            description: 'Attune your magic to air to deal additional slashing damage at the expense of lower base damage.',
+            damageType: 'Magic',
+            runeCost: [{ itemID: 510, amount: 1 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.4 },
+            ],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .8,
-            baseMaximumDamageCoeff: .8,
+            baseMinimumDamageCoeff: 0.8,
+            baseMaximumDamageCoeff: 0.8,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         35: {
             id: 35,
-            abilityName: "Greater Soul Steal",
-            abilityImage: "/images/combat/ability_icons/lifesteal.png",
-            description: "Leach the very essence of your enemies to rejuvenate yourself.",
-            damageType: "Magic",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1.5
-            }, {
-                affinity: "Melee",
-                scaling: 1.5
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1.5
-            }, {
-                affinity: "Melee",
-                scaling: 1.5
-            }],
+            abilityName: 'Greater Soul Steal',
+            abilityImage: '/images/combat/ability_icons/lifesteal.png',
+            description: 'Leach the very essence of your enemies to rejuvenate yourself.',
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1.5 },
+                { affinity: 'Melee', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1.5 },
+                { affinity: 'Melee', scaling: 1.5 },
+            ],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .25,
-            baseMaximumDamageCoeff: .75,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 0.75,
             baseAccuracyCoeff: 3,
+
             selfBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 8008,
                 enchantmentStrength: 2,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 3
+                enchantmentAmount: 3,
             },
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         36: {
             id: 36,
-            abilityName: "Infernal Cleave",
-            abilityImage: "/images/combat/ability_icons/cleave.png",
-            description: "An enhanced cleave attack that can hit up to 3 enemies at once.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.5
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.5
-            }],
+            abilityName: 'Infernal Cleave',
+            abilityImage: '/images/combat/ability_icons/cleave.png',
+            description: 'An enhanced cleave attack that can hit up to 3 enemies at once.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.5 },
+            ],
+
             baseSpeedCoeff: 1.15,
-            baseMinimumDamageCoeff: .85,
+            baseMinimumDamageCoeff: 0.85,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 3
+
+            maxTargets: 3,
         },
         37: {
             id: 37,
-            abilityName: "Lesser Soul Steal",
-            abilityImage: "/images/combat/ability_icons/lifesteal.png",
-            description: "Leach the very essence of your enemies to rejuvenate yourself.",
-            damageType: "Magic",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1.5
-            }, {
-                affinity: "Melee",
-                scaling: 1.5
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1.5
-            }, {
-                affinity: "Melee",
-                scaling: 1.5
-            }],
+            abilityName: 'Lesser Soul Steal',
+            abilityImage: '/images/combat/ability_icons/lifesteal.png',
+            description: 'Leach the very essence of your enemies to rejuvenate yourself.',
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1.5 },
+                { affinity: 'Melee', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1.5 },
+                { affinity: 'Melee', scaling: 1.5 },
+            ],
+
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: .1,
-            baseMaximumDamageCoeff: .5,
+            baseMinimumDamageCoeff: 0.1,
+            baseMaximumDamageCoeff: 0.5,
             baseAccuracyCoeff: 3,
+
             selfBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 8008,
                 enchantmentStrength: 1,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 3
+                enchantmentAmount: 3,
             },
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         38: {
             id: 38,
-            abilityName: "Shapeless Cleave",
-            abilityImage: "/images/combat/ability_icons/cleave.png",
-            description: "An enhanced cleave attack that can hit up to 3 enemies at once.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
+            abilityName: 'Shapeless Cleave',
+            abilityImage: '/images/combat/ability_icons/cleave.png',
+            description: 'An enhanced cleave attack that can hit up to 3 enemies at once.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1.15,
-            baseMinimumDamageCoeff: .75,
+            baseMinimumDamageCoeff: 0.75,
             baseMaximumDamageCoeff: 1,
             baseAccuracyCoeff: 1,
-            maxTargets: 3
+
+            maxTargets: 3,
         },
         39: {
             id: 39,
             abilityName: "Chef's Fury",
-            abilityImage: "/images/combat/ability_icons/berserk.png",
-            description: "Channel your inner chef to become the most feared thing on the battlefield!",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
+            abilityImage: '/images/combat/ability_icons/berserk.png',
+            description: 'Channel your inner chef to become the most feared thing on the battlefield!',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1.25,
             baseAccuracyCoeff: 1.05,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         40: {
             id: 40,
-            abilityName: "Wild Slash",
-            abilityImage: "/images/combat/ability_icons/bleed.png",
-            description: "Learn from the woodland beasts to slash your enemies with a wild and uncontrolled slash!",
-            damageType: "Melee",
-            cooldown: 1e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
-            baseSpeedCoeff: .33,
-            baseMinimumDamageCoeff: .1,
+            abilityName: 'Wild Slash',
+            abilityImage: '/images/combat/ability_icons/bleed.png',
+            description: 'Learn from the woodland beasts to slash your enemies with a wild and uncontrolled slash!',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.33,
+            baseMinimumDamageCoeff: 0.1,
             baseMaximumDamageCoeff: 1.5,
-            baseAccuracyCoeff: .9,
-            maxTargets: 1
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 1,
         },
         41: {
             id: 41,
-            abilityName: "Greater Wild Slash",
-            abilityImage: "/images/combat/ability_icons/bleed.png",
-            description: "Learn from the woodland beasts to slash your enemies with a wild and uncontrolled slash!",
-            damageType: "Melee",
-            cooldown: 1e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }],
-            baseSpeedCoeff: .33,
-            baseMinimumDamageCoeff: .33,
+            abilityName: 'Greater Wild Slash',
+            abilityImage: '/images/combat/ability_icons/bleed.png',
+            description: 'Learn from the woodland beasts to slash your enemies with a wild and uncontrolled slash!',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.33,
+            baseMinimumDamageCoeff: 0.33,
             baseMaximumDamageCoeff: 1.5,
-            baseAccuracyCoeff: .9,
-            maxTargets: 1
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 1,
         },
         42: {
             id: 42,
-            abilityName: "Elven Deadshot",
-            abilityImage: "/images/combat/ability_icons/deadshot_alt.png",
-            description: "What do your elven eyes see?",
-            damageType: "Range",
-            cooldown: 3e4,
-            useRangedAmmo: !0,
-            damageScaling: [{
-                affinity: "Range",
-                scaling: 1.1
-            }],
-            accuracyScaling: [{
-                affinity: "Range",
-                scaling: 1.5
-            }],
+            abilityName: 'Elven Deadshot',
+            abilityImage: '/images/combat/ability_icons/deadshot_alt.png',
+            description: 'What do your elven eyes see?',
+            damageType: 'Range',
+            cooldown: 30000,
+            useRangedAmmo: true,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1.1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1.5 }],
+
             baseSpeedCoeff: 1.33,
             baseMinimumDamageCoeff: 1.66,
             baseMaximumDamageCoeff: 2.15,
             baseAccuracyCoeff: 2.25,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         43: {
             id: 43,
             abilityName: "Ocean's Wrath",
-            abilityImage: "/images/combat/ability_icons/oceans_wrath.png",
-            description: "Unleash the wrath of the ocean upon your enemies!",
-            damageType: "Magic",
-            cooldown: 12e4,
-            runeCost: [{
-                itemID: 513,
-                amount: 50
-            }],
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Ice",
-                scaling: 1.5
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Ice",
-                scaling: 1.5
-            }],
+            abilityImage: '/images/combat/ability_icons/oceans_wrath.png',
+            description: 'Unleash the wrath of the ocean upon your enemies!',
+            damageType: 'Magic',
+            cooldown: 120000,
+            runeCost: [{ itemID: 513, amount: 50 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+
             baseSpeedCoeff: 5,
             baseMinimumDamageCoeff: 3.5,
             baseMaximumDamageCoeff: 12.5,
             baseAccuracyCoeff: 5,
-            maxTargets: 10
+
+            maxTargets: 10,
         },
         44: {
             id: 44,
             abilityName: "The Ol' One-Two : 1st",
-            abilityImage: "/images/combat/ability_icons/onetwo.png",
+            abilityImage: '/images/combat/ability_icons/onetwo.png',
             description: "Hit 'em with the ol' one-two!",
-            damageType: "Melee",
-            cooldown: 1e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.333
-            }],
-            baseSpeedCoeff: .33,
-            baseMinimumDamageCoeff: .33,
-            baseMaximumDamageCoeff: .75,
-            baseAccuracyCoeff: .9,
-            maxTargets: 1
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.33,
+            baseMinimumDamageCoeff: 0.33,
+            baseMaximumDamageCoeff: 0.75,
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 1,
         },
         45: {
             id: 45,
-            abilityName: "Lesser Earth Strike",
-            abilityImage: "/images/combat/ability_icons/titanicstrike.png",
-            description: "Use the power of the earth to enhance your crushing attacks. BONK!",
-            damageType: "Melee",
-            cooldown: 1e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Blunt",
-                scaling: 1.333
-            }],
+            abilityName: 'Lesser Earth Strike',
+            abilityImage: '/images/combat/ability_icons/titanicstrike.png',
+            description: 'Use the power of the earth to enhance your crushing attacks. BONK!',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+            ],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1.1,
             baseMaximumDamageCoeff: 1.1,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         46: {
             id: 46,
-            abilityName: "Parry This",
-            abilityImage: "/images/combat/ability_icons/deflect.png",
-            description: "Ready yourself to attempt to parry the next attack!",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            baseSpeedCoeff: .9,
-            baseMinimumDamageCoeff: .1,
-            baseMaximumDamageCoeff: .25,
+            abilityName: 'Parry This',
+            abilityImage: '/images/combat/ability_icons/deflect.png',
+            description: 'Ready yourself to attempt to parry the next attack!',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
+            baseSpeedCoeff: 0.9,
+            baseMinimumDamageCoeff: 0.1,
+            baseMaximumDamageCoeff: 0.25,
             baseAccuracyCoeff: 5,
+
             selfBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 20,
                 enchantmentStrength: 20,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 1
+                enchantmentAmount: 1,
             },
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         47: {
             id: 47,
-            abilityName: "Bandage Friendly",
-            abilityImage: "/images/combat/ability_icons/heal.png",
-            description: "Bandage the lowest HP member of your party to heal them for 333 health.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
+            abilityName: 'Bandage Friendly',
+            abilityImage: '/images/combat/ability_icons/heal.png',
+            description: 'Bandage the lowest HP member of your party to heal them for 300 health over 15 seconds.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
             baseSpeedCoeff: 1.25,
             baseMinimumDamageCoeff: 0,
             baseMaximumDamageCoeff: 0,
             baseAccuracyCoeff: 999,
+
             targetFriendly: {
-                target: "lowestHP"
+                target: 'lowestHP',
             },
-            canTargetSelf: !1,
+            canTargetSelf: false,
+
             healthChangeEvent: {
-                dotCount: 1,
-                healthChange: 333,
-                healthChangeDelay: 0
+                dotCount: 15,
+                healthChange: 20,
+                healthChangeDelay: 1000,
             },
-            skipReactives: !0,
-            dealsNoDamage: !0,
-            maxTargets: 1
+
+            skipReactives: true,
+            dealsNoDamage: true,
+
+            maxTargets: 1,
         },
         48: {
             id: 48,
-            abilityName: "Call For Aid",
-            abilityImage: "/images/combat/ability_icons/call_for_aid.png",
-            description: "Summons two friendly guards to aid you in battle.",
-            damageType: "Melee",
-            cooldown: 864e5,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
+            abilityName: 'Call For Aid',
+            abilityImage: '/images/combat/ability_icons/call_for_aid.png',
+            description: 'Summons two friendly guards to aid you in battle.',
+            damageType: 'Melee',
+            cooldown: 86400000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
             baseSpeedCoeff: 3,
             baseMinimumDamageCoeff: 0,
             baseMaximumDamageCoeff: 0,
             baseAccuracyCoeff: 0,
+
             summonFriendly: {
                 monsterID: 5,
-                count: 2
+                count: 2,
             },
-            dealsNoDamage: !0,
-            maxTargets: 1
+            dealsNoDamage: true,
+
+            maxTargets: 1,
         },
         49: {
             id: 49,
-            abilityName: "Defend Ally",
-            abilityImage: "/images/combat/ability_icons/bulwark.png",
-            description: "Increase the defenses of an ally at the expense of your own.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
+            abilityName: 'Defend Ally',
+            abilityImage: '/images/combat/ability_icons/bulwark.png',
+            description: 'Increase the defenses of an ally at the expense of your own.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
             baseSpeedCoeff: 1.25,
             baseMinimumDamageCoeff: 0,
             baseMaximumDamageCoeff: 0,
             baseAccuracyCoeff: 999,
+
             targetFriendly: {
-                target: "lowestDef"
+                target: 'lowestDef',
             },
-            canTargetSelf: !1,
+            canTargetSelf: false,
+
             selfBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 8010,
                 enchantmentStrength: 2,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 4
+                enchantmentAmount: 4,
             },
             targetBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 8011,
                 enchantmentStrength: 1,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 4
+                enchantmentAmount: 4,
             },
-            dealsNoDamage: !0,
-            skipReactives: !0,
-            maxTargets: 1
+            dealsNoDamage: true,
+
+            skipReactives: true,
+
+            maxTargets: 1,
         },
         50: {
             id: 50,
-            abilityName: "Lightning Strikes Twice",
-            abilityImage: "/images/combat/ability_icons/lightning_strike.png",
-            description: "Surely this is an anomaly?",
-            damageType: "Melee",
-            cooldown: 1e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }, {
-                affinity: "Lightning",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Slashing",
-                scaling: 1.333
-            }, {
-                affinity: "Lightning",
-                scaling: 1.333
-            }],
-            baseSpeedCoeff: .4,
-            baseMinimumDamageCoeff: .4,
-            baseMaximumDamageCoeff: .4,
+            abilityName: 'Lightning Strikes Twice',
+            abilityImage: '/images/combat/ability_icons/lightning_strike.png',
+            description: 'Surely this is an anomaly?',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Lightning', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Lightning', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.4,
+            baseMinimumDamageCoeff: 0.4,
+            baseMaximumDamageCoeff: 0.4,
             baseAccuracyCoeff: 1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         51: {
             id: 51,
             abilityName: "The Ol' One-Two : 2nd",
-            abilityImage: "/images/combat/ability_icons/onetwo.png",
+            abilityImage: '/images/combat/ability_icons/onetwo.png',
             description: "Hit 'em with the ol' one-two!",
-            damageType: "Melee",
-            cooldown: 1e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.333
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }, {
-                affinity: "Piercing",
-                scaling: 1.333
-            }],
-            baseSpeedCoeff: .33,
-            baseMinimumDamageCoeff: .33,
-            baseMaximumDamageCoeff: .75,
-            baseAccuracyCoeff: .9,
-            maxTargets: 1
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.33,
+            baseMinimumDamageCoeff: 0.33,
+            baseMaximumDamageCoeff: 0.75,
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 1,
         },
         52: {
             id: 52,
-            abilityName: "Execute",
-            abilityImage: "/images/combat/ability_icons/execute.png",
-            description: "Executes the enemy! Deals up to 15% more damage based on the enemy's missing health, beginning at 33% target health.",
-            damageType: "Melee",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
+            abilityName: 'Execute',
+            abilityImage: '/images/combat/ability_icons/execute.png',
+            description:
+                "Executes the enemy! Deals up to 15% more damage based on the enemy's missing health, beginning at 33% target health.",
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
             baseSpeedCoeff: 1.2,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1.5,
             baseAccuracyCoeff: 1.1,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         53: {
             id: 53,
-            abilityName: "The Limpe Sauce",
-            abilityImage: "/images/combat/ability_icons/skull_flame.png",
+            abilityName: 'The Limpe Sauce',
+            abilityImage: '/images/combat/ability_icons/skull_flame.png',
             description: "WHERE'S THE LIMPE SAUCE?!",
-            damageType: "Magic",
-            cooldown: 3e4,
-            damageScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.5
-            }],
-            accuracyScaling: [{
-                affinity: "Magic",
-                scaling: 1
-            }, {
-                affinity: "Fire",
-                scaling: 1.5
-            }],
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Fire', scaling: 1.5 },
+            ],
+
             baseSpeedCoeff: 1,
             baseMinimumDamageCoeff: 1,
             baseMaximumDamageCoeff: 1.25,
             baseAccuracyCoeff: 1.05,
-            maxTargets: 1
+
+            maxTargets: 1,
         },
         54: {
             id: 54,
-            abilityName: "Taunt",
-            abilityImage: "/images/combat/ability_icons/taunt.png",
-            description: "Taunts the enemy, significantly increasing your threat level.",
-            damageType: "Melee",
-            cooldown: 5e3,
-            damageScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            accuracyScaling: [{
-                affinity: "Melee",
-                scaling: 1
-            }],
-            baseSpeedCoeff: .1,
-            baseMinimumDamageCoeff: .01,
-            baseMaximumDamageCoeff: .01,
+            abilityName: 'Taunt',
+            abilityImage: '/images/combat/ability_icons/taunt.png',
+            description: 'Taunts the enemy, significantly increasing your threat level.',
+            damageType: 'Melee',
+            cooldown: 5000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
+            baseSpeedCoeff: 0.1,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
             baseAccuracyCoeff: 1,
-            dealsNoDamage: !0,
+
+            dealsNoDamage: true,
+
             selfBuff: {
-                onlyOnHit: !1,
+                onlyOnHit: false,
                 enchantmentApply: 8013,
                 enchantmentStrength: 8,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 8
+                enchantmentAmount: 8,
             },
-            maxTargets: 1
-        }
+
+            maxTargets: 1,
+        },
     };
-    sets = {"zero edge":{"name":"Zero Edge","effects":[{"name":"Aspect of Lightning","description":"Converts auto attack element to lightning","equippedRequirements":1}],"items":[{"id":1512,"name":"Zero Edge","slot":"weapon"}]},"shrimp":{"name":"Shrimp Lord","effects":[{"name":"","description":"Grants 2 passive Demon Skin","equippedRequirements":3},{"name":"","description":"Grants 4 passive Demon Skin","equippedRequirements":4}],"items":[{"id":1540,"name":"Shrimp Carapace","slot":"body"},{"id":1541,"name":"Shrimp Greaves","slot":"legs"},{"id":1542,"name":"Shrimp Helm","slot":"helm"},{"id":1543,"name":"Shrimp Shell","slot":"shield"}]},"phoenix":{"name":"Phoenix","effects":[{"name":"Phoenix's Flame","description":"Gives a chance that increases with augments for a fatal blow to be rendered non-fatal; if this happens the Resurrection Sickness debuff (reduced healing, offensive, and defensive stats) with stacks equal to the hitpoints will be applied.","equippedRequirements":1}],"items":[{"id":1555,"name":"Mantle of Flame","slot":"cape"}]},"jolly":{"name":"Jolly","effects":[{"name":"Jolly buff","description":"Enables combat in Krampus' Lair","equippedRequirements":2}],"items":[{"id":7032,"name":"Merry Maker's Mittens","slot":"gloves"},{"id":7033,"name":"Mistletoe Treads","slot":"boots"}]},"fishing set":{"name":"Fisherman","effects":[{"name":"Master Fisherman","description":"Increases all fishing stats by 10%","equippedRequirements":3},{"name":"Legendary Angler","description":"Replaces Master Fisherman. Increases all fishing stats by 25%.","equippedRequirements":4}],"items":[{"id":11005,"name":"Ocean's Embrace","slot":"tacklebox"},{"id":12000,"name":"Fisherman's Smock","slot":"body"},{"id":12001,"name":"Fisherman's Bucket Hat","slot":"helm"},{"id":12002,"name":"Fisherman's Waders","slot":"legs"}]}};
 }
