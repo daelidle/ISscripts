@@ -155,7 +155,7 @@ class CustomTooltip {
     }
 
     _generateGeneralItemsTooltip(element){
-        if (!(element.classList.contains('item') || element.classList.contains('recipe-item'))) return;
+        if (!(element.classList.contains('item') || element.classList.contains('recipe-item') || element.classList.contains('chat-item'))) return;
         if (element.classList.contains('daelis-tooltip-item')) return;
 
         let item = false;
@@ -173,8 +173,7 @@ class CustomTooltip {
                 if (stackText !== null) item.stackSize = expandNumber(stackText.innerText);
             }
         }
-
-        return item !== false ? this._generateTooltip(item) : null;
+        return item !== false ? this._generateTooltip(item) : '';
     }
 
     _generateMarketplaceBuyItemTooltip(element){
@@ -192,7 +191,7 @@ class CustomTooltip {
 
     _generateChatItemTooltip(element) {
         let item = getReact(element).return.pendingProps.item;
-        if (item === undefined) return ''; // Item-set
+        if (!item) return  this._generateGeneralItemsTooltip(element);
         return this._generateTooltip(item);
     }
 
