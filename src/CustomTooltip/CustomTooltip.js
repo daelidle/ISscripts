@@ -37,7 +37,7 @@ class CustomTooltip {
     _setupGeneralItemDelegates() {
         const that = this;
         tippy.delegate('body', {
-            target: '.item',
+            target: ['.item', '.recipe-item'],
             content(element) {
                 return that._generateGeneralItemsTooltip(element);
             },
@@ -70,7 +70,7 @@ class CustomTooltip {
     _setupMarketplaceBuyItemDelegate() {
         const that = this;
         tippy.delegate('.game-content', {
-            target: '.marketplace-table tr',
+            target: '.marketplace-table tbody tr',
             content(element) {
                 if (!element.classList.contains('marketplace-table-cell-div')) return;
 
@@ -155,7 +155,7 @@ class CustomTooltip {
     }
 
     _generateGeneralItemsTooltip(element){
-        if (!element.classList.contains('item')) return;
+        if (!(element.classList.contains('item') || element.classList.contains('recipe-item'))) return;
         if (element.classList.contains('daelis-tooltip-item')) return;
 
         let item = false;
