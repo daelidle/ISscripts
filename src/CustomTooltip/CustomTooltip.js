@@ -70,7 +70,7 @@ class CustomTooltip {
     _setupMarketplaceBuyItemDelegate() {
         const that = this;
         tippy.delegate('.game-content', {
-            target: '.marketplace-table-cell-div',
+            target: '.marketplace-table tr',
             content(element) {
                 if (!element.classList.contains('marketplace-table-cell-div')) return;
 
@@ -178,13 +178,13 @@ class CustomTooltip {
     }
 
     _generateMarketplaceBuyItemTooltip(element){
-        const item = getReact(element.parentElement.parentElement).return.pendingProps.item;
+        const item = getReact(element).return.pendingProps.item;
         return this._generateTooltip(item);
     }
 
     _generateCombatFoodTooltip(element){
         const foodId = getReact(element).child.key.replace('combatInventoryItem', '');
-        const foodArray = getReact(element.parentElement).return.pendingProps.combatInventory;
+        const foodArray = getReact(element.parentElement.parentElement.parentElement).return.pendingProps.combatInventory;
         const item = foodArray[foodId];
         if (item === undefined) return null;
         return this._generateTooltip(item);

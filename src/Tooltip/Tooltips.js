@@ -7,7 +7,11 @@ class Tooltip {
     }
 
     injectCSS(){
-        injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
+        /* TODO: When Test server is released to prod, go back to CSS file (Github pages don't allow for branches on deployment)
+         *injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
+         */
+        const css = '.dwt-effects,.dwt-stats-attack,.dwt-stats-defensive,.dwt-stats-defensiveAffinities,.dwt-stats-skills,.dwt-stats-strength,.dwt-stats-strengthAffinities{margin-top:5px}.daelis-wow-tooltip{width:300px;background:#080d21eb;font-family:Verdana,"Open Sans",Arial,"Helvetica Neue",Helvetica,sans-serif;font-size:12px;line-height:17px;color:#fff;border:3px solid #cfcfcf;border-radius:10px;padding:4px 8px}.dwt-columns{display:flex;justify-content:space-between;flex-wrap:wrap}.dwt-columns>span:nth-child(2n){text-align:right}.dwt-columns>span{min-width:34%}.dwt-name{font-size:14px;line-height:19px;font-weight:400}.dwt-rarity-legendary{color:#ff8000}.dwt-rarity-epic{color:#a335ee}.dwt-ability-active,.dwt-rarity-rare{color:#0070dd}.dwt-chest-use,.dwt-enchant,.dwt-healing-use,.dwt-item-skill,.dwt-rarity-uncommon,.dwt-set-effect-active,.dwt-set-item-equipped,.dwt-stat-positive{color:#1eff00}.dwt-rarity-junk{color:#515351}.dwt-stats{min-height:5px}.dwt-item-set-effects-list:empty,.dwt-item-set:empty,.dwt-stats-attack:empty,.dwt-stats-defensive:empty,.dwt-stats-defensiveAffinities:empty,.dwt-stats-skills:empty,.dwt-stats-strength:empty,.dwt-stats-strengthAffinities:empty{margin-top:0}.dwt-stat-negative{color:orange}.dwt-effects,.dwt-enchant-unactive,.dwt-set-effect-inactive,.dwt-set-item-unequipped,.dwt-soulbound{color:#9d9d9d}.dwt-flavor,.dwt-item-set-name,.dwt-soulbound-block{color:#ffd100}.dwt-flavor{font-style:italic;font-size:11px}.tippy-box{background-color:transparent}.dwt-soulbound-exp,.dwt-soulbound-level{font-size:10px}.dwt-item-set,.dwt-item-set-effects-list{margin-top:10px}.dwt-item-set-item{margin-left:10px}.dwt-not-tradeable{color:red}';
+        injectCSS(css);
     }
 
     generateTooltip(item, compactVersion) {
