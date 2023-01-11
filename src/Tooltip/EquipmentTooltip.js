@@ -80,9 +80,11 @@ class EquipmentTooltip {
                 }
             }
         }
+        let augments = item.augmentations || 0;
+        if (item.soulBound) augments *= 1.5;
         itemResource.equipmentStats.augmentationBonus?.forEach(augmentationBonus => {
             if (!(augmentationBonus.stat in indexedStats)) indexedStats[augmentationBonus.stat] = 0;
-            indexedStats[augmentationBonus.stat] += augmentationBonus.value * (item.augmentations || 0);
+            indexedStats[augmentationBonus.stat] += augmentationBonus.value * augments;
         });
         return indexedStats;
     }
@@ -175,7 +177,7 @@ class EquipmentTooltip {
                 itemSet.setRequirements.forEach(setRequirement => {
                     if (setRequirement.strength === 0) return;
                     setHtml += `<div class="dwt-item-set-name">${itemSet.name} (${equippedSetPieces[setEnchant] ?? 0}/${setRequirement.count})</div>`;
-                    const activeClass = (equippedSetPieces[setEnchant] ?? 0 >= setRequirement.count) ? 'dwt-set-effect-active' : 'dwt-set-effect-inactive';
+                    const activeClass = ((equippedSetPieces[setEnchant] ?? 0) >= setRequirement.count) ? 'dwt-set-effect-active' : 'dwt-set-effect-inactive';
                     const description = itemSet.getTooltip(setRequirement.strength, itemSet.strengthPerLevel);
                     setHtml += `<div class="dwt-item-set-effect ${activeClass}"><span class="dwt-item-set-effect-description">${description}</span></div>`;
                 });
