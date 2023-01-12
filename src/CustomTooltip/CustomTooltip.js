@@ -38,9 +38,6 @@ class CustomTooltip {
         const that = this;
         tippy.delegate('body', {
             target: ['.item', '.recipe-item'],
-            content(element) {
-                return that._generateGeneralItemsTooltip(element);
-            },
             allowHTML: true,
             zIndex: 1000001,
             maxWidth: 'none',
@@ -53,12 +50,7 @@ class CustomTooltip {
     _setupCombatFoodDelegate() {
         const that = this;
         tippy.delegate('.game-content', {
-            target: '.combat-consumable',
-            content(element) {
-                if (!element.classList.contains('combat-consumable')) return;
-
-                return that._generateCombatFoodTooltip(element);
-            },
+            target: '.combat-inventory-item',
             allowHTML: true,
             maxWidth: 'none',
             onTrigger(instance) {
@@ -71,11 +63,6 @@ class CustomTooltip {
         const that = this;
         tippy.delegate('.game-content', {
             target: '.marketplace-table tbody tr',
-            content(element) {
-                if (!element.classList.contains('marketplace-table-cell-div')) return;
-
-                that._generateMarketplaceBuyItemTooltip(element);
-            },
             allowHTML: true,
             maxWidth: 'none',
             onTrigger(instance) {
@@ -89,26 +76,11 @@ class CustomTooltip {
 
         tippy.delegate('.game-content', {
             target: '.game-shop-item',
-            content(element) {
-                if (!element.classList.contains('game-shop-item')) return;
-
-                let item = getReact(element.parentElement).return.pendingProps.item;
-                if (item !== undefined) {
-                    // Event Shop
-                    delete item.name;
-                    if (item.itemID === undefined) {
-                        const enchantment = that.daelis.gameData.enchantments[item.enchantmentID];
-                        return `<div class="daelis-wow-tooltip">${enchantment.getTooltip(2, enchantment.strengthPerLevel)}</div>`;
-                    }
-                } else {
-                    // General Shop
-                    item = getReact(element.parentElement).return.pendingProps;
-                    item = {itemID: item.id};
-                }
-                return that._generateTooltip(item);
-            },
             allowHTML: true,
             maxWidth: 'none',
+            onTrigger(instance) {
+                instance.setContent(that._generateEventAndGeneralShopTooltip(instance.reference));
+            },
         });
     }
 
@@ -116,11 +88,6 @@ class CustomTooltip {
         const that = this;
         tippy.delegate('.game-content', {
             target: '.chat-item',
-            content(element) {
-                if (!element.classList.contains('chat-item')) return;
-
-                return that._generateChatItemTooltip(element);
-            },
             allowHTML: true,
             sticky: true,
             inlinePositioning: true,
@@ -141,11 +108,6 @@ class CustomTooltip {
         const that = this;
         tippy.delegate('.game-content', {
             target: '.crafting-item',
-            content(element) {
-                if (!element.classList.contains('crafting-item')) return;
-
-                return that._generateCraftingTooltip(element);
-            },
             allowHTML: true,
             maxWidth: 'none',
             onTrigger(instance) {
@@ -155,7 +117,6 @@ class CustomTooltip {
     }
 
     _generateGeneralItemsTooltip(element){
-        if (!(element.classList.contains('item') || element.classList.contains('recipe-item') || element.classList.contains('chat-item'))) return;
         if (element.classList.contains('daelis-tooltip-item')) return;
 
         let item = false;
@@ -182,11 +143,29 @@ class CustomTooltip {
     }
 
     _generateCombatFoodTooltip(element){
-        const foodId = getReact(element).child.key.replace('combatInventoryItem', '');
-        const foodArray = getReact(element.parentElement.parentElement.parentElement).return.pendingProps.combatInventory;
+        const foodId = getReact(element).key.replace('combatInventoryItem', '');
+        const foodArray = getReact(element.parentElement.parentElement.parentElement.parentElement).return.pendingProps.combatInventory;
+        if (!foodArray) return this._generateGeneralItemsTooltip(element);
         const item = foodArray[foodId];
-        if (item === undefined) return null;
+        if (item === undefined) return '';
         return this._generateTooltip(item);
+    }
+
+    _generateEventAndGeneralShopTooltip(element){
+        let item = getReact(element.parentElement).return.pendingProps.item;
+        if (item !== undefined) {
+            // Event Shop
+            delete item.name;
+            if (item.itemID === undefined) {
+                const enchantment = that.daelis.gameData.enchantments[item.enchantmentID];
+                return `<div class="daelis-wow-tooltip">${enchantment.getTooltip(2, enchantment.strengthPerLevel)}</div>`;
+            }
+        } else {
+            // General Shop
+            item = getReact(element.parentElement).return.pendingProps;
+            item = {itemID: item.id};
+        }
+        return that._generateTooltip(item);
     }
 
     _generateChatItemTooltip(element) {

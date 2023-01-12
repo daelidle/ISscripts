@@ -1197,6 +1197,56 @@ class IdlescapeGameData {
                 `Increases your threat by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
             // endclient
         }, // threat
+        8014: {
+            id: 8014,
+            name: 'Camouflage',
+            strengthPerLevel: 0.05,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/reinforcement_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Decreases your threat by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+            // endclient
+        }, // reduced threat
+        8015: {
+            id: 8015,
+            name: 'Hard to Hit',
+            strengthPerLevel: 0.1,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/reinforcement_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases your agility by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}% or by 20, whichever is higher.`,
+            // endclient
+        }, // increased agility
+        8016: {
+            id: 8016,
+            name: 'Ice Armor',
+            strengthPerLevel: 10,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/reinforcement_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases your protection and resistance by ${Math.round(
+                    enchantmentStrength * strengthPerLevel
+                )} and reduces agility by the same amount.`,
+            // endclient
+        }, // ice protection and affinity
+        8017: {
+            id: 8017,
+            name: 'Rooted',
+            strengthPerLevel: 0.1,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/reinforcement_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Decreases agility by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}% or by 20, whichever is higher.`,
+            // endclient
+        }, // increased agility
 
         // DOT stuff
         9000: {
@@ -1395,10 +1445,10 @@ class IdlescapeGameData {
         10010: {
             id: 10010,
             name: "Ranger's Grace",
-            strengthPerLevel: 0.1,
+            strengthPerLevel: 0.3,
             setRequirements: [{ count: 2, strength: 1 }],
             combat: false,
-            statBuffs: [{ path: 'armor.agility', additivePerLevel: 0, multiplicativePerLevel: 0.1 }],
+            statBuffs: [{ path: 'armor.agility', additivePerLevel: 0, multiplicativePerLevel: 0.3 }],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
@@ -1421,27 +1471,27 @@ class IdlescapeGameData {
         10012: {
             id: 10012,
             name: 'Dextrous Shot',
-            strengthPerLevel: 0.1,
+            strengthPerLevel: 0.15,
             setRequirements: [{ count: 3, strength: 1 }],
             combat: false,
             statBuffs: [{ path: 'weapon.dexterity', additivePerLevel: 0, multiplicativePerLevel: 0.15 }],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases dexterity by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+                `Increases dexterity by ${(enchantmentStrength * strengthPerLevel * 100).toFixed(1)}%.`,
             // endclient
         },
         10013: {
             id: 10013,
             name: "Wizard's Wisdom",
-            strengthPerLevel: 0.1,
+            strengthPerLevel: 0.15,
             setRequirements: [{ count: 3, strength: 1 }],
             combat: false,
             statBuffs: [{ path: 'weapon.intellect', additivePerLevel: 0, multiplicativePerLevel: 0.15 }],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases intellect by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+                `Increases intellect by ${(enchantmentStrength * strengthPerLevel * 100).toFixed(1)}%.`,
             // endclient
         },
     };
@@ -8565,7 +8615,7 @@ class IdlescapeGameData {
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 3, resistance: -2, agility: 5, stamina: 0 },
+                armorBonus: { protection: 3, resistance: 0, agility: 5, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8603,7 +8653,7 @@ class IdlescapeGameData {
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 5, resistance: -2, agility: 6, stamina: 0 },
+                armorBonus: { protection: 5, resistance: 0, agility: 6, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8641,7 +8691,7 @@ class IdlescapeGameData {
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 13, resistance: -2, agility: 12, stamina: 0 },
+                armorBonus: { protection: 13, resistance: 0, agility: 12, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8679,7 +8729,7 @@ class IdlescapeGameData {
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 22, resistance: -2, agility: 18, stamina: 0 },
+                armorBonus: { protection: 22, resistance: 0, agility: 18, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8717,7 +8767,7 @@ class IdlescapeGameData {
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 32, resistance: -2, agility: 24, stamina: 0 },
+                armorBonus: { protection: 32, resistance: 0, agility: 24, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8755,7 +8805,7 @@ class IdlescapeGameData {
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 43, resistance: -2, agility: 30, stamina: 0 },
+                armorBonus: { protection: 43, resistance: 0, agility: 30, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8794,7 +8844,7 @@ class IdlescapeGameData {
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 55, resistance: -2, agility: 36, stamina: 0 },
+                armorBonus: { protection: 55, resistance: 0, agility: 36, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9130,7 +9180,7 @@ class IdlescapeGameData {
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 3, resistance: -1, agility: 2, stamina: 0 },
+                armorBonus: { protection: 3, resistance: 0, agility: 2, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9169,7 +9219,7 @@ class IdlescapeGameData {
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 4, resistance: -1, agility: 3, stamina: 0 },
+                armorBonus: { protection: 4, resistance: 0, agility: 3, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9208,7 +9258,7 @@ class IdlescapeGameData {
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 10, resistance: -1, agility: 6, stamina: 0 },
+                armorBonus: { protection: 10, resistance: 0, agility: 6, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9247,7 +9297,7 @@ class IdlescapeGameData {
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 17, resistance: -1, agility: 9, stamina: 0 },
+                armorBonus: { protection: 17, resistance: 0, agility: 9, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.6 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9286,7 +9336,7 @@ class IdlescapeGameData {
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 26, resistance: -1, agility: 12, stamina: 0 },
+                armorBonus: { protection: 26, resistance: 0, agility: 12, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.8 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9325,7 +9375,7 @@ class IdlescapeGameData {
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 35, resistance: -1, agility: 15, stamina: 0 },
+                armorBonus: { protection: 35, resistance: 0, agility: 15, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9365,7 +9415,7 @@ class IdlescapeGameData {
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 44, resistance: -1, agility: 18, stamina: 0 },
+                armorBonus: { protection: 44, resistance: 0, agility: 18, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -12238,8 +12288,8 @@ class IdlescapeGameData {
             id: 1241,
             tradeable: true,
             enchantmentTier: 1,
-            augmentationCost: { 3: 10, 4014: 4, 11030: 1 },
-            requiredResources: [{ 3: 100, 4014: 35, 11030: 10 }],
+            augmentationCost: { 3: 10, 4013: 4, 11030: 1 },
+            requiredResources: [{ 3: 100, 4013: 35, 11030: 10 }],
             craftingLevel: 1,
             craftingExperience: 33,
             value: 2025,
@@ -12272,8 +12322,8 @@ class IdlescapeGameData {
             id: 1242,
             tradeable: true,
             enchantmentTier: 1,
-            augmentationCost: { 4: 100, 4013: 4, 11030: 1 },
-            requiredResources: [{ 4: 1000, 4013: 35, 11030: 10 }],
+            augmentationCost: { 4: 100, 4014: 4, 11030: 1 },
+            requiredResources: [{ 4: 1000, 4014: 35, 11030: 10 }],
             craftingLevel: 5,
             craftingExperience: 128,
             value: 1080,
@@ -22327,6 +22377,7 @@ class IdlescapeGameData {
             tags: ['book'],
         },
         13014: {
+            // TODO replace cleave with something else
             id: 13014,
             name: 'Combat Manual - Volume 4',
             itemImage: '/images/combat/ability_book/melee.png',
@@ -22345,6 +22396,46 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "It's a long scroll that explains in detail how awful you are. It gives you ideas on what to say to other people! Very healthy.",
             relatedAbility: 54,
+            class: 'gem',
+            tags: ['book'],
+        },
+        13016: {
+            id: 13016,
+            name: 'Smoke and Mirrors',
+            itemImage: '/images/combat/ability_book/magic.png',
+            value: 42000,
+            extraTooltipInfo: 'How to use the deceit and chaos to your aid on the battlefield.',
+            relatedAbility: 57,
+            class: 'gem',
+            tags: ['book'],
+        },
+        13017: {
+            id: 13017,
+            name: 'All Ghillied Up',
+            itemImage: '/images/combat/ability_book/green_2.png',
+            value: 42000,
+            extraTooltipInfo: 'Sticks, grass, leaves, and other foliage can make a proper bush out of you!',
+            relatedAbility: 58,
+            class: 'gem',
+            tags: ['book'],
+        },
+        13018: {
+            id: 13018,
+            name: 'Ice, Ice, Ice',
+            itemImage: '/images/combat/ability_book/magic.png',
+            value: 42000,
+            extraTooltipInfo: 'ICE!',
+            relatedAbility: 59,
+            class: 'gem',
+            tags: ['book'],
+        },
+        13019: {
+            id: 13019,
+            name: "Trapper's Guide",
+            itemImage: '/images/combat/ability_book/range.png',
+            value: 42000,
+            extraTooltipInfo: 'Setting traps is just one of the many ways you may shape the battlefield.',
+            relatedAbility: 60,
             class: 'gem',
             tags: ['book'],
         },
@@ -22817,7 +22908,6 @@ class IdlescapeGameData {
             },
             extraTooltipInfo: 'WIP',
             loot: [
-                // { id: 113, frequency: 30, minAmount: 2, maxAmount: 5 }, // rune slate
                 { id: 108, frequency: 40, minAmount: 1 }, //clay
                 { id: 101, frequency: 20, minAmount: 1 }, //copper
                 { id: 102, frequency: 20, minAmount: 1 }, //tin
@@ -22928,7 +23018,7 @@ class IdlescapeGameData {
                 { id: 105, frequency: 30, minAmount: 1 }, //mithril
                 { id: 104, frequency: 17.5, minAmount: 1 }, //gold
                 { id: 111, frequency: 12.5, minAmount: 1 }, //silver
-                { id: 113, frequency: 15, minAmount: 1, maxAmount: 2 }, // rune slate
+                { id: 113, frequency: 15, minAmount: 1 }, // rune slate
                 { id: 2013, frequency: 10, minAmount: 1, maxAmount: 3 }, //salt
                 { id: 109, frequency: 5, minAmount: 1, maxAmount: 3 }, //stone
                 { id: 103, frequency: 5, minAmount: 1 }, //iron
@@ -22959,7 +23049,7 @@ class IdlescapeGameData {
                 { id: 104, frequency: 10, minAmount: 1 }, //gold
                 { id: 105, frequency: 10, minAmount: 1 }, //mithril
                 { id: 107, frequency: 5, minAmount: 1 }, //runite
-                { id: 113, frequency: 10, minAmount: 1, maxAmount: 4 }, // rune slate
+                { id: 113, frequency: 10, minAmount: 1 }, // rune slate
             ],
 
         },
@@ -22984,7 +23074,7 @@ class IdlescapeGameData {
                 { id: 105, frequency: 20, minAmount: 1 }, //mithril
                 { id: 106, frequency: 20, minAmount: 1 }, //adamantium
                 { id: 107, frequency: 20, minAmount: 1 }, //runite
-                { id: 113, frequency: 10, minAmount: 1, maxAmount: 5 }, // rune slate
+                { id: 113, frequency: 10, minAmount: 1 }, // rune slate
                 { id: 104, frequency: 10, minAmount: 1 }, //gold
             ],
 
@@ -23006,13 +23096,9 @@ class IdlescapeGameData {
             },
             extraTooltipInfo: 'WIP',
             loot: [
-                { id: 113, frequency: 50, minAmount: 1, maxAmount: 2 }, // rune slate
-                // { id: 108, frequency: 40, minAmount: 1 }, //clay
-                // { id: 101, frequency: 20, minAmount: 1 }, //copper
-                // { id: 102, frequency: 20, minAmount: 1 }, //tin
+                { id: 113, frequency: 50, minAmount: 1, maxAmount: 4 }, // rune slate
                 { id: 109, frequency: 10, minAmount: 1, maxAmount: 2 }, //stone
                 { id: 110, frequency: 10, minAmount: 1, maxAmount: 2 }, //sand
-                // { id: 11011, frequency: 1, minAmount: 1 }, //fat nightcrawler
             ],
 
         },
@@ -23035,7 +23121,7 @@ class IdlescapeGameData {
 
             loot: [
                 { id: 107, frequency: 50, minAmount: 1 }, //runite
-                { id: 113, frequency: 15, minAmount: 1, maxAmount: 3 }, // rune slate
+                { id: 113, frequency: 15, minAmount: 1 }, // rune slate
                 { id: 104, frequency: 15, minAmount: 1, maxAmount: 2 }, //gold
                 { id: 114, frequency: 15, minAmount: 1 }, // stygian
                 { id: 115, frequency: 5, minAmount: 1 }, // void stone
@@ -23886,6 +23972,21 @@ class IdlescapeGameData {
                         { id: 3005, frequency: 1, minAmount: 1, maxAmount: 5 }, //durian
                     ],
                     tags: ['plants'],
+                },
+                {
+                    nodeID: 'Living Seeds',
+                    frequency: 0,
+                    maxFrequency: 1,
+                    minimumBaseAmount: 4,
+                    maximumBaseAmount: 12,
+                    loot: [
+                        { id: 177, frequency: 1 / 4, minAmount: 1 }, //elder tree seed
+                        { id: 174, frequency: 1, minAmount: 1 }, //yew tree seed
+                        { id: 175, frequency: 2, minAmount: 1 }, //banana tree seed
+                        { id: 176, frequency: 2, minAmount: 1 }, //apple tree seed
+                        { id: 157, frequency: 3, minAmount: 1 }, //tomato seed
+                    ],
+                    tags: ['seeds'],
                 },
             ],
 
@@ -24947,7 +25048,7 @@ class IdlescapeGameData {
 
 
     };
-    abilities =  {
+    abilities = {
         1: {
             id: 1,
             abilityName: 'Melee Auto Attack',
@@ -25510,7 +25611,7 @@ class IdlescapeGameData {
             abilityName: 'Retreating Shot',
             abilityImage: '/images/combat/ability_icons/camo.png',
             description:
-                'Fire a distraction shot and retreat from the frontline temporarily, reducing the chance for enemies to target you. (WIP)',
+                'Fire a distraction shot and retreat from the frontline temporarily, significantly reducing your threat.',
             damageType: 'Range',
             cooldown: 30000,
             useRangedAmmo: true,
@@ -25522,6 +25623,14 @@ class IdlescapeGameData {
             baseMinimumDamageCoeff: 0.25,
             baseMaximumDamageCoeff: 0.75,
             baseAccuracyCoeff: 0.75,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8014,
+                enchantmentStrength: 10,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 6,
+            },
 
             maxTargets: 1,
         },
@@ -26263,6 +26372,168 @@ class IdlescapeGameData {
                 enchantmentStrength: 8,
                 enchantmentChanceToApply: 1,
                 enchantmentAmount: 8,
+            },
+
+            maxTargets: 1,
+        },
+        55: {
+            id: 55,
+            abilityName: 'Poisonous Strike',
+            abilityImage: '/images/combat/ability_icons/necrotic_touch.png',
+            description: 'Poison!',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Poison', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Poison', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 1,
+            baseMinimumDamageCoeff: 1,
+            baseMaximumDamageCoeff: 1,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+        },
+        56: {
+            id: 56,
+            abilityName: "INFO's Lesson",
+            abilityImage: '/images/combat/ability_icons/apocalypse.png',
+            description: "Did you know you won't survive this?",
+            damageType: 'Magic',
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Chaos', scaling: 5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Chaos', scaling: 5 },
+            ],
+
+            baseSpeedCoeff: 30,
+            baseMinimumDamageCoeff: 25,
+            baseMaximumDamageCoeff: 50,
+            baseAccuracyCoeff: 99999,
+
+            maxTargets: 10,
+        },
+        57: {
+            id: 57,
+            abilityName: 'Invisibility',
+            abilityImage: '/images/combat/ability_icons/invisible.png',
+            description:
+                "Actually you're probably closer to just a little translucent, but if you claim to be invisible to sound cooler that's okay too.",
+            damageType: 'Magic',
+            cooldown: 30000,
+            runeCost: [{ itemID: 516, amount: 10 }],
+
+            damageScaling: [{ affinity: 'Magic', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
+            baseSpeedCoeff: 0.25,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8015,
+                enchantmentStrength: 5,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 3,
+            },
+
+            maxTargets: 1,
+        },
+        58: {
+            id: 58,
+            abilityName: 'Camouflage',
+            abilityImage: '/images/combat/ability_icons/camo.png',
+            description:
+                'Wait, where did you go? Makes you harder to hit but does not inherently decrease your threat generation.',
+            damageType: 'Range',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
+            baseSpeedCoeff: 0.25,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8015,
+                enchantmentStrength: 3,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 8,
+            },
+
+            maxTargets: 1,
+        },
+        59: {
+            id: 59,
+            abilityName: 'Icy Shell',
+            abilityImage: '/images/combat/ability_icons/ice_armor.png',
+            description:
+                'Temporarily encase yourself in a shell of magical ice, increasing protection, resistance, and defensive ice affinity at the cost of agility. Melts very quickly!',
+            damageType: 'Magic',
+            cooldown: 30000,
+            runeCost: [{ itemID: 513, amount: 3 }],
+
+            damageScaling: [{ affinity: 'Magic', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
+            baseSpeedCoeff: 0.333,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8016,
+                enchantmentStrength: 4,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 16,
+            },
+
+            maxTargets: 1,
+        },
+        60: {
+            id: 60,
+            abilityName: 'Set Traps',
+            abilityImage: '/images/combat/ability_icons/trap.png',
+            description: 'Sets a trap that significantly reduces agility of an enemy if they are hit by it.',
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1.25 }],
+
+            baseSpeedCoeff: 2,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 1,
+            baseAccuracyCoeff: 1.5,
+
+            targetBuff: {
+                onlyOnHit: true,
+                enchantmentApply: 8017,
+                enchantmentStrength: 5,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 16,
             },
 
             maxTargets: 1,
