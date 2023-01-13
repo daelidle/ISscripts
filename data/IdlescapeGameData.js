@@ -26539,4 +26539,366 @@ class IdlescapeGameData {
             maxTargets: 1,
         },
     };
+    gameShopItems = {
+        1: {
+            id: 1,
+            itemID: 11010,
+            price: 10,
+            allowBulkPurchase: true,
+            description: 'Used as bait when fishing.',
+            image: 'images/fishing/bait/earthworm_hook.png',
+        },
+        2: {
+            id: 2,
+            itemID: 1600,
+            price: 50000,
+            allowBulkPurchase: true,
+            description: 'Used in magic to store magical properties; enchants.',
+            image: '/images/enchanting/scroll.png',
+        },
+        3: {
+            id: 3,
+            itemID: 150,
+            price: 1000,
+            allowBulkPurchase: true,
+            description: 'Fertilizer speeds up the growth of your plants.',
+            image: '/images/farming/fertilizer.png',
+        },
+        4: {
+            id: 4,
+            itemID: 3001,
+            price: 1000,
+            allowBulkPurchase: true,
+            description: 'An empty vial to pour a potion into.',
+            image: '/images/cooking/alchemy/empty_vial.png',
+        },
+        5: {
+            id: 5,
+            itemID: 3002,
+            price: 1500,
+            allowBulkPurchase: true,
+            description: 'A large empty vial to pour a potion into.',
+            image: '/images/cooking/alchemy/empty_large_vial.png',
+        },
+        6: {
+            id: 6,
+            itemID: 3003,
+            price: 2000,
+            allowBulkPurchase: true,
+            description: 'A reinforced empty vial to pour a potion into.',
+            image: '/images/cooking/alchemy/empty_reinforced_vial.png',
+        },
+        7: {
+            id: 7,
+            itemID: 700,
+            price: 50,
+            allowBulkPurchase: true,
+            description: 'A feather.',
+            image: 'images/fishing/feather.png',
+        },
+        8: {
+            id: 8,
+            itemID: 520,
+            price: 100000,
+            allowBulkPurchase: true,
+            description: 'An unstable talisman ready to be imbued with essence to become a normal talisman.',
+            image: '/images/runecrafting/unstable_talisman.png',
+        },
+
+        100: {
+            id: 100,
+            itemID: 1150,
+            price: 100,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 100 should be sufficient.',
+            image: '/images/combat/equipment/bronze_gloves.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 100,
+                    },
+                ],
+            },
+        },
+        101: {
+            id: 101,
+            itemID: 1151,
+            price: 3000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 200 should be sufficient.',
+            image: '/images/combat/equipment/iron_gloves.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 200,
+                    },
+                ],
+            },
+        },
+        103: {
+            id: 103,
+            itemID: 1153,
+            price: 75000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 300 should be sufficient.',
+            image: '/images/combat/equipment/mithril_gloves.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 300,
+                    },
+                ],
+            },
+        },
+        104: {
+            id: 104,
+            itemID: 1154,
+            price: 400000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 400 should be sufficient.',
+            image: '/images/combat/equipment/adamantite_gloves.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 400,
+                    },
+                ],
+            },
+        },
+        105: {
+            id: 105,
+            itemID: 1155,
+            price: 2000000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 500 should be sufficient.',
+            image: '/images/combat/equipment/rune_gloves.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 500,
+                    },
+                ],
+            },
+        },
+        106: {
+            id: 106,
+            itemID: 1156,
+            price: 6000000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 600 should be sufficient.',
+            image: '/images/combat/equipment/stygian_gloves.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 600,
+                    },
+                ],
+            },
+        },
+        107: {
+            id: 107,
+            itemID: 1130,
+            price: 1500,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 100 should be sufficient.',
+            image: '/images/combat/equipment/bronze_boots_icon.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 100,
+                    },
+                ],
+            },
+        },
+        108: {
+            id: 108,
+            itemID: 1131,
+            price: 10000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 200 should be sufficient.',
+            image: '/images/combat/equipment/iron_boots_icon.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 200,
+                    },
+                ],
+            },
+        },
+        109: {
+            id: 109,
+            itemID: 1133,
+            price: 80000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 300 should be sufficient.',
+            image: '/images/combat/equipment/mithril_boots_icon.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 300,
+                    },
+                ],
+            },
+        },
+        110: {
+            id: 110,
+            itemID: 1134,
+            price: 550000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 400 should be sufficient.',
+            image: '/images/combat/equipment/adamantite_boots_icon.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 400,
+                    },
+                ],
+            },
+        },
+        111: {
+            id: 111,
+            itemID: 1135,
+            price: 2400000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 500 should be sufficient.',
+            image: '/images/combat/equipment/rune_boots_icon.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 500,
+                    },
+                ],
+            },
+        },
+        112: {
+            id: 112,
+            itemID: 1136,
+            price: 4000000,
+            allowBulkPurchase: true,
+            description: 'These require a certain amount of skill to use. A total level of 600 should be sufficient.',
+            image: '/images/combat/equipment/stygian_boots_icon.png',
+            purchaseRequirements: {
+                levelRequirements: [
+                    {
+                        skill: 'total',
+                        level: 600,
+                    },
+                ],
+            },
+        },
+
+        300: {
+            id: 300,
+            itemID: 10003,
+            price: 500000,
+            allowBulkPurchase: true,
+            description: 'A package of gems! Only available for purchase to those in the Ironman league.',
+            image: '/images/misc/package.png',
+            purchaseRequirements: {
+                league: [2],
+            },
+        },
+        301: {
+            id: 301,
+            itemID: 10004,
+            price: 1000000,
+            allowBulkPurchase: true,
+            description: 'A sealed scroll! Only available for purchase to those in the Ironman league.',
+            image: '/images/misc/sealed_scroll.png',
+            purchaseRequirements: {
+                league: [2],
+            },
+        },
+        // 302: {
+        // 	id: 302,
+        // 	itemID: 10005,
+        // 	price: 100000,
+        // 	allowBulkPurchase: true,
+        // 	description: 'A small crate of gathering supplies. WIP',
+        // 	image: '/images/misc/supply_crate_small.png',
+        // },
+        // 303: {
+        // 	id: 303,
+        // 	itemID: 10006,
+        // 	price: 500000,
+        // 	allowBulkPurchase: true,
+        // 	description: 'A crate of gathering supplies. WIP',
+        // 	image: '/images/misc/supply_crate.png',
+        // },
+        // 304: {
+        // 	id: 304,
+        // 	itemID: 10007,
+        // 	price: 1000000,
+        // 	allowBulkPurchase: true,
+        // 	description: 'A large crate of gathering supplies. WIP',
+        // 	image: '/images/misc/supply_crate_large.png',
+        // },
+        305: {
+            id: 305,
+            itemID: 10008,
+            price: 50000,
+            allowBulkPurchase: true,
+            description: 'A bucket of worms.',
+            image: '/images/fishing/bait/bucket.png',
+        },
+        306: {
+            id: 306,
+            itemID: 10009,
+            price: 5000000,
+            allowBulkPurchase: false,
+            description: 'All the skill books.',
+            image: '/images/misc/gold_lockbox.png',
+        },
+        307: {
+            id: 307,
+            itemID: 7063,
+            price: 1000000,
+            allowBulkPurchase: false,
+            description: 'Cosmetic.',
+            image: '/images/premium/cosmetic/equipment/lightning_edge.gif',
+        },
+        308: {
+            id: 308,
+            itemID: 7064,
+            price: 1000000,
+            allowBulkPurchase: false,
+            description: 'Cosmetic.',
+            image: '/images/premium/cosmetic/equipment/frost_maul.gif',
+        },
+        309: {
+            id: 309,
+            itemID: 10010,
+            price: 15000000,
+            allowBulkPurchase: true,
+            description: 'All the jewelry.',
+            image: '/images/misc/gold_lockbox.png',
+        },
+        310: {
+            id: 310,
+            itemID: 10011,
+            price: 15000,
+            allowBulkPurchase: true,
+            description: 'Will eventually be tied to a tutorial quest.',
+            image: '/images/misc/pouch.png',
+        },
+        311: {
+            id: 311,
+            itemID: 10012,
+            price: 15000,
+            allowBulkPurchase: true,
+            description: 'Will eventually be tied to a tutorial quest.',
+            image: '/images/misc/pouch.png',
+        },
+    };
 }

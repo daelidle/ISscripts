@@ -77,6 +77,7 @@ class CustomTooltip {
         tippy.delegate('.game-content', {
             target: '.game-shop-item',
             allowHTML: true,
+            arrow: false,
             maxWidth: 'none',
             onTrigger(instance) {
                 instance.setContent(that._generateEventAndGeneralShopTooltip(instance.reference));
@@ -157,15 +158,16 @@ class CustomTooltip {
             // Event Shop
             delete item.name;
             if (item.itemID === undefined) {
-                const enchantment = that.daelis.gameData.enchantments[item.enchantmentID];
+                const enchantment = this.daelis.gameData.enchantments[item.enchantmentID];
                 return `<div class="daelis-wow-tooltip">${enchantment.getTooltip(2, enchantment.strengthPerLevel)}</div>`;
             }
         } else {
             // General Shop
             item = getReact(element.parentElement).return.pendingProps;
-            item = {itemID: item.id};
+            const shopItem = this.daelis.gameData.gameShopItems[item.id];
+            item = {itemID: shopItem.itemID, price: shopItem.price, type: '$'};
         }
-        return that._generateTooltip(item);
+        return this._generateTooltip(item);
     }
 
     _generateChatItemTooltip(element) {
