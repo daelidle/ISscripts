@@ -6,8 +6,8 @@ class FoodTooltip {
 
         tooltipData.type = this.getItemType(itemResource);
         tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource, gameData.enchantments)};
-        tooltipData.enchant = this.getEnchantSection(item, gameData.enchantments);
-        tooltipData.itemSkill = this.getItemSkillSection(item, gameData.enchantments);
+        tooltipData.enchant = this.getEnchantSection(item, itemResource, gameData.enchantments);
+        tooltipData.itemSkill = this.getItemSkillSection(item, itemResource, gameData.enchantments);
         tooltipData.effects = this.getItemEffects(item, itemResource, gameData.enchantments);
     }
 
@@ -26,22 +26,22 @@ class FoodTooltip {
         return {foodStats: `${healingStats}${separator}${ingredientStats}`};
     }
 
-    getEnchantSection(item, enchantments) {
+    getEnchantSection(item, itemResource, enchantments) {
         if (!item.enchantmentID) return '';
 
-        const enchantmentStrength = item.stackStrength || this.FOOD_DEFAULT_ENCHANT_STRENGTH;
+        const enchantmentStrength = itemResource.stackStrength || this.FOOD_DEFAULT_ENCHANT_STRENGTH;
         const enchantment = enchantments[item.enchantmentID];
         return `<span class="dwt-enchant-active">${enchantment.name} ${enchantmentStrength}</span>`;
     }
 
-    getItemSkillSection(item, enchantments) {
+    getItemSkillSection(item, itemResource, enchantments) {
         if (!item.enchantmentID) return '';
 
-        const stackMultiplier = item.stackMultiplier || 0.25;
-        const stacks = Math.floor((1 + stackMultiplier * parseInt(item.augmentations ?? 0) * 2) * (enchantments[item.enchantmentID].stackMult || 1));
+        const stackMultiplier = itemResource.stackMultiplier || 0.25;
+        const enchantment = enchantments[item.enchantmentID];
+        const stacks = Math.max(1, Math.floor((1 + (item.augmentations ? item.augmentations : 0) * 2) * stackMultiplier * (enchantment.stackMult || 1)));
 
-        const isCombatEnchantment = enchantments[item.enchantmentID].combat;
-        const combatHtml = isCombatEnchantment ? '<div>Buff only granted when consumed in combat.</div>' : '';
+        const combatHtml = enchantment.combat ? '<div>Buff only granted when consumed in combat.</div>' : '';
         return `<div>${stacks} buff stacks</div>${combatHtml}`;
     }
 

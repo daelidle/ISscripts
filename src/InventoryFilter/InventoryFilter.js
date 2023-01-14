@@ -45,16 +45,17 @@ class InventoryFilter {
 
         const filterHtml = `
             <div id="daelis-inventory-filter">
-                <img class="daelis-inventory-filter-image" src="/images/combat/attack_icon.png" data-filter="equipment|key|consumable" alt="combat">
-                <img class="daelis-inventory-filter-image" src="/images/combat/equipment/stygian_platebody.png" data-filter="equipment" alt="equipment">  
-                <img class="daelis-inventory-filter-image" src="/images/misc/elite/Elite_Scroll_Chaos.png" data-filter="scroll" alt="scroll">  
-                <img class="daelis-inventory-filter-image" src="/images/cooking/cooking_icon.png" data-filter="cooking" alt="cooking">  
-                <img class="daelis-inventory-filter-image" src="/images/misc/keys/Complete_Disc.png" data-filter="key" alt="key">  
+                <img class="daelis-inventory-filter-image" src="/images/combat/attack_icon.png" data-filter="armor|weapon|key|consumable" alt="combat">
+                <img class="daelis-inventory-filter-image" src="/images/combat/equipment/stygian_platebody.png" data-filter="armor|weapon" alt="equipment">  
+                <img class="daelis-inventory-filter-image" src="/images/misc/elite/Elite_Scroll_Chaos.png" data-filter="elite" alt="scroll">  
+                <img class="daelis-inventory-filter-image" src="/images/misc/keys/Complete_Disc.png" data-filter="key|fragment" alt="key">  
                 <img class="daelis-inventory-filter-image" src="/images/mining/iron_pickaxe.png" data-filter="mining" alt="mining">
-                <img class="daelis-inventory-filter-image" src="/images/farming/mysterious_seed.png" data-filter="seed" alt="seed">  
+                <img class="daelis-marketplace-filter-image" src="/images/foraging/foraging_icon.png" data-filter="foraging" alt="foraging">
+                <img class="daelis-marketplace-filter-image" src="/images/fishing/fishing_logo.png" data-filter="fishing" alt="fishing">
+                <img class="daelis-inventory-filter-image" src="/images/farming/farming_icon.png" data-filter="farming" alt="farming">  
+                <img class="daelis-inventory-filter-image" src="/images/cooking/cooking_icon.png" data-filter="cooking" alt="cooking">  
                 <img class="daelis-inventory-filter-image" src="/images/heat_icon.png" data-filter="^heat" alt="heat">  
-                <img class="daelis-inventory-filter-image" src="/images/runecrafting/mind_rune.png" data-filter="rune" alt="rune">  
-                <img class="daelis-inventory-filter-image" src="/images/christmas/snow_essence.png" data-filter="christmas" alt="christmas">
+                <img class="daelis-inventory-filter-image" src="/images/runecrafting/mind_rune.png" data-filter="rune" alt="rune">
                 <img class="daelis-inventory-filter-image" src="${filterClear}" data-filter="clearFilter" alt="clear filter">    
                 <input class="inventory-sort-entry" placeholder="Custom Filter" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" margin="dense" dense="true" variant="outlined" type="search" name="daelis_filter_custom_values" id="daelis_filter_custom_values" value="">
                 <img class="daelis-inventory-filter-image" src="${filterCopy}" data-filter="copy" alt="Copy inventory to clipboard">

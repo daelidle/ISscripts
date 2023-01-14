@@ -43,12 +43,14 @@ class MarketplaceFilter {
 
         const filterHtml = `
             <div id="daelis-marketplace-filter">
-                <img class="daelis-marketplace-filter-image" src="/images/combat/equipment/stygian_platebody.png" data-filter="equipment" alt="equipment">  
-                <img class="daelis-marketplace-filter-image" src="/images/misc/elite/Elite_Scroll_Chaos.png" data-filter="scroll" alt="scroll">  
-                <img class="daelis-marketplace-filter-image" src="/images/cooking/cooking_icon.png" data-filter="cooking" alt="cooking">  
-                <img class="daelis-marketplace-filter-image" src="/images/misc/keys/Complete_Disc.png" data-filter="key" alt="key">  
+                <img class="daelis-marketplace-filter-image" src="/images/combat/equipment/stygian_platebody.png" data-filter="armor|weapon" alt="equipment">  
+                <img class="daelis-marketplace-filter-image" src="/images/misc/elite/Elite_Scroll_Chaos.png" data-filter="elite" alt="scroll">  
+                <img class="daelis-marketplace-filter-image" src="/images/misc/keys/Complete_Disc.png" data-filter="key|fragment" alt="key">  
                 <img class="daelis-marketplace-filter-image" src="/images/mining/iron_pickaxe.png" data-filter="mining" alt="mining">
-                <img class="daelis-marketplace-filter-image" src="/images/farming/mysterious_seed.png" data-filter="seed" alt="seed">  
+                <img class="daelis-marketplace-filter-image" src="/images/foraging/foraging_icon.png" data-filter="foraging" alt="foraging">
+                <img class="daelis-marketplace-filter-image" src="/images/fishing/fishing_logo.png" data-filter="fishing" alt="fishing">
+                <img class="daelis-marketplace-filter-image" src="/images/farming/farming_icon.png" data-filter="farming" alt="farming"> 
+                <img class="daelis-marketplace-filter-image" src="/images/cooking/cooking_icon.png" data-filter="cooking" alt="cooking">  
                 <img class="daelis-marketplace-filter-image" src="/images/heat_icon.png" data-filter="^heat" alt="heat">  
                 <img class="daelis-marketplace-filter-image" src="/images/runecrafting/mind_rune.png" data-filter="rune" alt="rune">  
                 <img class="daelis-marketplace-filter-image" src="${filterClear}" data-filter="clearFilter" alt="clear filter">    

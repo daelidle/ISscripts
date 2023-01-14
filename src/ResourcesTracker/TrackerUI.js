@@ -52,6 +52,7 @@ class TrackerUI {
         let itemsHtml = '';
         for (const [signature, stack] of Object.entries(trackedResources)) {
             let item = getItemFromItemSignature(signature);
+            item.stackSize = stack;
             let itemResource = this._gameData.items[item.itemID];
             if (itemResource === undefined){
                 console.log(`can't find item with id ${item.itemID} on the gameData`);
