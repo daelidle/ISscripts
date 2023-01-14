@@ -81,7 +81,6 @@ class EquipmentTooltip {
             }
         }
         let augments = item.augmentations || 0;
-        if (item.soulBound) augments *= 1.5;
         itemResource.equipmentStats.augmentationBonus?.forEach(augmentationBonus => {
             if (!(augmentationBonus.stat in indexedStats)) indexedStats[augmentationBonus.stat] = 0;
             indexedStats[augmentationBonus.stat] += augmentationBonus.value * augments;
@@ -210,8 +209,8 @@ class EquipmentTooltip {
         let soulBoundHtml = '<div class="dwt-soulbound-label">Soulbound</div>';
         if (item.itemLevel) soulBoundHtml += `<div class="dwt-soulbound-level">Item Level ${item.itemLevel}</div>`;
         if (item.itemExperience) {
-            const nextLevelExperience = Math.round(1000 + item.itemLevel * 150 ** (1.3333333 + item.itemLevel / 10));
-            soulBoundHtml += `<div class="dwt-soulbound-exp">Item XP ${item.itemExperience} / ${nextLevelExperience}</div>`;
+            const nextLevelExperience = Math.round(1000 + item.itemLevel * 150 ** (1 + item.itemLevel / 10));
+            soulBoundHtml += `<div class="dwt-soulbound-exp">Item XP ${item.itemExperience.toLocaleString()} / ${nextLevelExperience.toLocaleString()}</div>`;
         }
         return soulBoundHtml;
     }
