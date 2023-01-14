@@ -478,7 +478,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Sand, Stone and Clay mined will be destroyed and provide ${Math.round(
                     enchantmentStrength * strengthPerLevel
-                )} mining experience per piece.`,
+                )} mining experience per piece. Scholar rolls first and does not stack.`,
             // endclient
         }, // destructive testing
         35: {
@@ -2253,8 +2253,12 @@ class IdlescapeGameData {
                 { 95: 10, 110: 10 },
                 { 110: 10, 2014: 10 },
                 { 108: 10, 110: 10 },
+                { 4000: 10, 110: 5 },
+                { 4000: 10, 108: 5 },
+                { 4005: 1, 110: 5 },
+                { 4005: 1, 108: 5 },
             ],
-            craftingMultiplier: [4, 4, 4, 4],
+            craftingMultiplier: [4, 4, 4, 4, 4, 4],
 
 
 
@@ -3709,7 +3713,7 @@ class IdlescapeGameData {
             tags: ['tool', 'crafting'],
             equipmentStats: {
                 slot: 'pickaxe',
-                toolBoost: [{ skill: 'mining', boost: 60 }],
+                toolBoost: [{ skill: 'mining', boost: 90 }],
                 augmentationBonus: [{ stat: 'toolBoost.mining', value: 5 }],
                 itemSet: [10007, 10008],
             },
@@ -3910,7 +3914,7 @@ class IdlescapeGameData {
             tags: ['tool', 'crafting'],
             equipmentStats: {
                 slot: 'hatchet',
-                toolBoost: [{ skill: 'foraging', boost: 60 }],
+                toolBoost: [{ skill: 'foraging', boost: 90 }],
                 augmentationBonus: [{ stat: 'toolBoost.foraging', value: 5 }],
                 itemSet: [10005, 10006],
             },
@@ -4706,11 +4710,11 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Lesser_Magic_Tome_embossed.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Increases max augmentation level by 2.',
-            extraTooltipInfo: 'Increases max augmentation level by 2.',
+            craftingDescription: 'Increases max augmentation level by 1.',
+            extraTooltipInfo: 'Increases max augmentation level by 1.',
             enchantable: true,
             tags: ['tool', 'crafting'],
-            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 10 }] },
+            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'augmentLevel', boost: 1 }] },
 
 
 
@@ -4727,11 +4731,11 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Major_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Increases max augmentation level by 4.',
-            extraTooltipInfo: 'Increases max augmentation level by 4.',
+            craftingDescription: 'Increases max augmentation level by 2.',
+            extraTooltipInfo: 'Increases max augmentation level by 2.',
             enchantable: true,
             tags: ['tool', 'crafting'],
-            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 20 }] },
+            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'augmentLevel', boost: 2 }] },
 
 
 
@@ -4748,11 +4752,11 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Greater_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Increases max augmentation level by 6.',
-            extraTooltipInfo: 'Increases max augmentation level by 6.',
+            craftingDescription: 'Increases max augmentation level by 3.',
+            extraTooltipInfo: 'Increases max augmentation level by 3.',
             enchantable: true,
             tags: ['tool', 'crafting'],
-            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 30 }] },
+            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'augmentLevel', boost: 3 }] },
 
 
 
@@ -4769,11 +4773,11 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Increases max augmentation level by 8.',
-            extraTooltipInfo: 'Increases max augmentation level by 8.',
+            craftingDescription: 'Increases max augmentation level by 4.',
+            extraTooltipInfo: 'Increases max augmentation level by 4.',
             enchantable: true,
             tags: ['tool', 'crafting'],
-            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 40 }] },
+            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'augmentLevel', boost: 4 }] },
 
 
 
@@ -4790,11 +4794,11 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Increases max augmentation level by 10.',
-            extraTooltipInfo: 'Increases max augmentation level by 10.',
+            craftingDescription: 'Increases max augmentation level by 5.',
+            extraTooltipInfo: 'Increases max augmentation level by 5.',
             enchantable: true,
             tags: ['tool', 'crafting'],
-            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'enchanting', boost: 50 }] },
+            equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'augmentLevel', boost: 6 }] },
 
 
 
@@ -6810,6 +6814,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -6849,6 +6857,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -6887,6 +6899,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -6927,6 +6943,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -6966,6 +6986,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7006,6 +7030,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7046,6 +7074,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7087,6 +7119,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7127,6 +7163,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7165,6 +7205,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7206,6 +7250,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7246,6 +7294,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7287,6 +7339,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7328,6 +7384,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 47 / 50,
@@ -7368,6 +7428,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.13,
                     Magic: 47 / 50,
@@ -7444,6 +7508,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.13,
                     Magic: 47 / 50,
@@ -7519,6 +7587,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.13,
                     Magic: 47 / 50,
@@ -7596,6 +7668,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.13,
                     Magic: 47 / 50,
@@ -7672,6 +7748,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.13,
                     Magic: 47 / 50,
@@ -7750,6 +7830,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.13,
                     Magic: 47 / 50,
@@ -7828,6 +7912,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.13,
                     Magic: 47 / 50,
@@ -7906,6 +7994,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.08,
                     Magic: 47 / 50,
@@ -7945,6 +8037,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.08,
                     Magic: 47 / 50,
@@ -7982,6 +8078,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.08,
                     Magic: 47 / 50,
@@ -8022,6 +8122,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.08,
                     Magic: 47 / 50,
@@ -8061,6 +8165,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.08,
                     Magic: 47 / 50,
@@ -8101,6 +8209,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.08,
                     Magic: 47 / 50,
@@ -8141,6 +8253,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: {
+                    Magic: 0.97,
+                    Range: 0.98,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.08,
                     Magic: 47 / 50,
@@ -19135,13 +19251,15 @@ class IdlescapeGameData {
             seedHeight: 1,
             seedWidth: 1,
             yield: [
-                { chance: 1, id: 4000, min: 1, max: 1 },
-                { chance: 1, id: 4007, min: 1, max: 8 },
-                { chance: 1 / 4, id: 4007, min: 1, max: 8 },
+                { chance: 1, id: 4000, min: 1, max: 2 },
+                { chance: 1, id: 4007, min: 4, max: 10 },
+                { chance: 1 / 4, id: 4007, min: 4, max: 12 },
+                { chance: 0.2, id: 4000, min: 1, max: 3 },
                 { chance: 0.2, id: 4004, min: 1, max: 6 },
-                { chance: 0.1, id: 4008, min: 1, max: 3 },
-                { chance: 0.5, id: 2000, min: 1, max: 1 },
-                { chance: 0.5, id: 700, min: 4, max: 8 },
+                { chance: 0.2, id: 4008, min: 1, max: 3 },
+                { chance: 0.25, id: 2000, min: 1, max: 1 },
+                { chance: 0.75, id: 2001, min: 1, max: 2 },
+                { chance: 0.75, id: 700, min: 4, max: 12 },
             ],
             class: 'seed',
             category: 'Farming',
@@ -19169,11 +19287,12 @@ class IdlescapeGameData {
             seedHeight: 1,
             seedWidth: 1,
             yield: [
-                { chance: 1, id: 4000, min: 1, max: 2 },
-                { chance: 1, id: 4007, min: 1, max: 4 },
-                { chance: 1 / 4, id: 4007, min: 1, max: 8 },
-                { chance: 0.5, id: 4004, min: 1, max: 4 },
-                { chance: 0.2, id: 4008, min: 1, max: 2 },
+                { chance: 1, id: 4000, min: 1, max: 6 },
+                { chance: 1, id: 4004, min: 4, max: 10 },
+                { chance: 3 / 4, id: 4004, min: 1, max: 8 },
+                { chance: 1 / 2, id: 4007, min: 5, max: 10 },
+                { chance: 1 / 3, id: 4008, min: 1, max: 4 },
+                { chance: 1 / 8, id: 4005, min: 1, max: 4 },
             ],
             class: 'seed',
             category: 'Farming',
@@ -19249,7 +19368,7 @@ class IdlescapeGameData {
         4503: {
             id: 4503,
             name: 'Net Trap',
-            level: 30,
+            level: 25,
             value: 125,
             experience: 10,
             farmingExperience: 300,
@@ -19258,20 +19377,24 @@ class IdlescapeGameData {
             seedHeight: 1,
             seedWidth: 1,
             yield: [
-                { chance: 1, id: 4000, min: 1, max: 4 },
+                { chance: 1, id: 4000, min: 1, max: 6 },
+                { chance: 1, id: 4008, min: 1, max: 6 },
+                { chance: 1, id: 4004, min: 1, max: 12 },
+                { chance: 2 / 3, id: 4005, min: 1, max: 6 },
+                { chance: 1 / 2, id: 4007, min: 1, max: 6 },
                 { chance: 1 / 4, id: 4001, min: 1, max: 4 },
                 { chance: 1 / 8, id: 4002, min: 1, max: 4 },
                 { chance: 1 / 8, id: 4003, min: 1, max: 4 },
                 { chance: 1 / 8, id: 4004, min: 1, max: 4 },
                 { chance: 1 / 8, id: 4005, min: 1, max: 4 },
                 { chance: 1 / 8, id: 4007, min: 1, max: 4 },
-                { chance: 1 / 8, id: 4008, min: 1, max: 4 },
                 { chance: 1 / 8, id: 4009, min: 1, max: 4 },
+                { chance: 1 / 8, id: 4008, min: 1, max: 4 },
                 { chance: 1 / 8, id: 4010, min: 1, max: 4 },
             ],
             class: 'seed',
             category: 'Farming',
-            craftingLevel: 40,
+            craftingLevel: 35,
             craftingExperience: 400,
             requiredResources: [{ 304: 90 }, { 305: 80 }, { 306: 70 }],
 
@@ -19286,7 +19409,7 @@ class IdlescapeGameData {
         4504: {
             id: 4504,
             name: 'Bear Trap',
-            level: 40,
+            level: 35,
             value: 150,
             farmingExperience: 400,
             time: 50,
@@ -19294,17 +19417,20 @@ class IdlescapeGameData {
             seedHeight: 1,
             seedWidth: 1,
             yield: [
-                { chance: 1, id: 4000, min: 1, max: 8 },
+                { chance: 1, id: 4000, min: 1, max: 10 },
+                { chance: 1, id: 4005, min: 1, max: 6 },
+                { chance: 1, id: 4004, min: 1, max: 14 },
+                { chance: 1, id: 4002, min: 1, max: 10 },
                 { chance: 3 / 4, id: 4001, min: 1, max: 8 },
                 { chance: 1 / 4, id: 4002, min: 1, max: 8 },
-                { chance: 1 / 16, id: 4003, min: 1, max: 2 },
                 { chance: 1 / 4, id: 4008, min: 1, max: 6 },
                 { chance: 1 / 4, id: 4009, min: 1, max: 6 },
-                { chance: 1 / 16, id: 4010, min: 1, max: 2 },
+                { chance: 1 / 8, id: 4003, min: 1, max: 2 },
+                { chance: 1 / 8, id: 4010, min: 1, max: 2 },
             ],
             class: 'seed',
             category: 'Farming',
-            craftingLevel: 50,
+            craftingLevel: 45,
             craftingExperience: 500,
             requiredResources: [{ 305: 90 }, { 306: 80 }, { 307: 45 }],
 
@@ -21500,16 +21626,16 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'tacklebox',
                 toolBoost: [
-                    { skill: 'fishing', boost: 40 },
-                    { skill: 'fishingBaitPower', boost: 100 },
-                    { skill: 'fishingReelPower', boost: 100 },
+                    { skill: 'fishing', boost: 60 },
+                    { skill: 'fishingBaitPower', boost: 60 },
+                    { skill: 'fishingReelPower', boost: 60 },
                     { skill: 'fishingRarityPower', boost: 60 },
                 ],
                 itemSet: [10001, 10002],
                 augmentationBonus: [
-                    { stat: 'toolBoost.fishing', value: 5 },
-                    { stat: 'toolBoost.fishingBaitPower', value: 7 },
-                    { stat: 'toolBoost.fishingReelPower', value: 7.5 },
+                    { stat: 'toolBoost.fishing', value: 6 },
+                    { stat: 'toolBoost.fishingBaitPower', value: 6 },
+                    { stat: 'toolBoost.fishingReelPower', value: 6 },
                     { stat: 'toolBoost.fishingRarityPower', value: 6 },
                 ],
             },
@@ -21895,6 +22021,8 @@ class IdlescapeGameData {
             name: "Fisherman's Smock",
             id: 12000,
             enchantmentTier: 3,
+            forcedEnchant: 50,
+            forcedEnchantAmount: 3,
             augmentationCost: { 12009: 10 },
             requiredResources: [{ 12009: 150 }],
             equipmentStats: {
@@ -21930,6 +22058,8 @@ class IdlescapeGameData {
             name: "Fisherman's Bucket Hat",
             id: 12001,
             enchantmentTier: 3,
+            forcedEnchant: 51,
+            forcedEnchantAmount: 3,
             augmentationCost: { 12009: 10 },
             requiredResources: [{ 12009: 150 }],
             equipmentStats: {
@@ -21965,6 +22095,8 @@ class IdlescapeGameData {
             name: "Fisherman's Waders",
             id: 12002,
             enchantmentTier: 3,
+            forcedEnchant: 49,
+            forcedEnchantAmount: 3,
             augmentationCost: { 12009: 10 },
             requiredResources: [{ 12009: 150 }],
             equipmentStats: {
@@ -22915,6 +23047,7 @@ class IdlescapeGameData {
                 { id: 110, frequency: 10, minAmount: 1, maxAmount: 2 }, //sand
                 { id: 11011, frequency: 1, minAmount: 1 }, //fat nightcrawler
             ],
+            xpPerCompletion: [{ skill: 'mining', amount: 5 }],
 
         },
         51: {
@@ -22943,6 +23076,7 @@ class IdlescapeGameData {
                 { id: 112, frequency: 5, minAmount: 1 }, //coal
                 { id: 11011, frequency: 1, minAmount: 1 }, //fat nightcrawler
             ],
+            xpPerCompletion: [{ skill: 'mining', amount: 10 }],
 
         },
         52: {
@@ -22967,6 +23101,7 @@ class IdlescapeGameData {
                 { id: 112, frequency: 25, minAmount: 1, maxAmount: 2 }, //coal
                 { id: 11011, frequency: 1, minAmount: 1 }, //fat nightcrawler
             ],
+            xpPerCompletion: [{ skill: 'mining', amount: 15 }],
 
         },
         53: {
@@ -22996,6 +23131,7 @@ class IdlescapeGameData {
                 { id: 104, frequency: 5, minAmount: 1 }, //gold
                 { id: 108, frequency: 3, minAmount: 1, maxAmount: 2 }, //clay
             ],
+            xpPerCompletion: [{ skill: 'mining', amount: 30 }],
 
         },
         54: {
@@ -23024,6 +23160,7 @@ class IdlescapeGameData {
                 { id: 103, frequency: 5, minAmount: 1 }, //iron
                 { id: 112, frequency: 5, minAmount: 1 }, //coal
             ],
+            xpPerCompletion: [{ skill: 'mining', amount: 40 }],
 
         },
         55: {
@@ -23051,6 +23188,7 @@ class IdlescapeGameData {
                 { id: 107, frequency: 5, minAmount: 1 }, //runite
                 { id: 113, frequency: 10, minAmount: 1 }, // rune slate
             ],
+            xpPerCompletion: [{ skill: 'mining', amount: 60 }],
 
         },
         56: {
@@ -23077,6 +23215,7 @@ class IdlescapeGameData {
                 { id: 113, frequency: 10, minAmount: 1 }, // rune slate
                 { id: 104, frequency: 10, minAmount: 1 }, //gold
             ],
+            xpPerCompletion: [{ skill: 'mining', amount: 70 }],
 
         },
         57: {
@@ -23100,6 +23239,7 @@ class IdlescapeGameData {
                 { id: 109, frequency: 10, minAmount: 1, maxAmount: 2 }, //stone
                 { id: 110, frequency: 10, minAmount: 1, maxAmount: 2 }, //sand
             ],
+            xpPerCompletion: [{ skill: 'mining', amount: 5 }],
 
         },
         80: {
@@ -23234,6 +23374,7 @@ class IdlescapeGameData {
                     tags: ['seeds'],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 5 }],
 
         },
         102: {
@@ -23381,6 +23522,7 @@ class IdlescapeGameData {
                     tags: ['plants'],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 10 }],
 
         },
         103: {
@@ -23487,6 +23629,7 @@ class IdlescapeGameData {
                     tags: ['tree'],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 15 }],
 
         },
         104: {
@@ -23605,6 +23748,7 @@ class IdlescapeGameData {
                     tags: ['plants'],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 30 }],
 
         },
         105: {
@@ -23688,6 +23832,7 @@ class IdlescapeGameData {
                     tags: ['seeds'],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 40 }],
 
         },
         106: {
@@ -23763,6 +23908,7 @@ class IdlescapeGameData {
                     tags: ['plants'],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 60 }],
 
         },
         107: {
@@ -23872,6 +24018,7 @@ class IdlescapeGameData {
                     tags: ['plants'],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 70 }],
 
         },
         108: {
@@ -23989,6 +24136,7 @@ class IdlescapeGameData {
                     tags: ['seeds'],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 100 }],
 
         },
 
@@ -24073,6 +24221,7 @@ class IdlescapeGameData {
                     ],
                 },
             ],
+            xpPerCompletion: [{ skill: 'fishing', amount: 20 }],
 
         },
         152: {
@@ -24157,6 +24306,7 @@ class IdlescapeGameData {
                     ],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 30 }],
 
         },
         153: {
@@ -24258,6 +24408,7 @@ class IdlescapeGameData {
                     ],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 60 }],
 
         },
         154: {
@@ -24441,6 +24592,7 @@ class IdlescapeGameData {
                     ],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 90 }],
 
         },
         155: {
@@ -24577,6 +24729,7 @@ class IdlescapeGameData {
                     ],
                 },
             ],
+            xpPerCompletion: [{ skill: 'foraging', amount: 100 }],
 
         },
 
@@ -26446,9 +26599,9 @@ class IdlescapeGameData {
             selfBuff: {
                 onlyOnHit: false,
                 enchantmentApply: 8015,
-                enchantmentStrength: 5,
+                enchantmentStrength: 4,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 3,
+                enchantmentAmount: 8,
             },
 
             maxTargets: 1,
@@ -26475,9 +26628,9 @@ class IdlescapeGameData {
             selfBuff: {
                 onlyOnHit: false,
                 enchantmentApply: 8015,
-                enchantmentStrength: 3,
+                enchantmentStrength: 4,
                 enchantmentChanceToApply: 1,
-                enchantmentAmount: 8,
+                enchantmentAmount: 3,
             },
 
             maxTargets: 1,
