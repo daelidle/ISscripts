@@ -53,8 +53,7 @@ class InventoryFilter {
                 <img class="daelis-marketplace-filter-image" src="/images/foraging/foraging_icon.png" data-filter="foraging" alt="foraging">
                 <img class="daelis-marketplace-filter-image" src="/images/fishing/fishing_logo.png" data-filter="fishing" alt="fishing">
                 <img class="daelis-inventory-filter-image" src="/images/farming/farming_icon.png" data-filter="farming" alt="farming">  
-                <img class="daelis-inventory-filter-image" src="/images/cooking/cooking_icon.png" data-filter="cooking" alt="cooking">  
-                <img class="daelis-inventory-filter-image" src="/images/heat_icon.png" data-filter="^heat" alt="heat">  
+                <img class="daelis-inventory-filter-image" src="/images/cooking/cooking_icon.png" data-filter="cooking" alt="cooking">    
                 <img class="daelis-inventory-filter-image" src="/images/runecrafting/mind_rune.png" data-filter="rune" alt="rune">
                 <img class="daelis-inventory-filter-image" src="${filterClear}" data-filter="clearFilter" alt="clear filter">    
                 <input class="inventory-sort-entry" placeholder="Custom Filter" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" margin="dense" dense="true" variant="outlined" type="search" name="daelis_filter_custom_values" id="daelis_filter_custom_values" value="">
