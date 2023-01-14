@@ -24,12 +24,10 @@ class DisplayPricesInventory {
         };
 
         // Observe Play Area DOM changes
-        const playAreaContainer = document.getElementsByClassName("play-area-container")[0];
-        const inventoryContainer = document.getElementsByClassName("game-right-panel")[0];
+        const combineMainAreaContainer = document.getElementsByClassName("combine-main-area")[0];
         const config = {attributes: true, childList: true, subtree: true };
         this.observer = new MutationObserver(callback);
-        this.observer.observe(playAreaContainer, config);
-        this.observer.observe(inventoryContainer, config);
+        this.observer.observe(combineMainAreaContainer, config);
     }
 
     _updateInventoryPrices() {
@@ -45,12 +43,14 @@ class DisplayPricesInventory {
         let inventoryDiv = document.getElementsByClassName("inventory-panel");
         if (inventoryDiv.length === 0) return;
         const regex = /\d+(.+)(vault|stockpile|tacklebox)/;
-        inventoryDiv[0].querySelectorAll(".item").forEach(item => {
-            let itemName = regex.exec(item.attributes['data-for'].nodeValue)[1];
+        Array.from(inventoryDiv).forEach(inventory => {
+            inventory.querySelectorAll(".item").forEach(item => {
+                let itemName = regex.exec(item.attributes['data-for'].nodeValue)[1];
 
-            const price = priceData[itemName];
-            this._addPriceDivToItem(item, price);
-        })
+                const price = priceData[itemName];
+                this._addPriceDivToItem(item, price);
+            });
+        });
     }
 
     _addPriceToMarketplace(priceData) {
