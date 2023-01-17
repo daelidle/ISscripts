@@ -1,5 +1,7 @@
 class SeedTooltip {
 
+    mysterious_seed_id = 185;
+
     fillTooltipData(tooltipData, item, itemResource, gameData, equippedItems) {
         if (!itemResource) return;
 
@@ -26,11 +28,11 @@ class SeedTooltip {
                       <span>Harvest Time: ${itemResource.time} minutes</span>`;
 
         let yieldStats = '';
-        if (itemResource.yield !== undefined){
+        if (itemResource.yield !== undefined && itemResource.id !== this.mysterious_seed_id){
             itemResource.yield.forEach(production => {
-                if (production.chance >= 1){
-                    yieldStats += `<span>${production.min}-${production.max} ${gameData.items[production.id].name}</span>`;
-                }
+                const chance = (production.chance === 1) ? '': `<span class="dwt-yield-chance"> ${Tooltip.formatMultiplierStat(production.chance)}%</span>`;
+                const productionText = (production.min === 1 && production.max ===1) ? '1' :  `${production.min}-${production.max}`;
+                yieldStats += `<span>${productionText} ${gameData.items[production.id].name}${chance}</span>`;
             });
         }
 

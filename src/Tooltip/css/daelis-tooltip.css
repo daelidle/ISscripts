@@ -99,3 +99,8 @@
 .dwt-not-tradeable {
     color: red;
 }
+
+.dwt-yield-chance {
+    font-size: 8px;
+    color: #ffd100;
+}
