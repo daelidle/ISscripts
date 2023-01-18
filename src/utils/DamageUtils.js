@@ -3,12 +3,13 @@ class DamageUtils {
     static mainDamageTypes = ['Melee', 'Magic', 'Range'];
     static physicalDamageTypes = ['Piercing', 'Blunt', 'Slashing'];
     static magicalDamageTypes = ['Chaos', 'Nature', 'Fire', 'Ice', 'Lightning'];
-    static allDamageTypes = DamageUtils.mainDamageTypes.concat(DamageUtils.physicalDamageTypes, DamageUtils.magicalDamageTypes);
-    static otherTypes = ['Typeless', 'Heal', 'Poison'];
+    static allStandardDamageTypes = DamageUtils.mainDamageTypes.concat(DamageUtils.physicalDamageTypes, DamageUtils.magicalDamageTypes);
+    static otherTypes = ['Typeless', 'Heal', 'Poison', 'deflect'];
+    static allCombatSplotchDamageTypes = DamageUtils.mainDamageTypes.concat(DamageUtils.otherTypes);
 
     static generateAffinityDictionary(prefix, description) {
         const affinities = {};
-        for (const damageType of this.allDamageTypes) {
+        for (const damageType of this.allStandardDamageTypes) {
             affinities[`${prefix}.${damageType}`] = `${damageType} ${description}`;
         }
         return affinities;

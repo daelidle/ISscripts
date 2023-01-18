@@ -49,7 +49,7 @@ class MeterUI {
         const anchor = document.getElementsByClassName(this.BASE_DAMAGE_METER_SCRIPT_NAME);
         if (anchor.length === 0) return;
 
-        let playersHtml = `<img class="dm_switcher" alt="Switch between DPS/Tanking/Healing Meters" src="${this.meterSwitchIcon}">`;
+        let playersHtml = `<img class="dm_switcher" alt="Switch between DPS/EDPS/Tanking/Healing Meters" src="${this.meterSwitchIcon}">`;
         players.forEach(player => playersHtml += this._generatePlayerHtml(player, meterType));
         anchor[0].innerHTML = playersHtml;
         const switcher = document.getElementsByClassName("dm_switcher")[0];
@@ -70,6 +70,12 @@ class MeterUI {
                 cssClass = 'job-dps';
                 amountString = 'DMG';
                 perSecondString = 'DPS';
+                maxString = 'Max Hit';
+                break;
+            case meterTypes.EDPS:
+                cssClass = 'job-edps';
+                amountString = 'DMG';
+                perSecondString = 'EDPS';
                 maxString = 'Max Hit';
                 break;
             case meterTypes.TANK:

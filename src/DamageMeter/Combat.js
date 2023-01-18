@@ -2,6 +2,7 @@ class Player {
     name = '';
     currentHP = 0;
     damageDealt = 0;
+    effectiveDamageDealt = 0;
     damageReceived = 0;
     damageDealtBreakdown = {Melee: 0}
     damageReceivedBreakdown = {Melee: 0}
@@ -17,6 +18,7 @@ class Player {
 
 class Combat {
     group;
+    spawnedMonsters;
     onCombat = false;
     combatStartTimestamp;
     combatFinishTimestamp = null;
@@ -27,6 +29,7 @@ class Combat {
 
     constructor(config) {
         this.group = {};
+        this.spawnedMonsters = {};
         this.combatStartTimestamp = new Date();
         this.config = config;
     }
@@ -55,9 +58,10 @@ class Combat {
         this.group[playerName].currentHP = hp;
     }
 
-    addDamageDealt(playerId, damage, damageType) {
+    addDamageDealt(playerId, defender, damage, damageType) {
         const playerName = this._getPlayerName(playerId);
         this.group[playerName].damageDealt += damage;
+        this.group[playerName].effectiveDamageDealt += Math.min(damage, this.spawnedMonsters[defender].monsterHealth);
         this.group[playerName].damageDealtBreakdown[damageType] += damage;
         if (damage > this.group[playerName].maxHit) this.group[playerName].maxHit = damage;
     }
@@ -74,6 +78,16 @@ class Combat {
         this.group[playerName].healing += healing;
         if (healing > this.group[playerName].maxHeal) this.group[playerName].maxHeal = healing;
     }
+    updateMonster(monstersData) {
+        monstersData.forEach(monsterData => {
+            if (!(monsterData.id in this.spawnedMonsters)) this.spawnedMonsters[monsterData.id] = monsterData;
+            else this.spawnedMonsters[monsterData.id].monsterHealth = monsterData.monsterHealth;
+        });
+    }
+
+    monsterDead(monsterId){
+        delete this.spawnedMonsters[monsterId];
+    }
 
     _getPlayerName(playerId) {
         return this.characterIdToName[playerId];
@@ -85,10 +99,12 @@ class Combat {
         let players = Object.values(this.group);
 
         let totalDealt = 0;
+        let totalEffectiveDealt = 0;
         let totalReceived = 0;
         let totalHeal = 0;
         players.forEach(player => {
             totalDealt += player.damageDealt
+            totalEffectiveDealt += player.effectiveDamageDealt
             totalReceived += player.damageReceived
             totalHeal += player.healing
         });
@@ -97,15 +113,18 @@ class Combat {
             let playerStats = {};
             playerStats.name = player.name;
             playerStats.damageDealt = player.damageDealt;
+            playerStats.effectiveDamageDealt = player.effectiveDamageDealt;
             playerStats.damageReceived = player.damageReceived;
             playerStats.healing = player.healing;
             playerStats.maxHit = player.maxHit;
             playerStats.maxReceived = player.maxReceived;
             playerStats.maxHeal = player.maxHeal;
             playerStats.contributionDealt = (totalDealt === 0) ? 0 : Math.round((player.damageDealt / totalDealt) * 100);
+            playerStats.contributionEffectiveDealt = (totalEffectiveDealt === 0) ? 0 : Math.round((player.effectiveDamageDealt / totalEffectiveDealt) * 100);
             playerStats.contributionReceived = (totalReceived === 0) ? 0 :  Math.round((player.damageReceived / totalReceived) * 100);
             playerStats.contributionHeal =  (totalHeal === 0) ? 0 : Math.round((player.healing / totalHeal) * 100);
             playerStats.dps = (player.damageDealt / combatDurationSeconds).toFixed(2);
+            playerStats.edps = (player.effectiveDamageDealt / combatDurationSeconds).toFixed(2);
             playerStats.aps = (player.damageReceived / combatDurationSeconds).toFixed(2);
             playerStats.hps = (player.healing / combatDurationSeconds).toFixed(2);
             combatStats[player.name] = playerStats;
@@ -119,6 +138,9 @@ class Combat {
         switch (meterType) {
             case meterTypes.DPS:
                 players = players.sort((a, b) => parseFloat(b.damageDealt) - parseFloat(a.damageDealt));
+                break;
+            case meterTypes.EDPS:
+                players = players.sort((a, b) => parseFloat(b.effectiveDamageDealt) - parseFloat(a.effectiveDamageDealt));
                 break;
             case meterTypes.TANK:
                 players = players.sort((a, b) => parseFloat(b.damageReceived) - parseFloat(a.damageReceived));
@@ -178,6 +200,7 @@ class Combat {
     _resetCombat(){
         this.combatStartTimestamp = new Date();
         this.group = {};
+        this.spawnedMonsters = {};
         this.group[this.selfCharacterName] = new Player(this.selfCharacterName);
     }
 

@@ -1,7 +1,8 @@
 const meterTypes = {
     DPS: 0,
-    TANK: 1,
-    HEALER: 2
+    EDPS: 1,
+    TANK: 2,
+    HEALER: 3
 }
 
 class DamageMeter {
@@ -31,6 +32,12 @@ class DamageMeter {
             case "combat:splotch":
                 this._parseCombatHit(message.data);
                 break;
+            case "combat:spawnMonster":
+                this.combat.updateMonster(message.data);
+                break;
+            case "combat:removeMonster":
+                this.combat.monsterDead(message.data.id);
+                break;
             case "update:player":
                 this._parseUpdatePlayer(message.data);
                 break;
@@ -55,8 +62,8 @@ class DamageMeter {
                 if (!isSourceMonster) this.combat.addHealing(attackerId, damage);
                 break;
             default:
-                if (!DamageUtils.allDamageTypes.includes(damageType)) console.log(`New type of Hit ${damageType}`);
-                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, damage, damageType);
+                if (!DamageUtils.allCombatSplotchDamageTypes.includes(damageType)) console.log(`New type of Hit ${damageType}`);
+                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, defenderId, damage, damageType);
                 else this.combat.addDamageReceived(defenderId, damage, damageType);
                 break;
         }
@@ -105,6 +112,9 @@ class DamageMeter {
                 case meterTypes.DPS:
                     uiPlayer = {order: order, name: playerStats.name, amount: playerStats.damageDealt, perSecond: playerStats.dps, contribution: playerStats.contributionDealt, max: playerStats.maxHit};
                     break;
+                case meterTypes.EDPS:
+                    uiPlayer = {order: order, name: playerStats.name, amount: playerStats.effectiveDamageDealt, perSecond: playerStats.edps, contribution: playerStats.contributionEffectiveDealt, max: playerStats.maxHit};
+                    break;
                 case meterTypes.TANK:
                     uiPlayer = {order: order, name: playerStats.name, amount: playerStats.damageReceived, perSecond: playerStats.aps, contribution: playerStats.contributionReceived, max: playerStats.maxReceived};
                     break;
@@ -120,17 +130,7 @@ class DamageMeter {
     }
 
     changeMeterType(){
-        switch (this.currentType){
-            case meterTypes.DPS:
-                this.currentType = meterTypes.TANK;
-                break;
-            case meterTypes.TANK:
-                this.currentType = meterTypes.HEALER;
-                break;
-            case meterTypes.HEALER:
-                this.currentType = meterTypes.DPS;
-                break;
-        }
+        this.currentType = (this.currentType + 1) % 4;
         this._updateMeter();
     }
 
