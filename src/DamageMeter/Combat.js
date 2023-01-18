@@ -22,8 +22,6 @@ class Combat {
     onCombat = false;
     combatStartTimestamp;
     combatFinishTimestamp = null;
-    selfCharacterId;
-    selfCharacterName;
     characterIdToName = {};
     config;
 
@@ -32,12 +30,6 @@ class Combat {
         this.spawnedMonsters = {};
         this.combatStartTimestamp = new Date();
         this.config = config;
-    }
-
-    setSelfCharacterId(playerId, playerName){
-        this.selfCharacterName = playerName;
-        this.selfCharacterId = playerId;
-        this.characterIdToName[playerId] = playerName;
     }
 
     inCombat(){
@@ -61,7 +53,9 @@ class Combat {
     addDamageDealt(playerId, defender, damage, damageType) {
         const playerName = this._getPlayerName(playerId);
         this.group[playerName].damageDealt += damage;
-        this.group[playerName].effectiveDamageDealt += Math.min(damage, this.spawnedMonsters[defender].monsterHealth);
+        // If we reconnect in the middle of a fight we may get a damage message before getting the monster info message
+        const monsterHealth = this.spawnedMonsters[defender]?.monsterHealth ?? damage;
+        this.group[playerName].effectiveDamageDealt += Math.min(damage, monsterHealth);
         this.group[playerName].damageDealtBreakdown[damageType] += damage;
         if (damage > this.group[playerName].maxHit) this.group[playerName].maxHit = damage;
     }
@@ -197,11 +191,14 @@ class Combat {
         return message;
     }
 
+    resetGroup(){
+        this.group = {};
+        this.characterIdToName = {};
+    }
+
     _resetCombat(){
         this.combatStartTimestamp = new Date();
-        this.group = {};
         this.spawnedMonsters = {};
-        this.group[this.selfCharacterName] = new Player(this.selfCharacterName);
     }
 
 }

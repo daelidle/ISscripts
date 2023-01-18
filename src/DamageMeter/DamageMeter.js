@@ -41,6 +41,12 @@ class DamageMeter {
             case "update:player":
                 this._parseUpdatePlayer(message.data);
                 break;
+            case "update:group":
+                this._parseUpdateGroup(message.data);
+                break;
+            case "update:group-member":
+                this._parseUpdateGroupMember(message.data);
+                break;
             default:
                 break;
         }
@@ -73,24 +79,29 @@ class DamageMeter {
     _parseUpdatePlayer(playerInfo) {
         if (playerInfo['portion'] === "all") {
             // Complete player message sent on login
-            this.combat.setSelfCharacterId(playerInfo['value']['id'], playerInfo['value']['username']);
-            const inCombat = this._parseCombatStatusFromActionQueue(playerInfo['value']['actionQueue']);
+            const inCombat = this._parseCombatStatusFromActionQueue(playerInfo.value.actionQueue);
             this.combat._changeCombatStatus(inCombat);
             this.combat._resetCombat();
-        } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("group")) {
-            // Group info message
-            if (!('value' in playerInfo) || playerInfo['value'] === null) return;
-            for (const [_, player] of Object.entries(playerInfo['value'])) {
-                let playerId = player.id;
-                let currentHP = player.combatStats.currentHealth;
-                if (!this.combat.isPlayerOnGroup(playerId)) this.combat.addPlayerToGroup(playerId);
-                this.combat.setPlayerCurrentHP(playerId, currentHP);
-            }
         } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("actionQueue")) {
             // New Action message
             const combatStatus = this._parseCombatStatusFromActionQueue(playerInfo['value']);
             this.combat._changeCombatStatus(combatStatus);
         }
+    }
+
+    _parseUpdateGroup(groupInfo) {
+        if (!groupInfo?.value?.groupMemberData) return;
+        this.combat.resetGroup();
+        for (const player of Object.values(groupInfo.value.groupMemberData)) {
+            const playerId = player.id;
+            if (!this.combat.isPlayerOnGroup(playerId)) this.combat.addPlayerToGroup(playerId, player.username);
+            this.combat.setPlayerCurrentHP(playerId, player.currentHealth);
+        }
+    }
+
+    _parseUpdateGroupMember(playerInfo) {
+        if (!(playerInfo.key === 'currentHealth')) return;
+        this.combat.setPlayerCurrentHP(playerInfo.userId, playerInfo.value);
     }
 
     _parseCombatStatusFromActionQueue(actionQueue) {
