@@ -27,13 +27,15 @@ class IdlescapeGameData {
         2: {
             id: 2,
             name: 'Prospector',
-            strengthPerLevel: 10,
+            strengthPerLevel: 0.2,
             combat: false,
             scrollID: 1602,
             // client
             buffIcon: '/images/magic/buffs/prospector_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases your chance to find gems by a mysterious amount. Stronger enchantments are stronger chances.`,
+                `Increase your chance to find gems while gathering by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}%.`,
             // endclient
         }, // gem chance
         3: {
@@ -7475,9 +7477,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 19 / 20,
+                    Melee: 1,
                     Magic: 19 / 20,
-                    Range: 1,
+                    Range: 21 / 20,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -7555,9 +7557,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 19 / 20,
+                    Melee: 1,
                     Magic: 19 / 20,
-                    Range: 1,
+                    Range: 21 / 20,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -7634,9 +7636,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 19 / 20,
+                    Melee: 1,
                     Magic: 19 / 20,
-                    Range: 1,
+                    Range: 21 / 20,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -7715,9 +7717,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 19 / 20,
+                    Melee: 1,
                     Magic: 19 / 20,
-                    Range: 1,
+                    Range: 21 / 20,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -7796,9 +7798,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 19 / 20,
+                    Melee: 1,
                     Magic: 19 / 20,
-                    Range: 1,
+                    Range: 21 / 20,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -7878,9 +7880,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 19 / 20,
+                    Melee: 1,
                     Magic: 19 / 20,
-                    Range: 1,
+                    Range: 21 / 20,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -7960,9 +7962,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 19 / 20,
+                    Melee: 1,
                     Magic: 19 / 20,
-                    Range: 1,
+                    Range: 21 / 20,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -8729,7 +8731,7 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 47 / 50,
+                    Magic: 53 / 50,
                     Range: 1.06,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
@@ -8767,7 +8769,7 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 47 / 50,
+                    Magic: 53 / 50,
                     Range: 1.06,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
@@ -8805,7 +8807,7 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 47 / 50,
+                    Magic: 53 / 50,
                     Range: 1.06,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
@@ -8843,7 +8845,7 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 47 / 50,
+                    Magic: 53 / 50,
                     Range: 1.06,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
@@ -8881,7 +8883,7 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 47 / 50,
+                    Magic: 53 / 50,
                     Range: 1.06,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
@@ -8919,7 +8921,7 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 47 / 50,
+                    Magic: 53 / 50,
                     Range: 1.06,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
@@ -8958,7 +8960,7 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 47 / 50,
+                    Magic: 53 / 50,
                     Range: 1.06,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
@@ -8999,7 +9001,7 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
@@ -9041,7 +9043,7 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
@@ -9083,7 +9085,7 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
@@ -9125,7 +9127,7 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
@@ -9167,7 +9169,7 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
@@ -9209,7 +9211,7 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
@@ -9252,7 +9254,7 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
@@ -9294,7 +9296,7 @@ class IdlescapeGameData {
                 slot: 'legs',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 19 / 20,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
@@ -9333,7 +9335,7 @@ class IdlescapeGameData {
                 slot: 'legs',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 19 / 20,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
@@ -9372,7 +9374,7 @@ class IdlescapeGameData {
                 slot: 'legs',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 19 / 20,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
@@ -9411,7 +9413,7 @@ class IdlescapeGameData {
                 slot: 'legs',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 19 / 20,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
@@ -9450,7 +9452,7 @@ class IdlescapeGameData {
                 slot: 'legs',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 19 / 20,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
@@ -9489,7 +9491,7 @@ class IdlescapeGameData {
                 slot: 'legs',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 19 / 20,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
@@ -9529,7 +9531,7 @@ class IdlescapeGameData {
                 slot: 'legs',
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 19 / 20,
+                    Magic: 21 / 20,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
@@ -9567,7 +9569,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 52 / 50,
                     Magic: 1.08,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9608,7 +9610,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 52 / 50,
                     Magic: 1.08,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9649,7 +9651,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 52 / 50,
                     Magic: 1.08,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9690,7 +9692,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 52 / 50,
                     Magic: 1.08,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9731,7 +9733,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 52 / 50,
                     Magic: 1.08,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9773,7 +9775,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 52 / 50,
                     Magic: 1.08,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9815,7 +9817,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 52 / 50,
                     Magic: 1.08,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9858,7 +9860,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 1,
                     Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9900,7 +9902,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 1,
                     Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9942,7 +9944,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 1,
                     Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -9984,7 +9986,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 1,
                     Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10026,7 +10028,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 1,
                     Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10068,7 +10070,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 1,
                     Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10111,7 +10113,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 1,
                     Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10152,7 +10154,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 51 / 50,
                     Magic: 1.06,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10193,7 +10195,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 51 / 50,
                     Magic: 1.06,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10234,7 +10236,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 51 / 50,
                     Magic: 1.06,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10275,7 +10277,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 51 / 50,
                     Magic: 1.06,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10316,7 +10318,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 51 / 50,
                     Magic: 1.06,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10357,7 +10359,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 51 / 50,
                     Magic: 1.06,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -10399,7 +10401,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 47 / 50,
+                    Melee: 51 / 50,
                     Magic: 1.06,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
@@ -13505,9 +13507,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 19 / 20,
+                    Melee: 1,
                     Magic: 19 / 20,
-                    Range: 1,
+                    Range: 21 / 20,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -15328,10 +15330,10 @@ class IdlescapeGameData {
             name: 'Ring of Taxes',
             value: 450000,
             tradeable: false,
-            enchantmentTier: 3,
+            enchantmentTier: 1,
             augmentationCost: { 3: 10000, 403: 3 },
             forcedEnchant: 66,
-            forcedEnchantAmount: 3,
+            forcedEnchantAmount: 1,
             itemImage: '/images/jewellery/habs_ring.png',
             class: 'equipment',
             extraTooltipInfo:
@@ -16803,7 +16805,7 @@ class IdlescapeGameData {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
             tags: ['enchanting'],
-            requiredResources: [{ 111: 400, 510: 40, 512: 40, 518: 40, 1600: 1 }],
+            requiredResources: [{ 111: 500, 510: 40, 512: 40, 518: 40, 1600: 1 }],
         },
         1654: {
             name: 'Scroll of Pure Metals',
@@ -16830,7 +16832,7 @@ class IdlescapeGameData {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
             tags: ['enchanting'],
-            requiredResources: [{ 111: 1000, 511: 100, 512: 100, 518: 100, 1600: 1 }],
+            requiredResources: [{ 111: 1200, 511: 100, 512: 100, 518: 100, 1600: 1 }],
             rarity: 'epic',
         },
         1655: {
@@ -22949,6 +22951,16 @@ class IdlescapeGameData {
             itemImage: '/images/chaticons/chat-icon-bugtester-diamond.png',
             value: 1000000,
             extraTooltipInfo: 'I wonder who added this in?',
+            class: 'junk',
+            rarity: 'junk',
+            tags: [],
+        },
+        25031: {
+            id: 25031,
+            name: 'Valuable Furs',
+            itemImage: '/images/combat/materials/junk/valuable_furs.png',
+            value: 1500,
+            extraTooltipInfo: 'Worthless for making equipment out of but may be worth something to a vendor.',
             class: 'junk',
             rarity: 'junk',
             tags: [],
