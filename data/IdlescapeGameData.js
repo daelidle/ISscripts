@@ -63,7 +63,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Gain a ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}% chance to find an extra resource while gathering. Costs 1 nature rune per proc.`,
+                )}% chance to find an extra resource while gathering. There is a 15% chance that a nature rune is consumed when it procs.`,
             // endclient
         }, // double resources
         5: {
@@ -1189,7 +1189,7 @@ class IdlescapeGameData {
         8013: {
             id: 8013,
             name: 'Taunting',
-            strengthPerLevel: 0.05,
+            strengthPerLevel: 0.1,
             combat: true,
             // client
             buffIcon: '/images/magic/buffs/reinforcement_icon.png',
@@ -1302,44 +1302,44 @@ class IdlescapeGameData {
         10001: {
             id: 10001,
             name: 'Master Fisherman',
-            strengthPerLevel: 0.1,
+            strengthPerLevel: 0.15,
             setRequirements: [
                 { count: 3, strength: 1 },
                 { count: 4, strength: 0 },
             ],
             combat: false,
             statBuffs: [
-                { path: 'fishing', additivePerLevel: 0, multiplicativePerLevel: 0.1 },
-                { path: 'fishingBaitPower', additivePerLevel: 0, multiplicativePerLevel: 0.1 },
-                { path: 'fishingRarityPower', additivePerLevel: 0, multiplicativePerLevel: 0.1 },
-                { path: 'fishingReelPower', additivePerLevel: 0, multiplicativePerLevel: 0.1 },
+                { path: 'fishing', additivePerLevel: 0, multiplicativePerLevel: 0.15 },
+                { path: 'fishingBaitPower', additivePerLevel: 0, multiplicativePerLevel: 0.15 },
+                { path: 'fishingRarityPower', additivePerLevel: 0, multiplicativePerLevel: 0.15 },
+                { path: 'fishingReelPower', additivePerLevel: 0, multiplicativePerLevel: 0.15 },
             ],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases fishing stats by ${Math.round(
+                `Increases equipment based fishing stats by ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}%. Does not affect bait.`,
+                )}%. Does not affect bait. Reduces damage taken and increases damage done by 25% in dangerous gathering encounters.`,
             // endclient
         },
         10002: {
             id: 10002,
             name: 'Legendary Angler',
-            strengthPerLevel: 0.25,
+            strengthPerLevel: 0.3,
             setRequirements: [{ count: 4, strength: 1 }],
             combat: false,
             statBuffs: [
-                { path: 'fishing', additivePerLevel: 0, multiplicativePerLevel: 0.25 },
-                { path: 'fishingBaitPower', additivePerLevel: 0, multiplicativePerLevel: 0.25 },
-                { path: 'fishingRarityPower', additivePerLevel: 0, multiplicativePerLevel: 0.25 },
-                { path: 'fishingReelPower', additivePerLevel: 0, multiplicativePerLevel: 0.25 },
+                { path: 'fishing', additivePerLevel: 0, multiplicativePerLevel: 0.3 },
+                { path: 'fishingBaitPower', additivePerLevel: 0, multiplicativePerLevel: 0.3 },
+                { path: 'fishingRarityPower', additivePerLevel: 0, multiplicativePerLevel: 0.3 },
+                { path: 'fishingReelPower', additivePerLevel: 0, multiplicativePerLevel: 0.3 },
             ],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Overrides Master Fisherman. Increases fishing stats by ${Math.round(
+                `Overrides Master Fisherman. Increases equipment based fishing stats by ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}%. Does not affect bait.`,
+                )}%. Does not affect bait. Reduces damage taken and increases damage done by 50% in dangerous gathering encounters.`,
             // endclient
         },
         10003: {
@@ -1367,63 +1367,67 @@ class IdlescapeGameData {
         10005: {
             id: 10005,
             name: 'Master Forager',
-            strengthPerLevel: 0.1,
+            strengthPerLevel: 0.2,
             combat: false,
             setRequirements: [
                 { count: 3, strength: 1 },
                 { count: 4, strength: 0 },
             ],
-            statBuffs: [{ path: 'foraging', additivePerLevel: 0, multiplicativePerLevel: 0.1 }],
+            statBuffs: [{ path: 'foraging', additivePerLevel: 0, multiplicativePerLevel: 0.2 }],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases foraging stats by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+                `Increases equipment based foraging stats by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}%. Reduces damage taken and increases damage done by 25% in dangerous gathering encounters.`,
             // endclient
         },
         10006: {
             id: 10006,
             name: 'Legendary Lumberjack',
-            strengthPerLevel: 0.25,
+            strengthPerLevel: 0.4,
             setRequirements: [{ count: 4, strength: 1 }],
             combat: false,
-            statBuffs: [{ path: 'foraging', additivePerLevel: 0, multiplicativePerLevel: 0.25 }],
+            statBuffs: [{ path: 'foraging', additivePerLevel: 0, multiplicativePerLevel: 0.4 }],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Overrides Master Forager. Increases foraging stats by ${Math.round(
+                `Overrides Master Forager. Increases equipment based foraging stats by ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}%.`,
+                )}%. Reduces damage taken and increases damage done by 50% in dangerous gathering encounters.`,
             // endclient
         },
         10007: {
             id: 10007,
             name: 'Master Miner',
-            strengthPerLevel: 0.1,
+            strengthPerLevel: 0.2,
             setRequirements: [
                 { count: 3, strength: 1 },
                 { count: 4, strength: 0 },
             ],
             combat: false,
-            statBuffs: [{ path: 'mining', additivePerLevel: 0, multiplicativePerLevel: 0.1 }],
+            statBuffs: [{ path: 'mining', additivePerLevel: 0, multiplicativePerLevel: 0.2 }],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases mining stats by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+                `Increases equipment based mining stats by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}%. Reduces damage taken and increases damage done by 25% in dangerous gathering encounters.`,
             // endclient
         },
         10008: {
             id: 10008,
             name: 'Legendary Rockbreaker',
-            strengthPerLevel: 0.25,
+            strengthPerLevel: 0.4,
             setRequirements: [{ count: 4, strength: 1 }],
             combat: false,
-            statBuffs: [{ path: 'mining', additivePerLevel: 0, multiplicativePerLevel: 0.25 }],
+            statBuffs: [{ path: 'mining', additivePerLevel: 0, multiplicativePerLevel: 0.4 }],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Overrides Master Miner. Increases mining stats by ${Math.round(
+                `Overrides Master Miner. Increases equipment based mining stats by ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}%.`,
+                )}%. Reduces damage taken and increases damage done by 50% in dangerous gathering encounters.`,
             // endclient
         },
         10009: {
@@ -1602,7 +1606,7 @@ class IdlescapeGameData {
             essence: true,
             tradeable: false,
             itemImage: '/images/runecrafting/mind_essence.png',
-            extraTooltipInfo: 'Mind Essence can be gathered by enchanting and augmenting items.',
+            extraTooltipInfo: 'Mind Essence can be gathered by enchanting and augmenting items or using magic in combat.',
             class: 'rune',
             tags: ['magic', 'runecrafting'],
         },
@@ -2255,10 +2259,10 @@ class IdlescapeGameData {
                 { 108: 10, 110: 10 },
                 { 4000: 10, 110: 5 },
                 { 4000: 10, 108: 5 },
-                { 4005: 1, 110: 5 },
-                { 4005: 1, 108: 5 },
+                { 4001: 1, 110: 5 },
+                { 4001: 1, 108: 5 },
             ],
-            craftingMultiplier: [4, 4, 4, 4, 4, 4],
+            craftingMultiplier: [4, 4, 4, 4, 4, 4, 3, 3],
 
 
 
@@ -4719,9 +4723,9 @@ class IdlescapeGameData {
 
 
             category: 'Skilling',
-            craftingExperience: 15000,
+            craftingExperience: 1,
             craftingLevel: 15,
-            requiredResources: [{ 4015: 250 }],
+            requiredResources: [{ 4015: 1 }],
         },
         673: {
             id: 673,
@@ -4740,9 +4744,9 @@ class IdlescapeGameData {
 
 
             category: 'Skilling',
-            craftingExperience: 30000,
+            craftingExperience: 1,
             craftingLevel: 30,
-            requiredResources: [{ 4016: 360 }],
+            requiredResources: [{ 4016: 1 }],
         },
         674: {
             id: 674,
@@ -4761,9 +4765,9 @@ class IdlescapeGameData {
 
 
             category: 'Skilling',
-            craftingExperience: 45000,
+            craftingExperience: 1,
             craftingLevel: 45,
-            requiredResources: [{ 4017: 510 }],
+            requiredResources: [{ 4017: 1 }],
         },
         675: {
             id: 675,
@@ -4782,9 +4786,9 @@ class IdlescapeGameData {
 
 
             category: 'Skilling',
-            craftingExperience: 60000,
+            craftingExperience: 1,
             craftingLevel: 60,
-            requiredResources: [{ 4018: 760 }],
+            requiredResources: [{ 4018: 1 }],
         },
         676: {
             id: 676,
@@ -4794,8 +4798,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'Increases max augmentation level by 5.',
-            extraTooltipInfo: 'Increases max augmentation level by 5.',
+            craftingDescription: 'Increases max augmentation level by 6.',
+            extraTooltipInfo: 'Increases max augmentation level by 6.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: { slot: 'tome', toolBoost: [{ skill: 'augmentLevel', boost: 6 }] },
@@ -4803,9 +4807,9 @@ class IdlescapeGameData {
 
 
             category: 'Skilling',
-            craftingExperience: 75000,
+            craftingExperience: 1,
             craftingLevel: 75,
-            requiredResources: [{ 4019: 1040 }],
+            requiredResources: [{ 4019: 1 }],
             rarity: 'uncommon',
         },
         690: {
@@ -13310,7 +13314,7 @@ class IdlescapeGameData {
             rarity: 'uncommon',
         },
         1513: {
-            name: 'Crest of Chaos',
+            name: 'Chaos Crest',
             id: 1513,
             enchantmentTier: 5,
             augmentationCost: { 112: 200 },
@@ -14981,7 +14985,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.1,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -15024,6 +15028,7 @@ class IdlescapeGameData {
                     Range: -22,
                 },
                 offensiveDamageAffinity: {
+                    Magic: 1.35,
                     Melee: 33 / 50,
                     Piercing: 1.33,
                     Ice: 1.5,
@@ -21857,7 +21862,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 11032: 50, 11034: 1, 11036: 50 }, { 11032: 50, 11035: 1, 11036: 50 }, { 12009: 300 }],
+            requiredResources: [{ 11032: 50, 11034: 1, 11036: 50 }, { 11032: 50, 11035: 1, 11036: 50 }, { 12009: 900 }],
             itemImage: 'images/fishing/rod_master.png',
             extraTooltipInfo:
                 "An ancient fishing rod, straight out of a madman's fantasy. Not much good on its own in this condition; it would take a master crafter to repair it...",
@@ -21875,7 +21880,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 11032: 50, 11033: 1, 11036: 50 }, { 11032: 50, 11035: 1, 11036: 50 }, { 12009: 300 }],
+            requiredResources: [{ 11032: 50, 11033: 1, 11036: 50 }, { 11032: 50, 11035: 1, 11036: 50 }, { 12009: 900 }],
             itemImage: 'images/fishing/harpoon_master.png',
             extraTooltipInfo:
                 'An ancient harpoon, probably dragged up from some ancient aquatic ruin. Not much good on its own in this condition; it would take a master crafter to repair it...',
@@ -21893,7 +21898,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 11032: 50, 11033: 1, 11036: 50 }, { 11032: 50, 11034: 1, 11036: 50 }, { 12009: 300 }],
+            requiredResources: [{ 11032: 50, 11033: 1, 11036: 50 }, { 11032: 50, 11034: 1, 11036: 50 }, { 12009: 900 }],
             itemImage: 'images/fishing/net_master.png',
             extraTooltipInfo:
                 "An ancient fishing net, the material it's made out of appears to be alive. Not much good on its own in this condition; it would take a master crafter to repair it...",
@@ -21924,7 +21929,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12010: 300 }],
+            requiredResources: [{ 12010: 900 }],
             itemImage: 'images/mining/dwarven_ingot.png',
             extraTooltipInfo: 'An alloy made from metals you do not recognize.',
             class: 'bar',
@@ -21941,7 +21946,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12010: 300 }],
+            requiredResources: [{ 12010: 900 }],
             itemImage: 'images/mining/dwarven_ingot_2.png',
             extraTooltipInfo: 'An incredibly hard dwarven ingot. It is basically impossible to work with.',
             class: 'bar',
@@ -21958,7 +21963,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12010: 300 }],
+            requiredResources: [{ 12010: 900 }],
             itemImage: 'images/mining/dwarven_ingot_3.png',
             extraTooltipInfo: 'A sort of mold to form a tool with.',
             class: 'bar',
@@ -21975,7 +21980,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12011: 300 }],
+            requiredResources: [{ 12011: 900 }],
             itemImage: 'images/farming/mysterious_plant_44.png',
             extraTooltipInfo: 'It is looking at you.',
             class: 'bar',
@@ -21992,7 +21997,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12011: 300 }],
+            requiredResources: [{ 12011: 900 }],
             itemImage: 'images/foraging/elder_sap.png',
             extraTooltipInfo: 'Sap taken from a tree that is much older than you are.',
             class: 'bar',
@@ -22009,7 +22014,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12011: 300 }],
+            requiredResources: [{ 12011: 900 }],
             itemImage: 'images/foraging/world_branch.png',
             extraTooltipInfo: 'Basically just a shiny branch!',
             class: 'bar',
@@ -22023,8 +22028,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 50,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12009: 10 },
-            requiredResources: [{ 12009: 150 }],
+            augmentationCost: { 12009: 30 },
+            requiredResources: [{ 12009: 450 }],
             equipmentStats: {
                 slot: 'body',
                 toolBoost: [{ skill: 'fishing', boost: 0 }],
@@ -22060,8 +22065,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 51,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12009: 10 },
-            requiredResources: [{ 12009: 150 }],
+            augmentationCost: { 12009: 30 },
+            requiredResources: [{ 12009: 450 }],
             equipmentStats: {
                 slot: 'helm',
                 toolBoost: [{ skill: 'fishing', boost: 0 }],
@@ -22097,8 +22102,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 49,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12009: 10 },
-            requiredResources: [{ 12009: 150 }],
+            augmentationCost: { 12009: 30 },
+            requiredResources: [{ 12009: 450 }],
             equipmentStats: {
                 slot: 'legs',
                 toolBoost: [{ skill: 'fishing', boost: 0 }],
@@ -22134,8 +22139,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 68,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12010: 10 },
-            requiredResources: [{ 12010: 150 }],
+            augmentationCost: { 12010: 30 },
+            requiredResources: [{ 12010: 450 }],
             equipmentStats: {
                 slot: 'body',
                 toolBoost: [{ skill: 'mining', boost: 0 }],
@@ -22165,8 +22170,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 2,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12010: 10 },
-            requiredResources: [{ 12010: 150 }],
+            augmentationCost: { 12010: 30 },
+            requiredResources: [{ 12010: 450 }],
             equipmentStats: {
                 slot: 'helm',
                 toolBoost: [{ skill: 'mining', boost: 0 }],
@@ -22196,8 +22201,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 67,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12010: 10 },
-            requiredResources: [{ 12010: 150 }],
+            augmentationCost: { 12010: 30 },
+            requiredResources: [{ 12010: 450 }],
             equipmentStats: {
                 slot: 'legs',
                 toolBoost: [{ skill: 'mining', boost: 0 }],
@@ -22216,7 +22221,7 @@ class IdlescapeGameData {
             category: 'Mining',
             itemImage: '/images/fishing/equipment/waders.png',
             extraTooltipInfo:
-                'A pair of trousers that you swear definitely makes you better at mining despite being a simple pair of pants. Are they magical?',
+                'A pair of trousers that you swear definitely makes you better at mining despite being a simple pair of pants. Are they magical? Probably not. Probably.',
             class: 'equipment',
             visual: 'waders',
             tags: ['armor', 'crafting'],
@@ -22228,8 +22233,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 35,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12011: 10 },
-            requiredResources: [{ 12011: 150 }],
+            augmentationCost: { 12011: 30 },
+            requiredResources: [{ 12011: 450 }],
             equipmentStats: {
                 slot: 'body',
                 toolBoost: [{ skill: 'foraging', boost: 0 }],
@@ -22259,8 +22264,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 55,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12011: 10 },
-            requiredResources: [{ 12011: 150 }],
+            augmentationCost: { 12011: 30 },
+            requiredResources: [{ 12011: 450 }],
             equipmentStats: {
                 slot: 'helm',
                 toolBoost: [{ skill: 'foraging', boost: 0 }],
@@ -22290,8 +22295,8 @@ class IdlescapeGameData {
             enchantmentTier: 3,
             forcedEnchant: 56,
             forcedEnchantAmount: 3,
-            augmentationCost: { 12011: 10 },
-            requiredResources: [{ 12011: 150 }],
+            augmentationCost: { 12011: 30 },
+            requiredResources: [{ 12011: 450 }],
             equipmentStats: {
                 slot: 'legs',
                 toolBoost: [{ skill: 'foraging', boost: 0 }],
@@ -22355,6 +22360,31 @@ class IdlescapeGameData {
             class: 'gem',
             tags: [],
             rarity: 'legendary',
+        },
+        12013: {
+            name: "Chef's Hat",
+            id: 12013,
+            enchantmentTier: 3,
+            augmentationCost: { 95: 100, 96: 100 },
+            equipmentStats: {
+                slot: 'helm',
+                toolBoost: [{ skill: 'cooking', boost: 5 }],
+                augmentationBonus: [{ stat: 'toolBoost.cooking', value: 1 }],
+            },
+            value: 250000,
+            tradeable: true,
+            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
+            enchantmentOverrideSlot: 'ladle',
+
+
+
+            itemImage: '/images/combat/equipment/chef_hat.png',
+            extraTooltipInfo:
+                'Kinda smells like your childhood meals. They must have really sucked since this hat came from a Goblin.',
+            class: 'equipment',
+            visual: 'chef-hat',
+            tags: ['armor'],
+            rarity: 'epic',
         },
         13000: {
             id: 13000,
