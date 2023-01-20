@@ -10,7 +10,13 @@ class MeterUI {
     }
 
     setupUI(isFirstGameReady){
-        if (isFirstGameReady) injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
+        if (isFirstGameReady) {
+            /* TODO: When Test server is released to prod, go back to CSS file (Github pages don't allow for branches on deployment)
+             * injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
+             */
+            const css = '.damage_meter{display:flex;text-align:center;justify-content:center}.damage_meter .row{flex:1;text-shadow:0 0 8px #000;margin:0 6px;max-width:160px;z-index:1}.damage_meter .row.job-dps .data-items:before{background:rgba(244,67,54,.5)}.damage_meter .row.job-dps .data-items.highlight:before{background-image:linear-gradient(to left,rgba(244,67,54,.5) 0,rgba(244,67,54,.5) 51%,rgba(244,67,54,.1) 51%,rgba(244,67,54,.1) 100%);background-repeat:no-repeat}.damage_meter .row.job-tank .data-items:before{background:rgba(32,149,243,.5)}.damage_meter .row.job-tank .data-items.highlight:before{background-image:linear-gradient(to left,rgba(32,149,243,.5) 0,rgba(32,149,243,.5) 51%,rgba(32,149,243,.1) 51%,rgba(32,149,243,.1) 100%);background-repeat:no-repeat}.damage_meter .row.job-healer .data-items:before{background:rgba(139,195,74,.5)}.damage_meter .row.job-healer .data-items.highlight:before{background-image:linear-gradient(to left,rgba(139,195,74,.5) 0,rgba(139,195,74,.5) 51%,rgba(139,195,74,.1) 51%,rgba(139,195,74,.1) 100%);background-repeat:no-repeat}.damage_meter .row.job-healer .data-items.highlight.inverse:before{background-image:linear-gradient(to left,rgba(139,195,74,.1) 0,rgba(139,195,74,.1) 51%,rgba(139,195,74,.5) 51%,rgba(139,195,74,.5) 100%);background-repeat:no-repeat}.damage_meter .row.job-dps .damage-percent-bg{background:rgba(244,67,54,.3)}.damage_meter .row.job-tank .damage-percent-bg{background:rgba(33,150,243,.3)}.damage_meter .row.job-healer .damage-percent-bg{background:rgba(139,195,74,.3)}.damage_meter .row.job-dps .damage-percent-fg{background:rgba(244,67,54,.7)}.damage_meter .row.job-tank .damage-percent-fg{background:rgba(33,150,243,.7)}.damage_meter .row.job-healer .damage-percent-fg{background:rgba(139,195,74,.7)}.damage_meter .row .damage-percent-bg{height:2px;background:rgba(0,0,0,.3);transform:skew(-30deg);position:relative;left:-8px;margin:0}.damage_meter .row .damage-percent-fg{height:2px;background:rgba(0,0,0,.7);transform:skew(-30deg);margin:0}.damage_meter .row .damage-percent{position:relative;text-align:right;width:100%;font-size:7px;top:-2px;right:10px}.damage_meter .row .meter-section{color:#fff;text-shadow:0 0 5px #000;padding:0 5px 2px 0;margin:3px 0 0;flex-grow:1;position:relative;text-align:right}.damage_meter .row .data-items:before{background:rgba(0,0,0,.3);transform:skew(-30deg);content:\'\';display:block;position:absolute;width:100%;height:96%}.damage_meter .row>div{margin:0 auto;padding:0 0 1px}.damage_meter .name{white-space:nowrap;text-shadow:none}.damage_meter .data-items{display:flex;width:160px;position:relative}.damage_meter .meter-section:last-child{text-align:right;padding-right:8px;padding-left:0}.damage_meter .meter-section span.label{font-size:8px;margin:0 0 0 2px;padding:0}.damage_meter .row .maxhit{font-size:.85em;margin-top:-.3em;margin-left:-.8em;text-align:center;width:140px;z-index:0}.damage_meter .row .meterbar{width:160px}.dm_summary_row{display:flex;flex-wrap:wrap;margin:-.5rem}.dm_summary_row .dm_item{margin:.5rem;font-size:12px;width:70px}.dm_switcher{width:20px;height:20px;margin-top:20px;z-index:1;pointer-events:all!important}.close_meter_message{float:right;cursor:pointer;margin-right:10px}.dm_summary_duration{font-size:smaller;margin-left:1em}.damage_meter .row.job-edps .data-items:before{background:rgba(244,168,54,.5)}.damage_meter .row.job-edps .data-items.highlight:before{background-image:linear-gradient(to left,rgba(244,168,54,.5) 0,rgba(244,168,54,.5) 51%,rgba(244,168,54,.1) 51%,rgba(244,168,54,.1) 100%);background-repeat:no-repeat}.damage_meter .row.job-edps .damage-percent-bg{background:rgba(244,168,54,.3)}.damage_meter .row.job-edps .damage-percent-fg{background:rgba(244,168,54,.7)}';
+            injectCSS(css);
+        }
         this._setUpMeterMutationObserver();
     }
 
@@ -94,10 +100,10 @@ class MeterUI {
         return `<div class="row ${cssClass}" style="order: ${player.order};">
                       <div class="name"><span class="rank">${player.order}. </span><span class="character-name ">${player.name}</span></div>
                       <div class="data-items highlight">
-                         <div class="dps">
+                         <div class="meter-section meter-section-left">
                             <div><span class="damage-stats">${shortenNumber(player.amount)}</span><span class="label"> ${amountString}</span></div>
                          </div>
-                         <div class="dps">
+                         <div class="meter-section meter-section-right">
                             <div><span class="damage-stats">${player.perSecond}</span><span class="label"> ${perSecondString}</span></div>
                          </div>
                       </div>
