@@ -209,7 +209,7 @@ class EquipmentTooltip {
         let soulBoundHtml = '<div class="dwt-soulbound-label">Soulbound</div>';
         if (item.itemLevel) soulBoundHtml += `<div class="dwt-soulbound-level">Item Level ${item.itemLevel}</div>`;
         if (item.itemExperience) {
-            const nextLevelExperience = Math.round(1000 + item.itemLevel * 150 ** (1 + item.itemLevel / 10));
+            const nextLevelExperience = Math.round(1000 + item.itemLevel * 150 ** (item.itemLevel / 10));
             soulBoundHtml += `<div class="dwt-soulbound-exp">Item XP ${item.itemExperience.toLocaleString()} / ${nextLevelExperience.toLocaleString()}</div>`;
         }
         return soulBoundHtml;
