@@ -13844,12 +13844,13 @@ class IdlescapeGameData {
             visual: 'spear',
             tags: ['melee', 'weapon', 'twohand'],
             equipmentStats: {
-                grantedAbility: [22, 36],
+                grantedAbility: [22, 36, 61],
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.35 },
                 offensiveAccuracyAffinityRating: {
                     Melee: 146,
                     Piercing: 260,
+                    Slashing: 128,
                     Blunt: 97,
                     Fire: 60,
                     Magic: -24,
@@ -13858,8 +13859,8 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1,
                     Piercing: 1.5,
+                    Slashing: 1.1,
                     Blunt: 3 / 4,
-                    Slashing: 1 / 4,
                     Magic: 0.1,
                     Fire: 1.25,
                     Range: 0.1,
@@ -14085,9 +14086,9 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 defensiveDamageAffinity: {
-                    Melee: 97 / 100,
-                    Magic: 97 / 100,
-                    Range: 97 / 100,
+                    Melee: 99 / 100,
+                    Magic: 99 / 100,
+                    Range: 99 / 100,
                     Piercing: 1.06,
                     Blunt: 22 / 25,
                     Slashing: 1.06,
@@ -14122,9 +14123,9 @@ class IdlescapeGameData {
                 slot: 'legs',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 defensiveDamageAffinity: {
-                    Melee: 97 / 100,
-                    Magic: 97 / 100,
-                    Range: 97 / 100,
+                    Melee: 99 / 100,
+                    Magic: 99 / 100,
+                    Range: 99 / 100,
                     Piercing: 1.08,
                     Blunt: 22 / 25,
                     Slashing: 1.04,
@@ -14160,9 +14161,9 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 defensiveDamageAffinity: {
-                    Melee: 97 / 100,
-                    Magic: 97 / 100,
-                    Range: 97 / 100,
+                    Melee: 99 / 100,
+                    Magic: 99 / 100,
+                    Range: 99 / 100,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -14198,9 +14199,9 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 defensiveDamageAffinity: {
-                    Melee: 97 / 100,
-                    Magic: 97 / 100,
-                    Range: 97 / 100,
+                    Melee: 99 / 100,
+                    Magic: 99 / 100,
+                    Range: 99 / 100,
                     Piercing: 1.13,
                     Blunt: 1.06,
                     Slashing: 1.13,
@@ -20480,7 +20481,7 @@ class IdlescapeGameData {
             visual: 'zero',
             category: ['weapon', 'combat'],
             tags: ['melee', 'weapon'],
-            equipmentStats: { isTransmog: true, slot: 'weapon' },
+            equipmentStats: { isTransmog: true, slot: 'weapon', oneHanded: true },
             rarity: 'legendary',
         },
         7064: {
@@ -20510,6 +20511,21 @@ class IdlescapeGameData {
             visual: 'p-chicken',
             tags: ['melee', 'armor'],
             equipmentStats: { isTransmog: true, fullTransmog: true, slot: 'cape' },
+            rarity: 'legendary',
+        },
+        7066: {
+            name: 'Elite Titan Helm',
+            id: 7066,
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/elite_titan_helmet.png',
+            extraTooltipInfo: 'A particularly intricate helmet, far more than the average Titan would wear.',
+            class: 'equipment',
+            visual: 'black-knight-full-helm',
+            category: ['weapon', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, slot: 'helm' },
             rarity: 'legendary',
         },
         8000: {
@@ -20783,7 +20799,7 @@ class IdlescapeGameData {
             id: 8014,
             value: 500,
             tradeable: true,
-            champEncounter: 2011,
+            champEncounter: 2012,
             enchantmentTier: 0,
             maxAugLevel: 20,
             augmentationCost: { 8014: 1 },
@@ -23363,7 +23379,7 @@ class IdlescapeGameData {
             locID: 101,
             actionType: 'Action-Foraging',
             actionVerb: 'Forage',
-            baseDuration: 6000,
+            baseDuration: 5000,
             activeMessage: 'Foraging in the Grasslands',
             locationImage: '/images/foraging/grasslands.jpg',
             accessRequirements: {
@@ -25487,7 +25503,7 @@ class IdlescapeGameData {
                 { affinity: 'Nature', scaling: 1.333 },
             ],
 
-            baseSpeedCoeff: 1.2,
+            baseSpeedCoeff: 0.5,
             baseMinimumDamageCoeff: 0.25,
             baseMaximumDamageCoeff: 0.5,
             baseAccuracyCoeff: 1.5,
@@ -25897,8 +25913,8 @@ class IdlescapeGameData {
             ],
 
             baseSpeedCoeff: 5,
-            baseMinimumDamageCoeff: 3.5,
-            baseMaximumDamageCoeff: 12.5,
+            baseMinimumDamageCoeff: 4,
+            baseMaximumDamageCoeff: 2,
             baseAccuracyCoeff: 5,
 
             maxTargets: 10,
@@ -26321,8 +26337,8 @@ class IdlescapeGameData {
             ],
 
             baseSpeedCoeff: 5,
-            baseMinimumDamageCoeff: 3.5,
-            baseMaximumDamageCoeff: 12.5,
+            baseMinimumDamageCoeff: 4,
+            baseMaximumDamageCoeff: 2,
             baseAccuracyCoeff: 5,
 
             maxTargets: 10,
@@ -26781,6 +26797,30 @@ class IdlescapeGameData {
             },
 
             maxTargets: 1,
+        },
+        61: {
+            id: 61,
+            abilityName: 'Infernal Impale',
+            abilityImage: '/images/combat/ability_icons/infernal_impale.png',
+            description: 'An enhanced impaling attack that can hit up to 2 enemies at once.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.5 },
+            ],
+
+            baseSpeedCoeff: 1.15,
+            baseMinimumDamageCoeff: 0.85,
+            baseMaximumDamageCoeff: 1.2,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 2,
         },
     };
     gameShopItems = {
