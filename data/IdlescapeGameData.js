@@ -949,6 +949,18 @@ class IdlescapeGameData {
                 )}% chance to find an extra resource while gathering. Rolls before Gathering and does not stack with it; does not require a nature rune.`,
             // endclient
         }, // double resources
+        70: {
+            id: 70,
+            name: 'Aspect of Ice',
+            strengthPerLevel: 0.05,
+            combat: true,
+            damageConversion: 'Ice',
+            // client
+            buffIcon: '/images/magic/buffs/embers_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Converts ${Math.round(enchantmentStrength * strengthPerLevel * 100)}% of damage into ice damage.`,
+            // endclient
+        }, // Aspect of Ice, swaps auto attack to ice
 
         // mostly monster effects
         1000: {
@@ -4390,7 +4402,7 @@ class IdlescapeGameData {
             itemImage: '/images/jewellery/ancient_fire_talisman.png',
             class: 'equipment',
             extraTooltipInfo:
-                "An ancient energy keeps you from attempting to absorb the talisman. With this you could wield an aspect of flame. Ability: 'Fire Ball' - A fire attack that is 10% slower, 10% more accurate, and does 50% more damage with a cooldown of at least 45 seconds. ABILITY DOES NOT STACK WITH FIRE ORB.",
+                'An ancient energy keeps you from attempting to absorb the talisman. With this you could wield an aspect of flame.',
             tags: ['jewelry', 'melee', 'crafting'],
             enchantable: true,
             equipmentStats: {
@@ -4399,6 +4411,63 @@ class IdlescapeGameData {
                 weaponBonus: { strength: 3, intellect: 0, dexterity: 0 },
                 offensiveDamageAffinity: { Fire: 1.15 },
                 defensiveDamageAffinity: { Fire: 1.15 },
+                augmentationBonus: [{ stat: 'weaponBonus.strength', value: 0.5 }],
+            },
+            rarity: 'rare',
+        },
+        645: {
+            id: 645,
+            name: 'Ancient Water Amulet',
+            value: 200000,
+            tradeable: true,
+            enchantmentTier: 1,
+            augmentationCost: { 5: 5000, 502: 1, 512: 50 },
+            enchantmentOverrideSlot: 'combat-talisman',
+            forcedEnchant: 70,
+            forcedEnchantAmount: 1,
+
+
+
+            itemImage: '/images/jewellery/ancient_water_talisman.png',
+            class: 'equipment',
+            extraTooltipInfo:
+                'An ancient energy keeps you from attempting to absorb the talisman. With this you could wield an aspect of ice.',
+            tags: ['jewelry', 'melee', 'crafting'],
+            enchantable: true,
+            equipmentStats: {
+                grantedAbility: [8],
+                slot: 'necklace',
+                weaponBonus: { strength: 0, intellect: 3, dexterity: 0 },
+                offensiveDamageAffinity: { Ice: 1.15 },
+                defensiveDamageAffinity: { Ice: 1.15 },
+                augmentationBonus: [{ stat: 'weaponBonus.intellect', value: 0.5 }],
+            },
+            rarity: 'rare',
+        },
+        646: {
+            id: 646,
+            name: 'Ancient Blood Amulet',
+            value: 200000,
+            tradeable: true,
+            enchantmentTier: 1,
+            augmentationCost: { 5: 5000, 502: 1, 512: 50 },
+            enchantmentOverrideSlot: 'combat-talisman',
+            forcedEnchant: 15,
+            forcedEnchantAmount: 2,
+
+
+
+            itemImage: '/images/jewellery/ancient_blood_talisman.png',
+            class: 'equipment',
+            extraTooltipInfo:
+                'An ancient energy keeps you from attempting to absorb the talisman. With this you bathe in the blood of your enemies. Very edgy.',
+            tags: ['jewelry', 'melee', 'crafting'],
+            enchantable: true,
+            equipmentStats: {
+                grantedAbility: [62],
+                slot: 'necklace',
+                weaponBonus: { strength: 3, intellect: 0, dexterity: 0 },
+                offensiveDamageAffinity: { Slashing: 1.15 },
                 augmentationBonus: [{ stat: 'weaponBonus.strength', value: 0.5 }],
             },
             rarity: 'rare',
@@ -6602,6 +6671,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6638,6 +6708,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6673,6 +6744,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6710,6 +6782,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6746,6 +6819,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6783,6 +6857,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6820,6 +6895,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6857,13 +6933,14 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.95,
+                    Magic: 0.95,
+                    Range: 0.95,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -6900,13 +6977,14 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.95,
+                    Magic: 0.95,
+                    Range: 0.95,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -6942,13 +7020,14 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.95,
+                    Magic: 0.95,
+                    Range: 0.95,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -6986,13 +7065,14 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.95,
+                    Magic: 0.95,
+                    Range: 0.95,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -7029,13 +7109,14 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.95,
+                    Magic: 0.95,
+                    Range: 0.95,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -7073,13 +7154,14 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.95,
+                    Magic: 0.95,
+                    Range: 0.95,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -7117,13 +7199,14 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.95,
+                    Magic: 0.95,
+                    Range: 0.95,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -7162,13 +7245,14 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.99,
+                    Magic: 0.9,
+                    Range: 0.9,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7206,13 +7290,14 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.99,
+                    Magic: 0.9,
+                    Range: 0.9,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7248,13 +7333,14 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.99,
+                    Magic: 0.9,
+                    Range: 0.9,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7293,13 +7379,14 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.99,
+                    Magic: 0.9,
+                    Range: 0.9,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7337,13 +7424,14 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.99,
+                    Magic: 0.9,
+                    Range: 0.9,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7382,13 +7470,14 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.99,
+                    Magic: 0.9,
+                    Range: 0.9,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7427,13 +7516,14 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.99,
+                    Magic: 0.9,
+                    Range: 0.9,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.15,
+                    Magic: 1,
+                    Range: 1.05,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7447,6 +7537,48 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 207: 400, 800: 80 }],
             rarity: 'rare',
+        },
+        1077: {
+            name: 'Castle Door',
+            id: 1077,
+            enchantmentTier: 7,
+            augmentationCost: { 207: 40, 800: 8 },
+            value: 4840000,
+            tradeable: true,
+            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 70 },
+
+
+
+            itemImage: '/images/combat/equipment/door.png',
+            itemIcon: '/images/combat/equipment/door_icon.png',
+            class: 'equipment',
+            visual: 'shield',
+            tags: ['armor', 'weapon', 'melee'],
+            equipmentStats: {
+                slot: 'shield',
+                defensiveCritical: { chance: 0.33, damageMultiplier: 0.5 },
+                offensiveDamageAffinity: {
+                    Melee: 0.75,
+                    Magic: 0.75,
+                    Range: 0.75,
+                },
+                defensiveDamageAffinity: {
+                    Melee: 1.5,
+                    Magic: 1.5,
+                    Range: 1.5,
+                    Piercing: 1.33,
+                    Blunt: 1.33,
+                    Slashing: 1.33,
+                },
+                armorBonus: { protection: 102, resistance: 64, agility: -40, stamina: 24 },
+                augmentationBonus: [
+                    { stat: 'armorBonus.protection', value: 1.5 },
+                    { stat: 'armorBonus.resistance', value: 1.5 },
+                    { stat: 'armorBonus.stamina', value: 0.1 },
+                ],
+                itemSet: [10009],
+            },
+            rarity: 'epic',
         },
         1090: {
             name: 'Bronze Breastplate',
@@ -7471,13 +7603,14 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.66,
+                    Magic: 0.66,
+                    Range: 0.66,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.13,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.75,
+                    Magic: 1.5,
+                    Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
                     Slashing: 1.13,
@@ -7512,6 +7645,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 19 / 20,
@@ -7551,13 +7685,14 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.66,
+                    Magic: 0.66,
+                    Range: 0.66,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.13,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.75,
+                    Magic: 1.5,
+                    Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
                     Slashing: 1.13,
@@ -7592,6 +7727,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 19 / 20,
@@ -7630,13 +7766,14 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.66,
+                    Magic: 0.66,
+                    Range: 0.66,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.13,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.75,
+                    Magic: 1.5,
+                    Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
                     Slashing: 1.13,
@@ -7671,6 +7808,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 19 / 20,
@@ -7711,13 +7849,14 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.66,
+                    Magic: 0.66,
+                    Range: 0.66,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.13,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.75,
+                    Magic: 1.5,
+                    Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
                     Slashing: 1.13,
@@ -7752,6 +7891,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 19 / 20,
@@ -7791,13 +7931,14 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.66,
+                    Magic: 0.66,
+                    Range: 0.66,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.13,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.75,
+                    Magic: 1.5,
+                    Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
                     Slashing: 1.13,
@@ -7833,6 +7974,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 19 / 20,
@@ -7873,13 +8015,14 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.66,
+                    Magic: 0.66,
+                    Range: 0.66,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.13,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.75,
+                    Magic: 1.5,
+                    Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
                     Slashing: 1.13,
@@ -7915,6 +8058,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 19 / 20,
@@ -7955,13 +8099,14 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Magic: 97 / 100,
-                    Range: 49 / 50,
+                    Melee: 0.66,
+                    Magic: 0.66,
+                    Range: 0.66,
                 },
                 defensiveDamageAffinity: {
-                    Melee: 1.13,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1.75,
+                    Magic: 1.5,
+                    Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
                     Slashing: 1.13,
@@ -7997,6 +8142,7 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 19 / 20,
@@ -8765,15 +8911,18 @@ class IdlescapeGameData {
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 1.06,
-                    Range: 1.06,
+                    Magic: 1.08,
+                    Range: 1.01,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 3, resistance: 0, agility: 5, stamina: 0 },
+                armorBonus: { protection: 3, resistance: 1, agility: 3, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8792,26 +8941,29 @@ class IdlescapeGameData {
             craftingExperience: 800,
             value: 10800,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, range: 10 },
 
 
 
             itemImage: '/images/combat/equipment/range/fur_body.png',
             class: 'equipment',
             visual: 'rangebody',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 1.06,
-                    Range: 1.06,
+                    Magic: 1.08,
+                    Range: 1.01,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 5, resistance: 0, agility: 6, stamina: 0 },
+                armorBonus: { protection: 5, resistance: 2, agility: 4, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8830,26 +8982,29 @@ class IdlescapeGameData {
             craftingExperience: 1600,
             value: 16875,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, range: 20 },
 
 
 
             itemImage: '/images/combat/equipment/range/thick_hide_body.png',
             class: 'equipment',
             visual: 'platebody',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 1.06,
-                    Range: 1.06,
+                    Magic: 1.08,
+                    Range: 1.01,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 13, resistance: 0, agility: 12, stamina: 0 },
+                armorBonus: { protection: 13, resistance: 5, agility: 9, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8868,26 +9023,29 @@ class IdlescapeGameData {
             craftingExperience: 7200,
             value: 48600,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30, range: 30 },
 
 
 
             itemImage: '/images/combat/equipment/range/leather_body.png',
             class: 'equipment',
             visual: 'platebody',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 1.06,
-                    Range: 1.06,
+                    Magic: 1.08,
+                    Range: 1.01,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 22, resistance: 0, agility: 18, stamina: 0 },
+                armorBonus: { protection: 22, resistance: 8, agility: 14, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8913,19 +9071,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/reinforced_leather_body.png',
             class: 'equipment',
             visual: 'platebody',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 1.06,
-                    Range: 1.06,
+                    Magic: 1.08,
+                    Range: 1.01,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 32, resistance: 0, agility: 24, stamina: 0 },
+                armorBonus: { protection: 32, resistance: 11, agility: 18, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8951,19 +9112,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/chitin_body.png',
             class: 'equipment',
             visual: 'platebody',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 1.06,
-                    Range: 1.06,
+                    Magic: 1.08,
+                    Range: 1.01,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 43, resistance: 0, agility: 30, stamina: 0 },
+                armorBonus: { protection: 43, resistance: 15, agility: 23, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -8990,19 +9154,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/scale_body.png',
             class: 'equipment',
             visual: 'platebody',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
-                    Magic: 1.06,
-                    Range: 1.06,
+                    Magic: 1.08,
+                    Range: 1.01,
                     Piercing: 24 / 25,
                     Blunt: 97 / 100,
                     Slashing: 1,
                 },
-                armorBonus: { protection: 55, resistance: 0, agility: 36, stamina: 0 },
+                armorBonus: { protection: 55, resistance: 19, agility: 27, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9035,15 +9202,18 @@ class IdlescapeGameData {
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
                     Slashing: 97 / 100,
                 },
-                armorBonus: { protection: 3, resistance: 0, agility: 2, stamina: 0 },
+                armorBonus: { protection: 3, resistance: 1, agility: 2, stamina: 0 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 5 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
@@ -9073,19 +9243,22 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm-alt',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
                     Slashing: 97 / 100,
                 },
-                armorBonus: { protection: 4, resistance: 0, agility: 2, stamina: 0 },
+                armorBonus: { protection: 4, resistance: 1, agility: 2, stamina: 0 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 6 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 3 / 20 },
@@ -9115,19 +9288,22 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
                     Slashing: 97 / 100,
                 },
-                armorBonus: { protection: 10, resistance: 0, agility: 4, stamina: 0 },
+                armorBonus: { protection: 10, resistance: 3, agility: 4, stamina: 0 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 11 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.3 },
@@ -9157,19 +9333,22 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
                     Slashing: 97 / 100,
                 },
-                armorBonus: { protection: 17, resistance: 0, agility: 6, stamina: 0 },
+                armorBonus: { protection: 17, resistance: 6, agility: 6, stamina: 0 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 16 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 9 / 20 },
@@ -9199,19 +9378,22 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
                     Slashing: 97 / 100,
                 },
-                armorBonus: { protection: 26, resistance: 0, agility: 8, stamina: 0 },
+                armorBonus: { protection: 26, resistance: 9, agility: 8, stamina: 0 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 22 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.6 },
@@ -9241,19 +9423,22 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
                     Slashing: 97 / 100,
                 },
-                armorBonus: { protection: 35, resistance: 0, agility: 10, stamina: 0 },
+                armorBonus: { protection: 35, resistance: 11, agility: 10, stamina: 0 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 28 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 3 / 4 },
@@ -9284,19 +9469,22 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 97 / 100,
                     Slashing: 97 / 100,
                 },
-                armorBonus: { protection: 44, resistance: 0, agility: 12, stamina: 0 },
+                armorBonus: { protection: 44, resistance: 15, agility: 12, stamina: 0 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 35 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.9 },
@@ -9330,15 +9518,18 @@ class IdlescapeGameData {
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 3, resistance: 0, agility: 2, stamina: 0 },
+                armorBonus: { protection: 3, resistance: 1, agility: 2, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9365,19 +9556,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/fur_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 4, resistance: 0, agility: 3, stamina: 0 },
+                armorBonus: { protection: 4, resistance: 1, agility: 3, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9404,19 +9598,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 10, resistance: 0, agility: 6, stamina: 0 },
+                armorBonus: { protection: 10, resistance: 4, agility: 6, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9443,19 +9640,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 17, resistance: 0, agility: 9, stamina: 0 },
+                armorBonus: { protection: 17, resistance: 6, agility: 9, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.6 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9482,19 +9682,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 26, resistance: 0, agility: 12, stamina: 0 },
+                armorBonus: { protection: 26, resistance: 9, agility: 12, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.8 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9521,19 +9724,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 35, resistance: 0, agility: 15, stamina: 0 },
+                armorBonus: { protection: 35, resistance: 12, agility: 15, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9561,19 +9767,22 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
+                offensiveDamageAffinity: {
+                    Range: 1.04,
+                },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
-                    Magic: 1.05,
+                    Magic: 1.08,
                     Range: 1,
                     Piercing: 19 / 20,
                     Blunt: 99 / 100,
                     Slashing: 99 / 100,
                 },
-                armorBonus: { protection: 44, resistance: 0, agility: 18, stamina: 0 },
+                armorBonus: { protection: 44, resistance: 15, agility: 18, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
@@ -9588,7 +9797,7 @@ class IdlescapeGameData {
             name: 'Robe Top',
             id: 1178,
             enchantmentTier: 1,
-            augmentationCost: { 4013: 8 },
+            augmentationCost: { 4013: 4 },
             craftingLevel: 3,
             craftingExperience: 400,
             value: 2160,
@@ -9605,8 +9814,8 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 1.04,
-                    Magic: 1.08,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
@@ -9621,7 +9830,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4013: 80 }],
+            requiredResources: [{ 4013: 40 }],
             category: 'Magic',
         },
         1179: {
@@ -9641,13 +9850,13 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 1.04,
-                    Magic: 1.08,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
@@ -9669,7 +9878,7 @@ class IdlescapeGameData {
             name: 'Academy Robe Top',
             id: 1180,
             enchantmentTier: 2,
-            augmentationCost: { 4015: 12 },
+            augmentationCost: { 4015: 10 },
             craftingLevel: 13,
             craftingExperience: 1770,
             value: 15930,
@@ -9682,20 +9891,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 1.04,
-                    Magic: 1.08,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 8, resistance: 28, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 7, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 6, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.resistance', value: 0.3 },
@@ -9703,14 +9912,14 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4015: 118 }],
+            requiredResources: [{ 4015: 100 }],
             category: 'Magic',
         },
         1181: {
             name: 'Imbued Robe Top',
             id: 1181,
             enchantmentTier: 3,
-            augmentationCost: { 4016: 18 },
+            augmentationCost: { 4016: 12 },
             craftingLevel: 21,
             craftingExperience: 5220,
             value: 78300,
@@ -9723,20 +9932,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 1.04,
-                    Magic: 1.08,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 13, resistance: 48, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 11, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 9, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 3 / 20 },
                     { stat: 'armorBonus.resistance', value: 9 / 20 },
@@ -9744,14 +9953,14 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4016: 174 }],
+            requiredResources: [{ 4016: 120 }],
             category: 'Magic',
         },
         1182: {
             name: 'Major Imbued Robe Top',
             id: 1182,
             enchantmentTier: 4,
-            augmentationCost: { 4017: 26 },
+            augmentationCost: { 4017: 14 },
             craftingLevel: 31,
             craftingExperience: 11520,
             value: 230400,
@@ -9764,20 +9973,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 1.04,
-                    Magic: 1.08,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 19, resistance: 70, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 14, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 11, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.2 },
                     { stat: 'armorBonus.resistance', value: 0.6 },
@@ -9785,7 +9994,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4017: 256 }],
+            requiredResources: [{ 4017: 140 }],
             category: 'Magic',
             rarity: 'uncommon',
         },
@@ -9793,7 +10002,7 @@ class IdlescapeGameData {
             name: 'Greater Imbued Robe Top',
             id: 1183,
             enchantmentTier: 5,
-            augmentationCost: { 4018: 38 },
+            augmentationCost: { 4018: 16 },
             craftingLevel: 44,
             craftingExperience: 30080,
             value: 676800,
@@ -9806,20 +10015,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 1.04,
-                    Magic: 1.08,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 26, resistance: 95, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 19, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 15, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.resistance', value: 3 / 4 },
@@ -9827,7 +10036,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4018: 376 }],
+            requiredResources: [{ 4018: 160 }],
             category: 'Magic',
             rarity: 'uncommon',
         },
@@ -9835,7 +10044,7 @@ class IdlescapeGameData {
             name: 'Elder Robe Top',
             id: 1184,
             enchantmentTier: 6,
-            augmentationCost: { 4019: 56 },
+            augmentationCost: { 4019: 18 },
             craftingLevel: 61,
             craftingExperience: 55400,
             value: 1994400,
@@ -9848,20 +10057,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
-                    Melee: 1.04,
-                    Magic: 1.08,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 33, resistance: 121, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 23, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 19, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.3 },
                     { stat: 'armorBonus.resistance', value: 0.9 },
@@ -9869,7 +10078,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4019: 554 }],
+            requiredResources: [{ 4019: 180 }],
             category: 'Magic',
             rarity: 'rare',
         },
@@ -9877,7 +10086,7 @@ class IdlescapeGameData {
             name: 'Robe Hood',
             id: 1185,
             enchantmentTier: 1,
-            augmentationCost: { 4013: 3 },
+            augmentationCost: { 4013: 2 },
             craftingLevel: 1,
             craftingExperience: 125,
             value: 675,
@@ -9896,8 +10105,8 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 1.02,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
@@ -9912,7 +10121,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4013: 25 }],
+            requiredResources: [{ 4013: 15 }],
             category: 'Magic',
         },
         1186: {
@@ -9933,13 +10142,13 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 1.02,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
@@ -9975,20 +10184,20 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 1.02,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 3, resistance: 13, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 7, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 5, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.resistance', value: 0.1 },
@@ -10003,7 +10212,7 @@ class IdlescapeGameData {
             name: 'Imbued Hood',
             id: 1188,
             enchantmentTier: 3,
-            augmentationCost: { 4016: 5 },
+            augmentationCost: { 4016: 4 },
             craftingLevel: 15,
             craftingExperience: 1440,
             value: 1111,
@@ -10017,20 +10226,20 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 1.02,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 4, resistance: 22, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 11, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 7, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.resistance', value: 3 / 20 },
@@ -10038,14 +10247,14 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4016: 48 }],
+            requiredResources: [{ 4016: 40 }],
             category: 'Magic',
         },
         1189: {
             name: 'Major Imbued Hood',
             id: 1189,
             enchantmentTier: 4,
-            augmentationCost: { 4017: 7 },
+            augmentationCost: { 4017: 5 },
             craftingLevel: 24,
             craftingExperience: 2970,
             value: 11111,
@@ -10059,20 +10268,20 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 1.02,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 6, resistance: 32, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 14, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 9, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.resistance', value: 0.2 },
@@ -10080,14 +10289,14 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4017: 66 }],
+            requiredResources: [{ 4017: 50 }],
             category: 'Magic',
         },
         1190: {
             name: 'Greater Imbued Hood',
             id: 1190,
             enchantmentTier: 5,
-            augmentationCost: { 4018: 10 },
+            augmentationCost: { 4018: 6 },
             craftingLevel: 37,
             craftingExperience: 7280,
             value: 111111,
@@ -10101,20 +10310,20 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 1.02,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 9, resistance: 43, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 19, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 14, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 / 8 },
                     { stat: 'armorBonus.resistance', value: 1 / 4 },
@@ -10122,7 +10331,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4018: 91 }],
+            requiredResources: [{ 4018: 60 }],
             category: 'Magic',
             rarity: 'uncommon',
         },
@@ -10130,7 +10339,7 @@ class IdlescapeGameData {
             name: 'Elder Hood',
             id: 1191,
             enchantmentTier: 6,
-            augmentationCost: { 4019: 13 },
+            augmentationCost: { 4019: 8 },
             craftingLevel: 57,
             craftingExperience: 12500,
             value: 1111111,
@@ -10144,20 +10353,20 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 1.02,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 11, resistance: 55, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 23, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 17, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 3 / 20 },
                     { stat: 'armorBonus.resistance', value: 0.3 },
@@ -10165,7 +10374,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4019: 125 }],
+            requiredResources: [{ 4019: 80 }],
             category: 'Magic',
             rarity: 'rare',
         },
@@ -10173,7 +10382,7 @@ class IdlescapeGameData {
             name: 'Robe Bottom',
             id: 1192,
             enchantmentTier: 1,
-            augmentationCost: { 4013: 5 },
+            augmentationCost: { 4013: 3 },
             craftingLevel: 2,
             craftingExperience: 250,
             value: 1350,
@@ -10190,8 +10399,8 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 1.02,
-                    Magic: 1.06,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
@@ -10206,7 +10415,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4013: 50 }],
+            requiredResources: [{ 4013: 35 }],
             category: 'Magic',
         },
         1193: {
@@ -10226,13 +10435,13 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 1.02,
-                    Magic: 1.06,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
@@ -10254,7 +10463,7 @@ class IdlescapeGameData {
             name: 'Academy Robe Bottom',
             id: 1194,
             enchantmentTier: 2,
-            augmentationCost: { 4015: 8 },
+            augmentationCost: { 4015: 7 },
             craftingLevel: 11,
             craftingExperience: 1095,
             value: 111,
@@ -10267,20 +10476,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 1.02,
-                    Magic: 1.06,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 5, resistance: 15, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 7, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 5, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.resistance', value: 3 / 20 },
@@ -10288,14 +10497,14 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4015: 73 }],
+            requiredResources: [{ 4015: 70 }],
             category: 'Magic',
         },
         1195: {
             name: 'Imbued Robe Bottom',
             id: 1195,
             enchantmentTier: 3,
-            augmentationCost: { 4016: 11 },
+            augmentationCost: { 4016: 9 },
             craftingLevel: 18,
             craftingExperience: 3180,
             value: 1111,
@@ -10308,20 +10517,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 1.02,
-                    Magic: 1.06,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 9, resistance: 26, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 11, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 9, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 21 / 200 },
                     { stat: 'armorBonus.resistance', value: 9 / 40 },
@@ -10329,14 +10538,14 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4016: 106 }],
+            requiredResources: [{ 4016: 90 }],
             category: 'Magic',
         },
         1196: {
             name: 'Major Imbued Robe Bottom',
             id: 1196,
             enchantmentTier: 4,
-            augmentationCost: { 4017: 16 },
+            augmentationCost: { 4017: 11 },
             craftingLevel: 28,
             craftingExperience: 6885,
             value: 11111,
@@ -10349,20 +10558,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 1.02,
-                    Magic: 1.06,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 13, resistance: 38, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 14, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 12, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 7 / 50 },
                     { stat: 'armorBonus.resistance', value: 0.3 },
@@ -10370,14 +10579,14 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4017: 153 }],
+            requiredResources: [{ 4017: 110 }],
             category: 'Magic',
         },
         1197: {
             name: 'Greater Imbued Robe Bottom',
             id: 1197,
             enchantmentTier: 5,
-            augmentationCost: { 4018: 23 },
+            augmentationCost: { 4018: 13 },
             craftingLevel: 41,
             craftingExperience: 17760,
             value: 111111,
@@ -10390,20 +10599,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 1.02,
-                    Magic: 1.06,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 17, resistance: 52, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 19, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 16, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 7 / 40 },
                     { stat: 'armorBonus.resistance', value: 3 / 8 },
@@ -10411,7 +10620,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4018: 222 }],
+            requiredResources: [{ 4018: 130 }],
             category: 'Magic',
             rarity: 'uncommon',
         },
@@ -10419,7 +10628,7 @@ class IdlescapeGameData {
             name: 'Elder Robe Bottom',
             id: 1198,
             enchantmentTier: 6,
-            augmentationCost: { 4019: 33 },
+            augmentationCost: { 4019: 15 },
             craftingLevel: 59,
             craftingExperience: 32300,
             value: 1111111,
@@ -10432,20 +10641,20 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            craftingDescription: 'Requires Defense level of 10 to wield.',
+
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
-                    Melee: 1.02,
-                    Magic: 1.06,
+                    Melee: 1.06,
+                    Magic: 1.02,
                     Range: 47 / 50,
                     Piercing: 47 / 50,
                     Blunt: 97 / 100,
                     Slashing: 47 / 50,
                 },
                 armorBonus: { protection: 22, resistance: 66, agility: 0, stamina: 0 },
-                weaponBonus: { strength: 0, intellect: 23, dexterity: 0 },
+                weaponBonus: { strength: 0, intellect: 19, dexterity: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 21 / 100 },
                     { stat: 'armorBonus.resistance', value: 9 / 20 },
@@ -10453,7 +10662,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4019: 323 }],
+            requiredResources: [{ 4019: 150 }],
             category: 'Magic',
             rarity: 'rare',
         },
@@ -10781,7 +10990,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.1,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -10829,7 +11038,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.1,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -10877,7 +11086,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.1,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -10925,7 +11134,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.1,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -10973,7 +11182,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.1,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -11021,7 +11230,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.1,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -11070,7 +11279,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.1,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -13206,7 +13415,7 @@ class IdlescapeGameData {
             augmentationCost: { 402: 4, 512: 100 },
             value: 6360000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 85, strength: 85, defense: 1 },
+            requiredLevel: { defense: 85 },
 
 
 
@@ -13223,18 +13432,18 @@ class IdlescapeGameData {
                     chance: 1 / 100,
                     damageMultiplier: 3 / 4,
                 },
-                offensiveAccuracyAffinityRating: { Melee: 36, Fire: 24, Magic: 12, Range: 0 },
-                offensiveDamageAffinity: { Fire: 1.5, Melee: 1, Magic: 1.33 },
+                offensiveAccuracyAffinityRating: { Melee: 12, Fire: 24, Magic: 36, Range: 0 },
+                offensiveDamageAffinity: { Fire: 1.25, Melee: 1, Magic: 1.15 },
                 defensiveDamageAffinity: { Fire: 1.06, Melee: 1.02, Magic: 1.04, Range: 1 },
                 weaponBonus: { strength: 0, intellect: 24, dexterity: 0 },
-                armorBonus: { protection: 102, resistance: 64, agility: -4, stamina: 12 },
+                armorBonus: { protection: 48, resistance: 88, agility: -4, stamina: 8 },
                 augmentationBonus: [
-                    { stat: 'armorBonus.protection', value: 1.75 },
-                    { stat: 'armorBonus.resistance', value: 0.5 },
+                    { stat: 'armorBonus.protection', value: 0.75 },
+                    { stat: 'armorBonus.resistance', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.5 },
                     { stat: 'weaponBonus.intellect', value: 0.5 },
                 ],
-                itemSet: [10009, 10013, 10015],
+                itemSet: [10013, 10015],
             },
             rarity: 'epic',
         },
@@ -13549,10 +13758,11 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.12 },
                 defensiveDamageAffinity: {
                     Melee: 1,
-                    Magic: 19 / 20,
-                    Range: 1.05,
+                    Magic: 0.9,
+                    Range: 1,
                     Piercing: 97 / 100,
                     Blunt: 99 / 100,
                     Slashing: 1.04,
@@ -13582,11 +13792,12 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
+                offensiveDamageAffinity: { Melee: 1.05 },
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 defensiveDamageAffinity: {
-                    Melee: 1.08,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1,
+                    Magic: 0.9,
+                    Range: 1,
                     Piercing: 1.08,
                     Blunt: 47 / 50,
                     Slashing: 1.08,
@@ -13617,6 +13828,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'boots',
+                offensiveDamageAffinity: { Melee: 1.05 },
                 armorBonus: { protection: 16, resistance: 16, agility: 0, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
@@ -13644,9 +13856,10 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
+                offensiveDamageAffinity: { Melee: 1.15 },
                 defensiveDamageAffinity: {
                     Melee: 1,
-                    Magic: 97 / 100,
+                    Magic: 0.9,
                     Range: 1,
                     Piercing: 1,
                     Blunt: 1,
@@ -13676,10 +13889,11 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
+                offensiveDamageAffinity: { Melee: 1.05 },
                 defensiveDamageAffinity: {
-                    Melee: 1.06,
-                    Magic: 47 / 50,
-                    Range: 1.06,
+                    Melee: 1,
+                    Magic: 0.9,
+                    Range: 1,
                     Piercing: 1.13,
                     Blunt: 1.06,
                     Slashing: 1.13,
@@ -13713,7 +13927,7 @@ class IdlescapeGameData {
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
                 offensiveAccuracyAffinityRating: { Melee: 52, Magic: -14, Range: -14, Slashing: 60 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 1 / 4,
                     Range: 0.1,
                     Piercing: 1 / 4,
@@ -13759,7 +13973,7 @@ class IdlescapeGameData {
                     Slashing: 43,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 33 / 100,
                     Range: 0.2,
                     Piercing: 1.1,
@@ -13808,7 +14022,7 @@ class IdlescapeGameData {
                     Range: -24,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Piercing: 1.5,
                     Blunt: 3 / 4,
                     Slashing: 1 / 4,
@@ -13857,7 +14071,7 @@ class IdlescapeGameData {
                     Range: -24,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.15,
                     Piercing: 1.5,
                     Slashing: 1.1,
                     Blunt: 3 / 4,
@@ -13897,6 +14111,9 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 1.33 },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 81 / 100,
@@ -14564,13 +14781,37 @@ class IdlescapeGameData {
             rarity: 'epic',
         },
         1556: {
-            name: 'max account consumable dev',
+            name: 'Bestial Shawl',
             id: 1556,
-            value: 9,
-            tradeable: false,
-            itemImage: '/images/cooking/banana.png',
-            extraTooltipInfo: 'yes',
-            tags: [],
+            enchantmentTier: 0,
+            augmentationCost: { 4004: 30, 4012: 30, 4008: 10, 4005: 10 },
+            value: 2620000,
+            tradeable: true,
+            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40, magic: 1, range: 40 },
+
+
+
+            itemImage: '/images/combat/equipment/bestial_shawl.png',
+            extraTooltipInfo:
+                "A hunter's shawl designed to give its wearer the ability to easily handle their prey at extreme range.",
+            class: 'equipment',
+            visual: 'cape',
+            category: ['weapon', 'combat'],
+            tags: ['range', 'armor'],
+            equipmentStats: {
+                slot: 'cape',
+                offensiveAccuracyAffinityRating: { Range: 15 },
+                offensiveDamageAffinity: { Range: 1.1 },
+                defensiveDamageAffinity: { Range: 1.1 },
+                weaponBonus: { strength: 0, intellect: 0, dexterity: 10 },
+                armorBonus: { protection: -12, resistance: -12, agility: 6, stamina: 0 },
+                augmentationBonus: [
+                    { stat: 'armorBonus.agility', value: 1 },
+                    { stat: 'weaponBonus.dexterity', value: 1 },
+                    { stat: 'offensiveAccuracyAffinityRating.Range', value: 1 },
+                ],
+            },
+            rarity: 'epic',
         },
         1557: {
             name: 'stone castle bricks',
@@ -14679,6 +14920,7 @@ class IdlescapeGameData {
             tags: ['armor', 'melee'],
             equipmentStats: {
                 slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: { Melee: 1.08, Nature: 1.06 },
                 weaponBonus: { strength: 12, intellect: 6, dexterity: 6 },
                 armorBonus: { protection: 56, resistance: 6, agility: 28, stamina: 32 },
@@ -15035,7 +15277,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
                     Magic: 0.2,
-                    Range: 1.1,
+                    Range: 1.2,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
@@ -24274,7 +24516,7 @@ class IdlescapeGameData {
                         { id: 61, frequency: 50, maxFrequency: 100 },
                         { id: 72, frequency: -10, maxFrequency: 15 }, //minnow
                         { id: 71, frequency: 1, maxFrequency: 30 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4020, frequency: 2, maxFrequency: 20, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
                         { id: 11030, frequency: 1, maxFrequency: 9 }, //rotten driftwood
                     ],
                 },
@@ -24296,7 +24538,7 @@ class IdlescapeGameData {
                         { id: 61, frequency: 25, maxFrequency: 75 },
                         { id: 72, frequency: -1, maxFrequency: 25 }, //minnow
                         { id: 71, frequency: 1, maxFrequency: 6 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 3, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4020, frequency: 2, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
                         { id: 11030, frequency: 1, maxFrequency: 9 }, //rotten driftwood
                     ],
                 },
@@ -24309,7 +24551,7 @@ class IdlescapeGameData {
                     loot: [
                         { id: 61, frequency: 15, maxFrequency: 50 },
                         { id: 71, frequency: 1, maxFrequency: 10 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4020, frequency: 2, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
                         { id: 11030, frequency: 1, maxFrequency: 25 }, //rotten driftwood
                     ],
                 },
@@ -24321,8 +24563,8 @@ class IdlescapeGameData {
                     maxFrequency: 75,
                     loot: [
                         { id: 71, frequency: 1, maxFrequency: 5 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 3 }, //aquatic fiber 2
+                        { id: 4020, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 20, minAmount: 1, maxAmount: 3 }, //aquatic fiber 2
                     ],
                 },
             ],
@@ -24357,8 +24599,8 @@ class IdlescapeGameData {
                         { id: 63, frequency: 50, maxFrequency: 100 },
                         { id: 73, frequency: -50, maxFrequency: 15 }, //tigerfish
                         { id: 71, frequency: 1, maxFrequency: 5 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4020, frequency: 1, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
                         { id: 72, frequency: 1, maxFrequency: 10 }, //minnow
                         { id: 11030, frequency: 1, maxFrequency: 15 }, //rotten driftwood
                         { id: 11031, frequency: -5, maxFrequency: 5 }, //sturdy driftwood
@@ -24375,8 +24617,8 @@ class IdlescapeGameData {
                         { id: 63, frequency: 50, maxFrequency: 75 },
                         { id: 73, frequency: -15, maxFrequency: 25 }, //tigerfish
                         { id: 71, frequency: 1, maxFrequency: 3 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 3, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 3, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4020, frequency: 1, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
                         { id: 72, frequency: 5, maxFrequency: 25 }, //minnow
                         { id: 11030, frequency: 1, maxFrequency: 15 }, //rotten driftwood
                         { id: 11031, frequency: -5, maxFrequency: 5 }, //sturdy driftwood
@@ -24406,8 +24648,8 @@ class IdlescapeGameData {
                     loot: [
                         { id: 71, frequency: 1, maxFrequency: 5 }, //seaweed
                         { id: 4020, frequency: 1, maxFrequency: 10 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 3 }, //aquatic fiber 3
+                        { id: 4021, frequency: -5, maxFrequency: 30, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: -10, maxFrequency: 10, minAmount: 1, maxAmount: 3 }, //aquatic fiber 3
                     ],
                 },
             ],
@@ -24444,9 +24686,9 @@ class IdlescapeGameData {
                         { id: 73, frequency: -25, maxFrequency: 25 }, //tigerfish
                         { id: 72, frequency: 1, maxFrequency: 20 }, //minnow
                         { id: 71, frequency: 1, maxFrequency: 5 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 7.5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: -10, maxFrequency: 2.5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4020, frequency: 1, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
                         { id: 11030, frequency: -10, maxFrequency: 10 }, //rotten driftwood
                         { id: 11031, frequency: -10, maxFrequency: 10 }, //sturdy driftwood
                     ],
@@ -24478,9 +24720,9 @@ class IdlescapeGameData {
                         { id: 77, frequency: 3, maxFrequency: 15 }, //crab
                         { id: 73, frequency: 10, maxFrequency: 50 }, //tigerfish
                         { id: 71, frequency: 1, maxFrequency: 10 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 7.5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: -10, maxFrequency: 2.5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4020, frequency: 1, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
                         { id: 11030, frequency: 1, maxFrequency: 30 }, //rotten driftwood
                         { id: 11031, frequency: 1, maxFrequency: 30 }, //sturdy driftwood
                         { id: 11032, frequency: -100, maxFrequency: 2.5 }, //aquamarine
@@ -24506,10 +24748,10 @@ class IdlescapeGameData {
                     maxFrequency: 75,
                     loot: [
                         { id: 71, frequency: 1, maxFrequency: 5 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: 1, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
-                        { id: 4023, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 3 }, //aquatic fiber 4
+                        { id: 4020, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: -5, maxFrequency: 20, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4023, frequency: -10, maxFrequency: 10, minAmount: 1, maxAmount: 3 }, //aquatic fiber 4
                     ],
                 },
             ],
@@ -24547,10 +24789,10 @@ class IdlescapeGameData {
                         { id: 70, frequency: -50, maxFrequency: 25 }, //huge tuna
                         { id: 67, frequency: -75, maxFrequency: 5 }, //megalodon
                         { id: 71, frequency: 1, maxFrequency: 7.5 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
-                        { id: 4023, frequency: -15, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
+                        { id: 4020, frequency: 1, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: -10, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4023, frequency: -15, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
                         { id: 11030, frequency: 1, maxFrequency: 20 }, //rotten driftwood
                         { id: 11031, frequency: 1, maxFrequency: 20 }, //sturdy driftwood
                         { id: 11032, frequency: -50, maxFrequency: 0.5 }, //aquamarine
@@ -24569,10 +24811,10 @@ class IdlescapeGameData {
                         { id: 67, frequency: -50, maxFrequency: 15 }, //megalodon
                         { id: 75, frequency: 10, maxFrequency: 25 }, //great white
                         { id: 71, frequency: 1, maxFrequency: 15 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
-                        { id: 4023, frequency: -15, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
+                        { id: 4020, frequency: 1, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: -10, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4023, frequency: -15, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
                         { id: 11030, frequency: 1, maxFrequency: 15 }, //rotten driftwood
                         { id: 11031, frequency: 1, maxFrequency: 15 }, //sturdy driftwood
                     ],
@@ -24617,10 +24859,10 @@ class IdlescapeGameData {
                         { id: 65, frequency: 100, maxFrequency: 200 },
                         { id: 70, frequency: -25, maxFrequency: 150 }, //huge tuna
                         { id: 71, frequency: 3, maxFrequency: 15 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
-                        { id: 4023, frequency: -15, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
+                        { id: 4020, frequency: 1, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: -10, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4023, frequency: -15, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
                         { id: 11030, frequency: 3, maxFrequency: 25 }, //rotten driftwood
                         { id: 11031, frequency: 3, maxFrequency: 30 }, //sturdy driftwood
                         { id: 11032, frequency: -30, maxFrequency: 0.75 }, //aquamarine
@@ -24635,10 +24877,10 @@ class IdlescapeGameData {
                     maxFrequency: 100,
                     loot: [
                         { id: 71, frequency: 3, maxFrequency: 15 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
-                        { id: 4023, frequency: -15, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
+                        { id: 4020, frequency: 1, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: -10, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4023, frequency: -15, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
                         { id: 11030, frequency: 15, maxFrequency: 25 }, //rotten driftwood
                         { id: 11031, frequency: 5, maxFrequency: 40 }, //sturdy driftwood
                         { id: 11032, frequency: -30, maxFrequency: 1.25 }, //aquamarine
@@ -24661,8 +24903,8 @@ class IdlescapeGameData {
                         { id: 75, frequency: 5, maxFrequency: 25 }, //great white
                         { id: 76, frequency: 5, maxFrequency: 10 }, //hammerhead
                         { id: 11036, frequency: -1, maxFrequency: 20 }, //mystical drift wood
-                        { id: 4023, frequency: -5, maxFrequency: 7.5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
-                        { id: 4024, frequency: -10, maxFrequency: 4.5, minAmount: 1, maxAmount: 3 }, //aquatic fiber 5
+                        { id: 4023, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
+                        { id: 4024, frequency: -10, maxFrequency: 10, minAmount: 1, maxAmount: 3 }, //aquatic fiber 5
                     ],
                 },
                 {
@@ -24689,11 +24931,11 @@ class IdlescapeGameData {
                     maxFrequency: 75,
                     loot: [
                         { id: 71, frequency: 1, maxFrequency: 5 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: 1, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: 1, maxFrequency: 10, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4020, frequency: 1, maxFrequency: 20, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: 1, maxFrequency: 20, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: 1, maxFrequency: 20, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
                         { id: 4023, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
-                        { id: 4024, frequency: -10, maxFrequency: 5, minAmount: 1, maxAmount: 3 }, //aquatic fiber 5
+                        { id: 4024, frequency: -10, maxFrequency: 10, minAmount: 1, maxAmount: 3 }, //aquatic fiber 5
                     ],
                 },
             ],
@@ -24731,11 +24973,11 @@ class IdlescapeGameData {
                         { id: 70, frequency: -25, maxFrequency: 25 }, //huge tuna
                         { id: 67, frequency: -50, maxFrequency: 5 }, //megalodon
                         { id: 71, frequency: 1, maxFrequency: 10 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
-                        { id: 4023, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
-                        { id: 4024, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 5
+                        { id: 4020, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4023, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
+                        { id: 4024, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 5
                         { id: 11030, frequency: 1, maxFrequency: 20 }, //rotten driftwood
                         { id: 11031, frequency: 1, maxFrequency: 20 }, //sturdy driftwood
                         { id: 11032, frequency: -45, maxFrequency: 1.5 }, //aquamarine
@@ -24750,11 +24992,11 @@ class IdlescapeGameData {
                     maxFrequency: 100,
                     loot: [
                         { id: 71, frequency: 3, maxFrequency: 30 }, //seaweed
-                        { id: 4020, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
-                        { id: 4023, frequency: 1, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
-                        { id: 4024, frequency: -5, maxFrequency: 5, minAmount: 1, maxAmount: 5 }, //aquatic fiber 5
+                        { id: 4020, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
+                        { id: 4021, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4023, frequency: 1, maxFrequency: 25, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
+                        { id: 4024, frequency: -5, maxFrequency: 15, minAmount: 1, maxAmount: 5 }, //aquatic fiber 5
                         { id: 11030, frequency: 15, maxFrequency: 25 }, //rotten driftwood
                         { id: 11031, frequency: 5, maxFrequency: 40 }, //sturdy driftwood
                         { id: 11032, frequency: -30, maxFrequency: 1.5 }, //aquamarine
@@ -24806,11 +25048,11 @@ class IdlescapeGameData {
                         { id: 67, frequency: -50, maxFrequency: 15 }, //megalodon
                         { id: 71, frequency: 1, maxFrequency: 3 }, //seaweed
                         { id: 4020, frequency: 1, maxFrequency: 1, minAmount: 1, maxAmount: 5 }, //aquatic fiber 1
-                        { id: 4021, frequency: 1, maxFrequency: 1, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
-                        { id: 4022, frequency: 1, maxFrequency: 1, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
-                        { id: 4023, frequency: 1, maxFrequency: 1, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
-                        { id: 4024, frequency: 1, maxFrequency: 1, minAmount: 1, maxAmount: 5 }, //aquatic fiber 5
-                        { id: 4025, frequency: 1, maxFrequency: 15 }, //aquatic fiber 6
+                        { id: 4021, frequency: 1, maxFrequency: 3, minAmount: 1, maxAmount: 5 }, //aquatic fiber 2
+                        { id: 4022, frequency: 1, maxFrequency: 6, minAmount: 1, maxAmount: 5 }, //aquatic fiber 3
+                        { id: 4023, frequency: 1, maxFrequency: 9, minAmount: 1, maxAmount: 5 }, //aquatic fiber 4
+                        { id: 4024, frequency: 1, maxFrequency: 12, minAmount: 1, maxAmount: 5 }, //aquatic fiber 5
+                        { id: 4025, frequency: 1, maxFrequency: 25 }, //aquatic fiber 6
                         { id: 11030, frequency: 1, maxFrequency: 3 }, //rotten driftwood
                         { id: 11031, frequency: 1, maxFrequency: 3 }, //sturdy driftwood
                         { id: 11032, frequency: -45, maxFrequency: 1.25 }, //aquamarine
@@ -26801,7 +27043,7 @@ class IdlescapeGameData {
         61: {
             id: 61,
             abilityName: 'Infernal Impale',
-            abilityImage: '/images/combat/ability_icons/infernal_impale.png',
+            abilityImage: '/images/combat/ability_icons/infernal_impale.PNG',
             description: 'An enhanced impaling attack that can hit up to 2 enemies at once.',
             damageType: 'Melee',
             cooldown: 30000,
@@ -26821,6 +27063,36 @@ class IdlescapeGameData {
             baseAccuracyCoeff: 1,
 
             maxTargets: 2,
+        },
+        62: {
+            id: 62,
+            abilityName: 'Sever',
+            abilityImage: '/images/combat/ability_icons/bleed.png',
+            description: 'Target a weakpoint and cut open an artery, does 75 damage every 2 seconds 10 times.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.5 },
+            ],
+
+            baseSpeedCoeff: 1.1,
+            baseMinimumDamageCoeff: 0.75,
+            baseMaximumDamageCoeff: 0.9,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+
+            healthChangeEvent: {
+                dotCount: 10,
+                healthChange: -75,
+                healthChangeDelay: 2000,
+            },
         },
     };
     gameShopItems = {
