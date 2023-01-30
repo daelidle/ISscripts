@@ -4421,7 +4421,7 @@ class IdlescapeGameData {
             value: 200000,
             tradeable: true,
             enchantmentTier: 1,
-            augmentationCost: { 5: 5000, 502: 1, 512: 50 },
+            augmentationCost: { 6: 5000, 503: 1, 513: 50 },
             enchantmentOverrideSlot: 'combat-talisman',
             forcedEnchant: 70,
             forcedEnchantAmount: 1,
@@ -4450,7 +4450,7 @@ class IdlescapeGameData {
             value: 200000,
             tradeable: true,
             enchantmentTier: 1,
-            augmentationCost: { 5: 5000, 502: 1, 512: 50 },
+            augmentationCost: { 7: 5000, 504: 1, 514: 50 },
             enchantmentOverrideSlot: 'combat-talisman',
             forcedEnchant: 15,
             forcedEnchantAmount: 2,
@@ -4469,6 +4469,32 @@ class IdlescapeGameData {
                 weaponBonus: { strength: 3, intellect: 0, dexterity: 0 },
                 offensiveDamageAffinity: { Slashing: 1.15 },
                 augmentationBonus: [{ stat: 'weaponBonus.strength', value: 0.5 }],
+            },
+            rarity: 'rare',
+        },
+        647: {
+            id: 647,
+            name: 'Ancient Air Amulet',
+            value: 200000,
+            tradeable: true,
+            enchantmentTier: 1,
+            augmentationCost: { 3: 5000, 500: 1, 510: 50 },
+            enchantmentOverrideSlot: 'combat-talisman',
+
+
+
+            itemImage: '/images/jewellery/ancient_air_talisman.png',
+            class: 'equipment',
+            extraTooltipInfo:
+                'An ancient energy keeps you from attempting to absorb the talisman. It is so light it could almost float in the air on its own.',
+            tags: ['jewelry', 'crafting'],
+            enchantable: true,
+            equipmentStats: {
+                grantedAbility: [63, 64],
+                slot: 'necklace',
+                weaponBonus: { strength: 0, intellect: 0, dexterity: 3 },
+                offensiveDamageAffinity: { Range: 1.1 },
+                augmentationBonus: [{ stat: 'weaponBonus.dexterity', value: 0.5 }],
             },
             rarity: 'rare',
         },
@@ -5442,7 +5468,7 @@ class IdlescapeGameData {
                     Slashing: 8,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 33 / 50,
@@ -5641,7 +5667,7 @@ class IdlescapeGameData {
                     Slashing: 12,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 33 / 50,
@@ -5835,7 +5861,7 @@ class IdlescapeGameData {
                     Slashing: 30,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 33 / 50,
@@ -6035,7 +6061,7 @@ class IdlescapeGameData {
                     Slashing: 52,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 33 / 50,
@@ -6234,7 +6260,7 @@ class IdlescapeGameData {
                     Slashing: 77,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 33 / 50,
@@ -6434,7 +6460,7 @@ class IdlescapeGameData {
                     Slashing: 104,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 33 / 50,
@@ -6631,7 +6657,7 @@ class IdlescapeGameData {
                     Slashing: 132,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.1,
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 33 / 50,
@@ -7621,6 +7647,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
+                grantedAbility: [54],
             },
             requiredResources: [{ 201: 100 }],
         },
@@ -7703,6 +7730,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
+                grantedAbility: [54],
             },
             requiredResources: [{ 202: 150 }],
         },
@@ -7784,6 +7812,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
+                grantedAbility: [54],
             },
             requiredResources: [{ 205: 2000 }],
             rarity: 'uncommon',
@@ -7867,6 +7896,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
+                grantedAbility: [54],
             },
             requiredResources: [{ 204: 230 }],
         },
@@ -7949,6 +7979,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
+                grantedAbility: [54],
             },
             requiredResources: [{ 205: 320 }],
             rarity: 'uncommon',
@@ -8033,6 +8064,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
+                grantedAbility: [54],
             },
             requiredResources: [{ 206: 405 }],
             rarity: 'uncommon',
@@ -8117,6 +8149,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
+                grantedAbility: [54],
             },
             requiredResources: [{ 207: 500, 800: 100 }],
             rarity: 'rare',
@@ -11328,7 +11361,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 3,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.05,
                     Piercing: 1.3333333333333333,
                     Blunt: 3 / 4,
                     Slashing: 3 / 4,
@@ -11377,7 +11410,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 3,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.05,
                     Piercing: 1.3333333333333333,
                     Blunt: 3 / 4,
                     Slashing: 3 / 4,
@@ -11426,7 +11459,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 3,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.05,
                     Piercing: 1.3333333333333333,
                     Blunt: 3 / 4,
                     Slashing: 3 / 4,
@@ -11475,7 +11508,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 3,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.05,
                     Piercing: 1.3333333333333333,
                     Blunt: 3 / 4,
                     Slashing: 3 / 4,
@@ -11524,7 +11557,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 3,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.05,
                     Piercing: 1.3333333333333333,
                     Blunt: 3 / 4,
                     Slashing: 3 / 4,
@@ -11573,7 +11606,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 3,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.05,
                     Piercing: 1.3333333333333333,
                     Blunt: 3 / 4,
                     Slashing: 3 / 4,
@@ -11623,7 +11656,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1 / 3,
                     Magic: 0.2,
-                    Range: 1,
+                    Range: 1.05,
                     Piercing: 1.3333333333333333,
                     Blunt: 3 / 4,
                     Slashing: 3 / 4,
@@ -14620,7 +14653,9 @@ class IdlescapeGameData {
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'boots',
-                armorBonus: { protection: 22, resistance: 22, agility: 0, stamina: 0 },
+                defensiveDamageAffinity: { Melee: 1.04, Magic: 1.04, Range: 1.04 },
+                weaponBonus: { strength: 4, intellect: 4, dexterity: 4 },
+                armorBonus: { protection: 24, resistance: 24, agility: 12, stamina: 24 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.resistance', value: 0.1 },
@@ -14814,13 +14849,60 @@ class IdlescapeGameData {
             rarity: 'epic',
         },
         1557: {
-            name: 'stone castle bricks',
+            name: 'Hands of Khaast',
             id: 1557,
-            value: 9,
-            tradeable: false,
-            itemImage: '/images/cooking/banana.png',
-            extraTooltipInfo: 'yes',
-            tags: [],
+            enchantmentTier: 7,
+            augmentationCost: { 513: 50, 701: 20 },
+            value: 4120000,
+            tradeable: true,
+            requiredLevel: { constitution: 1, attack: 1, strength: 75, defense: 1 },
+
+
+
+            itemImage: '/images/combat/equipment/hands_of_khaast.png',
+            itemIcon: '/images/combat/equipment/hands_of_khaast_icon.png',
+            extraTooltipInfo:
+                'You feel as if you could break the world in two with your bare hands and then burn it all down.',
+            class: 'equipment',
+            visual: 'modified-diving-gloves',
+            category: ['weapon', 'combat'],
+            tags: ['melee', 'weapon', 'twohand', 'crafting'],
+            equipmentStats: {
+                grantedAbility: [44, 51],
+                slot: 'weapon',
+                offensiveCritical: { chance: 11 / 200, damageMultiplier: 1.75 },
+                offensiveAccuracyAffinityRating: {
+                    Melee: 118,
+                    Magic: -10,
+                    Range: -10,
+                    Piercing: 77,
+                    Blunt: 77,
+                    Slashing: -8,
+                    Fire: 48,
+                },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 1.05,
+                    Range: 0.2,
+                    Piercing: 1.05,
+                    Blunt: 1.05,
+                    Slashing: 1 / 4,
+                    Fire: 1.2,
+                },
+                weaponBonus: { strength: 99, intellect: 44, dexterity: 0 },
+                armorBonus: { protection: 4, resistance: 4, agility: -4, stamina: 12 },
+                attackSpeed: 2.2,
+                augmentationBonus: [
+                    { stat: 'offensiveCritical.chance', value: 1 / 100 },
+                    {
+                        stat: 'offensiveCritical.damageMultiplier',
+                        value: 1 / 100,
+                    },
+                    { stat: 'weaponBonus.strength', value: 3 / 4 },
+                    { stat: 'armorBonus.stamina', value: 0.1 },
+                ],
+            },
+            rarity: 'epic',
         },
         1558: {
             name: 'elite moon god potion',
@@ -14983,14 +15065,10 @@ class IdlescapeGameData {
             tags: ['armor'],
             equipmentStats: {
                 slot: 'boots',
-                defensiveDamageAffinity: { Melee: 1.04, Magic: 1.04, Range: 1.04, Nature: 1.06 },
-                weaponBonus: { strength: 8, intellect: 8, dexterity: 8 },
-                armorBonus: { protection: 24, resistance: 24, agility: 24, stamina: 0 },
-                augmentationBonus: [
-                    { stat: 'armorBonus.protection', value: 3 / 4 },
-                    { stat: 'armorBonus.resistance', value: 3 / 4 },
-                    { stat: 'armorBonus.agility', value: 3 / 4 },
-                ],
+                defensiveDamageAffinity: { Melee: 1.02, Magic: 1.02, Range: 1.02, Nature: 1.05 },
+                weaponBonus: { strength: 2, intellect: 2, dexterity: 2 },
+                armorBonus: { protection: 12, resistance: 12, agility: 24, stamina: 0 },
+                augmentationBonus: [{ stat: 'armorBonus.agility', value: 3 / 4 }],
                 itemSet: [10010, 10012, 10014],
             },
             rarity: 'rare',
@@ -15632,6 +15710,52 @@ class IdlescapeGameData {
             tags: ['jewelry'],
             equipmentStats: { slot: 'ring' },
             rarity: 'legendary',
+        },
+        1583: {
+            id: 1583,
+            name: 'Wrath and War',
+            extraTooltipInfo: 'The demonic embodiment of Wrath and War. Warth? Quite mad.',
+            rarity: 'legendary',
+            enchantmentTier: 7,
+            augmentationCost: { 207: 40, 800: 12 },
+            value: 3440000,
+            tradeable: true,
+            requiredLevel: { constitution: 1, attack: 1, strength: 75, defense: 1 },
+
+
+
+            itemImage: '/images/combat/equipment/wrath_axe.png',
+            itemIcon: '/images/combat/equipment/wrath_axe_icon.png',
+            class: 'equipment',
+            visual: 'wrath-axe',
+            tags: ['melee', 'weapon'],
+            equipmentStats: {
+                slot: 'weapon',
+                offensiveCritical: { chance: 5 / 200, damageMultiplier: 1.25 },
+                offensiveAccuracyAffinityRating: {
+                    Melee: 88,
+                    Magic: -12,
+                    Range: -12,
+                    Piercing: -4,
+                    Blunt: 99,
+                    Slashing: 178,
+                },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 0.1,
+                    Range: 0.1,
+                    Piercing: 1 / 4,
+                    Blunt: 1.1,
+                    Slashing: 1.25,
+                },
+                weaponBonus: { strength: 156, intellect: 0, dexterity: 0 },
+                armorBonus: { protection: 22, resistance: 0, agility: -8, stamina: 0 },
+                attackSpeed: 3.3,
+                augmentationBonus: [
+                    { stat: 'offensiveAccuracyAffinityRating.Melee', value: 1.3 },
+                    { stat: 'weaponBonus.strength', value: 6 },
+                ],
+            },
         },
         1600: {
             name: 'Scroll',
@@ -18510,7 +18634,7 @@ class IdlescapeGameData {
             value: 100,
             tradeable: true,
             stackStrength: 1,
-            stackMultiplier: 1,
+            stackMultiplier: 1.5,
 
 
 
@@ -18532,7 +18656,7 @@ class IdlescapeGameData {
             value: 125,
             tradeable: true,
             stackStrength: 2,
-            stackMultiplier: 3 / 4,
+            stackMultiplier: 1,
 
 
 
@@ -18554,7 +18678,7 @@ class IdlescapeGameData {
             value: 125,
             tradeable: true,
             stackStrength: 1,
-            stackMultiplier: 1.25,
+            stackMultiplier: 2.5,
 
 
 
@@ -18576,7 +18700,7 @@ class IdlescapeGameData {
             value: 200,
             tradeable: true,
             stackStrength: 2,
-            stackMultiplier: 1,
+            stackMultiplier: 1.5,
 
 
 
@@ -18599,7 +18723,7 @@ class IdlescapeGameData {
             value: 250,
             tradeable: true,
             stackStrength: 3,
-            stackMultiplier: 3 / 4,
+            stackMultiplier: 1,
 
 
 
@@ -18622,7 +18746,7 @@ class IdlescapeGameData {
             value: 250,
             tradeable: true,
             stackStrength: 2,
-            stackMultiplier: 1.25,
+            stackMultiplier: 2.5,
 
 
 
@@ -18645,7 +18769,7 @@ class IdlescapeGameData {
             value: 300,
             tradeable: true,
             stackStrength: 3,
-            stackMultiplier: 3 / 4,
+            stackMultiplier: 1,
 
 
 
@@ -18668,7 +18792,7 @@ class IdlescapeGameData {
             value: 375,
             tradeable: true,
             stackStrength: 3,
-            stackMultiplier: 1,
+            stackMultiplier: 2.5,
 
 
 
@@ -18691,7 +18815,7 @@ class IdlescapeGameData {
             value: 400,
             tradeable: true,
             stackStrength: 4,
-            stackMultiplier: 33 / 50,
+            stackMultiplier: 1,
 
 
 
@@ -18714,7 +18838,7 @@ class IdlescapeGameData {
             value: 500,
             tradeable: true,
             stackStrength: 4,
-            stackMultiplier: 1,
+            stackMultiplier: 1.5,
 
 
 
@@ -18737,7 +18861,7 @@ class IdlescapeGameData {
             value: 375,
             tradeable: true,
             stackStrength: 4,
-            stackMultiplier: 3 / 4,
+            stackMultiplier: 1,
 
 
 
@@ -20762,9 +20886,26 @@ class IdlescapeGameData {
 
 
             itemImage: '/images/premium/cosmetic/equipment/elite_titan_helmet.png',
+            itemIcon: '/images/premium/cosmetic/equipment/elite_titan_helmet_icon.png',
             extraTooltipInfo: 'A particularly intricate helmet, far more than the average Titan would wear.',
             class: 'equipment',
             visual: 'black-knight-full-helm',
+            category: ['weapon', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, slot: 'helm' },
+            rarity: 'legendary',
+        },
+        7067: {
+            name: 'Ancient Crown',
+            id: 7067,
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/ancient_crown.png',
+            itemIcon: '/images/premium/cosmetic/equipment/ancient_crown_icon.png',
+            extraTooltipInfo: 'An incredible old crown. Could be a bracelet if you are a giant.',
+            class: 'equipment',
+            visual: 'kings-crown',
             category: ['weapon', 'combat'],
             tags: ['melee', 'armor'],
             equipmentStats: { isTransmog: true, slot: 'helm' },
@@ -27093,6 +27234,45 @@ class IdlescapeGameData {
                 healthChange: -75,
                 healthChangeDelay: 2000,
             },
+        },
+        63: {
+            id: 63,
+            abilityName: 'Quick Shot',
+            abilityImage: '/images/combat/ability_icons/tripleshot.png',
+            description: 'Fire off a quick shot.',
+            damageType: 'Range',
+            useRangedAmmo: true,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
+            baseSpeedCoeff: 0.8,
+            baseMinimumDamageCoeff: 0.95,
+            baseMaximumDamageCoeff: 0.95,
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 1,
+        },
+        64: {
+            id: 64,
+            abilityName: 'Swift Shot',
+            abilityImage: '/images/combat/ability_icons/tripleshot.png',
+            description: 'Fire off a shot enhanced by the wind!',
+            damageType: 'Range',
+            useRangedAmmo: true,
+
+            damageScaling: [
+                { affinity: 'Range', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.33 },
+            ],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
+            baseSpeedCoeff: 0.66,
+            baseMinimumDamageCoeff: 0.9,
+            baseMaximumDamageCoeff: 0.9,
+            baseAccuracyCoeff: 0.95,
+
+            maxTargets: 1,
         },
     };
     gameShopItems = {
