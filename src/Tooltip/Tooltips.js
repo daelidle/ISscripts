@@ -112,6 +112,10 @@ class Tooltip {
         return (statValue > 0 ? '+' : '') + statValue.toFixed(2).replace('.00', '');
     }
 
+    static formatMultiplierToPercentage(statValue) {
+        return (statValue > 0 ? '+' : '') + this.formatMultiplierStat(statValue) + '%';
+    }
+
     static formatMultiplierStat(statValue) {
         return (statValue * 100).toFixed(2).replace('.00', '');
     }

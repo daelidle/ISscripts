@@ -120,12 +120,12 @@ class EquipmentTooltip {
             if (type.includes(this.affinityLabels.OffensiveAffinity) || type.includes(this.affinityLabels.DefensiveAffinity)){
                 if (bonus !== 1) {
                     const htmlClass = bonus > 1 ? 'dwt-stat-positive' : 'dwt-stat-negative';
-                    htmlStats += `<span class="${htmlClass}">${bonus.toFixed(2)}x ${type}</span>`;
+                    htmlStats += `<span class="${htmlClass}">${Tooltip.formatMultiplierToPercentage(bonus - 1)} ${type}</span>`;
                 }
             }
-            else if (type === 'Offensive Crit' || type === 'Crit Avoidance') htmlStats += `<span>${(bonus * 100).toFixed(2).replace('.00', '')}% ${type}</span>`;
-            else if (type === 'Crit Mult') htmlStats += `<span">${bonus.toFixed(2)}x ${type}</span>`;
-            else if (type === 'Crit Reduction') htmlStats += `<span">${((1 - bonus) * 100).toFixed(2)}% ${type}</span>`;
+            else if (type === 'Offensive Crit' || type === 'Crit Avoidance') htmlStats += `<span>${Tooltip.formatMultiplierToPercentage(bonus)} ${type}</span>`;
+            else if (type === 'Crit Mult') htmlStats += `<span">${Tooltip.formatMultiplierToPercentage(bonus - 1)} ${type}</span>`;
+            else if (type === 'Crit Reduction') htmlStats += `<span">${Tooltip.formatMultiplierToPercentage(1 - bonus)} ${type}</span>`;
             else htmlStats += `<span>${Tooltip.formatStat(bonus)} ${type}</span>`;
         }
         return htmlStats;
