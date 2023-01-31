@@ -61,7 +61,7 @@ class DaelIS {
                 window.IdlescapeListener.messages.addEventListener("message", message => this.onMessage(message));
                 window.IdlescapeListener.messages.addEventListener("connected", () => this.onConnect());
                 window.IdlescapeListener.messages.addEventListener("disconnected", () => this.onDisconnect());
-                console.log('DaelIS: Attached to IdlescapeSocketListener');
+                console.log('[DaelIS][INFO]: Attached to IdlescapeSocketListener');
             }
         }, 100);
     }

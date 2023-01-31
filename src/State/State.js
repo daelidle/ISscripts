@@ -30,7 +30,7 @@ class State {
         } else if (Array.isArray(messagePortion)) {
             this._updateState(messagePortion, message.data['value']);
         } else {
-            console.log(`Unknown Update Player message: ${message.data}`);
+            console.log(`[DaelIS][WARNING]: Unknown Update Player message: ${message.data}`);
         }
     }
 

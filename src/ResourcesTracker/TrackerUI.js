@@ -55,7 +55,7 @@ class TrackerUI {
             item.stackSize = stack;
             let itemResource = this._gameData.items[item.itemID];
             if (itemResource === undefined){
-                console.log(`can't find item with id ${item.itemID} on the gameData`);
+                console.log(`[DaelIS][WARNING]: can't find item with id ${item.itemID} on the gameData`);
                 continue;
             }
             let stacksColourClass = stack < 0 ? 'lightred-text' : '';

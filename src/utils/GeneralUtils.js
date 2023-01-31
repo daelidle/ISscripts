@@ -94,7 +94,7 @@ async function getJSON (url) {
         response = await fetch(url);
         if(response.ok) return await response.json();
     } catch(error) {
-        // console.log("Api returned an invalid JSON: "+ response);
+        // console.log("[DaelIS][WARNING]: Api returned an invalid JSON: "+ response);
     }
     return {};
 }

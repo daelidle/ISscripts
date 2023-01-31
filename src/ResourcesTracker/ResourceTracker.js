@@ -44,7 +44,7 @@ class ResourceTracker {
                     this.config.resources[itemSignature].initialTackleBox = item['stackSize'];
                     break;
                 default:
-                    console.log(`New Inventory Type! ${inventoryType}`);
+                    console.log(`[DaelIS][WARNING]: New Inventory Type! ${inventoryType}`);
             }
         }
     }
@@ -76,7 +76,7 @@ class ResourceTracker {
                     this.config.resources[itemSignature].currentTackleBox = item['stackSize'];
                     break;
                 default:
-                    console.log(`New Inventory Type! ${inventoryType}`);
+                    console.log(`[DaelIS][WARNING]: New Inventory Type! ${inventoryType}`);
             }
         });
     }

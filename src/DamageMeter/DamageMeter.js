@@ -54,6 +54,11 @@ class DamageMeter {
 
     _parseCombatHit(combatHit) {
         if (!this.combat.inCombat()) return;
+        if (this.combat.group.length === 0) {
+            console.log("[DaelIS][WARNING]: Received a combat:splotch message before group info.");
+            return;
+        }
+
         let damageType = combatHit.damageType;
         let attackerId = combatHit.attackerID;
         let defenderId = combatHit.id;
@@ -68,7 +73,7 @@ class DamageMeter {
                 if (!isSourceMonster) this.combat.addHealing(attackerId, damage);
                 break;
             default:
-                if (!DamageUtils.allCombatSplotchDamageTypes.includes(damageType)) console.log(`New type of Hit ${damageType}`);
+                if (!DamageUtils.allCombatSplotchDamageTypes.includes(damageType)) console.log(`[DaelIS][WARNING]: New type of Hit ${damageType}`);
                 if (!isSourceMonster) this.combat.addDamageDealt(attackerId, defenderId, damage, damageType);
                 else this.combat.addDamageReceived(defenderId, damage, damageType);
                 break;
