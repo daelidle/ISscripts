@@ -81,7 +81,7 @@ class DamageMeter {
             // Complete player message sent on login
             const inCombat = this._parseCombatStatusFromActionQueue(playerInfo.value.actionQueue);
             this.combat._changeCombatStatus(inCombat);
-            this.combat._resetCombat();
+            this.combat._startCombat();
         } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("actionQueue")) {
             // New Action message
             const combatStatus = this._parseCombatStatusFromActionQueue(playerInfo['value']);

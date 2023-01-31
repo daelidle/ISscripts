@@ -150,7 +150,7 @@ class Combat {
         if (this.onCombat === combatStatus) return;
         this.onCombat = combatStatus;
         if (this.onCombat) {
-            this._resetCombat();
+            this._startCombat();
         } else {
             this.combatFinishTimestamp = new Date();
             if (this.config.showActivitySummary){
@@ -196,9 +196,10 @@ class Combat {
         this.characterIdToName = {};
     }
 
-    _resetCombat(){
+    _startCombat(){
         this.combatStartTimestamp = new Date();
         this.spawnedMonsters = {};
+        Object.keys(this.group).forEach(playerName => this.group[playerName] = new Player(playerName));
     }
 
 }
