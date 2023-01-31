@@ -115,12 +115,12 @@ class Combat {
             playerStats.maxHeal = player.maxHeal;
             playerStats.contributionDealt = (totalDealt === 0) ? 0 : Math.round((player.damageDealt / totalDealt) * 100);
             playerStats.contributionEffectiveDealt = (totalEffectiveDealt === 0) ? 0 : Math.round((player.effectiveDamageDealt / totalEffectiveDealt) * 100);
-            playerStats.contributionReceived = (totalReceived === 0) ? 0 :  Math.round((player.damageReceived / totalReceived) * 100);
+            playerStats.contributionReceived = (totalReceived === 0) ? 0 : Math.round((player.damageReceived / totalReceived) * 100);
             playerStats.contributionHeal =  (totalHeal === 0) ? 0 : Math.round((player.healing / totalHeal) * 100);
-            playerStats.dps = (player.damageDealt / combatDurationSeconds).toFixed(2);
-            playerStats.edps = (player.effectiveDamageDealt / combatDurationSeconds).toFixed(2);
-            playerStats.aps = (player.damageReceived / combatDurationSeconds).toFixed(2);
-            playerStats.hps = (player.healing / combatDurationSeconds).toFixed(2);
+            playerStats.dps = (combatDurationSeconds === 0) ? 0 : (player.damageDealt / combatDurationSeconds).toFixed(2);
+            playerStats.edps = (combatDurationSeconds === 0) ? 0 : (player.effectiveDamageDealt / combatDurationSeconds).toFixed(2);
+            playerStats.aps = (combatDurationSeconds === 0) ? 0 : (player.damageReceived / combatDurationSeconds).toFixed(2);
+            playerStats.hps = (combatDurationSeconds === 0) ? 0 : (player.healing / combatDurationSeconds).toFixed(2);
             combatStats[player.name] = playerStats;
         });
 
@@ -200,6 +200,7 @@ class Combat {
         this.combatStartTimestamp = new Date();
         this.spawnedMonsters = {};
         Object.keys(this.group).forEach(playerName => this.group[playerName] = new Player(playerName));
+        window.damageMeter._updateMeter();
     }
 
 }
