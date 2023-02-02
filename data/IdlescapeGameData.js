@@ -498,7 +498,7 @@ class IdlescapeGameData {
         36: {
             id: 36,
             name: 'Root Digging',
-            strengthPerLevel: 10,
+            strengthPerLevel: 0.2,
             combat: false,
             scrollID: 1636,
             // client
@@ -1261,6 +1261,17 @@ class IdlescapeGameData {
                 )}% or by 20, whichever is higher.`,
             // endclient
         }, // increased agility
+        8018: {
+            id: 8018,
+            name: 'Tank Taunting',
+            strengthPerLevel: 1,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/reinforcement_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Doubles your threat and gives you +100 protection and resistance.`,
+            // endclient
+        }, // threat
 
         // DOT stuff
         9000: {
@@ -6965,11 +6976,11 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
-                    Piercing: 1.08,
-                    Blunt: 47 / 50,
-                    Slashing: 1.08,
+                    Magic: 1.15,
+                    Range: 1.15,
+                    Piercing: 1.1,
+                    Blunt: 1.05,
+                    Slashing: 1.1,
                 },
                 armorBonus: { protection: 3, resistance: -1, agility: -1, stamina: 3.75 },
                 augmentationBonus: [
@@ -7009,11 +7020,11 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
-                    Piercing: 1.08,
-                    Blunt: 47 / 50,
-                    Slashing: 1.08,
+                    Magic: 1.15,
+                    Range: 1.15,
+                    Piercing: 1.1,
+                    Blunt: 1.05,
+                    Slashing: 1.1,
                 },
                 armorBonus: { protection: 5, resistance: -1, agility: -1, stamina: 4 },
                 augmentationBonus: [
@@ -7052,11 +7063,11 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
-                    Piercing: 1.08,
-                    Blunt: 47 / 50,
-                    Slashing: 1.08,
+                    Magic: 1.15,
+                    Range: 1.15,
+                    Piercing: 1.1,
+                    Blunt: 1.05,
+                    Slashing: 1.1,
                 },
                 armorBonus: { protection: 13, resistance: -1, agility: -1, stamina: 5 },
                 augmentationBonus: [
@@ -7097,11 +7108,11 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
-                    Piercing: 1.08,
-                    Blunt: 47 / 50,
-                    Slashing: 1.08,
+                    Magic: 1.15,
+                    Range: 1.15,
+                    Piercing: 1.1,
+                    Blunt: 1.05,
+                    Slashing: 1.1,
                 },
                 armorBonus: { protection: 22, resistance: -1, agility: -1, stamina: 6 },
                 augmentationBonus: [
@@ -7141,11 +7152,11 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
-                    Piercing: 1.08,
-                    Blunt: 47 / 50,
-                    Slashing: 1.08,
+                    Magic: 1.15,
+                    Range: 1.15,
+                    Piercing: 1.1,
+                    Blunt: 1.05,
+                    Slashing: 1.1,
                 },
                 armorBonus: { protection: 32, resistance: -1, agility: -1, stamina: 7 },
                 augmentationBonus: [
@@ -7186,11 +7197,11 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
-                    Piercing: 1.08,
-                    Blunt: 47 / 50,
-                    Slashing: 1.08,
+                    Magic: 1.15,
+                    Range: 1.15,
+                    Piercing: 1.1,
+                    Blunt: 1.05,
+                    Slashing: 1.1,
                 },
                 armorBonus: { protection: 43, resistance: -1, agility: -1, stamina: 8 },
                 augmentationBonus: [
@@ -7231,11 +7242,11 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
-                    Piercing: 1.08,
-                    Blunt: 47 / 50,
-                    Slashing: 1.08,
+                    Magic: 1.15,
+                    Range: 1.15,
+                    Piercing: 1.1,
+                    Blunt: 1.05,
+                    Slashing: 1.1,
                 },
                 armorBonus: { protection: 55, resistance: -1, agility: -1, stamina: 9 },
                 augmentationBonus: [
@@ -7277,8 +7288,8 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
+                    Magic: 1.15,
+                    Range: 1.15,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7322,8 +7333,8 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
+                    Magic: 1.15,
+                    Range: 1.15,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7365,8 +7376,8 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
+                    Magic: 1.15,
+                    Range: 1.15,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7411,8 +7422,8 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
+                    Magic: 1.15,
+                    Range: 1.15,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7456,8 +7467,8 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
+                    Magic: 1.15,
+                    Range: 1.15,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7502,8 +7513,8 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
+                    Magic: 1.15,
+                    Range: 1.15,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7548,8 +7559,8 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
-                    Magic: 1,
-                    Range: 1.05,
+                    Magic: 1.15,
+                    Range: 1.15,
                     Piercing: 1.13,
                     Blunt: 1.33,
                     Slashing: 1.13,
@@ -7635,7 +7646,7 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
-                    Magic: 1.5,
+                    Magic: 1.6,
                     Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
@@ -7647,7 +7658,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
-                grantedAbility: [54],
+                grantedAbility: [54, 65],
             },
             requiredResources: [{ 201: 100 }],
         },
@@ -7718,7 +7729,7 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
-                    Magic: 1.5,
+                    Magic: 1.6,
                     Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
@@ -7730,7 +7741,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
-                grantedAbility: [54],
+                grantedAbility: [54, 65],
             },
             requiredResources: [{ 202: 150 }],
         },
@@ -7800,7 +7811,7 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
-                    Magic: 1.5,
+                    Magic: 1.6,
                     Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
@@ -7812,7 +7823,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
-                grantedAbility: [54],
+                grantedAbility: [54, 65],
             },
             requiredResources: [{ 205: 2000 }],
             rarity: 'uncommon',
@@ -7884,7 +7895,7 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
-                    Magic: 1.5,
+                    Magic: 1.6,
                     Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
@@ -7896,7 +7907,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
-                grantedAbility: [54],
+                grantedAbility: [54, 65],
             },
             requiredResources: [{ 204: 230 }],
         },
@@ -7967,7 +7978,7 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
-                    Magic: 1.5,
+                    Magic: 1.6,
                     Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
@@ -7979,7 +7990,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
-                grantedAbility: [54],
+                grantedAbility: [54, 65],
             },
             requiredResources: [{ 205: 320 }],
             rarity: 'uncommon',
@@ -8052,7 +8063,7 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
-                    Magic: 1.5,
+                    Magic: 1.6,
                     Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
@@ -8064,7 +8075,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
-                grantedAbility: [54],
+                grantedAbility: [54, 65],
             },
             requiredResources: [{ 206: 405 }],
             rarity: 'uncommon',
@@ -8137,7 +8148,7 @@ class IdlescapeGameData {
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
-                    Magic: 1.5,
+                    Magic: 1.6,
                     Range: 1.75,
                     Piercing: 1.13,
                     Blunt: 47 / 50,
@@ -8149,7 +8160,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
                 itemSet: [10009],
-                grantedAbility: [54],
+                grantedAbility: [54, 65],
             },
             requiredResources: [{ 207: 500, 800: 100 }],
             rarity: 'rare',
@@ -13419,16 +13430,16 @@ class IdlescapeGameData {
                 grantedAbility: [19],
                 slot: 'helm',
                 defensiveCritical: { chance: 0.25, damageMultiplier: 0.75 },
-                offensiveDamageAffinity: { Fire: 0.9, Ice: 1.33 },
+                offensiveDamageAffinity: { Melee: 0.95, Range: 0.95, Magic: 0.95, Fire: 0.7, Ice: 1.33 },
                 defensiveDamageAffinity: {
-                    Fire: 1.05,
-                    Ice: 1.1,
-                    Melee: 1.15,
-                    Piercing: 1.02,
-                    Slashing: 1.02,
-                    Blunt: 1.02,
-                    Magic: 97 / 100,
-                    Range: 1.08,
+                    Fire: 1.1,
+                    Ice: 1.33,
+                    Melee: 1.33,
+                    Piercing: 1.33,
+                    Slashing: 1.33,
+                    Blunt: 1.33,
+                    Magic: 1.33,
+                    Range: 1.33,
                 },
                 weaponBonus: { strength: 0, intellect: -24, dexterity: -24 },
                 armorBonus: { protection: 120, resistance: 64, agility: -24, stamina: 32 },
@@ -14818,7 +14829,7 @@ class IdlescapeGameData {
         1556: {
             name: 'Bestial Shawl',
             id: 1556,
-            enchantmentTier: 0,
+            enchantmentTier: 2,
             augmentationCost: { 4004: 30, 4012: 30, 4008: 10, 4005: 10 },
             value: 2620000,
             tradeable: true,
@@ -15133,7 +15144,7 @@ class IdlescapeGameData {
             name: 'Bestial Dagger',
             id: 1566,
             enchantmentTier: 5,
-            augmentationCost: { 1: 1 },
+            augmentationCost: { 4001: 10, 4002: 10, 4009: 10 },
             value: 250000,
             tradeable: true,
             requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
@@ -15160,7 +15171,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1,
                     Piercing: 1.1,
-                    Slashing: 3 / 4,
+                    Slashing: 1.1,
                     Blunt: 0.1,
                     Magic: 33 / 100,
                     Range: 33 / 100,
@@ -15184,7 +15195,7 @@ class IdlescapeGameData {
             name: 'Empowered Bestial Dagger',
             id: 1567,
             enchantmentTier: 7,
-            augmentationCost: { 1: 1 },
+            augmentationCost: { 4001: 20, 4002: 20, 4009: 20 },
             value: 2500000,
             tradeable: true,
             requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
@@ -15211,7 +15222,7 @@ class IdlescapeGameData {
                 offensiveDamageAffinity: {
                     Melee: 1,
                     Piercing: 1.1,
-                    Slashing: 3 / 4,
+                    Slashing: 1.1,
                     Blunt: 0.1,
                     Magic: 33 / 100,
                     Range: 33 / 100,
@@ -15232,7 +15243,7 @@ class IdlescapeGameData {
             name: 'Bestial Defender',
             id: 1568,
             enchantmentTier: 5,
-            augmentationCost: { 1: 1 },
+            augmentationCost: { 4001: 10, 4002: 10, 4009: 10 },
             value: 250000,
             tradeable: true,
             requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
@@ -15258,11 +15269,8 @@ class IdlescapeGameData {
                 },
                 offensiveDamageAffinity: {
                     Melee: 1,
-                    Piercing: 1.1,
-                    Slashing: 3 / 4,
-                    Blunt: 0.1,
-                    Magic: 33 / 100,
-                    Range: 33 / 100,
+                    Piercing: 1.05,
+                    Slashing: 1.05,
                 },
                 weaponBonus: { strength: 11, intellect: 0, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 0, agility: 13, stamina: 0 },
@@ -15281,7 +15289,7 @@ class IdlescapeGameData {
             name: 'Empowered Bestial Defender',
             id: 1569,
             enchantmentTier: 7,
-            augmentationCost: { 1: 1 },
+            augmentationCost: { 4001: 20, 4002: 20, 4009: 20 },
             value: 2500000,
             tradeable: true,
             requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
@@ -15307,11 +15315,8 @@ class IdlescapeGameData {
                 },
                 offensiveDamageAffinity: {
                     Melee: 1,
-                    Piercing: 1.1,
-                    Slashing: 3 / 4,
-                    Blunt: 0.1,
-                    Magic: 33 / 100,
-                    Range: 33 / 100,
+                    Piercing: 1.05,
+                    Slashing: 1.05,
                 },
                 weaponBonus: { strength: 16, intellect: 0, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 0, agility: 18, stamina: 0 },
@@ -15773,7 +15778,7 @@ class IdlescapeGameData {
             activeMessage: 'Making Scrolls of Embers',
             enchant: true,
             enchantmentID: 1,
-            categories: ['hatchet'],
+            categories: ['hatchet', 'foragingset'],
             time: 15000,
             id: 1601,
             level: 61,
@@ -15801,7 +15806,7 @@ class IdlescapeGameData {
             activeMessage: 'Making Scrolls of the Prospector',
             enchant: true,
             enchantmentID: 2,
-            categories: ['pickaxe'],
+            categories: ['pickaxe', 'miningset'],
             time: 15000,
             id: 1602,
             level: 25,
@@ -15884,7 +15889,7 @@ class IdlescapeGameData {
             activeMessage: 'Making Scrolls of Superheating',
             enchant: true,
             enchantmentID: 5,
-            categories: ['pickaxe'],
+            categories: ['pickaxe', 'miningset'],
             time: 15000,
             id: 1605,
             level: 76,
@@ -16412,7 +16417,7 @@ class IdlescapeGameData {
             activeMessage: 'Making scrolls of cooking',
             enchant: true,
             enchantmentID: 24,
-            categories: ['gloves', 'boots'],
+            categories: ['gloves', 'boots', 'ladle'],
             time: 15000,
             id: 1624,
             level: 40,
@@ -16687,7 +16692,7 @@ class IdlescapeGameData {
             activeMessage: 'Making scrolls of destructive testing',
             enchant: true,
             enchantmentID: 34,
-            categories: ['pickaxe'],
+            categories: ['pickaxe', 'miningset'],
             time: 15000,
             id: 1634,
             level: 16,
@@ -16714,7 +16719,7 @@ class IdlescapeGameData {
             activeMessage: 'Making scrolls of the nature',
             enchant: true,
             enchantmentID: 35,
-            categories: ['hatchet'],
+            categories: ['hatchet', 'foragingset'],
             time: 15000,
             id: 1635,
             level: 19,
@@ -16741,7 +16746,7 @@ class IdlescapeGameData {
             activeMessage: 'Making scrolls of root digging',
             enchant: true,
             enchantmentID: 36,
-            categories: ['hatchet'],
+            categories: ['hatchet', 'foragingset'],
             time: 15000,
             id: 1636,
             level: 22,
@@ -17146,7 +17151,7 @@ class IdlescapeGameData {
             activeMessage: 'Making scrolls of herbalist',
             enchant: true,
             enchantmentID: 55,
-            categories: ['hatchet'],
+            categories: ['hatchet', 'foragingset'],
             time: 15000,
             id: 1651,
             level: 42,
@@ -17173,7 +17178,7 @@ class IdlescapeGameData {
             activeMessage: 'Making scrolls of seed harvesting',
             enchant: true,
             enchantmentID: 56,
-            categories: ['hatchet'],
+            categories: ['hatchet', 'foragingset'],
             time: 15000,
             id: 1652,
             level: 30,
@@ -17311,7 +17316,7 @@ class IdlescapeGameData {
             activeMessage: 'Making scrolls of archaeology',
             enchant: true,
             enchantmentID: 67,
-            categories: ['tacklebox', 'fishingset', 'pickaxe', 'hatchet'],
+            categories: ['tacklebox', 'fishingset', 'pickaxe', 'hatchet', 'miningset', 'foragingset'],
             time: 15000,
             id: 1657,
             level: 41,
@@ -17332,6 +17337,60 @@ class IdlescapeGameData {
             },
             tags: ['enchanting'],
             requiredResources: [{ 111: 500, 511: 50, 513: 50, 517: 50, 1600: 1 }],
+        },
+        1658: {
+            name: 'Scroll of Endless Ammo',
+            activeMessage: 'Making scrolls of endless ammo',
+            enchant: true,
+            enchantmentID: 60,
+            categories: ['cape', 'weapon'],
+            time: 15000,
+            id: 1658,
+            level: 29,
+            experience: 1650,
+            baseSuccessChance: 0.4,
+            tradeable: true,
+            value: 2000,
+
+
+
+            itemImage: '/images/enchanting/scroll_of_chances_v2.png',
+            enchantName: 'endlessAmmo',
+            skillIcon: '/images/enchanting/enchanting_logo.png',
+            class: 'enchanted-scroll',
+            actionButton: 'Craft',
+            getChance: (resource, playerLevel) => {
+                return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
+            },
+            tags: ['enchanting'],
+            requiredResources: [{ 111: 400, 518: 40, 516: 40, 517: 40, 1600: 1 }],
+        },
+        1659: {
+            name: 'Scroll of Rune Reserves',
+            activeMessage: 'Making scrolls of rune reserves',
+            enchant: true,
+            enchantmentID: 61,
+            categories: ['cape', 'weapon'],
+            time: 15000,
+            id: 1659,
+            level: 35,
+            experience: 2100,
+            baseSuccessChance: 0.4,
+            tradeable: true,
+            value: 2000,
+
+
+
+            itemImage: '/images/enchanting/scroll_of_chances_v2.png',
+            enchantName: 'runeReserves',
+            skillIcon: '/images/enchanting/enchanting_logo.png',
+            class: 'enchanted-scroll',
+            actionButton: 'Craft',
+            getChance: (resource, playerLevel) => {
+                return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
+            },
+            tags: ['enchanting'],
+            requiredResources: [{ 111: 500, 518: 50, 516: 50, 513: 50, 1600: 1 }],
         },
         2000: {
             name: 'Raw Chicken',
@@ -19887,9 +19946,9 @@ class IdlescapeGameData {
             itemImage: '/images/farming/totem/water_totem_mj_v2.png',
             plantImage: '/images/farming/totem/water_totem_mj_v2.png',
             craftingDescription:
-                'A totem that periodically summons rainstorms. Has up to a 10% chance every farming tick to advance every plot by one growth stage. Its effect grows as it ages. Multiple totems will not increase its effect.',
+                'A totem that periodically summons rainstorms. Has up to a 10% chance every farming tick to advance every plot by one growth stage. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             extraTooltipInfo:
-                'A totem that periodically summons rainstorms. Has up to a 10% chance every farming tick to advance every plot by one growth stage. Its effect grows as it ages. Multiple totems will not increase its effect.',
+                'A totem that periodically summons rainstorms. Has up to a 10% chance every farming tick to advance every plot by one growth stage. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             tags: ['seed', 'farming', 'crafting'],
             rarity: 'rare',
         },
@@ -19915,9 +19974,9 @@ class IdlescapeGameData {
             itemImage: '/images/farming/totem/nature_orb.png',
             plantImage: '/images/farming/totem/nature_orb.png',
             craftingDescription:
-                'A totem that imbues your farmland with nature energy. Has up to a 10% chance to make any automatic replant cost nothing. Its effect grows as it ages. Multiple totems will not increase its effect.',
+                'A totem that imbues your farmland with nature energy. Has up to a 10% chance to make any automatic replant cost nothing. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             extraTooltipInfo:
-                'A totem that imbues your farmland with nature energy. Has up to a 10% chance to make any automatic replant cost nothing. Its effect grows as it ages. Multiple totems will not increase its effect.',
+                'A totem that imbues your farmland with nature energy. Has up to a 10% chance to make any automatic replant cost nothing. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             tags: ['seed', 'farming', 'crafting'],
             rarity: 'rare',
         },
@@ -19943,9 +20002,9 @@ class IdlescapeGameData {
             itemImage: '/images/farming/totem/earth_orb.png',
             plantImage: '/images/farming/totem/earth_orb.png',
             craftingDescription:
-                "A totem that enhances your farmland's soil. Has up to a 10% chance to increase yields by up to 50% based on totem age. Its effect grows as it ages. Multiple totems will not increase its effect.",
+                "A totem that enhances your farmland's soil. Has up to a 10% chance to increase yields by up to 50% based on totem age. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.",
             extraTooltipInfo:
-                "A totem that enhances your farmland's soil. Has up to a 10% chance to increase yields by up to 50% based on totem age. Its effect grows as it ages. Multiple totems will not increase its effect.",
+                "A totem that enhances your farmland's soil. Has up to a 10% chance to increase yields by up to 50% based on totem age. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.",
             tags: ['seed', 'farming', 'crafting'],
             rarity: 'rare',
         },
@@ -19971,9 +20030,9 @@ class IdlescapeGameData {
             itemImage: '/images/farming/totem/condensed_orb.png',
             plantImage: '/images/farming/totem/condensed_orb.png',
             craftingDescription:
-                'A totem that coalesces various energies into a single form. Mysteriously enhances your farm based on the variety of things on your plots, having plants with varying plot requirements and times to grow increases the power of this totem. Multiple totems will not increase its effect.',
+                'A totem that coalesces various energies into a single form. Enhances most aspects of your farm based on the variety of things on your plots, having plants with varying plot requirements and times to grow increases the power of this totem. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             extraTooltipInfo:
-                'A totem that coalesces various energies into a single form. Mysteriously enhances your farm based on the variety of things on your plots, having plants with varying plot requirements and times to grow increases the power of this totem. Its effect grows as it ages. Multiple totems will not increase its effect.',
+                'A totem that coalesces various energies into a single form. Enhances most aspects of your farm based on the variety of things on your plots, having plants with varying plot requirements and times to grow increases the power of this totem. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             tags: ['seed', 'farming', 'crafting'],
             rarity: 'rare',
         },
@@ -22602,6 +22661,7 @@ class IdlescapeGameData {
             relatedSkill: 'mining',
             craftingLevel: 60,
             craftingExperience: 9001,
+            enchantmentOverrideSlot: 'miningset',
 
 
 
@@ -22633,6 +22693,7 @@ class IdlescapeGameData {
             relatedSkill: 'mining',
             craftingLevel: 60,
             craftingExperience: 9001,
+            enchantmentOverrideSlot: 'miningset',
 
 
 
@@ -22664,6 +22725,7 @@ class IdlescapeGameData {
             relatedSkill: 'mining',
             craftingLevel: 60,
             craftingExperience: 9001,
+            enchantmentOverrideSlot: 'miningset',
 
 
 
@@ -22696,6 +22758,7 @@ class IdlescapeGameData {
             relatedSkill: 'foraging',
             craftingLevel: 60,
             craftingExperience: 9001,
+            enchantmentOverrideSlot: 'foragingset',
 
 
 
@@ -22727,6 +22790,7 @@ class IdlescapeGameData {
             relatedSkill: 'foraging',
             craftingLevel: 60,
             craftingExperience: 9001,
+            enchantmentOverrideSlot: 'foragingset',
 
 
 
@@ -22758,6 +22822,7 @@ class IdlescapeGameData {
             relatedSkill: 'foraging',
             craftingLevel: 60,
             craftingExperience: 9001,
+            enchantmentOverrideSlot: 'foragingset',
 
 
 
@@ -27271,6 +27336,34 @@ class IdlescapeGameData {
             baseMinimumDamageCoeff: 0.9,
             baseMaximumDamageCoeff: 0.9,
             baseAccuracyCoeff: 0.95,
+
+            maxTargets: 1,
+        },
+        65: {
+            id: 65,
+            abilityName: 'Tank Taunt',
+            abilityImage: '/images/combat/ability_icons/taunt.png',
+            description: 'An enhanced taunt. Significantly increases your threat and armor.',
+            damageType: 'Melee',
+            cooldown: 5000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
+            baseSpeedCoeff: 0.1,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8018,
+                enchantmentStrength: 1,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 16,
+            },
 
             maxTargets: 1,
         },
