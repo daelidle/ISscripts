@@ -599,10 +599,10 @@ class IdlescapeGameData {
         44: {
             id: 44,
             name: 'Fortitude',
-            strengthPerLevel: 8,
+            strengthPerLevel: 10,
             scrollID: 1643,
             combat: true,
-            statBuffs: [{ path: 'armor.stamina', additivePerLevel: 8, multiplicativePerLevel: 0 }],
+            statBuffs: [{ path: 'armor.stamina', additivePerLevel: 10, multiplicativePerLevel: 0 }],
             // client
             buffIcon: '/images/magic/buffs/overhealing_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
@@ -961,6 +961,20 @@ class IdlescapeGameData {
                 `Converts ${Math.round(enchantmentStrength * strengthPerLevel * 100)}% of damage into ice damage.`,
             // endclient
         }, // Aspect of Ice, swaps auto attack to ice
+        71: {
+            id: 71,
+            name: 'Soul Wisdom',
+            strengthPerLevel: 0.03,
+            combat: false,
+            scrollID: 1660,
+            // client
+            buffIcon: '/images/magic/buffs/embers_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `ONLY APPLIES TO THE ITEM THIS ENCHANTMENT IS ON. Increases soulbound item XP gain by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}%.`,
+            // endclient
+        }, // Bonus XP for soulbound items
 
         // mostly monster effects
         1000: {
@@ -1465,7 +1479,10 @@ class IdlescapeGameData {
                 { count: 4, strength: 3 },
             ],
             combat: false,
-            statBuffs: [{ path: 'armor.protection', additivePerLevel: 0, multiplicativePerLevel: 0.1 }],
+            statBuffs: [
+                { path: 'armor.protection', additivePerLevel: 0, multiplicativePerLevel: 0.1 },
+                { path: 'armor.stamina', additivePerLevel: 0, multiplicativePerLevel: 0.1 },
+            ],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
@@ -1557,6 +1574,25 @@ class IdlescapeGameData {
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Increases stamina by ${(enchantmentStrength * strengthPerLevel * 100).toFixed(1)}%.`,
+            // endclient
+        },
+        10016: {
+            id: 10016,
+            name: 'Nigh-Invincibility',
+            strengthPerLevel: 0.33,
+            setRequirements: [{ count: 6, strength: 1 }],
+            combat: false,
+            statBuffs: [
+                { path: 'armor.stamina', additivePerLevel: 0, multiplicativePerLevel: 0.25 },
+                { path: 'armor.resistance', additivePerLevel: 0, multiplicativePerLevel: 0.25 },
+                { path: 'armor.protection', additivePerLevel: 0, multiplicativePerLevel: 0.25 },
+            ],
+            // client
+            buffIcon: '/images/magic/buffs/fishing.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases protection, resistance, and stamina by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}%.`,
             // endclient
         },
     };
@@ -6987,7 +7023,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 201: 40 }],
         },
@@ -7031,7 +7067,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 202: 75 }],
         },
@@ -7074,7 +7110,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 204: 200 }],
             rarity: 'uncommon',
@@ -7119,7 +7155,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 204: 130 }],
         },
@@ -7163,7 +7199,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 205: 200 }],
             rarity: 'uncommon',
@@ -7208,7 +7244,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 206: 270 }],
             rarity: 'uncommon',
@@ -7253,7 +7289,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 207: 350, 800: 70 }],
             rarity: 'rare',
@@ -7299,7 +7335,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 201: 60 }],
         },
@@ -7344,7 +7380,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 202: 100 }],
         },
@@ -7387,7 +7423,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 201: 10 }],
             rarity: 'uncommon',
@@ -7433,7 +7469,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 204: 160 }],
         },
@@ -7478,7 +7514,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 205: 240 }],
             rarity: 'uncommon',
@@ -7524,7 +7560,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 206: 315 }],
             rarity: 'uncommon',
@@ -7570,7 +7606,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 207: 400, 800: 80 }],
             rarity: 'rare',
@@ -7613,7 +7649,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             rarity: 'epic',
         },
@@ -7657,7 +7693,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
                 grantedAbility: [54, 65],
             },
             requiredResources: [{ 201: 100 }],
@@ -7740,7 +7776,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
                 grantedAbility: [54, 65],
             },
             requiredResources: [{ 202: 150 }],
@@ -7822,7 +7858,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
                 grantedAbility: [54, 65],
             },
             requiredResources: [{ 205: 2000 }],
@@ -7906,7 +7942,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
                 grantedAbility: [54, 65],
             },
             requiredResources: [{ 204: 230 }],
@@ -7989,7 +8025,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
                 grantedAbility: [54, 65],
             },
             requiredResources: [{ 205: 320 }],
@@ -8074,7 +8110,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
                 grantedAbility: [54, 65],
             },
             requiredResources: [{ 206: 405 }],
@@ -8159,7 +8195,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.75 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
                 grantedAbility: [54, 65],
             },
             requiredResources: [{ 207: 500, 800: 100 }],
@@ -8243,7 +8279,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 201: 40 }],
         },
@@ -8286,7 +8322,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 202: 75 }],
         },
@@ -8327,7 +8363,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 0.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 201: 10 }],
             rarity: 'uncommon',
@@ -8371,7 +8407,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 204: 130 }],
         },
@@ -8414,7 +8450,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 205: 200 }],
             rarity: 'uncommon',
@@ -8458,7 +8494,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 206: 270 }],
             rarity: 'uncommon',
@@ -8502,7 +8538,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             requiredResources: [{ 207: 350, 800: 70 }],
             rarity: 'rare',
@@ -12408,6 +12444,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 0.1 },
                     { stat: 'weaponBonus.intellect', value: 0.1 },
                 ],
+                itemSet: [10011, 10013],
             },
         },
         1235: {
@@ -12455,6 +12492,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 0.5 },
                     { stat: 'weaponBonus.intellect', value: 0.5 },
                 ],
+                itemSet: [10011, 10013],
             },
         },
         1236: {
@@ -12502,6 +12540,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 1 },
                     { stat: 'weaponBonus.intellect', value: 1 },
                 ],
+                itemSet: [10011, 10013],
             },
         },
         1237: {
@@ -12549,6 +12588,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 1.5 },
                     { stat: 'weaponBonus.intellect', value: 1.5 },
                 ],
+                itemSet: [10011, 10013],
             },
         },
         1238: {
@@ -12596,6 +12636,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 2 },
                     { stat: 'weaponBonus.intellect', value: 2 },
                 ],
+                itemSet: [10011, 10013],
             },
         },
         1239: {
@@ -12643,6 +12684,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 2.5 },
                     { stat: 'weaponBonus.intellect', value: 2.5 },
                 ],
+                itemSet: [10011, 10013],
             },
             rarity: 'uncommon',
         },
@@ -12691,6 +12733,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Magic', value: 3 },
                     { stat: 'weaponBonus.intellect', value: 3 },
                 ],
+                itemSet: [10011, 10013],
             },
             rarity: 'rare',
         },
@@ -12718,7 +12761,7 @@ class IdlescapeGameData {
                 slot: 'shield',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
                 offensiveAccuracyAffinityRating: { Magic: 3 },
-                offensiveDamageAffinity: { Magic: 1.15 },
+                offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 3, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 4, agility: 0, stamina: 0 },
                 augmentationBonus: [
@@ -12757,9 +12800,9 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
                 offensiveAccuracyAffinityRating: { Magic: 4 },
-                offensiveDamageAffinity: { Magic: 1.15 },
+                offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 4, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 6, agility: 0, stamina: 0 },
                 augmentationBonus: [
@@ -12798,9 +12841,9 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
                 offensiveAccuracyAffinityRating: { Magic: 10 },
-                offensiveDamageAffinity: { Magic: 1.15 },
+                offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 7, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 15, agility: 0, stamina: 0 },
                 augmentationBonus: [
@@ -12839,9 +12882,9 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
                 offensiveAccuracyAffinityRating: { Magic: 17 },
-                offensiveDamageAffinity: { Magic: 1.15 },
+                offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 11, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 26, agility: 0, stamina: 0 },
                 augmentationBonus: [
@@ -12880,9 +12923,9 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
                 offensiveAccuracyAffinityRating: { Magic: 26 },
-                offensiveDamageAffinity: { Magic: 1.15 },
+                offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 14, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 38, agility: 0, stamina: 0 },
                 augmentationBonus: [
@@ -12921,9 +12964,9 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
                 offensiveAccuracyAffinityRating: { Magic: 35 },
-                offensiveDamageAffinity: { Magic: 1.15 },
+                offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 19, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 52, agility: 0, stamina: 0 },
                 augmentationBonus: [
@@ -12963,9 +13006,9 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
                 offensiveAccuracyAffinityRating: { Magic: 44 },
-                offensiveDamageAffinity: { Magic: 1.15 },
+                offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 23, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 66, agility: 0, stamina: 0 },
                 augmentationBonus: [
@@ -13448,7 +13491,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.5 },
                     { stat: 'armorBonus.stamina', value: 0.5 },
                 ],
-                itemSet: [10009, 10015],
+                itemSet: [10009, 10016, 10015],
             },
             rarity: 'epic',
         },
@@ -15023,7 +15066,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 0.5 },
                     { stat: 'armorBonus.agility', value: 0.5 },
                 ],
-                itemSet: [10009, 10012, 10014],
+                itemSet: [10009, 10016, 10012, 10014],
             },
             rarity: 'rare',
         },
@@ -15258,6 +15301,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 grantedAbility: [40],
                 slot: 'shield',
+                offensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
                 offensiveAccuracyAffinityRating: {
                     Melee: 35,
@@ -15304,6 +15348,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 grantedAbility: [40, 41],
                 slot: 'shield',
+                offensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
                 offensiveAccuracyAffinityRating: {
                     Melee: 52,
@@ -15578,7 +15623,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             rarity: 'epic',
         },
@@ -15604,7 +15649,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
                 ],
-                itemSet: [10009],
+                itemSet: [10009, 10016],
             },
             rarity: 'epic',
         },
@@ -16937,12 +16982,15 @@ class IdlescapeGameData {
             name: 'Scroll of Fortitude',
             activeMessage: 'Making scrolls of fortitude',
             enchant: true,
-            hidden: true,
             enchantmentID: 44,
             categories: ['shield', 'combat-talisman'],
             id: 1643,
-            tradeable: true,
             value: 250000,
+            time: 15000,
+            level: 68,
+            experience: 4400,
+            baseSuccessChance: 0.4,
+            tradeable: true,
 
 
 
@@ -16951,7 +16999,7 @@ class IdlescapeGameData {
             skillIcon: '/images/enchanting/enchanting_logo.png',
             class: 'enchanted-scroll',
             tags: ['enchanting'],
-            requiredResources: [{ 1: 1 }],
+            requiredResources: [{ 111: 800, 516: 70, 517: 70, 514: 70, 1600: 1 }],
             rarity: 'uncommon',
         },
         1644: {
@@ -17391,6 +17439,52 @@ class IdlescapeGameData {
             },
             tags: ['enchanting'],
             requiredResources: [{ 111: 500, 518: 50, 516: 50, 513: 50, 1600: 1 }],
+        },
+        1660: {
+            name: 'Scroll of the Soul Wisdom',
+            activeMessage: 'Making Scrolls of Soul Wisdom',
+            enchant: true,
+            enchantmentID: 71,
+            categories: [
+                'ring',
+                'necklace',
+                'weapon',
+                'shield',
+                'helm',
+                'body',
+                'legs',
+                'gloves',
+                'boots',
+                'cape',
+                'arrows',
+                'pickaxe',
+                'hatchet',
+                'hoe',
+                'tacklebox',
+                'tongs',
+                'tome',
+            ],
+            time: 15000,
+            id: 1660,
+            level: 48,
+            experience: 3000,
+            baseSuccessChance: 0.4,
+            tradeable: true,
+            value: 2000,
+
+
+
+            itemImage: '/images/enchanting/scroll_of_the_scholar.png',
+            enchantName: 'soulWisdom',
+            skillIcon: '/images/enchanting/enchanting_logo.png',
+            class: 'enchanted-scroll',
+            actionButton: 'Craft',
+            getChance: (resource, playerLevel) => {
+                return (Math.min(1, Math.max(0.6, 0.6 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
+            },
+            tags: ['enchanting'],
+            requiredResources: [{ 111: 600, 516: 60, 518: 60, 519: 60, 1600: 1 }],
+            rarity: 'epic',
         },
         2000: {
             name: 'Raw Chicken',
@@ -22321,6 +22415,7 @@ class IdlescapeGameData {
 
 
 
+            fishingBait: { level: 0, bait: 0, reel: 0, bonus: 0 },
             itemImage: 'images/fishing/bait/mysterious_bait_hook.png',
             extraTooltipInfo: 'Who knows what effects using this bait would have? Each and every one of them is unique!',
             class: 'fish',
