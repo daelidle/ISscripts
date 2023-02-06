@@ -187,8 +187,8 @@ class CustomTooltip {
         const itemTooltip = this.daelis.generateTooltip(item, compactVersion);
         if (this.pressedKeys.includes(CustomTooltip.compareEquipmentKey)){
             const itemResource = this.daelis.gameData.items[item.itemID];
-            if (itemResource !== undefined && itemResource.hasOwnProperty('slot')){
-                const equippedItemOnSameSlot = this.daelis.getPlayerState().equipment[itemResource.slot];
+            if (itemResource?.equipmentStats?.slot){
+                const equippedItemOnSameSlot = this.daelis.getPlayerState().equipment[itemResource.equipmentStats.slot];
                 if (equippedItemOnSameSlot !== undefined){
                     const equippedItemToCompareTooltip = this.daelis.generateTooltip(equippedItemOnSameSlot, true);
                     return `<div style="display: flex"><div>${itemTooltip}</div><div style="zoom: 80%;">${equippedItemToCompareTooltip}</div></div>`;
