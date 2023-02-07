@@ -31,11 +31,22 @@ class EquipmentTooltip {
     }
 
     getWeaponInfo(itemResource){
+        let weaponInfo = '';
         if (itemResource.equipmentStats.attackSpeed !== undefined) {
-            return `<span>${stringCapitalize(itemResource.equipmentStats?.style)} Damage</span>
-                <span>Speed ${itemResource.equipmentStats.attackSpeed.toFixed(2)}</span>`;
+            if (itemResource.equipmentStats?.offensiveDamageAffinity){
+                let weaponStyle = "";
+                let maxStyle = -1;
+                for (const [style, multiplier] of Object.entries(itemResource.equipmentStats.offensiveDamageAffinity)) {
+                    if (multiplier >= maxStyle) {
+                        weaponStyle = style;
+                        maxStyle = multiplier;
+                    }
+                }
+                weaponInfo += `<span>${stringCapitalize(weaponStyle)} Damage</span>`;
+            } else weaponInfo += `<span></span>`;
+            weaponInfo += `<span>Speed ${itemResource.equipmentStats.attackSpeed.toFixed(2)}</span>`;
         }
-        return '';
+        return weaponInfo;
     }
 
     getRequiredStatsLevel(item, itemResource, enchantments){
