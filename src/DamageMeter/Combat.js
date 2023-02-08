@@ -4,8 +4,10 @@ class Player {
     damageDealt = 0;
     effectiveDamageDealt = 0;
     damageReceived = 0;
-    damageDealtBreakdown = {Melee: 0}
-    damageReceivedBreakdown = {Melee: 0}
+    damageDealtBreakdown = {}
+    effectiveDamageDealtBreakdown = {}
+    damageReceivedBreakdown = {}
+    currentCastingAbility;
     healing = 0;
     maxHit = 0;
     maxReceived = 0;
@@ -24,6 +26,7 @@ class Combat {
     combatFinishTimestamp = null;
     characterIdToName = {};
     config;
+    UNKNOWN_ABILITY_ID = -100;
 
     constructor(config) {
         this.group = {};
@@ -52,19 +55,33 @@ class Combat {
 
     addDamageDealt(playerId, defender, damage, damageType) {
         const playerName = this._getPlayerName(playerId);
-        this.group[playerName].damageDealt += damage;
+        const player = this.group[playerName];
+        player.damageDealt += damage;
         // If we reconnect in the middle of a fight we may get a damage message before getting the monster info message
         const monsterHealth = this.spawnedMonsters[defender]?.monsterHealth ?? damage;
-        this.group[playerName].effectiveDamageDealt += Math.min(damage, monsterHealth);
-        this.group[playerName].damageDealtBreakdown[damageType] += damage;
-        if (damage > this.group[playerName].maxHit) this.group[playerName].maxHit = damage;
+        player.effectiveDamageDealt += Math.min(damage, monsterHealth);
+        if (damage > player.maxHit) player.maxHit = damage;
+
+        const ability = player.currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
+        if (!player.damageDealtBreakdown[ability]) {
+            player.damageDealtBreakdown[ability] = {damage: 0, count: 0};
+            player.effectiveDamageDealtBreakdown[ability] = {damage: 0, count: 0};
+        }
+        player.damageDealtBreakdown[ability].damage += damage;
+        player.damageDealtBreakdown[ability].count++;
+        player.effectiveDamageDealtBreakdown[ability].damage += Math.min(damage, monsterHealth);
+        player.effectiveDamageDealtBreakdown[ability].count++;
     }
 
-    addDamageReceived(playerId, damage, damageType) {
+    addDamageReceived(playerId, monsterId, damage, damageType) {
         const playerName = this._getPlayerName(playerId);
         this.group[playerName].damageReceived += damage;
-        this.group[playerName].damageReceivedBreakdown[damageType] += damage;
         if (damage > this.group[playerName].maxReceived) this.group[playerName].maxReceived = damage;
+
+        const ability = this.spawnedMonsters[monsterId].currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
+        if (!this.group[playerName].damageReceivedBreakdown[ability]) this.group[playerName].damageReceivedBreakdown[ability] = {damage: 0, count: 0};
+        this.group[playerName].damageReceivedBreakdown[ability].damage += damage;
+        this.group[playerName].damageReceivedBreakdown[ability].count++;
     }
 
     addHealing(playerId, healing) {
@@ -81,6 +98,15 @@ class Combat {
 
     monsterDead(monsterId){
         delete this.spawnedMonsters[monsterId];
+    }
+
+    updatePlayerAbility(playerId, abilityId){
+        const playerName = this._getPlayerName(playerId);
+        this.group[playerName].currentCastingAbility = abilityId;
+    }
+
+    updateMonsterAbility(monsterId, abilityId){
+        if (this.spawnedMonsters[monsterId]) this.spawnedMonsters[monsterId].currentCastingAbility = abilityId;
     }
 
     _getPlayerName(playerId) {

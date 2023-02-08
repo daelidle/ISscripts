@@ -32,6 +32,9 @@ class DamageMeter {
             case "combat:splotch":
                 this._parseCombatHit(message.data);
                 break;
+            case "combat:attack":
+                this._parseCombatAttack(message.data);
+                break;
             case "combat:spawnMonster":
                 this.combat.updateMonster(message.data);
                 break;
@@ -75,10 +78,24 @@ class DamageMeter {
             default:
                 if (!DamageUtils.allCombatSplotchDamageTypes.includes(damageType)) console.log(`[DaelIS][WARNING]: New type of Hit ${damageType}`);
                 if (!isSourceMonster) this.combat.addDamageDealt(attackerId, defenderId, damage, damageType);
-                else this.combat.addDamageReceived(defenderId, damage, damageType);
+                else this.combat.addDamageReceived(defenderId, attackerId, damage, damageType);
                 break;
         }
         this._updateMeter();
+    }
+
+    _parseCombatAttack(combatAttack) {
+        if (!this.combat.inCombat()) return;
+        if (this.combat.group.length === 0) {
+            console.log("[DaelIS][WARNING]: Received a combat:attack message before group info.");
+            return;
+        }
+
+        //42["combat:attack",{"id":xxxxx,"length":3000,"ability":2}]
+        const attackerId = combatAttack.id;
+        const abilityId = combatAttack.ability;
+        if (this.combat.isPlayerOnGroup(attackerId)) this.combat.updatePlayerAbility(attackerId, abilityId);
+        else this.combat.updateMonsterAbility(attackerId, abilityId);
     }
 
     _parseUpdatePlayer(playerInfo) {
