@@ -516,7 +516,7 @@ class IdlescapeGameData {
             // client
             buffIcon: '/images/magic/buffs/patience_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                'Slower abilities and attacks receive a maximum damage bonus scaling on attack speed.',
+                'Slower abilities and attacks receive a maximum damage bonus scaling on attack speed. Scales off of ability speed, capping at 50% increase or decrease.',
             // endclient
         }, // patience, increases damage by attack speed
         38: {
@@ -12800,7 +12800,7 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
                 offensiveAccuracyAffinityRating: { Magic: 4 },
                 offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 4, dexterity: 0 },
@@ -12841,7 +12841,7 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
                 offensiveAccuracyAffinityRating: { Magic: 10 },
                 offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 7, dexterity: 0 },
@@ -12882,7 +12882,7 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
                 offensiveAccuracyAffinityRating: { Magic: 17 },
                 offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 11, dexterity: 0 },
@@ -12923,7 +12923,7 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
                 offensiveAccuracyAffinityRating: { Magic: 26 },
                 offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 14, dexterity: 0 },
@@ -12964,7 +12964,7 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
                 offensiveAccuracyAffinityRating: { Magic: 35 },
                 offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 19, dexterity: 0 },
@@ -13006,7 +13006,7 @@ class IdlescapeGameData {
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
-                offensiveCritical: { chance: 1 / 20, damageMultiplier: 0.25 },
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
                 offensiveAccuracyAffinityRating: { Magic: 44 },
                 offensiveDamageAffinity: { Magic: 1.15, Melee: 0.9, Range: 0.9 },
                 weaponBonus: { strength: 0, intellect: 23, dexterity: 0 },
@@ -15301,7 +15301,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 grantedAbility: [40],
                 slot: 'shield',
-                offensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
+                offensiveCritical: { chance: 0.1, damageMultiplier: 1.5 },
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
                 offensiveAccuracyAffinityRating: {
                     Melee: 35,
@@ -15348,7 +15348,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 grantedAbility: [40, 41],
                 slot: 'shield',
-                offensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
+                offensiveCritical: { chance: 0.1, damageMultiplier: 1.5 },
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
                 offensiveAccuracyAffinityRating: {
                     Melee: 52,
