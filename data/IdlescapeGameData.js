@@ -1722,9 +1722,11 @@ class IdlescapeGameData {
             name: 'Platinum',
             tradeable: false,
             itemImage: '/images/premium/platinum_icon.png',
-            extraTooltipInfo: 'Platinum is used to purchase items from the Platinum Shop.',
+            extraTooltipInfo:
+                'Platinum is used to purchase items from the Platinum Shop and to purchase server-wide Global Buffs.',
             class: 'platinum',
             tags: [],
+            rarity: 'legendary',
         },
         50: {
             name: 'Book',
@@ -17285,7 +17287,7 @@ class IdlescapeGameData {
             id: 1654,
             level: 87,
             experience: 6400,
-            baseSuccessChance: 0.4,
+            baseSuccessChance: 0.52,
             tradeable: true,
             value: 2000,
 
@@ -17297,7 +17299,7 @@ class IdlescapeGameData {
             class: 'enchanted-scroll',
             actionButton: 'Craft',
             getChance: (resource, playerLevel) => {
-                return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
+                return (Math.min(1, Math.max(0.52, 0.52 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
             tags: ['enchanting'],
             requiredResources: [{ 111: 1200, 511: 100, 512: 100, 518: 100, 1600: 1 }],
@@ -20949,6 +20951,8 @@ class IdlescapeGameData {
         7060: {
             id: 7060,
             name: 'Limpe K. Limpe',
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
 
 
 
@@ -20963,6 +20967,8 @@ class IdlescapeGameData {
         7061: {
             id: 7061,
             name: 'The Mine Dwelling Hamster',
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
 
 
 
@@ -20977,6 +20983,8 @@ class IdlescapeGameData {
         7062: {
             id: 7062,
             name: 'Lil Crown Hamperster',
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
 
 
 
@@ -20991,6 +20999,8 @@ class IdlescapeGameData {
         7063: {
             name: 'Lightning Edge',
             id: 7063,
+            isCosmetic: true,
+            cosmeticRelatedItems: [1512],
 
 
 
@@ -21006,6 +21016,8 @@ class IdlescapeGameData {
         7064: {
             name: 'Frost Maul',
             id: 7064,
+            isCosmetic: true,
+            cosmeticRelatedItems: [1506],
 
 
 
@@ -21021,6 +21033,8 @@ class IdlescapeGameData {
         7065: {
             id: 7065,
             name: 'Abusive',
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
 
 
 
@@ -21035,6 +21049,8 @@ class IdlescapeGameData {
         7066: {
             name: 'Elite Titan Helm',
             id: 7066,
+            isCosmetic: true,
+            cosmeticRelatedItems: [1559],
 
 
 
@@ -21051,6 +21067,8 @@ class IdlescapeGameData {
         7067: {
             name: 'Ancient Crown',
             id: 7067,
+            isCosmetic: true,
+            cosmeticRelatedItems: [1508],
 
 
 
@@ -21062,6 +21080,67 @@ class IdlescapeGameData {
             category: ['weapon', 'combat'],
             tags: ['melee', 'armor'],
             equipmentStats: { isTransmog: true, slot: 'helm' },
+            rarity: 'legendary',
+        },
+        7068: {
+            name: 'Idlescape Bond',
+            id: 7068,
+            isToken: true,
+            itemImage: '/images/premium/premium_icon.png',
+            itemIcon: '/images/premium/premium_icon.png',
+            extraTooltipInfo:
+                'A token that can be redeemed for a month of Idlescape Plus. Can be traded in the Marketplace. \nHas an increased tax-rate of 20% when sold on the Marketplace. WIP: NO FUNCTIONALITY YET',
+            class: 'platinum',
+            category: ['platinum', 'token'],
+            rarity: 'legendary',
+        },
+        7069: {
+            name: 'Character Token',
+            id: 7069,
+            isToken: true,
+            itemImage: '/images/premium/premium_icon.png',
+            itemIcon: '/images/premium/premium_icon.png',
+            extraTooltipInfo: 'A token that can be redeemed for a new character slot. WIP: NO FUNCTIONALITY YET',
+
+            class: 'platinum',
+            category: ['platinum', 'token'],
+            rarity: 'legendary',
+        },
+        7070: {
+            name: 'Active Character Token',
+            id: 7070,
+            isToken: true,
+            itemImage: '/images/premium/premium_icon.png',
+            itemIcon: '/images/premium/premium_icon.png',
+            extraTooltipInfo: 'A token that can be redeemed for a new active character slot. WIP: NO FUNCTIONALITY YET',
+
+            class: 'platinum',
+            category: ['platinum', 'token'],
+            rarity: 'legendary',
+        },
+        7071: {
+            name: 'Username Change Token',
+            id: 7071,
+            isToken: true,
+            itemImage: '/images/premium/premium_icon.png',
+            itemIcon: '/images/premium/premium_icon.png',
+            extraTooltipInfo: 'A token that can be redeemed to change your character name. WIP: NO FUNCTIONALITY YET',
+
+            class: 'platinum',
+            category: ['platinum', 'token'],
+            rarity: 'legendary',
+        },
+        7072: {
+            name: 'Vacation Token',
+            id: 7072,
+            isToken: true,
+            itemImage: '/images/premium/premium_icon.png',
+            itemIcon: '/images/premium/premium_icon.png',
+            extraTooltipInfo:
+                'A token that can be redeemed to allow offline progress for 72 hours. WIP: NO FUNCTIONALITY YET',
+
+            class: 'platinum',
+            category: ['platinum', 'token'],
             rarity: 'legendary',
         },
         8000: {
