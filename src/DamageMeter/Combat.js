@@ -78,7 +78,7 @@ class Combat {
         this.group[playerName].damageReceived += damage;
         if (damage > this.group[playerName].maxReceived) this.group[playerName].maxReceived = damage;
 
-        const ability = this.spawnedMonsters[monsterId].currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
+        const ability = this.spawnedMonsters[monsterId]?.currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
         if (!this.group[playerName].damageReceivedBreakdown[ability]) this.group[playerName].damageReceivedBreakdown[ability] = {damage: 0, count: 0};
         this.group[playerName].damageReceivedBreakdown[ability].damage += damage;
         this.group[playerName].damageReceivedBreakdown[ability].count++;

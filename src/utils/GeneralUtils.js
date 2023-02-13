@@ -7,9 +7,9 @@ function onGameReady(callback) {
     }
 }
 
-function injectCSS(css){
+function injectCSS(css, customClass=''){
     css = css.trim();
-    if (css.startsWith('http')) css = `<link href="${css}" rel="stylesheet" type="text/css">`;
+    if (css.startsWith('http')) css = `<link href="${css}" class="${customClass}" rel="stylesheet" type="text/css">`;
     else if (!css.startsWith('<style>')) css = `<style>${css}</style>`;
     const head = document.querySelector('head');
     head.insertAdjacentHTML('beforeend', css);

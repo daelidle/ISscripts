@@ -31,6 +31,12 @@ function displayCompletePopup(title, message, extendedMessage, confirmString, ca
                        <div tabindex="0" data-test="sentinelEnd"></div>
                     </div>`;
     document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend', popUpHTML);
+    document.getElementById(popUpId).addEventListener("click",function(event){
+        if (event.target.classList.contains('MuiDialog-container')){
+            cancelLambda();
+            document.getElementById(popUpId).remove();
+        }
+    },false);
     document.getElementById(popUpCancel).addEventListener("click",function(){
         cancelLambda();
         document.getElementById(popUpId).remove();
