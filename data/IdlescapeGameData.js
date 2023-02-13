@@ -389,15 +389,17 @@ class IdlescapeGameData {
         28: {
             id: 28,
             name: 'Chances',
-            strengthPerLevel: 0.001,
+            strengthPerLevel: 0.01,
             combat: false,
             scrollID: 1628,
             // client
             buffIcon: '/images/magic/buffs/chances-icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increased chance of successful augmentation by ${(enchantmentStrength * strengthPerLevel * 100).toFixed(
-                    3
-                )}%.`,
+                `Increased chance of an item transforming during augmentation by ${(
+                    enchantmentStrength *
+                    strengthPerLevel *
+                    100
+                ).toFixed(3)}%.`,
             // endclient
         }, // chances, increased chance of augmentation
         29: {
@@ -21141,6 +21143,122 @@ class IdlescapeGameData {
 
             class: 'platinum',
             category: ['platinum', 'token'],
+            rarity: 'legendary',
+        },
+        7073: {
+            name: 'Loadout Token',
+            id: 7073,
+            isToken: true,
+            itemImage: '/images/premium/premium_icon.png',
+            itemIcon: '/images/premium/premium_icon.png',
+            extraTooltipInfo: 'A token that can be redeemed to increase base loadout count. WIP: NO FUNCTIONALITY YET',
+
+            class: 'platinum',
+            category: ['platinum', 'token'],
+            rarity: 'legendary',
+        },
+        7074: {
+            name: 'Holy Avenger Helm',
+            id: 7074,
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/holy_avenger_helm.png',
+            extraTooltipInfo: 'H... Pointy!',
+            class: 'equipment',
+            visual: 'avenger-helm',
+            category: ['armor', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, slot: 'helm' },
+            rarity: 'legendary',
+        },
+        7075: {
+            name: 'Holy Avenger Breastplate',
+            id: 7075,
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/holy_avenger_breastplate.png',
+            extraTooltipInfo: 'Full of righteous indignation!',
+            class: 'equipment',
+            visual: 'avenger-breastplate',
+            category: ['armor', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, slot: 'body' },
+            rarity: 'legendary',
+        },
+        7076: {
+            name: 'Holy Avenger Cape',
+            id: 7076,
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/holy_avenger_cape.png',
+            extraTooltipInfo: 'Perpetually blowing in the wind. Very heroic looking.',
+            class: 'equipment',
+            visual: 'avenger-cape',
+            category: ['armor', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, slot: 'cape' },
+            rarity: 'legendary',
+        },
+        7077: {
+            name: 'Holy Avenger Leggings',
+            id: 7077,
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/holy_avenger_leggings.png',
+            extraTooltipInfo: "Don't actually try to wade through blood, it'll stain the cloth.",
+            class: 'equipment',
+            visual: 'avenger-leggings',
+            category: ['armor', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, slot: 'legs' },
+            rarity: 'legendary',
+        },
+        7078: {
+            name: 'Holy Avenger Boots',
+            id: 7078,
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/holy_avenger_boots.png',
+            itemIcon: '/images/premium/cosmetic/equipment/holy_avenger_boots.png',
+            extraTooltipInfo: "Don't actually try to wade through blood, it'll stain the cloth.",
+            class: 'equipment',
+            visual: 'avenger-boots',
+            category: ['armor', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, slot: 'boots' },
+            rarity: 'legendary',
+        },
+        7079: {
+            name: 'Holy Avenger Gloves',
+            id: 7079,
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/holy_avenger_gloves.png',
+            itemIcon: '/images/premium/cosmetic/equipment/holy_avenger_gloves.png',
+            extraTooltipInfo: 'Perfect for clasping your hands in prayer or beating the snot out of something!',
+            class: 'equipment',
+            visual: 'avenger-gloves',
+            category: ['armor', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, slot: 'gloves' },
             rarity: 'legendary',
         },
         8000: {
