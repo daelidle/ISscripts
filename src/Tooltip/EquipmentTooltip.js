@@ -185,8 +185,9 @@ class EquipmentTooltip {
         itemResource.equipmentStats.itemSet.forEach(setEnchant => {
             const itemSet = enchantments[setEnchant];
             if (itemSet){
+                const highestActiveTier = this._getHighestActiveSetTier(equippedSetPieces[setEnchant], itemSet.setRequirements);
                 itemSet.setRequirements.forEach(setRequirement => {
-                    if (setRequirement.strength === 0) return;
+                    if (setRequirement.strength === 0 || setRequirement.count < highestActiveTier) return;
                     setHtml += `<div class="dwt-item-set-name">${itemSet.name} (${equippedSetPieces[setEnchant] ?? 0}/${setRequirement.count})</div>`;
                     const activeClass = ((equippedSetPieces[setEnchant] ?? 0) >= setRequirement.count) ? 'dwt-set-effect-active' : 'dwt-set-effect-inactive';
                     const description = itemSet.getTooltip(setRequirement.strength, itemSet.strengthPerLevel);
@@ -195,6 +196,14 @@ class EquipmentTooltip {
             }
         });
         return setHtml;
+    }
+
+    _getHighestActiveSetTier(numEquipped, tiers) {
+        let highestTier = 0;
+        tiers.forEach(tier => {
+            if ((numEquipped ?? 0) >= tier.count) highestTier = tier.count;
+        });
+        return highestTier;
     }
 
     getItemEffects(item, itemResource, abilities, enchantments){
