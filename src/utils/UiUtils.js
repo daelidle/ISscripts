@@ -19,10 +19,10 @@ function displayCompletePopup(title, message, extendedMessage, confirmString, ca
                              <p class="MuiTypography-root MuiDialogContentText-root MuiTypography-body1 MuiTypography-colorTextSecondary">${message}</p>
                              ${extraMessage}
                              <div class="MuiDialogActions-root MuiDialogActions-spacing" style="display: flex;">
-                                <div class="button-container-250px">
-                                   <div variant="contained" color="secondary" id="${popUpCancel}" class="close-dialog-button idlescape-button idlescape-button-gray" >${cancelString}</div>
+                                <div class="button-container-250px ${cancelString ? '': 'hidden'}">
+                                    <div variant="contained" color="secondary" id="${popUpCancel}" class="close-dialog-button idlescape-button idlescape-button-gray" >${cancelString}</div>
                                 </div>
-                                <div class="button-container-250px">
+                                <div class="button-container-250px ${confirmString ? '': 'hidden'}">
                                    <div variant="contained" color="secondary" id="${popUpConfirm}" class="close-dialog-button idlescape-button idlescape-button-red">${confirmString}</div>
                                 </div>
                              </div>

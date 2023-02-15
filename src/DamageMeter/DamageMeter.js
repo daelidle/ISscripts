@@ -7,6 +7,7 @@ const meterTypes = {
 
 class DamageMeter {
     static meta = {name: 'Damage Meter', description: 'Shows a damage meter on solo/group combat screen with additional combat information', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/meta_image.png'};
+    customModalClass = 'daelis_meter_breakdown_modal';
     combat;
     currentType;
     ui;
@@ -24,7 +25,7 @@ class DamageMeter {
 
     onGameReady(isFirstGameReady){
         if (isFirstGameReady) this.config.load();
-        this.ui.setupUI(isFirstGameReady);
+        this.ui.setupUI(isFirstGameReady, this.customModalClass);
     }
 
     onMessage(message){
@@ -160,6 +161,12 @@ class DamageMeter {
         });
 
         this.ui._updateMeter(uiPlayers, type);
+    }
+
+    showBreakdownModal(){
+        const modalHtml = this.ui.generateBreakdownModal(this.combat.group, this.daelis.gameData.abilities);
+        displayCompletePopup(modalHtml.title, modalHtml.message, null, '', 'Close', () => {}, () => {}, this.customModalClass);
+        this.ui.setupBreakdownModalTriggers('dps');
     }
 
     changeMeterType(){

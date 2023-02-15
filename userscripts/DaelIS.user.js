@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         [Test Server] Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      2.0.37
+// @version      2.0.38
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/test-server/assets/images/config-icon.png
@@ -11,11 +11,13 @@
 // @require      data:text/javascript;base64,dGhpcy5nbG9iYWxUaGlzID0gdGhpczs=
 // @require      https://unpkg.com/@popperjs/core@2
 // @require      https://unpkg.com/tippy.js@6
+// @require      https://cdn.jsdelivr.net/npm/chart.js@4.2.1
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DaelIS.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DaelISConfigUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/CustomTooltip/CustomTooltip.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DamageMeter/MeterUI.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DamageMeter/MeterUIBreakdownModal.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DamageMeter/MeterConfig.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DamageMeter/DamageMeter.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/test-server/src/DamageMeter/Combat.js
