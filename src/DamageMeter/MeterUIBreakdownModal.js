@@ -9,16 +9,16 @@ class MeterUIBreakdownModal {
         div[class^="${this.tabClassPrefix}"] span {
             width: 100%;
         }
-        .daelis-tab-container{
+        .daelis-meters-breakdown-tab-container{
             flex-wrap: wrap;
             height: auto;
             flex-basis: auto;
-            justify-content: space-evenly;
+            justify-content: center;
         }
-        .daelis-tab-container > div{
-            min-width: 80px;
+        .daelis-meters-breakdown-tab-container > div{
+            min-width: 250px;
             height: 30px;
-            flex: 0 0 250px;
+            flex: 0 0 auto;
         }
         .daelis-meters-breakdown-abilities {
             width: 70%;
@@ -51,7 +51,7 @@ class MeterUIBreakdownModal {
     }
 
     generatePlayerBreakdownPanelHtml(abilities, damageDealtBreakdown, effectiveDamageDealtBreakdown, damageReceivedBreakdown){
-        const tabsHtml = `<div class="nav-tab-container daelis-tab-container">
+        const tabsHtml = `<div class="nav-tab-container daelis-meters-breakdown-tab-container">
                             <div class="${this.tabClassPrefix}dps nav-tab nav-tab-flex text-center noselect" data-type="dps"><span>Damage</span></div>
                             <div class="${this.tabClassPrefix}edps nav-tab nav-tab-flex text-center noselect" data-type="edps"><span>Effective Damage</span></div>
                             <div class="${this.tabClassPrefix}tank nav-tab nav-tab-flex text-center noselect" data-type="tank"><span>Damage Taken</span></div>

@@ -433,13 +433,15 @@ class IdlescapeGameData {
         31: {
             id: 31,
             name: 'Prolonging',
-            strengthPerLevel: 0.1,
+            strengthPerLevel: 0.25,
             combat: false,
             scrollID: 1631,
             // client
             buffIcon: '/images/magic/buffs/prolonging_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Grants ${Math.round(enchantmentStrength * strengthPerLevel * 100)}% chance that a buff stack is not lost.`,
+                `Grants ${Math.round(
+                    1 / (1 + enchantmentStrength * strengthPerLevel * 100)
+                )}% chance that a buff stack is not lost.`,
             // endclient
         }, // boosting, more actions
         32: {
@@ -3626,13 +3628,12 @@ class IdlescapeGameData {
         600: {
             id: 600,
             name: 'Bronze Pickaxe',
-            value: 800,
+            value: 1272,
             tradeable: true,
             enchantmentTier: 1,
             augmentationCost: { 201: 4, 302: 2 },
             craftingExperience: 300,
             craftingLevel: 2,
-            requiredLevel: { mining: 1 },
 
 
 
@@ -3654,7 +3655,7 @@ class IdlescapeGameData {
         601: {
             id: 601,
             name: 'Iron Pickaxe',
-            value: 6000,
+            value: 22920,
             tradeable: true,
             enchantmentTier: 2,
             augmentationCost: { 202: 8, 303: 4 },
@@ -3682,7 +3683,7 @@ class IdlescapeGameData {
         602: {
             id: 602,
             name: 'Mithril Pickaxe',
-            value: 52000,
+            value: 79560,
             tradeable: true,
             enchantmentTier: 3,
             augmentationCost: { 204: 13, 304: 7 },
@@ -3710,7 +3711,7 @@ class IdlescapeGameData {
         603: {
             id: 603,
             name: 'Adamantite Pickaxe',
-            value: 480000,
+            value: 484800,
             tradeable: true,
             enchantmentTier: 4,
             augmentationCost: { 205: 20, 305: 10 },
@@ -3739,7 +3740,7 @@ class IdlescapeGameData {
         604: {
             id: 604,
             name: 'Runite Pickaxe',
-            value: 1944000,
+            value: 2284200,
             tradeable: true,
             enchantmentTier: 5,
             augmentationCost: { 206: 27, 306: 14 },
@@ -3768,7 +3769,7 @@ class IdlescapeGameData {
         605: {
             id: 605,
             name: 'Stygian Pickaxe',
-            value: 3360000,
+            value: 3782100,
             tradeable: true,
             enchantmentTier: 6,
             augmentationCost: { 207: 35, 800: 20 },
@@ -3797,7 +3798,7 @@ class IdlescapeGameData {
         606: {
             id: 606,
             name: 'Dwarven Rocksmasher',
-            value: 15000000,
+            value: 12960000,
             tradeable: false,
             enchantmentTier: 8,
             augmentationCost: { 207: 350, 208: 200, 11037: 3, 11038: 3, 11039: 3 },
@@ -3828,13 +3829,12 @@ class IdlescapeGameData {
         610: {
             id: 610,
             name: 'Bronze Hatchet',
-            value: 800,
+            value: 1272,
             tradeable: true,
             enchantmentTier: 1,
             augmentationCost: { 201: 4, 302: 2 },
             craftingExperience: 300,
             craftingLevel: 2,
-            requiredLevel: { foraging: 1 },
 
 
 
@@ -3856,7 +3856,7 @@ class IdlescapeGameData {
         611: {
             id: 611,
             name: 'Iron Hatchet',
-            value: 6000,
+            value: 22920,
             tradeable: true,
             enchantmentTier: 2,
             augmentationCost: { 202: 8, 303: 4 },
@@ -3884,7 +3884,7 @@ class IdlescapeGameData {
         612: {
             id: 612,
             name: 'Mithril Hatchet',
-            value: 52000,
+            value: 79560,
             tradeable: true,
             enchantmentTier: 3,
             augmentationCost: { 204: 13, 304: 7 },
@@ -3912,7 +3912,7 @@ class IdlescapeGameData {
         613: {
             id: 613,
             name: 'Adamantite Hatchet',
-            value: 480000,
+            value: 484800,
             tradeable: true,
             enchantmentTier: 4,
             augmentationCost: { 205: 20, 305: 10 },
@@ -3941,7 +3941,7 @@ class IdlescapeGameData {
         614: {
             id: 614,
             name: 'Runite Hatchet',
-            value: 1944000,
+            value: 2284200,
             tradeable: true,
             enchantmentTier: 5,
             augmentationCost: { 206: 27, 306: 14 },
@@ -3970,7 +3970,7 @@ class IdlescapeGameData {
         615: {
             id: 615,
             name: 'Stygian Hatchet',
-            value: 3360000,
+            value: 3782100,
             tradeable: true,
             enchantmentTier: 6,
             augmentationCost: { 207: 35, 800: 20 },
@@ -3999,7 +3999,7 @@ class IdlescapeGameData {
         616: {
             id: 616,
             name: 'The Grovekeeper',
-            value: 15000000,
+            value: 9270000,
             tradeable: false,
             enchantmentTier: 8,
             augmentationCost: { 306: 2500, 307: 1000, 11040: 3, 11041: 3, 11042: 3 },
@@ -4029,7 +4029,7 @@ class IdlescapeGameData {
         620: {
             id: 620,
             name: 'Sapphire Ring',
-            value: 120000,
+            value: 181200,
             tradeable: true,
             enchantmentTier: 1,
             augmentationCost: { 203: 50, 400: 1 },
@@ -4055,7 +4055,7 @@ class IdlescapeGameData {
         621: {
             id: 621,
             name: 'Sapphire Necklace',
-            value: 120000,
+            value: 181200,
             tradeable: true,
             enchantmentTier: 1,
             augmentationCost: { 203: 50, 400: 1 },
@@ -4081,7 +4081,7 @@ class IdlescapeGameData {
         622: {
             id: 622,
             name: 'Emerald Ring',
-            value: 140000,
+            value: 182400,
             tradeable: true,
             enchantmentTier: 2,
             augmentationCost: { 203: 50, 401: 1 },
@@ -4107,7 +4107,7 @@ class IdlescapeGameData {
         623: {
             id: 623,
             name: 'Emerald Necklace',
-            value: 140000,
+            value: 182400,
             tradeable: true,
             enchantmentTier: 2,
             augmentationCost: { 203: 50, 401: 1 },
@@ -4133,7 +4133,7 @@ class IdlescapeGameData {
         624: {
             id: 624,
             name: 'Ruby Ring',
-            value: 200000,
+            value: 186000,
             tradeable: true,
             enchantmentTier: 3,
             augmentationCost: { 203: 50, 402: 1 },
@@ -4159,7 +4159,7 @@ class IdlescapeGameData {
         625: {
             id: 625,
             name: 'Ruby Necklace',
-            value: 200000,
+            value: 186000,
             tradeable: true,
             enchantmentTier: 3,
             augmentationCost: { 203: 50, 402: 1 },
@@ -4185,7 +4185,7 @@ class IdlescapeGameData {
         626: {
             id: 626,
             name: 'Diamond Ring',
-            value: 300000,
+            value: 192000,
             tradeable: true,
             enchantmentTier: 4,
             augmentationCost: { 203: 50, 403: 1 },
@@ -4211,7 +4211,7 @@ class IdlescapeGameData {
         627: {
             id: 627,
             name: 'Diamond Necklace',
-            value: 300000,
+            value: 192000,
             tradeable: true,
             enchantmentTier: 4,
             augmentationCost: { 203: 50, 403: 1 },
@@ -4237,7 +4237,7 @@ class IdlescapeGameData {
         628: {
             id: 628,
             name: 'Prismatic Necklace',
-            value: 7500000,
+            value: 92793600,
             tradeable: true,
             enchantmentTier: 6,
             augmentationCost: { 203: 100, 400: 1, 401: 1, 402: 1, 403: 1, 404: 1 },
@@ -4262,7 +4262,7 @@ class IdlescapeGameData {
         629: {
             id: 629,
             name: 'Prismatic Ring',
-            value: 7500000,
+            value: 92793600,
             tradeable: true,
             enchantmentTier: 6,
             augmentationCost: { 203: 500, 400: 1, 401: 1, 402: 1, 403: 1 },
@@ -4288,7 +4288,7 @@ class IdlescapeGameData {
         630: {
             id: 630,
             name: 'Black Opal Ring',
-            value: 1500000,
+            value: 240000,
             tradeable: true,
             enchantmentTier: 5,
             augmentationCost: { 203: 50, 404: 1 },
@@ -4315,7 +4315,7 @@ class IdlescapeGameData {
         631: {
             id: 631,
             name: 'Black Opal Necklace',
-            value: 1500000,
+            value: 240000,
             tradeable: true,
             enchantmentTier: 5,
             augmentationCost: { 203: 50, 404: 1 },
@@ -4342,7 +4342,7 @@ class IdlescapeGameData {
         640: {
             id: 640,
             name: 'Gold Ring',
-            value: 100000,
+            value: 120000,
             tradeable: true,
             enchantmentTier: 0,
             craftingExperience: 1200,
@@ -4362,7 +4362,7 @@ class IdlescapeGameData {
         641: {
             id: 641,
             name: 'Gold Necklace',
-            value: 100000,
+            value: 120000,
             tradeable: true,
             enchantmentTier: 0,
             craftingExperience: 1200,
@@ -4382,7 +4382,7 @@ class IdlescapeGameData {
         642: {
             id: 642,
             name: 'Corrupted Ring',
-            value: 200000,
+            value: 594000,
             tradeable: false,
             enchantmentTier: 3,
             augmentationCost: { 203: 50, 401: 5 },
@@ -4552,13 +4552,12 @@ class IdlescapeGameData {
         660: {
             id: 660,
             name: 'Bronze Hoe',
-            value: 800,
+            value: 1272,
             tradeable: true,
             enchantmentTier: 1,
             augmentationCost: { 201: 4, 302: 2 },
             craftingExperience: 300,
             craftingLevel: 2,
-            requiredLevel: { farming: 1 },
 
 
 
@@ -4580,7 +4579,7 @@ class IdlescapeGameData {
         661: {
             id: 661,
             name: 'Iron Hoe',
-            value: 6000,
+            value: 22920,
             tradeable: true,
             enchantmentTier: 2,
             augmentationCost: { 202: 8, 303: 4 },
@@ -4608,7 +4607,7 @@ class IdlescapeGameData {
         662: {
             id: 662,
             name: 'Mithril Hoe',
-            value: 52000,
+            value: 79560,
             tradeable: true,
             enchantmentTier: 3,
             augmentationCost: { 204: 13, 304: 7 },
@@ -4636,7 +4635,7 @@ class IdlescapeGameData {
         663: {
             id: 663,
             name: 'Adamantite Hoe',
-            value: 480000,
+            value: 484800,
             tradeable: true,
             enchantmentTier: 4,
             augmentationCost: { 205: 20, 305: 10 },
@@ -4665,7 +4664,7 @@ class IdlescapeGameData {
         664: {
             id: 664,
             name: 'Runite Hoe',
-            value: 1944000,
+            value: 2284200,
             tradeable: true,
             enchantmentTier: 5,
             augmentationCost: { 206: 27, 306: 14 },
@@ -4694,7 +4693,7 @@ class IdlescapeGameData {
         665: {
             id: 665,
             name: 'Stygian Hoe',
-            value: 3360000,
+            value: 3782100,
             tradeable: true,
             enchantmentTier: 6,
             augmentationCost: { 207: 35, 800: 20 },
@@ -4723,13 +4722,12 @@ class IdlescapeGameData {
         666: {
             id: 666,
             name: 'Bronze Tongs',
-            value: 800,
+            value: 1272,
             tradeable: true,
             enchantmentTier: 1,
             augmentationCost: { 201: 4, 302: 2 },
             craftingExperience: 300,
             craftingLevel: 2,
-            requiredLevel: { smithing: 1 },
             requiredResources: [{ 201: 40, 302: 20 }],
 
 
@@ -4751,7 +4749,7 @@ class IdlescapeGameData {
         667: {
             id: 667,
             name: 'Iron Tongs',
-            value: 800,
+            value: 22920,
             tradeable: true,
             enchantmentTier: 2,
             augmentationCost: { 202: 8, 303: 4 },
@@ -4779,7 +4777,7 @@ class IdlescapeGameData {
         668: {
             id: 668,
             name: 'Mithril Tongs',
-            value: 800,
+            value: 79560,
             tradeable: true,
             enchantmentTier: 3,
             augmentationCost: { 204: 13, 304: 7 },
@@ -4807,7 +4805,7 @@ class IdlescapeGameData {
         669: {
             id: 669,
             name: 'Adamantite Tongs',
-            value: 800,
+            value: 484800,
             tradeable: true,
             enchantmentTier: 4,
             augmentationCost: { 205: 20, 305: 10 },
@@ -4835,7 +4833,7 @@ class IdlescapeGameData {
         670: {
             id: 670,
             name: 'Runite Tongs',
-            value: 800,
+            value: 2284200,
             tradeable: true,
             enchantmentTier: 5,
             augmentationCost: { 206: 27, 306: 14 },
@@ -4864,7 +4862,7 @@ class IdlescapeGameData {
         671: {
             id: 671,
             name: 'Stygian Tongs',
-            value: 800,
+            value: 3782100,
             tradeable: true,
             enchantmentTier: 6,
             augmentationCost: { 207: 35, 800: 20 },
@@ -4893,8 +4891,7 @@ class IdlescapeGameData {
         672: {
             id: 672,
             name: 'Lesser Magic Tome',
-            value: 800,
-            requiredLevel: { enchanting: 1 },
+            value: 180,
             itemImage: '/images/enchanting/Lesser_Magic_Tome_embossed.png',
             tool: true,
             class: 'equipment',
@@ -4914,7 +4911,7 @@ class IdlescapeGameData {
         673: {
             id: 673,
             name: 'Major Magic Tome',
-            value: 800,
+            value: 600,
             requiredLevel: { enchanting: 10 },
             itemImage: '/images/enchanting/Major_Magic_Tome.png',
             tool: true,
@@ -4935,7 +4932,7 @@ class IdlescapeGameData {
         674: {
             id: 674,
             name: 'Greater Magic Tome',
-            value: 800,
+            value: 1200,
             requiredLevel: { enchanting: 20 },
             itemImage: '/images/enchanting/Greater_Magic_Tome.png',
             tool: true,
@@ -4956,7 +4953,7 @@ class IdlescapeGameData {
         675: {
             id: 675,
             name: 'Elder Magic Tome',
-            value: 800,
+            value: 2400,
             requiredLevel: { enchanting: 30 },
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
@@ -4977,7 +4974,7 @@ class IdlescapeGameData {
         676: {
             id: 676,
             name: 'Ancient Magic Tome',
-            value: 800,
+            value: 4800,
             requiredLevel: { enchanting: 40 },
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
@@ -5351,7 +5348,7 @@ class IdlescapeGameData {
             augmentationCost: { 201: 4, 302: 1 },
             craftingLevel: 4,
             craftingExperience: 250,
-            value: 800,
+            value: 1236,
 
 
 
@@ -5391,9 +5388,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 6, 302: 2 },
             craftingLevel: 6,
             craftingExperience: 400,
-            value: 960,
+            value: 1872,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -5440,9 +5436,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 2, 302: 1 },
             craftingLevel: 1,
             craftingExperience: 125,
-            value: 400,
+            value: 618,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -5494,9 +5489,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 8, 302: 2 },
             craftingLevel: 6,
             craftingExperience: 475,
-            value: 1000,
+            value: 2454,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -5542,9 +5536,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 8, 303: 2 },
             craftingLevel: 10,
             craftingExperience: 900,
-            value: 6000,
+            value: 22680,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 10, defense: 1 },
+            requiredLevel: { strength: 10 },
 
 
 
@@ -5587,9 +5581,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 10, 303: 3 },
             craftingLevel: 13,
             craftingExperience: 1300,
-            value: 8000,
+            value: 30360,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 10, defense: 1 },
+            requiredLevel: { strength: 10 },
 
 
 
@@ -5639,9 +5633,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 5, 303: 1 },
             craftingLevel: 7,
             craftingExperience: 600,
-            value: 4000,
+            value: 15120,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 10, defense: 1 },
+            requiredLevel: { strength: 10 },
 
 
 
@@ -5693,9 +5687,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 13, 303: 3 },
             craftingLevel: 16,
             craftingExperience: 1500,
-            value: 10000,
+            value: 37800,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 10, defense: 1 },
+            requiredLevel: { strength: 10 },
 
 
 
@@ -5746,7 +5740,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 92000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 20, defense: 1 },
+            requiredLevel: { strength: 20 },
 
 
 
@@ -5790,7 +5784,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 116000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 20, defense: 1 },
+            requiredLevel: { strength: 20 },
 
 
 
@@ -5838,7 +5832,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 68000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 20, defense: 1 },
+            requiredLevel: { strength: 20 },
 
 
 
@@ -5891,7 +5885,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 140000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 20, defense: 1 },
+            requiredLevel: { strength: 20 },
 
 
 
@@ -5936,9 +5930,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 13, 304: 3 },
             craftingLevel: 27,
             craftingExperience: 2975,
-            value: 52000,
+            value: 78600,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 30, defense: 1 },
+            requiredLevel: { strength: 30 },
 
 
 
@@ -5981,9 +5975,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 16, 304: 5 },
             craftingLevel: 30,
             craftingExperience: 3950,
-            value: 65000,
+            value: 97200,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 30, defense: 1 },
+            requiredLevel: { strength: 30 },
 
 
 
@@ -6033,9 +6027,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 10, 304: 3 },
             craftingLevel: 23,
             craftingExperience: 2375,
-            value: 39000,
+            value: 60600,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 30, defense: 1 },
+            requiredLevel: { strength: 30 },
 
 
 
@@ -6087,9 +6081,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 20, 304: 4 },
             craftingLevel: 33,
             craftingExperience: 4500,
-            value: 78000,
+            value: 117960,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 30, defense: 1 },
+            requiredLevel: { strength: 30 },
 
 
 
@@ -6138,9 +6132,9 @@ class IdlescapeGameData {
             augmentationCost: { 205: 20, 305: 4 },
             craftingLevel: 43,
             craftingExperience: 9200,
-            value: 480000,
+            value: 481920,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 40, defense: 1 },
+            requiredLevel: { strength: 40 },
 
 
 
@@ -6181,9 +6175,9 @@ class IdlescapeGameData {
             augmentationCost: { 205: 24, 305: 7 },
             craftingLevel: 47,
             craftingExperience: 11700,
-            value: 576000,
+            value: 579360,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 40, defense: 1 },
+            requiredLevel: { strength: 40 },
 
 
 
@@ -6231,9 +6225,9 @@ class IdlescapeGameData {
             augmentationCost: { 205: 16, 305: 3 },
             craftingLevel: 40,
             craftingExperience: 7300,
-            value: 384000,
+            value: 385440,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 40, defense: 1 },
+            requiredLevel: { strength: 40 },
 
 
 
@@ -6286,9 +6280,9 @@ class IdlescapeGameData {
             augmentationCost: { 205: 28, 305: 6 },
             craftingLevel: 49,
             craftingExperience: 12850,
-            value: 672000,
+            value: 674640,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 40, defense: 1 },
+            requiredLevel: { strength: 40 },
 
 
 
@@ -6335,9 +6329,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 27, 306: 6 },
             craftingLevel: 53,
             craftingExperience: 21375,
-            value: 1944000,
+            value: 2274600,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -6378,9 +6372,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 32, 306: 19 },
             craftingLevel: 57,
             craftingExperience: 26325,
-            value: 2268000,
+            value: 2657400,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -6431,9 +6425,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 23, 306: 5 },
             craftingLevel: 50,
             craftingExperience: 17775,
-            value: 1620000,
+            value: 1895400,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -6486,9 +6480,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 36, 306: 7 },
             craftingLevel: 59,
             craftingExperience: 28350,
-            value: 2592000,
+            value: 3032400,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -6535,9 +6529,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 35, 800: 7 },
             craftingLevel: 63,
             craftingExperience: 52500,
-            value: 3360000,
+            value: 3780840,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 60, defense: 1 },
+            requiredLevel: { strength: 60 },
 
 
 
@@ -6578,9 +6572,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 40, 800: 12 },
             craftingLevel: 67,
             craftingExperience: 60000,
-            value: 3840000,
+            value: 4321440,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 60, defense: 1 },
+            requiredLevel: { strength: 60 },
 
 
 
@@ -6628,9 +6622,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 30, 800: 6 },
             craftingLevel: 60,
             craftingExperience: 45000,
-            value: 2880000,
+            value: 3240720,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 60, defense: 1 },
+            requiredLevel: { strength: 60 },
 
 
 
@@ -6683,9 +6677,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 45, 800: 9 },
             craftingLevel: 69,
             craftingExperience: 67500,
-            value: 4320000,
+            value: 4861080,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 60, defense: 1 },
+            requiredLevel: { strength: 60 },
 
 
 
@@ -6732,9 +6726,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 2 },
             craftingLevel: 2,
             craftingExperience: 100,
-            value: 400,
+            value: 600,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -6748,7 +6741,11 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 3 / 4,
+                    Range: 3 / 4,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6769,9 +6766,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 5 },
             craftingLevel: 9,
             craftingExperience: 500,
-            value: 4000,
+            value: 15000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10 },
 
 
 
@@ -6785,7 +6782,11 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 3 / 4,
+                    Range: 3 / 4,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6808,7 +6809,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 68000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20 },
 
 
 
@@ -6821,7 +6822,11 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 3 / 4,
+                    Range: 3 / 4,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6843,9 +6848,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 10 },
             craftingLevel: 25,
             craftingExperience: 2000,
-            value: 39000,
+            value: 60000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30 },
 
 
 
@@ -6859,7 +6864,11 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 3 / 4,
+                    Range: 3 / 4,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6882,7 +6891,7 @@ class IdlescapeGameData {
             craftingExperience: 6400,
             value: 384000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40 },
 
 
 
@@ -6896,7 +6905,11 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 3 / 4,
+                    Range: 3 / 4,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6918,9 +6931,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 23 },
             craftingLevel: 52,
             craftingExperience: 15750,
-            value: 1620000,
+            value: 1890000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50 },
 
 
 
@@ -6934,7 +6947,11 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 3 / 4,
+                    Range: 3 / 4,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6956,9 +6973,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 30, 800: 6 },
             craftingLevel: 62,
             craftingExperience: 45000,
-            value: 2880000,
+            value: 3240720,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60 },
 
 
 
@@ -6972,7 +6989,11 @@ class IdlescapeGameData {
             tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: { Melee: 1.1, Magic: 0.75, Range: 0.75 },
+                offensiveDamageAffinity: {
+                    Melee: 1.1,
+                    Magic: 3 / 4,
+                    Range: 3 / 4,
+                },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 97 / 100,
@@ -6994,9 +7015,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 4 },
             craftingLevel: 5,
             craftingExperience: 200,
-            value: 800,
+            value: 1200,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -7010,9 +7030,9 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.95,
-                    Magic: 0.95,
-                    Range: 0.95,
+                    Melee: 19 / 20,
+                    Magic: 19 / 20,
+                    Range: 19 / 20,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
@@ -7038,9 +7058,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 8 },
             craftingLevel: 11,
             craftingExperience: 750,
-            value: 4800,
+            value: 22500,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, strength: 10 },
 
 
 
@@ -7054,9 +7074,9 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.95,
-                    Magic: 0.95,
-                    Range: 0.95,
+                    Melee: 19 / 20,
+                    Magic: 19 / 20,
+                    Range: 19 / 20,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
@@ -7084,7 +7104,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 89600,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, strength: 20 },
 
 
 
@@ -7097,9 +7117,9 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.95,
-                    Magic: 0.95,
-                    Range: 0.95,
+                    Melee: 19 / 20,
+                    Magic: 19 / 20,
+                    Range: 19 / 20,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
@@ -7126,9 +7146,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 13 },
             craftingLevel: 28,
             craftingExperience: 2600,
-            value: 52000,
+            value: 78000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, strength: 30 },
 
 
 
@@ -7142,9 +7162,9 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.95,
-                    Magic: 0.95,
-                    Range: 0.95,
+                    Melee: 19 / 20,
+                    Magic: 19 / 20,
+                    Range: 19 / 20,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
@@ -7172,7 +7192,7 @@ class IdlescapeGameData {
             craftingExperience: 8000,
             value: 480000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, strength: 40 },
 
 
 
@@ -7186,9 +7206,9 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.95,
-                    Magic: 0.95,
-                    Range: 0.95,
+                    Melee: 19 / 20,
+                    Magic: 19 / 20,
+                    Range: 19 / 20,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
@@ -7215,9 +7235,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 27 },
             craftingLevel: 55,
             craftingExperience: 18900,
-            value: 1944000,
+            value: 2268000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, strength: 50 },
 
 
 
@@ -7231,9 +7251,9 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.95,
-                    Magic: 0.95,
-                    Range: 0.95,
+                    Melee: 19 / 20,
+                    Magic: 19 / 20,
+                    Range: 19 / 20,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
@@ -7260,9 +7280,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 35, 800: 7 },
             craftingLevel: 65,
             craftingExperience: 52500,
-            value: 3360000,
+            value: 3780840,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, strength: 60 },
 
 
 
@@ -7276,9 +7296,9 @@ class IdlescapeGameData {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.95,
-                    Magic: 0.95,
-                    Range: 0.95,
+                    Melee: 19 / 20,
+                    Magic: 19 / 20,
+                    Range: 19 / 20,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.15,
@@ -7305,9 +7325,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 6 },
             craftingLevel: 6,
             craftingExperience: 300,
-            value: 1200,
+            value: 1800,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -7322,7 +7341,7 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.99,
+                    Melee: 99 / 100,
                     Magic: 0.9,
                     Range: 0.9,
                 },
@@ -7350,9 +7369,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 10 },
             craftingLevel: 12,
             craftingExperience: 1000,
-            value: 8000,
+            value: 30000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, strength: 10 },
 
 
 
@@ -7367,7 +7386,7 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.99,
+                    Melee: 99 / 100,
                     Magic: 0.9,
                     Range: 0.9,
                 },
@@ -7397,7 +7416,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 116000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, strength: 20 },
 
 
 
@@ -7410,7 +7429,7 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.99,
+                    Melee: 99 / 100,
                     Magic: 0.9,
                     Range: 0.9,
                 },
@@ -7439,9 +7458,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 16 },
             craftingLevel: 29,
             craftingExperience: 3200,
-            value: 65000,
+            value: 96000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, strength: 30 },
 
 
 
@@ -7456,7 +7475,7 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.99,
+                    Melee: 99 / 100,
                     Magic: 0.9,
                     Range: 0.9,
                 },
@@ -7486,7 +7505,7 @@ class IdlescapeGameData {
             craftingExperience: 9600,
             value: 576000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, strength: 40 },
 
 
 
@@ -7501,7 +7520,7 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.99,
+                    Melee: 99 / 100,
                     Magic: 0.9,
                     Range: 0.9,
                 },
@@ -7530,9 +7549,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 32 },
             craftingLevel: 55,
             craftingExperience: 22050,
-            value: 2268000,
+            value: 2646000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, strength: 50 },
 
 
 
@@ -7547,7 +7566,7 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.99,
+                    Melee: 99 / 100,
                     Magic: 0.9,
                     Range: 0.9,
                 },
@@ -7576,9 +7595,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 40, 800: 8 },
             craftingLevel: 65,
             craftingExperience: 60000,
-            value: 3840000,
+            value: 4320960,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, strength: 60 },
 
 
 
@@ -7593,7 +7612,7 @@ class IdlescapeGameData {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.99,
+                    Melee: 99 / 100,
                     Magic: 0.9,
                     Range: 0.9,
                 },
@@ -7622,7 +7641,7 @@ class IdlescapeGameData {
             augmentationCost: { 207: 40, 800: 8 },
             value: 4840000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 70 },
+            requiredLevel: { defense: 70, strength: 70 },
 
 
 
@@ -7633,11 +7652,11 @@ class IdlescapeGameData {
             tags: ['armor', 'weapon', 'melee'],
             equipmentStats: {
                 slot: 'shield',
-                defensiveCritical: { chance: 0.33, damageMultiplier: 0.5 },
+                defensiveCritical: { chance: 33 / 100, damageMultiplier: 0.5 },
                 offensiveDamageAffinity: {
-                    Melee: 0.75,
-                    Magic: 0.75,
-                    Range: 0.75,
+                    Melee: 3 / 4,
+                    Magic: 3 / 4,
+                    Range: 3 / 4,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.5,
@@ -7664,9 +7683,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 10 },
             craftingLevel: 12,
             craftingExperience: 500,
-            value: 2000,
+            value: 3000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -7680,9 +7698,9 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.66,
-                    Magic: 0.66,
-                    Range: 0.66,
+                    Melee: 33 / 50,
+                    Magic: 33 / 50,
+                    Range: 33 / 50,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -7709,9 +7727,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 6 },
             craftingLevel: 8,
             craftingExperience: 300,
-            value: 1200,
+            value: 1800,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -7747,9 +7764,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 15 },
             craftingLevel: 19,
             craftingExperience: 1500,
-            value: 12000,
+            value: 45000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, strength: 10 },
 
 
 
@@ -7763,9 +7780,9 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.66,
-                    Magic: 0.66,
-                    Range: 0.66,
+                    Melee: 33 / 50,
+                    Magic: 33 / 50,
+                    Range: 33 / 50,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -7792,9 +7809,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 10 },
             craftingLevel: 14,
             craftingExperience: 1000,
-            value: 8000,
+            value: 30000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10 },
 
 
 
@@ -7832,7 +7849,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 164000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, strength: 20 },
 
 
 
@@ -7845,9 +7862,9 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.66,
-                    Magic: 0.66,
-                    Range: 0.66,
+                    Melee: 33 / 50,
+                    Magic: 33 / 50,
+                    Range: 33 / 50,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -7877,7 +7894,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 116000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20 },
 
 
 
@@ -7913,9 +7930,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 23 },
             craftingLevel: 35,
             craftingExperience: 4600,
-            value: 91000,
+            value: 138000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, strength: 30 },
 
 
 
@@ -7929,9 +7946,9 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.66,
-                    Magic: 0.66,
-                    Range: 0.66,
+                    Melee: 33 / 50,
+                    Magic: 33 / 50,
+                    Range: 33 / 50,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -7958,9 +7975,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 16 },
             craftingLevel: 31,
             craftingExperience: 3200,
-            value: 65000,
+            value: 96000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30 },
 
 
 
@@ -7998,7 +8015,7 @@ class IdlescapeGameData {
             craftingExperience: 12800,
             value: 768000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, strength: 40 },
 
 
 
@@ -8012,9 +8029,9 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.66,
-                    Magic: 0.66,
-                    Range: 0.66,
+                    Melee: 33 / 50,
+                    Magic: 33 / 50,
+                    Range: 33 / 50,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -8044,7 +8061,7 @@ class IdlescapeGameData {
             craftingExperience: 9600,
             value: 576000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40 },
 
 
 
@@ -8081,9 +8098,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 41 },
             craftingLevel: 62,
             craftingExperience: 28350,
-            value: 2916000,
+            value: 3402000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, strength: 50 },
 
 
 
@@ -8097,9 +8114,9 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.66,
-                    Magic: 0.66,
-                    Range: 0.66,
+                    Melee: 33 / 50,
+                    Magic: 33 / 50,
+                    Range: 33 / 50,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -8127,9 +8144,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 32 },
             craftingLevel: 57,
             craftingExperience: 22050,
-            value: 2268000,
+            value: 2646000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50 },
 
 
 
@@ -8166,9 +8183,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 50, 800: 10 },
             craftingLevel: 72,
             craftingExperience: 75000,
-            value: 4800000,
+            value: 5401200,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, strength: 60 },
 
 
 
@@ -8182,9 +8199,9 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 0.66,
-                    Magic: 0.66,
-                    Range: 0.66,
+                    Melee: 33 / 50,
+                    Magic: 33 / 50,
+                    Range: 33 / 50,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -8212,9 +8229,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 40, 800: 8 },
             craftingLevel: 67,
             craftingExperience: 60000,
-            value: 3840000,
+            value: 4320960,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60 },
 
 
 
@@ -8251,9 +8268,8 @@ class IdlescapeGameData {
             augmentationCost: { 201: 4 },
             craftingLevel: 11,
             craftingExperience: 200,
-            value: 800,
+            value: 1200,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8294,9 +8310,9 @@ class IdlescapeGameData {
             augmentationCost: { 202: 8 },
             craftingLevel: 17,
             craftingExperience: 750,
-            value: 6000,
+            value: 22500,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, strength: 10 },
 
 
 
@@ -8339,7 +8355,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 92000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, strength: 20 },
 
 
 
@@ -8379,9 +8395,9 @@ class IdlescapeGameData {
             augmentationCost: { 204: 13 },
             craftingLevel: 34,
             craftingExperience: 2600,
-            value: 52000,
+            value: 78000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, strength: 30 },
 
 
 
@@ -8424,7 +8440,7 @@ class IdlescapeGameData {
             craftingExperience: 8000,
             value: 480000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, strength: 40 },
 
 
 
@@ -8466,9 +8482,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 27 },
             craftingLevel: 61,
             craftingExperience: 18900,
-            value: 1944000,
+            value: 2268000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, strength: 50 },
 
 
 
@@ -8510,9 +8526,9 @@ class IdlescapeGameData {
             augmentationCost: { 207: 35, 800: 7 },
             craftingLevel: 71,
             craftingExperience: 52500,
-            value: 3360000,
+            value: 3780840,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, strength: 60 },
 
 
 
@@ -8556,7 +8572,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 1000,
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8584,7 +8599,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 8000,
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8612,7 +8626,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 68000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8640,7 +8653,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 60000,
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8668,7 +8680,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 480000,
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8697,7 +8708,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 1800000,
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8724,7 +8734,6 @@ class IdlescapeGameData {
             augmentationCost: { 207: 35, 800: 5 },
             value: 2880000,
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8982,9 +8991,8 @@ class IdlescapeGameData {
             augmentationCost: { 4007: 8 },
             craftingLevel: 3,
             craftingExperience: 400,
-            value: 3600,
+            value: 4800,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -8995,9 +9003,7 @@ class IdlescapeGameData {
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
                     Magic: 1.08,
@@ -9023,7 +9029,7 @@ class IdlescapeGameData {
             augmentationCost: { 4007: 8 },
             craftingLevel: 6,
             craftingExperience: 800,
-            value: 10800,
+            value: 14400,
             tradeable: true,
             requiredLevel: { defense: 10, range: 10 },
 
@@ -9032,13 +9038,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/fur_body.png',
             class: 'equipment',
             visual: 'rangebody',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
                     Magic: 1.08,
@@ -9064,7 +9067,7 @@ class IdlescapeGameData {
             augmentationCost: { 4004: 10, 4008: 3 },
             craftingLevel: 13,
             craftingExperience: 1600,
-            value: 16875,
+            value: 22500,
             tradeable: true,
             requiredLevel: { defense: 20, range: 20 },
 
@@ -9073,13 +9076,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/thick_hide_body.png',
             class: 'equipment',
             visual: 'platebody',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
                     Magic: 1.08,
@@ -9105,22 +9105,19 @@ class IdlescapeGameData {
             augmentationCost: { 4012: 18 },
             craftingLevel: 21,
             craftingExperience: 7200,
-            value: 48600,
+            value: 64800,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30, range: 30 },
+            requiredLevel: { defense: 30, range: 30 },
 
 
 
             itemImage: '/images/combat/equipment/range/leather_body.png',
             class: 'equipment',
             visual: 'platebody',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
                     Magic: 1.08,
@@ -9146,22 +9143,19 @@ class IdlescapeGameData {
             augmentationCost: { 4005: 3, 4012: 23 },
             craftingLevel: 31,
             craftingExperience: 11640,
-            value: 67433,
+            value: 89910,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, range: 40 },
 
 
 
             itemImage: '/images/combat/equipment/range/reinforced_leather_body.png',
             class: 'equipment',
             visual: 'platebody',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
                     Magic: 1.08,
@@ -9187,22 +9181,19 @@ class IdlescapeGameData {
             augmentationCost: { 4002: 15, 4003: 3 },
             craftingLevel: 44,
             craftingExperience: 18000,
-            value: 455625,
+            value: 607500,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, range: 50 },
 
 
 
             itemImage: '/images/combat/equipment/range/chitin_body.png',
             class: 'equipment',
             visual: 'platebody',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
                     Magic: 1.08,
@@ -9229,22 +9220,19 @@ class IdlescapeGameData {
             augmentationCost: { 4009: 20, 4010: 3 },
             craftingLevel: 61,
             craftingExperience: 32800,
-            value: 272250,
+            value: 363000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, range: 60 },
 
 
 
             itemImage: '/images/combat/equipment/range/scale_body.png',
             class: 'equipment',
             visual: 'platebody',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
                     Magic: 1.08,
@@ -9271,9 +9259,8 @@ class IdlescapeGameData {
             augmentationCost: { 4007: 3 },
             craftingLevel: 1,
             craftingExperience: 125,
-            value: 1125,
+            value: 1500,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -9286,9 +9273,7 @@ class IdlescapeGameData {
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9316,9 +9301,9 @@ class IdlescapeGameData {
             augmentationCost: { 4004: 3 },
             craftingLevel: 4,
             craftingExperience: 250,
-            value: 2813,
+            value: 4500,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, range: 10 },
 
 
 
@@ -9327,13 +9312,10 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm-alt',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9361,9 +9343,9 @@ class IdlescapeGameData {
             augmentationCost: { 4004: 4, 4008: 1 },
             craftingLevel: 9,
             craftingExperience: 550,
-            value: 5850,
+            value: 7800,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, range: 20 },
 
 
 
@@ -9372,13 +9354,10 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9406,9 +9385,9 @@ class IdlescapeGameData {
             augmentationCost: { 4012: 5 },
             craftingLevel: 15,
             craftingExperience: 1920,
-            value: 12960,
+            value: 17280,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, range: 30 },
 
 
 
@@ -9417,13 +9396,10 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9451,9 +9427,9 @@ class IdlescapeGameData {
             augmentationCost: { 4005: 1, 4012: 7 },
             craftingLevel: 24,
             craftingExperience: 3120,
-            value: 19035,
+            value: 25380,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, range: 40 },
 
 
 
@@ -9462,13 +9438,10 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9496,9 +9469,9 @@ class IdlescapeGameData {
             augmentationCost: { 4002: 5, 4003: 1 },
             craftingLevel: 37,
             craftingExperience: 5700,
-            value: 145125,
+            value: 193500,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, range: 50 },
 
 
 
@@ -9507,13 +9480,10 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9542,9 +9512,9 @@ class IdlescapeGameData {
             augmentationCost: { 4009: 4, 4010: 1 },
             craftingLevel: 57,
             craftingExperience: 5700,
-            value: 47250,
+            value: 63000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, range: 60 },
 
 
 
@@ -9553,13 +9523,10 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'range-med-helm',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9588,9 +9555,8 @@ class IdlescapeGameData {
             augmentationCost: { 4007: 5 },
             craftingLevel: 2,
             craftingExperience: 250,
-            value: 2250,
+            value: 3000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -9602,9 +9568,7 @@ class IdlescapeGameData {
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9630,9 +9594,9 @@ class IdlescapeGameData {
             augmentationCost: { 4004: 5 },
             craftingLevel: 5,
             craftingExperience: 500,
-            value: 5625,
+            value: 9000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, range: 10 },
 
 
 
@@ -9640,13 +9604,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/fur_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9672,9 +9633,9 @@ class IdlescapeGameData {
             augmentationCost: { 4004: 7, 4008: 1 },
             craftingLevel: 11,
             craftingExperience: 750,
-            value: 9338,
+            value: 12450,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, range: 20 },
 
 
 
@@ -9682,13 +9643,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9714,9 +9672,9 @@ class IdlescapeGameData {
             augmentationCost: { 4012: 11 },
             craftingLevel: 18,
             craftingExperience: 4240,
-            value: 11925,
+            value: 38160,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, range: 30 },
 
 
 
@@ -9724,13 +9682,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9756,9 +9711,9 @@ class IdlescapeGameData {
             augmentationCost: { 4005: 1, 4012: 12 },
             craftingLevel: 28,
             craftingExperience: 5760,
-            value: 34830,
+            value: 46440,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, range: 40 },
 
 
 
@@ -9766,13 +9721,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9798,9 +9750,9 @@ class IdlescapeGameData {
             augmentationCost: { 4002: 15, 4003: 1 },
             craftingLevel: 41,
             craftingExperience: 15600,
-            value: 388125,
+            value: 517500,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, range: 50 },
 
 
 
@@ -9808,13 +9760,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9841,9 +9790,9 @@ class IdlescapeGameData {
             augmentationCost: { 4009: 13, 4010: 1 },
             craftingLevel: 59,
             craftingExperience: 19100,
-            value: 156375,
+            value: 208500,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, range: 60 },
 
 
 
@@ -9851,13 +9800,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             class: 'equipment',
             visual: 'platelegs',
-
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
-                offensiveDamageAffinity: {
-                    Range: 1.04,
-                },
+                offensiveDamageAffinity: { Range: 1.04 },
                 defensiveDamageAffinity: {
                     Melee: 19 / 20,
                     Magic: 1.08,
@@ -9884,9 +9830,8 @@ class IdlescapeGameData {
             augmentationCost: { 4013: 4 },
             craftingLevel: 3,
             craftingExperience: 400,
-            value: 2160,
+            value: 1440,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -9924,9 +9869,9 @@ class IdlescapeGameData {
             augmentationCost: { 4014: 8 },
             craftingLevel: 6,
             craftingExperience: 800,
-            value: 4320,
+            value: 5760,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, magic: 10 },
 
 
 
@@ -9934,7 +9879,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -9965,9 +9909,9 @@ class IdlescapeGameData {
             augmentationCost: { 4015: 10 },
             craftingLevel: 13,
             craftingExperience: 1770,
-            value: 15930,
+            value: 18000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, magic: 20 },
 
 
 
@@ -9975,7 +9919,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -10006,9 +9949,9 @@ class IdlescapeGameData {
             augmentationCost: { 4016: 12 },
             craftingLevel: 21,
             craftingExperience: 5220,
-            value: 78300,
+            value: 72000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, magic: 30 },
 
 
 
@@ -10016,7 +9959,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -10047,9 +9989,9 @@ class IdlescapeGameData {
             augmentationCost: { 4017: 14 },
             craftingLevel: 31,
             craftingExperience: 11520,
-            value: 230400,
+            value: 168000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, magic: 40 },
 
 
 
@@ -10057,7 +9999,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -10089,9 +10030,9 @@ class IdlescapeGameData {
             augmentationCost: { 4018: 16 },
             craftingLevel: 44,
             craftingExperience: 30080,
-            value: 676800,
+            value: 384000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, magic: 50 },
 
 
 
@@ -10099,7 +10040,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -10131,9 +10071,9 @@ class IdlescapeGameData {
             augmentationCost: { 4019: 18 },
             craftingLevel: 61,
             craftingExperience: 55400,
-            value: 1994400,
+            value: 864000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, magic: 60 },
 
 
 
@@ -10141,7 +10081,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -10173,9 +10112,8 @@ class IdlescapeGameData {
             augmentationCost: { 4013: 2 },
             craftingLevel: 1,
             craftingExperience: 125,
-            value: 675,
+            value: 540,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -10215,9 +10153,9 @@ class IdlescapeGameData {
             augmentationCost: { 4014: 3 },
             craftingLevel: 4,
             craftingExperience: 250,
-            value: 11,
+            value: 1800,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, magic: 10 },
 
 
 
@@ -10226,7 +10164,6 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
@@ -10257,9 +10194,9 @@ class IdlescapeGameData {
             augmentationCost: { 4015: 4 },
             craftingLevel: 9,
             craftingExperience: 525,
-            value: 111,
+            value: 6300,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, magic: 20 },
 
 
 
@@ -10268,7 +10205,6 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
@@ -10299,9 +10235,9 @@ class IdlescapeGameData {
             augmentationCost: { 4016: 4 },
             craftingLevel: 15,
             craftingExperience: 1440,
-            value: 1111,
+            value: 24000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, magic: 30 },
 
 
 
@@ -10310,7 +10246,6 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
@@ -10341,9 +10276,9 @@ class IdlescapeGameData {
             augmentationCost: { 4017: 5 },
             craftingLevel: 24,
             craftingExperience: 2970,
-            value: 11111,
+            value: 60000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, magic: 40 },
 
 
 
@@ -10352,7 +10287,6 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
@@ -10383,9 +10317,9 @@ class IdlescapeGameData {
             augmentationCost: { 4018: 6 },
             craftingLevel: 37,
             craftingExperience: 7280,
-            value: 111111,
+            value: 144000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, magic: 50 },
 
 
 
@@ -10394,7 +10328,6 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
@@ -10426,9 +10359,9 @@ class IdlescapeGameData {
             augmentationCost: { 4019: 8 },
             craftingLevel: 57,
             craftingExperience: 12500,
-            value: 1111111,
+            value: 384000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, magic: 60 },
 
 
 
@@ -10437,7 +10370,6 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
@@ -10469,9 +10401,8 @@ class IdlescapeGameData {
             augmentationCost: { 4013: 3 },
             craftingLevel: 2,
             craftingExperience: 250,
-            value: 1350,
+            value: 1260,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -10509,9 +10440,9 @@ class IdlescapeGameData {
             augmentationCost: { 4014: 5 },
             craftingLevel: 5,
             craftingExperience: 500,
-            value: 11,
+            value: 3600,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 10 },
+            requiredLevel: { defense: 10, magic: 10 },
 
 
 
@@ -10519,7 +10450,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
@@ -10550,9 +10480,9 @@ class IdlescapeGameData {
             augmentationCost: { 4015: 7 },
             craftingLevel: 11,
             craftingExperience: 1095,
-            value: 111,
+            value: 12600,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20, magic: 20 },
 
 
 
@@ -10560,7 +10490,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
@@ -10591,9 +10520,9 @@ class IdlescapeGameData {
             augmentationCost: { 4016: 9 },
             craftingLevel: 18,
             craftingExperience: 3180,
-            value: 1111,
+            value: 54000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30 },
+            requiredLevel: { defense: 30, magic: 30 },
 
 
 
@@ -10601,7 +10530,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
@@ -10632,9 +10560,9 @@ class IdlescapeGameData {
             augmentationCost: { 4017: 11 },
             craftingLevel: 28,
             craftingExperience: 6885,
-            value: 11111,
+            value: 132000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, magic: 40 },
 
 
 
@@ -10642,7 +10570,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
@@ -10673,9 +10600,9 @@ class IdlescapeGameData {
             augmentationCost: { 4018: 13 },
             craftingLevel: 41,
             craftingExperience: 17760,
-            value: 111111,
+            value: 312000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 50 },
+            requiredLevel: { defense: 50, magic: 50 },
 
 
 
@@ -10683,7 +10610,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
@@ -10715,9 +10641,9 @@ class IdlescapeGameData {
             augmentationCost: { 4019: 15 },
             craftingLevel: 59,
             craftingExperience: 32300,
-            value: 1111111,
+            value: 720000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 60 },
+            requiredLevel: { defense: 60, magic: 60 },
 
 
 
@@ -10725,7 +10651,6 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-
             tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
@@ -10759,10 +10684,9 @@ class IdlescapeGameData {
             requiredResources: [{ 302: 20, 1450: 300 }],
             craftingLevel: 1,
             craftingExperience: 100,
-            value: 54,
+            value: 432,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood_recurve.png',
             itemIcon: '/images/combat/equipment/range/bow_wood_recurve.png',
@@ -10800,10 +10724,10 @@ class IdlescapeGameData {
             requiredResources: [{ 302: 35, 1451: 300 }],
             craftingLevel: 2,
             craftingExperience: 175,
-            value: 95,
+            value: 846,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 10 },
+            requiredLevel: { range: 10 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_sturdy_recurve.png',
             itemIcon: '/images/combat/equipment/range/bow_sturdy_recurve.png',
@@ -10841,10 +10765,10 @@ class IdlescapeGameData {
             requiredResources: [{ 303: 50, 1452: 300 }],
             craftingLevel: 5,
             craftingExperience: 500,
-            value: 450,
+            value: 3120,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 20 },
+            requiredLevel: { range: 20 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_sturdy_recurve.png',
             itemIcon: '/images/combat/equipment/range/bow_sturdy_recurve.png',
@@ -10882,10 +10806,10 @@ class IdlescapeGameData {
             requiredResources: [{ 304: 72, 1453: 300 }],
             craftingLevel: 9,
             craftingExperience: 1080,
-            value: 1296,
+            value: 6768,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 30 },
+            requiredLevel: { range: 30 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood_recurve.png',
             itemIcon: '/images/combat/equipment/range/bow_willow.png',
@@ -10923,10 +10847,10 @@ class IdlescapeGameData {
             requiredResources: [{ 305: 102, 1454: 300 }],
             craftingLevel: 16,
             craftingExperience: 3060,
-            value: 3672,
+            value: 12456,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 40 },
+            requiredLevel: { range: 40 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood_recurve.png',
             itemIcon: '/images/combat/equipment/range/bow_yew.png',
@@ -10964,10 +10888,10 @@ class IdlescapeGameData {
             requiredResources: [{ 306: 146, 1455: 300 }],
             craftingLevel: 27,
             craftingExperience: 6570,
-            value: 13140,
+            value: 27600,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 50 },
+            requiredLevel: { range: 50 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood_recurve.png',
             itemIcon: '/images/combat/equipment/range/bow_yew.png',
@@ -11006,10 +10930,10 @@ class IdlescapeGameData {
             requiredResources: [{ 307: 208, 1456: 300 }],
             craftingLevel: 48,
             craftingExperience: 20800,
-            value: 46800,
+            value: 75000,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 60 },
+            requiredLevel: { range: 60 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood_recurve.png',
             itemIcon: '/images/combat/equipment/range/bow_elder.png',
@@ -11048,10 +10972,9 @@ class IdlescapeGameData {
             requiredResources: [{ 302: 30, 1450: 300 }],
             craftingLevel: 2,
             craftingExperience: 150,
-            value: 81,
+            value: 468,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood.png',
             itemIcon: '/images/combat/equipment/range/bow_wood.png',
@@ -11096,10 +11019,10 @@ class IdlescapeGameData {
             requiredResources: [{ 302: 60, 1451: 300 }],
             craftingLevel: 5,
             craftingExperience: 300,
-            value: 162,
+            value: 936,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 10 },
+            requiredLevel: { range: 10 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_sturdy.png',
             itemIcon: '/images/combat/equipment/range/bow_sturdy.png',
@@ -11144,10 +11067,10 @@ class IdlescapeGameData {
             requiredResources: [{ 303: 89, 1452: 300 }],
             craftingLevel: 11,
             craftingExperience: 890,
-            value: 801,
+            value: 3588,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 20 },
+            requiredLevel: { range: 20 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_sturdy.png',
             itemIcon: '/images/combat/equipment/range/bow_sturdy.png',
@@ -11192,10 +11115,10 @@ class IdlescapeGameData {
             requiredResources: [{ 304: 131, 1453: 300 }],
             craftingLevel: 18,
             craftingExperience: 1965,
-            value: 2358,
+            value: 8184,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 30 },
+            requiredLevel: { range: 30 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood.png',
             itemIcon: '/images/combat/equipment/range/bow_willow.png',
@@ -11240,10 +11163,10 @@ class IdlescapeGameData {
             requiredResources: [{ 305: 194, 1454: 300 }],
             craftingLevel: 28,
             craftingExperience: 5820,
-            value: 6984,
+            value: 16872,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 40 },
+            requiredLevel: { range: 40 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood.png',
             itemIcon: '/images/combat/equipment/range/bow_yew.png',
@@ -11288,10 +11211,10 @@ class IdlescapeGameData {
             requiredResources: [{ 306: 286, 1455: 300 }],
             craftingLevel: 41,
             craftingExperience: 12870,
-            value: 25740,
+            value: 44400,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 50 },
+            requiredLevel: { range: 50 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood.png',
             itemIcon: '/images/combat/equipment/range/bow_yew.png',
@@ -11337,10 +11260,10 @@ class IdlescapeGameData {
             requiredResources: [{ 307: 422, 1456: 300 }],
             craftingLevel: 59,
             craftingExperience: 42200,
-            value: 94950,
+            value: 139200,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 60 },
+            requiredLevel: { range: 60 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bow_wood.png',
             itemIcon: '/images/combat/equipment/range/bow_elder.png',
@@ -11386,10 +11309,9 @@ class IdlescapeGameData {
             requiredResources: [{ 201: 5, 302: 25, 1450: 300 }],
             craftingLevel: 3,
             craftingExperience: 150,
-            value: 180,
+            value: 600,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/crossbow_wood.png',
             visual: 'crossbow',
@@ -11435,10 +11357,10 @@ class IdlescapeGameData {
             requiredResources: [{ 201: 5, 302: 50, 1451: 300 }],
             craftingLevel: 6,
             craftingExperience: 275,
-            value: 248,
+            value: 1050,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 10 },
+            requiredLevel: { range: 10 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/crossbow_sturdy.png',
             visual: 'crossbow',
@@ -11484,10 +11406,10 @@ class IdlescapeGameData {
             requiredResources: [{ 202: 6, 303: 73, 1452: 300 }],
             craftingLevel: 13,
             craftingExperience: 790,
-            value: 2007,
+            value: 5196,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 20 },
+            requiredLevel: { range: 20 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/crossbow_wood.png',
             visual: 'crossbow',
@@ -11533,10 +11455,10 @@ class IdlescapeGameData {
             requiredResources: [{ 204: 7, 304: 106, 1453: 300 }],
             craftingLevel: 21,
             craftingExperience: 1730,
-            value: 5058,
+            value: 11784,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 30 },
+            requiredLevel: { range: 30 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/crossbow_wood.png',
             visual: 'crossbow',
@@ -11582,10 +11504,10 @@ class IdlescapeGameData {
             requiredResources: [{ 205: 9, 305: 153, 1454: 300 }],
             craftingLevel: 31,
             craftingExperience: 4950,
-            value: 21708,
+            value: 36504,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 40 },
+            requiredLevel: { range: 40 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/crossbow_wood.png',
             visual: 'crossbow',
@@ -11631,10 +11553,10 @@ class IdlescapeGameData {
             requiredResources: [{ 206: 10, 306: 222, 1455: 300 }],
             craftingLevel: 44,
             craftingExperience: 10690,
-            value: 82980,
+            value: 120720,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 50 },
+            requiredLevel: { range: 50 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/crossbow_wood.png',
             visual: 'crossbow',
@@ -11681,10 +11603,10 @@ class IdlescapeGameData {
             requiredResources: [{ 207: 12, 307: 323, 1456: 300 }],
             craftingLevel: 61,
             craftingExperience: 34100,
-            value: 169875,
+            value: 239100,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 60 },
+            requiredLevel: { range: 60 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/crossbow_wood.png',
             visual: 'crossbow',
@@ -11731,10 +11653,9 @@ class IdlescapeGameData {
             requiredResources: [{ 201: 5, 302: 10, 1450: 300 }],
             craftingLevel: 1,
             craftingExperience: 75,
-            value: 140,
+            value: 546,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/bronze_knife.png',
             itemIcon: '/images/combat/equipment/range/thrown_knife_rough.png',
@@ -11780,10 +11701,10 @@ class IdlescapeGameData {
             requiredResources: [{ 201: 5, 302: 25, 1451: 300 }],
             craftingLevel: 3,
             craftingExperience: 150,
-            value: 180,
+            value: 960,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 10 },
+            requiredLevel: { range: 10 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/iron_knife.png',
             itemIcon: '/images/combat/equipment/range/thrown_knife.png',
@@ -11829,10 +11750,10 @@ class IdlescapeGameData {
             requiredResources: [{ 202: 6, 303: 35, 1452: 300 }],
             craftingLevel: 7,
             craftingExperience: 410,
-            value: 1665,
+            value: 4740,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 20 },
+            requiredLevel: { range: 20 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/obby_knife.png',
             itemIcon: '/images/combat/equipment/range/thrown_knife_2.png',
@@ -11878,10 +11799,10 @@ class IdlescapeGameData {
             requiredResources: [{ 204: 7, 304: 48, 1453: 300 }],
             craftingLevel: 12,
             craftingExperience: 860,
-            value: 4014,
+            value: 10392,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 30 },
+            requiredLevel: { range: 30 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/mithril_knife.png',
             itemIcon: '/images/combat/equipment/range/thrown_knife_refined.png',
@@ -11927,10 +11848,10 @@ class IdlescapeGameData {
             requiredResources: [{ 205: 9, 305: 66, 1454: 300 }],
             craftingLevel: 20,
             craftingExperience: 2340,
-            value: 18576,
+            value: 32328,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 40 },
+            requiredLevel: { range: 40 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/throwing_axe.png',
             class: 'equipment',
@@ -11975,10 +11896,10 @@ class IdlescapeGameData {
             requiredResources: [{ 206: 10, 306: 91, 1455: 300 }],
             craftingLevel: 32,
             craftingExperience: 4795,
-            value: 71190,
+            value: 105000,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 50 },
+            requiredLevel: { range: 50 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/throwing_jav.png',
             itemIcon: '/images/combat/equipment/range/thrown_jav.png',
@@ -12025,10 +11946,10 @@ class IdlescapeGameData {
             requiredResources: [{ 207: 12, 307: 125, 1456: 300 }],
             craftingLevel: 52,
             craftingExperience: 14300,
-            value: 125325,
+            value: 179700,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 60 },
+            requiredLevel: { range: 60 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/thrown_spinner.png',
             class: 'equipment',
@@ -12074,10 +11995,9 @@ class IdlescapeGameData {
             requiredResources: [{ 3: 100, 302: 5, 11030: 10 }],
             craftingLevel: 1,
             craftingExperience: 325,
-            value: 149,
+            value: 198,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 1 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/driftwood_wand.png',
             class: 'equipment',
@@ -12122,10 +12042,10 @@ class IdlescapeGameData {
             requiredResources: [{ 4: 1000, 302: 5, 11030: 25 }],
             craftingLevel: 5,
             craftingExperience: 775,
-            value: 351,
+            value: 468,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 10 },
+            requiredLevel: { magic: 10 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/sturdy_wand.png',
             class: 'equipment',
@@ -12170,10 +12090,10 @@ class IdlescapeGameData {
             requiredResources: [{ 3: 1000, 4: 1000, 303: 6, 11031: 35 }],
             craftingLevel: 11,
             craftingExperience: 2510,
-            value: 1629,
+            value: 2172,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 20 },
+            requiredLevel: { magic: 20 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/academy_wand.png',
             class: 'equipment',
@@ -12218,10 +12138,10 @@ class IdlescapeGameData {
             requiredResources: [{ 5: 2500, 304: 7, 11031: 48 }],
             craftingLevel: 18,
             craftingExperience: 3465,
-            value: 2286,
+            value: 3048,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 30 },
+            requiredLevel: { magic: 30 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/imbued_wand.png',
             class: 'equipment',
@@ -12266,10 +12186,10 @@ class IdlescapeGameData {
             requiredResources: [{ 5: 2500, 6: 2500, 305: 9, 11036: 66 }],
             craftingLevel: 28,
             craftingExperience: 9510,
-            value: 9234,
+            value: 12312,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 40 },
+            requiredLevel: { magic: 40 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/major_imbued_wand.png',
             class: 'equipment',
@@ -12314,10 +12234,10 @@ class IdlescapeGameData {
             requiredResources: [{ 7: 100, 8: 100, 306: 10, 11036: 91 }],
             craftingLevel: 41,
             craftingExperience: 13190,
-            value: 13185,
+            value: 17580,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 50 },
+            requiredLevel: { magic: 50 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/greater_imbued_wand.png',
             class: 'equipment',
@@ -12363,10 +12283,10 @@ class IdlescapeGameData {
             requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 307: 12, 11036: 125 }],
             craftingLevel: 59,
             craftingExperience: 18700,
-            value: 19575,
+            value: 26100,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 60 },
+            requiredLevel: { magic: 60 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/elder_imbued_wand.png',
             class: 'equipment',
@@ -12412,10 +12332,9 @@ class IdlescapeGameData {
             requiredResources: [{ 3: 100, 302: 15, 11030: 35 }],
             craftingLevel: 2,
             craftingExperience: 1125,
-            value: 513,
+            value: 684,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 1 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/driftwood_staff.png',
             class: 'equipment',
@@ -12460,10 +12379,10 @@ class IdlescapeGameData {
             requiredResources: [{ 4: 1000, 302: 15, 11030: 35 }],
             craftingLevel: 6,
             craftingExperience: 1125,
-            value: 513,
+            value: 684,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 10 },
+            requiredLevel: { magic: 10 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/sturdy_staff.png',
             class: 'equipment',
@@ -12508,10 +12427,10 @@ class IdlescapeGameData {
             requiredResources: [{ 3: 1000, 4: 1000, 303: 20, 11031: 50 }],
             craftingLevel: 13,
             craftingExperience: 3700,
-            value: 2430,
+            value: 3240,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 20 },
+            requiredLevel: { magic: 20 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/academy_staff.png',
             class: 'equipment',
@@ -12556,10 +12475,10 @@ class IdlescapeGameData {
             requiredResources: [{ 5: 2500, 304: 26, 11031: 72 }],
             craftingLevel: 21,
             craftingExperience: 5430,
-            value: 3708,
+            value: 4944,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 30 },
+            requiredLevel: { magic: 30 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/imbued_staff.png',
             class: 'equipment',
@@ -12604,10 +12523,10 @@ class IdlescapeGameData {
             requiredResources: [{ 5: 2500, 6: 2500, 305: 34, 11036: 102 }],
             craftingLevel: 31,
             craftingExperience: 15300,
-            value: 14994,
+            value: 19992,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 40 },
+            requiredLevel: { magic: 40 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/major_imbued_staff.png',
             class: 'equipment',
@@ -12652,10 +12571,10 @@ class IdlescapeGameData {
             requiredResources: [{ 7: 5000, 8: 5000, 306: 45, 11036: 146 }],
             craftingLevel: 44,
             craftingExperience: 22465,
-            value: 23760,
+            value: 31680,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 50 },
+            requiredLevel: { magic: 50 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/greater_imbued_staff.png',
             class: 'equipment',
@@ -12701,10 +12620,10 @@ class IdlescapeGameData {
             requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 307: 59, 11036: 208 }],
             craftingLevel: 61,
             craftingExperience: 35020,
-            value: 41355,
+            value: 55140,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 60 },
+            requiredLevel: { magic: 60 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/elder_imbued_staff.png',
             class: 'equipment',
@@ -12750,10 +12669,9 @@ class IdlescapeGameData {
             requiredResources: [{ 3: 100, 4013: 35, 11030: 10 }],
             craftingLevel: 1,
             craftingExperience: 475,
-            value: 2025,
+            value: 1440,
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 1 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/starter_focus.png',
             class: 'equipment',
@@ -12784,17 +12702,10 @@ class IdlescapeGameData {
             requiredResources: [{ 4: 1000, 4014: 35, 11030: 10 }],
             craftingLevel: 5,
             craftingExperience: 650,
-            value: 1080,
+            value: 2700,
             craftable: true,
             type: 'weapon',
-            requiredLevel: {
-                constitution: 1,
-                attack: 1,
-                strength: 1,
-                defense: 10,
-                range: 1,
-                magic: 10,
-            },
+            requiredLevel: { defense: 10, magic: 10 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/practitioner_focus.png',
             class: 'equipment',
@@ -12825,17 +12736,10 @@ class IdlescapeGameData {
             requiredResources: [{ 3: 1000, 4: 1000, 4015: 50, 11031: 13 }],
             craftingLevel: 11,
             craftingExperience: 1660,
-            value: 7335,
+            value: 9780,
             craftable: true,
             type: 'weapon',
-            requiredLevel: {
-                constitution: 1,
-                attack: 1,
-                strength: 1,
-                defense: 20,
-                range: 1,
-                magic: 20,
-            },
+            requiredLevel: { defense: 20, magic: 20 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/academy_focus.png',
             class: 'equipment',
@@ -12866,17 +12770,10 @@ class IdlescapeGameData {
             requiredResources: [{ 5: 2500, 4016: 72, 11031: 16 }],
             craftingLevel: 18,
             craftingExperience: 3280,
-            value: 33120,
+            value: 44160,
             craftable: true,
             type: 'weapon',
-            requiredLevel: {
-                constitution: 1,
-                attack: 1,
-                strength: 1,
-                defense: 30,
-                range: 1,
-                magic: 30,
-            },
+            requiredLevel: { defense: 30, magic: 30 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/imbued_focus.png',
             class: 'equipment',
@@ -12907,17 +12804,10 @@ class IdlescapeGameData {
             requiredResources: [{ 5: 2500, 6: 2500, 4017: 102, 11036: 20 }],
             craftingLevel: 28,
             craftingExperience: 7390,
-            value: 94500,
+            value: 126000,
             craftable: true,
             type: 'weapon',
-            requiredLevel: {
-                constitution: 1,
-                attack: 1,
-                strength: 1,
-                defense: 40,
-                range: 1,
-                magic: 40,
-            },
+            requiredLevel: { defense: 40, magic: 40 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/major_imbued_focus.png',
             class: 'equipment',
@@ -12948,17 +12838,10 @@ class IdlescapeGameData {
             requiredResources: [{ 7: 5000, 8: 5000, 4018: 146, 11036: 26 }],
             craftingLevel: 41,
             craftingExperience: 15320,
-            value: 266310,
+            value: 355080,
             craftable: true,
             type: 'weapon',
-            requiredLevel: {
-                constitution: 1,
-                attack: 1,
-                strength: 1,
-                defense: 50,
-                range: 1,
-                magic: 50,
-            },
+            requiredLevel: { defense: 50, magic: 50 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/greater_imbued_focus.png',
             class: 'equipment',
@@ -12990,17 +12873,10 @@ class IdlescapeGameData {
             requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 4019: 208, 11036: 32 }],
             craftingLevel: 59,
             craftingExperience: 25280,
-            value: 753120,
+            value: 1004160,
             craftable: true,
             type: 'weapon',
-            requiredLevel: {
-                constitution: 1,
-                attack: 1,
-                strength: 1,
-                defense: 60,
-                range: 1,
-                magic: 60,
-            },
+            requiredLevel: { defense: 60, magic: 60 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/elder_focus.png',
             class: 'equipment',
@@ -13034,7 +12910,6 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 1 },
             ammunitionMults: { damageMult: 0.9, accuracyMult: 0.9 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_0.png',
@@ -13055,7 +12930,7 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 10, magic: 1 },
+            requiredLevel: { range: 10 },
             ammunitionMults: {
                 damageMult: 19 / 20,
                 accuracyMult: 19 / 20,
@@ -13079,7 +12954,7 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 20, magic: 1 },
+            requiredLevel: { range: 20 },
             ammunitionMults: { damageMult: 1, accuracyMult: 1 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_2.png',
@@ -13100,7 +12975,7 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 30, magic: 1 },
+            requiredLevel: { range: 30 },
             ammunitionMults: { damageMult: 1.025, accuracyMult: 1.025 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_3.png',
@@ -13121,7 +12996,7 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 40, magic: 1 },
+            requiredLevel: { range: 40 },
             ammunitionMults: { damageMult: 1.05, accuracyMult: 1.05 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_4.png',
@@ -13142,7 +13017,7 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 50, magic: 1 },
+            requiredLevel: { range: 50 },
             ammunitionMults: { damageMult: 1.025, accuracyMult: 1.075 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/shot.png',
@@ -13165,7 +13040,7 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 60, magic: 1 },
+            requiredLevel: { range: 60 },
             ammunitionMults: { damageMult: 1.075, accuracyMult: 1.025 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/shot_void_0.png',
@@ -13188,7 +13063,7 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 70, magic: 1 },
+            requiredLevel: { range: 70 },
             ammunitionMults: { damageMult: 1.075, accuracyMult: 1.075 },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/shot_void_1.png',
@@ -13209,7 +13084,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 42069,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -13230,7 +13104,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 42069,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -13251,7 +13124,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 42069,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -13273,7 +13145,6 @@ class IdlescapeGameData {
             value: 20000,
             tradeable: true,
             enchantmentOverrideSlot: 'ladle',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -13303,7 +13174,6 @@ class IdlescapeGameData {
             value: 25000,
             tradeable: true,
             enchantmentOverrideSlot: 'ladle',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -13332,7 +13202,6 @@ class IdlescapeGameData {
             value: 30000,
             tradeable: true,
             enchantmentOverrideSlot: 'ladle',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -13358,7 +13227,7 @@ class IdlescapeGameData {
             augmentationCost: { 306: 1000, 401: 3 },
             value: 6360000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 85, defense: 1 },
+            requiredLevel: { strength: 85 },
 
 
 
@@ -13410,7 +13279,7 @@ class IdlescapeGameData {
             augmentationCost: { 513: 50, 701: 20 },
             value: 2120000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 55, defense: 1 },
+            requiredLevel: { strength: 55 },
 
 
 
@@ -13463,7 +13332,7 @@ class IdlescapeGameData {
             augmentationCost: { 403: 2, 513: 100 },
             value: 6360000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 85 },
+            requiredLevel: { defense: 85, strength: 85 },
 
 
 
@@ -13476,8 +13345,17 @@ class IdlescapeGameData {
             equipmentStats: {
                 grantedAbility: [19],
                 slot: 'helm',
-                defensiveCritical: { chance: 0.25, damageMultiplier: 0.75 },
-                offensiveDamageAffinity: { Melee: 0.95, Range: 0.95, Magic: 0.95, Fire: 0.7, Ice: 1.33 },
+                defensiveCritical: {
+                    chance: 1 / 4,
+                    damageMultiplier: 3 / 4,
+                },
+                offensiveDamageAffinity: {
+                    Melee: 19 / 20,
+                    Range: 19 / 20,
+                    Magic: 19 / 20,
+                    Fire: 0.7,
+                    Ice: 1.33,
+                },
                 defensiveDamageAffinity: {
                     Fire: 1.1,
                     Ice: 1.33,
@@ -13506,7 +13384,7 @@ class IdlescapeGameData {
             augmentationCost: { 402: 4, 512: 100 },
             value: 6360000,
             tradeable: true,
-            requiredLevel: { defense: 85 },
+            requiredLevel: { defense: 85, magic: 85 },
 
 
 
@@ -13529,7 +13407,7 @@ class IdlescapeGameData {
                 weaponBonus: { strength: 0, intellect: 24, dexterity: 0 },
                 armorBonus: { protection: 48, resistance: 88, agility: -4, stamina: 8 },
                 augmentationBonus: [
-                    { stat: 'armorBonus.protection', value: 0.75 },
+                    { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.resistance', value: 1.5 },
                     { stat: 'armorBonus.stamina', value: 0.5 },
                     { stat: 'weaponBonus.intellect', value: 0.5 },
@@ -13560,9 +13438,9 @@ class IdlescapeGameData {
             augmentationCost: { 206: 100, 306: 500 },
             craftingLevel: 80,
             craftingExperience: 148200,
-            value: 6360000,
+            value: 5832000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 85, defense: 1 },
+            requiredLevel: { strength: 85 },
 
 
 
@@ -13614,7 +13492,7 @@ class IdlescapeGameData {
             augmentationCost: { 206: 50 },
             value: 3360000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -13667,7 +13545,7 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 68000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 20 },
+            requiredLevel: { defense: 20 },
 
 
 
@@ -13699,7 +13577,7 @@ class IdlescapeGameData {
             augmentationCost: { 515: 100, 800: 50 },
             value: 3360000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
+            requiredLevel: { strength: 70 },
 
 
 
@@ -13749,7 +13627,7 @@ class IdlescapeGameData {
             augmentationCost: { 515: 100, 800: 50 },
             value: 3360000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
+            requiredLevel: { strength: 70 },
 
 
 
@@ -13792,7 +13670,7 @@ class IdlescapeGameData {
             augmentationCost: { 515: 100, 800: 50 },
             value: 3360000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
+            requiredLevel: { strength: 70 },
 
 
 
@@ -13839,7 +13717,7 @@ class IdlescapeGameData {
             augmentationCost: { 202: 100, 204: 100 },
             value: 232000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40 },
 
 
 
@@ -13873,7 +13751,7 @@ class IdlescapeGameData {
             augmentationCost: { 202: 80, 204: 80 },
             value: 184000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40 },
 
 
 
@@ -13908,7 +13786,7 @@ class IdlescapeGameData {
             augmentationCost: { 202: 80, 204: 80 },
             value: 136000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40 },
 
 
 
@@ -13935,7 +13813,7 @@ class IdlescapeGameData {
             augmentationCost: { 202: 60, 204: 60 },
             value: 136000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40 },
 
 
 
@@ -13968,7 +13846,7 @@ class IdlescapeGameData {
             augmentationCost: { 202: 100, 204: 100 },
             value: 232000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, strength: 40 },
 
 
 
@@ -14004,7 +13882,7 @@ class IdlescapeGameData {
             augmentationCost: { 202: 80, 204: 80, 303: 20, 304: 20 },
             value: 184000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 40, defense: 1 },
+            requiredLevel: { strength: 40 },
 
 
 
@@ -14042,7 +13920,7 @@ class IdlescapeGameData {
             augmentationCost: { 202: 60, 204: 60, 303: 15, 304: 15 },
             value: 136000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 40, defense: 1 },
+            requiredLevel: { strength: 40 },
 
 
 
@@ -14092,7 +13970,7 @@ class IdlescapeGameData {
             augmentationCost: { 202: 120, 204: 120, 303: 30, 304: 30 },
             value: 280000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 40, defense: 1 },
+            requiredLevel: { strength: 40 },
 
 
 
@@ -14138,7 +14016,7 @@ class IdlescapeGameData {
             augmentationCost: { 112: 100, 207: 50, 512: 100 },
             value: 420000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 40, defense: 1 },
+            requiredLevel: { strength: 40 },
 
 
 
@@ -14189,7 +14067,7 @@ class IdlescapeGameData {
             tradeable: true,
             augmentationCost: { 202: 60, 204: 60 },
             value: 192000,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40 },
+            requiredLevel: { defense: 40, strength: 40 },
 
 
 
@@ -14202,9 +14080,7 @@ class IdlescapeGameData {
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 1.33 },
-                offensiveDamageAffinity: {
-                    Melee: 1.1,
-                },
+                offensiveDamageAffinity: { Melee: 1.1 },
                 defensiveDamageAffinity: {
                     Melee: 1.06,
                     Magic: 81 / 100,
@@ -14230,7 +14106,7 @@ class IdlescapeGameData {
             augmentationCost: { 515: 200, 800: 100 },
             value: 2000000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
+            requiredLevel: { strength: 70 },
 
 
 
@@ -14274,11 +14150,11 @@ class IdlescapeGameData {
         1528: {
             name: 'Decayed Cloak',
             id: 1528,
-            enchantmentTier: 0,
+            enchantmentTier: 1,
             augmentationCost: { 515: 500, 800: 50 },
             value: 2560000,
+            requiredLevel: { defense: 40 },
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -14312,7 +14188,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 0,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -14334,7 +14209,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 0,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -14357,7 +14231,6 @@ class IdlescapeGameData {
             craftingExperience: 1,
             value: 0,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -14379,7 +14252,7 @@ class IdlescapeGameData {
             value: 10000,
             augmentationCost: { 5000: 1 },
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30, magic: 30 },
+            requiredLevel: { defense: 30, magic: 30 },
 
 
 
@@ -14417,7 +14290,7 @@ class IdlescapeGameData {
             value: 10000,
             augmentationCost: { 5000: 1 },
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30, magic: 30 },
+            requiredLevel: { defense: 30, magic: 30 },
 
 
 
@@ -14454,7 +14327,7 @@ class IdlescapeGameData {
             value: 10000,
             augmentationCost: { 5000: 1 },
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30, magic: 30 },
+            requiredLevel: { defense: 30, magic: 30 },
 
 
 
@@ -14492,7 +14365,7 @@ class IdlescapeGameData {
             value: 10000,
             augmentationCost: { 5000: 1 },
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 30, magic: 30 },
+            requiredLevel: { defense: 30, magic: 30 },
 
 
 
@@ -14549,7 +14422,7 @@ class IdlescapeGameData {
             augmentationCost: { 400: 15, 401: 12, 402: 9, 403: 6, 404: 3, 1548: 1 },
             craftingLevel: 90,
             craftingExperience: 192000,
-            value: 7500000,
+            value: 24000000,
             forcedAugmentChance: 1,
 
 
@@ -14615,7 +14488,7 @@ class IdlescapeGameData {
             augmentationCost: { 1548: 1, 1549: 40 },
             value: 12000000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 85, defense: 1 },
+            requiredLevel: { strength: 85 },
 
 
 
@@ -14695,9 +14568,9 @@ class IdlescapeGameData {
             augmentationCost: { 1549: 50 },
             craftingLevel: 85,
             craftingExperience: 192000,
-            value: 5000000,
+            value: 24000000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 85 },
+            requiredLevel: { defense: 85, strength: 85 },
 
 
 
@@ -14764,7 +14637,7 @@ class IdlescapeGameData {
             augmentationCost: { 208: 30, 304: 750, 307: 250, 403: 4, 516: 5000 },
             value: 6360000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 85, defense: 1 },
+            requiredLevel: { strength: 85 },
 
 
 
@@ -14841,11 +14714,11 @@ class IdlescapeGameData {
         1555: {
             name: 'Mantle of Flame',
             id: 1555,
-            enchantmentTier: 0,
+            enchantmentTier: 2,
             augmentationCost: { 2: 15000, 512: 2500, 700: 1000, 9013: 1 },
             value: 3120000,
             tradeable: true,
-            requiredLevel: { constitution: 40, attack: 1, strength: 1, defense: 40, magic: 40 },
+            requiredLevel: { constitution: 40, defense: 40, magic: 40 },
 
 
 
@@ -14877,10 +14750,10 @@ class IdlescapeGameData {
             name: 'Bestial Shawl',
             id: 1556,
             enchantmentTier: 2,
-            augmentationCost: { 4004: 30, 4012: 30, 4008: 10, 4005: 10 },
+            augmentationCost: { 4004: 30, 4005: 10, 4008: 10, 4012: 30 },
             value: 2620000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 40, magic: 1, range: 40 },
+            requiredLevel: { defense: 40, range: 40 },
 
 
 
@@ -14913,7 +14786,7 @@ class IdlescapeGameData {
             augmentationCost: { 513: 50, 701: 20 },
             value: 4120000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 75, defense: 1 },
+            requiredLevel: { strength: 75 },
 
 
 
@@ -14978,7 +14851,7 @@ class IdlescapeGameData {
             tradeable: true,
             augmentationCost: { 203: 150, 205: 150, 209: 150 },
             value: 4880000,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 70 },
+            requiredLevel: { defense: 70, strength: 70 },
 
 
 
@@ -15018,7 +14891,7 @@ class IdlescapeGameData {
             tradeable: true,
             value: 5000000,
             augmentationCost: { 4011: 5 },
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 65 },
+            requiredLevel: { defense: 65, magic: 65 },
 
 
 
@@ -15049,7 +14922,7 @@ class IdlescapeGameData {
             augmentationCost: { 4011: 5 },
             value: 5000000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 65 },
+            requiredLevel: { defense: 65, strength: 65 },
 
 
 
@@ -15081,7 +14954,7 @@ class IdlescapeGameData {
             augmentationCost: { 4011: 5 },
             value: 5000000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 65 },
+            requiredLevel: { defense: 65, range: 65 },
 
 
 
@@ -15112,7 +14985,7 @@ class IdlescapeGameData {
             augmentationCost: { 4011: 5 },
             value: 5000000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 65 },
+            requiredLevel: { defense: 65 },
 
 
 
@@ -15139,7 +15012,6 @@ class IdlescapeGameData {
             value: 25000,
             tradeable: true,
             enchantmentOverrideSlot: 'ladle',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -15194,7 +15066,7 @@ class IdlescapeGameData {
             augmentationCost: { 4001: 10, 4002: 10, 4009: 10 },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -15245,7 +15117,7 @@ class IdlescapeGameData {
             augmentationCost: { 4001: 20, 4002: 20, 4009: 20 },
             value: 2500000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
+            requiredLevel: { strength: 70 },
 
 
 
@@ -15293,7 +15165,7 @@ class IdlescapeGameData {
             augmentationCost: { 4001: 10, 4002: 10, 4009: 10 },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -15315,11 +15187,7 @@ class IdlescapeGameData {
                     Magic: -12,
                     Range: -12,
                 },
-                offensiveDamageAffinity: {
-                    Melee: 1,
-                    Piercing: 1.05,
-                    Slashing: 1.05,
-                },
+                offensiveDamageAffinity: { Melee: 1, Piercing: 1.05, Slashing: 1.05 },
                 weaponBonus: { strength: 11, intellect: 0, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 0, agility: 13, stamina: 0 },
                 augmentationBonus: [
@@ -15340,7 +15208,7 @@ class IdlescapeGameData {
             augmentationCost: { 4001: 20, 4002: 20, 4009: 20 },
             value: 2500000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
+            requiredLevel: { strength: 70 },
 
 
 
@@ -15362,11 +15230,7 @@ class IdlescapeGameData {
                     Magic: -12,
                     Range: -12,
                 },
-                offensiveDamageAffinity: {
-                    Melee: 1,
-                    Piercing: 1.05,
-                    Slashing: 1.05,
-                },
+                offensiveDamageAffinity: { Melee: 1, Piercing: 1.05, Slashing: 1.05 },
                 weaponBonus: { strength: 16, intellect: 0, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 0, agility: 18, stamina: 0 },
                 augmentationBonus: [
@@ -15385,7 +15249,7 @@ class IdlescapeGameData {
             augmentationCost: { 307: 75, 4011: 15, 4028: 1 },
             value: 4495000,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 85 },
+            requiredLevel: { range: 85 },
             itemImage: '/images/combat/equipment/range/bow_king.png',
             itemIcon: '/images/combat/equipment/range/bow_king.png',
             class: 'equipment',
@@ -15434,7 +15298,7 @@ class IdlescapeGameData {
             augmentationCost: { 4026: 16, 4027: 1 },
             value: 4495000,
             type: 'weapon',
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 1, magic: 85 },
+            requiredLevel: { magic: 85 },
             itemImage: '/images/combat/equipment/melee/trident.png',
             itemIcon: '/images/combat/equipment/melee/trident.png',
             class: 'equipment',
@@ -15478,7 +15342,7 @@ class IdlescapeGameData {
             augmentationCost: { 206: 33, 11032: 1 },
             value: 2500000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -15517,7 +15381,7 @@ class IdlescapeGameData {
             augmentationCost: { 206: 25, 207: 4, 11032: 1 },
             value: 4495000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 70, defense: 1 },
+            requiredLevel: { strength: 70 },
 
 
 
@@ -15557,7 +15421,7 @@ class IdlescapeGameData {
             augmentationCost: { 307: 75, 4011: 15, 4028: 1 },
             value: 4495000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 70 },
+            requiredLevel: { range: 70 },
             forcedEnchant: 63,
             forcedEnchantAmount: 5,
 
@@ -15585,7 +15449,7 @@ class IdlescapeGameData {
             augmentationCost: { 4005: 8, 4012: 20 },
             value: 2495000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1, range: 35 },
+            requiredLevel: { range: 35 },
             forcedEnchant: 63,
             forcedEnchantAmount: 3,
 
@@ -15774,7 +15638,7 @@ class IdlescapeGameData {
             augmentationCost: { 207: 40, 800: 12 },
             value: 3440000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 75, defense: 1 },
+            requiredLevel: { strength: 75 },
 
 
 
@@ -15785,7 +15649,7 @@ class IdlescapeGameData {
             tags: ['melee', 'weapon'],
             equipmentStats: {
                 slot: 'weapon',
-                offensiveCritical: { chance: 5 / 200, damageMultiplier: 1.25 },
+                offensiveCritical: { chance: 1 / 40, damageMultiplier: 1.25 },
                 offensiveAccuracyAffinityRating: {
                     Melee: 88,
                     Magic: -12,
@@ -17003,7 +16867,7 @@ class IdlescapeGameData {
             skillIcon: '/images/enchanting/enchanting_logo.png',
             class: 'enchanted-scroll',
             tags: ['enchanting'],
-            requiredResources: [{ 111: 800, 516: 70, 517: 70, 514: 70, 1600: 1 }],
+            requiredResources: [{ 111: 800, 514: 70, 516: 70, 517: 70, 1600: 1 }],
             rarity: 'uncommon',
         },
         1644: {
@@ -17289,7 +17153,7 @@ class IdlescapeGameData {
             id: 1654,
             level: 87,
             experience: 6400,
-            baseSuccessChance: 0.52,
+            baseSuccessChance: 13 / 25,
             tradeable: true,
             value: 2000,
 
@@ -17415,7 +17279,7 @@ class IdlescapeGameData {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
             tags: ['enchanting'],
-            requiredResources: [{ 111: 400, 518: 40, 516: 40, 517: 40, 1600: 1 }],
+            requiredResources: [{ 111: 400, 516: 40, 517: 40, 518: 40, 1600: 1 }],
         },
         1659: {
             name: 'Scroll of Rune Reserves',
@@ -17442,7 +17306,7 @@ class IdlescapeGameData {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
             tags: ['enchanting'],
-            requiredResources: [{ 111: 500, 518: 50, 516: 50, 513: 50, 1600: 1 }],
+            requiredResources: [{ 111: 500, 513: 50, 516: 50, 518: 50, 1600: 1 }],
         },
         1660: {
             name: 'Scroll of the Soul Wisdom',
@@ -20397,7 +20261,6 @@ class IdlescapeGameData {
             name: 'Inferior Bearded Wanderer',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20414,7 +20277,6 @@ class IdlescapeGameData {
             name: "Inferior Reindeer Hunters' Armor",
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20431,7 +20293,6 @@ class IdlescapeGameData {
             name: "Inferior Reindeer Hunters' Leggings",
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20448,7 +20309,6 @@ class IdlescapeGameData {
             name: 'Inferior Christmas Lights',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20470,7 +20330,6 @@ class IdlescapeGameData {
             name: 'SuperSled 1337',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20490,7 +20349,6 @@ class IdlescapeGameData {
             name: 'Bearded Wanderer',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20507,7 +20365,6 @@ class IdlescapeGameData {
             name: "Reindeer Hunters' Armor",
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20524,7 +20381,6 @@ class IdlescapeGameData {
             name: "Reindeer Hunters' Leggings",
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20541,7 +20397,6 @@ class IdlescapeGameData {
             name: 'Christmas Lights',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20563,7 +20418,6 @@ class IdlescapeGameData {
             name: 'SuperSled 9000',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20583,7 +20437,6 @@ class IdlescapeGameData {
             name: 'Superior Bearded Wanderer',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20604,7 +20457,6 @@ class IdlescapeGameData {
             name: "Superior Reindeer Hunters' Armor",
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20625,7 +20477,6 @@ class IdlescapeGameData {
             name: "Superior Reindeer Hunters' Leggings",
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20646,7 +20497,6 @@ class IdlescapeGameData {
             name: 'Superior Christmas Lights',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20669,7 +20519,6 @@ class IdlescapeGameData {
             name: 'SuperSled 9001',
             tradeable: false,
             enchantmentTier: 0,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20692,7 +20541,7 @@ class IdlescapeGameData {
             augmentationCost: { 519: 500 },
             value: 2840000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 50, strength: 50, defense: 1 },
+            requiredLevel: { attack: 50, strength: 50 },
 
 
 
@@ -20719,7 +20568,7 @@ class IdlescapeGameData {
             augmentationCost: { 2015: 100 },
             value: 2840000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 50, defense: 1 },
+            requiredLevel: { strength: 50 },
 
 
 
@@ -20771,7 +20620,6 @@ class IdlescapeGameData {
             augmentationCost: { 2015: 100 },
             value: 5120000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20799,7 +20647,6 @@ class IdlescapeGameData {
         7032: {
             name: "Merry Maker's Mittens",
             id: 7032,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -20817,7 +20664,6 @@ class IdlescapeGameData {
         7033: {
             name: 'Mistletoe Treads',
             id: 7033,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
@@ -21103,7 +20949,6 @@ class IdlescapeGameData {
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
             extraTooltipInfo: 'A token that can be redeemed for a new character slot. WIP: NO FUNCTIONALITY YET',
-
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -21115,7 +20960,6 @@ class IdlescapeGameData {
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
             extraTooltipInfo: 'A token that can be redeemed for a new active character slot. WIP: NO FUNCTIONALITY YET',
-
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -21127,7 +20971,6 @@ class IdlescapeGameData {
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
             extraTooltipInfo: 'A token that can be redeemed to change your character name. WIP: NO FUNCTIONALITY YET',
-
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -21140,7 +20983,6 @@ class IdlescapeGameData {
             itemIcon: '/images/premium/premium_icon.png',
             extraTooltipInfo:
                 'A token that can be redeemed to allow offline progress for 72 hours. WIP: NO FUNCTIONALITY YET',
-
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -21152,7 +20994,6 @@ class IdlescapeGameData {
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
             extraTooltipInfo: 'A token that can be redeemed to increase base loadout count. WIP: NO FUNCTIONALITY YET',
-
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -22202,7 +22043,6 @@ class IdlescapeGameData {
             augmentationCost: { 201: 2, 302: 4, 11030: 1 },
             craftingExperience: 156,
             craftingLevel: 2,
-            requiredLevel: { fishing: 1 },
 
 
 
@@ -22406,7 +22246,7 @@ class IdlescapeGameData {
         11005: {
             id: 11005,
             name: "Ocean's Embrace",
-            value: 15000000,
+            value: 9927000,
             tradeable: false,
             enchantmentTier: 8,
             augmentationCost: { 11032: 300, 11033: 3, 11034: 3, 11035: 3, 11036: 300 },
@@ -22729,7 +22569,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12010: 900 }],
+            requiredResources: [{ 114: 150, 115: 50, 11038: 1 }, { 114: 150, 115: 50, 11039: 1 }, { 12010: 900 }],
             itemImage: 'images/mining/dwarven_ingot.png',
             extraTooltipInfo: 'An alloy made from metals you do not recognize.',
             class: 'bar',
@@ -22746,7 +22586,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12010: 900 }],
+            requiredResources: [{ 114: 150, 115: 50, 11037: 1 }, { 114: 150, 115: 50, 11039: 1 }, { 12010: 900 }],
             itemImage: 'images/mining/dwarven_ingot_2.png',
             extraTooltipInfo: 'An incredibly hard dwarven ingot. It is basically impossible to work with.',
             class: 'bar',
@@ -22763,7 +22603,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12010: 900 }],
+            requiredResources: [{ 114: 150, 115: 50, 11037: 1 }, { 114: 150, 115: 50, 11038: 1 }, { 12010: 900 }],
             itemImage: 'images/mining/dwarven_ingot_3.png',
             extraTooltipInfo: 'A sort of mold to form a tool with.',
             class: 'bar',
@@ -22780,7 +22620,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12011: 900 }],
+            requiredResources: [{ 306: 500, 307: 150, 11041: 1 }, { 306: 500, 307: 150, 11042: 1 }, { 12011: 900 }],
             itemImage: 'images/farming/mysterious_plant_44.png',
             extraTooltipInfo: 'It is looking at you.',
             class: 'bar',
@@ -22797,7 +22637,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12011: 900 }],
+            requiredResources: [{ 306: 500, 307: 150, 11040: 1 }, { 306: 500, 307: 150, 11042: 1 }, { 12011: 900 }],
             itemImage: 'images/foraging/elder_sap.png',
             extraTooltipInfo: 'Sap taken from a tree that is much older than you are.',
             class: 'bar',
@@ -22814,7 +22654,7 @@ class IdlescapeGameData {
             craftable: true,
             craftingLevel: 90,
             craftingExperience: 15000,
-            requiredResources: [{ 12011: 900 }],
+            requiredResources: [{ 306: 500, 307: 150, 11040: 1 }, { 306: 500, 307: 150, 11041: 1 }, { 12011: 900 }],
             itemImage: 'images/foraging/world_branch.png',
             extraTooltipInfo: 'Basically just a shiny branch!',
             class: 'bar',
@@ -22843,7 +22683,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'fishing',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -22880,7 +22719,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'fishing',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -22917,7 +22755,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'fishing',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -22949,7 +22786,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'mining',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -22981,7 +22817,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'mining',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -23013,7 +22848,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'mining',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -23046,7 +22880,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'foraging',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -23078,7 +22911,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'foraging',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -23110,7 +22942,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             relatedSkill: 'foraging',
             craftingLevel: 60,
             craftingExperience: 9001,
@@ -23179,7 +23010,6 @@ class IdlescapeGameData {
             },
             value: 250000,
             tradeable: true,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
             enchantmentOverrideSlot: 'ladle',
 
 
@@ -23772,7 +23602,6 @@ class IdlescapeGameData {
             name: 'ban_hamer',
             id: 100000,
             tradeable: false,
-            requiredLevel: { constitution: 1, attack: 1, strength: 1, defense: 1 },
 
 
 
