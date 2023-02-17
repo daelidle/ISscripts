@@ -2,6 +2,7 @@
     display: flex;
     text-align: center;
     justify-content: center;
+    align-items: center;
 }
 .damage_meter .row {
     flex: 1;
@@ -180,10 +181,10 @@
     font-size: 12px;
     width: 70px;
 }
-.dm_switcher {
+.dm_icon_button {
     width: 20px;
     height: 20px;
-    margin-top: 20px;
+    margin-right: 7px;
     z-index: 1;
     pointer-events: all !important;
 }
