@@ -3,6 +3,9 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    width: 100%;
+    z-index: 31;
 }
 .damage_meter .row {
     flex: 1;
@@ -187,6 +190,7 @@
     margin-right: 7px;
     z-index: 1;
     pointer-events: all !important;
+    cursor: pointer;
 }
 .close_meter_message{
     float: right;
