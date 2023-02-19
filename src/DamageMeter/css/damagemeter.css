@@ -192,6 +192,12 @@
     pointer-events: all !important;
     cursor: pointer;
 }
+.dm_breakdown {
+    height: 15px;
+    width: 15px;
+    margin-top: -3px;
+    margin-right: -14px;
+}
 .close_meter_message{
     float: right;
     cursor: pointer;

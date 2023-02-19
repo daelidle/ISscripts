@@ -163,8 +163,10 @@ class DamageMeter {
         this.ui._updateMeter(uiPlayers, type);
     }
 
-    showBreakdownModal(){
-        const modalHtml = this.ui.generateBreakdownModal(this.combat.group, this.daelis.gameData.abilities);
+    showBreakdownModal(icon){
+        const playerName = icon.dataset.playername;
+        const player = this.combat.group[playerName];
+        const modalHtml = this.ui.generateBreakdownModal(player, this.daelis.gameData.abilities);
         displayCompletePopup(modalHtml.title, modalHtml.message, null, '', 'Close', () => {}, () => {}, this.customModalClass);
         this.ui.setupBreakdownModalTriggers('dps');
     }
