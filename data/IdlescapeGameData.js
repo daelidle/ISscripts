@@ -440,7 +440,7 @@ class IdlescapeGameData {
             buffIcon: '/images/magic/buffs/prolonging_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Grants ${Math.round(
-                    1 / (1 + enchantmentStrength * strengthPerLevel * 100)
+                    (1 - 1 / (1 + enchantmentStrength * strengthPerLevel)) * 100
                 )}% chance that a buff stack is not lost.`,
             // endclient
         }, // boosting, more actions
@@ -979,6 +979,31 @@ class IdlescapeGameData {
                 )}%.`,
             // endclient
         }, // Bonus XP for soulbound items
+        72: {
+            id: 72,
+            name: 'Overly Well Done',
+            strengthPerLevel: 0.2,
+            scrollID: 1661,
+            combat: false,
+            // client
+            buffIcon: '/images/magic/buffs/masterchef_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases chance to burn food and reduces burn XP penalty (caps at no penalty) while cooking by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}%.`,
+            // endclient
+        }, // increases burn chance by cooking level
+        73: {
+            id: 73,
+            name: 'Loot Goblin',
+            strengthPerLevel: 0.0025,
+            combat: false,
+            // client
+            buffIcon: '/images/magic/buffs/masterchef_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Gives a mysterious chance for you to encounter a Loot Goblin in combat.`,
+            // endclient
+        }, // loot goblin!
 
         // mostly monster effects
         1000: {
@@ -1139,24 +1164,27 @@ class IdlescapeGameData {
         8006: {
             id: 8006,
             name: 'Overheating',
-            strengthPerLevel: 1,
+            strengthPerLevel: 0.1,
             combat: true,
             // client
             hideStacks: true,
             buffIcon: '/images/magic/debuffs/overheating.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `This zone is dangerous, you're overheating! Offensive stats reduced. This effect can be mitigated by Flame Resistance food buff.`,
+                `This zone is dangerous, you're overheating! Damage output reduced by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}%. This effect can be mitigated by the Flame Resistance buff.`,
             // endclient
         },
         8007: {
             id: 8007,
             name: 'Flame Resistance',
-            strengthPerLevel: 1,
+            strengthPerLevel: 0.1,
             combat: true,
             stackMult: 2,
             // client
             buffIcon: '/images/magic/buffs/flame_resistance.png',
-            getTooltip: (enchantmentStrength, strengthPerLevel) => `Grants some resistance to intense heat.`,
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Grants some resistance to intense heat; counteracts up to ${enchantmentStrength} levels of overheating. May be consumed multiple times per attack!`,
             // endclient
         },
         8008: {
@@ -3801,7 +3829,7 @@ class IdlescapeGameData {
             value: 12960000,
             tradeable: false,
             enchantmentTier: 8,
-            augmentationCost: { 207: 350, 208: 200, 11037: 3, 11038: 3, 11039: 3 },
+            augmentationCost: { 114: 750, 115: 250, 11037: 3, 11038: 3, 11039: 3 },
             craftingExperience: 256000,
             craftingLevel: 90,
             requiredLevel: { mining: 80 },
@@ -7648,8 +7676,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/door.png',
             itemIcon: '/images/combat/equipment/door_icon.png',
             class: 'equipment',
-            visual: 'shield',
+            visual: 'door',
             tags: ['armor', 'weapon', 'melee'],
+            extraTooltipInfo:
+                "A portion of a castle's door that can be used as a shield. Incredibly heavy, but very protective!",
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 33 / 100, damageMultiplier: 0.5 },
@@ -13453,7 +13483,7 @@ class IdlescapeGameData {
             category: 'Rare',
             tags: ['melee', 'weapon', 'onehand', 'shard', 'fragment', 'crafting'],
             equipmentStats: {
-                grantedAbility: [4, 8],
+                grantedAbility: [8, 68],
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
                 offensiveAccuracyAffinityRating: {
@@ -14454,7 +14484,7 @@ class IdlescapeGameData {
         1546: {
             name: 'Awakened World Shaper',
             id: 1546,
-            enchantmentTier: 6,
+            enchantmentTier: 7,
             augmentationCost: { 400: 15, 401: 12, 402: 9, 403: 6, 404: 3, 1548: 1 },
             value: 10000000,
 
@@ -14466,8 +14496,9 @@ class IdlescapeGameData {
             visual: 'awakened-titanic-gauntlet gloves',
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
+                grantedAbility: [72, 73, 74],
                 slot: 'gloves',
-                weaponBonus: { strength: 11, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 11, intellect: 11, dexterity: 11 },
                 offensiveAccuracyAffinityRating: { Melee: 11, Magic: 11, Range: 11 },
                 defensiveDamageAffinity: { Melee: 1.03, Magic: 1.03, Range: 1.03 },
                 armorBonus: { protection: 24, resistance: 24, agility: 0, stamina: 0 },
@@ -14564,7 +14595,7 @@ class IdlescapeGameData {
         1550: {
             name: 'World Walkers',
             id: 1550,
-            enchantmentTier: 6,
+            enchantmentTier: 7,
             augmentationCost: { 1549: 50 },
             craftingLevel: 85,
             craftingExperience: 192000,
@@ -14799,7 +14830,7 @@ class IdlescapeGameData {
             category: ['weapon', 'combat'],
             tags: ['melee', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
-                grantedAbility: [44, 51],
+                grantedAbility: [69, 70, 71],
                 slot: 'weapon',
                 offensiveCritical: { chance: 11 / 200, damageMultiplier: 1.75 },
                 offensiveAccuracyAffinityRating: {
@@ -14817,7 +14848,7 @@ class IdlescapeGameData {
                     Range: 0.2,
                     Piercing: 1.05,
                     Blunt: 1.05,
-                    Slashing: 1 / 4,
+                    Slashing: 0.9,
                     Fire: 1.2,
                 },
                 weaponBonus: { strength: 99, intellect: 44, dexterity: 0 },
@@ -15025,7 +15056,7 @@ class IdlescapeGameData {
                 grantedAbility: [39, 53],
                 slot: 'weapon',
                 offensiveAccuracyAffinityRating: { Melee: 21, Magic: 21, Fire: 48 },
-                offensiveDamageAffinity: { Melee: 1.33, Magic: 1.33, Fire: 2 },
+                offensiveDamageAffinity: { Melee: 1.1, Magic: 1.1, Fire: 1.33 },
                 weaponBonus: { strength: 18, intellect: 18, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 0, agility: 0, stamina: 0 },
                 augmentationBonus: [{ stat: 'toolBoost.cooking', value: 5 }],
@@ -16866,6 +16897,10 @@ class IdlescapeGameData {
             enchantName: 'Fortitude',
             skillIcon: '/images/enchanting/enchanting_logo.png',
             class: 'enchanted-scroll',
+            actionButton: 'Craft',
+            getChance: (resource, playerLevel) => {
+                return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
+            },
             tags: ['enchanting'],
             requiredResources: [{ 111: 800, 514: 70, 516: 70, 517: 70, 1600: 1 }],
             rarity: 'uncommon',
@@ -17353,6 +17388,33 @@ class IdlescapeGameData {
             tags: ['enchanting'],
             requiredResources: [{ 111: 600, 516: 60, 518: 60, 519: 60, 1600: 1 }],
             rarity: 'epic',
+        },
+        1661: {
+            name: 'Scroll of Overly Well Done',
+            activeMessage: 'Making scrolls of overly well done',
+            enchant: true,
+            enchantmentID: 72,
+            categories: ['ladle'],
+            time: 15000,
+            id: 1661,
+            level: 2,
+            experience: 120,
+            baseSuccessChance: 0.4,
+            tradeable: true,
+            value: 2000,
+
+
+
+            itemImage: '/images/enchanting/scroll_of_masterchef.png',
+            enchantName: 'overlyWellDone',
+            skillIcon: '/images/enchanting/enchanting_logo.png',
+            class: 'enchanted-scroll',
+            actionButton: 'Craft',
+            getChance: (resource, playerLevel) => {
+                return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
+            },
+            tags: ['enchanting'],
+            requiredResources: [{ 111: 100, 511: 10, 512: 10, 513: 10, 1600: 1 }],
         },
         2000: {
             name: 'Raw Chicken',
@@ -18926,11 +18988,12 @@ class IdlescapeGameData {
             value: 10,
             tradeable: true,
             craftingLevel: 1,
-            craftingExperience: 5,
-            requiredResources: [{ 2: 10, 110: 3 }],
+            craftingExperience: 3,
+            craftingMultiplier: [3],
+            requiredResources: [{ 2: 5, 110: 1 }],
             size: 1,
-            difficulty: 3,
-            alchemySize: 2,
+            difficulty: 1,
+            alchemySize: 0,
 
 
 
@@ -18948,8 +19011,8 @@ class IdlescapeGameData {
             value: 30,
             tradeable: true,
             craftingLevel: 1,
-            craftingExperience: 5,
-            requiredResources: [{ 2: 30, 110: 3 }],
+            craftingExperience: 6,
+            requiredResources: [{ 2: 20, 110: 2 }],
             size: 2,
             difficulty: 6,
             alchemySize: 1.5,
@@ -18970,8 +19033,8 @@ class IdlescapeGameData {
             value: 50,
             tradeable: true,
             craftingLevel: 1,
-            craftingExperience: 5,
-            requiredResources: [{ 2: 50, 110: 3 }],
+            craftingExperience: 12,
+            requiredResources: [{ 2: 100, 110: 3 }],
             size: 3,
             difficulty: 9,
             alchemySize: 1,
@@ -20948,7 +21011,7 @@ class IdlescapeGameData {
             isToken: true,
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
-            extraTooltipInfo: 'A token that can be redeemed for a new character slot. WIP: NO FUNCTIONALITY YET',
+            extraTooltipInfo: 'A token that can be redeemed for a new character slot.',
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -20959,7 +21022,7 @@ class IdlescapeGameData {
             isToken: true,
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
-            extraTooltipInfo: 'A token that can be redeemed for a new active character slot. WIP: NO FUNCTIONALITY YET',
+            extraTooltipInfo: 'A token that can be redeemed for a new active character slot.',
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -20981,8 +21044,7 @@ class IdlescapeGameData {
             isToken: true,
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
-            extraTooltipInfo:
-                'A token that can be redeemed to allow offline progress for 72 hours. WIP: NO FUNCTIONALITY YET',
+            extraTooltipInfo: 'A token that can be redeemed to allow offline progress for 72 hours.',
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -20993,7 +21055,7 @@ class IdlescapeGameData {
             isToken: true,
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
-            extraTooltipInfo: 'A token that can be redeemed to increase base loadout count. WIP: NO FUNCTIONALITY YET',
+            extraTooltipInfo: 'A token that can be redeemed to increase base loadout count.',
             class: 'platinum',
             category: ['platinum', 'token'],
             rarity: 'legendary',
@@ -23026,7 +23088,8 @@ class IdlescapeGameData {
             id: 13000,
             name: 'Combat Manual - Volume 1',
             itemImage: '/images/combat/ability_book/melee.png',
-            value: 42000,
+            value: 50000,
+            heat: 25000,
             extraTooltipInfo:
                 "A manual on how to take advantage of your weapon's edge. Apparently using the sharp part means it will hurt something more, who could have known?",
             relatedAbility: 4,
@@ -23037,7 +23100,8 @@ class IdlescapeGameData {
             id: 13001,
             name: 'Combat Manual - Volume 2',
             itemImage: '/images/combat/ability_book/melee.png',
-            value: 42000,
+            value: 50000,
+            heat: 25000,
             extraTooltipInfo:
                 'A manual on how to take poke things really good. If the weapon has a decent tip, you can stab things! Wow!',
             relatedAbility: 5,
@@ -23048,7 +23112,8 @@ class IdlescapeGameData {
             id: 13002,
             name: 'Combat Manual - Volume 3',
             itemImage: '/images/combat/ability_book/melee.png',
-            value: 42000,
+            value: 50000,
+            heat: 25000,
             extraTooltipInfo:
                 'A manual on how to just hit things hard. Crushing things is deceptively simple and to truly pummel your enemy you must understand that being blunt is sometimes the only way to go.',
             relatedAbility: 6,
@@ -23059,7 +23124,8 @@ class IdlescapeGameData {
             id: 13003,
             name: 'Spell Tome - Fire Ball',
             itemImage: '/images/combat/ability_book/red.png',
-            value: 42000,
+            value: 50000,
+            heat: 25000,
             extraTooltipInfo:
                 'A basic tome from the Academy formerly used for teaching aspiring mages how to control and utilize fire. Be careful where you practice it!',
             relatedAbility: 7,
@@ -23180,8 +23246,8 @@ class IdlescapeGameData {
             itemImage: '/images/combat/ability_book/melee.png',
             value: 42000,
             extraTooltipInfo:
-                'A manual on swinging through one enemy and into the next one. A battle cry is optional but recommended!',
-            relatedAbility: 22,
+                'A manual on stabbing through one enemy and into the next one. A battle cry is optional but recommended!',
+            relatedAbility: 66,
             class: 'gem',
             tags: ['book'],
         },
@@ -23233,6 +23299,18 @@ class IdlescapeGameData {
             value: 42000,
             extraTooltipInfo: 'Setting traps is just one of the many ways you may shape the battlefield.',
             relatedAbility: 60,
+            class: 'gem',
+            tags: ['book'],
+        },
+        13020: {
+            id: 13020,
+            name: 'Spell Tome - Ice Shard',
+            itemImage: '/images/combat/ability_book/magic.png',
+            value: 50000,
+            heat: 25000,
+            extraTooltipInfo:
+                'A basic tome from the Academy formerly used for teaching aspiring mages how to control and utilize ice.',
+            relatedAbility: 67,
             class: 'gem',
             tags: ['book'],
         },
@@ -25824,6 +25902,14 @@ class IdlescapeGameData {
             accessRequirements: {
                 maxGroupSize: 2,
             },
+            locationBuffs: [
+                {
+                    buffID: 8006,
+                    stacks: 99999,
+                    strength: 3,
+                    onlyOnStart: true,
+                },
+            ],
 
         },
         3008: {
@@ -26029,10 +26115,10 @@ class IdlescapeGameData {
         },
         8: {
             id: 8,
-            abilityName: 'Ice Shard',
+            abilityName: 'Enhanced Ice Shard',
             abilityImage: '/images/combat/ability_icons/ice_shard.png',
             description:
-                'Launch a magically hardened ice into your opponent to deal an impressive amount of piercing and ice damage.',
+                'Launch an enhanced version of a magically hardened ice into your opponent to deal an impressive amount of piercing and ice damage.',
             damageType: 'Magic',
             cooldown: 30000,
 
@@ -26049,7 +26135,7 @@ class IdlescapeGameData {
 
             baseSpeedCoeff: 1.2,
             baseMinimumDamageCoeff: 1,
-            baseMaximumDamageCoeff: 1,
+            baseMaximumDamageCoeff: 1.25,
             baseAccuracyCoeff: 1,
 
             maxTargets: 1,
@@ -26144,21 +26230,21 @@ class IdlescapeGameData {
             description:
                 'Fire a barrage of explosive projectiles into the midst of your enemies, allowing you to deal an extreme amount of damage to multiple targets.',
             damageType: 'Range',
-            cooldown: 30000,
+            cooldown: 60000,
             useRangedAmmo: true,
 
             damageScaling: [
                 { affinity: 'Range', scaling: 1 },
-                { affinity: 'Blunt', scaling: 1.333 },
+                { affinity: 'Blunt', scaling: 1.15 },
             ],
             accuracyScaling: [
                 { affinity: 'Range', scaling: 1 },
-                { affinity: 'Blunt', scaling: 1.333 },
+                { affinity: 'Blunt', scaling: 1.15 },
             ],
 
-            baseSpeedCoeff: 1.75,
-            baseMinimumDamageCoeff: 1.5,
-            baseMaximumDamageCoeff: 4,
+            baseSpeedCoeff: 3,
+            baseMinimumDamageCoeff: 1,
+            baseMaximumDamageCoeff: 2,
             baseAccuracyCoeff: 0.75,
 
             maxTargets: 5,
@@ -27346,7 +27432,7 @@ class IdlescapeGameData {
             abilityName: 'Set Traps',
             abilityImage: '/images/combat/ability_icons/trap.png',
             description: 'Sets a trap that significantly reduces agility of an enemy if they are hit by it.',
-            damageType: 'Magic',
+            damageType: 'Range',
             cooldown: 30000,
 
             damageScaling: [{ affinity: 'Range', scaling: 1 }],
@@ -27488,6 +27574,244 @@ class IdlescapeGameData {
 
             maxTargets: 1,
         },
+        66: {
+            id: 66,
+            abilityName: 'Impale',
+            abilityImage: '/images/combat/ability_icons/infernal_impale.PNG',
+            description: 'An impaling attack that can hit up to 2 enemies at once.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 1.15,
+            baseMinimumDamageCoeff: 0.66,
+            baseMaximumDamageCoeff: 1,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 2,
+        },
+        67: {
+            id: 67,
+            abilityName: 'Ice Shard',
+            abilityImage: '/images/combat/ability_icons/ice_shard.png',
+            description:
+                'Launch a magically hardened ice into your opponent to deal an impressive amount of piercing and ice damage.',
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.1 },
+                { affinity: 'Ice', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.1 },
+                { affinity: 'Ice', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 1.2,
+            baseMinimumDamageCoeff: 1,
+            baseMaximumDamageCoeff: 1,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+        },
+        68: {
+            id: 68,
+            abilityName: 'Enhanced Ice Slash',
+            abilityImage: '/images/combat/ability_icons/ice_shard.png',
+            description: 'Harness the power of ice to temporarily add an incredibly sharp edge to your blade.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Ice', scaling: 1.1 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Ice', scaling: 1.1 },
+            ],
+
+            baseSpeedCoeff: 1.2,
+            baseMinimumDamageCoeff: 1,
+            baseMaximumDamageCoeff: 1.25,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+        },
+        69: {
+            id: 69,
+            abilityName: 'Flaming Fist: Jab',
+            abilityImage: '/images/combat/ability_icons/flame_fist.png',
+            description: 'Throw a piercing punch wreathed in flames.',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+                { affinity: 'Fire', scaling: 1.1 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Piercing', scaling: 1.333 },
+                { affinity: 'Fire', scaling: 1.1 },
+            ],
+
+            baseSpeedCoeff: 0.66,
+            baseMinimumDamageCoeff: 0.33,
+            baseMaximumDamageCoeff: 0.75,
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 1,
+        },
+        70: {
+            id: 70,
+            abilityName: 'Flaming Fist: Haymaker',
+            abilityImage: '/images/combat/ability_icons/flame_fist.png',
+            description: 'Throw a powerful punch wreathed in flames.',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+                { affinity: 'Fire', scaling: 1.1 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Blunt', scaling: 1.333 },
+                { affinity: 'Fire', scaling: 1.1 },
+            ],
+
+            baseSpeedCoeff: 0.8,
+            baseMinimumDamageCoeff: 0.4,
+            baseMaximumDamageCoeff: 0.9,
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 1,
+        },
+        71: {
+            id: 71,
+            abilityName: 'Flaming Fist: Chop',
+            abilityImage: '/images/combat/ability_icons/flame_fist.png',
+            description: 'Throw a powerful chopping attack wreathed in flames.',
+            damageType: 'Melee',
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Fire', scaling: 1.1 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Slashing', scaling: 1.333 },
+                { affinity: 'Fire', scaling: 1.1 },
+            ],
+
+            baseSpeedCoeff: 0.66,
+            baseMinimumDamageCoeff: 0.33,
+            baseMaximumDamageCoeff: 0.75,
+            baseAccuracyCoeff: 0.9,
+
+            maxTargets: 1,
+        },
+        72: {
+            id: 72,
+            abilityName: 'Obliterating *Snap*',
+            abilityImage: '/images/combat/ability_icons/snap.png',
+            description: 'All it would take is a snap of your fingers to obliterate your target.',
+            damageType: 'Melee',
+            cooldown: 60000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1.5 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1.5 }],
+
+            baseSpeedCoeff: 0.33,
+            baseMinimumDamageCoeff: 1.25,
+            baseMaximumDamageCoeff: 1.5,
+            baseAccuracyCoeff: 1.5,
+
+            maxTargets: 2,
+        },
+        73: {
+            id: 73,
+            abilityName: 'Annihilating *Snap*',
+            abilityImage: '/images/combat/ability_icons/snap.png',
+            description: 'All it would take is a snap of your fingers to annihilate your targets.',
+            damageType: 'Magic',
+            cooldown: 60000,
+
+            damageScaling: [{ affinity: 'Magic', scaling: 1.5 }],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1.5 }],
+
+            baseSpeedCoeff: 0.33,
+            baseMinimumDamageCoeff: 0.75,
+            baseMaximumDamageCoeff: 1.5,
+            baseAccuracyCoeff: 1.5,
+
+            maxTargets: 2,
+        },
+        74: {
+            id: 74,
+            abilityName: 'Erasing *Snap*',
+            abilityImage: '/images/combat/ability_icons/snap.png',
+            description: 'All it would take is a snap of your fingers to erase your targets.',
+            damageType: 'Range',
+            cooldown: 60000,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1.5 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1.5 }],
+
+            baseSpeedCoeff: 0.33,
+            baseMinimumDamageCoeff: 0.75,
+            baseMaximumDamageCoeff: 1.5,
+            baseAccuracyCoeff: 1.5,
+
+            maxTargets: 2,
+        },
+        75: {
+            id: 75,
+            abilityName: "Phoenix's Flames",
+            abilityImage: '/images/combat/ability_icons/phoenix.png',
+            description: 'The flames of the phoenix burn brightly, if only for a short while.',
+            damageType: 'Magic',
+            cooldown: 60000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1.1 },
+                { affinity: 'Fire', scaling: 1.333 },
+            ],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
+            baseSpeedCoeff: 1.5,
+            baseMinimumDamageCoeff: 0.75,
+            baseMaximumDamageCoeff: 1.25,
+            baseAccuracyCoeff: 1.5,
+
+            targetBuff: {
+                onlyOnHit: true,
+                enchantmentApply: 8006,
+                enchantmentStrength: 4,
+                enchantmentChanceToApply: 0.5,
+                enchantmentAmount: 16,
+            },
+
+            maxTargets: 2,
+        },
     };
     gameShopItems = {
         1: {
@@ -27517,7 +27841,7 @@ class IdlescapeGameData {
         4: {
             id: 4,
             itemID: 3001,
-            price: 1000,
+            price: 200,
             allowBulkPurchase: true,
             description: 'An empty vial to pour a potion into.',
             image: '/images/cooking/alchemy/empty_vial.png',
@@ -27525,7 +27849,7 @@ class IdlescapeGameData {
         5: {
             id: 5,
             itemID: 3002,
-            price: 1500,
+            price: 1000,
             allowBulkPurchase: true,
             description: 'A large empty vial to pour a potion into.',
             image: '/images/cooking/alchemy/empty_large_vial.png',
@@ -27756,7 +28080,7 @@ class IdlescapeGameData {
             description: 'A package of gems! Only available for purchase to those in the Ironman league.',
             image: '/images/misc/package.png',
             purchaseRequirements: {
-                league: [2],
+                league: [2, 3, 4],
             },
         },
         301: {
@@ -27767,7 +28091,7 @@ class IdlescapeGameData {
             description: 'A sealed scroll! Only available for purchase to those in the Ironman league.',
             image: '/images/misc/sealed_scroll.png',
             purchaseRequirements: {
-                league: [2],
+                league: [2, 3, 4],
             },
         },
         // 302: {
@@ -27802,38 +28126,38 @@ class IdlescapeGameData {
             description: 'A bucket of worms.',
             image: '/images/fishing/bait/bucket.png',
         },
-        306: {
-            id: 306,
-            itemID: 10009,
-            price: 5000000,
-            allowBulkPurchase: false,
-            description: 'All the skill books.',
-            image: '/images/misc/gold_lockbox.png',
-        },
-        307: {
-            id: 307,
-            itemID: 7063,
-            price: 1000000,
-            allowBulkPurchase: false,
-            description: 'Cosmetic.',
-            image: '/images/premium/cosmetic/equipment/lightning_edge.gif',
-        },
-        308: {
-            id: 308,
-            itemID: 7064,
-            price: 1000000,
-            allowBulkPurchase: false,
-            description: 'Cosmetic.',
-            image: '/images/premium/cosmetic/equipment/frost_maul.gif',
-        },
-        309: {
-            id: 309,
-            itemID: 10010,
-            price: 15000000,
-            allowBulkPurchase: true,
-            description: 'All the jewelry.',
-            image: '/images/misc/gold_lockbox.png',
-        },
+        // 306: {
+        // 	id: 306,
+        // 	itemID: 10009,
+        // 	price: 5000000,
+        // 	allowBulkPurchase: false,
+        // 	description: 'All the skill books.',
+        // 	image: '/images/misc/gold_lockbox.png',
+        // },
+        // 307: {
+        // 	id: 307,
+        // 	itemID: 7063,
+        // 	price: 1000000,
+        // 	allowBulkPurchase: false,
+        // 	description: 'Cosmetic.',
+        // 	image: '/images/premium/cosmetic/equipment/lightning_edge.gif',
+        // },
+        // 308: {
+        // 	id: 308,
+        // 	itemID: 7064,
+        // 	price: 1000000,
+        // 	allowBulkPurchase: false,
+        // 	description: 'Cosmetic.',
+        // 	image: '/images/premium/cosmetic/equipment/frost_maul.gif',
+        // },
+        // 309: {
+        // 	id: 309,
+        // 	itemID: 10010,
+        // 	price: 15000000,
+        // 	allowBulkPurchase: true,
+        // 	description: 'All the jewelry.',
+        // 	image: '/images/misc/gold_lockbox.png',
+        // },
         310: {
             id: 310,
             itemID: 10011,
