@@ -76,6 +76,8 @@ class InventoryFilter {
                 #daelis-inventory-filter {
                     display: flex;
                     width: 100%;
+                    overflow: hidden;
+                    flex-wrap: wrap;
                 }
                 .daelis-inventory-filter-image { 
                     width: 35px;

@@ -58,7 +58,7 @@ class DamageMeter {
 
     _parseCombatHit(combatHit) {
         if (!this.combat.inCombat()) return;
-        if (this.combat.group.length === 0) {
+        if (Object.keys(this.combat.group).length === 0) {
             console.log("[DaelIS][WARNING]: Received a combat:splotch message before group info.");
             return;
         }
@@ -124,6 +124,10 @@ class DamageMeter {
 
     _parseUpdateGroupMember(playerInfo) {
         if (!(playerInfo.key === 'currentHealth')) return;
+        if (Object.keys(this.combat.group).length === 0) {
+            console.log("[DaelIS][WARNING]: Received a update:group-member message before group info.");
+            return;
+        }
         this.combat.setPlayerCurrentHP(playerInfo.userId, playerInfo.value);
     }
 
