@@ -37,6 +37,7 @@ class MeterUIBreakdownModal {
         }
         .daelis-meters-breakdown-row img {
             max-width: 50px;
+            margin-right: 10px;
         }
         .daelis-meters-breakdown-row > div {
             flex: 1 0 0;
@@ -51,15 +52,15 @@ class MeterUIBreakdownModal {
         injectCSS(css);
     }
 
-    generatePlayerBreakdownPanelHtml(abilities, damageDealtBreakdown, effectiveDamageDealtBreakdown, damageReceivedBreakdown){
+    generatePlayerBreakdownPanelHtml(abilities, weaponAttackSpeed, damageDealtBreakdown, effectiveDamageDealtBreakdown, damageReceivedBreakdown){
         const tabsHtml = `<div class="nav-tab-container daelis-meters-breakdown-tab-container">
                             <div class="${this.tabClassPrefix}dps nav-tab nav-tab-flex text-center noselect" data-type="dps"><span>Damage</span></div>
                             <div class="${this.tabClassPrefix}edps nav-tab nav-tab-flex text-center noselect" data-type="edps"><span>Effective Damage</span></div>
                             <div class="${this.tabClassPrefix}tank nav-tab nav-tab-flex text-center noselect" data-type="tank"><span>Damage Taken</span></div>
                         </div>`;
         const breakdownHtml = `<div class="daelis_meter_breakdown">
-                                <div class="${(this.breakdownTypeClassPrefix)}dps">${this._generateBreakdownHtml(abilities, damageDealtBreakdown)}</div>
-                                <div class="${(this.breakdownTypeClassPrefix)}edps hidden">${this._generateBreakdownHtml(abilities, effectiveDamageDealtBreakdown)}</div>
+                                <div class="${(this.breakdownTypeClassPrefix)}dps">${this._generateBreakdownHtml(abilities, damageDealtBreakdown, weaponAttackSpeed)}</div>
+                                <div class="${(this.breakdownTypeClassPrefix)}edps hidden">${this._generateBreakdownHtml(abilities, effectiveDamageDealtBreakdown, weaponAttackSpeed)}</div>
                                 <div class="${(this.breakdownTypeClassPrefix)}tank hidden">${this._generateBreakdownHtml(abilities, damageReceivedBreakdown)}</div>
                                </div>`;
 
@@ -70,18 +71,20 @@ class MeterUIBreakdownModal {
         return `${tabsHtml}<br/>${breakdownHtml}`;
     }
 
-    _generateBreakdownHtml(abilities, breakdown) {
+    _generateBreakdownHtml(abilities, breakdown, weaponSpeed) {
         let totalDamage = 0;
         for (const abilityStats of Object.values(breakdown)) totalDamage += abilityStats.damage;
 
+        const dpsCssClass = weaponSpeed ? '' : 'hidden';
         let abilitiesHtml = '';
         for (const [abilityId, abilityStats] of Object.entries(breakdown)) {
             const ability = abilities[abilityId];
+            const averageDamage = abilityStats.damage / abilityStats.count;
             abilitiesHtml += `<div class="daelis-meters-breakdown-row">
-                <div class="dmb-ability-image"><img src="${ability?.abilityImage ?? this.unknownAbilityIcon }"></div>
-                <div class="dmb-ability-name">${ability?.abilityName ?? 'Unknown Ability'}</div>
+                <div class="dmb-ability-image"><img src="${ability?.abilityImage ?? this.unknownAbilityIcon }">${ability?.abilityName ?? 'Unknown Ability'}</div>
                 <div class="dmb-ability-damage">${abilityStats.damage.toLocaleString()}</div>
-                <div class="dmb-ability-average-damage">${(abilityStats.damage / abilityStats.count).toFixed(2)}</div>
+                <div class="dmb-ability-average-damage">${averageDamage.toFixed(2)}</div>
+                <div class="dmb-ability-average-dps ${dpsCssClass}">${!ability?.baseSpeedCoeff ? 'N/A' : (averageDamage / (ability.baseSpeedCoeff * weaponSpeed)).toFixed(2)}</div>
                 <div class="dmb-ability-total-contribution">${(abilityStats.damage / totalDamage * 100).toFixed(2)}%</div>
             </div>`;
         }
@@ -89,9 +92,9 @@ class MeterUIBreakdownModal {
                     <div class="daelis-meters-breakdown-abilities">
                         <div class="daelis-meters-breakdown-row">
                             <div class="dmb-ability-image">Ability</div>
-                            <div class="dmb-ability-name">Ability Name</div>
                             <div class="dmb-ability-damage">Total Damage</div>
                             <div class="dmb-ability-average-damage">Average Damage</div>
+                            <div class="dmb-ability-average-dps ${dpsCssClass}">Average DPS</div>
                             <div class="dmb-ability-total-contribution">Contribution</div>
                         </div>
                         ${abilitiesHtml}

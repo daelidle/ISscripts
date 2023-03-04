@@ -12,9 +12,11 @@ class Player {
     maxHit = 0;
     maxReceived = 0;
     maxHeal = 0;
+    weaponAttackSpeed = 0;
 
-    constructor(name) {
+    constructor(name, weaponAttackSpeed) {
         this.name = name;
+        this.weaponAttackSpeed = weaponAttackSpeed;
     }
 }
 
@@ -43,9 +45,9 @@ class Combat {
         return (playerId in this.characterIdToName);
     }
 
-    addPlayerToGroup(playerId, playerName){
+    addPlayerToGroup(playerId, playerName, weaponAttackSpeed){
         this.characterIdToName[playerId] = playerName;
-        this.group[playerName] = new Player(playerName);
+        this.group[playerName] = new Player(playerName, weaponAttackSpeed);
     }
 
     setPlayerCurrentHP(playerId, hp){
@@ -225,7 +227,7 @@ class Combat {
     _startCombat(){
         this.combatStartTimestamp = new Date();
         this.spawnedMonsters = {};
-        Object.keys(this.group).forEach(playerName => this.group[playerName] = new Player(playerName));
+        Object.keys(this.group).forEach(playerName => this.group[playerName] = new Player(playerName, this.group[playerName].weaponAttackSpeed));
         window.damageMeter._updateMeter();
     }
 

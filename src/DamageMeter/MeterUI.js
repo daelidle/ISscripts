@@ -126,7 +126,7 @@ class MeterUI {
 
     generateBreakdownModal(player, abilities){
         const title = `${player.name}'s Damage Breakdown`;
-        const message = this.breakdownModal.generatePlayerBreakdownPanelHtml(abilities, player.damageDealtBreakdown, player.effectiveDamageDealtBreakdown, player.damageReceivedBreakdown);
+        const message = this.breakdownModal.generatePlayerBreakdownPanelHtml(abilities, player.weaponAttackSpeed, player.damageDealtBreakdown, player.effectiveDamageDealtBreakdown, player.damageReceivedBreakdown);
         return {'title': title, 'message': message}
     }
 
