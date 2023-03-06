@@ -39,6 +39,9 @@ class DamageMeter {
             case "combat:spawnMonster":
                 this.combat.updateMonster(message.data);
                 break;
+            case "combat:updateMonster":
+                this.combat.updateMonster([message.data]);
+                break;
             case "combat:removeMonster":
                 this.combat.monsterDead(message.data.id);
                 break;
