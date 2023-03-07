@@ -4,40 +4,21 @@ class EliteScrollTooltip {
         if (!itemResource) return;
 
         tooltipData.type = 'Elite Scroll';
-        tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource)};
+        tooltipData.stats = {...tooltipData.stats,...this.getStats(item)};
     }
 
-    getStats(item, itemResource){
-        let encounters = 1;
-        let treasureHunter = 0;
-        let eliteStats = 1;
-        let loot = 1;
-        if (item.augmentations !== undefined && item.augmentations > 0){
-            itemResource.augmentationStats.forEach(stat => {
-                switch (stat.description) {
-                    case 'Encounters:':
-                        encounters += stat.value * item.augmentations;
-                        break;
-                    case 'Treasure Hunter:':
-                        treasureHunter += stat.value * item.augmentations;
-                        break;
-                    case 'Elite Stats:':
-                        eliteStats = Math.pow(eliteStats + stat.value, item.augmentations);
-                        break;
-                    case 'Loot:':
-                        loot += stat.value * item.augmentations;
-                        break;
-                }
-            });
+    getStats(item){
+        const eliteScrollStats = [];
+
+        let difficulty = 1;
+        eliteScrollStats.push(`<span class="">Monster Difficulty: ${difficulty}</span>`);
+        let waves = Math.max(2, (item.augmentations ?? 1) * 2);
+        eliteScrollStats.push(`<span class="">Elite Scroll Waves: ${waves}</span>`);
+
+        if (item.augmentations > 0){
+            let treasureHunter = item.augmentations;
+            eliteScrollStats.push(`<span class="">Treasure Hunter: ${treasureHunter}</span>`);
         }
-
-        let eliteScrollStats = `
-            <span class="">Encounters: ${encounters}</span>
-            <span class="">Treasure Hunter: ${treasureHunter}</span>
-            <span class="">Elite Stats: ${eliteStats.toLocaleString()}x</span>
-            <span class="">Loot: ${loot}x</span>
-        `;
-
-        return {eliteScrollStats: eliteScrollStats};
+        return {eliteScrollStats: eliteScrollStats.join('')};
     }
 }

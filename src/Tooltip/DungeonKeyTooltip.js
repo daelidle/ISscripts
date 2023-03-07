@@ -4,37 +4,23 @@ class DungeonKeyTooltip {
         if (!itemResource) return;
 
         tooltipData.type = 'Dungeon Key';
-        tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource)};
+        tooltipData.stats = {...tooltipData.stats,...this.getStats(item, itemResource, gameData.locations)};
     }
 
-    getStats(itemResource, item, gameData){
-        if (!item.hasOwnProperty('augmentations') || item.augmentations === 0) return '';
+    getStats(item, itemResource, locations){
+        const dungeonKeyStats = [];
 
-        let treasureHunter = 0;
-        let stats = 1;
-        let loot = 1;
-        if (item.hasOwnProperty('augmentations') && item.augmentations > 0){
-            itemResource.augmentationStats.forEach(stat => {
-                switch (stat.description) {
-                    case 'Treasure Hunter:':
-                        treasureHunter += stat.value * item.augmentations;
-                        break;
-                    case 'Elite Stats:':
-                        stats = Math.pow(stats + stat.value, item.augmentations);
-                        break;
-                    case 'Loot:':
-                        loot += stat.value * item.augmentations;
-                        break;
-                }
-            });
+        let difficulty = 1;
+        dungeonKeyStats.push(`<span class="">Monster Difficulty: ${difficulty}</span>`);
+
+        const location = locations[itemResource.champEncounter];
+        const groupSize = location?.accessRequirements?.maxGroupSize ?? 1;
+        dungeonKeyStats.push(`<span class=''>Max Group Size: ${groupSize}</span>`);
+
+        if (item.augmentations > 0){
+            let treasureHunter = item.augmentations;
+            dungeonKeyStats.push(`<span class="">Treasure Hunter: ${treasureHunter}</span>`);
         }
-
-        let dungeonKeyStats = `
-            <span class="">Treasure Hunter: ${treasureHunter}</span>
-            <span class="">Stats: ${stats.toLocaleString()}x</span>
-            <span class="">Loot: ${loot}x</span>
-        `;
-
-        return {dungeonKeyStats: dungeonKeyStats};
+        return {dungeonKeyStats: dungeonKeyStats.join('')};
     }
 }
