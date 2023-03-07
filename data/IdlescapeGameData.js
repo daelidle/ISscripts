@@ -49,9 +49,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Gives a ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}% chance that a gathering or production item is converted into +${Math.round(
-                    enchantmentStrength * strengthPerLevel * 100
-                )}% experience for that action. Does not affect Crafting. Does not stack with Scholar.`,
+                )}% chance that a gathering or production item is consumed to double the experience for that action. Does not affect Crafting. Does not stack with Scholar.`,
             // endclient
         }, // exp without resources
         4: {
@@ -65,7 +63,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Gain a ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}% chance to find an extra resource while gathering. There is a 15% chance that a nature rune is consumed when it procs.`,
+                )}% chance to find an extra resource while gathering. There is a 15% chance that a nature rune is consumed when it procs. Attempts to pull the rune from your stockpile and then your combat inventory / ammo pouch.`,
             // endclient
         }, // double resources
         5: {
@@ -79,7 +77,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Gain a ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}% chance to instantly smelt an ore or material into its refined form when mining; uses 1.5x the base heat required to make one of that bar as well as 1 fire rune.`,
+                )}% chance to instantly smelt an ore or material into its refined form when mining; uses 1.5x the base heat required to make one of that bar as well as 1 fire rune. Attempts to pull the rune from your stockpile and then your combat inventory / ammo pouch.`,
             // endclient
         }, // smelt when mining
         6: {
@@ -1134,9 +1132,7 @@ class IdlescapeGameData {
             // client
             buffIcon: '/images/magic/buffs/protection_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Decreases effectiveness of protection in combat by ${Math.round(
-                    enchantmentStrength * strengthPerLevel * 100
-                )}%.`,
+                `Decreases effectiveness of your defenses by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
             // endclient
         },
         8002: {
@@ -1341,6 +1337,17 @@ class IdlescapeGameData {
                 `Doubles your threat and gives you +100 protection and resistance.`,
             // endclient
         }, // threat
+        8019: {
+            id: 8019,
+            name: 'Cleanse',
+            strengthPerLevel: 0.1,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/protection_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Counteracts up to ${enchantmentStrength} levels of Corrosion.`,
+            // endclient
+        },
 
         // DOT stuff
         9000: {
@@ -7786,9 +7793,12 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 33 / 50,
-                    Magic: 33 / 50,
-                    Range: 33 / 50,
+                    Melee: 3 / 5,
+                    Magic: 1 / 5,
+                    Range: 1 / 5,
+                    Piercing: 3 / 5,
+                    Blunt: 3 / 5,
+                    Slashing: 3 / 5,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -7868,9 +7878,12 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 33 / 50,
-                    Magic: 33 / 50,
-                    Range: 33 / 50,
+                    Melee: 3 / 5,
+                    Magic: 1 / 5,
+                    Range: 1 / 5,
+                    Piercing: 3 / 5,
+                    Blunt: 3 / 5,
+                    Slashing: 3 / 5,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -7950,9 +7963,12 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 33 / 50,
-                    Magic: 33 / 50,
-                    Range: 33 / 50,
+                    Melee: 3 / 5,
+                    Magic: 1 / 5,
+                    Range: 1 / 5,
+                    Piercing: 3 / 5,
+                    Blunt: 3 / 5,
+                    Slashing: 3 / 5,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -8034,9 +8050,12 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 33 / 50,
-                    Magic: 33 / 50,
-                    Range: 33 / 50,
+                    Melee: 3 / 5,
+                    Magic: 1 / 5,
+                    Range: 1 / 5,
+                    Piercing: 3 / 5,
+                    Blunt: 3 / 5,
+                    Slashing: 3 / 5,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -8117,9 +8136,12 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 33 / 50,
-                    Magic: 33 / 50,
-                    Range: 33 / 50,
+                    Melee: 3 / 5,
+                    Magic: 1 / 5,
+                    Range: 1 / 5,
+                    Piercing: 3 / 5,
+                    Blunt: 3 / 5,
+                    Slashing: 3 / 5,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -8202,9 +8224,12 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 33 / 50,
-                    Magic: 33 / 50,
-                    Range: 33 / 50,
+                    Melee: 3 / 5,
+                    Magic: 1 / 5,
+                    Range: 1 / 5,
+                    Piercing: 3 / 5,
+                    Blunt: 3 / 5,
+                    Slashing: 3 / 5,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -8287,9 +8312,12 @@ class IdlescapeGameData {
                 slot: 'body',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 offensiveDamageAffinity: {
-                    Melee: 33 / 50,
-                    Magic: 33 / 50,
-                    Range: 33 / 50,
+                    Melee: 3 / 5,
+                    Magic: 1 / 5,
+                    Range: 1 / 5,
+                    Piercing: 3 / 5,
+                    Blunt: 3 / 5,
+                    Slashing: 3 / 5,
                 },
                 defensiveDamageAffinity: {
                     Melee: 1.75,
@@ -9161,9 +9189,10 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/combat/equipment/range/thick_hide_body.png',
+            itemImage: '/images/combat/equipment/range/fur_body.png',
+            itemIcon: '/images/combat/equipment/range/thick_hide_body.png',
             class: 'equipment',
-            visual: 'platebody',
+            visual: 'rangebody',
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -9199,9 +9228,10 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/combat/equipment/range/leather_body.png',
+            itemImage: '/images/combat/equipment/range/fur_body.png',
+            itemIcon: '/images/combat/equipment/range/leather_body.png',
             class: 'equipment',
-            visual: 'platebody',
+            visual: 'rangebody',
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -9237,9 +9267,10 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/combat/equipment/range/reinforced_leather_body.png',
+            itemImage: '/images/combat/equipment/range/fur_body.png',
+            itemIcon: '/images/combat/equipment/range/reinforced_leather_body.png',
             class: 'equipment',
-            visual: 'platebody',
+            visual: 'rangebody',
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -9275,9 +9306,10 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/combat/equipment/range/chitin_body.png',
+            itemImage: '/images/combat/equipment/range/fur_body.png',
+            itemIcon: '/images/combat/equipment/range/chitin_body.png',
             class: 'equipment',
-            visual: 'platebody',
+            visual: 'rangebody',
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -9314,9 +9346,10 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/combat/equipment/range/scale_body.png',
+            itemImage: '/images/combat/equipment/range/fur_body.png',
+            itemIcon: '/images/combat/equipment/range/scale_body.png',
             class: 'equipment',
-            visual: 'platebody',
+            visual: 'rangebody',
             tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
@@ -10156,7 +10189,7 @@ class IdlescapeGameData {
             name: 'Elder Robe Top',
             id: 1184,
             enchantmentTier: 6,
-            augmentationCost: { 4019: 108 },
+            augmentationCost: { 4019: 108, 11032: 3 },
             craftingLevel: 61,
             craftingExperience: 60940,
             value: 1080000,
@@ -10189,7 +10222,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4019: 225 }],
+            requiredResources: [{ 4019: 225, 11032: 30 }],
             category: 'Magic',
             rarity: 'rare',
         },
@@ -10444,7 +10477,7 @@ class IdlescapeGameData {
             name: 'Elder Hood',
             id: 1191,
             enchantmentTier: 6,
-            augmentationCost: { 4019: 48 },
+            augmentationCost: { 4019: 48, 11032: 3 },
             craftingLevel: 57,
             craftingExperience: 13750,
             value: 480000,
@@ -10478,7 +10511,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4019: 100 }],
+            requiredResources: [{ 4019: 100, 11032: 30 }],
             category: 'Magic',
             rarity: 'rare',
         },
@@ -10726,7 +10759,7 @@ class IdlescapeGameData {
             name: 'Elder Robe Bottom',
             id: 1198,
             enchantmentTier: 6,
-            augmentationCost: { 4019: 90 },
+            augmentationCost: { 4019: 90, 11032: 3 },
             craftingLevel: 59,
             craftingExperience: 35530,
             value: 902400,
@@ -10759,7 +10792,7 @@ class IdlescapeGameData {
                 ],
                 itemSet: [10011, 10013],
             },
-            requiredResources: [{ 4019: 188 }],
+            requiredResources: [{ 4019: 188, 11032: 30 }],
             category: 'Magic',
             rarity: 'rare',
         },
@@ -12372,8 +12405,8 @@ class IdlescapeGameData {
             id: 1233,
             tradeable: true,
             enchantmentTier: 6,
-            augmentationCost: { 9: 5000, 10: 5000, 11: 5000, 12: 5000, 307: 10, 11036: 13 },
-            requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 307: 15, 11036: 125 }],
+            augmentationCost: { 9: 5000, 10: 5000, 11: 5000, 12: 5000, 307: 10, 11036: 13, 11032: 2 },
+            requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 307: 15, 11036: 125, 11032: 15 }],
             craftingLevel: 59,
             craftingExperience: 20570,
             value: 27000,
@@ -12715,8 +12748,8 @@ class IdlescapeGameData {
             id: 1240,
             tradeable: true,
             enchantmentTier: 6,
-            augmentationCost: { 9: 5000, 10: 5000, 11: 5000, 12: 5000, 307: 30, 11036: 21 },
-            requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 307: 74, 11036: 208 }],
+            augmentationCost: { 9: 5000, 10: 5000, 11: 5000, 12: 5000, 307: 30, 11036: 21, 11032: 3 },
+            requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 307: 74, 11036: 208, 11032: 30 }],
             craftingLevel: 61,
             craftingExperience: 38522,
             value: 59640,
@@ -12974,8 +13007,8 @@ class IdlescapeGameData {
             id: 1247,
             tradeable: true,
             enchantmentTier: 6,
-            augmentationCost: { 9: 5000, 10: 5000, 11: 5000, 12: 5000, 4019: 126, 11036: 4 },
-            requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 4019: 260, 11036: 32 }],
+            augmentationCost: { 9: 5000, 10: 5000, 11: 5000, 12: 5000, 4019: 126, 11036: 4, 11032: 2 },
+            requiredResources: [{ 9: 25000, 10: 25000, 11: 25000, 12: 25000, 4019: 260, 11036: 32, 11032: 15 }],
             craftingLevel: 59,
             craftingExperience: 27808,
             value: 1253760,
@@ -14579,11 +14612,11 @@ class IdlescapeGameData {
                 defensiveDamageAffinity: { Melee: 1.03, Magic: 1.03, Range: 1.03 },
                 armorBonus: { protection: 24, resistance: 24, agility: 0, stamina: 0 },
                 augmentationBonus: [
-                    { stat: 'armorBonus.protection', value: 0.1 },
-                    { stat: 'armorBonus.resistance', value: 0.1 },
-                    { stat: 'weaponBonus.strength', value: 0.1 },
-                    { stat: 'weaponBonus.intellect', value: 0.1 },
-                    { stat: 'weaponBonus.dexterity', value: 0.1 },
+                    { stat: 'armorBonus.protection', value: 0.5 },
+                    { stat: 'armorBonus.resistance', value: 0.5 },
+                    { stat: 'weaponBonus.strength', value: 0.5 },
+                    { stat: 'weaponBonus.intellect', value: 0.5 },
+                    { stat: 'weaponBonus.dexterity', value: 0.5 },
                 ],
             },
             rarity: 'epic',
@@ -14695,8 +14728,9 @@ class IdlescapeGameData {
                 weaponBonus: { strength: 4, intellect: 4, dexterity: 4 },
                 armorBonus: { protection: 24, resistance: 24, agility: 12, stamina: 24 },
                 augmentationBonus: [
-                    { stat: 'armorBonus.protection', value: 0.1 },
-                    { stat: 'armorBonus.resistance', value: 0.1 },
+                    { stat: 'armorBonus.protection', value: 0.75 },
+                    { stat: 'armorBonus.resistance', value: 0.75 },
+                    { stat: 'armorBonus.agility', value: 0.25 },
                 ],
             },
             requiredResources: [{ 1549: 400 }],
@@ -14760,8 +14794,8 @@ class IdlescapeGameData {
                 slot: 'weapon',
                 offensiveCritical: { chance: 7 / 200, damageMultiplier: 1.13 },
                 offensiveAccuracyAffinityRating: {
-                    Melee: 88,
-                    Magic: 32,
+                    Melee: 98,
+                    Magic: 48,
                     Range: -12,
                     Piercing: -4,
                     Blunt: 211,
@@ -14770,14 +14804,14 @@ class IdlescapeGameData {
                 },
                 offensiveDamageAffinity: {
                     Melee: 1,
-                    Magic: 0.1,
+                    Magic: 0.9,
                     Range: 0.1,
                     Piercing: 1 / 4,
-                    Blunt: 1.25,
-                    Slashing: 3 / 4,
+                    Blunt: 1.33,
+                    Slashing: 0.9,
                     Chaos: 1.5,
                 },
-                weaponBonus: { strength: 164, intellect: 0, dexterity: 0 },
+                weaponBonus: { strength: 164, intellect: 28, dexterity: 0 },
                 oneHanded: true,
                 attackSpeed: 3,
                 augmentationBonus: [
@@ -15406,7 +15440,7 @@ class IdlescapeGameData {
             id: 1571,
             tradeable: true,
             enchantmentTier: 8,
-            augmentationCost: { 4026: 16, 4027: 1 },
+            augmentationCost: { 4026: 16, 4027: 1, 11032: 30 },
             value: 4495000,
             type: 'weapon',
             requiredLevel: { magic: 85 },
@@ -17513,7 +17547,7 @@ class IdlescapeGameData {
 
 
             itemImage: '/images/enchanting/scroll_of_recklessness.png',
-            enchantName: 'falseEquilibrium',
+            enchantName: 'recklessness',
             skillIcon: '/images/enchanting/enchanting_logo.png',
             class: 'enchanted-scroll',
             actionButton: 'Craft',
@@ -20722,6 +20756,7 @@ class IdlescapeGameData {
             category: ['armor', 'combat', 'christmas'],
             tags: ['armor', 'weapon', 'melee', 'crafting'],
             equipmentStats: {
+                isTransmog: true,
                 slot: 'shield',
                 offensiveAccuracyAffinityRating: { Melee: 18, Magic: 0, Range: 0 },
                 offensiveDamageAffinity: { Melee: 1, Magic: 1, Range: 1 },
@@ -20750,6 +20785,7 @@ class IdlescapeGameData {
             category: ['weapon', 'combat', 'christmas'],
             tags: ['melee', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
+                isTransmog: true,
                 slot: 'weapon',
                 offensiveCritical: { chance: 11 / 200, damageMultiplier: 1.75 },
                 offensiveAccuracyAffinityRating: {
@@ -20785,7 +20821,7 @@ class IdlescapeGameData {
         7031: {
             name: 'Festive Shroud',
             id: 7031,
-            enchantmentTier: 0,
+            enchantmentTier: 1,
             augmentationCost: { 2015: 100 },
             value: 5120000,
             tradeable: true,
@@ -20799,6 +20835,7 @@ class IdlescapeGameData {
             category: ['weapon', 'combat', 'christmas'],
             tags: ['melee', 'armor', 'crafting'],
             equipmentStats: {
+                isTransmog: true,
                 slot: 'cape',
                 defensiveDamageAffinity: { Melee: 1.02, Magic: 1.02, Range: 1.02 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 0 },
@@ -20973,7 +21010,7 @@ class IdlescapeGameData {
 
 
             itemImage: '/images/combat/monsters/chicken.png',
-            extraTooltipInfo: 'whatisthis?',
+            extraTooltipInfo: 'whatisthis? Fabled to have once costed trillions of gold.',
             class: 'equipment',
             visual: 'p-chicken',
             tags: ['melee', 'armor'],
@@ -21108,6 +21145,7 @@ class IdlescapeGameData {
                 'A token that can be redeemed for a month of Idlescape Plus. Can be traded in the Marketplace. \nHas an increased tax-rate of 20% when sold on the Marketplace. WIP: NO FUNCTIONALITY YET',
             class: 'platinum',
             category: ['platinum', 'token'],
+            tags: ['platinum', 'token'],
             rarity: 'legendary',
         },
         7069: {
@@ -21119,6 +21157,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A token that can be redeemed for a new character slot.',
             class: 'platinum',
             category: ['platinum', 'token'],
+            tags: ['platinum', 'token'],
             rarity: 'legendary',
         },
         7070: {
@@ -21130,6 +21169,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A token that can be redeemed for a new active character slot.',
             class: 'platinum',
             category: ['platinum', 'token'],
+            tags: ['platinum', 'token'],
             rarity: 'legendary',
         },
         7071: {
@@ -21141,6 +21181,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A token that can be redeemed to change your character name. WIP: NO FUNCTIONALITY YET',
             class: 'platinum',
             category: ['platinum', 'token'],
+            tags: ['platinum', 'token'],
             rarity: 'legendary',
         },
         7072: {
@@ -21152,6 +21193,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A token that can be redeemed to allow offline progress for 72 hours.',
             class: 'platinum',
             category: ['platinum', 'token'],
+            tags: ['platinum', 'token'],
             rarity: 'legendary',
         },
         7073: {
@@ -21163,6 +21205,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A token that can be redeemed to increase base loadout count.',
             class: 'platinum',
             category: ['platinum', 'token'],
+            tags: ['platinum', 'token'],
             rarity: 'legendary',
         },
         7074: {
@@ -21267,6 +21310,39 @@ class IdlescapeGameData {
             category: ['armor', 'combat'],
             tags: ['melee', 'armor'],
             equipmentStats: { isTransmog: true, slot: 'gloves' },
+            rarity: 'legendary',
+        },
+        7080: {
+            name: "A Mad Faith's Wrath",
+            id: 7080,
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
+
+
+
+            itemImage: '/images/premium/cosmetic/equipment/wrath.png',
+            extraTooltipInfo: "Behold the wrath of the mad faith! War and battle! Madfaith's Warth!",
+            class: 'equipment',
+            visual: 'madfaith',
+            category: ['armor', 'combat'],
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, fullTransmog: true, slot: 'cape' },
+            rarity: 'legendary',
+        },
+        7081: {
+            id: 7081,
+            name: 'Limpe K. Limpe',
+            isCosmetic: true,
+            cosmeticRelatedItems: [],
+
+
+
+            itemImage: '/images/combat/monsters/elite/limpe.png',
+            extraTooltipInfo: 'A creature that is beyond comprehension.',
+            class: 'equipment',
+            visual: 'p-chicken',
+            tags: ['melee', 'armor'],
+            equipmentStats: { isTransmog: true, fullTransmog: true, slot: 'cape' },
             rarity: 'legendary',
         },
         8000: {
@@ -27917,6 +27993,165 @@ class IdlescapeGameData {
 
             maxTargets: 2,
         },
+        76: {
+            id: 76,
+            abilityName: 'Acid Splash',
+            abilityImage: '/images/combat/ability_icons/necrotic_touch.png',
+            description: 'Splash an enemy with acid, heavily reducing their defenses.',
+            damageType: 'Magic',
+            cooldown: 30000,
+            runeCost: [{ itemID: 517, amount: 5 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 1.2,
+            baseMinimumDamageCoeff: 0.5,
+            baseMaximumDamageCoeff: 0.75,
+            baseAccuracyCoeff: 1.05,
+
+            targetBuff: {
+                onlyOnHit: true,
+                enchantmentApply: 8001,
+                enchantmentStrength: 3,
+                enchantmentChanceToApply: 0.9,
+                enchantmentAmount: 4,
+            },
+
+            maxTargets: 1,
+        },
+        77: {
+            id: 77,
+            abilityName: 'Acid Wave',
+            abilityImage: '/images/combat/ability_icons/necrotic_touch.png',
+            description: 'Splash your enemies with acid, heavily reducing their defenses.',
+            damageType: 'Magic',
+            cooldown: 30000,
+            runeCost: [{ itemID: 517, amount: 25 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 1.2,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 0.5,
+            baseAccuracyCoeff: 1.05,
+
+            targetBuff: {
+                onlyOnHit: true,
+                enchantmentApply: 8001,
+                enchantmentStrength: 3,
+                enchantmentChanceToApply: 0.75,
+                enchantmentAmount: 3,
+            },
+
+            maxTargets: 3,
+        },
+        78: {
+            id: 78,
+            abilityName: 'Armor Rend',
+            abilityImage: '/images/combat/ability_icons/necrotic_touch.png',
+            description: 'Tear at the enemy armor, reducing its effectiveness.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
+            baseSpeedCoeff: 1.2,
+            baseMinimumDamageCoeff: 0.5,
+            baseMaximumDamageCoeff: 0.75,
+            baseAccuracyCoeff: 1.05,
+
+            targetBuff: {
+                onlyOnHit: true,
+                enchantmentApply: 8001,
+                enchantmentStrength: 2,
+                enchantmentChanceToApply: 0.8,
+                enchantmentAmount: 5,
+            },
+
+            maxTargets: 1,
+        },
+        // This is for monsters since it can self target
+        79: {
+            id: 79,
+            abilityName: 'Greater Elven Healing',
+            abilityImage: '/images/combat/ability_icons/heal.png',
+            description: 'Use nature magic to heal the lowest HP member of your party for 500 health over 30 seconds.',
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Magic', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
+            baseSpeedCoeff: 1.25,
+            baseMinimumDamageCoeff: 0,
+            baseMaximumDamageCoeff: 0,
+            baseAccuracyCoeff: 999,
+
+            targetFriendly: {
+                target: 'lowestHP',
+            },
+            canTargetSelf: true,
+
+            healthChangeEvent: {
+                dotCount: 30,
+                healthChange: 20,
+                healthChangeDelay: 1000,
+            },
+
+            skipReactives: true,
+            dealsNoDamage: true,
+
+            maxTargets: 1,
+        },
+        80: {
+            id: 80,
+            abilityName: 'Cleanse Ally',
+            abilityImage: '/images/combat/ability_icons/bulwark.png',
+            description: 'Cleanse an ally of some debuffs.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
+            baseSpeedCoeff: 1.25,
+            baseMinimumDamageCoeff: 0,
+            baseMaximumDamageCoeff: 0,
+            baseAccuracyCoeff: 999,
+
+            targetFriendly: {
+                target: 'lowestDef',
+            },
+            canTargetSelf: false,
+
+            targetBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8019,
+                enchantmentStrength: 1,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 4,
+            },
+            dealsNoDamage: true,
+
+            skipReactives: true,
+
+            maxTargets: 1,
+        },
     };
     gameShopItems = {
         1: {
@@ -28180,7 +28415,7 @@ class IdlescapeGameData {
         300: {
             id: 300,
             itemID: 10003,
-            price: 500000,
+            price: 800000,
             allowBulkPurchase: true,
             description: 'A package of gems! Only available for purchase to those in the Ironman league.',
             image: '/images/misc/package.png',
@@ -28191,7 +28426,7 @@ class IdlescapeGameData {
         301: {
             id: 301,
             itemID: 10004,
-            price: 1000000,
+            price: 1500000,
             allowBulkPurchase: true,
             description: 'A sealed scroll! Only available for purchase to those in the Ironman league.',
             image: '/images/misc/sealed_scroll.png',
@@ -28263,21 +28498,21 @@ class IdlescapeGameData {
         // 	description: 'All the jewelry.',
         // 	image: '/images/misc/gold_lockbox.png',
         // },
-        310: {
-            id: 310,
-            itemID: 10011,
-            price: 15000,
-            allowBulkPurchase: true,
-            description: 'Will eventually be tied to a tutorial quest.',
-            image: '/images/misc/pouch.png',
-        },
-        311: {
-            id: 311,
-            itemID: 10012,
-            price: 15000,
-            allowBulkPurchase: true,
-            description: 'Will eventually be tied to a tutorial quest.',
-            image: '/images/misc/pouch.png',
-        },
+        // 310: {
+        // 	id: 310,
+        // 	itemID: 10011,
+        // 	price: 15000,
+        // 	allowBulkPurchase: true,
+        // 	description: 'Will eventually be tied to a tutorial quest.',
+        // 	image: '/images/misc/pouch.png',
+        // },
+        // 311: {
+        // 	id: 311,
+        // 	itemID: 10012,
+        // 	price: 15000,
+        // 	allowBulkPurchase: true,
+        // 	description: 'Will eventually be tied to a tutorial quest.',
+        // 	image: '/images/misc/pouch.png',
+        // },
     };
 }

@@ -106,7 +106,7 @@ class EquipmentTooltip {
         const defenseStatsLabels = {'armorBonus.protection': 'Protection', 'armorBonus.resistance': 'Resistance', 'armorBonus.agility': 'Agility', 'armorBonus.stamina': 'Stamina', 'defensiveCritical.chance': 'Crit Avoidance', 'defensiveCritical.damageMultiplier': 'Crit Reduction'};
         const defenseAffinitiesLabels = DamageUtils.generateAffinityDictionary('defensiveDamageAffinity', this.affinityLabels.DefensiveAffinity);
         const skillStatsLabels = {'toolBoost.fishing': 'Fishing', 'toolBoost.fishingBaitPower': 'Bait', 'toolBoost.fishingReelPower': 'Reel', 'toolBoost.fishingRarityPower': 'Bonus Rarity',
-            'toolBoost.mining': 'Mining', 'toolBoost.foraging': 'Foraging', 'toolBoost.farming': 'Farming', 'toolBoost.cooking': 'Cooking', 'toolBoost.smithing': 'Smithing' };
+            'toolBoost.mining': 'Mining', 'toolBoost.foraging': 'Foraging', 'toolBoost.farming': 'Farming', 'toolBoost.cooking': 'Cooking', 'toolBoost.smithing': 'Smithing', 'toolBoost.enchanting': 'Enchanting' };
 
         const strengthStats = this._mapStatValuesToLabels(strengthStatsLabels, indexedStats);
         const strengthAffinities = this._mapStatValuesToLabels(strengthAffinitiesLabels, indexedStats);
