@@ -79,7 +79,7 @@ class MeterUIBreakdownModal {
         let abilitiesHtml = '';
         for (const [abilityId, abilityStats] of Object.entries(breakdown)) {
             const ability = abilities[abilityId];
-            const averageDamage = abilityStats.damage / abilityStats.count;
+            const averageDamage = abilityStats.damage / abilityStats.hits;
             abilitiesHtml += `<div class="daelis-meters-breakdown-row">
                 <div class="dmb-ability-image"><img src="${ability?.abilityImage ?? this.unknownAbilityIcon }">${ability?.abilityName ?? 'Unknown Ability'}</div>
                 <div class="dmb-ability-damage">${abilityStats.damage.toLocaleString()}</div>

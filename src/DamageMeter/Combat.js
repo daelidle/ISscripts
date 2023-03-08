@@ -29,6 +29,7 @@ class Combat {
     characterIdToName = {};
     config;
     UNKNOWN_ABILITY_ID = -100;
+    BREAKDOWN_BASE_DICTIONARY = {damage: 0, hits: 0, criticals: 0, misses: 0};
 
     constructor(config) {
         this.group = {};
@@ -55,7 +56,7 @@ class Combat {
         this.group[playerName].currentHP = hp;
     }
 
-    addDamageDealt(playerId, defender, damage, damageType) {
+    addDamageDealt(playerId, defender, damage, damageType, isCritical, isMiss) {
         const playerName = this._getPlayerName(playerId);
         const player = this.group[playerName];
         player.damageDealt += damage;
@@ -66,24 +67,40 @@ class Combat {
 
         const ability = player.currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
         if (!player.damageDealtBreakdown[ability]) {
-            player.damageDealtBreakdown[ability] = {damage: 0, count: 0};
-            player.effectiveDamageDealtBreakdown[ability] = {damage: 0, count: 0};
+            player.damageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
+            player.effectiveDamageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};;
         }
-        player.damageDealtBreakdown[ability].damage += damage;
-        player.damageDealtBreakdown[ability].count++;
-        player.effectiveDamageDealtBreakdown[ability].damage += Math.min(damage, monsterHealth);
-        player.effectiveDamageDealtBreakdown[ability].count++;
+
+        if (!isMiss) {
+            player.damageDealtBreakdown[ability].damage += damage;
+            player.damageDealtBreakdown[ability].hits++;
+            player.effectiveDamageDealtBreakdown[ability].damage += Math.min(damage, monsterHealth);
+            player.effectiveDamageDealtBreakdown[ability].hits++;
+            if (isCritical){
+                player.damageDealtBreakdown[ability].criticals++;
+                player.effectiveDamageDealtBreakdown[ability].criticals++;
+            }
+        } else {
+            player.damageDealtBreakdown[ability].misses++;
+            player.effectiveDamageDealtBreakdown[ability].misses++;
+        }
     }
 
-    addDamageReceived(playerId, monsterId, damage, damageType) {
+    addDamageReceived(playerId, monsterId, damage, damageType, isCritical, isMiss) {
         const playerName = this._getPlayerName(playerId);
         this.group[playerName].damageReceived += damage;
         if (damage > this.group[playerName].maxReceived) this.group[playerName].maxReceived = damage;
 
         const ability = this.spawnedMonsters[monsterId]?.currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
-        if (!this.group[playerName].damageReceivedBreakdown[ability]) this.group[playerName].damageReceivedBreakdown[ability] = {damage: 0, count: 0};
-        this.group[playerName].damageReceivedBreakdown[ability].damage += damage;
-        this.group[playerName].damageReceivedBreakdown[ability].count++;
+        if (!this.group[playerName].damageReceivedBreakdown[ability]) this.group[playerName].damageReceivedBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};;
+        if (!isMiss) {
+            this.group[playerName].damageReceivedBreakdown[ability].damage += damage;
+            this.group[playerName].damageReceivedBreakdown[ability].hits++;
+            if (isCritical) this.group[playerName].damageReceivedBreakdown[ability].criticals++;
+        } else {
+            this.group[playerName].damageReceivedBreakdown[ability].misses++;
+        }
+
     }
 
     addHealing(playerId, healing) {

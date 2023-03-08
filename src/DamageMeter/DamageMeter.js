@@ -66,23 +66,22 @@ class DamageMeter {
             return;
         }
 
-        let damageType = combatHit.damageType;
-        let attackerId = combatHit.attackerID;
-        let defenderId = combatHit.id;
-        let damage = combatHit.hit;
-        let isCritical = combatHit.crit;
-        let isSourceMonster = !this.combat.isPlayerOnGroup(attackerId);
+        const damageType = combatHit.damageType;
+        const attackerId = combatHit.attackerID;
+        const defenderId = combatHit.id;
+        const damage = combatHit.hit;
+        const isCritical = combatHit.crit;
+        const isSourceMonster = !this.combat.isPlayerOnGroup(attackerId);
 
         switch (damageType) {
-            case 'Miss':
-                break;
             case 'Heal':
                 if (!isSourceMonster) this.combat.addHealing(attackerId, damage);
                 break;
             default:
+                const isMiss = (damageType === 'Miss');
                 if (!DamageUtils.allCombatSplotchDamageTypes.includes(damageType)) console.log(`[DaelIS][WARNING]: New type of Hit ${damageType}`);
-                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, defenderId, damage, damageType);
-                else this.combat.addDamageReceived(defenderId, attackerId, damage, damageType);
+                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, defenderId, damage, damageType, isCritical, isMiss);
+                else this.combat.addDamageReceived(defenderId, attackerId, damage, damageType, isCritical, isMiss);
                 break;
         }
         this._updateMeter();
