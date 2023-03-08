@@ -48,6 +48,9 @@ class MeterUIBreakdownModal {
         .daelis-meters-breakdown-contained{
             display: flex;
         }
+        .dmb-ability-image {
+            flex-grow: 1.5 !important;
+        }
         </style>`;
         injectCSS(css);
     }
@@ -85,6 +88,8 @@ class MeterUIBreakdownModal {
                 <div class="dmb-ability-damage">${abilityStats.damage.toLocaleString()}</div>
                 <div class="dmb-ability-average-damage">${averageDamage.toFixed(2)}</div>
                 <div class="dmb-ability-average-dps ${dpsCssClass}">${!ability?.baseSpeedCoeff ? 'N/A' : (averageDamage / (ability.baseSpeedCoeff * weaponSpeed)).toFixed(2)}</div>
+                <div class="dmb-ability-hit">${(abilityStats.hits / (abilityStats.hits + abilityStats.misses) * 100).toFixed(2)}</div>
+                <div class="dmb-ability-crit">${(abilityStats.criticals / abilityStats.hits * 100).toFixed(2)}</div>
                 <div class="dmb-ability-total-contribution">${(abilityStats.damage / totalDamage * 100).toFixed(2)}%</div>
             </div>`;
         }
@@ -95,6 +100,8 @@ class MeterUIBreakdownModal {
                             <div class="dmb-ability-damage">Total Damage</div>
                             <div class="dmb-ability-average-damage">Average Damage</div>
                             <div class="dmb-ability-average-dps ${dpsCssClass}">Average DPS</div>
+                            <div class="dmb-ability-hit">Hit %</div>
+                            <div class="dmb-ability-crit">Crit %</div>
                             <div class="dmb-ability-total-contribution">Contribution</div>
                         </div>
                         ${abilitiesHtml}
