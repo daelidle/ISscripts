@@ -82,14 +82,15 @@ class MeterUIBreakdownModal {
         let abilitiesHtml = '';
         for (const [abilityId, abilityStats] of Object.entries(breakdown)) {
             const ability = abilities[abilityId];
-            const averageDamage = abilityStats.damage / abilityStats.hits;
+            const numHitsAndMisses = abilityStats.hits + abilityStats.misses;
+            const averageDamage = abilityStats.damage / numHitsAndMisses;
             abilitiesHtml += `<div class="daelis-meters-breakdown-row">
                 <div class="dmb-ability-image"><img src="${ability?.abilityImage ?? this.unknownAbilityIcon }">${ability?.abilityName ?? 'Unknown Ability'}</div>
                 <div class="dmb-ability-damage">${abilityStats.damage.toLocaleString()}</div>
                 <div class="dmb-ability-average-damage">${averageDamage.toFixed(2)}</div>
                 <div class="dmb-ability-average-dps ${dpsCssClass}">${!ability?.baseSpeedCoeff ? 'N/A' : (averageDamage / (ability.baseSpeedCoeff * weaponSpeed)).toFixed(2)}</div>
-                <div class="dmb-ability-hit">${(abilityStats.hits / (abilityStats.hits + abilityStats.misses) * 100).toFixed(2)}</div>
-                <div class="dmb-ability-crit">${(abilityStats.criticals / abilityStats.hits * 100).toFixed(2)}</div>
+                <div class="dmb-ability-hit">${(abilityStats.hits / numHitsAndMisses * 100).toFixed(2)}%</div>
+                <div class="dmb-ability-crit">${(abilityStats.criticals / abilityStats.hits * 100).toFixed(2)}%</div>
                 <div class="dmb-ability-total-contribution">${(abilityStats.damage / totalDamage * 100).toFixed(2)}%</div>
             </div>`;
         }

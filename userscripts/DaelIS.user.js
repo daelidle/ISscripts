@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      2.0.7
+// @version      2.0.8
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
