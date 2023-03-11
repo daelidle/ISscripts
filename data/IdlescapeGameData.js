@@ -49,7 +49,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Gives a ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}% chance that a gathering or production item is consumed to double the experience for that action. Does not affect Crafting. Does not stack with Scholar.`,
+                )}% chance that a gathering or production item is consumed to double the experience for that action. Does not affect Crafting. Does not stack with Wealth.`,
             // endclient
         }, // exp without resources
         4: {
@@ -921,7 +921,7 @@ class IdlescapeGameData {
             // client
             buffIcon: '/images/magic/buffs/wealth_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Gives access to a secondary drop table while gathering with rewards scaling on enchantment strength.`,
+                `Gives access to a secondary drop table while gathering with rewards and chances heavily scaling on enchantment strength. The best finds are only found in the hardest to reach zones!`,
             // endclient
         }, // archaeology
         68: {
@@ -1346,6 +1346,28 @@ class IdlescapeGameData {
             buffIcon: '/images/magic/buffs/protection_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Counteracts up to ${enchantmentStrength} levels of Corrosion.`,
+            // endclient
+        },
+        8020: {
+            id: 8020,
+            name: 'Skirmishing Stance',
+            strengthPerLevel: 15,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/protection_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases agility but decreases dexterity by ${enchantmentStrength * strengthPerLevel}.`,
+            // endclient
+        },
+        8021: {
+            id: 8021,
+            name: 'Sniping Stance',
+            strengthPerLevel: 25,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/protection_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Decreases agility but increases dexterity by ${enchantmentStrength * strengthPerLevel}.`,
             // endclient
         },
 
@@ -4973,8 +4995,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Lesser_Magic_Tome_embossed.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'An tome of magic that grants you for augmentation.',
-            extraTooltipInfo: 'An tome of magic that grants you for augmentation.',
+            craftingDescription: 'A tome of magic that grants you for augmentation.',
+            extraTooltipInfo: 'A tome of magic that grants you for augmentation.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: {
@@ -4997,8 +5019,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Major_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'An tome of magic that grants you for augmentation.',
-            extraTooltipInfo: 'An tome of magic that grants you for augmentation.',
+            craftingDescription: 'A tome of magic that grants you for augmentation.',
+            extraTooltipInfo: 'A tome of magic that grants you for augmentation.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: {
@@ -5021,8 +5043,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Greater_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'An tome of magic that grants you for augmentation.',
-            extraTooltipInfo: 'An tome of magic that grants you for augmentation.',
+            craftingDescription: 'A tome of magic that grants you for augmentation.',
+            extraTooltipInfo: 'A tome of magic that grants you for augmentation.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: {
@@ -5045,8 +5067,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'An tome of magic that grants you for augmentation.',
-            extraTooltipInfo: 'An tome of magic that grants you for augmentation.',
+            craftingDescription: 'A tome of magic that grants you for augmentation.',
+            extraTooltipInfo: 'A tome of magic that grants you for augmentation.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: {
@@ -5322,18 +5344,13 @@ class IdlescapeGameData {
         801: {
             id: 801,
             name: "Phoenix's Feather",
-            value: 5000,
+            value: 500000,
             tradeable: true,
-            ingredientTags: ['monster', 'spice'],
-            skill: 'smithing',
-            size: 1,
-            difficulty: 4,
-            cookingEnchantment: 2001,
-            alchemySize: 1.5,
             itemImage: '/images/magic/phoenix_feather.png',
             extraTooltipInfo: 'A white-hot feather taken from a fallen phoenix.',
-            class: 'bar',
-            tags: ['ingredient', 'mining', 'smithing', 'cooking'],
+            class: 'gem',
+            tags: ['enchanting'],
+            rarity: 'epic',
         },
         900: {
             name: 'Geode',
@@ -9132,6 +9149,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.1 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9170,6 +9188,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 / 4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.1 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9209,6 +9228,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.2 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9248,6 +9268,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 3 / 4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.3 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9287,6 +9308,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.4 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9326,6 +9348,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.5 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9366,6 +9389,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.6 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9702,6 +9726,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.1 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9741,6 +9766,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.1 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9780,6 +9806,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.4 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.2 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9819,6 +9846,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.6 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.3 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9858,6 +9886,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.8 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.4 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9897,6 +9926,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.5 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -9937,6 +9967,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.2 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.dexterity', value: 0.6 },
                 ],
                 itemSet: [10010, 10012],
             },
@@ -14856,7 +14887,7 @@ class IdlescapeGameData {
             name: 'Mantle of Flame',
             id: 1555,
             enchantmentTier: 2,
-            augmentationCost: { 2: 15000, 512: 2500, 700: 1000, 9013: 1 },
+            augmentationCost: { 2: 15000, 512: 1250, 700: 500, 9013: 1, 801: 1 },
             value: 3120000,
             tradeable: true,
             requiredLevel: { constitution: 40, defense: 40, magic: 40 },
@@ -15434,6 +15465,8 @@ class IdlescapeGameData {
                 itemSet: [10014],
             },
             rarity: 'legendary',
+
+
         },
         1571: {
             name: 'Ancient Trident',
@@ -15479,6 +15512,8 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'legendary',
+
+
         },
         1572: {
             name: 'Fishtail',
@@ -15569,9 +15604,6 @@ class IdlescapeGameData {
             requiredLevel: { range: 70 },
             forcedEnchant: 63,
             forcedEnchantAmount: 5,
-
-
-
             itemImage: '/images/combat/equipment/range/quiver_elven_alt.png',
             class: 'equipment',
             visual: 'scimitar',
@@ -15586,6 +15618,7 @@ class IdlescapeGameData {
                 augmentationBonus: [{ stat: 'offensiveAccuracyAffinityRating.Range', value: 1.5 }],
             },
             rarity: 'epic',
+
         },
         1575: {
             name: 'Magic Quiver',
@@ -15597,9 +15630,6 @@ class IdlescapeGameData {
             requiredLevel: { range: 35 },
             forcedEnchant: 63,
             forcedEnchantAmount: 3,
-
-
-
             itemImage: '/images/combat/equipment/range/quiver_leather.png',
             class: 'equipment',
             visual: 'scimitar',
@@ -15614,6 +15644,7 @@ class IdlescapeGameData {
                 augmentationBonus: [{ stat: 'offensiveAccuracyAffinityRating.Range', value: 0.5 }],
             },
             rarity: 'epic',
+
         },
         1576: {
             id: 1576,
@@ -15639,6 +15670,7 @@ class IdlescapeGameData {
                 itemSet: [10009, 10016],
             },
             rarity: 'epic',
+
         },
         1577: {
             id: 1577,
@@ -15665,6 +15697,7 @@ class IdlescapeGameData {
                 itemSet: [10009, 10016],
             },
             rarity: 'epic',
+
         },
         1578: {
             id: 1578,
@@ -15686,6 +15719,7 @@ class IdlescapeGameData {
                 augmentationBonus: [{ stat: 'armorBonus.protection', value: 2 }],
             },
             rarity: 'epic',
+
         },
         1579: {
             id: 1579,
@@ -15708,6 +15742,7 @@ class IdlescapeGameData {
                 augmentationBonus: [{ stat: 'armorBonus.stamina', value: 4 }],
             },
             rarity: 'legendary',
+
         },
         1580: {
             id: 1580,
@@ -15732,6 +15767,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'legendary',
+
         },
         1581: {
             id: 1581,
@@ -15756,6 +15792,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'legendary',
+
         },
         1582: {
             id: 1582,
@@ -15773,6 +15810,7 @@ class IdlescapeGameData {
             tags: ['jewelry'],
             equipmentStats: { slot: 'ring' },
             rarity: 'legendary',
+
         },
         1583: {
             id: 1583,
@@ -17480,6 +17518,7 @@ class IdlescapeGameData {
                 'tacklebox',
                 'tongs',
                 'tome',
+                'ladle',
             ],
             time: 15000,
             id: 1660,
@@ -21345,6 +21384,18 @@ class IdlescapeGameData {
             equipmentStats: { isTransmog: true, fullTransmog: true, slot: 'cape' },
             rarity: 'legendary',
         },
+        7082: {
+            name: 'Username Change Token',
+            id: 7082,
+            isTokenInput: true,
+            itemImage: '/images/premium/premium_icon.png',
+            itemIcon: '/images/premium/premium_icon.png',
+            extraTooltipInfo: 'A token that can be redeemed to change your username.',
+            class: 'platinum',
+            category: ['platinum', 'token'],
+            tags: ['platinum', 'token'],
+            rarity: 'legendary',
+        },
         8000: {
             name: 'RISE OF INFO',
             id: 8000,
@@ -21770,7 +21821,7 @@ class IdlescapeGameData {
             champEncounter: 3001,
             enchantmentTier: 0,
             maxAugLevel: 10,
-            augmentationCost: { 9007: 5 },
+            augmentationCost: { 9007: 1 },
             craftingLevel: 30,
             craftingExperience: 6000,
             forcedAugmentChance: 1,
@@ -21806,7 +21857,7 @@ class IdlescapeGameData {
             champEncounter: 3002,
             enchantmentTier: 0,
             maxAugLevel: 10,
-            augmentationCost: { 9009: 3 },
+            augmentationCost: { 9009: 1 },
             craftingLevel: 50,
             craftingExperience: 12000,
             forcedAugmentChance: 1,
@@ -21952,7 +22003,7 @@ class IdlescapeGameData {
             value: 2000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 9016: 1 },
+            augmentationCost: { 4011: 3, 109: 1000 },
             craftingLevel: 80,
             craftingExperience: 40000,
             forcedAugmentChance: 1,
@@ -21976,7 +22027,7 @@ class IdlescapeGameData {
             value: 2000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 9017: 1 },
+            augmentationCost: { 9022: 1 },
             craftingLevel: 74,
             craftingExperience: 40000,
             forcedAugmentChance: 1,
@@ -21999,7 +22050,7 @@ class IdlescapeGameData {
             value: 10000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 9018: 1 },
+            augmentationCost: { 9021: 1 },
             craftingLevel: 80,
             craftingExperience: 30000,
             forcedAugmentChance: 1,
@@ -22022,7 +22073,7 @@ class IdlescapeGameData {
             value: 20000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 9019: 1 },
+            augmentationCost: { 9020: 1 },
             craftingLevel: 92,
             craftingExperience: 40000,
             forcedAugmentChance: 1,
@@ -23238,7 +23289,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A fine dust that radiates a prismatic luster; formed when too much power is imbued into a Black Opal',
             class: 'gem',
-            tags: [],
+            tags: ['enchanting'],
             rarity: 'legendary',
         },
         12013: {
@@ -23269,7 +23320,7 @@ class IdlescapeGameData {
             id: 13000,
             name: 'Combat Manual - Volume 1',
             itemImage: '/images/combat/ability_book/melee.png',
-            value: 50000,
+            value: 500000,
             heat: 25000,
             extraTooltipInfo:
                 "A manual on how to take advantage of your weapon's edge. Apparently using the sharp part means it will hurt something more, who could have known?",
@@ -23281,7 +23332,7 @@ class IdlescapeGameData {
             id: 13001,
             name: 'Combat Manual - Volume 2',
             itemImage: '/images/combat/ability_book/melee.png',
-            value: 50000,
+            value: 500000,
             heat: 25000,
             extraTooltipInfo:
                 'A manual on how to take poke things really good. If the weapon has a decent tip, you can stab things! Wow!',
@@ -23293,7 +23344,7 @@ class IdlescapeGameData {
             id: 13002,
             name: 'Combat Manual - Volume 3',
             itemImage: '/images/combat/ability_book/melee.png',
-            value: 50000,
+            value: 500000,
             heat: 25000,
             extraTooltipInfo:
                 'A manual on how to just hit things hard. Crushing things is deceptively simple and to truly pummel your enemy you must understand that being blunt is sometimes the only way to go.',
@@ -23305,7 +23356,7 @@ class IdlescapeGameData {
             id: 13003,
             name: 'Spell Tome - Fire Ball',
             itemImage: '/images/combat/ability_book/red.png',
-            value: 50000,
+            value: 500000,
             heat: 25000,
             extraTooltipInfo:
                 'A basic tome from the Academy formerly used for teaching aspiring mages how to control and utilize fire. Be careful where you practice it!',
@@ -23317,7 +23368,8 @@ class IdlescapeGameData {
             id: 13004,
             name: 'Spell Tome - Flamethrower',
             itemImage: '/images/combat/ability_book/red.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'An intermediate tome from the Academy formerly used for teaching mages how to utilize flames in a more lively manner.',
             relatedAbility: 18,
@@ -23328,7 +23380,8 @@ class IdlescapeGameData {
             id: 13005,
             name: 'Ballistics 101',
             itemImage: '/images/combat/ability_book/range.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'A textbook that explains the basic principles regarding how something that goes up usually comes back down.',
             relatedAbility: 12,
@@ -23339,7 +23392,8 @@ class IdlescapeGameData {
             id: 13006,
             name: 'Projectile Based Diplomacy - I',
             itemImage: '/images/combat/ability_book/range.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'A book that outline the merits of using projectiles, preferably several at once, to really get your point across.',
             relatedAbility: 21,
@@ -23350,7 +23404,8 @@ class IdlescapeGameData {
             id: 13007,
             name: 'Projectile Based Diplomacy - II',
             itemImage: '/images/combat/ability_book/range.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'A book that outline the merits of using projectiles, even just a single well placed one, to really get your point across.',
             relatedAbility: 23,
@@ -23361,7 +23416,8 @@ class IdlescapeGameData {
             id: 13008,
             name: 'Projectile Based Diplomacy - III',
             itemImage: '/images/combat/ability_book/range.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'A book that outline the merits of using projectiles, especially when trying to distract and divert, to really get your point across.',
             relatedAbility: 24,
@@ -23372,7 +23428,8 @@ class IdlescapeGameData {
             id: 13009,
             name: 'Apocalyptic Tome',
             itemImage: '/images/combat/ability_book/highmagic.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'A spell tome that contains the necessary rituals and rites for summoning your own miniature apocalypse.',
             relatedAbility: 25,
@@ -23383,7 +23440,8 @@ class IdlescapeGameData {
             id: 13010,
             name: 'Intermediate Combat Manual - Volume 1',
             itemImage: '/images/combat/ability_book/melee.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo: 'A manual on how to hit two enemies at once in one swing.',
             relatedAbility: 22,
             class: 'gem',
@@ -23393,7 +23451,8 @@ class IdlescapeGameData {
             id: 13011,
             name: 'City Decree',
             itemImage: '/images/combat/ability_book/city_decree.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'Grants the owner the ability to summon City Guards as reinforcements in combat. You should probably feel a little guilty if you bring them into a fight they cannot survive.',
             relatedAbility: 48,
@@ -23404,7 +23463,8 @@ class IdlescapeGameData {
             id: 13012,
             name: 'How To - First Aid',
             itemImage: '/images/combat/ability_book/green.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo: 'Teaches the fundamentals of mid-combat first aid rending.',
             relatedAbility: 47,
             class: 'gem',
@@ -23414,7 +23474,8 @@ class IdlescapeGameData {
             id: 13013,
             name: 'Defending the Weak - An Excerpt',
             itemImage: '/images/combat/ability_book/shield.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'A few pages that explain that you can actually use your shield to defend others instead of just yourself.',
             relatedAbility: 49,
@@ -23425,7 +23486,8 @@ class IdlescapeGameData {
             id: 13014,
             name: 'Combat Manual - Volume 4',
             itemImage: '/images/combat/ability_book/melee.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 'A manual on stabbing through one enemy and into the next one. A battle cry is optional but recommended!',
             relatedAbility: 66,
@@ -23436,7 +23498,8 @@ class IdlescapeGameData {
             id: 13015,
             name: 'Attention Getting Tactics',
             itemImage: '/images/combat/ability_book/long_scroll.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo:
                 "It's a long scroll that explains in detail how awful you are. It gives you ideas on what to say to other people! Very healthy.",
             relatedAbility: 54,
@@ -23447,7 +23510,8 @@ class IdlescapeGameData {
             id: 13016,
             name: 'Smoke and Mirrors',
             itemImage: '/images/combat/ability_book/magic.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo: 'How to use the deceit and chaos to your aid on the battlefield.',
             relatedAbility: 57,
             class: 'gem',
@@ -23457,7 +23521,8 @@ class IdlescapeGameData {
             id: 13017,
             name: 'All Ghillied Up',
             itemImage: '/images/combat/ability_book/green_2.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo: 'Sticks, grass, leaves, and other foliage can make a proper bush out of you!',
             relatedAbility: 58,
             class: 'gem',
@@ -23467,7 +23532,8 @@ class IdlescapeGameData {
             id: 13018,
             name: 'Ice, Ice, Ice',
             itemImage: '/images/combat/ability_book/magic.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo: 'ICE!',
             relatedAbility: 59,
             class: 'gem',
@@ -23477,7 +23543,8 @@ class IdlescapeGameData {
             id: 13019,
             name: "Trapper's Guide",
             itemImage: '/images/combat/ability_book/range.png',
-            value: 42000,
+            value: 500000,
+            heat: 25000,
             extraTooltipInfo: 'Setting traps is just one of the many ways you may shape the battlefield.',
             relatedAbility: 60,
             class: 'gem',
@@ -23487,7 +23554,7 @@ class IdlescapeGameData {
             id: 13020,
             name: 'Spell Tome - Ice Shard',
             itemImage: '/images/combat/ability_book/magic.png',
-            value: 50000,
+            value: 500000,
             heat: 25000,
             extraTooltipInfo:
                 'A basic tome from the Academy formerly used for teaching aspiring mages how to control and utilize ice.',
@@ -28149,6 +28216,64 @@ class IdlescapeGameData {
             dealsNoDamage: true,
 
             skipReactives: true,
+
+            maxTargets: 1,
+        },
+        81: {
+            id: 81,
+            abilityName: 'Skirmisher Stance',
+            abilityImage: '/images/combat/ability_icons/skirmish.png',
+            description:
+                'Enter a skirmish stance, increases your ability to dodge attacks but limited your range damage output. Drains quickly.',
+            damageType: 'Range',
+            cooldown: 5000,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
+            baseSpeedCoeff: 0.1,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8020,
+                enchantmentStrength: 2,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 12,
+            },
+
+            maxTargets: 1,
+        },
+        82: {
+            id: 82,
+            abilityName: 'Sniper Stance',
+            abilityImage: '/images/combat/ability_icons/skirmish.png',
+            description:
+                'Enter a sniper stance, decreases your ability to dodge attacks but increases your range damage output. Drains quickly.',
+            damageType: 'Range',
+            cooldown: 5000,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
+            baseSpeedCoeff: 0.1,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8021,
+                enchantmentStrength: 2,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 12,
+            },
 
             maxTargets: 1,
         },

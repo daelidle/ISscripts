@@ -16,7 +16,7 @@ class EliteScrollTooltip {
         eliteScrollStats.push(`<span class="">Elite Scroll Waves: ${waves}</span>`);
 
         if (item.augmentations > 0){
-            let treasureHunter = item.augmentations;
+            const treasureHunter = item.augmentations * 2;
             eliteScrollStats.push(`<span class="">Treasure Hunter: ${treasureHunter}</span>`);
         }
         return {eliteScrollStats: eliteScrollStats.join('')};

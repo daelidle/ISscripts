@@ -18,7 +18,7 @@ class DungeonKeyTooltip {
         dungeonKeyStats.push(`<span class=''>Max Group Size: ${groupSize}</span>`);
 
         if (item.augmentations > 0){
-            let treasureHunter = item.augmentations;
+            const treasureHunter = item.augmentations * 2;
             dungeonKeyStats.push(`<span class="">Treasure Hunter: ${treasureHunter}</span>`);
         }
         return {dungeonKeyStats: dungeonKeyStats.join('')};
