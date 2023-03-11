@@ -30,7 +30,7 @@ function shortenNumber(number){
 
     let scaled = number / scale;
 
-    return Math.floor(scaled) + suffix;
+    return `${scaled.toFixed(1)}${suffix}`;
 }
 
 function expandNumber(numberString){
