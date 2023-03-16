@@ -163,3 +163,8 @@ function digitToEnglish(number) {
     const units = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
     return units[number];
 }
+
+function toFixedLocale(number, minimumFractionDigits = 0, maximumFractionDigits = 2) {
+    return number.toLocaleString(undefined,
+        { minimumFractionDigits: minimumFractionDigits, maximumFractionDigits: maximumFractionDigits })
+}

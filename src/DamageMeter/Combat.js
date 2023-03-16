@@ -162,10 +162,10 @@ class Combat {
             playerStats.contributionEffectiveDealt = (totalEffectiveDealt === 0) ? 0 : Math.round((player.effectiveDamageDealt / totalEffectiveDealt) * 100);
             playerStats.contributionReceived = (totalReceived === 0) ? 0 : Math.round((player.damageReceived / totalReceived) * 100);
             playerStats.contributionHeal =  (totalHeal === 0) ? 0 : Math.round((player.healing / totalHeal) * 100);
-            playerStats.dps = (combatDurationSeconds === 0) ? 0 : (player.damageDealt / combatDurationSeconds).toFixed(2);
-            playerStats.edps = (combatDurationSeconds === 0) ? 0 : (player.effectiveDamageDealt / combatDurationSeconds).toFixed(2);
-            playerStats.aps = (combatDurationSeconds === 0) ? 0 : (player.damageReceived / combatDurationSeconds).toFixed(2);
-            playerStats.hps = (combatDurationSeconds === 0) ? 0 : (player.healing / combatDurationSeconds).toFixed(2);
+            playerStats.dps = (combatDurationSeconds === 0) ? 0 : toFixedLocale(player.damageDealt / combatDurationSeconds);
+            playerStats.edps = (combatDurationSeconds === 0) ? 0 : toFixedLocale(player.effectiveDamageDealt / combatDurationSeconds);
+            playerStats.aps = (combatDurationSeconds === 0) ? 0 : toFixedLocale(player.damageReceived / combatDurationSeconds);
+            playerStats.hps = (combatDurationSeconds === 0) ? 0 : toFixedLocale(player.healing / combatDurationSeconds);
             combatStats[player.name] = playerStats;
         });
 

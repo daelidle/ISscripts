@@ -105,7 +105,7 @@ class Tooltip {
     }
 
     static formatStat(statValue) {
-        return (statValue > 0 ? '+' : '') + statValue.toFixed(2).replace('.00', '');
+        return (statValue > 0 ? '+' : '') + toFixedLocale(statValue);
     }
 
     static formatMultiplierToPercentage(statValue) {
@@ -113,7 +113,7 @@ class Tooltip {
     }
 
     static formatMultiplierStat(statValue) {
-        return (statValue * 100).toFixed(2).replace('.00', '');
+        return toFixedLocale(statValue * 100);
     }
 }
 

@@ -44,7 +44,7 @@ class EquipmentTooltip {
                 }
                 weaponInfo += `<span>${stringCapitalize(weaponStyle)} Damage</span>`;
             } else weaponInfo += `<span></span>`;
-            weaponInfo += `<span>Speed ${itemResource.equipmentStats.attackSpeed.toFixed(2)}</span>`;
+            weaponInfo += `<span>Speed ${toFixedLocale(itemResource.equipmentStats.attackSpeed)}</span>`;
         }
         return weaponInfo;
     }
