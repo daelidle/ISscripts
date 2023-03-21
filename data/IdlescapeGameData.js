@@ -151,7 +151,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Has a ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}% chance to increase attack speed by 33%.`,
+                )}% chance to speed up attack speed by 33%.`,
             // endclient
         }, // acrobatics, hit twice
         11: {
@@ -167,9 +167,11 @@ class IdlescapeGameData {
             // client
             buffIcon: '/images/magic/buffs/critical_strike_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases critical chance and damage multiplier by ${Math.round(
-                    enchantmentStrength * strengthPerLevel * 100
-                )}%.`,
+                `Increases critical chance and damage multiplier by ${(
+                    enchantmentStrength *
+                    strengthPerLevel *
+                    100
+                ).toFixed(1)}%.`,
             // endclient
         }, // critical strike
         12: {
@@ -998,7 +1000,14 @@ class IdlescapeGameData {
             // client
             buffIcon: '/images/magic/buffs/masterchef_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Gives a mysterious chance for you to encounter a Loot Goblin in combat. Encounter chance greatly increases versus high level enemies!`,
+                `Gives a variable chance to encounter a Loot Goblin that drops several treasure chests in combat that scales on enemy difficulty. Encounter chance is clamped between ${(
+                    enchantmentStrength *
+                    strengthPerLevel *
+                    0.25 *
+                    100
+                ).toFixed(3)}% and ${(enchantmentStrength * strengthPerLevel * 3 * 100).toFixed(
+                    2
+                )}% by dividing the average HP of monsters that are valid to fight (i.e. you have the difficulty pushed to) in the zone by 5000.`,
             // endclient
         }, // loot goblin!
         74: {
@@ -1023,6 +1032,19 @@ class IdlescapeGameData {
                     strengthPerLevel *
                     100
                 ).toFixed(1)}% but reduces the respective defensive affinities by the same amount.`,
+            // endclient
+        }, // recklessness, increases offensive affinity but reduces defensive affinity
+        75: {
+            id: 75,
+            name: 'Elemental Stabilization',
+            strengthPerLevel: 0.05,
+            combat: false,
+            // client
+            buffIcon: '/images/magic/buffs/recklessness_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Reduces all positive affinities by ${
+                    enchantmentStrength * strengthPerLevel * 100
+                }% and increases negative affinities by amount reduced / negative affinity count, but will never exceed a neutral state in either direction. Does NOT apply to accuracy.`,
             // endclient
         }, // recklessness, increases offensive affinity but reduces defensive affinity
 
@@ -1368,6 +1390,30 @@ class IdlescapeGameData {
             buffIcon: '/images/magic/buffs/protection_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Decreases agility but increases dexterity by ${enchantmentStrength * strengthPerLevel}.`,
+            // endclient
+        },
+        8022: {
+            id: 8022,
+            name: 'Enraged',
+            strengthPerLevel: 0.15,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/protection_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases damage and accuracy by ${Math.round(enchantmentStrength * strengthPerLevel * 100)}%.`,
+            // endclient
+        },
+        8023: {
+            id: 8023,
+            name: 'Warded',
+            strengthPerLevel: 15,
+            combat: true,
+            // client
+            buffIcon: '/images/magic/buffs/protection_icon.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases protection and resistance by ${Math.round(
+                    enchantmentStrength * strengthPerLevel
+                )} but decreases intellect by the same amount.`,
             // endclient
         },
 
@@ -3169,10 +3215,21 @@ class IdlescapeGameData {
         209: {
             id: 209,
             name: 'Obsidian Glass',
-            value: 300,
+            value: 3000,
             tradeable: true,
             itemImage: '/images/combat/materials/obsidian_glass.png',
-            extraTooltipInfo: 'A splinter of mildly reflective obsidian glass.',
+            extraTooltipInfo:
+                'A splinter of mildly reflective obsidian glass; can be used to augment obsidian or obsidian-adjacent gear.',
+            class: 'bar',
+            tags: ['mining', 'smithing'],
+        },
+        210: {
+            id: 210,
+            name: 'Golem Marrow',
+            value: 3000,
+            tradeable: true,
+            itemImage: '/images/combat/materials/golem_marrow.png',
+            extraTooltipInfo: 'A piece of golem marrow, the lifeblood of an artificial construct.',
             class: 'bar',
             tags: ['mining', 'smithing'],
         },
@@ -4528,10 +4585,11 @@ class IdlescapeGameData {
             tags: ['jewelry', 'crafting'],
             enchantable: true,
             equipmentStats: {
-                grantedAbility: [9],
+                grantedAbility: [9, 89],
                 slot: 'necklace',
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 3, agility: 0, stamina: 0 },
+                offensiveDamageAffinity: { Nature: 1.2 },
                 defensiveDamageAffinity: { Magic: 1.025, Nature: 1.15 },
                 augmentationBonus: [{ stat: 'armorBonus.protection', value: 0.5 }],
             },
@@ -5007,7 +5065,7 @@ class IdlescapeGameData {
 
 
             category: 'Skilling',
-            craftingExperience: 15,
+            craftingExperience: 15000,
             craftingLevel: 15,
             requiredResources: [{ 4015: 100, 1600: 5, 500: 1 }],
         },
@@ -5031,7 +5089,7 @@ class IdlescapeGameData {
 
 
             category: 'Skilling',
-            craftingExperience: 30,
+            craftingExperience: 30000,
             craftingLevel: 30,
             requiredResources: [{ 672: 1, 4016: 200, 1600: 10, 501: 1, 502: 1 }],
         },
@@ -5055,7 +5113,7 @@ class IdlescapeGameData {
 
 
             category: 'Skilling',
-            craftingExperience: 45,
+            craftingExperience: 45000,
             craftingLevel: 45,
             requiredResources: [{ 673: 1, 4017: 300, 1600: 20, 503: 1, 504: 1 }],
         },
@@ -13735,7 +13793,7 @@ class IdlescapeGameData {
                 weaponBonus: { strength: 0, intellect: 12, dexterity: 0 },
                 armorBonus: { protection: 12, resistance: 18, agility: 0, stamina: 0 },
                 toolBoost: [{ skill: 'smithing', boost: 5 }],
-                augmentationBonus: [{ stat: 'toolBoost.smithing', value: 0.5 }],
+                augmentationBonus: [{ stat: 'toolBoost.smithing', value: 1.5 }],
             },
             requiredResources: [{ 204: 200 }],
             rarity: 'uncommon',
@@ -14729,7 +14787,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/Giant_Scrap.png',
             class: 'bar',
             extraTooltipInfo: 'It would take a master craftsman to reshape this into something usable.',
-            tags: ['mining', 'smithing'],
+            tags: ['crafting'],
             rarity: 'uncommon',
         },
         1550: {
@@ -14905,7 +14963,7 @@ class IdlescapeGameData {
                 grantedAbility: [7, 18],
                 slot: 'cape',
                 offensiveAccuracyAffinityRating: { Melee: 3, Magic: 15, Fire: 15, Range: 3 },
-                offensiveDamageAffinity: { Melee: 1, Magic: 1.15, Range: 1, Fire: 1.5 },
+                offensiveDamageAffinity: { Melee: 1, Magic: 1.15, Range: 1, Fire: 1.35 },
                 defensiveDamageAffinity: { Melee: 1, Magic: 1.04, Range: 1, Fire: 1.13 },
                 weaponBonus: { strength: 0, intellect: 20, dexterity: 0 },
                 armorBonus: { protection: 0, resistance: 10, agility: 3, stamina: 0 },
@@ -15008,13 +15066,15 @@ class IdlescapeGameData {
             rarity: 'epic',
         },
         1558: {
-            name: 'elite moon god potion',
+            name: 'Shrimp Scraps',
             id: 1558,
-            value: 9,
-            tradeable: false,
-            itemImage: '/images/cooking/banana.png',
-            extraTooltipInfo: 'yes',
-            tags: [],
+            value: 100000,
+            tradeable: true,
+            itemImage: '/images/misc/shrimp_fragment.png',
+            class: 'bar',
+            extraTooltipInfo: 'It would take a master craftsman to reshape this into something usable.',
+            tags: ['crafting'],
+            rarity: 'rare',
         },
         1559: {
             name: "Black Knight Titan's Helm",
@@ -15529,7 +15589,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/fishtail.png',
             itemIcon: '/images/combat/equipment/fishtail.png',
             class: 'equipment',
-            visual: 'scimitar',
+            visual: 'fishtail',
             craftingDescription: 'A large scimitar taken from a fish! You could probably use it as a paddle!',
             tags: ['melee', 'weapon', 'onehand'],
             equipmentStats: {
@@ -15568,7 +15628,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/razorfin.png',
             itemIcon: '/images/combat/equipment/razorfin.png',
             class: 'equipment',
-            visual: 'scimitar',
+            visual: 'fishtail',
             craftingDescription:
                 'A large scimitar taken from a fish! You could probably use it as a paddle! Seems mildly magical, almost...',
             tags: ['melee', 'weapon', 'onehand'],
@@ -15649,10 +15709,10 @@ class IdlescapeGameData {
         1576: {
             id: 1576,
             name: "Defender's Band",
-            value: 450000,
+            value: 3450000,
             tradeable: false,
             enchantmentTier: 3,
-            augmentationCost: { 103: 100, 105: 100, 107: 100, 109: 100 },
+            augmentationCost: { 203: 200, 201: 100, 202: 100, 204: 100, 205: 100, 206: 100, 404: 1 },
             forcedEnchant: 19,
             forcedEnchantAmount: 3,
             itemImage: '/images/jewellery/defenders_band.png',
@@ -15662,10 +15722,10 @@ class IdlescapeGameData {
             equipmentStats: {
                 grantedAbility: [26],
                 slot: 'ring',
-                armorBonus: { protection: 1, resistance: 0, agility: -4, stamina: 1 },
+                armorBonus: { protection: 1, resistance: 0, agility: -32, stamina: 4 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.5 },
-                    { stat: 'armorBonus.stamina', value: 0.1 },
+                    { stat: 'armorBonus.stamina', value: 0.5 },
                 ],
                 itemSet: [10009, 10016],
             },
@@ -15675,10 +15735,10 @@ class IdlescapeGameData {
         1577: {
             id: 1577,
             name: "Defender's Pendant",
-            value: 450000,
+            value: 3450000,
             tradeable: false,
             enchantmentTier: 3,
-            augmentationCost: { 103: 100, 105: 100, 107: 100, 109: 100 },
+            augmentationCost: { 203: 200, 201: 100, 202: 100, 204: 100, 205: 100, 206: 100, 404: 1 },
             forcedEnchant: 65,
             forcedEnchantAmount: 3,
             itemImage: '/images/jewellery/defenders_pendant.png',
@@ -15688,11 +15748,11 @@ class IdlescapeGameData {
             equipmentStats: {
                 grantedAbility: [26],
                 slot: 'arrows',
-                armorBonus: { protection: 16, resistance: 16, agility: 0, stamina: 1 },
+                armorBonus: { protection: 16, resistance: 16, agility: -32, stamina: 4 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.5 },
                     { stat: 'armorBonus.resistance', value: 1.5 },
-                    { stat: 'armorBonus.stamina', value: 0.1 },
+                    { stat: 'armorBonus.stamina', value: 0.5 },
                 ],
                 itemSet: [10009, 10016],
             },
@@ -15702,10 +15762,10 @@ class IdlescapeGameData {
         1578: {
             id: 1578,
             name: 'Scaled Circuit',
-            value: 450000,
+            value: 3450000,
             tradeable: false,
             enchantmentTier: 3,
-            augmentationCost: { 103: 100, 105: 100, 107: 100, 109: 100 },
+            augmentationCost: { 203: 200, 4010: 35, 404: 1 },
             forcedEnchant: 19,
             forcedEnchantAmount: 3,
             itemImage: '/images/jewellery/scale_ring.png',
@@ -15714,9 +15774,12 @@ class IdlescapeGameData {
             tags: ['jewelry'],
             equipmentStats: {
                 slot: 'ring',
-                armorBonus: { protection: 8, resistance: 4, agility: 0, stamina: 4 },
-                defensiveDamageAffinity: { Range: 1.05, Piercing: 1.05 },
-                augmentationBonus: [{ stat: 'armorBonus.protection', value: 2 }],
+                armorBonus: { protection: 8, resistance: 8, agility: 0, stamina: 4 },
+                defensiveDamageAffinity: { Range: 1.05, Piercing: 1.05, Slashing: 1.05 },
+                augmentationBonus: [
+                    { stat: 'armorBonus.protection', value: 2 },
+                    { stat: 'armorBonus.resistance', value: 2 },
+                ],
             },
             rarity: 'epic',
 
@@ -15724,7 +15787,7 @@ class IdlescapeGameData {
         1579: {
             id: 1579,
             name: "Devourer's Band",
-            value: 450000,
+            value: 26450000,
             tradeable: false,
             enchantmentTier: 5,
             augmentationCost: { 4027: 1, 4028: 1, 9021: 1 },
@@ -15747,10 +15810,10 @@ class IdlescapeGameData {
         1580: {
             id: 1580,
             name: "Slayer's Pendant",
-            value: 450000,
+            value: 6450000,
             tradeable: false,
             enchantmentTier: 3,
-            augmentationCost: { 103: 100, 105: 100, 107: 100, 109: 100 },
+            augmentationCost: { 203: 200, 201: 100, 202: 100, 204: 100, 205: 100, 206: 100, 404: 1 },
             forcedEnchant: 38,
             forcedEnchantAmount: 3,
             itemImage: '/images/jewellery/slayer_pendant.png',
@@ -15772,10 +15835,10 @@ class IdlescapeGameData {
         1581: {
             id: 1581,
             name: 'Alacrity Pendant',
-            value: 450000,
+            value: 8000000,
             tradeable: false,
             enchantmentTier: 3,
-            augmentationCost: { 3: 10000, 403: 3 },
+            augmentationCost: { 3: 45000, 403: 6 },
             forcedEnchant: 64,
             forcedEnchantAmount: 3,
             itemImage: '/images/jewellery/speed_pendant.png',
@@ -15797,10 +15860,10 @@ class IdlescapeGameData {
         1582: {
             id: 1582,
             name: 'Ring of Taxes',
-            value: 450000,
+            value: 10000000,
             tradeable: false,
             enchantmentTier: 1,
-            augmentationCost: { 3: 10000, 403: 3 },
+            augmentationCost: { 203: 500, 400: 5, 401: 4, 402: 3, 403: 2, 404: 1 },
             forcedEnchant: 66,
             forcedEnchantAmount: 1,
             itemImage: '/images/jewellery/habs_ring.png',
@@ -15808,7 +15871,14 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'Causes you immense pain while you wear it, but allows you to collect taxes from defeated enemies in combat at the expense of your experience.',
             tags: ['jewelry'],
-            equipmentStats: { slot: 'ring' },
+            equipmentStats: {
+                slot: 'ring',
+                augmentationBonus: [
+                    { stat: 'offensiveAccuracyAffinityRating.Melee', value: 6 },
+                    { stat: 'offensiveAccuracyAffinityRating.Magic', value: 6 },
+                    { stat: 'offensiveAccuracyAffinityRating.Range', value: 6 },
+                ],
+            },
             rarity: 'legendary',
 
         },
@@ -15857,6 +15927,321 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.strength', value: 6 },
                 ],
             },
+        },
+        1584: {
+            name: 'Shrimp Scepter',
+            id: 1584,
+            enchantmentTier: 8,
+            augmentationCost: { 1587: 1, 1558: 30, 208: 33 },
+            value: 12000000,
+            tradeable: true,
+            requiredLevel: { magic: 85 },
+
+
+
+            itemImage: '/images/combat/equipment/shrimp_staff.png',
+            itemIcon: '/images/combat/equipment/shrimp_staff_icon.png',
+            class: 'equipment',
+            visual: 'staff',
+            craftingDescription: 'A scepter formed from the void given shape: the Shrimp God.',
+            tags: ['magic', 'weapon', 'onehand'],
+            equipmentStats: {
+                grantedAbility: [85],
+                slot: 'weapon',
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.33 },
+                offensiveAccuracyAffinityRating: {
+                    Magic: 192,
+                    Chaos: 312,
+                    Ice: 56,
+                    Melee: -48,
+                    Range: -48,
+                },
+                offensiveDamageAffinity: {
+                    Magic: 1.66,
+                    Melee: 0.1,
+                    Chaos: 1.5,
+                    Range: 0.1,
+                    Poison: 1.5,
+                },
+                weaponBonus: { strength: 0, intellect: 116, dexterity: 0 },
+                armorBonus: { protection: 0, resistance: 8, agility: 0, stamina: 0 },
+                attackSpeed: 2.4,
+                augmentationBonus: [
+                    { stat: 'offensiveAccuracyAffinityRating.Magic', value: 7.5 },
+                    { stat: 'weaponBonus.intellect', value: 7.5 },
+                    { stat: 'offensiveAccuracyAffinityRating.Chaos', value: 3.5 },
+                ],
+                oneHanded: true,
+                itemSet: [2001],
+            },
+            rarity: 'legendary',
+        },
+        1585: {
+            name: 'Shrimp Stinger',
+            id: 1585,
+            enchantmentTier: 8,
+            augmentationCost: { 1587: 1, 1558: 30, 208: 33 },
+            value: 12000000,
+            tradeable: true,
+            requiredLevel: { range: 85 },
+
+
+
+            itemImage: '/images/combat/equipment/shrimp_dagger.png',
+            itemIcon: '/images/combat/equipment/shrimp_dagger_icon.png',
+            class: 'equipment',
+            visual: 'defender',
+            craftingDescription: "An off-hand dagger fashioned from one of the Shrimp God's many stingers.",
+            tags: ['range', 'weapon', 'onehand'],
+            equipmentStats: {
+                grantedAbility: [83],
+                slot: 'shield',
+                offensiveCritical: { chance: 0.1, damageMultiplier: 1.5 },
+                defensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
+                offensiveAccuracyAffinityRating: {
+                    Melee: 35,
+                    Range: 48,
+                    Piercing: 25,
+                    Slashing: 25,
+                },
+                offensiveDamageAffinity: { Melee: 1.05, Piercing: 1.05, Slashing: 1.05, Range: 1.33, Poison: 1.5 },
+                weaponBonus: { strength: 11, intellect: 0, dexterity: 33 },
+                armorBonus: { protection: 0, resistance: 0, agility: 22, stamina: 0 },
+                augmentationBonus: [
+                    {
+                        stat: 'offensiveAccuracyAffinityRating.Melee',
+                        value: 1.5,
+                    },
+                    {
+                        stat: 'offensiveAccuracyAffinityRating.Range',
+                        value: 4.5,
+                    },
+                    { stat: 'weaponBonus.strength', value: 0.5 },
+                    { stat: 'weaponBonus.dexterity', value: 2 },
+                    { stat: 'armorBonus.agility', value: 2 },
+                ],
+                itemSet: [2001],
+            },
+            rarity: 'legendary',
+        },
+        1586: {
+            name: 'Shrimp Tail',
+            id: 1586,
+            enchantmentTier: 8,
+            augmentationCost: { 1587: 1, 1558: 30, 208: 33 },
+            value: 12000000,
+            tradeable: true,
+            requiredLevel: { strength: 85 },
+
+
+
+            itemImage: '/images/combat/equipment/shrimp_whip.png',
+            itemIcon: '/images/combat/equipment/shrimp_whip_icon.png',
+            class: 'equipment',
+            visual: 'shrimp-whip',
+            craftingDescription: "A whip designed to mimic the devastating power of a Shrimp's tail.",
+            tags: ['melee', 'weapon', 'onehand'],
+            equipmentStats: {
+                grantedAbility: [84],
+                slot: 'weapon',
+                offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
+                offensiveAccuracyAffinityRating: {
+                    Melee: 94,
+                    Slashing: 123,
+                    Chaos: 32,
+                    Magic: 14,
+                },
+                offensiveDamageAffinity: {
+                    Melee: 1.25,
+                    Slashing: 1.33,
+                    Blunt: 0.8,
+                    Piercing: 0.8,
+                    Magic: 0.8,
+                    Range: 0.8,
+                    Chaos: 1.25,
+                    Poison: 1.5,
+                },
+                weaponBonus: { strength: 109, intellect: 0, dexterity: 0 },
+                oneHanded: true,
+                armorBonus: { protection: 0, resistance: 0, agility: 8, stamina: 0 },
+                attackSpeed: 2.4,
+                augmentationBonus: [
+                    { stat: 'offensiveAccuracyAffinityRating.Melee', value: 3 },
+                    { stat: 'weaponBonus.strength', value: 2.5 },
+                ],
+                itemSet: [2001],
+            },
+            rarity: 'legendary',
+        },
+        1587: {
+            name: 'Shrimp Eye',
+            id: 1587,
+            value: 1500000,
+            tradeable: true,
+            itemImage: '/images/misc/shrimp_eye_sleep.png',
+            class: 'bar',
+            extraTooltipInfo: "The Eye's power sleeps.",
+            tags: ['crafting'],
+            rarity: 'epic',
+        },
+        1588: {
+            id: 1588,
+            name: "Hunter's Band",
+            value: 3450000,
+            tradeable: false,
+            enchantmentTier: 3,
+            augmentationCost: { 4001: 100, 4000: 250 },
+            forcedEnchant: 13,
+            forcedEnchantAmount: 3,
+            itemImage: '/images/jewellery/hunter_band.png',
+            class: 'equipment',
+            extraTooltipInfo: "To mark a true hunter's finest kill.",
+            tags: ['jewelry'],
+            equipmentStats: {
+                grantedAbility: [87],
+                slot: 'ring',
+                weaponBonus: { strength: 0, intellect: 0, dexterity: 2 },
+                offensiveDamageAffinity: {
+                    Range: 1.05,
+                    Piercing: 1.05,
+                },
+                augmentationBonus: [
+                    { stat: 'offensiveAccuracyAffinityRating.Range', value: 4 },
+                    { stat: 'weaponBonus.dexterity', value: 1 },
+                ],
+            },
+            rarity: 'epic',
+
+        },
+        1589: {
+            id: 1589,
+            name: 'Dwarven Hammer Necklace',
+            value: 3450000,
+            tradeable: false,
+            enchantmentTier: 5,
+            augmentationCost: { 109: 300, 206: 150, 205: 150, 204: 150 },
+            forcedEnchant: 74,
+            forcedEnchantAmount: 5,
+            itemImage: '/images/jewellery/hammer_necklace.png',
+            class: 'equipment',
+            extraTooltipInfo: "When all you've got is a hammer everything looks like a nail.",
+            tags: ['jewelry'],
+            equipmentStats: {
+                grantedAbility: [88],
+                slot: 'ring',
+                offensiveAccuracyAffinityRating: {
+                    Blunt: 16,
+                },
+                armorBonus: { protection: 0, resistance: 0, agility: -12, stamina: 0 },
+                augmentationBonus: [
+                    { stat: 'offensiveAccuracyAffinityRating.Blunt', value: 3 },
+                    { stat: 'toolBoost.mining', value: 1 },
+                ],
+            },
+            rarity: 'epic',
+
+        },
+        1590: {
+            id: 1590,
+            name: 'Ancient Token',
+            value: 13000000,
+            tradeable: false,
+            enchantmentTier: 2,
+            augmentationCost: { 4026: 4, 4027: 1, 11032: 30 },
+            forcedEnchant: 8016,
+            forcedEnchantAmount: 2,
+            itemImage: '/images/jewellery/ancient_token.png',
+            class: 'equipment',
+            extraTooltipInfo: 'An ancient token that freezes anything it touches.',
+            tags: ['jewelry'],
+            equipmentStats: {
+                grantedAbility: [90],
+                slot: 'arrows',
+                armorBonus: { protection: 4, resistance: 24, agility: 0, stamina: 0 },
+                offensiveAccuracyAffinityRating: { Melee: 0, Magic: 12, Range: 0 },
+                offensiveDamageAffinity: { Ice: 1.2 },
+                weaponBonus: { strength: 0, intellect: 12, dexterity: 0 },
+                augmentationBonus: [{ stat: 'offensiveAccuracyAffinityRating.Ice', value: 5 }],
+            },
+            rarity: 'legendary',
+
+        },
+        1591: {
+            id: 1591,
+            name: 'Ancient Ring',
+            value: 13000000,
+            tradeable: false,
+            enchantmentTier: 5,
+            augmentationCost: { 4026: 4, 4027: 1, 11032: 30 },
+            forcedEnchant: 70,
+            forcedEnchantAmount: 5,
+            itemImage: '/images/jewellery/ancient_ring.png',
+            class: 'equipment',
+            extraTooltipInfo:
+                'An ancient ring that allows you to control ice. Maybe you should take up ice sculpting and leave the adventuring life behind?',
+            tags: ['jewelry'],
+            equipmentStats: {
+                grantedAbility: [91],
+                slot: 'ring',
+                armorBonus: { protection: 0, resistance: 4, agility: 0, stamina: 0 },
+                offensiveAccuracyAffinityRating: { Melee: 0, Magic: 30, Range: 0 },
+                offensiveDamageAffinity: { Ice: 1.35 },
+                weaponBonus: { strength: 0, intellect: 20, dexterity: 0 },
+                augmentationBonus: [
+                    { stat: 'offensiveAccuracyAffinityRating.Ice', value: 5 },
+                    { stat: 'weaponBonus.intellect', value: 3 },
+                ],
+            },
+            rarity: 'legendary',
+
+        },
+        1592: {
+            id: 1592,
+            name: 'Golem Ring',
+            value: 450000,
+            tradeable: false,
+            enchantmentTier: 5,
+            augmentationCost: { 209: 1, 210: 1, 203: 100 },
+            forcedEnchant: 75,
+            forcedEnchantAmount: 5,
+            itemImage: '/images/jewellery/golem_ring.png',
+            class: 'equipment',
+            extraTooltipInfo:
+                "A ring fashioned from an artificial golem's internals. The magic infused within is said to stabilize the effects of negative affinities, albeit imperfectly.",
+            tags: ['jewelry'],
+            equipmentStats: {
+                slot: 'ring',
+                armorBonus: { protection: 0, resistance: 0, agility: 0, stamina: 0 },
+                offensiveAccuracyAffinityRating: { Melee: 0, Magic: 0, Range: 0 },
+                weaponBonus: { strength: 0, intellect: 0, dexterity: 0 },
+                augmentationBonus: [
+                    { stat: 'offensiveAccuracyAffinityRating.Melee', value: 3 },
+                    { stat: 'offensiveAccuracyAffinityRating.Magic', value: 3 },
+                    { stat: 'offensiveAccuracyAffinityRating.Range', value: 3 },
+                    { stat: 'weaponBonus.strength', value: 1 },
+                    { stat: 'weaponBonus.intellect', value: 1 },
+                    { stat: 'weaponBonus.dexterity', value: 1 },
+                ],
+            },
+            rarity: 'rare',
+        },
+        1593: {
+            id: 1593,
+            name: 'Phroglin Pheromones',
+            value: 1450000,
+            tradeable: false,
+            enchantmentTier: 1,
+            forcedEnchant: 73,
+            forcedEnchantAmount: 1,
+            itemImage: '/images/jewellery/phroglin_attractor.png',
+            class: 'equipment',
+            extraTooltipInfo:
+                "A foul smelling jar filled with a substance that apparently attracts creatures called 'Phroglins.'",
+            tags: ['jewelry'],
+            equipmentStats: {
+                slot: 'arrows',
+            },
+            rarity: 'epic',
         },
         1600: {
             name: 'Scroll',
@@ -17519,6 +17904,7 @@ class IdlescapeGameData {
                 'tongs',
                 'tome',
                 'ladle',
+                'combat-talisman',
             ],
             time: 15000,
             id: 1660,
@@ -20982,6 +21368,7 @@ class IdlescapeGameData {
 
 
 
+            fishingBait: { level: 0, bait: 0, reel: 0, bonus: 0 },
             itemImage: 'images/christmas/gummy_bait.png',
             craftingDescription: 'Each craft results in 2 bait. Helps with Christmas zone fishing.',
             extraTooltipInfo: 'A gummy fish turned into a lure. Helps with Christmas zone fishin.',
@@ -21212,12 +21599,12 @@ class IdlescapeGameData {
             rarity: 'legendary',
         },
         7071: {
-            name: 'Username Change Token',
+            name: 'Item Name Token',
             id: 7071,
             isToken: true,
             itemImage: '/images/premium/premium_icon.png',
             itemIcon: '/images/premium/premium_icon.png',
-            extraTooltipInfo: 'A token that can be redeemed to change your character name. WIP: NO FUNCTIONALITY YET',
+            extraTooltipInfo: "A token that can be redeemed to change an item's name.",
             class: 'platinum',
             category: ['platinum', 'token'],
             tags: ['platinum', 'token'],
@@ -21408,7 +21795,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/misc/Elite_Scroll.png',
             extraTooltipInfo:
-                'Ancient power emanates from the seal... It sorta smells like durian. Includes built-in double drops for all players and +20 Treasure Hunter.',
+                'Ancient power emanates from the seal... It sorta smells like durian. Probably not a good idea to use this until raids are officially implemented.',
             class: 'elite-scroll',
             tags: ['dungeon'],
             rarity: 'legendary',
@@ -21618,8 +22005,8 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/misc/elite/Elite_Scroll_Fish.png',
-            extraTooltipInfo: "It's soaking wet but the parchment seems untearable. Will you dive in?",
+            itemImage: '/images/misc/elite/Elite_Scroll_Armory.png',
+            extraTooltipInfo: "A dignified invitation to test the armory's latest creations. Will you accept?",
             class: 'elite-scroll',
             tags: ['elite'],
             rarity: 'uncommon',
@@ -21637,8 +22024,8 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/misc/elite/Elite_Scroll_Fish.png',
-            extraTooltipInfo: "It's soaking wet but the parchment seems untearable. Will you dive in?",
+            itemImage: '/images/misc/elite/Elite_Scroll_Academy.png',
+            extraTooltipInfo: 'An academy scroll that has been warped by some sort of demonic energy. Will you explore it?',
             class: 'elite-scroll',
             tags: ['elite'],
             rarity: 'uncommon',
@@ -21656,8 +22043,9 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/misc/elite/Elite_Scroll_Fish.png',
-            extraTooltipInfo: "It's soaking wet but the parchment seems untearable. Will you dive in?",
+            itemImage: '/images/misc/elite/Elite_Scroll_Woods.png',
+            extraTooltipInfo:
+                'An old scroll you found in the woods that leads you further into the woods. Should you follow it?',
             class: 'elite-scroll',
             tags: ['elite'],
             rarity: 'uncommon',
@@ -21675,8 +22063,9 @@ class IdlescapeGameData {
 
 
 
-            itemImage: '/images/misc/elite/Elite_Scroll_Fish.png',
-            extraTooltipInfo: "It's soaking wet but the parchment seems untearable. Will you dive in?",
+            itemImage: '/images/misc/elite/Elite_Scroll_Elves.png',
+            extraTooltipInfo:
+                'An old scroll bearing the insignia of some long lost dynasty. Will you comb through history?',
             class: 'elite-scroll',
             tags: ['elite'],
             rarity: 'uncommon',
@@ -22137,6 +22526,23 @@ class IdlescapeGameData {
             tags: ['fragment', 'shard'],
             rarity: 'rare',
         },
+        9024: {
+            name: 'Awakened Shrimp Eye',
+            id: 9024,
+            value: 500,
+            tradeable: true,
+            champEncounter: 3011,
+            enchantmentTier: 0,
+
+
+
+            itemImage: '/images/misc/shrimp_eye.png',
+            extraTooltipInfo:
+                "It's looking at you. Don't look too closely back. Probably not a good idea to use this until raids are officially implemented.",
+            class: 'elite-scroll',
+            tags: ['dungeon'],
+            rarity: 'legendary',
+        },
         10000: {
             id: 10000,
             name: 'The Castled King',
@@ -22327,6 +22733,188 @@ class IdlescapeGameData {
                 'A simple pouch containing some starter supplies. Will eventually be tied to a tutorial quest.',
             canBeOpened: true,
             tags: [],
+        },
+        10013: {
+            name: 'Lesser Jewelry Cache',
+            id: 10013,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/gold_lockbox.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'uncommon',
+        },
+        10014: {
+            name: 'Greater Jewelry Cache',
+            id: 10014,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/gold_lockbox.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10015: {
+            name: 'Goblin Cache',
+            id: 10015,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10016: {
+            name: 'Dark Cache',
+            id: 10016,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10017: {
+            name: 'Giant Cache',
+            id: 10017,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10018: {
+            name: 'Elder Cache',
+            id: 10016,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10019: {
+            name: 'Overgrown Cache',
+            id: 10019,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10020: {
+            name: 'Barrows Cache',
+            id: 10020,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10021: {
+            name: 'Flaming Cache',
+            id: 10021,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10022: {
+            name: 'Storm Cache',
+            id: 10022,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10023: {
+            name: 'Maelstrom Cache',
+            id: 10023,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10024: {
+            name: 'INFO Cache',
+            id: 10024,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
+        },
+        10025: {
+            name: 'Ancient Cache',
+            id: 10025,
+            value: 1000,
+            tradeable: true,
+
+
+
+            itemImage: '/images/misc/dark_chest.png',
+            canBeOpened: true,
+            class: 'gem',
+            tags: [],
+            rarity: 'epic',
         },
         11000: {
             id: 11000,
@@ -24259,6 +24847,7 @@ class IdlescapeGameData {
             },
             extraTooltipInfo: 'This is a dangerous location!',
 
+            xpPerCompletion: [{ skill: 'mining', amount: 100 }],
             loot: [
                 { id: 107, frequency: 50, minAmount: 1 }, //runite
                 { id: 113, frequency: 15, minAmount: 1 }, // rune slate
@@ -26107,7 +26696,6 @@ class IdlescapeGameData {
             },
 
         },
-        // TODO Dungeon locations
         3004: {
             name: 'Elder Ruins',
             locID: 3004,
@@ -26957,7 +27545,8 @@ class IdlescapeGameData {
             id: 32,
             abilityName: 'Lesser Nature Bolt',
             abilityImage: '/images/combat/ability_icons/nature_bolt.png',
-            description: 'Attune your magic to ice to deal additional nature damage at the expense of lower base damage.',
+            description:
+                'Attune your magic to nature to deal additional nature damage at the expense of lower base damage.',
             damageType: 'Magic',
             runeCost: [{ itemID: 517, amount: 1 }],
 
@@ -28277,6 +28866,263 @@ class IdlescapeGameData {
 
             maxTargets: 1,
         },
+        83: {
+            id: 83,
+            abilityName: 'Shrimp Sting',
+            abilityImage: '/images/combat/ability_icons/shrimp.png',
+            description:
+                'Throw the Shrimp Stinger at a target to poison them and deal 1500 damage over 15 seconds on top of your base damage.',
+            damageType: 'Range',
+            cooldown: 15000,
+            runeCost: [{ itemID: 516, amount: 5 }],
+
+            damageScaling: [
+                { affinity: 'Range', scaling: 1.333 },
+                { affinity: 'Poison', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Range', scaling: 1.333 },
+                { affinity: 'Poison', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.8,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 0.5,
+            baseAccuracyCoeff: 1,
+
+            healthChangeEvent: {
+                dotCount: 15,
+                healthChange: -100,
+                healthChangeDelay: 1000,
+            },
+
+            maxTargets: 1,
+        },
+        84: {
+            id: 84,
+            abilityName: 'Shrimp Whip',
+            abilityImage: '/images/combat/ability_icons/shrimp.png',
+            description: 'Whip a target to poison them and deal 1500 damage over 15 seconds on top of your base damage.',
+            damageType: 'Melee',
+            cooldown: 15000,
+            runeCost: [{ itemID: 516, amount: 5 }],
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1.333 },
+                { affinity: 'Poison', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1.333 },
+                { affinity: 'Poison', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 0.8,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 0.5,
+            baseAccuracyCoeff: 1,
+
+            healthChangeEvent: {
+                dotCount: 15,
+                healthChange: -100,
+                healthChangeDelay: 1000,
+            },
+
+            maxTargets: 1,
+        },
+        85: {
+            id: 85,
+            abilityName: 'Shrimp Mist',
+            abilityImage: '/images/combat/ability_icons/shrimp.png',
+            description:
+                'Spray poison mist at up to 3 enemies, doing 750 damage over 15 seconds to each on top of your base damage.',
+            damageType: 'Magic',
+            cooldown: 15000,
+            runeCost: [{ itemID: 516, amount: 5 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1.333 },
+                { affinity: 'Poison', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1.333 },
+                { affinity: 'Poison', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 1.25,
+            baseMinimumDamageCoeff: 0.25,
+            baseMaximumDamageCoeff: 0.5,
+            baseAccuracyCoeff: 1,
+
+            healthChangeEvent: {
+                dotCount: 15,
+                healthChange: -50,
+                healthChangeDelay: 1000,
+            },
+
+            maxTargets: 3,
+        },
+        86: {
+            id: 86,
+            abilityName: 'Lesser Ward',
+            abilityImage: '/images/combat/ability_icons/ward.png',
+            description:
+                'Use your focus to conjure a low strength temporary ward, increasing protection and resistance but decreasing intellect.',
+            damageType: 'Magic',
+            cooldown: 20000,
+
+            damageScaling: [{ affinity: 'Magic', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
+            baseSpeedCoeff: 0.1,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8023,
+                enchantmentStrength: 1,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 16,
+            },
+
+            maxTargets: 1,
+        },
+        87: {
+            id: 87,
+            abilityName: 'Deadshot Stance',
+            abilityImage: '/images/combat/ability_icons/deadshot_alt2.png',
+            description:
+                'Focus your entire being into striking true; massively decreases your ability to dodge attacks but increases your range damage output. Drains quickly.',
+            damageType: 'Range',
+            cooldown: 5000,
+
+            damageScaling: [{ affinity: 'Range', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
+
+            baseSpeedCoeff: 0.1,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8021,
+                enchantmentStrength: 4,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 12,
+            },
+
+            maxTargets: 1,
+        },
+        88: {
+            id: 88,
+            abilityName: 'Dwarven Strike',
+            abilityImage: '/images/combat/ability_icons/titanicstrike.png',
+            description: 'A slow but incredibly heavy hitting blunt attack.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1.1 },
+                { affinity: 'Blunt', scaling: 2.25 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1.1 },
+                { affinity: 'Blunt', scaling: 2.25 },
+            ],
+
+            baseSpeedCoeff: 2,
+            baseMinimumDamageCoeff: 1.1,
+            baseMaximumDamageCoeff: 2.25,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+        },
+        89: {
+            id: 89,
+            abilityName: 'Greater Nature Bolt',
+            abilityImage: '/images/combat/ability_icons/nature_bolt.png',
+            description: 'Channel ancient powers to cast a nearly pure bolt of nature magic.',
+            damageType: 'Magic',
+            runeCost: [{ itemID: 517, amount: 3 }],
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 2 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Nature', scaling: 3 },
+            ],
+
+            baseSpeedCoeff: 1,
+            baseMinimumDamageCoeff: 1.05,
+            baseMaximumDamageCoeff: 1.25,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+        },
+        90: {
+            id: 90,
+            abilityName: 'Greater Icy Shell',
+            abilityImage: '/images/combat/ability_icons/ice_armor.png',
+            description:
+                'Temporarily encase yourself in a shell of magical ice, increasing protection, resistance, and defensive ice affinity at the cost of agility. Melts very quickly!',
+            damageType: 'Magic',
+            cooldown: 30000,
+            runeCost: [{ itemID: 513, amount: 5 }],
+
+            damageScaling: [{ affinity: 'Magic', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Magic', scaling: 1 }],
+
+            baseSpeedCoeff: 0.333,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8016,
+                enchantmentStrength: 8,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 16,
+            },
+
+            maxTargets: 1,
+        },
+        91: {
+            id: 91,
+            abilityName: 'Greater Ice Bolt',
+            abilityImage: '/images/combat/ability_icons/ice_bolt.png',
+            description: 'Channel ancient powers to cast a nearly pure bolt of ice magic.',
+            damageType: 'Magic',
+            runeCost: [{ itemID: 513, amount: 3 }],
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 2 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 3 },
+            ],
+
+            baseSpeedCoeff: 1,
+            baseMinimumDamageCoeff: 1.05,
+            baseMaximumDamageCoeff: 1.25,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+        },
     };
     gameShopItems = {
         1: {
@@ -28639,5 +29485,14 @@ class IdlescapeGameData {
         // 	description: 'Will eventually be tied to a tutorial quest.',
         // 	image: '/images/misc/pouch.png',
         // },
+        312: {
+            id: 312,
+            itemID: 1593,
+            price: 25000000,
+            allowBulkPurchase: true,
+            description:
+                "A foul smelling jar filled with a substance that apparently attracts creatures called 'Phroglins.'",
+            image: '/images/jewellery/phroglin_attractor.png',
+        },
     };
 }
