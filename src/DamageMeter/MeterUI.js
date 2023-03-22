@@ -7,6 +7,7 @@ class MeterUI {
     config;
     cssFileClass = 'CssMeterUiFile';
     cssClass = 'CssMeterUi';
+    observer;
 
     constructor(config) {
         this.config = config;
@@ -18,6 +19,14 @@ class MeterUI {
         injectCSS(`.${customModalClass} .MuiPaper-root {max-width: 75%;max-height: 100%;}`, this.cssClass);
         this.breakdownModal.setupCss();
         this._setUpMeterMutationObserver();
+    }
+
+    removeUI(){
+        document.getElementsByClassName(this.cssFileClass)[0]?.remove();
+        document.getElementsByClassName(this.cssClass)[0]?.remove();
+        this.breakdownModal.removeCss();
+        this.observer.disconnect();
+        document.querySelectorAll(`.${this.BASE_DAMAGE_METER_SCRIPT_NAME}`).forEach(meter => meter.remove());
     }
 
     _setUpMeterMutationObserver(){
@@ -41,8 +50,8 @@ class MeterUI {
         // Observe Play Area DOM changes
         const playAreaContainer = document.getElementsByClassName("play-area-container")[0];
         const config = {attributes: true, childList: true, subtree: true };
-        const observer = new MutationObserver(callback);
-        observer.observe(playAreaContainer, config);
+        this.observer = new MutationObserver(callback);
+        this.observer.observe(playAreaContainer, config);
     }
 
     _injectDamageMeterDiv(anchor){

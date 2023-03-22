@@ -28,6 +28,12 @@ class DamageMeter {
         this.ui.setupUI(this.customModalClass);
     }
 
+    onExtensionStop(){
+        this.ui.removeUI()
+        this.combat.resetGroup();
+        window.damageMeter = undefined;
+    }
+
     onMessage(message){
         switch (message.event){
             case "combat:splotch":
@@ -57,6 +63,12 @@ class DamageMeter {
             default:
                 break;
         }
+    }
+
+    onPlayerStateInitialized(playerInitialState) {
+        const inCombat = this._parseCombatStatusFromActionQueue(playerInitialState.actionQueue);
+        this.combat._changeCombatStatus(inCombat);
+        this.combat._startCombat();
     }
 
     _parseCombatHit(combatHit) {
@@ -102,12 +114,7 @@ class DamageMeter {
     }
 
     _parseUpdatePlayer(playerInfo) {
-        if (playerInfo['portion'] === "all") {
-            // Complete player message sent on login
-            const inCombat = this._parseCombatStatusFromActionQueue(playerInfo.value.actionQueue);
-            this.combat._changeCombatStatus(inCombat);
-            this.combat._startCombat();
-        } else if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("actionQueue")) {
+        if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("actionQueue")) {
             // New Action message
             const combatStatus = this._parseCombatStatusFromActionQueue(playerInfo['value']);
             this.combat._changeCombatStatus(combatStatus);

@@ -108,6 +108,11 @@ class DaelIS {
         this.state.onMessage(message);
         if (!this.state.isStateInitialized()) return;
 
+        if(message.event === 'update:player' && message.data['portion'] === 'all'){
+            this.onPlayerStateInitialized();
+            return;
+        }
+
         Object.values(this.activeExtensions).forEach(extension => {
             if (typeof (extension.onMessage) == "function") {
                 extension.onMessage(message);
@@ -121,6 +126,14 @@ class DaelIS {
         Object.values(this.activeExtensions).forEach(extension => {
             if (typeof (extension.onGameReady) == "function") {
                 extension.onGameReady(isFirstGameReady);
+            }
+        });
+    }
+
+    onPlayerStateInitialized() {
+        Object.values(this.activeExtensions).forEach(extension => {
+            if (typeof (extension.onPlayerStateInitialized) == "function") {
+                extension.onPlayerStateInitialized(this.getPlayerState());
             }
         });
     }
@@ -139,6 +152,7 @@ class DaelIS {
         const extensionInstance = new extension(this);
         this.activeExtensions[extensionName] = extensionInstance;
         if (typeof (extensionInstance.onGameReady) == "function") extensionInstance.onGameReady(true);
+        if (typeof (extensionInstance.onPlayerStateInitialized) == "function") extensionInstance.onPlayerStateInitialized(this.getPlayerState());
     }
 
     stopExtension(extensionName) {

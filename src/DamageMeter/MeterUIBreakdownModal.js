@@ -56,6 +56,10 @@ class MeterUIBreakdownModal {
         injectCSS(css, this.cssClass);
     }
 
+    removeCss(){
+        document.getElementsByClassName(this.cssClass)[0]?.remove();
+    }
+
     generatePlayerBreakdownPanelHtml(abilities, weaponAttackSpeed, damageDealtBreakdown, effectiveDamageDealtBreakdown, damageReceivedBreakdown){
         const tabsHtml = `<div class="nav-tab-container daelis-meters-breakdown-tab-container">
                             <div class="${this.tabClassPrefix}dps nav-tab nav-tab-flex text-center noselect" data-type="dps"><span>Damage</span></div>
