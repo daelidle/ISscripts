@@ -5,6 +5,8 @@ class MeterUI {
     meterSwitchIcon = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/meter_switch.png';
     breakdownIcon = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/breakdown.png';
     config;
+    cssFileClass = 'CssMeterUiFile';
+    cssClass = 'CssMeterUi';
 
     constructor(config) {
         this.config = config;
@@ -13,8 +15,8 @@ class MeterUI {
 
     setupUI(isFirstGameReady, customModalClass){
         if (isFirstGameReady) {
-            injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
-            injectCSS(`.${customModalClass} .MuiPaper-root {max-width: 75%;max-height: 100%;}`);
+            injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`, this.cssFileClass);
+            injectCSS(`.${customModalClass} .MuiPaper-root {max-width: 75%;max-height: 100%;}`, this.cssClass);
             this.breakdownModal.setupCss();
         }
         this._setUpMeterMutationObserver();

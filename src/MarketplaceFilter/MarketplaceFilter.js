@@ -4,6 +4,7 @@ class MarketplaceFilter {
     currentFilter = [];
     currentInputValue = '';
     originalFilterInput = null;
+    cssClass = 'CssMarketplaceFilter';
 
     onGameReady(isFirstGameReady){
         if (isFirstGameReady) this._applyCSS();
@@ -93,7 +94,7 @@ class MarketplaceFilter {
                     max-height: 31px;
                 }
             </style>`;
-        injectCSS(css);
+        injectCSS(css, this.cssClass);
     }
 
     _setUpMeterMutationObserver(){

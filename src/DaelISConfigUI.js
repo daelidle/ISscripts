@@ -8,6 +8,7 @@ class DaelISConfigUI {
     extensionClass = 'daelidle_config_extension';
     extensionImageContainerClass = 'daelis_config_extension_image';
     extensionSettingsClass = 'daelis_config_extension_settings_button';
+    cssClass = 'CssDaelISConfigUI';
 
     constructor(daelis) {
         this.daelis = daelis;
@@ -126,6 +127,6 @@ class DaelISConfigUI {
                 max-height: 100%;
             }
         </style>`;
-        injectCSS(css);
+        injectCSS(css, this.cssClass);
     }
 }

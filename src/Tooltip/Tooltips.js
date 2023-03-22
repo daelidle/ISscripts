@@ -1,5 +1,6 @@
 class Tooltip {
     CSS_FILE_URL = 'https://daelidle.github.io/ISscripts/src/Tooltip/css/daelis-tooltip.css';
+    cssClass = 'CssTooltip';
     daelis;
 
     constructor(daelis) {
@@ -7,7 +8,7 @@ class Tooltip {
     }
 
     injectCSS(){
-        injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`);
+        injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`, this.cssClass);
     }
 
     generateTooltip(item, compactVersion) {

@@ -4,9 +4,10 @@ class MeterUIBreakdownModal {
     unknownAbilityIcon = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/unknown_ability.png';
     chartData = {};
     activeChart = null;
+    cssClass = 'CssMeterUIBreakdownModal';
 
     setupCss(){
-        const css = `<style>        
+        const css = `<style>     
         div[class^="${this.tabClassPrefix}"] span {
             width: 100%;
         }
@@ -52,7 +53,7 @@ class MeterUIBreakdownModal {
             flex-grow: 1.5 !important;
         }
         </style>`;
-        injectCSS(css);
+        injectCSS(css, this.cssClass);
     }
 
     generatePlayerBreakdownPanelHtml(abilities, weaponAttackSpeed, damageDealtBreakdown, effectiveDamageDealtBreakdown, damageReceivedBreakdown){

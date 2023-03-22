@@ -4,6 +4,7 @@ class InventoryFilter {
     currentFilter = [];
     currentInputValue = '';
     originalFilterInput = null;
+    cssClass = 'CssInventoryFilter';
 
     onGameReady(isFirstGameReady){
         if (isFirstGameReady) this._applyCSS();
@@ -96,7 +97,7 @@ class InventoryFilter {
                     margin-left: 5px;
                 }
             </style>`;
-        injectCSS(css);
+        injectCSS(css, this.cssClass);
     }
 
     _setUpMeterMutationObserver(){

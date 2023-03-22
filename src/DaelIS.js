@@ -8,7 +8,8 @@ class DaelIS {
     tooltip;
     configUi;
     gameData;
-
+    isGameReady;
+    
     LocalStorageConfigurationKey = "DaelISConfig";
     defaultConfiguration = {
         "CustomTooltip.js": true,
@@ -25,6 +26,7 @@ class DaelIS {
         this._configurationLoad();
 
         this.bannedExtensions = ['State', 'Prices', 'Tooltip'];
+        this.isGameReady = false;
         this.extensions = {};
         this.activeExtensions = {};
         this.state = new State();
@@ -71,6 +73,7 @@ class DaelIS {
         const callback = function(mutationsList, observer) {
             const loadingAnimation = document.getElementsByClassName("loading-animation");
             if (loadingAnimation.length > 0) {
+                that.isGameReady = false;
                 onGameReady(() => that.onGameReady(false));
             }
         };
@@ -109,6 +112,8 @@ class DaelIS {
     }
 
     onGameReady(isFirstGameReady) {
+        if (!this.isGameReady) this.isGameReady = true;
+
         Object.values(this.activeExtensions).forEach(extension => {
             if (typeof (extension.onGameReady) == "function") {
                 extension.onGameReady(isFirstGameReady);
@@ -122,7 +127,6 @@ class DaelIS {
         this.configUi = new DaelISConfigUI(this);
         this.configUi.injectMenuOption();
         this.tooltip.injectCSS();
-        this.injectCSS();
         this.onGameReady(true);
     }
 
@@ -130,23 +134,11 @@ class DaelIS {
         this.config = loadConfig(this.LocalStorageConfigurationKey);
         if (this.config === null) {
             this.config = this.defaultConfiguration;
-            saveConfig(this.LocalStorageConfigurationKey, this.config);
+            this._configurationSave();
         }
     }
 
     _configurationSave(){
         saveConfig(this.LocalStorageConfigurationKey, this.config);
-    }
-
-    injectCSS() {
-        const css = `<style>
-            .tippy-content {
-                padding: 0;
-            }
-            .tippy-arrow {
-                color: white;
-            }
-        </style>`;
-        injectCSS(css);
     }
 }

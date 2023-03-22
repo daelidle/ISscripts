@@ -8,9 +8,12 @@ function onGameReady(callback) {
 }
 
 function injectCSS(css, customClass=''){
+    if (customClass.length !== 0) document.getElementsByClassName(customClass)[0]?.remove();
+
     css = css.trim();
-    if (css.startsWith('http')) css = `<link href="${css}" class="${customClass}" rel="stylesheet" type="text/css">`;
-    else if (!css.startsWith('<style>')) css = `<style>${css}</style>`;
+    if (css.startsWith('http')) css = `<link class="${customClass}" href="${css}" rel="stylesheet" type="text/css">`;
+    else if (!css.startsWith('<style>')) css = `<style class="${customClass}">${css}</style>`;
+    else if (css.startsWith('<style>')) css = css.replace('<style>', `<style class="${customClass}">`);
     const head = document.querySelector('head');
     head.insertAdjacentHTML('beforeend', css);
 }

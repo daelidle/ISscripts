@@ -9,6 +9,7 @@ class CustomTooltip {
     daelis;
     cacheIds;
     pressedKeys;
+    cssClass = 'CssCustomTooltip';
 
     constructor(daelis) {
         this.daelis = daelis;
@@ -205,7 +206,7 @@ class CustomTooltip {
 
     _applyCSS() {
         const hideDefaultTooltips = '.item-tooltip {display: none;}';
-        injectCSS(hideDefaultTooltips);
+        injectCSS(hideDefaultTooltips, this.cssClass);
     }
 
 

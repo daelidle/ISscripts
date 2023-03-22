@@ -1,3 +1,9 @@
+.tippy-content {
+    padding: 0;
+}
+.tippy-arrow {
+    color: white;
+}
 .daelis-wow-tooltip {
     width: 300px;
     background: #080d21eb;
