@@ -2,6 +2,7 @@ class TrackerUI {
     _gameData = new IdlescapeGameData();
     config;
     tracker;
+    buttonId = "daelis_resource_tracker";
 
     constructor(config, tracker) {
         this.config = config;
@@ -9,15 +10,18 @@ class TrackerUI {
     }
 
     setupUI(){
-        const buttonId = "daelis_resource_tracker";
-        if (document.getElementById(buttonId) !== null) return;
-        const imageButtonHtml = `<img src="/images/money_icon.png" id="${buttonId}" alt="Resources Tracker" class="header-league-icon" style="pointer-events: all !important;">`;
+        if (document.getElementById(this.buttonId) !== null) return;
+        const imageButtonHtml = `<img src="/images/money_icon.png" id="${this.buttonId}" alt="Resources Tracker" class="header-league-icon" style="pointer-events: all !important;">`;
         document.getElementById('usersOnline').insertAdjacentHTML('afterend', imageButtonHtml);
-        let imageButton = document.getElementById(buttonId);
+        let imageButton = document.getElementById(this.buttonId);
         let that = this;
         imageButton.addEventListener("click",function(){
             that._showSummary();
         },false);
+    }
+
+    removeUI() {
+        document.getElementById(this.buttonId)?.remove();
     }
 
     _showSummary(){

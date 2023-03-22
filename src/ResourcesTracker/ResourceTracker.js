@@ -13,6 +13,11 @@ class ResourceTracker {
         this.ui.setupUI();
     }
 
+    onExtensionStop(){
+        this.ui.removeUI();
+        this.config = null;
+    }
+
     _readInitialResources() {
         this.config.load();
         const needsInitialValues = (Object.keys(this.config.resources).length === 0);

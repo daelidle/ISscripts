@@ -2,6 +2,7 @@ class NoGatheringIronman {
     static meta = {name: 'No Gathering Ironman Helper', description: 'Hides all gathering nodes from characters that are IronMan with 0 exp on Mining, Foraging and Fishing.', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/NoGatheringIronman/meta_image.png'};
     IRONMAN_LEAGUE = 2;
     cssClass = 'CssNoGatheringIronman';
+    observer;
     daelis;
 
     constructor(daelis) {
@@ -12,6 +13,11 @@ class NoGatheringIronman {
         if (!this.isValidPlayer()) return;
         this.injectCSS();
         this.blockGatheringSkills();
+    }
+
+    onExtensionStop(){
+        this.observer.disconnect();
+        this._removeCSS();
     }
 
     isValidPlayer(){
@@ -29,6 +35,10 @@ class NoGatheringIronman {
         injectCSS(NGIStyle, this.cssClass);
     }
 
+    _removeCSS() {
+        document.getElementsByClassName(this.cssClass)[0]?.remove();
+    }
+
     blockGatheringSkills(){
         const callback = function(mutationsList, observer) {
             document.querySelectorAll(".theme-mining").forEach(e=>{e.querySelectorAll(".resource-wrapper").forEach(e=>e.parentNode.removeChild(e))});
@@ -39,7 +49,7 @@ class NoGatheringIronman {
         // Observe Play Area DOM changes
         const playAreaContainer = document.getElementsByClassName("play-area-container")[0];
         const config = {attributes: true, childList: true, subtree: true };
-        const observer = new MutationObserver(callback);
-        observer.observe(playAreaContainer, config);
+        this.observer = new MutationObserver(callback);
+        this.observer.observe(playAreaContainer, config);
     }
 }
