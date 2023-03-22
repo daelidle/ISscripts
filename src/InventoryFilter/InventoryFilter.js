@@ -5,10 +5,19 @@ class InventoryFilter {
     currentInputValue = '';
     originalFilterInput = null;
     cssClass = 'CssInventoryFilter';
+    observer;
 
     onGameReady(isFirstGameReady){
         this._applyCSS();
         this._setUpMeterMutationObserver();
+    }
+
+    onExtensionStop(){
+        this.observer.disconnect();
+        this._removeCSS();
+        const daelisFilter = document.getElementById('daelis-inventory-filter');
+        if (daelisFilter !== null) daelisFilter.remove();
+        this.originalFilterInput.classList.remove("hidden");
     }
 
     _onClickedFilter(element){
@@ -100,6 +109,10 @@ class InventoryFilter {
         injectCSS(css, this.cssClass);
     }
 
+    _removeCSS() {
+        document.getElementsByClassName(this.cssClass)[0]?.remove();
+    }
+
     _setUpMeterMutationObserver(){
         const self = this;
         const callback = function(mutationsList, observer) {
@@ -111,8 +124,8 @@ class InventoryFilter {
         // Observe Play Area DOM changes
         const playAreaContainer = document.getElementsByClassName("combine-main-area")[0];
         const config = {attributes: true, childList: true, subtree: true };
-        const observer = new MutationObserver(callback);
-        observer.observe(playAreaContainer, config);
+        this.observer = new MutationObserver(callback);
+        this.observer.observe(playAreaContainer, config);
     }
 
     _resetFilters() {

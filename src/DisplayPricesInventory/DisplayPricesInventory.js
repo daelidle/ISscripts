@@ -1,7 +1,8 @@
 class DisplayPricesInventory {
     static meta = {name: 'Display Prices Inventory', description: 'Display minimum buy prices on items on inventory, marketplace and scrollcrafting screens', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DisplayPricesInventory/meta_image.png'};
     daelis;
-    observer
+    observer;
+    intervalId;
 
     constructor(daelis) {
         this.daelis = daelis;
@@ -12,7 +13,13 @@ class DisplayPricesInventory {
         this.addMutationObserver();
         this._updateInventoryPrices();
         const refreshRate = 10 * 60 * 1000;
-        setInterval(() => { this._updateInventoryPrices(); }, refreshRate);
+        this.intervalId = setInterval(() => { this._updateInventoryPrices(); }, refreshRate);
+    }
+
+    onExtensionStop(){
+        this.observer.disconnect();
+        clearInterval(this.intervalId);
+        Array.from(document.getElementsByClassName("price")).forEach(priceDiv => priceDiv.remove());
     }
 
     addMutationObserver(){
