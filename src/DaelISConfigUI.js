@@ -37,9 +37,9 @@ class DaelISConfigUI {
     }
 
     displayConfigScreen() {
-        let configHtml = `<div>For changes to take effect reloading the page is required.</div><br><div class="${this.extensionListClass}">`;
-        Object.values(this.daelis.extensions).forEach(extension => configHtml += this._generateExtensionHtml(extension));
-        configHtml += '</div>';
+        let extensionsHtml = '';
+        Object.values(this.daelis.extensions).forEach(extension => extensionsHtml += this._generateExtensionHtml(extension));
+        const configHtml = `<div class="${this.extensionListClass}">${extensionsHtml}</div>`;
         displayCompletePopup('DaelIS Configuration', configHtml, null, 'Save config', 'Cancel', () => this._processNewConfig(), ()=>{}, this.customPopupClass);
         document.querySelectorAll(`.${this.extensionImageContainerClass} img`).forEach(image => image.addEventListener("click",() => BigPicture({el: image})),false);
         document.querySelectorAll(`.${this.extensionSettingsClass}`).forEach(button => button.addEventListener("click", event => this._handleExtensionSettingsClick(event.target),false));
@@ -81,7 +81,15 @@ class DaelISConfigUI {
 
     _processNewConfig(){
         Array.from(document.getElementsByClassName(this.extensionCheckboxClass)).forEach(checkbox => {
-            this.daelis.config[checkbox.dataset.name] = checkbox.checked;
+            const extensionName = checkbox.dataset.name;
+            this.daelis.config[extensionName] = checkbox.checked;
+
+            const isCurrentlyActive = extensionName in this.daelis.activeExtensions;
+            if (isCurrentlyActive && !checkbox.checked){
+                this.daelis.stopExtension(extensionName);
+            } else if (!isCurrentlyActive && checkbox.checked){
+                this.daelis.startExtension(extensionName);
+            }
         });
         this.daelis._configurationSave();
     }

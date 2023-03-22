@@ -62,10 +62,10 @@ class FoodTooltip {
         const augments = item.augmentations ?? 0;
         const healing = `<div class="dwt-healing-use">Use: Heals ${itemResource.healing.hp * (1 + augments)} hp</div>`;
         const healTick = Math.floor(itemResource.healing.perTick * Math.max(1, (1 + augments) / 2));
-        const tickDelay = (itemResource.healing.tickDelay / 1000).toFixed(1);
+        const tickDelay = toFixedLocale(itemResource.healing.tickDelay / 1000, 0, 1);
         const healOverTime = `<div>Also applies a Heal over Time effect healing <span class="dwt-healing-use">${healTick} hp</span>
                                 every ${tickDelay}s over ${itemResource.healing.totalTicks * tickDelay} seconds.</div>`;
-        const cooldown = `<div>Cooldown: ${(itemResource.healing.cooldown / 1000).toFixed(1)}s</div>`;
+        const cooldown = `<div>Cooldown: ${toFixedLocale(itemResource.healing.cooldown / 1000, 0, 1)}s</div>`;
         return `<div class="dwt-food-healing">${healing}${healOverTime}${cooldown}</div>`;
     }
 

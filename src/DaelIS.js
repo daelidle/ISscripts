@@ -130,6 +130,19 @@ class DaelIS {
         this.onGameReady(true);
     }
 
+    startExtension(extensionName) {
+        const extension = this.extensions[extensionName];
+        const extensionInstance = new extension(this);
+        this.activeExtensions[extensionName] = extensionInstance;
+        if (typeof (extensionInstance.onGameReady) == "function") extensionInstance.onGameReady(true);
+    }
+
+    stopExtension(extensionName) {
+        const extension = this.activeExtensions[extensionName];
+        delete this.activeExtensions[extensionName];
+        if (typeof (extension.onExtensionStop) == "function") extension.onExtensionStop();
+    }
+
     _configurationLoad(){
         this.config = loadConfig(this.LocalStorageConfigurationKey);
         if (this.config === null) {

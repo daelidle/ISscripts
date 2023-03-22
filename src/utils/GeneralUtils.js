@@ -33,7 +33,7 @@ function shortenNumber(number){
 
     let scaled = number / scale;
 
-    return `${scaled.toFixed(1)}${suffix}`;
+    return `${toFixedLocale(scaled,0, 1)}${suffix}`;
 }
 
 function expandNumber(numberString){
