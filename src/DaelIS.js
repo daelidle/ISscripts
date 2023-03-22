@@ -84,6 +84,10 @@ class DaelIS {
         observer.observe(gameContentContainer, config);
     }
 
+    isGameAreaReady() {
+        return this.isGameReady;
+    }
+
     onConnect() {
         Object.values(this.activeExtensions).forEach(extension => {
             if (typeof (extension.onConnect) == "function") {

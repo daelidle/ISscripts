@@ -10,6 +10,7 @@ class CustomTooltip {
     cacheIds;
     pressedKeys;
     cssClass = 'CssCustomTooltip';
+    delegates = {'generalItem': null, 'combatFood': null, 'marketplaceBuy': null, 'shops': null, 'chat': null, 'crafting': null};
 
     constructor(daelis) {
         this.daelis = daelis;
@@ -26,6 +27,12 @@ class CustomTooltip {
         this._setUpKeyPressedEventListener();
     }
 
+    onExtensionStop(){
+        this._removeTooltipDelegates();
+        this._removeCSS();
+        this._removeKeyPressedEventListener();
+    }
+
     _setupTooltipDelegates(){
         this._setupGeneralItemDelegates();
         this._setupCombatFoodDelegate();
@@ -35,9 +42,19 @@ class CustomTooltip {
         this._setupCraftingDelegate();
     }
 
+    _removeTooltipDelegates(){
+        Object.values(this.delegates).forEach(delegateArray => {
+            if (Array.isArray(delegateArray)) {
+                delegateArray.forEach(delegate => {
+                    delegate.destroy();
+                });
+            }
+        });
+    }
+
     _setupGeneralItemDelegates() {
         const that = this;
-        tippy.delegate('body', {
+        this.delegates['generalItem'] = tippy.delegate('body', {
             target: ['.item', '.recipe-item'],
             allowHTML: true,
             zIndex: 1000001,
@@ -50,7 +67,7 @@ class CustomTooltip {
 
     _setupCombatFoodDelegate() {
         const that = this;
-        tippy.delegate('.game-content', {
+        this.delegates['combatFood'] = tippy.delegate('.game-content', {
             target: '.combat-inventory-item',
             allowHTML: true,
             maxWidth: 'none',
@@ -62,7 +79,7 @@ class CustomTooltip {
 
     _setupMarketplaceBuyItemDelegate() {
         const that = this;
-        tippy.delegate('.game-content', {
+        this.delegates['marketplaceBuy'] = tippy.delegate('.game-content', {
             target: '.marketplace-table tbody tr',
             allowHTML: true,
             maxWidth: 'none',
@@ -75,7 +92,7 @@ class CustomTooltip {
     _setupEventAndGeneralShopDelegate() {
         const that = this;
 
-        tippy.delegate('.game-content', {
+        this.delegates['shops'] = tippy.delegate('.game-content', {
             target: '.game-shop-item',
             allowHTML: true,
             arrow: false,
@@ -88,7 +105,7 @@ class CustomTooltip {
 
     _setupChatItemDelegate() {
         const that = this;
-        tippy.delegate('.game-content', {
+        this.delegates['chat'] = tippy.delegate('.game-content', {
             target: '.chat-item',
             allowHTML: true,
             sticky: true,
@@ -108,7 +125,7 @@ class CustomTooltip {
 
     _setupCraftingDelegate() {
         const that = this;
-        tippy.delegate('.game-content', {
+        this.delegates['crafting'] = tippy.delegate('.game-content', {
             target: '.crafting-item',
             allowHTML: true,
             maxWidth: 'none',
@@ -209,16 +226,27 @@ class CustomTooltip {
         injectCSS(hideDefaultTooltips, this.cssClass);
     }
 
+    _removeCSS() {
+        document.getElementsByClassName(this.cssClass)[0]?.remove();
+    }
 
     _setUpKeyPressedEventListener() {
-        window.addEventListener("keydown", (event) => {
-            if (!this.pressedKeys.includes(event.key)){
-                this.pressedKeys.push(event.key);
-            }
-        }, true);
+        window.addEventListener("keydown", this._onKeyDown, true);
+        window.addEventListener("keyup", this._onKeyUp, true);
+    }
 
-        window.addEventListener("keyup", (event) => {
-            this.pressedKeys = this.pressedKeys.filter(filter => filter !== event.key);
-        }, true);
+    _removeKeyPressedEventListener(){
+        window.removeEventListener("keydown", this._onKeyDown, true);
+        window.removeEventListener("keyup", this._onKeyUp, true);
+    }
+
+    _onKeyDown = (event) => {
+        if (!this.pressedKeys.includes(event.key)){
+            this.pressedKeys.push(event.key);
+        }
+    }
+
+    _onKeyUp = (event) => {
+        this.pressedKeys = this.pressedKeys.filter(filter => filter !== event.key);
     }
 }
