@@ -7,7 +7,7 @@ class InventoryFilter {
     cssClass = 'CssInventoryFilter';
 
     onGameReady(isFirstGameReady){
-        if (isFirstGameReady) this._applyCSS();
+        this._applyCSS();
         this._setUpMeterMutationObserver();
     }
 

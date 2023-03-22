@@ -20,9 +20,9 @@ class CustomTooltip {
     onGameReady(isFirstGameReady){
         if (isFirstGameReady) {
             this._initializeIdCaches();
-            this._applyCSS();
             this._setupTooltipDelegates();
         }
+        this._applyCSS();
         this._setUpKeyPressedEventListener();
     }
 

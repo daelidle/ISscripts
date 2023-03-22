@@ -7,7 +7,7 @@ class MarketplaceFilter {
     cssClass = 'CssMarketplaceFilter';
 
     onGameReady(isFirstGameReady){
-        if (isFirstGameReady) this._applyCSS();
+        this._applyCSS();
         this._setUpMeterMutationObserver();
     }
 

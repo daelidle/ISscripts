@@ -25,7 +25,7 @@ class DamageMeter {
 
     onGameReady(isFirstGameReady){
         if (isFirstGameReady) this.config.load();
-        this.ui.setupUI(isFirstGameReady, this.customModalClass);
+        this.ui.setupUI(this.customModalClass);
     }
 
     onMessage(message){

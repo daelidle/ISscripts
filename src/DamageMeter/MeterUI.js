@@ -13,12 +13,10 @@ class MeterUI {
         this.breakdownModal = new MeterUIBreakdownModal();
     }
 
-    setupUI(isFirstGameReady, customModalClass){
-        if (isFirstGameReady) {
-            injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`, this.cssFileClass);
-            injectCSS(`.${customModalClass} .MuiPaper-root {max-width: 75%;max-height: 100%;}`, this.cssClass);
-            this.breakdownModal.setupCss();
-        }
+    setupUI(customModalClass){
+        injectCSS(`${this.CSS_FILE_URL}?t=${Date.now()}`, this.cssFileClass);
+        injectCSS(`.${customModalClass} .MuiPaper-root {max-width: 75%;max-height: 100%;}`, this.cssClass);
+        this.breakdownModal.setupCss();
         this._setUpMeterMutationObserver();
     }
 
