@@ -10,7 +10,7 @@ class DungeonKeyTooltip {
     getStats(item, itemResource, locations){
         const dungeonKeyStats = [];
 
-        let difficulty = 1;
+        let difficulty = item.augmentations ?? 0;
         dungeonKeyStats.push(`<span class="">Monster Difficulty: ${difficulty}</span>`);
 
         const location = locations[itemResource.champEncounter];
@@ -18,8 +18,10 @@ class DungeonKeyTooltip {
         dungeonKeyStats.push(`<span class=''>Max Group Size: ${groupSize}</span>`);
 
         if (item.augmentations > 0){
-            const treasureHunter = item.augmentations * 2;
-            dungeonKeyStats.push(`<span class="">Treasure Hunter: ${treasureHunter}</span>`);
+            const monsterTreasureHunter = item.augmentations;
+            const locationTreasureHunter = item.augmentations * 2;
+            dungeonKeyStats.push(`<span class="">Monster Treasure Hunter: ${monsterTreasureHunter}</span>`);
+            dungeonKeyStats.push(`<span class="">Location Treasure Hunter: ${locationTreasureHunter}</span>`);
         }
         return {dungeonKeyStats: dungeonKeyStats.join('')};
     }

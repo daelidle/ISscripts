@@ -160,8 +160,8 @@ class IdlescapeGameData {
             strengthPerLevel: 0.025,
             combat: true,
             statBuffs: [
-                { path: 'offensiveCritical.chance', additivePerLevel: 0.01, multiplicativePerLevel: 0 },
-                { path: 'offensiveCritical.damageMultiplier', additivePerLevel: 0.01, multiplicativePerLevel: 0 },
+                { path: 'offensiveCritical.chance', additivePerLevel: 0.025, multiplicativePerLevel: 0 },
+                { path: 'offensiveCritical.damageMultiplier', additivePerLevel: 0.025, multiplicativePerLevel: 0 },
             ],
             scrollID: 1611,
             // client
@@ -16128,7 +16128,7 @@ class IdlescapeGameData {
             tags: ['jewelry'],
             equipmentStats: {
                 grantedAbility: [88],
-                slot: 'ring',
+                slot: 'necklace',
                 offensiveAccuracyAffinityRating: {
                     Blunt: 16,
                 },

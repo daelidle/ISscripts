@@ -22,7 +22,8 @@ class EquipmentTooltip {
     }
 
     getItemType(itemResource){
-        return stringCapitalize(itemResource.equipmentStats.slot);
+        const slot = itemResource.equipmentStats.slot.replace('arrows', 'Quiver / Pendant');
+        return stringCapitalize(slot);
     }
 
     getSecondaryType(itemResource){
