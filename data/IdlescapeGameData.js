@@ -5053,8 +5053,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Lesser_Magic_Tome_embossed.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'A tome of magic that grants you for augmentation.',
-            extraTooltipInfo: 'A tome of magic that grants you for augmentation.',
+            craftingDescription: 'A tome of magic that grants you minor benefits for augmentation.',
+            extraTooltipInfo: 'A tome of magic that grants you minor benefits for augmentation.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: {
@@ -5077,8 +5077,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Major_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'A tome of magic that grants you for augmentation.',
-            extraTooltipInfo: 'A tome of magic that grants you for augmentation.',
+            craftingDescription: 'A tome of magic that grants you some benefits for augmentation.',
+            extraTooltipInfo: 'A tome of magic that grants you some benefits for augmentation.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: {
@@ -5101,8 +5101,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Greater_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'A tome of magic that grants you for augmentation.',
-            extraTooltipInfo: 'A tome of magic that grants you for augmentation.',
+            craftingDescription: 'A tome of magic that grants you benefits for augmentation.',
+            extraTooltipInfo: 'A tome of magic that grants you benefits for augmentation.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: {
@@ -5125,8 +5125,8 @@ class IdlescapeGameData {
             itemImage: '/images/enchanting/Elder_Magic_Tome.png',
             tool: true,
             class: 'equipment',
-            craftingDescription: 'A tome of magic that grants you for augmentation.',
-            extraTooltipInfo: 'A tome of magic that grants you for augmentation.',
+            craftingDescription: 'A tome of magic that grants you strong benefits for augmentation.',
+            extraTooltipInfo: 'A tome of magic that grants you strong benefits for augmentation.',
             enchantable: true,
             tags: ['tool', 'crafting'],
             equipmentStats: {
@@ -16236,7 +16236,7 @@ class IdlescapeGameData {
             itemImage: '/images/jewellery/phroglin_attractor.png',
             class: 'equipment',
             extraTooltipInfo:
-                "A foul smelling jar filled with a substance that apparently attracts creatures called 'Phroglins.'",
+                "A foul smelling jar filled with a substance that apparently attracts creatures called 'Phroglins.' If used in group combat only the leader's Phroglin Pheromones will be active.",
             tags: ['jewelry'],
             equipmentStats: {
                 slot: 'arrows',
@@ -20538,9 +20538,9 @@ class IdlescapeGameData {
             itemImage: '/images/farming/totem/water_totem_mj_v2.png',
             plantImage: '/images/farming/totem/water_totem_mj_v2.png',
             craftingDescription:
-                'A totem that periodically summons rainstorms. Has up to a 10% chance every farming tick to advance every plot by one growth stage. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
+                'A totem that periodically summons rainstorms. Has up to a 10% chance every farming tick to advance every plot by one growth stage. Its effect grows as it ages. Multiple water totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             extraTooltipInfo:
-                'A totem that periodically summons rainstorms. Has up to a 10% chance every farming tick to advance every plot by one growth stage. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
+                'A totem that periodically summons rainstorms. Has up to a 10% chance every farming tick to advance every plot by one growth stage. Its effect grows as it ages. Multiple water totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             tags: ['seed', 'farming', 'crafting'],
             rarity: 'rare',
         },
@@ -20566,9 +20566,9 @@ class IdlescapeGameData {
             itemImage: '/images/farming/totem/nature_orb.png',
             plantImage: '/images/farming/totem/nature_orb.png',
             craftingDescription:
-                'A totem that imbues your farmland with nature energy. Has up to a 10% chance to make any automatic replant cost nothing. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
+                'A totem that imbues your farmland with nature energy. Has up to a 10% chance to make any automatic replant cost nothing. Its effect grows as it ages. Multiple nature totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             extraTooltipInfo:
-                'A totem that imbues your farmland with nature energy. Has up to a 10% chance to make any automatic replant cost nothing. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
+                'A totem that imbues your farmland with nature energy. Has up to a 10% chance to make any automatic replant cost nothing. Its effect grows as it ages. Multiple nature totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             tags: ['seed', 'farming', 'crafting'],
             rarity: 'rare',
         },
@@ -20594,9 +20594,9 @@ class IdlescapeGameData {
             itemImage: '/images/farming/totem/earth_orb.png',
             plantImage: '/images/farming/totem/earth_orb.png',
             craftingDescription:
-                "A totem that enhances your farmland's soil. Has up to a 10% chance to increase yields by up to 50% based on totem age. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.",
+                "A totem that enhances your farmland's soil. Has up to a 10% chance to increase yields by up to 50% based on totem age. Its effect grows as it ages. Multiple earth totems will not increase its effect. The totem will automatically expire when it is fully grown.",
             extraTooltipInfo:
-                "A totem that enhances your farmland's soil. Has up to a 10% chance to increase yields by up to 50% based on totem age. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.",
+                "A totem that enhances your farmland's soil. Has up to a 10% chance to increase yields by up to 50% based on totem age. Its effect grows as it ages. Multiple earth totems will not increase its effect. The totem will automatically expire when it is fully grown.",
             tags: ['seed', 'farming', 'crafting'],
             rarity: 'rare',
         },
@@ -20622,9 +20622,9 @@ class IdlescapeGameData {
             itemImage: '/images/farming/totem/condensed_orb.png',
             plantImage: '/images/farming/totem/condensed_orb.png',
             craftingDescription:
-                'A totem that coalesces various energies into a single form. Enhances most aspects of your farm based on the variety of things on your plots, having plants with varying plot requirements and times to grow increases the power of this totem. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
+                'A totem that coalesces various energies into a single form. Gives up to a 15% chance to half fertilizer cost, increase yield, and increase growth speed with chance increasing most drastically when there are more unique things planted with various sizes and times to grow. Stacks with non-coalescing totems that have the same effect. Multiple coalescing totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             extraTooltipInfo:
-                'A totem that coalesces various energies into a single form. Enhances most aspects of your farm based on the variety of things on your plots, having plants with varying plot requirements and times to grow increases the power of this totem. Its effect grows as it ages. Multiple totems will not increase its effect. The totem will automatically expire when it is fully grown.',
+                'A totem that coalesces various energies into a single form. Gives up to a 15% chance to half fertilizer cost, increase yield, and increase growth speed with chance increasing most drastically when there are more unique things planted with various sizes and times to grow. Stacks with non-coalescing totems that have the same effect. Multiple coalescing totems will not increase its effect. The totem will automatically expire when it is fully grown.',
             tags: ['seed', 'farming', 'crafting'],
             rarity: 'rare',
         },
@@ -22806,7 +22806,7 @@ class IdlescapeGameData {
         },
         10018: {
             name: 'Elder Cache',
-            id: 10016,
+            id: 10018,
             value: 1000,
             tradeable: true,
 
@@ -26957,6 +26957,7 @@ class IdlescapeGameData {
                 'Launch an enhanced version of a magically hardened ice into your opponent to deal an impressive amount of piercing and ice damage.',
             damageType: 'Magic',
             cooldown: 30000,
+            runeCost: [{ itemID: 513, amount: 2 }],
 
             damageScaling: [
                 { affinity: 'Magic', scaling: 1 },
@@ -27988,14 +27989,14 @@ class IdlescapeGameData {
 
             selfBuff: {
                 onlyOnHit: false,
-                enchantmentApply: 8010,
+                enchantmentApply: 8011,
                 enchantmentStrength: 2,
                 enchantmentChanceToApply: 1,
                 enchantmentAmount: 4,
             },
             targetBuff: {
                 onlyOnHit: false,
-                enchantmentApply: 8011,
+                enchantmentApply: 8010,
                 enchantmentStrength: 1,
                 enchantmentChanceToApply: 1,
                 enchantmentAmount: 4,
