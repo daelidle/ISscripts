@@ -322,7 +322,7 @@ class IdlescapeGameData {
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Gain ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
-                )}% chance to produce an extra item during cooking, smithing, and scrollcrafting.`,
+                )}% chance to produce an extra item during cooking, smithing, scrollcrafting, and weaving fibers.`,
             // endclient
         }, // efficiency, chance to produce extra item
         23: {
@@ -1046,7 +1046,7 @@ class IdlescapeGameData {
                     enchantmentStrength * strengthPerLevel * 100
                 }% and increases negative affinities by amount reduced / negative affinity count, but will never exceed a neutral state in either direction. Does NOT apply to accuracy.`,
             // endclient
-        }, // recklessness, increases offensive affinity but reduces defensive affinity
+        }, // elemental stabilization, reduces all positive affinities and increases negative affinities by the same amount
 
         // mostly monster effects
         1000: {
@@ -1622,10 +1622,13 @@ class IdlescapeGameData {
         10010: {
             id: 10010,
             name: "Ranger's Grace",
-            strengthPerLevel: 0.3,
-            setRequirements: [{ count: 2, strength: 1 }],
+            strengthPerLevel: 0.2,
+            setRequirements: [
+                { count: 2, strength: 1 },
+                { count: 4, strength: 2 },
+            ],
             combat: false,
-            statBuffs: [{ path: 'armor.agility', additivePerLevel: 0, multiplicativePerLevel: 0.3 }],
+            statBuffs: [{ path: 'armor.agility', additivePerLevel: 0, multiplicativePerLevel: 0.2 }],
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
@@ -1649,7 +1652,10 @@ class IdlescapeGameData {
             id: 10012,
             name: 'Dextrous Shot',
             strengthPerLevel: 0.15,
-            setRequirements: [{ count: 3, strength: 1 }],
+            setRequirements: [
+                { count: 3, strength: 1 },
+                { count: 4, strength: 2 },
+            ],
             combat: false,
             statBuffs: [{ path: 'weapon.dexterity', additivePerLevel: 0, multiplicativePerLevel: 0.15 }],
             // client
@@ -1688,7 +1694,7 @@ class IdlescapeGameData {
             // client
             buffIcon: '/images/magic/buffs/fishing.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Increases intellect, dexterity, and agiltiy by ${(enchantmentStrength * strengthPerLevel * 100).toFixed(
+                `Increases intellect, dexterity, and agility by ${(enchantmentStrength * strengthPerLevel * 100).toFixed(
                     1
                 )}%.`,
             // endclient
@@ -3217,11 +3223,31 @@ class IdlescapeGameData {
             name: 'Obsidian Glass',
             value: 3000,
             tradeable: true,
+            craftingLevel: 30,
+            craftingExperience: 300,
+
+
+
             itemImage: '/images/combat/materials/obsidian_glass.png',
             extraTooltipInfo:
                 'A splinter of mildly reflective obsidian glass; can be used to augment obsidian or obsidian-adjacent gear.',
+            craftingDescription: 'Break down obsidian equipment to extract some potentially usable material.',
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            category: 'General',
+            tags: ['mining', 'smithing', 'crafting'],
+            requiredResources: [
+                { 1008: 1 },
+                { 1009: 1 },
+                { 1010: 1 },
+                { 1011: 1 },
+                { 1052: 1 },
+                { 1062: 1 },
+                { 1072: 1 },
+                { 1094: 1 },
+                { 1095: 1 },
+                { 1112: 1 },
+                { 1132: 1 },
+            ],
         },
         210: {
             id: 210,
@@ -3230,6 +3256,81 @@ class IdlescapeGameData {
             tradeable: true,
             itemImage: '/images/combat/materials/golem_marrow.png',
             extraTooltipInfo: 'A piece of golem marrow, the lifeblood of an artificial construct.',
+            class: 'bar',
+            tags: ['mining', 'smithing'],
+        },
+        211: {
+            id: 211,
+            name: 'Chaos Stone', // shapeless scythe
+            value: 6360000,
+            tradeable: true,
+            itemImage: '/images/combat/materials/chaos_stone_refined.png',
+            extraTooltipInfo:
+                'A shard of chaotic essence that is not only contained, but refined. The process to do this is forever lost to the ages.',
+            class: 'bar',
+            tags: ['mining', 'smithing'],
+        },
+        212: {
+            id: 212,
+            name: 'Living Shard', // elven longbow
+            value: 3360000,
+            tradeable: true,
+            itemImage: '/images/combat/materials/living_stone.png',
+            extraTooltipInfo:
+                'A shard of dense material that pulsates with life. Could it be the heart of some undying creature?',
+            class: 'bar',
+            tags: ['mining', 'smithing'],
+        },
+        213: {
+            id: 213,
+            name: 'Runed Stone', // moss maul
+            value: 3360000,
+            tradeable: true,
+            itemImage: '/images/combat/materials/runed_stone.png',
+            extraTooltipInfo: 'An impossibly heavy stone tablet bearing an unknown rune that still glows with power.',
+            class: 'bar',
+            tags: ['mining', 'smithing'],
+        },
+        214: {
+            id: 214,
+            name: 'Magma Core', // fire orb
+            value: 3360000,
+            tradeable: true,
+            itemImage: '/images/combat/materials/runed_stone.png',
+            extraTooltipInfo: 'A chunk of stone with an unquenchable fire burning within. What could you do with this?',
+            class: 'bar',
+            tags: ['mining', 'smithing'],
+        },
+        215: {
+            id: 215,
+            name: 'Heavy Chaos Shard', // crystal mace
+            value: 3360000,
+            tradeable: true,
+            itemImage: '/images/combat/materials/chaos_stone_unrefined.png',
+            extraTooltipInfo:
+                'An unrefined splinter of chaotic energy. Though dulled compared to the chaos it was drawn from, it may still have a potent effect.',
+            class: 'bar',
+            tags: ['mining', 'smithing'],
+        },
+        216: {
+            id: 216,
+            name: 'Worn Ancient Splinter', // trident
+            value: 6360000,
+            tradeable: true,
+            itemImage: '/images/combat/materials/ancient_splinter.png',
+            extraTooltipInfo:
+                'A splinter of some long lost metal; it has more in common with stone than it does metal and would require a master craftsman to work it.',
+            class: 'bar',
+            tags: ['mining', 'smithing'],
+        },
+        217: {
+            id: 217,
+            name: 'Royal Ice Shard', // king's crown
+            value: 3360000,
+            tradeable: true,
+            itemImage: '/images/combat/materials/ice_shard.png',
+            extraTooltipInfo:
+                'A somewhat workable shard of frozen stone sourced from the frozen wastes within the Valley of Giants. Appears to be a material commonly used by Ice Giants to form their accessories; perhaps you could make something useful with it?',
             class: 'bar',
             tags: ['mining', 'smithing'],
         },
@@ -5942,6 +6043,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 204: 10, 302: 10 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1009: {
             name: 'Obsidian Battleaxe',
@@ -5990,6 +6092,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 204: 10, 302: 10 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1010: {
             name: 'Obsidian Daggers',
@@ -6043,6 +6146,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 204: 10, 304: 10 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1011: {
             name: 'Obsidian Greatsword',
@@ -6090,6 +6194,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 204: 10, 304: 10 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1012: {
             name: 'Mithril Scimitar',
@@ -7008,6 +7113,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 204: 200 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1053: {
             name: 'Mithril Helm',
@@ -7306,6 +7412,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 204: 200 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1063: {
             name: 'Mithril Full Helm',
@@ -7618,6 +7725,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 201: 10 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1073: {
             name: 'Mithril Shield',
@@ -8063,6 +8171,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 205: 2000 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1095: {
             name: 'Obsidian Chainmail',
@@ -8101,6 +8210,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 206: 3000 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1096: {
             name: 'Mithril Breastplate',
@@ -8578,6 +8688,7 @@ class IdlescapeGameData {
             },
             requiredResources: [{ 201: 10 }],
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1113: {
             name: 'Mithril Plate Leggings',
@@ -8834,6 +8945,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1133: {
             name: 'Mithril Boots',
@@ -9043,6 +9155,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1153: {
             name: 'Mithril Gloves',
@@ -13138,7 +13251,7 @@ class IdlescapeGameData {
             craftingMultiplier: [32],
             craftable: true,
             type: 'weapon',
-            ammunitionMults: { damageMult: 0.9, accuracyMult: 0.9 },
+            ammunitionMults: { damageMult: 1.0, accuracyMult: 1.0, style: 'Range' },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_0.png',
             craftingDescription: 'Each craft results in 32 projectiles.',
@@ -13160,8 +13273,9 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { range: 10 },
             ammunitionMults: {
-                damageMult: 19 / 20,
-                accuracyMult: 19 / 20,
+                damageMult: 1.05,
+                accuracyMult: 1.05,
+                style: 'Range',
             },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_1.png',
@@ -13183,7 +13297,7 @@ class IdlescapeGameData {
             craftable: true,
             type: 'weapon',
             requiredLevel: { range: 20 },
-            ammunitionMults: { damageMult: 1, accuracyMult: 1 },
+            ammunitionMults: { damageMult: 1.1, accuracyMult: 1.1, style: 'Range' },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_2.png',
             craftingDescription: 'Each craft results in 32 projectiles.',
@@ -13204,7 +13318,7 @@ class IdlescapeGameData {
             craftable: true,
             type: 'weapon',
             requiredLevel: { range: 30 },
-            ammunitionMults: { damageMult: 1.025, accuracyMult: 1.025 },
+            ammunitionMults: { damageMult: 1.15, accuracyMult: 1.15, style: 'Range' },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_3.png',
             craftingDescription: 'Each craft results in 32 projectiles.',
@@ -13225,7 +13339,7 @@ class IdlescapeGameData {
             craftable: true,
             type: 'weapon',
             requiredLevel: { range: 40 },
-            ammunitionMults: { damageMult: 1.05, accuracyMult: 1.05 },
+            ammunitionMults: { damageMult: 1.2, accuracyMult: 1.2, style: 'Range' },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/arrow_4.png',
             craftingDescription: 'Each craft results in 32 projectiles.',
@@ -13246,7 +13360,7 @@ class IdlescapeGameData {
             craftable: true,
             type: 'weapon',
             requiredLevel: { range: 50 },
-            ammunitionMults: { damageMult: 1.025, accuracyMult: 1.075 },
+            ammunitionMults: { damageMult: 1.2, accuracyMult: 1.3, style: 'Range' },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/shot.png',
             craftingDescription: 'Each craft results in 32 projectiles.',
@@ -13269,7 +13383,7 @@ class IdlescapeGameData {
             craftable: true,
             type: 'weapon',
             requiredLevel: { range: 60 },
-            ammunitionMults: { damageMult: 1.075, accuracyMult: 1.025 },
+            ammunitionMults: { damageMult: 1.3, accuracyMult: 1.2, style: 'Range' },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/shot_void_0.png',
             craftingDescription: 'Each craft results in 32 projectiles.',
@@ -13292,7 +13406,7 @@ class IdlescapeGameData {
             craftable: true,
             type: 'weapon',
             requiredLevel: { range: 70 },
-            ammunitionMults: { damageMult: 1.075, accuracyMult: 1.075 },
+            ammunitionMults: { damageMult: 1.3, accuracyMult: 1.3, style: 'Range' },
             skill: 'crafting',
             itemImage: '/images/combat/equipment/range/shot_void_1.png',
             craftingDescription: 'Each craft results in 32 projectiles.',
@@ -13302,6 +13416,72 @@ class IdlescapeGameData {
             category: 'Range',
             tags: ['range', 'weapon', 'ammunition', 'crafting'],
             rarity: 'rare',
+        },
+        1458: {
+            name: 'Low-Grade Whetstone',
+            id: 1458,
+            tradeable: true,
+            requiredResources: [{ 201: 1, 202: 1, 109: 8 }],
+            craftingLevel: 20,
+            craftingExperience: 20,
+            value: 20,
+            craftingMultiplier: [32],
+            craftable: true,
+            type: 'weapon',
+            requiredLevel: { strength: 20 },
+            ammunitionMults: { damageMult: 1.1, accuracyMult: 1.1, style: 'Melee' },
+            skill: 'crafting',
+            itemImage: '/images/combat/equipment/melee/low_whetstone.png',
+            extraTooltipInfo: 'For basic weapon maintenance.',
+            class: 'ammo',
+            category: 'Melee',
+            tags: ['melee', 'weapon', 'ammunition', 'crafting'],
+        },
+        1459: {
+            name: 'Mid-Grade Whetstone',
+            id: 1459,
+            tradeable: true,
+            requiredResources: [
+                { 201: 1, 202: 1, 204: 1, 205: 1, 109: 16 },
+                { 204: 2, 205: 2, 109: 16 },
+            ],
+            craftingLevel: 40,
+            craftingExperience: 40,
+            value: 40,
+            craftingMultiplier: [40, 80],
+            craftable: true,
+            type: 'weapon',
+            requiredLevel: { strength: 40 },
+            ammunitionMults: { damageMult: 1.2, accuracyMult: 1.2, style: 'Melee' },
+            skill: 'crafting',
+            itemImage: '/images/combat/equipment/melee/mid_whetstone.png',
+            extraTooltipInfo: 'For advanced weapon maintenance.',
+            class: 'ammo',
+            category: 'Melee',
+            tags: ['melee', 'weapon', 'ammunition', 'crafting'],
+        },
+        1460: {
+            name: 'High-Grade Whetstone',
+            id: 1460,
+            tradeable: true,
+            requiredResources: [
+                { 201: 1, 202: 1, 204: 1, 205: 1, 206: 1, 207: 1, 109: 24 },
+                { 206: 2, 207: 2, 109: 24 },
+            ],
+            craftingLevel: 60,
+            craftingExperience: 60,
+            value: 60,
+            craftingMultiplier: [48, 96],
+            craftable: true,
+            type: 'weapon',
+            requiredLevel: { strength: 60 },
+            ammunitionMults: { damageMult: 1.3, accuracyMult: 1.3, style: 'Melee' },
+            skill: 'crafting',
+            itemImage: '/images/combat/equipment/melee/high_whetstone.png',
+            extraTooltipInfo: 'To make your weapon perform better than it ever has before.',
+            class: 'ammo',
+            category: 'Melee',
+            tags: ['melee', 'weapon', 'ammunition', 'crafting'],
         },
         1500: {
             name: 'Santa Hat',
@@ -13456,6 +13636,10 @@ class IdlescapeGameData {
             value: 6360000,
             tradeable: true,
             requiredLevel: { strength: 85 },
+            craftingLevel: 85,
+            craftingExperience: 192000,
+            requiredResources: [{ 213: 1, 109: 5000, 205: 750, 306: 1000 }],
+            category: 'Melee',
 
 
 
@@ -13464,7 +13648,6 @@ class IdlescapeGameData {
             extraTooltipInfo: "A hulking mass of moss covered material; requires a giant's strength to wield properly!",
             class: 'equipment',
             visual: 'moss-maul',
-            category: ['weapon', 'combat'],
             tags: ['melee', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 grantedAbility: [13, 45],
@@ -13557,10 +13740,14 @@ class IdlescapeGameData {
             name: "King's Crown",
             id: 1508,
             enchantmentTier: 8,
-            augmentationCost: { 403: 2, 513: 100 },
+            augmentationCost: { 403: 2, 513: 300 },
             value: 6360000,
             tradeable: true,
             requiredLevel: { defense: 85, strength: 85 },
+            craftingLevel: 85,
+            craftingExperience: 192000,
+            requiredResources: [{ 217: 1, 206: 1000, 204: 1000, 513: 1000 }],
+            category: 'Melee',
 
 
 
@@ -13568,7 +13755,6 @@ class IdlescapeGameData {
             extraTooltipInfo: "The crown of a Valley's true forever king.",
             class: 'equipment',
             visual: 'kings-crown',
-            category: ['armor', 'combat'],
             tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 grantedAbility: [19],
@@ -13613,6 +13799,10 @@ class IdlescapeGameData {
             value: 6360000,
             tradeable: true,
             requiredLevel: { defense: 85, magic: 85 },
+            craftingLevel: 85,
+            craftingExperience: 192000,
+            requiredResources: [{ 214: 1, 512: 2500, 502: 1 }],
+            category: 'Magic',
 
 
 
@@ -13620,7 +13810,6 @@ class IdlescapeGameData {
             extraTooltipInfo: 'This orb of living flame sharpens the senses to an inhuman degree.',
             class: 'equipment',
             visual: 'fire-orb',
-            category: ['armor', 'combat'],
             tags: ['armor', 'weapon', 'melee', 'crafting'],
             equipmentStats: {
                 grantedAbility: [7],
@@ -13664,9 +13853,9 @@ class IdlescapeGameData {
             id: 1511,
             enchantmentTier: 8,
             augmentationCost: { 206: 100, 306: 500 },
-            craftingLevel: 80,
-            craftingExperience: 148200,
-            value: 5832000,
+            craftingLevel: 85,
+            craftingExperience: 192000,
+            value: 6360000,
             tradeable: true,
             requiredLevel: { strength: 85 },
 
@@ -13678,7 +13867,7 @@ class IdlescapeGameData {
             visual: 'shard-of-kalanahmatti',
             craftingDescription: "Powerful weapon made out of the legendary spear 'Kalanahmatti'.",
             extraTooltipInfo: "This powerful blade is fashioned from a shard of the legendary spear 'Kalanahmatti.'",
-            category: 'Rare',
+            category: 'Melee',
             tags: ['melee', 'weapon', 'onehand', 'shard', 'fragment', 'crafting'],
             equipmentStats: {
                 grantedAbility: [8, 68],
@@ -13971,6 +14160,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1518: {
             name: 'Gargoyle Legs',
@@ -14006,6 +14196,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1519: {
             name: 'Gargoyle Boots',
@@ -14033,6 +14224,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1520: {
             name: 'Gargoyle Helm',
@@ -14066,6 +14258,7 @@ class IdlescapeGameData {
                 augmentationBonus: [{ stat: 'armorBonus.protection', value: 3 / 4 }],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1521: {
             name: 'Gargoyle Shield',
@@ -14102,6 +14295,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1522: {
             name: 'Gargoyle Falchion',
@@ -14140,6 +14334,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1523: {
             name: 'Gargoyle Daggers',
@@ -14190,6 +14385,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1524: {
             name: 'Gargoyle Glaive',
@@ -14236,6 +14432,7 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1525: {
             name: 'Infernal Lance',
@@ -14245,12 +14442,17 @@ class IdlescapeGameData {
             value: 420000,
             tradeable: true,
             requiredLevel: { strength: 40 },
+            craftingExperience: 120000,
+            craftingLevel: 75,
+            category: 'Melee',
+            requiredResources: [{ 1011: 25, 202: 1500, 204: 1500, 12014: 3000 }],
 
 
 
             itemImage: '/images/combat/equipment/infernal_lance.png',
             itemIcon: '/images/combat/equipment/infernal_lance_icon.png',
             extraTooltipInfo: 'A legendary weapon of great prestige and power.',
+            craftingDescription: 'Trying to craft this would be madness.',
             class: 'equipment',
             visual: 'spear',
             tags: ['melee', 'weapon', 'twohand'],
@@ -14287,6 +14489,7 @@ class IdlescapeGameData {
                 isTransmog: true,
             },
             rarity: 'epic',
+            augmentingFailItem: 12014,
         },
         1526: {
             name: 'Black Knight Great Helm',
@@ -14715,6 +14918,12 @@ class IdlescapeGameData {
             id: 1547,
             enchantmentTier: 8,
             augmentationCost: { 1548: 1, 1549: 40 },
+
+            craftingLevel: 92,
+            craftingExperience: 256000,
+            requiredResources: [{ 211: 1, 208: 200, 207: 350 }],
+            category: 'Melee',
+
             value: 12000000,
             tradeable: true,
             requiredLevel: { strength: 85 },
@@ -14868,6 +15077,10 @@ class IdlescapeGameData {
             value: 6360000,
             tradeable: true,
             requiredLevel: { strength: 85 },
+            craftingLevel: 85,
+            craftingExperience: 192000,
+            requiredResources: [{ 215: 1, 516: 2500, 208: 150 }],
+            category: 'Melee',
 
 
 
@@ -14876,7 +15089,6 @@ class IdlescapeGameData {
             extraTooltipInfo: "A manifested shard of chaos. If only you knew how to utilize it's energy to perform magic!",
             class: 'equipment',
             visual: 'crystal-mace',
-            category: ['weapon', 'combat'],
             tags: ['melee', 'weapon', 'onehand', 'crafting'],
             equipmentStats: {
                 grantedAbility: [13, 14],
@@ -14948,7 +15160,11 @@ class IdlescapeGameData {
             augmentationCost: { 2: 15000, 512: 1250, 700: 500, 9013: 1, 801: 1 },
             value: 3120000,
             tradeable: true,
-            requiredLevel: { constitution: 40, defense: 40, magic: 40 },
+            requiredLevel: { constitution: 40, defense: 40, magic: 40 }, // 801
+            craftingLevel: 60,
+            craftingExperience: 32000,
+            requiredResources: [{ 801: 36, 700: 5000 }],
+            category: 'Magic',
 
 
 
@@ -14957,7 +15173,6 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Wrap yourself in the cozy flames of a dying star and be reborn.',
             class: 'equipment',
             visual: 'phoenix-cape',
-            category: ['weapon', 'combat'],
             tags: ['melee', 'armor', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 grantedAbility: [7, 18],
@@ -15017,6 +15232,10 @@ class IdlescapeGameData {
             value: 4120000,
             tradeable: true,
             requiredLevel: { strength: 75 },
+            craftingLevel: 75,
+            craftingExperience: 120000,
+            requiredResources: [{ 801: 36, 207: 100, 512: 1000 }],
+            category: 'Melee',
 
 
 
@@ -15026,7 +15245,6 @@ class IdlescapeGameData {
                 'You feel as if you could break the world in two with your bare hands and then burn it all down.',
             class: 'equipment',
             visual: 'modified-diving-gloves',
-            category: ['weapon', 'combat'],
             tags: ['melee', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 grantedAbility: [69, 70, 71],
@@ -15117,7 +15335,7 @@ class IdlescapeGameData {
             rarity: 'rare',
         },
         1560: {
-            name: 'Elven Hat',
+            name: 'Elven Hood',
             id: 1560,
             enchantmentTier: 6,
             tradeable: true,
@@ -15126,10 +15344,14 @@ class IdlescapeGameData {
             requiredLevel: { defense: 65, magic: 65 },
 
 
+            craftingLevel: 65,
+            craftingExperience: 33500,
+            requiredResources: [{ 4019: 100, 11032: 30, 4011: 12 }],
+            category: 'Magic',
 
             itemImage: '/images/combat/equipment/range/hide_coif.png',
             itemIcon: '/images/combat/equipment/range/elven_hat.png',
-            extraTooltipInfo: 'A magical hat of elven make.',
+            extraTooltipInfo: 'A magical hood of elven make.',
             class: 'equipment',
             visual: 'med-helm',
             tags: ['armor', 'magic'],
@@ -15149,7 +15371,7 @@ class IdlescapeGameData {
             rarity: 'rare',
         },
         1561: {
-            name: 'Elven Armor',
+            name: 'Elven Heavy Armor',
             id: 1561,
             enchantmentTier: 6,
             augmentationCost: { 4011: 5 },
@@ -15158,12 +15380,16 @@ class IdlescapeGameData {
             requiredLevel: { defense: 65, strength: 65 },
 
 
+            craftingLevel: 65,
+            craftingExperience: 33500,
+            requiredResources: [{ 207: 500, 205: 250, 4011: 12 }],
+            category: 'Melee',
 
             itemImage: '/images/combat/equipment/range/hide_body.png',
-            itemIcon: '/images/combat/equipment/range/elven_chest.png',
+            itemIcon: '/images/combat/equipment/range/elven_heavy.png',
             class: 'equipment',
             visual: 'chainbody',
-            extraTooltipInfo: 'An unnaturally light chainmail of elven make.',
+            extraTooltipInfo: 'An unnaturally light platebody of elven make.',
             tags: ['armor', 'melee'],
             equipmentStats: {
                 slot: 'body',
@@ -15191,6 +15417,10 @@ class IdlescapeGameData {
             requiredLevel: { defense: 65, range: 65 },
 
 
+            craftingLevel: 65,
+            craftingExperience: 33500,
+            requiredResources: [{ 4009: 250, 4010: 30, 4011: 12 }],
+            category: 'Range',
 
             itemImage: '/images/combat/equipment/range/hide_legs.png',
             itemIcon: '/images/combat/equipment/range/elven_legs.png',
@@ -15223,6 +15453,10 @@ class IdlescapeGameData {
             requiredLevel: { defense: 65 },
 
 
+            craftingLevel: 65,
+            craftingExperience: 33500,
+            requiredResources: [{ 1136: 3, 4011: 24 }],
+            category: 'Range',
 
             itemImage: '/images/combat/equipment/adamantite_boots.png',
             itemIcon: '/images/combat/equipment/range/elven_boots.png',
@@ -15307,7 +15541,8 @@ class IdlescapeGameData {
 
 
             itemImage: '/images/combat/equipment/beast_dagger_main.png',
-            extraTooltipInfo: 'WIP',
+            extraTooltipInfo:
+                "A light and deadly dagger able to be wielded in one hand to great effect. Channel your inner beast! Other people won't judge you for it, probably...",
             class: 'equipment',
             visual: 'dagger-1h',
             tags: ['melee', 'onehand', 'weapon'],
@@ -15358,7 +15593,8 @@ class IdlescapeGameData {
 
 
             itemImage: '/images/combat/equipment/beast_dagger_main_e.png',
-            extraTooltipInfo: 'WIP',
+            extraTooltipInfo:
+                "Empowered through magic and sheer rage. A light and deadly dagger able to be wielded in one hand to great effect. Channel your inner beast! Other people won't judge you for it, probably...",
             class: 'equipment',
             visual: 'dagger-1h',
             tags: ['melee', 'onehand', 'weapon'],
@@ -15406,7 +15642,8 @@ class IdlescapeGameData {
 
 
             itemImage: '/images/combat/equipment/beast_dagger_off.png',
-            extraTooltipInfo: 'WIP',
+            extraTooltipInfo:
+                'A light, yet strong, dagger able to be used in the offhand to slightly increase your offensive potential while remaining potent defensively.',
             class: 'equipment',
             visual: 'defender',
             tags: ['melee', 'onehand', 'weapon'],
@@ -15449,7 +15686,8 @@ class IdlescapeGameData {
 
 
             itemImage: '/images/combat/equipment/beast_dagger_off_e.png',
-            extraTooltipInfo: 'WIP',
+            extraTooltipInfo:
+                'Empowered through magic and sheer rage. A light, yet strong, dagger able to be used in the offhand to slightly increase your offensive potential while remaining potent defensively.',
             class: 'equipment',
             visual: 'defender',
             tags: ['melee', 'onehand', 'weapon'],
@@ -15482,8 +15720,8 @@ class IdlescapeGameData {
             id: 1570,
             tradeable: true,
             enchantmentTier: 8,
-            augmentationCost: { 307: 75, 4011: 15, 4028: 1 },
-            value: 4495000,
+            augmentationCost: { 307: 250, 1457: 200, 4011: 9 },
+            value: 14495000,
             type: 'weapon',
             requiredLevel: { range: 85 },
             itemImage: '/images/combat/equipment/range/bow_king.png',
@@ -15525,6 +15763,10 @@ class IdlescapeGameData {
                 itemSet: [10014],
             },
             rarity: 'legendary',
+            craftingLevel: 92,
+            craftingExperience: 256000,
+            requiredResources: [{ 212: 2, 4011: 48 }],
+            category: 'Range',
 
 
         },
@@ -15534,7 +15776,7 @@ class IdlescapeGameData {
             tradeable: true,
             enchantmentTier: 8,
             augmentationCost: { 4026: 16, 4027: 1, 11032: 30 },
-            value: 4495000,
+            value: 24495000,
             type: 'weapon',
             requiredLevel: { magic: 85 },
             itemImage: '/images/combat/equipment/melee/trident.png',
@@ -15572,6 +15814,10 @@ class IdlescapeGameData {
                 ],
             },
             rarity: 'legendary',
+            craftingLevel: 92,
+            craftingExperience: 256000,
+            requiredResources: [{ 216: 3, 307: 2000, 11036: 500, 11032: 200 }],
+            category: 'Magic',
 
 
         },
@@ -15590,7 +15836,7 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/fishtail.png',
             class: 'equipment',
             visual: 'fishtail',
-            craftingDescription: 'A large scimitar taken from a fish! You could probably use it as a paddle!',
+            extraTooltipInfo: 'A large scimitar taken from a fish! You could probably use it as a paddle!',
             tags: ['melee', 'weapon', 'onehand'],
             equipmentStats: {
                 slot: 'weapon',
@@ -15629,7 +15875,7 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/razorfin.png',
             class: 'equipment',
             visual: 'fishtail',
-            craftingDescription:
+            extraTooltipInfo:
                 'A large scimitar taken from a fish! You could probably use it as a paddle! Seems mildly magical, almost...',
             tags: ['melee', 'weapon', 'onehand'],
             equipmentStats: {
@@ -15885,7 +16131,7 @@ class IdlescapeGameData {
         1583: {
             id: 1583,
             name: 'Wrath and War',
-            extraTooltipInfo: 'The demonic embodiment of Wrath and War. Warth? Quite mad.',
+            extraTooltipInfo: "The demonic embodiment of Wrath and War. 'Warth'? Quite mad.",
             rarity: 'legendary',
             enchantmentTier: 7,
             augmentationCost: { 207: 40, 800: 12 },
@@ -16242,6 +16488,95 @@ class IdlescapeGameData {
                 slot: 'arrows',
             },
             rarity: 'epic',
+        },
+        1594: {
+            name: 'Elven Light Armor',
+            id: 1594,
+            enchantmentTier: 6,
+            augmentationCost: { 4011: 5 },
+            value: 5000000,
+            tradeable: true,
+            craftingLevel: 65,
+            craftingExperience: 33500,
+            requiredResources: [{ 1561: 1, 4011: 12 }],
+            requiredLevel: { defense: 65, range: 65 },
+
+
+
+            itemImage: '/images/combat/equipment/range/hide_body.png',
+            itemIcon: '/images/combat/equipment/range/elven_chest.png',
+            class: 'equipment',
+            visual: 'chainbody',
+            extraTooltipInfo: 'An unnaturally light chainmail of elven make.',
+            tags: ['armor', 'range'],
+            equipmentStats: {
+                slot: 'body',
+                offensiveDamageAffinity: { Melee: 1.08 },
+                defensiveDamageAffinity: {
+                    Melee: 47 / 50,
+                    Magic: 1.08,
+                    Range: 1.05,
+                    Piercing: 24 / 25,
+                    Blunt: 97 / 100,
+                    Nature: 1.06,
+                },
+                weaponBonus: { strength: 6, intellect: 6, dexterity: 18 },
+                armorBonus: { protection: 18, resistance: 6, agility: 44, stamina: 8 },
+                augmentationBonus: [
+                    { stat: 'weaponBonus.dexterity', value: 1.5 },
+                    { stat: 'armorBonus.protection', value: 0.5 },
+                    { stat: 'armorBonus.resistance', value: 1.0 },
+                    { stat: 'armorBonus.agility', value: 1.5 },
+                ],
+                itemSet: [10010, 10012, 10014],
+            },
+            category: 'Range',
+            rarity: 'rare',
+        },
+        1595: {
+            name: 'Elven Hat',
+            id: 1595,
+            enchantmentTier: 6,
+            tradeable: true,
+            value: 5000000,
+            augmentationCost: { 4011: 5 },
+            requiredLevel: { defense: 65, range: 65 },
+            craftingLevel: 65,
+            craftingExperience: 33500,
+            requiredResources: [{ 1560: 1, 4011: 12 }],
+
+
+
+            itemImage: '/images/combat/equipment/range/hide_coif.png',
+            itemIcon: '/images/combat/equipment/range/elven_hat.png',
+            extraTooltipInfo: 'A magical hat of elven make.',
+            class: 'equipment',
+            visual: 'med-helm',
+            tags: ['armor', 'range'],
+            equipmentStats: {
+                slot: 'helm',
+                offensiveDamageAffinity: { Range: 1.08 },
+                defensiveDamageAffinity: {
+                    Melee: 19 / 20,
+                    Magic: 1.08,
+                    Range: 1,
+                    Piercing: 19 / 20,
+                    Blunt: 97 / 100,
+                    Slashing: 97 / 100,
+                    Nature: 1.06,
+                },
+                weaponBonus: { strength: 6, intellect: 6, dexterity: 18 },
+                armorBonus: { protection: 20, resistance: 12, agility: 24, stamina: 0 },
+                augmentationBonus: [
+                    { stat: 'weaponBonus.dexterity', value: 1.5 },
+                    { stat: 'armorBonus.protection', value: 0.5 },
+                    { stat: 'armorBonus.resistance', value: 1.0 },
+                    { stat: 'armorBonus.agility', value: 1.5 },
+                ],
+                itemSet: [10010, 10012, 10014],
+            },
+            category: 'Range',
+            rarity: 'rare',
         },
         1600: {
             name: 'Scroll',
@@ -18330,7 +18665,7 @@ class IdlescapeGameData {
             size: 2,
             difficulty: 1,
             itemImage: '/images/cooking/apple.png',
-            extraTooltipInfo: "Didn't fall far from the tree",
+            extraTooltipInfo: "Didn't fall far from the tree.",
             class: 'cooking-ingredient',
             tags: ['ingredient', 'consumable', 'food', 'cooking'],
             healing: {
@@ -19628,7 +19963,7 @@ class IdlescapeGameData {
             experience: 35,
             ingredientTags: ['fruit'],
             itemImage: '/images/cooking/alchemy/ingredients/watermelon.png',
-            extraTooltipInfo: "Good for gathering! Now you only need 999,999 more! Is it spelled 'Melon' or 'Mellon?'",
+            extraTooltipInfo: "Good for gathering! Now you only need 999,999 more! Is it spelled 'Melon' or 'Mellon'?",
             class: 'cooking-ingredient',
             tags: ['ingredient', 'alchemy', 'cooking'],
         },
@@ -19735,7 +20070,7 @@ class IdlescapeGameData {
             experience: 30,
             ingredientTags: ['vegetable'],
             itemImage: '/images/cooking/alchemy/ingredients/mandrake.png',
-            extraTooltipInfo: 'WIP',
+            extraTooltipInfo: 'Does not look man or drake shaped at all. Who named this thing?',
             class: 'cooking-ingredient',
             tags: ['ingredient', 'alchemy', 'cooking'],
         },
@@ -19810,7 +20145,8 @@ class IdlescapeGameData {
             experience: 55,
             ingredientTags: ['vegetable', 'spice'],
             itemImage: '/images/cooking/alchemy/ingredients/lotus.png',
-            extraTooltipInfo: 'WIP',
+            extraTooltipInfo:
+                'A rare flower that grows in the deepest parts of the Living Forest and is rumored to have minor magical properties when prepared through alchemy.',
             class: 'cooking-ingredient',
             tags: ['ingredient', 'alchemy', 'cooking'],
         },
@@ -20039,12 +20375,18 @@ class IdlescapeGameData {
             name: 'Crystal Scale',
             value: 3000,
             tradeable: true,
+            craftingLevel: 60,
+            craftingExperience: 60,
+            requiredResources: [{ 1560: 1 }, { 1561: 1 }, { 1562: 1 }, { 1563: 1 }, { 1570: 1 }, { 1574: 1 }],
+            craftingMultiplier: [8, 8, 8, 8, 32, 32],
 
 
 
             itemImage: '/images/combat/materials/crystal_scale.png',
             class: 'leather',
-            extraTooltipInfo: 'Used as a crafting material.',
+            extraTooltipInfo: 'Used to enhance Elven equipment.',
+            craftingDescription: 'Salvage Elven equipment for their Crystal Scales.',
+            category: 'General',
             tags: ['foraging'],
         },
         4012: {
@@ -20096,7 +20438,7 @@ class IdlescapeGameData {
 
 
 
-            time: 5000,
+            time: 5500,
             requiredResources: [{ 4020: 10 }],
             itemImage: '/images/combat/materials/restored_cloth.png',
             skillIcon: '/images/runecrafting/RuneCraftingIcon.png',
@@ -20114,7 +20456,7 @@ class IdlescapeGameData {
 
 
 
-            time: 5000,
+            time: 6000,
             requiredResources: [{ 4021: 5 }],
             itemImage: '/images/combat/materials/lesser_cloth.png',
             skillIcon: '/images/runecrafting/RuneCraftingIcon.png',
@@ -20132,7 +20474,7 @@ class IdlescapeGameData {
 
 
 
-            time: 5000,
+            time: 6500,
             requiredResources: [{ 4022: 5 }],
             itemImage: '/images/combat/materials/imbued_cloth.png',
             skillIcon: '/images/runecrafting/RuneCraftingIcon.png',
@@ -20150,7 +20492,7 @@ class IdlescapeGameData {
 
 
 
-            time: 5000,
+            time: 7000,
             requiredResources: [{ 4023: 5 }],
             itemImage: '/images/combat/materials/greater_cloth.png',
             skillIcon: '/images/runecrafting/RuneCraftingIcon.png',
@@ -20168,7 +20510,7 @@ class IdlescapeGameData {
 
 
 
-            time: 5000,
+            time: 7500,
             requiredResources: [{ 4024: 5 }],
             itemImage: '/images/combat/materials/major_cloth.png',
             skillIcon: '/images/runecrafting/RuneCraftingIcon.png',
@@ -20187,7 +20529,7 @@ class IdlescapeGameData {
 
 
 
-            time: 5000,
+            time: 8000,
             requiredResources: [{ 4025: 5 }],
             itemImage: '/images/combat/materials/elder_cloth.png',
             skillIcon: '/images/runecrafting/RuneCraftingIcon.png',
@@ -20284,22 +20626,33 @@ class IdlescapeGameData {
             name: 'Aqueous Chunks',
             value: 35000,
             tradeable: true,
+            craftingLevel: 85,
+            craftingExperience: 2500,
+            requiredResources: [{ 4027: 1 }],
+            craftingMultiplier: [3],
+
             itemImage: '/images/combat/materials/aqueous_chunks.png',
             class: 'bar',
             extraTooltipInfo:
                 'A chunk of stone supposedly from the bottom of the ocean. Still pulses with latent magical energy; perhaps it could be used to augment something?',
             tags: ['magic', 'mining', 'smithing'],
+            category: 'Rare',
         },
         4027: {
             id: 4027,
-            name: 'Ice Stone',
+            name: 'Frost Shard',
             value: 50000,
             tradeable: true,
-            itemImage: '/images/combat/materials/ice_stone.png',
+            craftingLevel: 85,
+            craftingExperience: 2500,
+            requiredResources: [{ 4026: 6 }],
+
+            itemImage: '/images/combat/materials/frost_shard.png',
             class: 'bar',
             extraTooltipInfo:
                 'A chunk of ice that never melts. The magic keeping it solid could be channeled somewhere by a skill enchanter.',
             tags: ['magic', 'mining', 'smithing'],
+            category: 'Rare',
         },
         4028: {
             id: 4028,
@@ -21747,7 +22100,7 @@ class IdlescapeGameData {
 
 
             itemImage: '/images/premium/cosmetic/equipment/wrath.png',
-            extraTooltipInfo: "Behold the wrath of the mad faith! War and battle! Madfaith's Warth!",
+            extraTooltipInfo: "Behold the wrath of the mad faith! War and battle! Madfaith's 'Warth'!",
             class: 'equipment',
             visual: 'madfaith',
             category: ['armor', 'combat'],
@@ -22078,14 +22431,11 @@ class IdlescapeGameData {
             enchantmentTier: 0,
             maxAugLevel: 10,
             augmentationCost: {
-                5: 50000,
-                6: 50000,
-                7: 50000,
-                9: 50000,
-                10: 50000,
-                9001: 1,
-                9002: 1,
-                9003: 1,
+                5: 25000,
+                6: 25000,
+                7: 25000,
+                9: 25000,
+                10: 25000,
             },
             tradeable: true,
             craftingLevel: 85,
@@ -22210,7 +22560,7 @@ class IdlescapeGameData {
             champEncounter: 3001,
             enchantmentTier: 0,
             maxAugLevel: 10,
-            augmentationCost: { 9007: 1 },
+            augmentationCost: { 2010: 15, 95: 15, 96: 15 },
             craftingLevel: 30,
             craftingExperience: 6000,
             forcedAugmentChance: 1,
@@ -22246,7 +22596,7 @@ class IdlescapeGameData {
             champEncounter: 3002,
             enchantmentTier: 0,
             maxAugLevel: 10,
-            augmentationCost: { 9009: 1 },
+            augmentationCost: { 202: 15, 204: 15, 514: 50, 515: 50, 516: 50 },
             craftingLevel: 50,
             craftingExperience: 12000,
             forcedAugmentChance: 1,
@@ -22283,7 +22633,7 @@ class IdlescapeGameData {
             value: 2000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 800: 250, 4000: 10 },
+            augmentationCost: { 800: 200, 4000: 10 },
             craftingLevel: 50,
             craftingExperience: 15000,
             forcedAugmentChance: 1,
@@ -22308,7 +22658,7 @@ class IdlescapeGameData {
             tradeable: true,
             enchantmentTier: 0,
             maxAugLevel: 10,
-            augmentationCost: { 5: 10000, 113: 250, 512: 500, 9013: 1 },
+            augmentationCost: { 5: 10000, 512: 300, 700: 50 },
             craftingLevel: 60,
             craftingExperience: 20000,
             forcedAugmentChance: 1,
@@ -22416,7 +22766,7 @@ class IdlescapeGameData {
             value: 2000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 9022: 1 },
+            augmentationCost: { 109: 50, 1600: 3 },
             craftingLevel: 74,
             craftingExperience: 40000,
             forcedAugmentChance: 1,
@@ -22439,7 +22789,7 @@ class IdlescapeGameData {
             value: 10000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 9021: 1 },
+            augmentationCost: { 513: 250, 60: 250 },
             craftingLevel: 80,
             craftingExperience: 30000,
             forcedAugmentChance: 1,
@@ -22462,7 +22812,7 @@ class IdlescapeGameData {
             value: 20000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 9020: 1 },
+            augmentationCost: { 513: 250, 516: 500 },
             craftingLevel: 92,
             craftingExperience: 40000,
             forcedAugmentChance: 1,
@@ -23904,6 +24254,17 @@ class IdlescapeGameData {
             tags: ['armor'],
             rarity: 'epic',
         },
+        12014: {
+            id: 12014,
+            name: 'Infernal Dust',
+            tradeable: false,
+            itemImage: '/images/magic/infernal_dust.png',
+            extraTooltipInfo:
+                'A fine dust that is fueled by some inner flame. Formed when too much power is imbued into Obsidian.',
+            class: 'gem',
+            tags: ['enchanting'],
+            rarity: 'rare',
+        },
         13000: {
             id: 13000,
             name: 'Combat Manual - Volume 1',
@@ -24484,7 +24845,7 @@ class IdlescapeGameData {
         25029: {
             id: 25029,
             name: 'Ice Stone',
-            itemImage: '/images/combat/materials/junk/nature_rune.png',
+            itemImage: '/images/combat/materials/junk/ice_stone.png',
             value: 10000,
             extraTooltipInfo:
                 'A chunk of stone that appears to be imbued with ice. Useless to you, but must be valuable to someone.',
