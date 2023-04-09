@@ -234,13 +234,17 @@ class IdlescapeGameData {
         16: {
             id: 16,
             name: 'Healing',
-            strengthPerLevel: 1,
+            strengthPerLevel: 0.2,
             combat: true,
             scrollID: 1616,
             // client
             buffIcon: '/images/magic/buffs/healing_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
-                `Passive healing delay is reduced by ${Math.round(enchantmentStrength * strengthPerLevel * 0.5 * 100)}%.`,
+                `Passive heal per tick increased by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 100
+                )}%. Increases health received from consumables by ${Math.round(
+                    enchantmentStrength * strengthPerLevel * 0.5 * 100
+                )}%.`,
             // endclient
         }, // boost health regen
         17: {
@@ -1639,7 +1643,10 @@ class IdlescapeGameData {
             id: 10011,
             name: 'Magical Barriers',
             strengthPerLevel: 0.1,
-            setRequirements: [{ count: 2, strength: 1 }],
+            setRequirements: [
+                { count: 2, strength: 1 },
+                { count: 4, strength: 2 },
+            ],
             combat: false,
             statBuffs: [{ path: 'armor.resistance', additivePerLevel: 0, multiplicativePerLevel: 0.1 }],
             // client
@@ -1668,7 +1675,10 @@ class IdlescapeGameData {
             id: 10013,
             name: "Wizard's Wisdom",
             strengthPerLevel: 0.15,
-            setRequirements: [{ count: 3, strength: 1 }],
+            setRequirements: [
+                { count: 3, strength: 1 },
+                { count: 4, strength: 2 },
+            ],
             combat: false,
             statBuffs: [{ path: 'weapon.intellect', additivePerLevel: 0, multiplicativePerLevel: 0.15 }],
             // client
@@ -3296,7 +3306,7 @@ class IdlescapeGameData {
             name: 'Magma Core', // fire orb
             value: 3360000,
             tradeable: true,
-            itemImage: '/images/combat/materials/runed_stone.png',
+            itemImage: '/images/combat/materials/magma_core.png',
             extraTooltipInfo: 'A chunk of stone with an unquenchable fire burning within. What could you do with this?',
             class: 'bar',
             tags: ['mining', 'smithing'],
@@ -3317,7 +3327,7 @@ class IdlescapeGameData {
             name: 'Worn Ancient Splinter', // trident
             value: 6360000,
             tradeable: true,
-            itemImage: '/images/combat/materials/ancient_splinter.png',
+            itemImage: '/images/combat/materials/ancient_splinter.PNG',
             extraTooltipInfo:
                 'A splinter of some long lost metal; it has more in common with stone than it does metal and would require a master craftsman to work it.',
             class: 'bar',
@@ -3328,7 +3338,7 @@ class IdlescapeGameData {
             name: 'Royal Ice Shard', // king's crown
             value: 3360000,
             tradeable: true,
-            itemImage: '/images/combat/materials/ice_shard.png',
+            itemImage: '/images/combat/materials/ice_shard.PNG',
             extraTooltipInfo:
                 'A somewhat workable shard of frozen stone sourced from the frozen wastes within the Valley of Giants. Appears to be a material commonly used by Ice Giants to form their accessories; perhaps you could make something useful with it?',
             class: 'bar',
@@ -3509,7 +3519,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/mining/diamond.png',
             class: 'gem',
-            extraTooltipInfo: 'An uncommon gem that may be used for crafting.',
+            extraTooltipInfo: 'An uncommon gem that may be used for crafting. #lWA2pjMjpBs',
             tags: [],
         },
         404: {
@@ -9042,7 +9052,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/combat/equipment/stygian_boots.png',
             itemIcon: '/images/combat/equipment/stygian_boots_icon.png',
-            extraTooltipInfo: 'These boots cannot be traded.',
+            extraTooltipInfo: 'These boots cannot be traded. #bootcoin',
             class: 'equipment',
             visual: 'boots',
             tags: ['armor', 'melee', 'crafting'],
@@ -12323,6 +12333,7 @@ class IdlescapeGameData {
             type: 'weapon',
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/driftwood_wand.png',
+            itemIcon: '/images/combat/equipment/magic/driftwood_wand_icon.png',
             class: 'equipment',
             visual: 'wand',
             craftingDescription: 'Wand WIP',
@@ -12370,8 +12381,8 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 10 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_wand.png',
-            itemIcon: '/images/combat/equipment/magic/sturdy_wand.png',
+            itemImage: '/images/combat/equipment/magic/sturdy_wand.png',
+            itemIcon: '/images/combat/equipment/magic/sturdy_wand_icon.png',
             class: 'equipment',
             visual: 'wand',
             craftingDescription: 'Wand WIP',
@@ -12666,6 +12677,7 @@ class IdlescapeGameData {
             type: 'weapon',
             skill: 'crafting',
             itemImage: '/images/combat/equipment/magic/driftwood_staff.png',
+            itemIcon: '/images/combat/equipment/magic/driftwood_staff_icon.png',
             class: 'equipment',
             visual: 'staff',
             craftingDescription: 'Staff WIP',
@@ -12713,8 +12725,8 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 10 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_staff.png',
-            itemIcon: '/images/combat/equipment/magic/sturdy_staff.png',
+            itemImage: '/images/combat/equipment/magic/sturdy_staff.png',
+            itemIcon: '/images/combat/equipment/magic/sturdy_staff_icon.png',
             class: 'equipment',
             visual: 'staff',
             craftingDescription: 'Staff WIP',
@@ -13042,8 +13054,8 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { defense: 10, magic: 10 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/starter_focus.png',
-            itemIcon: '/images/combat/equipment/magic/practitioner_focus.png',
+            itemImage: '/images/combat/equipment/magic/practitioner_focus.png',
+            itemIcon: '/images/combat/equipment/magic/practitioner_focus_icon.png',
             class: 'equipment',
             visual: 'focus',
             craftingDescription: 'Focus WIP',
@@ -13431,7 +13443,7 @@ class IdlescapeGameData {
             requiredLevel: { strength: 20 },
             ammunitionMults: { damageMult: 1.1, accuracyMult: 1.1, style: 'Melee' },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/melee/low_whetstone.png',
+            itemImage: '/images/combat/equipment/melee/low_whetstone.PNG',
             extraTooltipInfo: 'For basic weapon maintenance.',
             class: 'ammo',
             category: 'Melee',
@@ -13956,13 +13968,14 @@ class IdlescapeGameData {
         1513: {
             name: 'Chaos Crest',
             id: 1513,
-            enchantmentTier: 5,
+            enchantmentTier: 3,
             augmentationCost: { 112: 200 },
             craftingLevel: 1,
             craftingExperience: 1,
             value: 68000,
             tradeable: true,
             requiredLevel: { defense: 20 },
+            enchantmentOverrideSlot: 'tongs',
 
 
 
@@ -15786,7 +15799,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "A weapon whose origins are lost to time; don't try using it as a fishing harpoon!",
             tags: ['magic', 'weapon'],
             equipmentStats: {
-                grantedAbility: [43],
+                grantedAbility: [43, 92, 93],
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.33 },
                 offensiveAccuracyAffinityRating: {
@@ -15812,6 +15825,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.intellect', value: 6.5 },
                     { stat: 'offensiveAccuracyAffinityRating.Ice', value: 3.5 },
                 ],
+                itemSet: [10011, 10013],
             },
             rarity: 'legendary',
             craftingLevel: 92,
@@ -16154,7 +16168,7 @@ class IdlescapeGameData {
                     Magic: -12,
                     Range: -12,
                     Piercing: -4,
-                    Blunt: 99,
+                    Blunt: 178,
                     Slashing: 178,
                 },
                 offensiveDamageAffinity: {
@@ -16162,12 +16176,12 @@ class IdlescapeGameData {
                     Magic: 0.1,
                     Range: 0.1,
                     Piercing: 1 / 4,
-                    Blunt: 1.1,
-                    Slashing: 1.25,
+                    Blunt: 1.33,
+                    Slashing: 1.33,
                 },
                 weaponBonus: { strength: 156, intellect: 0, dexterity: 0 },
                 armorBonus: { protection: 22, resistance: 0, agility: -8, stamina: 0 },
-                attackSpeed: 3.3,
+                attackSpeed: 3.1,
                 augmentationBonus: [
                     { stat: 'offensiveAccuracyAffinityRating.Melee', value: 1.3 },
                     { stat: 'weaponBonus.strength', value: 6 },
@@ -16401,13 +16415,14 @@ class IdlescapeGameData {
             extraTooltipInfo: 'An ancient token that freezes anything it touches.',
             tags: ['jewelry'],
             equipmentStats: {
-                grantedAbility: [90],
+                grantedAbility: [90, 92],
                 slot: 'arrows',
                 armorBonus: { protection: 4, resistance: 24, agility: 0, stamina: 0 },
                 offensiveAccuracyAffinityRating: { Melee: 0, Magic: 12, Range: 0 },
                 offensiveDamageAffinity: { Ice: 1.2 },
                 weaponBonus: { strength: 0, intellect: 12, dexterity: 0 },
                 augmentationBonus: [{ stat: 'offensiveAccuracyAffinityRating.Ice', value: 5 }],
+                itemSet: [10011, 10013],
             },
             rarity: 'legendary',
 
@@ -16427,7 +16442,7 @@ class IdlescapeGameData {
                 'An ancient ring that allows you to control ice. Maybe you should take up ice sculpting and leave the adventuring life behind?',
             tags: ['jewelry'],
             equipmentStats: {
-                grantedAbility: [91],
+                grantedAbility: [91, 92],
                 slot: 'ring',
                 armorBonus: { protection: 0, resistance: 4, agility: 0, stamina: 0 },
                 offensiveAccuracyAffinityRating: { Melee: 0, Magic: 30, Range: 0 },
@@ -16437,6 +16452,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Ice', value: 5 },
                     { stat: 'weaponBonus.intellect', value: 3 },
                 ],
+                itemSet: [10011, 10013],
             },
             rarity: 'legendary',
 
@@ -16511,7 +16527,7 @@ class IdlescapeGameData {
             tags: ['armor', 'range'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: { Melee: 1.08 },
+                offensiveDamageAffinity: { Range: 1.08 },
                 defensiveDamageAffinity: {
                     Melee: 47 / 50,
                     Magic: 1.08,
@@ -18531,7 +18547,7 @@ class IdlescapeGameData {
             skill: 'cooking',
             size: 1,
             difficulty: 1,
-            itemImage: '/images/cooking/egg.png',
+            itemImage: '/images/cooking/34573r_3gg.png',
             extraTooltipInfo: 'GEG, scrambled egg.',
             class: 'cooking-ingredient',
             tags: ['ingredient', 'cooking'],
@@ -20634,7 +20650,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/aqueous_chunks.png',
             class: 'bar',
             extraTooltipInfo:
-                'A chunk of stone supposedly from the bottom of the ocean. Still pulses with latent magical energy; perhaps it could be used to augment something?',
+                'A chunk of stone supposedly from the bottom of the ocean, still pulsing with latent magical energy. Perhaps it could be used to augment something?',
             tags: ['magic', 'mining', 'smithing'],
             category: 'Rare',
         },
@@ -20650,7 +20666,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/frost_shard.png',
             class: 'bar',
             extraTooltipInfo:
-                'A chunk of ice that never melts. The magic keeping it solid could be channeled somewhere by a skill enchanter.',
+                'A chunk of ice that never melts. The magic keeping it solid could be channeled somewhere by a skilled enchanter.',
             tags: ['magic', 'mining', 'smithing'],
             category: 'Rare',
         },
@@ -22780,16 +22796,16 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A full map that leads to an old castle.',
             class: 'key',
             tags: ['dungeon', 'crafting'],
-            requiredResources: [{ 9022: 9 }],
+            requiredResources: [{ 9022: 6, 1600: 1 }],
             rarity: 'epic',
         },
         9018: {
-            name: 'Eye of the Storm key',
+            name: 'Ancient Prism',
             id: 9018,
             value: 10000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 513: 250, 60: 250 },
+            augmentationCost: { 513: 250, 60: 250, 11032: 5 },
             craftingLevel: 80,
             craftingExperience: 30000,
             forcedAugmentChance: 1,
@@ -22803,16 +22819,16 @@ class IdlescapeGameData {
             extraTooltipInfo: 'An ancient chunk of stone curiously shaped into a pyramid.',
             class: 'key',
             tags: ['dungeon', 'crafting'],
-            requiredResources: [{ 9021: 10 }],
+            requiredResources: [{ 9021: 4, 11032: 300 }],
             rarity: 'legendary',
         },
         9019: {
-            name: 'The Maelstrom key',
+            name: 'Captive Chaotic Prism',
             id: 9019,
             value: 20000000,
             tradeable: true,
             maxAugLevel: 10,
-            augmentationCost: { 513: 250, 516: 500 },
+            augmentationCost: { 513: 250, 516: 500, 208: 2 },
             craftingLevel: 92,
             craftingExperience: 40000,
             forcedAugmentChance: 1,
@@ -22826,7 +22842,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A prism trapped inside of a magical prison. What could go wrong if you released it?',
             class: 'key',
             tags: ['dungeon', 'crafting'],
-            requiredResources: [{ 9020: 10 }],
+            requiredResources: [{ 9020: 4, 11032: 300, 208: 100 }],
             rarity: 'legendary',
         },
         9020: {
@@ -23686,7 +23702,8 @@ class IdlescapeGameData {
 
             fishingBait: { level: 0, bait: 0, reel: 0, bonus: 0 },
             itemImage: 'images/fishing/bait/mysterious_bait_hook.png',
-            extraTooltipInfo: 'Who knows what effects using this bait would have? Each and every one of them is unique!',
+            extraTooltipInfo:
+                'Who knows what effects using this bait would have? Each and every one of them is unique! Each bait has between +50 and +200 to a random fishing stat.',
             class: 'fish',
             tags: ['fishing'],
         },
@@ -24549,7 +24566,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A tooth taken from a slain monster; might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25001: {
             id: 25001,
@@ -24559,7 +24576,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A horn taken from a slain monster; might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25002: {
             id: 25002,
@@ -24569,7 +24586,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A sturdy horn taken from a slain monster; might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25003: {
             id: 25003,
@@ -24579,7 +24596,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Some old coins. Might be worth something to a collector',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25004: {
             id: 25004,
@@ -24589,7 +24606,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A rather heavy, yet primitive, gold coin. This could easily be sold for a tidy sum.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25005: {
             id: 25005,
@@ -24599,7 +24616,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Some sort of token taken from the undead. Someone might be interested in it.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25006: {
             id: 25006,
@@ -24609,7 +24626,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A trinket taken from the Elves; might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25007: {
             id: 25007,
@@ -24619,7 +24636,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A mostly intact wing. Someone might be interested in it.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25008: {
             id: 25008,
@@ -24629,7 +24646,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A rather ornate trinket; it should be worth a bit.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25009: {
             id: 25009,
@@ -24640,7 +24657,7 @@ class IdlescapeGameData {
                 'Useless metal scraps made from some poor quality material. Could probably be sold to someone for cheap.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25010: {
             id: 25010,
@@ -24651,7 +24668,7 @@ class IdlescapeGameData {
                 'An exotic trinket from some unknown origin. Should be worth quite a bit to the right person.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25011: {
             id: 25011,
@@ -24662,7 +24679,7 @@ class IdlescapeGameData {
                 'A statue made from some sort of gem-like material depicting a small demon. May be worth quite a bit if you can find a buyer.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25012: {
             id: 25012,
@@ -24672,7 +24689,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Claws taken from a slain monster; might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25013: {
             id: 25013,
@@ -24682,7 +24699,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Slightly magical blood taken from something. May be valuable to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25014: {
             id: 25014,
@@ -24693,7 +24710,7 @@ class IdlescapeGameData {
                 'Shattered pieces of equipment that probably is not worth salvaging by you; perhaps someone else may want to buy it.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25015: {
             id: 25015,
@@ -24703,7 +24720,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Eggs from some creature. Probably best to get rid of this quickly.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25016: {
             id: 25016,
@@ -24713,7 +24730,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Shiny dwarven coins that are of no use to you. A vendor could exchange the currency.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25017: {
             id: 25017,
@@ -24723,7 +24740,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Splinters of bone taken from a slain creature. Might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25018: {
             id: 25018,
@@ -24734,7 +24751,7 @@ class IdlescapeGameData {
                 'A giant heart, probably taken from a giant or similarly large creature. Superstition suggests making a meal with it will increase your attractiveness, but sadly that may be a wasted effort on you.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25019: {
             id: 25019,
@@ -24745,7 +24762,7 @@ class IdlescapeGameData {
                 'Scraps of some ancient piece of equipment. Its origin is unknown, but it may be worth something to the right person.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25020: {
             id: 25020,
@@ -24756,7 +24773,7 @@ class IdlescapeGameData {
                 'It appears to be a rune not created through conventional means. It is no use to you but someone may want it.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25021: {
             id: 25021,
@@ -24766,7 +24783,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Pieces of light armor that is too damaged to salvage. Might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25022: {
             id: 25022,
@@ -24776,7 +24793,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Pieces of armor that is too damaged to salvage. Might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25023: {
             id: 25023,
@@ -24786,7 +24803,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Pieces of heavy armor that is too damaged to salvage. Might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25024: {
             id: 25024,
@@ -24796,7 +24813,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A tusk taken from a slain monster; might be worth something to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25025: {
             id: 25025,
@@ -24807,7 +24824,7 @@ class IdlescapeGameData {
                 'Useless pieces of shattered gems. Not quite fine enough to be considered dust, but too small for you to properly refine or cut. Might be worth something to a vendor.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25026: {
             id: 25026,
@@ -24818,7 +24835,7 @@ class IdlescapeGameData {
                 'A useless eating utensil used by goblins. Everyone knows you should just eat your meals whole! A vendor may want this.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25027: {
             id: 25027,
@@ -24829,7 +24846,7 @@ class IdlescapeGameData {
                 'A chunk of stone that appears to be imbued with life. Useless to you, but must be valuable to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25028: {
             id: 25028,
@@ -24840,7 +24857,7 @@ class IdlescapeGameData {
                 'A chunk of stone that appears to be imbued with flame. Useless to you, but must be valuable to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25029: {
             id: 25029,
@@ -24851,7 +24868,7 @@ class IdlescapeGameData {
                 'A chunk of stone that appears to be imbued with ice. Useless to you, but must be valuable to someone.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25030: {
             id: 25030,
@@ -24861,7 +24878,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'I wonder who added this in?',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         25031: {
             id: 25031,
@@ -24871,7 +24888,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Worthless for making equipment out of but may be worth something to a vendor.',
             class: 'junk',
             rarity: 'junk',
-            tags: [],
+            tags: ['junk'],
         },
         100000: {
             name: 'ban_hamer',
@@ -26683,6 +26700,7 @@ class IdlescapeGameData {
 
         },
 
+        // Legacy gathering combat encounters, still here to avoid crashes for people that still have them
         200: {
             name: 'Deep Pit Encounter',
             locID: 200,
@@ -26743,6 +26761,8 @@ class IdlescapeGameData {
             accessRequirements: {
                 maxGroupSize: 1,
             },
+            extraTooltipInfo:
+                '1-5|Any|A peaceful farm with animals and a handful of monsters. Good for the novice adventurer first learning how to fight.',
 
         },
         1001: {
@@ -26751,10 +26771,12 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Caves',
-            locationImage: '/images/combat/locations/cave.png',
+            locationImage: '/images/combat/locations/cave_2.png',
             accessRequirements: {
                 maxGroupSize: 1,
             },
+            extraTooltipInfo:
+                '5-10|Any|Caves and dens of monsters may be found while in the wilderness. This close to civilization they are likely only populated by weak monsters, like imps or goblins.',
 
         },
         1002: {
@@ -26767,6 +26789,8 @@ class IdlescapeGameData {
             accessRequirements: {
                 maxGroupSize: 1,
             },
+            extraTooltipInfo:
+                '10-20|Magic|Human guardsmen and militia patrol the city to deal with criminals. Sometimes they are aided by some artificial constructs that control sets of armor. Any amateur adventurer should be able to handle themselves well here.',
 
         },
         1003: {
@@ -26779,6 +26803,8 @@ class IdlescapeGameData {
             accessRequirements: {
                 maxGroupSize: 1,
             },
+            extraTooltipInfo:
+                '20-40|Range|This maze is the primary obstacle blocking any would-be adventurer from truly breaking away from civilization and going out into the truly dangerous locations. Many dangerous demons and spiders have made their home here, it would be wise to be at least moderately experienced before attempting to solve this maze.',
 
         },
         1004: {
@@ -26787,10 +26813,12 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Corrupted Lands',
-            locationImage: '/images/combat/locations/corrupted_lands.png',
+            locationImage: '/images/combat/locations/corrupted_lands_3.png',
             accessRequirements: {
                 maxGroupSize: 1,
             },
+            extraTooltipInfo:
+                '40-60|Melee|Some terrible cataclysm has left this land corrupted beyond repair. The only life that can survive here are twisted by some sort of common curse. Legends say that spending too much time here may eventually cause you to succumb to the curse as well. An experienced and well equipped adventurer should be able to survive here.',
 
         },
         1005: {
@@ -26799,10 +26827,13 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Valley of Giants',
-            locationImage: '/images/combat/locations/valley_of_giants_3.png',
+            locationImage: '/images/combat/locations/valley_of_giants_4.png',
             accessRequirements: {
                 maxGroupSize: 1,
             },
+            extraTooltipInfo:
+                '60-90|Melee|Situated far from human civilization, this valley holds the remnants of a once great civilization that has been almost entirely lost to time. Its inhabitants are hostile and barbaric, but they have preserved some lost knowledge to produce equipment far beyond the ability of any human crafter. Legends say that a King yet remains to rule this Valley.',
+
 
         },
         1006: {
@@ -26811,10 +26842,12 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Chaos Wastes',
-            locationImage: '/images/combat/locations/chaos_wastes_3.png',
+            locationImage: '/images/combat/locations/chaos_wastes_4.png',
             accessRequirements: {
                 maxGroupSize: 2,
             },
+            extraTooltipInfo:
+                '90+|Magic|Chaos warps the very essence of reality in these lands. Abominations and unknowable horrors roam the wastes seeking out life and destroying it where it may be found. Impossible crystalline towers reach into the sky where it does not reach down to tear at the earth. Only the most powerful adventurers should explore here.',
 
         },
         1007: {
@@ -26823,10 +26856,13 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Enchanted Armory',
-            locationImage: '/images/combat/locations/enchanted_armory.png',
+            locationImage: '/images/combat/locations/enchanted_armory_2.png',
             accessRequirements: {
                 maxGroupSize: 2,
             },
+            extraTooltipInfo:
+                '40-70|Magic|Bastions of magical research lay within the city, churning out the golems and constructs that patrol its street. Their armories store massive stockpiles of these creations, ready for testing in true battle. Perhaps you and a friend may be experienced enough to provide the battle and reap the rewards?',
+
 
         },
         1008: {
@@ -26835,10 +26871,13 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Fallen Academy',
-            locationImage: '/images/combat/locations/fallen_academy.png',
+            locationImage: '/images/combat/locations/fallen_academy_2.png',
             accessRequirements: {
                 maxGroupSize: 1,
             },
+            extraTooltipInfo:
+                '25-50|Melee/Range|Once the foremost academy of all human civilization, some disaster has befallen this once great institution. Now, it is a place of death and destruction, filled with the hostile undead and the living alike. A moderately experienced adventurer may be able to unearth what has caused this tragedy.',
+
 
         },
         1009: {
@@ -26847,10 +26886,12 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Overgrown Woods',
-            locationImage: '/images/combat/locations/overgrown_forest.png',
+            locationImage: '/images/combat/locations/overgrown_forest_2.png',
             accessRequirements: {
                 maxGroupSize: 2,
             },
+            extraTooltipInfo:
+                '25-50|Melee|On the frontiers are huge untamed forests filled with all manner of beasts. A moderately experienced adventurer may be able to head a hunting expedition into these woods and potentially uncover some of the secrets of the forest.',
 
         },
         1010: {
@@ -26859,10 +26900,12 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Elven Encampment',
-            locationImage: '/images/combat/locations/elven_encampment.png',
+            locationImage: '/images/combat/locations/elven_encampment_2.png',
             accessRequirements: {
                 maxGroupSize: 2,
             },
+            extraTooltipInfo:
+                '50-75|Range|Deep within the forest are the last vestiges of a once proud and illustrious empire. Though they are scattered and few in number, the elves survive due to their superior skills and equipment. Experienced adventurers may match those skills and seize their equipment. Tales tell of a powerful Elven King who still resides in the forest in ruins of his old family estate, but who would believe that?',
 
         },
 
@@ -27578,7 +27621,7 @@ class IdlescapeGameData {
             abilityImage: '/images/combat/ability_icons/flamethrower.png',
             description: 'Fire an intense gout of flame!',
             damageType: 'Magic',
-            cooldown: 10000,
+            cooldown: 20000,
             runeCost: [{ itemID: 512, amount: 5 }],
 
             damageScaling: [
@@ -27590,9 +27633,9 @@ class IdlescapeGameData {
                 { affinity: 'Fire', scaling: 1.333 },
             ],
 
-            baseSpeedCoeff: 1.25,
-            baseMinimumDamageCoeff: 1.5,
-            baseMaximumDamageCoeff: 2.5,
+            baseSpeedCoeff: 1.33,
+            baseMinimumDamageCoeff: 0.5,
+            baseMaximumDamageCoeff: 1.25,
             baseAccuracyCoeff: 0.66,
 
             maxTargets: 3,
@@ -27636,7 +27679,7 @@ class IdlescapeGameData {
             abilityImage: '/images/combat/ability_icons/krakatoa.png',
             description: 'Kra-ka-to-ahhhh! Let loose a magical blast of fire from your head. This is definitely safe!',
             damageType: 'Magic',
-            cooldown: 30000,
+            cooldown: 60000,
             runeCost: [{ itemID: 512, amount: 10 }],
 
             damageScaling: [
@@ -27648,10 +27691,10 @@ class IdlescapeGameData {
                 { affinity: 'Fire', scaling: 1.333 },
             ],
 
-            baseSpeedCoeff: 1.33,
-            baseMinimumDamageCoeff: 2,
-            baseMaximumDamageCoeff: 3,
-            baseAccuracyCoeff: 1.25,
+            baseSpeedCoeff: 2,
+            baseMinimumDamageCoeff: 1.75,
+            baseMaximumDamageCoeff: 2.5,
+            baseAccuracyCoeff: 0.9,
 
             maxTargets: 5,
         },
@@ -27659,7 +27702,7 @@ class IdlescapeGameData {
             id: 21,
             abilityName: 'Triple Shot',
             abilityImage: '/images/combat/ability_icons/tripleshot.png',
-            description: 'Quickly fire up to three arrows at the enemy party! Only one arrow can strike each target.',
+            description: 'Quickly fire up to three arrows at the enemy party! Inherently incredibly inaccurate.',
             damageType: 'Range',
             cooldown: 30000,
             useRangedAmmo: true,
@@ -27668,9 +27711,9 @@ class IdlescapeGameData {
             accuracyScaling: [{ affinity: 'Range', scaling: 1 }],
 
             baseSpeedCoeff: 1,
-            baseMinimumDamageCoeff: 1,
-            baseMaximumDamageCoeff: 1,
-            baseAccuracyCoeff: 0.75,
+            baseMinimumDamageCoeff: 0.9,
+            baseMaximumDamageCoeff: 1.33,
+            baseAccuracyCoeff: 0.5,
 
             maxTargets: 3,
         },
@@ -28536,6 +28579,8 @@ class IdlescapeGameData {
             baseAccuracyCoeff: 99999,
 
             maxTargets: 10,
+
+            skipReactives: true,
         },
         57: {
             id: 57,
@@ -29482,6 +29527,56 @@ class IdlescapeGameData {
             baseMinimumDamageCoeff: 1.05,
             baseMaximumDamageCoeff: 1.25,
             baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+        },
+        92: {
+            id: 92,
+            abilityName: 'Hailstorm',
+            abilityImage: '/images/combat/ability_icons/snowflake.png',
+            description: 'Send a stream of hail at your enemies!',
+            damageType: 'Magic',
+            cooldown: 20000,
+            runeCost: [{ itemID: 513, amount: 5 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.333 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.333 },
+            ],
+
+            baseSpeedCoeff: 1.33,
+            baseMinimumDamageCoeff: 0.5,
+            baseMaximumDamageCoeff: 1.25,
+            baseAccuracyCoeff: 0.66,
+
+            maxTargets: 3,
+        },
+        93: {
+            id: 93,
+            abilityName: 'Ice Trident',
+            abilityImage: '/images/combat/ability_icons/trident.png',
+            description: 'Throw a magical trident of ice!',
+            damageType: 'Magic',
+            cooldown: 30000,
+            runeCost: [{ itemID: 513, amount: 3 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+
+            baseSpeedCoeff: 1,
+            baseMinimumDamageCoeff: 1.15,
+            baseMaximumDamageCoeff: 1.5,
+            baseAccuracyCoeff: 1.5,
 
             maxTargets: 1,
         },

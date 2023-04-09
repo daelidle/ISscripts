@@ -1,9 +1,11 @@
 class Prices {
     cachedPrices;
     priceDataRefreshRate;
+    items;
 
-    constructor() {
+    constructor(items) {
         this.cachedPrices = {};
+        this.items = items;
         this.priceDataRefreshRate = 10 * 60 * 1000;
         this._exposeUpdatedPrices();
         this.getPriceData();
@@ -23,7 +25,8 @@ class Prices {
         if (manifest.status.toLowerCase().includes("success")) {
             const apiPriceData = manifest['manifest'];
             apiPriceData.forEach(data => {
-                priceData[data["name"]] = data["minPrice"];
+                const name = this.items[data.itemID].name ?? data.name;
+                priceData[name] = data["minPrice"];
             });
         }
 

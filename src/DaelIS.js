@@ -29,10 +29,10 @@ class DaelIS {
         this.isGameReady = false;
         this.extensions = {};
         this.activeExtensions = {};
-        this.state = new State();
-        this.prices = new Prices();
-        this.configUi = null;
         this.gameData = new IdlescapeGameData();
+        this.state = new State();
+        this.prices = new Prices(this.gameData.items);
+        this.configUi = null;
         this.setupSocketListener();
         onGameReady(() => this.onFirstGameReady());
     }
