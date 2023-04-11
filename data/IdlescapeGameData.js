@@ -147,13 +147,13 @@ class IdlescapeGameData {
             combat: true,
             scrollID: 1610,
             // client
-            buffIcon: '/images/misc/unknown_buff.png',
+            buffIcon: '/images/magic/buffs/patience_icon.png',
             getTooltip: (enchantmentStrength, strengthPerLevel) =>
                 `Has a ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
                 )}% chance to speed up attack speed by 33%.`,
             // endclient
-        }, // acrobatics, hit twice
+        }, // acrobatics, speed up attacks
         11: {
             id: 11,
             name: 'Critical Strike',
@@ -13675,7 +13675,7 @@ class IdlescapeGameData {
                     Nature: 64,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1.1,
+                    Melee: 1.3,
                     Magic: 1 / 4,
                     Range: 0.1,
                     Piercing: 1 / 8,
@@ -13944,8 +13944,8 @@ class IdlescapeGameData {
                     Lightning: 33,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 1 / 4,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 0.1,
                     Piercing: 1 / 4,
                     Blunt: 1 / 4,
@@ -14963,11 +14963,11 @@ class IdlescapeGameData {
                     Range: -22,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
+                    Melee: 1.2,
                     Slashing: 1.75,
                     Piercing: 33 / 50,
                     Blunt: 33 / 50,
-                    Magic: 0.5,
+                    Magic: 0.9,
                     Chaos: 1.5,
                     Range: 0.1,
                 },
@@ -15089,7 +15089,7 @@ class IdlescapeGameData {
             augmentationCost: { 208: 30, 304: 750, 307: 250, 403: 4, 516: 5000 },
             value: 6360000,
             tradeable: true,
-            requiredLevel: { strength: 85 },
+            requiredLevel: { strength: 85, magic: 60 },
             craftingLevel: 85,
             craftingExperience: 192000,
             requiredResources: [{ 215: 1, 516: 2500, 208: 150 }],
@@ -15111,18 +15111,18 @@ class IdlescapeGameData {
                     Melee: 98,
                     Magic: 48,
                     Range: -12,
-                    Piercing: -4,
+                    Piercing: 64,
                     Blunt: 211,
-                    Slashing: 141,
+                    Slashing: 64,
                     Chaos: 99,
                 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 0.9,
+                    Melee: 1.1,
+                    Magic: 1.05,
                     Range: 0.1,
-                    Piercing: 1 / 4,
+                    Piercing: 0.75,
                     Blunt: 1.33,
-                    Slashing: 0.9,
+                    Slashing: 0.75,
                     Chaos: 1.5,
                 },
                 weaponBonus: { strength: 164, intellect: 28, dexterity: 0 },
@@ -15132,6 +15132,7 @@ class IdlescapeGameData {
                     { stat: 'offensiveAccuracyAffinityRating.Melee', value: 1.5 },
                     { stat: 'offensiveAccuracyAffinityRating.Chaos', value: 2 },
                     { stat: 'weaponBonus.strength', value: 4.5 },
+                    { stat: 'weaponBonus.intellect', value: 3.5 },
                 ],
             },
             rarity: 'epic',
@@ -15705,7 +15706,7 @@ class IdlescapeGameData {
             visual: 'defender',
             tags: ['melee', 'onehand', 'weapon'],
             equipmentStats: {
-                grantedAbility: [40, 41],
+                grantedAbility: [40, 99],
                 slot: 'shield',
                 offensiveCritical: { chance: 0.1, damageMultiplier: 1.5 },
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.5 },
@@ -15759,12 +15760,12 @@ class IdlescapeGameData {
                 },
                 offensiveDamageAffinity: {
                     Melee: 1 / 4,
-                    Magic: 0.2,
+                    Magic: 0.9,
                     Range: 1.2,
                     Piercing: 1.3333333333333333,
                     Blunt: 0.5,
                     Slashing: 0.5,
-                    Nature: 1.33,
+                    Nature: 1.5,
                 },
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 136 },
                 attackSpeed: 2.8,
@@ -15811,7 +15812,7 @@ class IdlescapeGameData {
                 },
                 offensiveDamageAffinity: {
                     Magic: 1.35,
-                    Melee: 33 / 50,
+                    Melee: 0.9,
                     Piercing: 1.33,
                     Ice: 1.5,
                     Chaos: 1.33,
@@ -15893,12 +15894,13 @@ class IdlescapeGameData {
                 'A large scimitar taken from a fish! You could probably use it as a paddle! Seems mildly magical, almost...',
             tags: ['melee', 'weapon', 'onehand'],
             equipmentStats: {
+                grantedAbility: [95, 94],
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.33 },
                 offensiveAccuracyAffinityRating: { Melee: 76, Magic: 4, Range: -14, Slashing: 84 },
                 offensiveDamageAffinity: {
-                    Melee: 1,
-                    Magic: 2 / 3,
+                    Melee: 1.05,
+                    Magic: 1,
                     Range: 0.1,
                     Piercing: 1 / 4,
                     Blunt: 1 / 4,
@@ -15910,6 +15912,7 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'offensiveAccuracyAffinityRating.Melee', value: 1.65 },
                     { stat: 'weaponBonus.strength', value: 1.65 },
+                    { stat: 'weaponBonus.intellect', value: 0.9 },
                 ],
             },
             rarity: 'epic',
@@ -26761,8 +26764,6 @@ class IdlescapeGameData {
             accessRequirements: {
                 maxGroupSize: 1,
             },
-            extraTooltipInfo:
-                '1-5|Any|A peaceful farm with animals and a handful of monsters. Good for the novice adventurer first learning how to fight.',
 
         },
         1001: {
@@ -26771,12 +26772,10 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Caves',
-            locationImage: '/images/combat/locations/cave_2.png',
+            locationImage: '/images/combat/locations/cave.png',
             accessRequirements: {
                 maxGroupSize: 1,
             },
-            extraTooltipInfo:
-                '5-10|Any|Caves and dens of monsters may be found while in the wilderness. This close to civilization they are likely only populated by weak monsters, like imps or goblins.',
 
         },
         1002: {
@@ -26789,8 +26788,6 @@ class IdlescapeGameData {
             accessRequirements: {
                 maxGroupSize: 1,
             },
-            extraTooltipInfo:
-                '10-20|Magic|Human guardsmen and militia patrol the city to deal with criminals. Sometimes they are aided by some artificial constructs that control sets of armor. Any amateur adventurer should be able to handle themselves well here.',
 
         },
         1003: {
@@ -26803,8 +26800,6 @@ class IdlescapeGameData {
             accessRequirements: {
                 maxGroupSize: 1,
             },
-            extraTooltipInfo:
-                '20-40|Range|This maze is the primary obstacle blocking any would-be adventurer from truly breaking away from civilization and going out into the truly dangerous locations. Many dangerous demons and spiders have made their home here, it would be wise to be at least moderately experienced before attempting to solve this maze.',
 
         },
         1004: {
@@ -26813,12 +26808,10 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Corrupted Lands',
-            locationImage: '/images/combat/locations/corrupted_lands_3.png',
+            locationImage: '/images/combat/locations/corrupted_lands.png',
             accessRequirements: {
                 maxGroupSize: 1,
             },
-            extraTooltipInfo:
-                '40-60|Melee|Some terrible cataclysm has left this land corrupted beyond repair. The only life that can survive here are twisted by some sort of common curse. Legends say that spending too much time here may eventually cause you to succumb to the curse as well. An experienced and well equipped adventurer should be able to survive here.',
 
         },
         1005: {
@@ -26827,13 +26820,10 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Valley of Giants',
-            locationImage: '/images/combat/locations/valley_of_giants_4.png',
+            locationImage: '/images/combat/locations/valley_of_giants_3.png',
             accessRequirements: {
                 maxGroupSize: 1,
             },
-            extraTooltipInfo:
-                '60-90|Melee|Situated far from human civilization, this valley holds the remnants of a once great civilization that has been almost entirely lost to time. Its inhabitants are hostile and barbaric, but they have preserved some lost knowledge to produce equipment far beyond the ability of any human crafter. Legends say that a King yet remains to rule this Valley.',
-
 
         },
         1006: {
@@ -26842,12 +26832,10 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Chaos Wastes',
-            locationImage: '/images/combat/locations/chaos_wastes_4.png',
+            locationImage: '/images/combat/locations/chaos_wastes_3.png',
             accessRequirements: {
                 maxGroupSize: 2,
             },
-            extraTooltipInfo:
-                '90+|Magic|Chaos warps the very essence of reality in these lands. Abominations and unknowable horrors roam the wastes seeking out life and destroying it where it may be found. Impossible crystalline towers reach into the sky where it does not reach down to tear at the earth. Only the most powerful adventurers should explore here.',
 
         },
         1007: {
@@ -26856,13 +26844,10 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Enchanted Armory',
-            locationImage: '/images/combat/locations/enchanted_armory_2.png',
+            locationImage: '/images/combat/locations/enchanted_armory.png',
             accessRequirements: {
                 maxGroupSize: 2,
             },
-            extraTooltipInfo:
-                '40-70|Magic|Bastions of magical research lay within the city, churning out the golems and constructs that patrol its street. Their armories store massive stockpiles of these creations, ready for testing in true battle. Perhaps you and a friend may be experienced enough to provide the battle and reap the rewards?',
-
 
         },
         1008: {
@@ -26871,13 +26856,10 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Fallen Academy',
-            locationImage: '/images/combat/locations/fallen_academy_2.png',
+            locationImage: '/images/combat/locations/fallen_academy.png',
             accessRequirements: {
                 maxGroupSize: 1,
             },
-            extraTooltipInfo:
-                '25-50|Melee/Range|Once the foremost academy of all human civilization, some disaster has befallen this once great institution. Now, it is a place of death and destruction, filled with the hostile undead and the living alike. A moderately experienced adventurer may be able to unearth what has caused this tragedy.',
-
 
         },
         1009: {
@@ -26886,12 +26868,10 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Overgrown Woods',
-            locationImage: '/images/combat/locations/overgrown_forest_2.png',
+            locationImage: '/images/combat/locations/overgrown_forest.png',
             accessRequirements: {
                 maxGroupSize: 2,
             },
-            extraTooltipInfo:
-                '25-50|Melee|On the frontiers are huge untamed forests filled with all manner of beasts. A moderately experienced adventurer may be able to head a hunting expedition into these woods and potentially uncover some of the secrets of the forest.',
 
         },
         1010: {
@@ -26900,12 +26880,10 @@ class IdlescapeGameData {
             actionType: 'Action-Combat',
             baseDuration: 1000,
             activeMessage: 'Fighting in the Elven Encampment',
-            locationImage: '/images/combat/locations/elven_encampment_2.png',
+            locationImage: '/images/combat/locations/elven_encampment.png',
             accessRequirements: {
                 maxGroupSize: 2,
             },
-            extraTooltipInfo:
-                '50-75|Range|Deep within the forest are the last vestiges of a once proud and illustrious empire. Though they are scattered and few in number, the elves survive due to their superior skills and equipment. Experienced adventurers may match those skills and seize their equipment. Tales tell of a powerful Elven King who still resides in the forest in ruins of his old family estate, but who would believe that?',
 
         },
 
@@ -27585,8 +27563,8 @@ class IdlescapeGameData {
             ],
 
             baseSpeedCoeff: 0.6,
-            baseMinimumDamageCoeff: 0.6,
-            baseMaximumDamageCoeff: 0.6,
+            baseMinimumDamageCoeff: 0.8,
+            baseMaximumDamageCoeff: 0.8,
             baseAccuracyCoeff: 1,
 
             maxTargets: 1,
@@ -28431,8 +28409,8 @@ class IdlescapeGameData {
             ],
 
             baseSpeedCoeff: 0.4,
-            baseMinimumDamageCoeff: 0.4,
-            baseMaximumDamageCoeff: 0.4,
+            baseMinimumDamageCoeff: 0.6,
+            baseMaximumDamageCoeff: 0.6,
             baseAccuracyCoeff: 1,
 
             maxTargets: 1,
@@ -29577,6 +29555,167 @@ class IdlescapeGameData {
             baseMinimumDamageCoeff: 1.15,
             baseMaximumDamageCoeff: 1.5,
             baseAccuracyCoeff: 1.5,
+
+            maxTargets: 1,
+        },
+        94: {
+            id: 94,
+            abilityName: 'Ebb',
+            abilityImage: '/images/combat/ability_icons/ice_blade.png',
+            description: '... and strike like a wave!',
+            damageType: 'Magic',
+            cooldown: 10000,
+            runeCost: [{ itemID: 513, amount: 1 }],
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+
+            baseSpeedCoeff: 1,
+            baseMinimumDamageCoeff: 1,
+            baseMaximumDamageCoeff: 1.5,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 2,
+        },
+        95: {
+            id: 95,
+            abilityName: 'Flow',
+            abilityImage: '/images/combat/ability_icons/trident.png',
+            description: 'Flow like water...',
+            damageType: 'Melee',
+            cooldown: 10000,
+            runeCost: [{ itemID: 513, amount: 1 }],
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+
+            baseSpeedCoeff: 1,
+            baseMinimumDamageCoeff: 1,
+            baseMaximumDamageCoeff: 1.5,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 2,
+        },
+        96: {
+            id: 96,
+            abilityName: 'Flow',
+            abilityImage: '/images/combat/ability_icons/trident.png',
+            description: 'Flow like water...',
+            damageType: 'Melee',
+            cooldown: 10000,
+            runeCost: [{ itemID: 513, amount: 1 }],
+
+            damageScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Melee', scaling: 1 },
+                { affinity: 'Ice', scaling: 1.5 },
+            ],
+
+            baseSpeedCoeff: 1,
+            baseMinimumDamageCoeff: 1,
+            baseMaximumDamageCoeff: 1.5,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 2,
+        },
+        97: {
+            id: 97,
+            abilityName: 'Lightspeed',
+            abilityImage: '/images/combat/ability_icons/empower.png',
+            description:
+                'Channel the near infinite potential of lightning to empower yourself and reach incredible speeds, if only for a short while.',
+            damageType: 'Magic',
+            cooldown: 30000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Lightning', scaling: 5 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Lightning', scaling: 5 },
+            ],
+
+            baseSpeedCoeff: 0.1,
+            baseMinimumDamageCoeff: 0.2,
+            baseMaximumDamageCoeff: 0.2,
+            baseAccuracyCoeff: 2,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 10,
+                enchantmentStrength: 11,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 10,
+            },
+
+            maxTargets: 1,
+        },
+        98: {
+            id: 98,
+            abilityName: 'Lightning Bolt',
+            abilityImage: '/images/combat/ability_icons/lightning_strike.png',
+            description: 'Case a bolt of lightning at your enemy!',
+            damageType: 'Magic',
+            runeCost: [{ itemID: 510, amount: 3 }],
+            cooldown: 10000,
+
+            damageScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Lightning', scaling: 2 },
+            ],
+            accuracyScaling: [
+                { affinity: 'Magic', scaling: 1 },
+                { affinity: 'Lightning', scaling: 2 },
+            ],
+
+            baseSpeedCoeff: 0.85,
+            baseMinimumDamageCoeff: 1.05,
+            baseMaximumDamageCoeff: 1.25,
+            baseAccuracyCoeff: 1,
+
+            maxTargets: 1,
+        },
+        99: {
+            id: 99,
+            abilityName: 'Bestial Camouflage',
+            abilityImage: '/images/combat/ability_icons/camo.png',
+            description: 'Blend into your surroundings like the predators of the forest.',
+            damageType: 'Melee',
+            cooldown: 30000,
+
+            damageScaling: [{ affinity: 'Melee', scaling: 1 }],
+            accuracyScaling: [{ affinity: 'Melee', scaling: 1 }],
+
+            baseSpeedCoeff: 0.25,
+            baseMinimumDamageCoeff: 0.01,
+            baseMaximumDamageCoeff: 0.01,
+            baseAccuracyCoeff: 1,
+
+            dealsNoDamage: true,
+
+            selfBuff: {
+                onlyOnHit: false,
+                enchantmentApply: 8015,
+                enchantmentStrength: 5,
+                enchantmentChanceToApply: 1,
+                enchantmentAmount: 2,
+            },
 
             maxTargets: 1,
         },
