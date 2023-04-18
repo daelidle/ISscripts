@@ -1725,7 +1725,7 @@ class IdlescapeGameData {
         10016: {
             id: 10016,
             name: 'Nigh-Invincibility',
-            strengthPerLevel: 0.33,
+            strengthPerLevel: 0.25,
             setRequirements: [{ count: 6, strength: 1 }],
             combat: false,
             statBuffs: [
@@ -1739,6 +1739,47 @@ class IdlescapeGameData {
                 `Increases protection, resistance, and stamina by ${Math.round(
                     enchantmentStrength * strengthPerLevel * 100
                 )}%.`,
+            // endclient
+        },
+        10017: {
+            id: 10017,
+            name: 'Bestial Fury',
+            strengthPerLevel: 0.5,
+            setRequirements: [{ count: 2, strength: 1 }],
+            combat: false,
+            statBuffs: [
+                { path: 'armor.agility', additivePerLevel: 0, multiplicativePerLevel: 0.5 },
+                { path: 'weapon.strength', additivePerLevel: 0, multiplicativePerLevel: 0.15 },
+                { path: 'weapon.dexterity', additivePerLevel: 0, multiplicativePerLevel: 0.15 },
+            ],
+            // client
+            buffIcon: '/images/magic/buffs/fishing.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases agility by ${Math.round(enchantmentStrength * 0.5 * 100)}% and strength and dexterity by ${(
+                    enchantmentStrength *
+                    0.15 *
+                    100
+                ).toFixed(1)}%.`,
+            // endclient
+        },
+        10018: {
+            id: 10018,
+            name: 'Infernal Strength',
+            strengthPerLevel: 0.075,
+            setRequirements: [
+                { count: 2, strength: 1 },
+                { count: 3, strength: 2 },
+                { count: 4, strength: 3 },
+                { count: 5, strength: 4 },
+                { count: 6, strength: 5 },
+                { count: 7, strength: 6 },
+            ],
+            combat: false,
+            statBuffs: [{ path: 'weapon.strength', additivePerLevel: 0, multiplicativePerLevel: 0.075 }],
+            // client
+            buffIcon: '/images/magic/buffs/fishing.png',
+            getTooltip: (enchantmentStrength, strengthPerLevel) =>
+                `Increases strength by ${(enchantmentStrength * strengthPerLevel * 100).toFixed(1)}%.`,
             // endclient
         },
     };
@@ -1761,7 +1802,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'Heat is used to smelt bars and cook food. You can get heat by burning various items such as logs, branches and coal.',
             class: 'heat',
-            tags: [],
+            tags: ['heat'],
         },
         3: {
             id: 3,
@@ -1871,7 +1912,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'Platinum is used to purchase items from the Platinum Shop and to purchase server-wide Global Buffs.',
             class: 'platinum',
-            tags: [],
+            tags: ['platinum'],
             rarity: 'legendary',
         },
         50: {
@@ -1883,7 +1924,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/book.png',
             extraTooltipInfo: 'A dusty tome. Perhaps I should read it?',
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         51: {
             name: 'Task',
@@ -1893,7 +1934,7 @@ class IdlescapeGameData {
             altItemImage: '/images/christmas/wishlist.png',
             extraTooltipInfo: 'Adventure awaits! HUZZAH!',
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         60: {
             id: 60,
@@ -2111,7 +2152,7 @@ class IdlescapeGameData {
             itemImage: 'images/fishing/seaweed.png',
             extraTooltipInfo: 'Smells real bad.',
             class: 'fish',
-            tags: ['ingredient', 'cooking'],
+            tags: ['ingredient', 'cooking', 'fishing'],
         },
         72: {
             id: 72,
@@ -2179,7 +2220,7 @@ class IdlescapeGameData {
             itemImage: 'images/fishing/raw_greatwhite.png',
             extraTooltipInfo: 'A deadly creature to be sure.',
             class: 'fish',
-            tags: ['ingredient', 'fish', 'cooking'],
+            tags: ['ingredient', 'fish', 'cooking', 'fishing'],
         },
         76: {
             id: 76,
@@ -2369,7 +2410,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'It may not be what plants crave, but you could probably mix this with sand to make fertilizer.',
             class: 'ore',
-            tags: ['mining', 'smithing'],
+            tags: ['mining'],
         },
         109: {
             id: 109,
@@ -2385,7 +2426,7 @@ class IdlescapeGameData {
             itemImage: '/images/mining/stone.png',
             extraTooltipInfo: "This doesn't seem useful.",
             class: 'ore',
-            tags: ['mining', 'smithing'],
+            tags: ['mining'],
         },
         110: {
             id: 110,
@@ -2402,7 +2443,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "Some particularly nutritious sand can be used to create fertilizer, though eating the sand itself doesn't seem like a good idea...",
             class: 'ore',
-            tags: ['mining', 'smithing'],
+            tags: ['mining'],
         },
         111: {
             id: 111,
@@ -2418,7 +2459,7 @@ class IdlescapeGameData {
             itemImage: '/images/mining/silver.png',
             extraTooltipInfo: 'A great material for channeling magic essence.',
             class: 'ore',
-            tags: ['mining', 'smithing'],
+            tags: ['mining', 'enchanting'],
         },
         112: {
             id: 112,
@@ -2436,7 +2477,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "Burn it up to make heat! It's okay, the industrial revolution hasn't happened yet so you're safe from environmental activists.",
             class: 'ore',
-            tags: ['mining', 'smithing'],
+            tags: ['mining', 'heat'],
         },
         113: {
             id: 113,
@@ -2452,7 +2493,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/rune_slate.png',
             extraTooltipInfo: 'A blank magical canvas.',
             class: 'ore',
-            tags: ['mining', 'smithing'],
+            tags: ['mining', 'runecrafting', 'enchanting'],
         },
         114: {
             id: 114,
@@ -2538,7 +2579,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/carrot_seed.png',
             plantImage: '/images/farming/carrot_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         152: {
             id: 152,
@@ -2561,7 +2602,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/peppercorn_seed.png',
             plantImage: '/images/farming/peppercorn_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         153: {
             id: 153,
@@ -2584,7 +2625,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/sugarcane_seed.png',
             plantImage: '/images/farming/sugarcane_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         154: {
             id: 154,
@@ -2607,7 +2648,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/wheat_seed.png',
             plantImage: '/images/farming/wheat_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         155: {
             id: 155,
@@ -2630,7 +2671,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/potato_seed.png',
             plantImage: '/images/farming/potato_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         156: {
             id: 156,
@@ -2653,7 +2694,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/rice_seed.png',
             plantImage: '/images/farming/rice_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         157: {
             id: 157,
@@ -2676,7 +2717,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/tomato_seed.png',
             plantImage: '/images/farming/tomato_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         158: {
             id: 158,
@@ -2699,7 +2740,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/wildberry_bush_seed.png',
             plantImage: '/images/farming/wildberry_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         159: {
             id: 159,
@@ -2722,7 +2763,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/chili_pepper_seed.png',
             plantImage: '/images/farming/chili_pepper_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         160: {
             id: 160,
@@ -2745,7 +2786,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/pumpkin_seed.png',
             plantImage: '/images/farming/pumpkin_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         161: {
             id: 161,
@@ -2768,7 +2809,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/mushroom_spore.png',
             plantImage: '/images/farming/mushroom_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         170: {
             id: 170,
@@ -2792,7 +2833,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/tree_seed.png',
             plantImage: '/images/farming/normal_tree_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         171: {
             id: 171,
@@ -2816,7 +2857,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/oak_tree_seed.png',
             plantImage: '/images/farming/oak_tree_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         172: {
             id: 172,
@@ -2840,7 +2881,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/willow_tree_seed.png',
             plantImage: '/images/farming/willow_tree_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         173: {
             id: 173,
@@ -2864,7 +2905,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/maple_tree_seed.png',
             plantImage: '/images/farming/maple_tree_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         174: {
             id: 174,
@@ -2888,7 +2929,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/yew_tree_seed.png',
             plantImage: '/images/farming/yew_tree_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         175: {
             id: 175,
@@ -2911,7 +2952,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/banana_tree_seed.png',
             plantImage: '/images/farming/banana_tree_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         176: {
             id: 176,
@@ -2936,7 +2977,7 @@ class IdlescapeGameData {
 
             itemImage: '/images/farming/apple_tree_seed.png',
             plantImage: '/images/farming/apple_tree_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         177: {
             id: 177,
@@ -2966,7 +3007,7 @@ class IdlescapeGameData {
             itemImage: '/images/farming/elder_tree_seed.png',
             extraTooltipInfo: 'Every type of forest can be traced back to one of these trees.',
             plantImage: '/images/farming/elder_tree_plant.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
             rarity: 'uncommon',
         },
         180: {
@@ -2991,7 +3032,7 @@ class IdlescapeGameData {
             itemImage: '/images/farming/sageberry_seed.png',
             extraTooltipInfo: 'It may be wise to plant this.',
             plantImage: '/images/farming/sageberry_bush.png',
-            tags: ['seed', 'farming'],
+            tags: ['seed', 'farming', 'foraging'],
         },
         185: {
             id: 185,
@@ -3244,7 +3285,7 @@ class IdlescapeGameData {
             craftingDescription: 'Break down obsidian equipment to extract some potentially usable material.',
             class: 'bar',
             category: 'General',
-            tags: ['mining', 'smithing', 'crafting'],
+            tags: ['mining', 'crafting'],
             requiredResources: [
                 { 1008: 1 },
                 { 1009: 1 },
@@ -3278,7 +3319,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A shard of chaotic essence that is not only contained, but refined. The process to do this is forever lost to the ages.',
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            tags: ['shard'],
         },
         212: {
             id: 212,
@@ -3289,7 +3330,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A shard of dense material that pulsates with life. Could it be the heart of some undying creature?',
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            tags: ['shard'],
         },
         213: {
             id: 213,
@@ -3299,7 +3340,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/runed_stone.png',
             extraTooltipInfo: 'An impossibly heavy stone tablet bearing an unknown rune that still glows with power.',
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            tags: ['shard'],
         },
         214: {
             id: 214,
@@ -3309,7 +3350,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/magma_core.png',
             extraTooltipInfo: 'A chunk of stone with an unquenchable fire burning within. What could you do with this?',
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            tags: ['shard'],
         },
         215: {
             id: 215,
@@ -3320,7 +3361,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'An unrefined splinter of chaotic energy. Though dulled compared to the chaos it was drawn from, it may still have a potent effect.',
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            tags: ['shard'],
         },
         216: {
             id: 216,
@@ -3331,7 +3372,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A splinter of some long lost metal; it has more in common with stone than it does metal and would require a master craftsman to work it.',
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            tags: ['shard'],
         },
         217: {
             id: 217,
@@ -3342,7 +3383,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A somewhat workable shard of frozen stone sourced from the frozen wastes within the Valley of Giants. Appears to be a material commonly used by Ice Giants to form their accessories; perhaps you could make something useful with it?',
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            tags: ['shard'],
         },
         301: {
             id: 301,
@@ -3359,7 +3400,7 @@ class IdlescapeGameData {
             itemImage: '/images/foraging/branch.png',
             class: 'log',
             extraTooltipInfo: 'Used as a crafting material or turned into heat.',
-            tags: ['foraging'],
+            tags: ['foraging', 'heat'],
         },
         302: {
             id: 302,
@@ -3380,7 +3421,7 @@ class IdlescapeGameData {
             class: 'log',
             extraTooltipInfo: 'Used as a crafting material or turned into heat.',
             category: 'General',
-            tags: ['foraging', 'crafting'],
+            tags: ['foraging', 'crafting', 'heat'],
             requiredResources: [{ 301: 20 }],
         },
         303: {
@@ -3398,7 +3439,7 @@ class IdlescapeGameData {
             itemImage: '/images/foraging/oak_log.png',
             class: 'log',
             extraTooltipInfo: 'Used as a crafting material or turned into heat.',
-            tags: ['foraging'],
+            tags: ['foraging', 'heat'],
         },
         304: {
             id: 304,
@@ -3415,7 +3456,7 @@ class IdlescapeGameData {
             itemImage: '/images/foraging/willow_log.png',
             class: 'log',
             extraTooltipInfo: 'Used as a crafting material or turned into heat.',
-            tags: ['foraging'],
+            tags: ['foraging', 'heat'],
         },
         305: {
             id: 305,
@@ -3432,7 +3473,7 @@ class IdlescapeGameData {
             itemImage: '/images/foraging/maple_log.png',
             class: 'log',
             extraTooltipInfo: 'Used as a crafting material or turned into heat.',
-            tags: ['foraging'],
+            tags: ['foraging', 'heat'],
         },
         306: {
             id: 306,
@@ -3449,7 +3490,7 @@ class IdlescapeGameData {
             itemImage: '/images/foraging/yew_log.png',
             class: 'log',
             extraTooltipInfo: 'Used as a crafting material or turned into heat.',
-            tags: ['foraging'],
+            tags: ['foraging', 'heat'],
             rarity: 'rare',
         },
         307: {
@@ -3467,7 +3508,7 @@ class IdlescapeGameData {
             itemImage: '/images/foraging/elder_log.png',
             class: 'log',
             extraTooltipInfo: 'Used as a crafting material or turned into heat.',
-            tags: ['foraging'],
+            tags: ['foraging', 'heat'],
             rarity: 'rare',
         },
         400: {
@@ -3481,7 +3522,7 @@ class IdlescapeGameData {
             itemImage: '/images/mining/sapphire.png',
             class: 'gem',
             extraTooltipInfo: 'An inexpensive blue gem that may be used for crafting.',
-            tags: [],
+            tags: ['mining', 'gem'],
         },
         401: {
             id: 401,
@@ -3494,7 +3535,7 @@ class IdlescapeGameData {
             itemImage: '/images/mining/emerald.png',
             class: 'gem',
             extraTooltipInfo: 'An inexpensive green gem that may be used for crafting.',
-            tags: [],
+            tags: ['mining', 'gem'],
         },
         402: {
             id: 402,
@@ -3507,7 +3548,7 @@ class IdlescapeGameData {
             itemImage: '/images/mining/ruby.png',
             class: 'gem',
             extraTooltipInfo: 'An uncommon red gem that may be used for crafting.',
-            tags: [],
+            tags: ['mining', 'gem'],
         },
         403: {
             id: 403,
@@ -3519,8 +3560,8 @@ class IdlescapeGameData {
 
             itemImage: '/images/mining/diamond.png',
             class: 'gem',
-            extraTooltipInfo: 'An uncommon gem that may be used for crafting. #lWA2pjMjpBs',
-            tags: [],
+            extraTooltipInfo: 'An uncommon gem that may be used for crafting.',
+            tags: ['mining', 'gem'],
         },
         404: {
             id: 404,
@@ -3534,7 +3575,7 @@ class IdlescapeGameData {
             class: 'gem',
             extraTooltipInfo:
                 'A rare black gem that may be used for crafting. It is said that you can see the whole universe inside of one of these.',
-            tags: [],
+            tags: ['mining', 'gem'],
             rarity: 'uncommon',
         },
         500: {
@@ -3739,7 +3780,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/air_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 3: 400, 113: 1 }],
         },
         511: {
@@ -3754,7 +3795,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/earth_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 4: 400, 113: 1 }],
         },
         512: {
@@ -3769,7 +3810,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/fire_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 5: 400, 113: 1 }],
         },
         513: {
@@ -3784,7 +3825,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/water_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 6: 400, 113: 1 }],
         },
         514: {
@@ -3799,7 +3840,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/blood_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 7: 400, 113: 1 }],
         },
         515: {
@@ -3814,7 +3855,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/death_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 8: 400, 113: 1 }],
         },
         516: {
@@ -3829,7 +3870,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/chaos_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 9: 400, 113: 1 }],
         },
         517: {
@@ -3844,7 +3885,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/nature_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 10: 400, 113: 1 }],
         },
         518: {
@@ -3861,7 +3902,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
             actionButton: 'Craft',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 11: 400, 113: 1 }],
         },
         519: {
@@ -3876,7 +3917,7 @@ class IdlescapeGameData {
             itemImage: '/images/runecrafting/cosmic_rune.png',
             extraTooltipInfo: 'A slate imbued with magic essence. Often needed to perform magic.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'enchanting'],
             requiredResources: [{ 12: 400, 113: 1 }],
         },
         520: {
@@ -3912,7 +3953,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 10 to your effective mining level when determining speed.',
             category: 'Mining',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'mining'],
             equipmentStats: {
                 slot: 'pickaxe',
                 toolBoost: [{ skill: 'mining', boost: 10 }],
@@ -3940,7 +3981,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 20 to your mining level when determining speed.',
             category: 'Mining',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'mining'],
             equipmentStats: {
                 slot: 'pickaxe',
                 toolBoost: [{ skill: 'mining', boost: 20 }],
@@ -3968,7 +4009,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 30 to your mining level when determining speed.',
             category: 'Mining',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'mining'],
             equipmentStats: {
                 slot: 'pickaxe',
                 toolBoost: [{ skill: 'mining', boost: 30 }],
@@ -3996,7 +4037,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 40 to your mining level when determining speed.',
             category: 'Mining',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'mining'],
             equipmentStats: {
                 slot: 'pickaxe',
                 toolBoost: [{ skill: 'mining', boost: 40 }],
@@ -4025,7 +4066,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 50 to your mining level when determining speed.',
             category: 'Mining',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'mining'],
             equipmentStats: {
                 slot: 'pickaxe',
                 toolBoost: [{ skill: 'mining', boost: 50 }],
@@ -4054,7 +4095,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 60 to your mining level when determining speed.',
             category: 'Mining',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'mining'],
             equipmentStats: {
                 slot: 'pickaxe',
                 toolBoost: [{ skill: 'mining', boost: 60 }],
@@ -4084,7 +4125,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A legendary mining tool using lost dwarven technology.',
             category: 'Mining',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'mining'],
             equipmentStats: {
                 slot: 'pickaxe',
                 toolBoost: [{ skill: 'mining', boost: 90 }],
@@ -4113,7 +4154,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 10 to your effective foraging level when determining speed.',
             category: 'Foraging',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'foraging'],
             equipmentStats: {
                 slot: 'hatchet',
                 toolBoost: [{ skill: 'foraging', boost: 10 }],
@@ -4141,7 +4182,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 20 to your foraging level when determining speed.',
             category: 'Foraging',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'foraging'],
             equipmentStats: {
                 slot: 'hatchet',
                 toolBoost: [{ skill: 'foraging', boost: 20 }],
@@ -4169,7 +4210,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 30 to your foraging level when determining speed.',
             category: 'Foraging',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'foraging'],
             equipmentStats: {
                 slot: 'hatchet',
                 toolBoost: [{ skill: 'foraging', boost: 30 }],
@@ -4197,7 +4238,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 40 to your foraging level when determining speed.',
             category: 'Foraging',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'foraging'],
             equipmentStats: {
                 slot: 'hatchet',
                 toolBoost: [{ skill: 'foraging', boost: 40 }],
@@ -4226,7 +4267,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 50 to your foraging level when determining speed.',
             category: 'Foraging',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'foraging'],
             equipmentStats: {
                 slot: 'hatchet',
                 toolBoost: [{ skill: 'foraging', boost: 50 }],
@@ -4255,7 +4296,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 60 to your foraging level when determining speed.',
             category: 'Foraging',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'foraging'],
             equipmentStats: {
                 slot: 'hatchet',
                 toolBoost: [{ skill: 'foraging', boost: 60 }],
@@ -4284,7 +4325,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A legendary foraging tool. It appears to actually be alive.',
             category: 'Foraging',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'foraging'],
             equipmentStats: {
                 slot: 'hatchet',
                 toolBoost: [{ skill: 'foraging', boost: 90 }],
@@ -4752,7 +4793,7 @@ class IdlescapeGameData {
             class: 'equipment',
             extraTooltipInfo:
                 'An ancient energy keeps you from attempting to absorb the talisman. With this you could wield an aspect of ice.',
-            tags: ['jewelry', 'melee', 'crafting'],
+            tags: ['jewelry', 'magic', 'crafting'],
             enchantable: true,
             equipmentStats: {
                 grantedAbility: [8],
@@ -4807,7 +4848,7 @@ class IdlescapeGameData {
             class: 'equipment',
             extraTooltipInfo:
                 'An ancient energy keeps you from attempting to absorb the talisman. It is so light it could almost float in the air on its own.',
-            tags: ['jewelry', 'crafting'],
+            tags: ['jewelry', 'range', 'crafting'],
             enchantable: true,
             equipmentStats: {
                 grantedAbility: [63, 64],
@@ -4837,7 +4878,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 10 to your effective farming level when determining plant yield.',
             category: 'Farming',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'farming'],
             equipmentStats: {
                 slot: 'hoe',
                 toolBoost: [{ skill: 'farming', boost: 10 }],
@@ -4865,7 +4906,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 20 to your farming level when determining plant yield.',
             category: 'Farming',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'farming'],
             equipmentStats: {
                 slot: 'hoe',
                 toolBoost: [{ skill: 'farming', boost: 20 }],
@@ -4893,7 +4934,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 30 to your farming level when determining plant yield.',
             category: 'Farming',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'farming'],
             equipmentStats: {
                 slot: 'hoe',
                 toolBoost: [{ skill: 'farming', boost: 30 }],
@@ -4921,7 +4962,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 40 to your farming level when determining plant yield.',
             category: 'Farming',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'farming'],
             equipmentStats: {
                 slot: 'hoe',
                 toolBoost: [{ skill: 'farming', boost: 40 }],
@@ -4950,7 +4991,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 50 to your farming level when determining plant yield.',
             category: 'Farming',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'farming'],
             equipmentStats: {
                 slot: 'hoe',
                 toolBoost: [{ skill: 'farming', boost: 50 }],
@@ -4979,7 +5020,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 60 to your farming level when determining plant yield.',
             category: 'Farming',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'farming'],
             equipmentStats: {
                 slot: 'hoe',
                 toolBoost: [{ skill: 'farming', boost: 60 }],
@@ -5008,7 +5049,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 10 to your effective smithing level.',
             category: 'Skilling',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'smithing'],
             equipmentStats: {
                 slot: 'tongs',
                 toolBoost: [{ skill: 'smithing', boost: 10 }],
@@ -5036,7 +5077,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 20 to your smithing level.',
             category: 'Skilling',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'smithing'],
             equipmentStats: {
                 slot: 'tongs',
                 toolBoost: [{ skill: 'smithing', boost: 20 }],
@@ -5064,7 +5105,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 30 to your smithing level.',
             category: 'Skilling',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'smithing'],
             equipmentStats: {
                 slot: 'tongs',
                 toolBoost: [{ skill: 'smithing', boost: 30 }],
@@ -5092,7 +5133,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 40 to your smithing level.',
             category: 'Skilling',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'smithing'],
             equipmentStats: {
                 slot: 'tongs',
                 toolBoost: [{ skill: 'smithing', boost: 40 }],
@@ -5120,7 +5161,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 50 to your smithing level.',
             category: 'Skilling',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'smithing'],
             equipmentStats: {
                 slot: 'tongs',
                 toolBoost: [{ skill: 'smithing', boost: 50 }],
@@ -5148,7 +5189,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Adds 60 to your smithing level.',
             category: 'Skilling',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'smithing'],
             equipmentStats: {
                 slot: 'tongs',
                 toolBoost: [{ skill: 'smithing', boost: 60 }],
@@ -5167,7 +5208,7 @@ class IdlescapeGameData {
             craftingDescription: 'A tome of magic that grants you minor benefits for augmentation.',
             extraTooltipInfo: 'A tome of magic that grants you minor benefits for augmentation.',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'enchanting'],
             equipmentStats: {
                 slot: 'tome',
                 toolBoost: [{ skill: 'enchanting', boost: 10 }],
@@ -5191,7 +5232,7 @@ class IdlescapeGameData {
             craftingDescription: 'A tome of magic that grants you some benefits for augmentation.',
             extraTooltipInfo: 'A tome of magic that grants you some benefits for augmentation.',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'enchanting'],
             equipmentStats: {
                 slot: 'tome',
                 toolBoost: [{ skill: 'enchanting', boost: 20 }],
@@ -5215,7 +5256,7 @@ class IdlescapeGameData {
             craftingDescription: 'A tome of magic that grants you benefits for augmentation.',
             extraTooltipInfo: 'A tome of magic that grants you benefits for augmentation.',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'enchanting'],
             equipmentStats: {
                 slot: 'tome',
                 toolBoost: [{ skill: 'enchanting', boost: 30 }],
@@ -5239,7 +5280,7 @@ class IdlescapeGameData {
             craftingDescription: 'A tome of magic that grants you strong benefits for augmentation.',
             extraTooltipInfo: 'A tome of magic that grants you strong benefits for augmentation.',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'enchanting'],
             equipmentStats: {
                 slot: 'tome',
                 toolBoost: [{ skill: 'enchanting', boost: 40 }],
@@ -5263,7 +5304,7 @@ class IdlescapeGameData {
             craftingDescription: 'An ancient tome of magic that grants you the strongest benefits for augmentation.',
             extraTooltipInfo: 'An ancient tome of magic that grants you the strongest benefits for augmentation.',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'enchanting'],
             equipmentStats: {
                 slot: 'tome',
                 toolBoost: [{ skill: 'enchanting', boost: 50 }],
@@ -5292,7 +5333,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A rough net assembled from branches. Used as part of tackleboxes and other fishing gear.',
             class: 'fish',
             category: 'Fishing',
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             requiredResources: [{ 301: 150 }],
         },
         691: {
@@ -5310,7 +5351,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'String on a stick. Used as part of tackleboxes and other fishing gear.',
             class: 'fish',
             category: 'Fishing',
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             requiredResources: [{ 301: 200, 302: 100 }],
         },
         692: {
@@ -5328,7 +5369,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'An iron cage. Used as part of tackleboxes and other fishing gear.',
             class: 'fish',
             category: 'Fishing',
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             requiredResources: [{ 202: 50, 303: 200 }],
         },
         693: {
@@ -5346,7 +5387,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A barbed spear. Used as part of tackleboxes and other fishing gear.',
             class: 'fish',
             category: 'Fishing',
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             requiredResources: [{ 205: 25, 304: 200 }],
         },
         700: {
@@ -5360,7 +5401,7 @@ class IdlescapeGameData {
             itemImage: 'images/fishing/feather.png',
             description: 'Feather, from a chicken most likely.',
             class: 'fish',
-            tags: ['fishing'],
+            tags: [],
         },
         701: {
             id: 701,
@@ -5395,7 +5436,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'These can be burned for some heat.',
             class: 'log',
             category: 'General',
-            tags: ['foraging', 'crafting'],
+            tags: ['crafting', 'heat'],
             requiredResources: [{ 302: 10, 701: 1 }],
         },
         703: {
@@ -5414,7 +5455,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'These can be burned for moderate heat.',
             class: 'log',
             category: 'General',
-            tags: ['foraging', 'crafting'],
+            tags: ['crafting', 'heat'],
             requiredResources: [{ 303: 10, 701: 2 }],
         },
         704: {
@@ -5433,7 +5474,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'These can be burned for high heat.',
             class: 'log',
             category: 'General',
-            tags: ['foraging', 'crafting'],
+            tags: ['crafting', 'heat'],
             requiredResources: [{ 304: 10, 701: 3 }],
         },
         705: {
@@ -5452,7 +5493,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'These can be burned for a lot of heat.',
             class: 'log',
             category: 'General',
-            tags: ['foraging', 'crafting'],
+            tags: ['crafting', 'heat'],
             requiredResources: [{ 305: 10, 701: 4 }],
         },
         706: {
@@ -5471,7 +5512,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'These can be burned for massive heat.',
             class: 'log',
             category: 'General',
-            tags: ['foraging', 'crafting'],
+            tags: ['crafting', 'heat'],
             requiredResources: [{ 306: 10, 701: 5 }],
         },
         707: {
@@ -5490,7 +5531,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'These can be burned for massive heat.',
             class: 'log',
             category: 'General',
-            tags: ['foraging', 'crafting'],
+            tags: ['crafting', 'heat'],
             requiredResources: [{ 307: 10, 701: 6 }],
             rarity: 'uncommon',
         },
@@ -5532,7 +5573,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/geode.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['mining', 'chest'],
             rarity: 'uncommon',
         },
         901: {
@@ -5546,7 +5587,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/bird_nest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['foraging', 'chest'],
             rarity: 'uncommon',
         },
         902: {
@@ -5560,7 +5601,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/sunken_treasure.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['fishing', 'chest'],
             rarity: 'uncommon',
         },
         903: {
@@ -5574,7 +5615,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/satchel.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'uncommon',
         },
         904: {
@@ -5588,7 +5629,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/unsunken_treasure.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest', 'fishing'],
             rarity: 'rare',
         },
         905: {
@@ -5602,7 +5643,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/greater_geode.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest', 'mining'],
             rarity: 'rare',
         },
         906: {
@@ -5616,7 +5657,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/greater_bird_nest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest', 'foraging'],
             rarity: 'rare',
         },
         1000: {
@@ -7021,7 +7062,7 @@ class IdlescapeGameData {
             visual: 'med-helm',
             craftingDescription: 'Requires Defense level of 1 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 offensiveDamageAffinity: {
@@ -7062,7 +7103,7 @@ class IdlescapeGameData {
             visual: 'med-helm',
             craftingDescription: 'Requires Defense level of 10 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 offensiveDamageAffinity: {
@@ -7102,7 +7143,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'med-helm',
             category: ['armor', 'combat'],
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 offensiveDamageAffinity: {
@@ -7145,7 +7186,7 @@ class IdlescapeGameData {
             visual: 'med-helm',
             craftingDescription: 'Requires Defense level of 30 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 offensiveDamageAffinity: {
@@ -7186,7 +7227,7 @@ class IdlescapeGameData {
             visual: 'med-helm',
             craftingDescription: 'Requires Defense level of 40 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 offensiveDamageAffinity: {
@@ -7228,7 +7269,7 @@ class IdlescapeGameData {
             visual: 'med-helm',
             craftingDescription: 'Requires Defense level of 50 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 offensiveDamageAffinity: {
@@ -7270,7 +7311,7 @@ class IdlescapeGameData {
             visual: 'med-helm',
             craftingDescription: 'Requires Defense level of 60 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 offensiveDamageAffinity: {
@@ -7621,7 +7662,7 @@ class IdlescapeGameData {
             visual: 'shield',
             craftingDescription: 'Requires Defense level of 1 to wield.',
             category: 'Melee',
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['armor', 'offhand', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
@@ -7666,7 +7707,7 @@ class IdlescapeGameData {
             visual: 'shield',
             craftingDescription: 'Requires Defense level of 10 to wield.',
             category: 'Melee',
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['armor', 'offhand', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
@@ -7709,7 +7750,7 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/black_shield_icon.png',
             class: 'equipment',
             visual: 'shield',
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['armor', 'offhand', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
@@ -7756,7 +7797,7 @@ class IdlescapeGameData {
             visual: 'shield',
             craftingDescription: 'Requires Defense level of 30 to wield.',
             category: 'Melee',
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['armor', 'offhand', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
@@ -7801,7 +7842,7 @@ class IdlescapeGameData {
             visual: 'shield',
             craftingDescription: 'Requires Defense level of 40 to wield.',
             category: 'Melee',
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['armor', 'offhand', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
@@ -7847,7 +7888,7 @@ class IdlescapeGameData {
             visual: 'shield',
             craftingDescription: 'Requires Defense level of 50 to wield.',
             category: 'Melee',
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['armor', 'offhand', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
@@ -7893,7 +7934,7 @@ class IdlescapeGameData {
             visual: 'shield',
             craftingDescription: 'Requires Defense level of 60 to wield.',
             category: 'Melee',
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['armor', 'offhand', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
@@ -7935,7 +7976,7 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/door_icon.png',
             class: 'equipment',
             visual: 'door',
-            tags: ['armor', 'weapon', 'melee'],
+            tags: ['armor', 'offhand', 'melee'],
             extraTooltipInfo:
                 "A portion of a castle's door that can be used as a shield. Incredibly heavy, but very protective!",
             equipmentStats: {
@@ -8028,7 +8069,7 @@ class IdlescapeGameData {
             visual: 'chainbody',
             craftingDescription: 'Requires Defense level of 1 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Melee: 1.1 },
@@ -8114,7 +8155,7 @@ class IdlescapeGameData {
             visual: 'chainbody',
             craftingDescription: 'Requires Defense level of 10 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Melee: 1.1 },
@@ -8200,7 +8241,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'chainbody',
             category: ['armor', 'combat'],
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Melee: 1.1 },
@@ -8288,7 +8329,7 @@ class IdlescapeGameData {
             visual: 'chainbody',
             craftingDescription: 'Requires Defense level of 30 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Melee: 1.1 },
@@ -8375,7 +8416,7 @@ class IdlescapeGameData {
             visual: 'chainbody',
             craftingDescription: 'Requires Defense level of 40 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Melee: 1.1 },
@@ -8463,7 +8504,7 @@ class IdlescapeGameData {
             visual: 'chainbody',
             craftingDescription: 'Requires Defense level of 50 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Melee: 1.1 },
@@ -8551,7 +8592,7 @@ class IdlescapeGameData {
             visual: 'chainbody',
             craftingDescription: 'Requires Defense level of 60 to wield.',
             category: 'Melee',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Melee: 1.1 },
@@ -9001,7 +9042,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'These boots cannot be traded.',
             class: 'equipment',
             visual: 'boots',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'boots',
                 armorBonus: { protection: 14, resistance: 14, agility: 0, stamina: 0 },
@@ -9029,7 +9070,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'These boots cannot be traded.',
             class: 'equipment',
             visual: 'boots',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'boots',
                 armorBonus: { protection: 16, resistance: 16, agility: 0, stamina: 0 },
@@ -9052,10 +9093,10 @@ class IdlescapeGameData {
 
             itemImage: '/images/combat/equipment/stygian_boots.png',
             itemIcon: '/images/combat/equipment/stygian_boots_icon.png',
-            extraTooltipInfo: 'These boots cannot be traded. #bootcoin',
+            extraTooltipInfo: 'These boots cannot be traded.',
             class: 'equipment',
             visual: 'boots',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'boots',
                 armorBonus: { protection: 18, resistance: 18, agility: 0, stamina: 0 },
@@ -9083,7 +9124,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Gloves cannot be traded.',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
                 weaponBonus: { strength: 2, intellect: 2, dexterity: 2 },
@@ -9116,7 +9157,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Gloves cannot be traded.',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
                 weaponBonus: { strength: 3, intellect: 3, dexterity: 3 },
@@ -9149,7 +9190,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Gloves cannot be traded.',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
                 weaponBonus: { strength: 5, intellect: 5, dexterity: 5 },
@@ -9184,7 +9225,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Gloves cannot be traded.',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
                 weaponBonus: { strength: 6, intellect: 6, dexterity: 6 },
@@ -9217,7 +9258,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Gloves cannot be traded.',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
                 weaponBonus: { strength: 7, intellect: 7, dexterity: 7 },
@@ -9251,7 +9292,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Gloves cannot be traded.',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
                 weaponBonus: { strength: 8, intellect: 8, dexterity: 8 },
@@ -9281,7 +9322,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Gloves cannot be traded.',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
                 weaponBonus: { strength: 9, intellect: 9, dexterity: 9 },
@@ -10172,7 +10213,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'robetop',
             craftingDescription: 'Requires Defense level of 1 to wield.',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
@@ -10212,7 +10253,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
@@ -10252,7 +10293,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
@@ -10292,7 +10333,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
@@ -10332,7 +10373,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
@@ -10373,7 +10414,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
@@ -10414,7 +10455,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_top.png',
             class: 'equipment',
             visual: 'robetop',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 defensiveDamageAffinity: {
@@ -10456,7 +10497,7 @@ class IdlescapeGameData {
             twoSided: true,
             visual: 'hood',
             craftingDescription: 'Requires Defense level of 1 to wield.',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
@@ -10497,7 +10538,7 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
@@ -10538,7 +10579,7 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
@@ -10579,7 +10620,7 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
@@ -10620,7 +10661,7 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
@@ -10661,7 +10702,7 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
@@ -10703,7 +10744,7 @@ class IdlescapeGameData {
             class: 'equipment',
             twoSided: true,
             visual: 'hood',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: {
@@ -10743,7 +10784,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'robebottom',
             craftingDescription: 'Requires Defense level of 1 to wield.',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
@@ -10783,7 +10824,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
@@ -10823,7 +10864,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
@@ -10863,7 +10904,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
@@ -10903,7 +10944,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
@@ -10943,7 +10984,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
@@ -10984,7 +11025,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/robe_legs.png',
             class: 'equipment',
             visual: 'robebottom',
-            tags: ['armor', 'range', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: {
@@ -11027,7 +11068,7 @@ class IdlescapeGameData {
             visual: 'recurvebow',
             craftingDescription: 'Recurve Bow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.4 },
@@ -11068,7 +11109,7 @@ class IdlescapeGameData {
             visual: 'recurvebow',
             craftingDescription: 'Recurve Bow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.4 },
@@ -11109,7 +11150,7 @@ class IdlescapeGameData {
             visual: 'recurvebow',
             craftingDescription: 'Recurve Bow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.4 },
@@ -11150,7 +11191,7 @@ class IdlescapeGameData {
             visual: 'recurvebow',
             craftingDescription: 'Recurve Bow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.4 },
@@ -11191,7 +11232,7 @@ class IdlescapeGameData {
             visual: 'recurvebow',
             craftingDescription: 'Recurve Bow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.4 },
@@ -11232,7 +11273,7 @@ class IdlescapeGameData {
             visual: 'recurvebow',
             craftingDescription: 'Recurve Bow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.4 },
@@ -11274,7 +11315,7 @@ class IdlescapeGameData {
             visual: 'recurvebow',
             craftingDescription: 'Recurve Bow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.4 },
@@ -11315,7 +11356,7 @@ class IdlescapeGameData {
             visual: 'longbow',
             craftingDescription: 'Longbow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
@@ -11363,7 +11404,7 @@ class IdlescapeGameData {
             visual: 'longbow',
             craftingDescription: 'Longbow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
@@ -11411,7 +11452,7 @@ class IdlescapeGameData {
             visual: 'longbow',
             craftingDescription: 'Longbow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
@@ -11459,7 +11500,7 @@ class IdlescapeGameData {
             visual: 'longbow',
             craftingDescription: 'Longbow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
@@ -11507,7 +11548,7 @@ class IdlescapeGameData {
             visual: 'longbow',
             craftingDescription: 'Longbow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
@@ -11555,7 +11596,7 @@ class IdlescapeGameData {
             visual: 'longbow',
             craftingDescription: 'Longbow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
@@ -11604,7 +11645,7 @@ class IdlescapeGameData {
             visual: 'longbow',
             craftingDescription: 'Longbow WIP',
             category: 'Range',
-            tags: ['range', 'weapon', 'crafting'],
+            tags: ['range', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
@@ -12430,11 +12471,12 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 20 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_wand.png',
-            itemIcon: '/images/combat/equipment/magic/academy_wand.png',
+            itemImage: '/images/combat/equipment/magic/academy_wand.png',
+            itemIcon: '/images/combat/equipment/magic/academy_wand_icon.png',
             class: 'equipment',
             visual: 'wand',
-            craftingDescription: 'Wand WIP',
+            craftingDescription:
+                'The instructional manuals you found DEFINITELY indicated you should hold it upside-down. You do know how to read though, right?',
             category: 'Magic',
             tags: ['magic', 'weapon', 'crafting'],
             equipmentStats: {
@@ -12479,8 +12521,8 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 30 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_wand.png',
-            itemIcon: '/images/combat/equipment/magic/imbued_wand.png',
+            itemImage: '/images/combat/equipment/magic/imbued_wand.png',
+            itemIcon: '/images/combat/equipment/magic/imbued_wand_icon.png',
             class: 'equipment',
             visual: 'wand',
             craftingDescription: 'Wand WIP',
@@ -12682,7 +12724,7 @@ class IdlescapeGameData {
             visual: 'staff',
             craftingDescription: 'Staff WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -12731,7 +12773,7 @@ class IdlescapeGameData {
             visual: 'staff',
             craftingDescription: 'Staff WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -12774,13 +12816,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 20 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_staff.png',
-            itemIcon: '/images/combat/equipment/magic/academy_staff.png',
+            itemImage: '/images/combat/equipment/magic/academy_staff.png',
+            itemIcon: '/images/combat/equipment/magic/academy_staff_icon.png',
             class: 'equipment',
             visual: 'staff',
             craftingDescription: 'Staff WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -12823,13 +12865,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 30 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_staff.png',
-            itemIcon: '/images/combat/equipment/magic/imbued_staff.png',
+            itemImage: '/images/combat/equipment/magic/imbued_staff.png',
+            itemIcon: '/images/combat/equipment/magic/imbued_staff_icon.png',
             class: 'equipment',
             visual: 'staff',
             craftingDescription: 'Staff WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -12872,13 +12914,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 40 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_staff.png',
+            itemImage: '/images/combat/equipment/magic/imbued_staff.png',
             itemIcon: '/images/combat/equipment/magic/major_imbued_staff.png',
             class: 'equipment',
             visual: 'staff',
             craftingDescription: 'Staff WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -12921,13 +12963,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 50 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_staff.png',
+            itemImage: '/images/combat/equipment/magic/imbued_staff.png',
             itemIcon: '/images/combat/equipment/magic/greater_imbued_staff.png',
             class: 'equipment',
             visual: 'staff',
             craftingDescription: 'Staff WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -12971,13 +13013,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { magic: 60 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/driftwood_staff.png',
+            itemImage: '/images/combat/equipment/magic/imbued_staff.png',
             itemIcon: '/images/combat/equipment/magic/elder_imbued_staff.png',
             class: 'equipment',
             visual: 'staff',
             craftingDescription: 'Staff WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -13023,9 +13065,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/magic/starter_focus.png',
             class: 'equipment',
             visual: 'focus',
-            craftingDescription: 'Focus WIP',
+            craftingDescription:
+                "A reference book on how to properly cast beginner's magic. Not inherently magical unless you consider your nearly illegible handwriting to be on par with some ancient text.",
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'offhand', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -13060,7 +13103,7 @@ class IdlescapeGameData {
             visual: 'focus',
             craftingDescription: 'Focus WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'offhand', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -13089,13 +13132,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { defense: 20, magic: 20 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/starter_focus.png',
-            itemIcon: '/images/combat/equipment/magic/academy_focus.png',
+            itemImage: '/images/combat/equipment/magic/academy_focus.png',
+            itemIcon: '/images/combat/equipment/magic/academy_focus_icon.png',
             class: 'equipment',
-            visual: 'focus',
+            visual: 'focus-2',
             craftingDescription: 'Focus WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'offhand', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -13124,13 +13167,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { defense: 30, magic: 30 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/starter_focus.png',
-            itemIcon: '/images/combat/equipment/magic/imbued_focus.png',
+            itemImage: '/images/combat/equipment/magic/imbued_focus.png',
+            itemIcon: '/images/combat/equipment/magic/imbued_focus_icon.png',
             class: 'equipment',
-            visual: 'focus',
+            visual: 'focus-3',
             craftingDescription: 'Focus WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'offhand', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -13159,13 +13202,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { defense: 40, magic: 40 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/starter_focus.png',
+            itemImage: '/images/combat/equipment/magic/imbued_focus.png',
             itemIcon: '/images/combat/equipment/magic/major_imbued_focus.png',
             class: 'equipment',
-            visual: 'focus',
+            visual: 'focus-3',
             craftingDescription: 'Focus WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'offhand', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -13194,13 +13237,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { defense: 50, magic: 50 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/starter_focus.png',
+            itemImage: '/images/combat/equipment/magic/imbued_focus.png',
             itemIcon: '/images/combat/equipment/magic/greater_imbued_focus.png',
             class: 'equipment',
-            visual: 'focus',
+            visual: 'focus-3',
             craftingDescription: 'Focus WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'offhand', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -13230,13 +13273,13 @@ class IdlescapeGameData {
             type: 'weapon',
             requiredLevel: { defense: 60, magic: 60 },
             skill: 'crafting',
-            itemImage: '/images/combat/equipment/magic/starter_focus.png',
+            itemImage: '/images/combat/equipment/magic/imbued_focus.png',
             itemIcon: '/images/combat/equipment/magic/elder_focus.png',
             class: 'equipment',
-            visual: 'focus',
+            visual: 'focus-3',
             craftingDescription: 'Focus WIP',
             category: 'Magic',
-            tags: ['magic', 'weapon', 'crafting'],
+            tags: ['magic', 'weapon', 'offhand', 'crafting'],
             equipmentStats: {
                 slot: 'shield',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.25 },
@@ -13573,7 +13616,7 @@ class IdlescapeGameData {
                 "This could help you with cooking even if it doesn't look like much! Grants 2 hidden levels of haste while cooking.",
             class: 'equipment',
             visual: 'lesser-ladle',
-            tags: ['melee', 'onehand', 'weapon', 'crafting'],
+            tags: ['melee', 'onehand', 'weapon', 'crafting', 'cooking'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveAccuracyAffinityRating: { Melee: 10, Magic: 0, Range: 0 },
@@ -13601,7 +13644,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'This could help you with cooking! Grants 2 hidden levels of haste while cooking.',
             class: 'equipment',
             visual: 'ladle',
-            tags: ['melee', 'onehand', 'weapon', 'crafting'],
+            tags: ['melee', 'onehand', 'weapon', 'crafting', 'cooking'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveAccuracyAffinityRating: { Melee: 19, Magic: 0, Range: 0 },
@@ -13630,7 +13673,7 @@ class IdlescapeGameData {
                 "For when you're allowed only a single spoonful. Grants 2 hidden levels of haste while cooking.",
             class: 'equipment',
             visual: 'greater-ladle',
-            tags: ['melee', 'twohand', 'weapon', 'crafting'],
+            tags: ['melee', 'twohand', 'weapon', 'crafting', 'cooking'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveAccuracyAffinityRating: { Melee: 27, Magic: 0, Range: 0 },
@@ -13822,7 +13865,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'This orb of living flame sharpens the senses to an inhuman degree.',
             class: 'equipment',
             visual: 'fire-orb',
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['armor', 'offhand', 'melee', 'crafting'],
             equipmentStats: {
                 grantedAbility: [7],
                 slot: 'shield',
@@ -13857,7 +13900,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "A mere fragment of the legendary spear 'Kalanahmatti' can still be fashioned into a powerful weapon!",
             class: 'bar',
-            tags: ['mining', 'smithing'],
+            tags: ['crafting', 'shard'],
             rarity: 'epic',
         },
         1511: {
@@ -13880,7 +13923,7 @@ class IdlescapeGameData {
             craftingDescription: "Powerful weapon made out of the legendary spear 'Kalanahmatti'.",
             extraTooltipInfo: "This powerful blade is fashioned from a shard of the legendary spear 'Kalanahmatti.'",
             category: 'Melee',
-            tags: ['melee', 'weapon', 'onehand', 'shard', 'fragment', 'crafting'],
+            tags: ['melee', 'weapon', 'onehand', 'crafting'],
             equipmentStats: {
                 grantedAbility: [8, 68],
                 slot: 'weapon',
@@ -13933,7 +13976,7 @@ class IdlescapeGameData {
             category: ['weapon', 'combat'],
             tags: ['melee', 'weapon', 'onehand', 'crafting'],
             equipmentStats: {
-                grantedAbility: [16, 50],
+                grantedAbility: [16, 50, 98, 97],
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
                 offensiveAccuracyAffinityRating: {
@@ -13985,7 +14028,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'crest-of-chaos',
             category: ['armor', 'combat'],
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'smithing'],
             equipmentStats: {
                 grantedAbility: [20],
                 slot: 'helm',
@@ -14017,7 +14060,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'forgotten-soul-axe',
             category: ['weapon', 'combat'],
-            tags: ['melee', 'weapon', 'onehand', 'crafting'],
+            tags: ['melee', 'weapon', 'onehand'],
             equipmentStats: {
                 grantedAbility: [35],
                 slot: 'weapon',
@@ -14067,7 +14110,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'forgotten-soul-scim',
             category: ['weapon', 'combat'],
-            tags: ['melee', 'weapon', 'onehand', 'crafting'],
+            tags: ['melee', 'weapon', 'onehand'],
             equipmentStats: {
                 grantedAbility: [35],
                 slot: 'weapon',
@@ -14110,7 +14153,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Perhaps forgotten, absolutely enraged. Only good for melee!',
             visual: 'forgotten-soul-two',
             category: ['weapon', 'combat'],
-            tags: ['melee', 'weapon', 'twohand', 'crafting'],
+            tags: ['melee', 'weapon', 'twohand'],
             equipmentStats: {
                 grantedAbility: [35],
                 slot: 'weapon',
@@ -14154,10 +14197,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/gargoyle_chain.png',
             class: 'equipment',
             visual: 'chainbody-gargoyle',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee'],
             equipmentStats: {
                 slot: 'body',
-                offensiveDamageAffinity: { Melee: 1.12 },
+                offensiveDamageAffinity: { Melee: 1.12, Piercing: 1.075 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 0.9,
@@ -14170,7 +14213,9 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.strength', value: 0.25 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
             augmentingFailItem: 12014,
@@ -14189,10 +14234,10 @@ class IdlescapeGameData {
             itemImage: '/images/combat/equipment/gargoyle_pants.png',
             class: 'equipment',
             visual: 'platelegs',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee'],
             equipmentStats: {
                 slot: 'legs',
-                offensiveDamageAffinity: { Melee: 1.05 },
+                offensiveDamageAffinity: { Melee: 1.05, Piercing: 1.075 },
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
                 defensiveDamageAffinity: {
                     Melee: 1,
@@ -14206,7 +14251,9 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
+                    { stat: 'weaponBonus.strength', value: 0.25 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
             augmentingFailItem: 12014,
@@ -14226,15 +14273,17 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/gargoyle_boots_icon.png',
             class: 'equipment',
             visual: 'boots',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'melee'],
             equipmentStats: {
                 slot: 'boots',
-                offensiveDamageAffinity: { Melee: 1.05 },
+                offensiveDamageAffinity: { Melee: 1.05, Piercing: 1.075 },
                 armorBonus: { protection: 16, resistance: 16, agility: 0, stamina: 0 },
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 0.1 },
                     { stat: 'armorBonus.resistance', value: 0.1 },
+                    { stat: 'weaponBonus.strength', value: 0.25 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
             augmentingFailItem: 12014,
@@ -14255,10 +14304,10 @@ class IdlescapeGameData {
             twoSided: true,
             class: 'equipment',
             visual: 'gargoyle-helm',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee'],
             equipmentStats: {
                 slot: 'helm',
-                offensiveDamageAffinity: { Melee: 1.15 },
+                offensiveDamageAffinity: { Melee: 1.15, Piercing: 1.075 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 0.9,
@@ -14268,7 +14317,11 @@ class IdlescapeGameData {
                     Slashing: 1,
                 },
                 armorBonus: { protection: 26, resistance: -1, agility: 0, stamina: 0 },
-                augmentationBonus: [{ stat: 'armorBonus.protection', value: 3 / 4 }],
+                augmentationBonus: [
+                    { stat: 'armorBonus.protection', value: 3 / 4 },
+                    { stat: 'weaponBonus.strength', value: 0.25 },
+                ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
             augmentingFailItem: 12014,
@@ -14288,11 +14341,11 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/gargoyle_shield_1.png',
             class: 'equipment',
             visual: 'gargoyle-shield',
-            tags: ['armor', 'weapon', 'melee'],
+            tags: ['armor', 'offhand', 'melee'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
-                offensiveDamageAffinity: { Melee: 1.05 },
+                offensiveDamageAffinity: { Melee: 1.05, Piercing: 1.075 },
                 defensiveDamageAffinity: {
                     Melee: 1,
                     Magic: 0.9,
@@ -14305,7 +14358,9 @@ class IdlescapeGameData {
                 augmentationBonus: [
                     { stat: 'armorBonus.protection', value: 1.25 },
                     { stat: 'armorBonus.stamina', value: 0.1 },
+                    { stat: 'weaponBonus.strength', value: 0.25 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
             augmentingFailItem: 12014,
@@ -14325,7 +14380,7 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/gargoyle_falcion_icon.png',
             class: 'equipment',
             visual: 'gargoyle-falchion',
-            tags: ['melee', 'weapon', 'onehand'],
+            tags: ['melee', 'weapon', 'onehand', 'melee'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 20, damageMultiplier: 1.3 },
@@ -14334,7 +14389,7 @@ class IdlescapeGameData {
                     Melee: 1.1,
                     Magic: 1 / 4,
                     Range: 0.1,
-                    Piercing: 1 / 4,
+                    Piercing: 1,
                     Blunt: 1 / 4,
                     Slashing: 1.33,
                 },
@@ -14343,8 +14398,9 @@ class IdlescapeGameData {
                 attackSpeed: 2.4,
                 augmentationBonus: [
                     { stat: 'offensiveAccuracyAffinityRating.Melee', value: 1.65 },
-                    { stat: 'weaponBonus.strength', value: 1.65 },
+                    { stat: 'weaponBonus.strength', value: 2.5 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
             augmentingFailItem: 12014,
@@ -14365,7 +14421,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'gargoyle-daggers',
             isDaggers: true,
-            tags: ['melee', 'weapon', 'twohand'],
+            tags: ['melee', 'weapon', 'twohand', 'melee'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 11 / 200, damageMultiplier: 1.75 },
@@ -14381,7 +14437,7 @@ class IdlescapeGameData {
                     Melee: 1.1,
                     Magic: 33 / 100,
                     Range: 0.2,
-                    Piercing: 1.1,
+                    Piercing: 1.33,
                     Blunt: 33 / 100,
                     Slashing: 3 / 4,
                 },
@@ -14395,7 +14451,9 @@ class IdlescapeGameData {
                         value: 1 / 100,
                     },
                     { stat: 'armorBonus.agility', value: 0.1 },
+                    { stat: 'weaponBonus.strength', value: 0.25 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
             augmentingFailItem: 12014,
@@ -14415,7 +14473,7 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/gargoyle_glaive_icon.png',
             class: 'equipment',
             visual: 'spear',
-            tags: ['melee', 'weapon', 'twohand'],
+            tags: ['melee', 'weapon', 'twohand', 'melee'],
             equipmentStats: {
                 grantedAbility: [22],
                 slot: 'weapon',
@@ -14431,7 +14489,7 @@ class IdlescapeGameData {
                     Melee: 1.1,
                     Piercing: 1.5,
                     Blunt: 3 / 4,
-                    Slashing: 1 / 4,
+                    Slashing: 1.05,
                     Magic: 0.1,
                     Range: 0.1,
                 },
@@ -14440,9 +14498,10 @@ class IdlescapeGameData {
                 attackSpeed: 3.2,
                 augmentationBonus: [
                     { stat: 'offensiveAccuracyAffinityRating.Melee', value: 1.25 },
-                    { stat: 'weaponBonus.strength', value: 2.5 },
+                    { stat: 'weaponBonus.strength', value: 3 },
                     { stat: 'armorBonus.protection', value: 1.25 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
             augmentingFailItem: 12014,
@@ -14496,10 +14555,11 @@ class IdlescapeGameData {
                 attackSpeed: 3.2,
                 augmentationBonus: [
                     { stat: 'offensiveAccuracyAffinityRating.Melee', value: 1.5 },
-                    { stat: 'weaponBonus.strength', value: 3.5 },
+                    { stat: 'weaponBonus.strength', value: 5 },
                     { stat: 'armorBonus.protection', value: 2 },
                 ],
                 isTransmog: true,
+                itemSet: [10018],
             },
             rarity: 'epic',
             augmentingFailItem: 12014,
@@ -14520,7 +14580,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A helm of unknown make that grants superhuman strength to its wearer!',
             class: 'equipment',
             visual: 'black-knight-full-helm',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'melee'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 1.33 },
@@ -14540,8 +14600,10 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: -0.5 },
                     { stat: 'weaponBonus.strength', value: 3 / 4 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'uncommon',
+            augmentingFailItem: 12014,
         },
         1527: {
             name: 'Chorus of Souls',
@@ -14560,7 +14622,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'chorus-of-souls',
             category: ['weapon', 'combat'],
-            tags: ['melee', 'weapon', 'onehand', 'crafting'],
+            tags: ['melee', 'weapon', 'onehand'],
             equipmentStats: {
                 grantedAbility: [37],
                 slot: 'weapon',
@@ -14607,7 +14669,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Despite its ragged appearance it is immensely durable. What could have caused this damage?',
             class: 'equipment',
             visual: 'cape',
-            category: ['weapon', 'combat', 'christmas'],
+            category: ['weapon', 'combat'],
             tags: ['melee', 'armor', 'crafting'],
             equipmentStats: {
                 slot: 'cape',
@@ -14819,7 +14881,7 @@ class IdlescapeGameData {
                 "The chitinous shell of the Aberrant Shrimp formed into a shield; it's tainted by some sort of demonic magic. Is this a blessing or a curse?",
             class: 'equipment',
             visual: 'shrimp-shield',
-            tags: ['armor', 'weapon'],
+            tags: ['armor', 'offhand'],
             equipmentStats: {
                 slot: 'shield',
                 defensiveCritical: { chance: 0.1, damageMultiplier: 0.8 },
@@ -14855,7 +14917,7 @@ class IdlescapeGameData {
                 'The liquid inlaid into the carvings seems far too familiar... Wearing the bracelet gives you a craving you cannot describe; if used to create an enchanted piece of jewelry perhaps it will become more apparent to you, but you may run the risk of corrupting its original power...',
             class: 'equipment',
             visual: '',
-            tags: ['armor', 'crafting'],
+            tags: ['jewelry', 'crafting'],
             equipmentStats: { slot: 'gloves' },
             rarity: 'rare',
         },
@@ -14877,7 +14939,7 @@ class IdlescapeGameData {
             category: 'Rare',
             class: 'equipment',
             visual: 'awakened-titanic-gauntlet gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'melee', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'gloves',
                 weaponBonus: { strength: 11, intellect: 0, dexterity: 0 },
@@ -14908,7 +14970,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'You feel as if infinite power lies within your grasp.',
             class: 'equipment',
             visual: 'awakened-titanic-gauntlet gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'melee', 'range', 'magic', 'hybrid'],
             equipmentStats: {
                 grantedAbility: [72, 73, 74],
                 slot: 'gloves',
@@ -14948,7 +15010,7 @@ class IdlescapeGameData {
             class: 'equipment',
             extraTooltipInfo: 'Its vorpal edge seems to shimmer and distort as you examine it.',
             visual: 'scythe',
-            tags: ['melee', 'weapon', 'twohand'],
+            tags: ['melee', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 grantedAbility: [22, 38, 11],
                 slot: 'weapon',
@@ -15009,7 +15071,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/Giant_Scrap.png',
             class: 'bar',
             extraTooltipInfo: 'It would take a master craftsman to reshape this into something usable.',
-            tags: ['crafting'],
+            tags: ['shard'],
             rarity: 'uncommon',
         },
         1550: {
@@ -15032,7 +15094,7 @@ class IdlescapeGameData {
             category: 'Rare',
             class: 'equipment',
             visual: 'winged-boots',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'melee', 'range', 'magic', 'hybrid', 'crafting'],
             equipmentStats: {
                 slot: 'boots',
                 defensiveDamageAffinity: { Melee: 1.04, Magic: 1.04, Range: 1.04 },
@@ -15059,7 +15121,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/giants_toe_nail.png',
             extraTooltipInfo: '... You could try cooking it?',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'cooking'],
         },
         1552: {
             name: "Cooked Giant King's Nails",
@@ -15102,7 +15164,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "A manifested shard of chaos. If only you knew how to utilize it's energy to perform magic!",
             class: 'equipment',
             visual: 'crystal-mace',
-            tags: ['melee', 'weapon', 'onehand', 'crafting'],
+            tags: ['melee', 'magic', 'hybrid', 'weapon', 'onehand', 'crafting'],
             equipmentStats: {
                 grantedAbility: [13, 14],
                 slot: 'weapon',
@@ -15187,7 +15249,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Wrap yourself in the cozy flames of a dying star and be reborn.',
             class: 'equipment',
             visual: 'phoenix-cape',
-            tags: ['melee', 'armor', 'magic', 'hybrid', 'crafting'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 grantedAbility: [7, 18],
                 slot: 'cape',
@@ -15221,7 +15283,7 @@ class IdlescapeGameData {
                 "A hunter's shawl designed to give its wearer the ability to easily handle their prey at extreme range.",
             class: 'equipment',
             visual: 'cape',
-            category: ['weapon', 'combat'],
+            category: ['armor', 'combat'],
             tags: ['range', 'armor'],
             equipmentStats: {
                 slot: 'cape',
@@ -15235,6 +15297,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.dexterity', value: 1 },
                     { stat: 'offensiveAccuracyAffinityRating.Range', value: 1 },
                 ],
+                itemSet: [10017],
             },
             rarity: 'epic',
         },
@@ -15305,7 +15368,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/shrimp_fragment.png',
             class: 'bar',
             extraTooltipInfo: 'It would take a master craftsman to reshape this into something usable.',
-            tags: ['crafting'],
+            tags: [],
             rarity: 'rare',
         },
         1559: {
@@ -15324,7 +15387,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A helm that grants the strength of titans to its wearer!',
             class: 'equipment',
             visual: 'black-knight-full-helm',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'melee'],
             equipmentStats: {
                 grantedAbility: [15],
                 slot: 'helm',
@@ -15345,6 +15408,7 @@ class IdlescapeGameData {
                     { stat: 'armorBonus.resistance', value: -0.5 },
                     { stat: 'weaponBonus.strength', value: 1.5 },
                 ],
+                itemSet: [10018],
             },
             rarity: 'rare',
         },
@@ -15368,7 +15432,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A magical hood of elven make.',
             class: 'equipment',
             visual: 'med-helm',
-            tags: ['armor', 'magic'],
+            tags: ['armor', 'magic', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 defensiveDamageAffinity: { Magic: 1.08, Nature: 1.06 },
@@ -15404,7 +15468,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'chainbody',
             extraTooltipInfo: 'An unnaturally light platebody of elven make.',
-            tags: ['armor', 'melee'],
+            tags: ['armor', 'melee', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Melee: 1.1 },
@@ -15441,7 +15505,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'platelegs',
             extraTooltipInfo: 'A pair of comfortably fitting leggings of elven make.',
-            tags: ['armor', 'range'],
+            tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'legs',
                 defensiveDamageAffinity: { Range: 1.08, Nature: 1.06 },
@@ -15477,7 +15541,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'boots',
             extraTooltipInfo: 'A set of light cavalry boots of elven make.',
-            tags: ['armor'],
+            tags: ['armor', 'crafting'],
             equipmentStats: {
                 slot: 'boots',
                 defensiveDamageAffinity: { Melee: 1.02, Magic: 1.02, Range: 1.02, Nature: 1.05 },
@@ -15504,7 +15568,7 @@ class IdlescapeGameData {
                 'Almost too hot to handle! Burned food rewards full experience. Grants 3 hidden levels of haste while cooking.',
             class: 'equipment',
             visual: 'ladle',
-            tags: ['melee', 'onehand', 'weapon'],
+            tags: ['melee', 'magic', 'hybrid', 'onehand', 'weapon', 'cooking'],
             equipmentStats: {
                 grantedAbility: [39, 53],
                 slot: 'weapon',
@@ -15533,13 +15597,14 @@ class IdlescapeGameData {
             extraTooltipInfo: 'You feel like you could bend steel with these gauntlets on... but what is steel?',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'melee', 'crafting'],
+            tags: ['armor', 'melee'],
             equipmentStats: {
                 grantedAbility: [15],
                 slot: 'gloves',
                 weaponBonus: { strength: 10, intellect: 0, dexterity: 0 },
                 offensiveAccuracyAffinityRating: { Melee: 9 },
-                augmentationBonus: [{ stat: 'weaponBonus.strength', value: 1 / 4 }],
+                augmentationBonus: [{ stat: 'weaponBonus.strength', value: 2 }],
+                itemSet: [10018],
             },
             rarity: 'rare',
         },
@@ -15592,6 +15657,7 @@ class IdlescapeGameData {
                 ],
                 oneHanded: true,
                 attackSpeed: 2.2,
+                itemSet: [10017],
             },
             rarity: 'epic',
         },
@@ -15641,6 +15707,7 @@ class IdlescapeGameData {
                 ],
                 oneHanded: true,
                 attackSpeed: 2.2,
+                itemSet: [10017],
             },
             rarity: 'epic',
         },
@@ -15685,6 +15752,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.strength', value: 1 / 4 },
                     { stat: 'armorBonus.agility', value: 0.5 },
                 ],
+                itemSet: [10017],
             },
             rarity: 'epic',
         },
@@ -15726,6 +15794,7 @@ class IdlescapeGameData {
                     { stat: 'weaponBonus.strength', value: 0.5 },
                     { stat: 'armorBonus.agility', value: 0.5 },
                 ],
+                itemSet: [10017],
             },
             rarity: 'epic',
         },
@@ -15744,7 +15813,7 @@ class IdlescapeGameData {
             visual: 'scimitar',
             extraTooltipInfo:
                 'A weapon fit for royalty. Its craftsmanship is unmatched and the method to create weapons such as this is lost to time.',
-            tags: ['range', 'weapon'],
+            tags: ['range', 'weapon', 'twohand'],
             equipmentStats: {
                 grantedAbility: [23, 42],
                 slot: 'weapon',
@@ -15798,7 +15867,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'scimitar',
             extraTooltipInfo: "A weapon whose origins are lost to time; don't try using it as a fishing harpoon!",
-            tags: ['magic', 'weapon'],
+            tags: ['magic', 'weapon', 'twohand', 'crafting'],
             equipmentStats: {
                 grantedAbility: [43, 92, 93],
                 slot: 'weapon',
@@ -16162,7 +16231,7 @@ class IdlescapeGameData {
             itemIcon: '/images/combat/equipment/wrath_axe_icon.png',
             class: 'equipment',
             visual: 'wrath-axe',
-            tags: ['melee', 'weapon'],
+            tags: ['melee', 'weapon', 'twohand'],
             equipmentStats: {
                 slot: 'weapon',
                 offensiveCritical: { chance: 1 / 40, damageMultiplier: 1.25 },
@@ -16344,7 +16413,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/shrimp_eye_sleep.png',
             class: 'bar',
             extraTooltipInfo: "The Eye's power sleeps.",
-            tags: ['crafting'],
+            tags: [],
             rarity: 'epic',
         },
         1588: {
@@ -16527,7 +16596,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'chainbody',
             extraTooltipInfo: 'An unnaturally light chainmail of elven make.',
-            tags: ['armor', 'range'],
+            tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'body',
                 offensiveDamageAffinity: { Range: 1.08 },
@@ -16571,7 +16640,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A magical hat of elven make.',
             class: 'equipment',
             visual: 'med-helm',
-            tags: ['armor', 'range'],
+            tags: ['armor', 'range', 'crafting'],
             equipmentStats: {
                 slot: 'helm',
                 offensiveDamageAffinity: { Range: 1.08 },
@@ -16632,7 +16701,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'foraging'],
             requiredResources: [{ 111: 700, 512: 70, 517: 70, 1600: 1 }],
             rarity: 'rare',
         },
@@ -16660,7 +16729,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining'],
             requiredResources: [{ 111: 300, 510: 40, 512: 40, 519: 40, 1600: 1 }],
         },
         1603: {
@@ -16687,7 +16756,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.6, 0.6 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining', 'foraging', 'fishing', 'smithing', 'cooking'],
             requiredResources: [{ 111: 1300, 516: 110, 518: 110, 519: 110, 1600: 1 }],
             rarity: 'epic',
         },
@@ -16715,7 +16784,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining', 'foraging', 'fishing'],
             requiredResources: [{ 111: 800, 511: 70, 512: 70, 513: 70, 518: 70, 519: 70, 1600: 1 }],
             rarity: 'rare',
         },
@@ -16743,7 +16812,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining'],
             requiredResources: [{ 111: 900, 511: 80, 512: 80, 519: 80, 1600: 1 }],
             rarity: 'rare',
         },
@@ -16771,7 +16840,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'smithing', 'cooking'],
             requiredResources: [{ 111: 100, 512: 30, 513: 30, 517: 30, 1600: 1 }],
         },
         1607: {
@@ -16798,7 +16867,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining', 'foraging', 'fishing', 'smithing', 'cooking'],
             requiredResources: [{ 111: 500, 517: 50, 518: 50, 519: 50, 1600: 1 }],
         },
         1608: {
@@ -16825,7 +16894,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.8, 0.8 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining', 'foraging', 'fishing', 'runecrafting', 'smithing', 'cooking'],
             requiredResources: [{ 111: 2000, 510: 200, 516: 200, 518: 200, 519: 200, 1600: 1 }],
             rarity: 'epic',
         },
@@ -16853,7 +16922,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining', 'foraging', 'fishing'],
             requiredResources: [{ 111: 600, 510: 60, 513: 60, 517: 60, 519: 60, 1600: 1 }],
         },
         1610: {
@@ -16994,7 +17063,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'offhand'],
             requiredResources: [{ 1: 999999999999999 }],
             rarity: 'epic',
         },
@@ -17022,7 +17091,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'offhand'],
             requiredResources: [{ 111: 900, 514: 80, 515: 80, 516: 80, 1600: 1 }],
             rarity: 'rare',
         },
@@ -17050,7 +17119,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'offhand'],
             requiredResources: [{ 111: 200, 514: 30, 517: 30, 519: 30, 1600: 1 }],
         },
         1617: {
@@ -17077,7 +17146,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['weapon', 'enchanting'],
+            tags: ['weapon', 'enchanting', 'armor', 'offhand'],
             requiredResources: [{ 111: 100, 510: 20, 512: 20, 518: 20, 1600: 1 }],
         },
         1618: {
@@ -17104,7 +17173,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'armor'],
             requiredResources: [{ 111: 200, 515: 30, 516: 30, 518: 30, 1600: 1 }],
         },
         1619: {
@@ -17131,7 +17200,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'armor'],
             requiredResources: [{ 111: 400, 510: 40, 511: 40, 519: 40, 1600: 1 }],
         },
         1620: {
@@ -17159,7 +17228,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'armor'],
             requiredResources: [{ 1: 999999999999 }],
             rarity: 'epic',
         },
@@ -17187,7 +17256,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'armor'],
             requiredResources: [{ 111: 1000, 514: 80, 515: 80, 516: 80, 1600: 1 }],
             rarity: 'epic',
         },
@@ -17215,7 +17284,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.8, 0.8 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'cooking', 'smithing', 'runecrafting'],
             requiredResources: [{ 111: 1500, 510: 130, 511: 130, 512: 130, 513: 130, 517: 130, 1600: 1 }],
             rarity: 'epic',
         },
@@ -17243,7 +17312,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'fishing'],
             requiredResources: [{ 111: 700, 511: 60, 513: 60, 518: 60, 1600: 1 }],
             rarity: 'uncommon',
         },
@@ -17271,7 +17340,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'cooking'],
             requiredResources: [{ 111: 500, 511: 50, 512: 50, 513: 50, 1600: 1 }],
         },
         1625: {
@@ -17298,7 +17367,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'crafting'],
             requiredResources: [{ 111: 800, 510: 70, 517: 70, 1600: 1 }],
             rarity: 'rare',
         },
@@ -17326,7 +17395,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'smithing'],
             requiredResources: [{ 111: 400, 510: 40, 511: 40, 512: 40, 519: 40, 1600: 1 }],
         },
         1627: {
@@ -17353,7 +17422,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'runecrafting'],
             requiredResources: [{ 111: 500, 517: 50, 518: 50, 519: 50, 1600: 1 }],
         },
         1628: {
@@ -17408,7 +17477,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'cooking'],
             requiredResources: [{ 111: 100, 510: 10, 513: 10, 516: 10, 517: 10, 1600: 1 }],
         },
         1630: {
@@ -17435,7 +17504,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'runecrafting'],
             requiredResources: [{ 111: 900, 510: 70, 513: 70, 516: 70, 518: 70, 1600: 1 }],
             rarity: 'rare',
         },
@@ -17519,7 +17588,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'cooking', 'smithing'],
             requiredResources: [{ 111: 600, 511: 50, 512: 50, 516: 50, 1600: 1 }],
         },
         1634: {
@@ -17546,7 +17615,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining'],
             requiredResources: [{ 111: 200, 511: 30, 512: 30, 516: 30, 518: 30, 1600: 1 }],
         },
         1635: {
@@ -17573,7 +17642,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'foraging'],
             requiredResources: [{ 111: 300, 511: 30, 513: 30, 517: 30, 519: 30, 1600: 1 }],
         },
         1636: {
@@ -17600,7 +17669,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'foraging'],
             requiredResources: [{ 111: 300, 511: 30, 517: 30, 519: 30, 1600: 1 }],
         },
         1637: {
@@ -17627,7 +17696,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'armor'],
             requiredResources: [{ 111: 1000, 510: 80, 513: 80, 515: 80, 1600: 1 }],
             rarity: 'epic',
         },
@@ -17682,7 +17751,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'farming'],
             requiredResources: [{ 111: 900, 511: 70, 513: 70, 517: 70, 1600: 1 }],
             rarity: 'rare',
         },
@@ -17710,7 +17779,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'farming'],
             requiredResources: [{ 111: 500, 511: 50, 517: 50, 519: 50, 1600: 1 }],
         },
         1641: {
@@ -17737,7 +17806,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.7, 0.7 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'farming'],
             requiredResources: [{ 111: 1400, 510: 120, 511: 120, 513: 120, 517: 120, 519: 120, 1600: 1 }],
             rarity: 'epic',
         },
@@ -17765,7 +17834,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'farming'],
             requiredResources: [{ 111: 200, 510: 30, 513: 30, 514: 30, 1600: 1 }],
         },
         1643: {
@@ -17792,7 +17861,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'offhand'],
             requiredResources: [{ 111: 800, 514: 70, 516: 70, 517: 70, 1600: 1 }],
             rarity: 'uncommon',
         },
@@ -17820,7 +17889,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'fishing'],
             requiredResources: [{ 111: 200, 513: 30, 517: 30, 1600: 1 }],
         },
         1645: {
@@ -17847,7 +17916,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'fishing'],
             requiredResources: [{ 111: 300, 511: 40, 513: 40, 1600: 1 }],
         },
         1646: {
@@ -17874,7 +17943,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'fishing'],
             requiredResources: [{ 111: 400, 511: 40, 513: 40, 519: 40, 1600: 1 }],
         },
         1647: {
@@ -17901,7 +17970,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'fishing'],
             requiredResources: [{ 111: 600, 511: 60, 513: 60, 516: 60, 1600: 1 }],
         },
         1648: {
@@ -17928,7 +17997,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'fishing'],
             requiredResources: [{ 111: 800, 511: 70, 513: 70, 515: 70, 1600: 1 }],
             rarity: 'rare',
         },
@@ -17956,7 +18025,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'fishing'],
             requiredResources: [{ 111: 900, 511: 70, 513: 70, 514: 70, 1600: 1 }],
             rarity: 'rare',
         },
@@ -17984,7 +18053,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'cooking'],
             requiredResources: [{ 111: 1000, 511: 90, 512: 90, 513: 90, 1600: 1 }],
             rarity: 'epic',
         },
@@ -18012,7 +18081,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'foraging'],
             requiredResources: [{ 111: 500, 512: 50, 515: 50, 517: 50, 1600: 1 }],
         },
         1652: {
@@ -18039,7 +18108,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'foraging'],
             requiredResources: [{ 111: 400, 511: 40, 514: 40, 517: 40, 1600: 1 }],
         },
         1653: {
@@ -18066,7 +18135,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'smithing'],
             requiredResources: [{ 111: 500, 510: 40, 512: 40, 518: 40, 1600: 1 }],
         },
         1654: {
@@ -18093,7 +18162,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.52, 0.52 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'smithing'],
             requiredResources: [{ 111: 1200, 511: 100, 512: 100, 518: 100, 1600: 1 }],
             rarity: 'epic',
         },
@@ -18121,7 +18190,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'runecrafting'],
             requiredResources: [{ 111: 700, 516: 70, 518: 70, 519: 70, 1600: 1 }],
             rarity: 'epic',
         },
@@ -18149,7 +18218,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'fishing'],
             requiredResources: [{ 111: 600, 511: 60, 513: 60, 518: 60, 1600: 1 }],
             rarity: 'uncommon',
         },
@@ -18177,7 +18246,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'mining', 'foraging', 'fishing'],
             requiredResources: [{ 111: 500, 511: 50, 513: 50, 517: 50, 1600: 1 }],
         },
         1658: {
@@ -18204,7 +18273,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'weapon'],
             requiredResources: [{ 111: 400, 516: 40, 517: 40, 518: 40, 1600: 1 }],
         },
         1659: {
@@ -18231,7 +18300,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'weapon'],
             requiredResources: [{ 111: 500, 513: 50, 516: 50, 518: 50, 1600: 1 }],
         },
         1660: {
@@ -18306,7 +18375,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'cooking'],
             requiredResources: [{ 111: 100, 511: 10, 512: 10, 513: 10, 1600: 1 }],
         },
         1662: {
@@ -18333,7 +18402,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (Math.min(1, Math.max(0.4, 0.4 + (playerLevel - resource.level) / 25)) * 100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'armor'],
             requiredResources: [{ 111: 1000, 514: 80, 515: 80, 516: 80, 1600: 1 }],
             rarity: 'epic',
         },
@@ -18412,7 +18481,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/pepper.png',
             extraTooltipInfo: "Don't sneeze or you'll dump too much ore into the forge! Achoo!",
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'cooking'],
+            tags: ['ingredient', 'cooking', 'foraging'],
         },
         2013: {
             name: 'Salt',
@@ -18473,7 +18542,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/sugar.png',
             extraTooltipInfo: 'A sugar rush would definitely make you more efficient!',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'cooking'],
+            tags: ['ingredient', 'cooking', 'foraging'],
         },
         2016: {
             name: 'Honey',
@@ -18490,7 +18559,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/honey.png',
             extraTooltipInfo: 'Why do fish like this so much?',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'consumable', 'food', 'cooking', 'foraging'],
             healing: {
                 hp: 6,
                 cooldown: 7500,
@@ -18550,7 +18619,7 @@ class IdlescapeGameData {
             skill: 'cooking',
             size: 1,
             difficulty: 1,
-            itemImage: '/images/cooking/34573r_3gg.png',
+            itemImage: '/images/cooking/egg.png',
             extraTooltipInfo: 'GEG, scrambled egg.',
             class: 'cooking-ingredient',
             tags: ['ingredient', 'cooking'],
@@ -18570,7 +18639,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/mushroom.png',
             extraTooltipInfo: 'Kinda makes you feel like checking the roots of things.',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'cooking'],
+            tags: ['ingredient', 'cooking', 'foraging'],
         },
         2021: {
             name: 'Carrot',
@@ -18585,7 +18654,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/carrot.png',
             extraTooltipInfo: 'Build your own snowman kit. Just add water and coal!',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'consumable', 'food', 'cooking', 'foraging'],
             healing: {
                 hp: 9,
                 cooldown: 10000,
@@ -18610,7 +18679,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/chili_pepper.png',
             extraTooltipInfo: 'So hot you feel like you could almost smelt ores with it!',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'consumable', 'food', 'cooking', 'foraging'],
             healing: {
                 hp: 6,
                 cooldown: 7500,
@@ -18633,7 +18702,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/potato.png',
             extraTooltipInfo: "What's 'taters, eh?",
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'cooking'],
+            tags: ['ingredient', 'cooking', 'foraging'],
         },
         2024: {
             name: 'Pumpkin',
@@ -18648,7 +18717,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/pumpkin.png',
             extraTooltipInfo: 'Such a weird carrot!',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'cooking'],
+            tags: ['ingredient', 'cooking', 'foraging'],
         },
         2025: {
             name: 'Tomato',
@@ -18663,7 +18732,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/tomato.png',
             extraTooltipInfo: 'Definitely a fruit.',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'consumable', 'food', 'cooking', 'foraging'],
             healing: {
                 hp: 3,
                 cooldown: 5000,
@@ -18686,7 +18755,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/apple.png',
             extraTooltipInfo: "Didn't fall far from the tree.",
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'consumable', 'food', 'cooking', 'foraging'],
             healing: {
                 hp: 9,
                 cooldown: 10000,
@@ -18709,7 +18778,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/wildberry.png',
             extraTooltipInfo: 'Like a blueberry, but wild.',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'consumable', 'food', 'cooking', 'foraging'],
             healing: {
                 hp: 3,
                 cooldown: 5000,
@@ -18734,7 +18803,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/banana.png',
             extraTooltipInfo: "Gather 'em up in bunches!",
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'consumable', 'food', 'cooking', 'foraging'],
             healing: {
                 hp: 9,
                 cooldown: 10000,
@@ -18757,7 +18826,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/wheat.png',
             extraTooltipInfo: 'How many of these do I need to make a Straw Hat?',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'cooking', 'foraging'],
         },
         2030: {
             name: 'Rice',
@@ -18772,7 +18841,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/rice.png',
             extraTooltipInfo: "You're telling me a Limpe fried this rice?",
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'cooking', 'foraging'],
         },
         2031: {
             name: 'Sageberry',
@@ -18789,7 +18858,7 @@ class IdlescapeGameData {
             itemImage: '/images/farming/sage_berry.png',
             extraTooltipInfo: 'The ultimate big brain berry.',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'consumable', 'food', 'cooking'],
+            tags: ['ingredient', 'cooking', 'foraging'],
         },
         2032: {
             name: 'Choccy Milk',
@@ -20106,7 +20175,7 @@ class IdlescapeGameData {
             itemImage: '/images/cooking/alchemy/ingredients/jellyfish.png',
             extraTooltipInfo: 'How would it taste on a sandwich, you wonder.',
             class: 'cooking-ingredient',
-            tags: ['ingredient', 'alchemy', 'cooking'],
+            tags: ['ingredient', 'alchemy', 'cooking', 'fishing'],
         },
         3013: {
             name: 'Frost Flowers',
@@ -20257,7 +20326,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/bone.png',
             class: 'fur',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4001: {
             id: 4001,
@@ -20270,7 +20339,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/bone_plate.png',
             class: 'fur',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4002: {
             id: 4002,
@@ -20283,7 +20352,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/chitin_2.png',
             class: 'leather',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4003: {
             id: 4003,
@@ -20296,7 +20365,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/heavy_chitin.png',
             class: 'leather',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4004: {
             id: 4004,
@@ -20309,7 +20378,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/fur.png',
             class: 'fur',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4005: {
             id: 4005,
@@ -20322,7 +20391,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/thick_fur.png',
             class: 'fur',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4006: {
             id: 4006,
@@ -20335,7 +20404,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/wool.png',
             class: 'fur',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4007: {
             id: 4007,
@@ -20348,7 +20417,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/hide.png',
             class: 'fur',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4008: {
             id: 4008,
@@ -20361,7 +20430,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/rough_hide.png',
             class: 'fur',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4009: {
             id: 4009,
@@ -20374,7 +20443,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/scale.png',
             class: 'leather',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4010: {
             id: 4010,
@@ -20387,7 +20456,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/heavy_scale.png',
             class: 'leather',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['foraging'],
+            tags: ['farming', 'hunting'],
         },
         4011: {
             id: 4011,
@@ -20406,7 +20475,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Used to enhance Elven equipment.',
             craftingDescription: 'Salvage Elven equipment for their Crystal Scales.',
             category: 'General',
-            tags: ['foraging'],
+            tags: ['crafting'],
         },
         4012: {
             id: 4012,
@@ -20427,7 +20496,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/leather.png',
             class: 'leather',
             extraTooltipInfo: 'Used as a crafting material.',
-            tags: ['crafting', 'foraging'],
+            tags: ['crafting'],
         },
         4013: {
             id: 4013,
@@ -20569,7 +20638,7 @@ class IdlescapeGameData {
             class: 'fiber',
             extraTooltipInfo:
                 'Some aqueous grass that was stuck to your fishing tools. It appears to be weakly magical. Used as a crafting material.',
-            tags: ['fishing'],
+            tags: ['fishing', 'runecrafting'],
         },
         4021: {
             id: 4021,
@@ -20583,7 +20652,7 @@ class IdlescapeGameData {
             class: 'fiber',
             extraTooltipInfo:
                 'Water weeds that appear to have been exposed to some sort of magical source. Used as a crafting material.',
-            tags: ['fishing'],
+            tags: ['fishing', 'runecrafting'],
         },
         4022: {
             id: 4022,
@@ -20597,7 +20666,7 @@ class IdlescapeGameData {
             class: 'fiber',
             extraTooltipInfo:
                 'Thick underwater vines found predominantly in rivers. These give off a faint magical aura. Used as a crafting material.',
-            tags: ['fishing'],
+            tags: ['fishing', 'runecrafting'],
         },
         4023: {
             id: 4023,
@@ -20610,7 +20679,7 @@ class IdlescapeGameData {
             itemImage: '/images/fishing/material/fiber_4.png',
             class: 'fiber',
             extraTooltipInfo: 'Violet aquatic plants that radiate magical potential. Used as a crafting material.',
-            tags: ['fishing'],
+            tags: ['fishing', 'runecrafting'],
         },
         4024: {
             id: 4024,
@@ -20624,7 +20693,7 @@ class IdlescapeGameData {
             class: 'fiber',
             extraTooltipInfo:
                 'Aquatic reeds that appear to have grown near a font of magical energy and maintained some of its characteristics. Used as a crafting material.',
-            tags: ['fishing'],
+            tags: ['fishing', 'runecrafting'],
         },
         4025: {
             id: 4025,
@@ -20638,7 +20707,7 @@ class IdlescapeGameData {
             class: 'fiber',
             extraTooltipInfo:
                 'Kelp that has been magically sustained for ages. Potent energy can be felt coursing through its fibers. Used as a crafting material.',
-            tags: ['fishing'],
+            tags: ['fishing', 'runecrafting'],
         },
         4026: {
             id: 4026,
@@ -20654,7 +20723,7 @@ class IdlescapeGameData {
             class: 'bar',
             extraTooltipInfo:
                 'A chunk of stone supposedly from the bottom of the ocean, still pulsing with latent magical energy. Perhaps it could be used to augment something?',
-            tags: ['magic', 'mining', 'smithing'],
+            tags: ['magic', 'crafting'],
             category: 'Rare',
         },
         4027: {
@@ -20670,7 +20739,7 @@ class IdlescapeGameData {
             class: 'bar',
             extraTooltipInfo:
                 'A chunk of ice that never melts. The magic keeping it solid could be channeled somewhere by a skilled enchanter.',
-            tags: ['magic', 'mining', 'smithing'],
+            tags: ['magic', 'crafting'],
             category: 'Rare',
         },
         4028: {
@@ -20681,7 +20750,7 @@ class IdlescapeGameData {
             itemImage: '/images/combat/materials/elder_stone.png',
             class: 'bar',
             extraTooltipInfo: 'A condensed shard of Elder Magic formerly owned by the Elves.',
-            tags: ['magic', 'mining', 'smithing'],
+            tags: ['magic'],
             rarity: 'rare',
         },
         4500: {
@@ -21027,7 +21096,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/schfftph_fzzglgl.png',
             class: 'fish',
             extraTooltipInfo: "One of perfection's many forms.",
-            tags: ['ingredient', 'crafting'],
+            tags: [],
         },
         5002: {
             id: 5002,
@@ -21041,7 +21110,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/schfftph_fzzglgl_kakfzz.png',
             class: 'fish',
             extraTooltipInfo: 'Perfection comes in many forms, but this is a perversion of the art.',
-            tags: ['ingredient', 'crafting'],
+            tags: [],
         },
         6000: {
             id: 6000,
@@ -21086,7 +21155,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/snow.png',
             extraTooltipInfo: 'Used to make Snowballs!',
             class: 'christmas-drop',
-            tags: [],
+            tags: ['event'],
         },
         7001: {
             id: 7001,
@@ -21101,7 +21170,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "Use '/throw NAME' to throw at people!",
             class: 'christmas-drop',
             category: 'Event',
-            tags: ['crafting'],
+            tags: ['crafting', 'event'],
             requiredResources: [{ 7000: 100 }],
         },
         7002: {
@@ -21114,7 +21183,7 @@ class IdlescapeGameData {
 
             extraTooltipInfo: 'Born to be torn apart',
             class: 'christmas-drop',
-            tags: ['crafting'],
+            tags: ['crafting', 'event'],
         },
         7003: {
             id: 7003,
@@ -21127,7 +21196,7 @@ class IdlescapeGameData {
             canBeOpened: true,
             extraTooltipInfo: 'Merry Christmas!',
             class: 'christmas-present',
-            tags: [],
+            tags: ['event', 'chest'],
             rarity: 'rare',
         },
         7004: {
@@ -21147,7 +21216,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'It smells like cookies',
             class: 'christmas-food',
             time: 1000,
-            tags: ['ingredient', 'consumable', 'food', 'cooking', 'crafting'],
+            tags: ['ingredient', 'cooking', 'crafting', 'event'],
         },
         7005: {
             id: 7005,
@@ -21159,7 +21228,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/cookie.png',
             extraTooltipInfo: 'It reminds you of your childhood',
             class: 'christmas-food',
-            tags: ['consumable', 'food', 'cooking'],
+            tags: ['consumable', 'food', 'cooking', 'event'],
             healing: {
                 hp: 6,
                 cooldown: 7500,
@@ -21182,7 +21251,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Delicious candy!',
             class: 'christmas-drop',
             time: 1000,
-            tags: ['ingredient', 'consumable', 'food', 'fishing'],
+            tags: ['ingredient', 'consumable', 'food', 'fishing', 'event'],
         },
         7007: {
             id: 7007,
@@ -21191,7 +21260,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/gummy_shark_fin.png',
             extraTooltipInfo: 'Looks like it came off a Gummy Shark!',
             class: 'christmas-drop',
-            tags: [],
+            tags: ['event'],
         },
         7008: {
             id: 7008,
@@ -21200,7 +21269,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/krampus_horn.png',
             extraTooltipInfo: 'A deathly energy weakly pulses from them still...',
             class: 'christmas-drop',
-            tags: [],
+            tags: ['event'],
         },
         7009: {
             id: 7009,
@@ -21209,7 +21278,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/candy_buttons.png',
             extraTooltipInfo: 'The buttons from Lumpy, Dumpy and Clumpy!',
             class: 'christmas-drop',
-            tags: [],
+            tags: ['event'],
         },
         7010: {
             id: 7010,
@@ -21218,7 +21287,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/scarf.png',
             extraTooltipInfo: 'Keeps you warm while you play in the snow!',
             class: 'christmas-drop',
-            tags: [],
+            tags: ['event'],
         },
         7011: {
             id: 7011,
@@ -21232,7 +21301,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/evergreen_log.png',
             extraTooltipInfo: 'Smells faintly of mint and cinnamon',
             class: 'christmas-drop',
-            tags: ['foraging'],
+            tags: ['foraging', 'event'],
         },
         7012: {
             id: 7012,
@@ -21241,7 +21310,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/corrupted_evergreen_log.png',
             extraTooltipInfo: 'It reeks of decay',
             class: 'christmas-drop',
-            tags: [],
+            tags: ['event'],
         },
         7013: {
             id: 7013,
@@ -21256,7 +21325,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/magic_ice.png',
             extraTooltipInfo: 'Magically makes you want to lick it',
             class: 'christmas-drop',
-            tags: ['mining'],
+            tags: ['mining', 'event'],
         },
         7014: {
             id: 7014,
@@ -21271,7 +21340,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "The hat's a little loose and the beard is itchy",
             visual: 'christmas-helmet',
             class: 'christmas-tier1',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: { slot: 'helm', weaponBonus: { strength: 0, intellect: 0, dexterity: 0 } },
         },
         7015: {
@@ -21287,7 +21356,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "Not the warmest or most protective, but it'll work!",
             visual: 'christmas-breastplate',
             class: 'christmas-tier1',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: { slot: 'body', weaponBonus: { strength: 0, intellect: 0, dexterity: 0 } },
         },
         7016: {
@@ -21303,7 +21372,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Chafes in all the wrong places',
             visual: 'christmas-leggings',
             class: 'christmas-tier1',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: { slot: 'legs', weaponBonus: { strength: 0, intellect: 0, dexterity: 0 } },
         },
         7017: {
@@ -21319,7 +21388,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Still a little dusty from being in storage',
             visual: 'christmas-weapon',
             class: 'christmas-tier1',
-            tags: ['weapon'],
+            tags: ['weapon', 'event', 'onehand'],
             equipmentStats: {
                 slot: 'weapon',
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 0 },
@@ -21340,7 +21409,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'An elite sled for elite sledders',
             visual: 'christmas-shield',
             class: 'christmas-tier1',
-            tags: ['weapon'],
+            tags: ['offhand', 'event'],
             equipmentStats: {
                 slot: 'shield',
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 0 },
@@ -21359,7 +21428,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "The hat's too tight and the beard smells funny.",
             visual: 'christmas-helmet',
             class: 'christmas-tier2',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: { slot: 'helm', weaponBonus: { strength: 0, intellect: 0, dexterity: 0 } },
         },
         7020: {
@@ -21375,7 +21444,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Hypothermia is no longer your biggest threat!',
             visual: 'christmas-breastplate',
             class: 'christmas-tier2',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: { slot: 'body', weaponBonus: { strength: 0, intellect: 0, dexterity: 0 } },
         },
         7021: {
@@ -21391,7 +21460,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "There's no holes, at least!",
             visual: 'christmas-leggings',
             class: 'christmas-tier2',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: { slot: 'legs', weaponBonus: { strength: 0, intellect: 0, dexterity: 0 } },
         },
         7022: {
@@ -21407,7 +21476,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Not for the nice!',
             visual: 'christmas-weapon',
             class: 'christmas-tier2',
-            tags: ['weapon'],
+            tags: ['weapon', 'event', 'onehand'],
             equipmentStats: {
                 slot: 'weapon',
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 0 },
@@ -21428,7 +21497,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'For when sledding meets extreme sports',
             visual: 'christmas-shield',
             class: 'christmas-tier2',
-            tags: ['weapon'],
+            tags: ['offhand', 'event'],
             equipmentStats: {
                 slot: 'shield',
                 weaponBonus: { strength: 0, intellect: 0, dexterity: 0 },
@@ -21447,7 +21516,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "The hat's just right and the beard is perfectly groomed.",
             visual: 'christmas-helmet',
             class: 'christmas-tier3',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'helm',
@@ -21467,7 +21536,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'The skull whispers to you softly, urging you to kill',
             visual: 'christmas-breastplate',
             class: 'christmas-tier3',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'body',
@@ -21487,7 +21556,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'The hide might not have protected the reindeer, but it will protect you.',
             visual: 'christmas-leggings',
             class: 'christmas-tier3',
-            tags: ['armor'],
+            tags: ['armor', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'legs',
@@ -21507,7 +21576,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'For the naughty!',
             visual: 'christmas-weapon',
             class: 'christmas-tier3',
-            tags: ['weapon'],
+            tags: ['weapon', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'weapon',
@@ -21529,7 +21598,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "It's over 9000!",
             visual: 'christmas-shield',
             class: 'christmas-tier3',
-            tags: ['weapon'],
+            tags: ['offhand', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'shield',
@@ -21551,7 +21620,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'magical-snowball',
             category: ['armor', 'combat', 'christmas'],
-            tags: ['armor', 'weapon', 'melee', 'crafting'],
+            tags: ['offhand', 'melee', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'shield',
@@ -21580,7 +21649,7 @@ class IdlescapeGameData {
             visual: 'candy-cane-daggers',
             isDaggers: true,
             category: ['weapon', 'combat', 'christmas'],
-            tags: ['melee', 'weapon', 'twohand', 'crafting'],
+            tags: ['melee', 'weapon', 'twohand', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'weapon',
@@ -21630,7 +21699,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'cape',
             category: ['weapon', 'combat', 'christmas'],
-            tags: ['melee', 'armor', 'crafting'],
+            tags: ['melee', 'armor', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'cape',
@@ -21656,7 +21725,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A pair of mittens to keep you warm in the bitter cold! Wait, are they fingerless?',
             class: 'equipment',
             visual: 'gloves',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'gloves',
@@ -21674,7 +21743,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'For treading on snow or enemy faces.',
             class: 'equipment',
             visual: 'boots',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'event'],
             equipmentStats: {
                 isTransmog: true,
                 slot: 'boots',
@@ -21691,7 +21760,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/ice_bar.png',
             class: 'bar',
             extraTooltipInfo: 'A coalesced bar of magic ice. Cold to the touch!',
-            tags: ['mining', 'smithing'],
+            tags: ['mining', 'smithing', 'event'],
             requiredResources: [{ 2: 100, 7013: 2 }],
         },
         7035: {
@@ -21704,7 +21773,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/Snow_Rune.png',
             extraTooltipInfo: 'A slate imbued with the essence of winter.',
             class: 'rune',
-            tags: ['ammunition', 'magic', 'runecrafting'],
+            tags: ['ammunition', 'magic', 'runecrafting', 'event'],
             requiredResources: [{ 113: 1, 7038: 400 }],
         },
         7036: {
@@ -21731,7 +21800,7 @@ class IdlescapeGameData {
             getChance: (resource, playerLevel) => {
                 return (100).toFixed(0) + '%';
             },
-            tags: ['enchanting'],
+            tags: ['enchanting', 'event'],
             requiredResources: [{ 516: 10, 518: 10, 519: 10, 7002: 1, 7035: 20 }],
         },
         7037: {
@@ -21745,7 +21814,7 @@ class IdlescapeGameData {
             craftingDescription: 'Each craft results in 2 bait. Helps with Christmas zone fishing.',
             extraTooltipInfo: 'A gummy fish turned into a lure. Helps with Christmas zone fishin.',
             class: 'fish',
-            tags: ['fishing'],
+            tags: ['fishing', 'event'],
         },
         7038: {
             id: 7038,
@@ -21755,7 +21824,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/snow_essence.png',
             extraTooltipInfo: 'Winter essence can be gathered by doing non-combat Christmas event activities.',
             class: 'rune',
-            tags: ['magic', 'runecrafting'],
+            tags: ['magic', 'runecrafting', 'event'],
         },
         7039: {
             id: 7039,
@@ -21770,7 +21839,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'More likely to bite you than let you bite it!',
             class: 'christmas-drop',
             time: 1000,
-            tags: ['ingredient', 'consumable', 'food', 'fishing'],
+            tags: ['ingredient', 'fishing', 'event'],
         },
         7040: {
             id: 7040,
@@ -21779,7 +21848,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/angry_letter.png',
             extraTooltipInfo: 'An angrily worded letter from someone you threw a snowball at!',
             class: 'christmas-drop',
-            tags: [],
+            tags: ['event'],
         },
         7041: {
             id: 7041,
@@ -21788,7 +21857,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/baubles.png',
             extraTooltipInfo: 'Commemorates Christmas 2021! How many can you collect?',
             class: 'christmas-drop',
-            tags: [],
+            tags: ['event'],
         },
         7050: {
             id: 7050,
@@ -21797,7 +21866,7 @@ class IdlescapeGameData {
             itemImage: '/images/christmas/snowglobe.png',
             extraTooltipInfo: 'Stores your Christmas Spirit!',
             class: 'christmas-globe',
-            tags: [],
+            tags: ['event'],
         },
         7060: {
             id: 7060,
@@ -21877,7 +21946,7 @@ class IdlescapeGameData {
             class: 'equipment',
             visual: 'moss-maul',
             category: ['weapon', 'combat'],
-            tags: ['melee', 'weapon'],
+            tags: ['melee', 'weapon', 'twohand'],
             equipmentStats: { isTransmog: true, slot: 'weapon' },
             rarity: 'legendary',
         },
@@ -22500,7 +22569,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/Nature_Piece.png',
             extraTooltipInfo: 'A piece of living earth is imbued into this fragment.',
             class: 'key',
-            tags: ['fragment', 'shard', 'crafting'],
+            tags: ['fragment', 'crafting'],
             category: 'Dungeon',
             requiredResources: [{ 517: 500, 9003: 1 }],
             rarity: 'uncommon',
@@ -22519,7 +22588,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/Water_Piece.png',
             extraTooltipInfo: 'An unmelting shard of ice is imbued into this fragment.',
             class: 'key',
-            tags: ['fragment', 'shard', 'crafting'],
+            tags: ['fragment', 'crafting'],
             category: 'Dungeon',
             requiredResources: [{ 513: 500, 9001: 1 }],
             rarity: 'uncommon',
@@ -22538,7 +22607,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/Fire_Piece.png',
             extraTooltipInfo: 'An unfaltering gout of flames is imbued into this fragment.',
             class: 'key',
-            tags: ['fragment', 'shard', 'crafting'],
+            tags: ['fragment', 'crafting'],
             category: 'Dungeon',
             requiredResources: [{ 512: 500, 9002: 1 }],
             rarity: 'uncommon',
@@ -22554,7 +22623,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/Death_Piece.png',
             extraTooltipInfo: 'A rotten slab of decay is imbued into this fragment.',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'uncommon',
         },
         9005: {
@@ -22568,7 +22637,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/Chaos_Piece.png',
             extraTooltipInfo: 'An undescribable phenomenon is imbued into this fragment.',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'uncommon',
         },
         9006: {
@@ -22604,7 +22673,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/goblin_map_piece.png',
             extraTooltipInfo: 'A scrap of parchment that appears to be a part of a map.',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'uncommon',
         },
         9008: {
@@ -22643,7 +22712,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/fortress_key_piece.png',
             extraTooltipInfo: 'A piece of dark metal that looks like part of a key.',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'uncommon',
         },
         9010: {
@@ -22711,7 +22780,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A piece of bone with some bits of metal sticking off of it. If you squint really hard it somewhat resembles a key.',
             class: 'key',
-            tags: ['dungeon', 'crafting'],
+            tags: ['dungeon', 'crafting', 'event'],
             requiredResources: [{ 7038: 150000 }],
         },
         9013: {
@@ -22722,7 +22791,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/infernal_ashes.png',
             extraTooltipInfo: 'The remains of some infernal creature. Still warm to the touch.',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'uncommon',
         },
         9014: {
@@ -22739,7 +22808,7 @@ class IdlescapeGameData {
             category: 'Dungeon',
             extraTooltipInfo: 'The vestiges of an infernal soul, left to burn eternally.',
             class: 'key',
-            tags: ['fragment', 'shard', 'crafting'],
+            tags: ['fragment', 'crafting'],
             requiredResources: [{ 2: 25000, 9013: 2 }],
             rarity: 'uncommon',
         },
@@ -22857,7 +22926,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'An ancient crystal. It is chaotic in origin but is far older than any chaotic crystal you have ever seen.',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'epic',
         },
         9021: {
@@ -22869,7 +22938,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'An ancient stone. Appears to be hewn in such a way that it would be able to fit nicely with other similar stones, despite its obvious age and damage.',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'epic',
         },
         9022: {
@@ -22881,7 +22950,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A portion of a larger map. Useless on its own, but with the remaining pieces it may lead somewhere!',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'rare',
         },
         9023: {
@@ -22892,7 +22961,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/keys/elder_gem.png',
             extraTooltipInfo: 'An elder gem. Prized heirloom of the Elves, or the final piece to a greater puzzle?',
             class: 'key',
-            tags: ['fragment', 'shard'],
+            tags: ['fragment'],
             rarity: 'rare',
         },
         9024: {
@@ -22941,7 +23010,7 @@ class IdlescapeGameData {
             class: 'gem',
             extraTooltipInfo: 'Perhaps you could salvage something dextrous from these scraps...',
             canBeOpened: true,
-            tags: [],
+            tags: ['chest', 'range'],
         },
         10002: {
             name: 'Intellectual Scraps',
@@ -22955,7 +23024,7 @@ class IdlescapeGameData {
             class: 'gem',
             extraTooltipInfo: 'Perhaps you could salvage something intellectual from these scraps...',
             canBeOpened: true,
-            tags: [],
+            tags: ['chest', 'magic'],
         },
         10003: {
             name: 'Gem Package',
@@ -22969,7 +23038,7 @@ class IdlescapeGameData {
             class: 'gem',
             extraTooltipInfo: "A bag of gems! I wonder what's inside? ...Gems, hopefully.",
             canBeOpened: true,
-            tags: [],
+            tags: ['mining', 'chest'],
         },
         10004: {
             name: 'Sealed Scroll',
@@ -22984,7 +23053,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "A sealed scroll. Doesn't come with postal information, so I guess it's yours now! What could its contents be?",
             canBeOpened: true,
-            tags: [],
+            tags: ['chest'],
         },
         10005: {
             name: 'Small Gathering Supply Crate',
@@ -22999,7 +23068,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "A small crate addressed to someone named 'Diet$melter.' Sounds like a fake name, you should open it!",
             canBeOpened: true,
-            tags: [],
+            tags: ['chest'],
         },
         10006: {
             name: 'Gathering Supply Crate',
@@ -23014,7 +23083,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "A crate addressed to someone named 'Diet$melter.' Sounds like a fake name, you should open it!",
             canBeOpened: true,
-            tags: [],
+            tags: ['chest'],
         },
         10007: {
             name: 'Large Gathering Supply Crate',
@@ -23029,7 +23098,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "A large crate addressed to someone named 'Diet$melter.' Sounds like a fake name, you should open it!",
             canBeOpened: true,
-            tags: [],
+            tags: ['chest'],
         },
         10008: {
             name: 'Bucket of Worms',
@@ -23043,7 +23112,7 @@ class IdlescapeGameData {
             class: 'gem',
             extraTooltipInfo: "A bucket of soil with worms inside! At least it isn't just a can of worms!",
             canBeOpened: true,
-            tags: [],
+            tags: ['fishing', 'chest'],
         },
         10009: {
             name: 'Box of Skill Books',
@@ -23057,7 +23126,7 @@ class IdlescapeGameData {
             class: 'gem',
             extraTooltipInfo: 'An ornate lockbox containing a variety of skill books. Testing Item.',
             canBeOpened: true,
-            tags: [],
+            tags: ['chest'],
         },
         10010: {
             name: 'Box of Jewelry',
@@ -23071,7 +23140,7 @@ class IdlescapeGameData {
             class: 'gem',
             extraTooltipInfo: 'An ornate lockbox containing a variety of skill books. Testing Item.',
             canBeOpened: true,
-            tags: [],
+            tags: ['chest'],
         },
         10011: {
             name: 'Magic Starter Kit',
@@ -23086,7 +23155,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A simple pouch containing some starter supplies. Will eventually be tied to a tutorial quest.',
             canBeOpened: true,
-            tags: [],
+            tags: ['chest', 'magic'],
         },
         10012: {
             name: 'Range Starter Kit',
@@ -23101,7 +23170,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'A simple pouch containing some starter supplies. Will eventually be tied to a tutorial quest.',
             canBeOpened: true,
-            tags: [],
+            tags: ['chest', 'range'],
         },
         10013: {
             name: 'Lesser Jewelry Cache',
@@ -23114,7 +23183,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/gold_lockbox.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'uncommon',
         },
         10014: {
@@ -23128,7 +23197,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/gold_lockbox.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10015: {
@@ -23142,7 +23211,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10016: {
@@ -23156,7 +23225,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10017: {
@@ -23170,7 +23239,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10018: {
@@ -23184,7 +23253,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10019: {
@@ -23198,7 +23267,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10020: {
@@ -23212,7 +23281,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10021: {
@@ -23226,7 +23295,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10022: {
@@ -23240,7 +23309,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10023: {
@@ -23254,7 +23323,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10024: {
@@ -23268,7 +23337,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         10025: {
@@ -23282,7 +23351,7 @@ class IdlescapeGameData {
             itemImage: '/images/misc/dark_chest.png',
             canBeOpened: true,
             class: 'gem',
-            tags: [],
+            tags: ['chest'],
             rarity: 'epic',
         },
         11000: {
@@ -23305,7 +23374,7 @@ class IdlescapeGameData {
                 "A beginner's novice tacklebox designed to be used by children. Not much good to catch anything large.",
             category: 'Fishing',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             equipmentStats: {
                 slot: 'tacklebox',
                 toolBoost: [
@@ -23344,7 +23413,7 @@ class IdlescapeGameData {
                 'A basic fishing tacklebox aimed for use by hobbyists and amateurs for basic fishing adventures to the local river or pond.',
             category: 'Fishing',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             equipmentStats: {
                 slot: 'tacklebox',
                 toolBoost: [
@@ -23383,7 +23452,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "An advanced fishing tacklebox for those who've gotten more than their toes wet in fishing.",
             category: 'Fishing',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             equipmentStats: {
                 slot: 'tacklebox',
                 toolBoost: [
@@ -23422,7 +23491,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'The pro fishing tacklebox has nearly everything you could possibly need to catch fish.',
             category: 'Fishing',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             equipmentStats: {
                 slot: 'tacklebox',
                 toolBoost: [
@@ -23463,7 +23532,7 @@ class IdlescapeGameData {
                 'A supreme fishing tacklebox rife with all the bits and bobs a master fisherman would need to fish up just about anything.',
             category: 'Fishing',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             equipmentStats: {
                 slot: 'tacklebox',
                 toolBoost: [
@@ -23517,7 +23586,7 @@ class IdlescapeGameData {
                 'The origin of this mythical equipment is lost to history but there is no doubt regarding its power. Enhances ancient fishing.',
             category: 'Fishing',
             enchantable: true,
-            tags: ['tool', 'crafting'],
+            tags: ['tool', 'crafting', 'fishing'],
             equipmentStats: {
                 slot: 'tacklebox',
                 toolBoost: [
@@ -23720,7 +23789,7 @@ class IdlescapeGameData {
             itemImage: 'images/fishing/material/rotten_driftwood.png',
             extraTooltipInfo: 'A rotten piece of driftwood. Could it still be used for something?',
             class: 'fish',
-            tags: [],
+            tags: ['fishing', 'heat'],
         },
         11031: {
             id: 11031,
@@ -23732,7 +23801,7 @@ class IdlescapeGameData {
             itemImage: 'images/fishing/material/sturdy_driftwood.png',
             extraTooltipInfo: 'A sturdy piece of driftwood. Could it still be used for something?',
             class: 'fish',
-            tags: [],
+            tags: ['fishing', 'heat'],
         },
         11032: {
             id: 11032,
@@ -23743,7 +23812,7 @@ class IdlescapeGameData {
             itemImage: 'images/fishing/material/aquamarine.png',
             extraTooltipInfo: 'An aquamarine crystal. If you hold it up to your ear you can look like an idiot!',
             class: 'fish',
-            tags: [],
+            tags: ['fishing'],
         },
         11033: {
             id: 11033,
@@ -23759,7 +23828,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "An ancient fishing rod, straight out of a madman's fantasy. Not much good on its own in this condition; it would take a master crafter to repair it...",
             class: 'fish',
-            tags: ['crafting'],
+            tags: ['crafting', 'fishing'],
             category: 'Fishing',
             rarity: 'rare',
         },
@@ -23777,7 +23846,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 'An ancient harpoon, probably dragged up from some ancient aquatic ruin. Not much good on its own in this condition; it would take a master crafter to repair it...',
             class: 'fish',
-            tags: ['crafting'],
+            tags: ['crafting', 'fishing'],
             category: 'Fishing',
             rarity: 'rare',
         },
@@ -23795,7 +23864,7 @@ class IdlescapeGameData {
             extraTooltipInfo:
                 "An ancient fishing net, the material it's made out of appears to be alive. Not much good on its own in this condition; it would take a master crafter to repair it...",
             class: 'fish',
-            tags: ['crafting'],
+            tags: ['crafting', 'fishing'],
             category: 'Fishing',
             rarity: 'rare',
         },
@@ -23809,7 +23878,7 @@ class IdlescapeGameData {
             itemImage: 'images/fishing/material/mystical_driftwood.png',
             extraTooltipInfo: 'An oddly glowing piece of driftwood. Could it still be used for something?',
             class: 'fish',
-            tags: [],
+            tags: ['fishing', 'heat'],
             rarity: 'uncommon',
         },
         11037: {
@@ -23825,7 +23894,7 @@ class IdlescapeGameData {
             itemImage: 'images/mining/dwarven_ingot.png',
             extraTooltipInfo: 'An alloy made from metals you do not recognize.',
             class: 'bar',
-            tags: ['crafting'],
+            tags: ['crafting', 'mining'],
             category: 'Mining',
             rarity: 'rare',
         },
@@ -23842,7 +23911,7 @@ class IdlescapeGameData {
             itemImage: 'images/mining/dwarven_ingot_2.png',
             extraTooltipInfo: 'An incredibly hard dwarven ingot. It is basically impossible to work with.',
             class: 'bar',
-            tags: ['crafting'],
+            tags: ['crafting', 'mining'],
             category: 'Mining',
             rarity: 'rare',
         },
@@ -23859,7 +23928,7 @@ class IdlescapeGameData {
             itemImage: 'images/mining/dwarven_ingot_3.png',
             extraTooltipInfo: 'A sort of mold to form a tool with.',
             class: 'bar',
-            tags: ['crafting'],
+            tags: ['crafting', 'mining'],
             category: 'Mining',
             rarity: 'rare',
         },
@@ -23876,7 +23945,7 @@ class IdlescapeGameData {
             itemImage: 'images/farming/mysterious_plant_44.png',
             extraTooltipInfo: 'It is looking at you.',
             class: 'bar',
-            tags: ['crafting'],
+            tags: ['crafting', 'foraging'],
             category: 'Foraging',
             rarity: 'rare',
         },
@@ -23893,7 +23962,7 @@ class IdlescapeGameData {
             itemImage: 'images/foraging/elder_sap.png',
             extraTooltipInfo: 'Sap taken from a tree that is much older than you are.',
             class: 'bar',
-            tags: ['crafting'],
+            tags: ['crafting', 'foraging'],
             category: 'Foraging',
             rarity: 'rare',
         },
@@ -23910,7 +23979,7 @@ class IdlescapeGameData {
             itemImage: 'images/foraging/world_branch.png',
             extraTooltipInfo: 'Basically just a shiny branch!',
             class: 'bar',
-            tags: ['crafting'],
+            tags: ['crafting', 'foraging'],
             category: 'Foraging',
             rarity: 'rare',
         },
@@ -23947,7 +24016,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A smock for fishing! You can already feel it making your tools stronger.',
             class: 'equipment',
             visual: 'smock',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'fishing'],
             rarity: 'uncommon',
         },
         12001: {
@@ -23983,7 +24052,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A hat for fishing! You can already feel it making your reflexes sharper.',
             class: 'equipment',
             visual: 'bucket-hat',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'fishing'],
             rarity: 'uncommon',
         },
         12002: {
@@ -24019,7 +24088,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Waders for fishing! You can already feel it making your ability to bait fish stronger.',
             class: 'equipment',
             visual: 'waders',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'fishing'],
             rarity: 'uncommon',
         },
         12003: {
@@ -24050,7 +24119,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A smock to rub the coal dust on after a long day in the mines.',
             class: 'equipment',
             visual: 'smock',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'mining'],
             rarity: 'uncommon',
         },
         12004: {
@@ -24081,7 +24150,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "OSHA improved! Let's you see better! Wow!",
             class: 'equipment',
             visual: 'bucket-hat',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'mining'],
             rarity: 'uncommon',
         },
         12005: {
@@ -24113,7 +24182,7 @@ class IdlescapeGameData {
                 'A pair of trousers that you swear definitely makes you better at mining despite being a simple pair of pants. Are they magical? Probably not. Probably.',
             class: 'equipment',
             visual: 'waders',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'mining'],
             rarity: 'uncommon',
         },
         12006: {
@@ -24144,7 +24213,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Makes you want to shout timber.',
             class: 'equipment',
             visual: 'smock',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'foraging'],
             rarity: 'uncommon',
         },
         12007: {
@@ -24175,7 +24244,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'If a tree falls on your head this will not help, but it can keep you warm!',
             class: 'equipment',
             visual: 'bucket-hat',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'foraging'],
             rarity: 'uncommon',
         },
         12008: {
@@ -24206,7 +24275,7 @@ class IdlescapeGameData {
             extraTooltipInfo: "You're a lumberjack and you're okay!",
             class: 'equipment',
             visual: 'waders',
-            tags: ['armor', 'crafting'],
+            tags: ['armor', 'crafting', 'foraging'],
             rarity: 'uncommon',
         },
         12009: {
@@ -24216,7 +24285,7 @@ class IdlescapeGameData {
             itemImage: '/images/fishing/fishing_shard.png',
             extraTooltipInfo: 'A shard for creating skilling gear.',
             class: 'gem',
-            tags: ['shard', 'fragment'],
+            tags: ['shard', 'fishing'],
             rarity: 'uncommon',
         },
         12010: {
@@ -24226,7 +24295,7 @@ class IdlescapeGameData {
             itemImage: '/images/mining/mining_shard.png',
             extraTooltipInfo: 'A shard for creating skilling gear.',
             class: 'gem',
-            tags: ['shard', 'fragment'],
+            tags: ['shard', 'mining'],
             rarity: 'uncommon',
         },
         12011: {
@@ -24236,7 +24305,7 @@ class IdlescapeGameData {
             itemImage: '/images/foraging/foraging_shard.png',
             extraTooltipInfo: 'A shard for creating skilling gear.',
             class: 'gem',
-            tags: ['shard', 'fragment'],
+            tags: ['shard', 'foraging'],
             rarity: 'uncommon',
         },
         12012: {
@@ -24271,7 +24340,7 @@ class IdlescapeGameData {
                 'Kinda smells like your childhood meals. They must have really sucked since this hat came from a Goblin.',
             class: 'equipment',
             visual: 'chef-hat',
-            tags: ['armor'],
+            tags: ['armor', 'cooking'],
             rarity: 'epic',
         },
         12014: {
@@ -24295,7 +24364,7 @@ class IdlescapeGameData {
                 "A manual on how to take advantage of your weapon's edge. Apparently using the sharp part means it will hurt something more, who could have known?",
             relatedAbility: 4,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13001: {
             id: 13001,
@@ -24307,7 +24376,7 @@ class IdlescapeGameData {
                 'A manual on how to take poke things really good. If the weapon has a decent tip, you can stab things! Wow!',
             relatedAbility: 5,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13002: {
             id: 13002,
@@ -24319,7 +24388,7 @@ class IdlescapeGameData {
                 'A manual on how to just hit things hard. Crushing things is deceptively simple and to truly pummel your enemy you must understand that being blunt is sometimes the only way to go.',
             relatedAbility: 6,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13003: {
             id: 13003,
@@ -24331,7 +24400,7 @@ class IdlescapeGameData {
                 'A basic tome from the Academy formerly used for teaching aspiring mages how to control and utilize fire. Be careful where you practice it!',
             relatedAbility: 7,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13004: {
             id: 13004,
@@ -24343,7 +24412,7 @@ class IdlescapeGameData {
                 'An intermediate tome from the Academy formerly used for teaching mages how to utilize flames in a more lively manner.',
             relatedAbility: 18,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13005: {
             id: 13005,
@@ -24355,7 +24424,7 @@ class IdlescapeGameData {
                 'A textbook that explains the basic principles regarding how something that goes up usually comes back down.',
             relatedAbility: 12,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13006: {
             id: 13006,
@@ -24379,7 +24448,7 @@ class IdlescapeGameData {
                 'A book that outline the merits of using projectiles, even just a single well placed one, to really get your point across.',
             relatedAbility: 23,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13008: {
             id: 13008,
@@ -24391,7 +24460,7 @@ class IdlescapeGameData {
                 'A book that outline the merits of using projectiles, especially when trying to distract and divert, to really get your point across.',
             relatedAbility: 24,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13009: {
             id: 13009,
@@ -24403,7 +24472,7 @@ class IdlescapeGameData {
                 'A spell tome that contains the necessary rituals and rites for summoning your own miniature apocalypse.',
             relatedAbility: 25,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13010: {
             id: 13010,
@@ -24414,7 +24483,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'A manual on how to hit two enemies at once in one swing.',
             relatedAbility: 22,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13011: {
             id: 13011,
@@ -24426,7 +24495,7 @@ class IdlescapeGameData {
                 'Grants the owner the ability to summon City Guards as reinforcements in combat. You should probably feel a little guilty if you bring them into a fight they cannot survive.',
             relatedAbility: 48,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13012: {
             id: 13012,
@@ -24437,7 +24506,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Teaches the fundamentals of mid-combat first aid rending.',
             relatedAbility: 47,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13013: {
             id: 13013,
@@ -24449,7 +24518,7 @@ class IdlescapeGameData {
                 'A few pages that explain that you can actually use your shield to defend others instead of just yourself.',
             relatedAbility: 49,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13014: {
             id: 13014,
@@ -24461,7 +24530,7 @@ class IdlescapeGameData {
                 'A manual on stabbing through one enemy and into the next one. A battle cry is optional but recommended!',
             relatedAbility: 66,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13015: {
             id: 13015,
@@ -24473,7 +24542,7 @@ class IdlescapeGameData {
                 "It's a long scroll that explains in detail how awful you are. It gives you ideas on what to say to other people! Very healthy.",
             relatedAbility: 54,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13016: {
             id: 13016,
@@ -24484,7 +24553,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'How to use the deceit and chaos to your aid on the battlefield.',
             relatedAbility: 57,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13017: {
             id: 13017,
@@ -24495,7 +24564,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Sticks, grass, leaves, and other foliage can make a proper bush out of you!',
             relatedAbility: 58,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13018: {
             id: 13018,
@@ -24506,7 +24575,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'ICE!',
             relatedAbility: 59,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13019: {
             id: 13019,
@@ -24517,7 +24586,7 @@ class IdlescapeGameData {
             extraTooltipInfo: 'Setting traps is just one of the many ways you may shape the battlefield.',
             relatedAbility: 60,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         13020: {
             id: 13020,
@@ -24529,7 +24598,7 @@ class IdlescapeGameData {
                 'A basic tome from the Academy formerly used for teaching aspiring mages how to control and utilize ice.',
             relatedAbility: 67,
             class: 'gem',
-            tags: ['book'],
+            tags: ['book', 'heat'],
         },
         15000: {
             id: 15000,
@@ -24539,7 +24608,7 @@ class IdlescapeGameData {
             heat: 1,
             extraTooltipInfo: 'A type of trophy taken from a slain foe.',
             class: 'gem',
-            tags: [],
+            tags: ['heat'],
         },
         15001: {
             id: 15001,
@@ -24549,7 +24618,7 @@ class IdlescapeGameData {
             heat: 1,
             extraTooltipInfo: 'A token representing that some item was obtained.',
             class: 'gem',
-            tags: [],
+            tags: ['heat'],
         },
         15002: {
             id: 15002,
@@ -24559,7 +24628,7 @@ class IdlescapeGameData {
             heat: 1,
             extraTooltipInfo: 'A token representing that some action was completed.',
             class: 'gem',
-            tags: [],
+            tags: ['heat'],
         },
         25000: {
             id: 25000,
