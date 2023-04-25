@@ -44,7 +44,7 @@ class InventoryFilter {
     }
 
     _injectFilterHtml() {
-        this.originalFilterInput = document.getElementById('searchForItem');
+        this.originalFilterInput = document.getElementsByClassName('anchor-inventory-filter')[0];
         if (this.originalFilterInput === null) return;
 
         const daelisFilter = document.getElementById('daelis-inventory-filter');
@@ -66,7 +66,7 @@ class InventoryFilter {
                 <img class="daelis-inventory-filter-image" src="/images/cooking/cooking_icon.png" data-filter="cooking" alt="cooking">    
                 <img class="daelis-inventory-filter-image" src="/images/runecrafting/mind_rune.png" data-filter="rune" alt="rune">
                 <img class="daelis-inventory-filter-image" src="${filterClear}" data-filter="clearFilter" alt="clear filter">      
-                <input class="inventory-sort-entry" placeholder="Custom Filter" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" margin="dense" dense="true" variant="outlined" type="search" name="daelis_filter_custom_values" id="daelis_filter_custom_values" value="">
+                <input class="inventory-sort-entry" placeholder="Custom Filter" autocomplete="off"  autocapitalize="off" spellcheck="false" type="search" name="daelis_filter_custom_values" id="daelis_filter_custom_values" value="">
                 <img class="daelis-inventory-filter-image" src="${filterCopy}" data-filter="copy" alt="Copy inventory to clipboard">
             </div>
         `;
@@ -88,10 +88,12 @@ class InventoryFilter {
                     width: 100%;
                     overflow: hidden;
                     flex-wrap: wrap;
+                    margin-left: 35px;
+                    align-items: center;
                 }
                 .daelis-inventory-filter-image { 
-                    width: 35px;
-                    height: 35px;
+                    width: 30px;
+                    height: 30px;
                     margin-left: 1px;
                     margin-right: 1px;
                     padding: 1px;
@@ -104,6 +106,31 @@ class InventoryFilter {
                 #daelis_filter_custom_values {
                     flex-grow: 4;
                     margin-left: 5px;
+                    outline: transparent solid 2px;
+                    outline-offset: 2px;
+                    position: relative;
+                    appearance: none;
+                    transition-property: var(--chakra-transition-property-common);
+                    transition-duration: var(--chakra-transition-duration-normal);
+                    font-size: var(--chakra-fontSizes-md);
+                    padding-inline-start: var(--chakra-space-10);
+                    padding-inline-end: var(--chakra-space-4);
+                    height: var(--chakra-sizes-10);
+                    border-radius: var(--chakra-radii-md);
+                    border-width: 1px;
+                    border-style: solid;
+                    border-image: initial;
+                    border-color: inherit;
+                    background: inherit;
+                }
+                #daelis_filter_custom_values:hover, #daelis_filter_custom_values[data-hover] {
+                    border-color: var(--chakra-colors-whiteAlpha-400);
+                }
+                                
+                #daelis_filter_custom_values:focus-visible, #daelis_filter_custom_values[data-focus-visible] {
+                    z-index: 1;
+                    border-color: rgb(99, 179, 237);
+                    box-shadow: rgb(99, 179, 237) 0px 0px 0px 1px;
                 }
             </style>`;
         injectCSS(css, this.cssClass);
@@ -116,8 +143,8 @@ class InventoryFilter {
     _setUpMeterMutationObserver(){
         const self = this;
         const callback = function(mutationsList, observer) {
-            const searchForItem = document.getElementById('searchForItem');
-            if (searchForItem === null) self._resetFilters();
+            const inventoryFilter = document.getElementsByClassName("inventory-container-all-items")[0];
+            if (inventoryFilter === null) self._resetFilters();
             else self._injectFilterHtml();
         };
 
@@ -135,7 +162,7 @@ class InventoryFilter {
     }
 
     _copyFilteredInventoryToClipboard(separator=',') {
-        let inventory = document.getElementsByClassName("inventory-container-all-items")[0];
+        const inventory = document.getElementsByClassName("inventory-container-all-items")[0];
         if (inventory === undefined) return;
 
         let clipboardString = '';
