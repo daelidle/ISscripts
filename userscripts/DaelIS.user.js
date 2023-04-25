@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      2.1.6
+// @version      2.1.7
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
@@ -49,7 +49,6 @@
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/GeneralUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/ItemUtils.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/utils/UiUtils.js
-// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/data/IdlescapeGameData.js
 // @match        https://play.idlescape.com/*
 // @match        https://www.play.idlescape.com/*
 // @run-at       document-start

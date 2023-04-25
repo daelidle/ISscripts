@@ -5,11 +5,12 @@ class ResourceTracker {
 
     constructor(daelis) {
         this.config = new TrackerConfig(daelis);
-        this.ui = new TrackerUI(this.config, this);
+        this.daelis = daelis;
     }
 
     onGameReady(isFirstGameReady) {
         if (isFirstGameReady) this._readInitialResources();
+        this.ui = new TrackerUI(this.config, this);
         this.ui.setupUI();
     }
 

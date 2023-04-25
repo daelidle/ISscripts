@@ -29,9 +29,7 @@ class DaelIS {
         this.isGameReady = false;
         this.extensions = {};
         this.activeExtensions = {};
-        this.gameData = new IdlescapeGameData();
         this.state = new State();
-        this.prices = new Prices(this.gameData.items);
         this.configUi = null;
         this.setupSocketListener();
         onGameReady(() => this.onFirstGameReady());
@@ -140,6 +138,8 @@ class DaelIS {
 
     onFirstGameReady(){
         this.setupDisconnectTracker();
+        this.gameData = window.Idlescape.data;
+        this.prices = new Prices(this.gameData.items);
         this.tooltip = new Tooltip(this);
         this.configUi = new DaelISConfigUI(this);
         this.configUi.injectMenuOption();

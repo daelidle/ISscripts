@@ -1,5 +1,5 @@
 class TrackerUI {
-    _gameData = new IdlescapeGameData();
+    _gameData;
     config;
     tracker;
     buttonId = "daelis_resource_tracker";
@@ -10,6 +10,7 @@ class TrackerUI {
     }
 
     setupUI(){
+        this._gameData = this.tracker.daelis.gameData;
         if (document.getElementById(this.buttonId) !== null) return;
         const imageButtonHtml = `<img src="/images/money_icon.png" id="${this.buttonId}" alt="Resources Tracker" class="header-league-icon" style="pointer-events: all !important;">`;
         document.getElementById('usersOnline').insertAdjacentHTML('afterend', imageButtonHtml);
