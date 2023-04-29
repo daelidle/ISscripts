@@ -128,8 +128,10 @@ class MeterUI {
                          </div>
                          <div class="damage-percent">${player.contribution}%</div>
                       </div>
-                      <img class="dm_breakdown dm_icon_button" alt="Breakdown Damage Metrics" src="${this.breakdownIcon}" data-playername="${player.name}">
-                      <div class="maxhit">${maxString}: ${player.max}</div>
+                      <div class="dm_bottom_info">
+                        <img class="dm_breakdown dm_icon_button" alt="Breakdown Damage Metrics" src="${this.breakdownIcon}" data-playername="${player.name}">
+                        <div class="maxhit">${maxString}: ${player.max}</div>
+                      </div>
                    </div>`;
     }
 

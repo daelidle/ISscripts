@@ -21,6 +21,7 @@ class Player {
 }
 
 class Combat {
+    daelis;
     group;
     spawnedMonsters;
     onCombat = false;
@@ -31,11 +32,12 @@ class Combat {
     UNKNOWN_ABILITY_ID = -100;
     BREAKDOWN_BASE_DICTIONARY = {damage: 0, hits: 0, criticals: 0, misses: 0};
 
-    constructor(config) {
+    constructor(config, daelis) {
         this.group = {};
         this.spawnedMonsters = {};
         this.combatStartTimestamp = new Date();
         this.config = config;
+        this.daelis = daelis;
     }
 
     inCombat(){
@@ -68,7 +70,7 @@ class Combat {
         const ability = player.currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
         if (!player.damageDealtBreakdown[ability]) {
             player.damageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
-            player.effectiveDamageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};;
+            player.effectiveDamageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
         }
 
         if (!isMiss) {
@@ -88,6 +90,8 @@ class Combat {
 
     addDamageReceived(playerId, monsterId, damage, damageType, isCritical, isMiss) {
         const playerName = this._getPlayerName(playerId);
+        if (!playerName) return; // We still haven't received the full group player message
+
         this.group[playerName].damageReceived += damage;
         if (damage > this.group[playerName].maxReceived) this.group[playerName].maxReceived = damage;
 
@@ -110,8 +114,18 @@ class Combat {
     }
     updateMonster(monstersData) {
         monstersData.forEach(monsterData => {
-            if (!(monsterData.id in this.spawnedMonsters)) this.spawnedMonsters[monsterData.id] = monsterData;
-            else this.spawnedMonsters[monsterData.id].monsterHealth = monsterData.monsterHealth;
+            if (monsterData.faction?.includes('playerSummon')){
+                // We are dealing with a summoned Mercenary
+                if (!this.isPlayerOnGroup(monsterData.id)) {
+                    const monsterWeapon = this.daelis.gameData.items[monsterData?.playerEquipment?.weapon];
+                    const attackSpeed = monsterWeapon?.equipmentStats?.attackSpeed ?? 3;
+                    this.addPlayerToGroup(monsterData.id, monsterData.monsterName, attackSpeed);
+                }
+                this.setPlayerCurrentHP(monsterData.id, monsterData.monsterHealth);
+            } else {
+                if (!(monsterData.id in this.spawnedMonsters)) this.spawnedMonsters[monsterData.id] = monsterData;
+                else this.spawnedMonsters[monsterData.id].monsterHealth = monsterData.monsterHealth;
+            }
         });
     }
 

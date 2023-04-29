@@ -18,7 +18,7 @@ class DamageMeter {
         this.daelis = daelis;
         this.config = new MeterConfig(daelis);
         this.ui = new MeterUI(this.config);
-        this.combat = new Combat(this.config);
+        this.combat = new Combat(this.config, daelis);
         this.currentType = meterTypes.DPS;
         window.damageMeter = this;
     }

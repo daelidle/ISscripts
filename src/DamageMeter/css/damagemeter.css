@@ -198,6 +198,9 @@
     margin-top: -3px;
     margin-right: -14px;
 }
+.dm_bottom_info {
+    display: flex;
+}
 .close_meter_message{
     float: right;
     cursor: pointer;
