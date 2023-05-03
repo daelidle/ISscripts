@@ -25,7 +25,7 @@ class DisplayPricesInventory {
     addMutationObserver(){
         const self = this;
         const callback = function(mutationsList, observer) {
-            if (document.getElementsByClassName("marketplace-content").length > 0 ||
+            if (document.getElementsByClassName("marketplace-container").length > 0 ||
                 document.getElementsByClassName("scrollcrafting-main").length > 0 ||
                 document.getElementsByClassName("inventory-panel").length > 0) self._updateInventoryPrices();
         };
@@ -61,9 +61,8 @@ class DisplayPricesInventory {
     }
 
     _addPriceToMarketplace(priceData) {
-        let marketplaceDiv = document.getElementsByClassName("marketplace-content");
+        let marketplaceDiv = document.getElementsByClassName("marketplace-container");
         if (marketplaceDiv.length === 0) return;
-        if (document.getElementsByClassName("marketplace-sell-items all-items").length > 0) return;
         marketplaceDiv[0].querySelectorAll(".item-icon").forEach(item => {
             const itemName = item.attributes['alt'].nodeValue;
 
