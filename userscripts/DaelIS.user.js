@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      2.1.10
+// @version      2.1.11
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
@@ -63,7 +63,6 @@
      */
 
     const daelIS = new DaelIS();
-    daelIS.addExtension(CustomTooltip);
     daelIS.addExtension(DamageMeter);
     daelIS.addExtension(DisplayPricesInventory);
     daelIS.addExtension(InventoryFilter);
