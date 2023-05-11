@@ -7,7 +7,6 @@ class Player {
     damageDealtBreakdown = {}
     effectiveDamageDealtBreakdown = {}
     damageReceivedBreakdown = {}
-    currentCastingAbility;
     healing = 0;
     maxHit = 0;
     maxReceived = 0;
@@ -28,15 +27,13 @@ class Combat {
     combatStartTimestamp;
     combatFinishTimestamp = null;
     characterIdToName = {};
-    config;
     UNKNOWN_ABILITY_ID = -100;
     BREAKDOWN_BASE_DICTIONARY = {damage: 0, hits: 0, criticals: 0, misses: 0};
 
-    constructor(config, daelis) {
+    constructor(daelis) {
         this.group = {};
         this.spawnedMonsters = {};
         this.combatStartTimestamp = new Date();
-        this.config = config;
         this.daelis = daelis;
     }
 
@@ -58,7 +55,7 @@ class Combat {
         this.group[playerName].currentHP = hp;
     }
 
-    addDamageDealt(playerId, defender, damage, damageType, isCritical, isMiss) {
+    addDamageDealt(playerId, defender, damage, damageType, isCritical, isMiss, abilityId){
         const playerName = this._getPlayerName(playerId);
         const player = this.group[playerName];
         player.damageDealt += damage;
@@ -67,7 +64,7 @@ class Combat {
         player.effectiveDamageDealt += Math.min(damage, monsterHealth);
         if (damage > player.maxHit) player.maxHit = damage;
 
-        const ability = player.currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
+        const ability = abilityId ?? this.UNKNOWN_ABILITY_ID;
         if (!player.damageDealtBreakdown[ability]) {
             player.damageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
             player.effectiveDamageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
@@ -88,14 +85,14 @@ class Combat {
         }
     }
 
-    addDamageReceived(playerId, monsterId, damage, damageType, isCritical, isMiss) {
+    addDamageReceived(playerId, monsterId, damage, damageType, isCritical, isMiss, abilityId) {
         const playerName = this._getPlayerName(playerId);
         if (!playerName) return; // We still haven't received the full group player message
 
         this.group[playerName].damageReceived += damage;
         if (damage > this.group[playerName].maxReceived) this.group[playerName].maxReceived = damage;
 
-        const ability = this.spawnedMonsters[monsterId]?.currentCastingAbility ?? this.UNKNOWN_ABILITY_ID;
+        const ability = abilityId ?? this.UNKNOWN_ABILITY_ID;
         if (!this.group[playerName].damageReceivedBreakdown[ability]) this.group[playerName].damageReceivedBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};;
         if (!isMiss) {
             this.group[playerName].damageReceivedBreakdown[ability].damage += damage;
@@ -131,15 +128,6 @@ class Combat {
 
     monsterDead(monsterId){
         delete this.spawnedMonsters[monsterId];
-    }
-
-    updatePlayerAbility(playerId, abilityId){
-        const playerName = this._getPlayerName(playerId);
-        this.group[playerName].currentCastingAbility = abilityId;
-    }
-
-    updateMonsterAbility(monsterId, abilityId){
-        if (this.spawnedMonsters[monsterId]) this.spawnedMonsters[monsterId].currentCastingAbility = abilityId;
     }
 
     _getPlayerName(playerId) {
@@ -212,42 +200,7 @@ class Combat {
             this._startCombat();
         } else {
             this.combatFinishTimestamp = new Date();
-            if (this.config.showActivitySummary){
-                const deleteMessageId = 'dm_delete_message_'+new Date().getTime();
-                let combatSummary = this._generateCombatSummaryMessages(deleteMessageId);
-                displayChatMessageRaw(combatSummary, chatChannels.Activity);
-                document.getElementById(deleteMessageId).addEventListener("click",(event) => event.target.parentElement.parentElement.remove(), false);
-            }
         }
-    }
-
-    _generateCombatSummaryMessages(deleteMessageId){
-        let players = this._getPlayersOrderedByType(meterTypes.DPS);
-        let combatStats = this._generateCombatStats();
-
-        let order = 1;
-        let combatDurationSeconds = timeForHumans((new Date().getTime() - this.combatStartTimestamp.getTime()) / 1000);
-        let message = `<div class="combatSummary"><p>Damage Meter - Combat Summary <span class="dm_summary_duration">(Fighting for ${combatDurationSeconds})</span><span class="close_meter_message" id="${deleteMessageId}">X</span></p><div class="dm_summary_row"> <div class="dm_item">Player</div><div class="dm_item">Damage</div><div class="dm_item">DPS</div><div class="dm_item">Max Hit</div><div class="dm_item">Contribution</div><div class="dm_item">Absorbed</div><div class="dm_item">APS</div><div class="dm_item">Max Absorbed</div><div class="dm_item">Healing</div><div class="dm_item">HPS</div><div class="dm_item">Max Heal</div></div>`;
-        players.forEach(player => {
-            let playerStats = combatStats[player.name];
-            let playerSummary = `<div class="dm_summary_row">
-                <div class="dm_item">${order}. ${playerStats.name}</div>
-                <div class="dm_item">${playerStats.damageDealt}</div>
-                <div class="dm_item">${playerStats.dps}</div>
-                <div class="dm_item">${playerStats.maxHit}</div>
-                <div class="dm_item">${playerStats.contributionDealt}%</div>
-                <div class="dm_item">${playerStats.damageReceived}</div>
-                <div class="dm_item">${playerStats.aps}</div>
-                <div class="dm_item">${playerStats.maxReceived}</div>
-                <div class="dm_item">${playerStats.healing}</div>
-                <div class="dm_item">${playerStats.hps}</div>
-                <div class="dm_item">${playerStats.maxHeal}</div>
-              </div>`;
-            message += playerSummary;
-            order++;
-        });
-        message += '</div>';
-        return message;
     }
 
     resetGroup(){

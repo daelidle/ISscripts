@@ -11,20 +11,17 @@ class DamageMeter {
     combat;
     currentType;
     ui;
-    config;
     daelis;
 
     constructor(daelis) {
         this.daelis = daelis;
-        this.config = new MeterConfig(daelis);
-        this.ui = new MeterUI(this.config);
-        this.combat = new Combat(this.config, daelis);
+        this.ui = new MeterUI();
+        this.combat = new Combat(daelis);
         this.currentType = meterTypes.DPS;
         window.damageMeter = this;
     }
 
     onGameReady(isFirstGameReady){
-        if (isFirstGameReady) this.config.load();
         this.ui.setupUI(this.customModalClass);
     }
 
@@ -38,9 +35,6 @@ class DamageMeter {
         switch (message.event){
             case "combat:splotch":
                 this._parseCombatHit(message.data);
-                break;
-            case "combat:attack":
-                this._parseCombatAttack(message.data);
                 break;
             case "combat:spawnMonster":
                 this.combat.updateMonster(message.data);
@@ -83,6 +77,7 @@ class DamageMeter {
         const defenderId = combatHit.id;
         const damage = combatHit.hit;
         const isCritical = combatHit.crit;
+        const abilityID = combatHit.abilityID;
         const isSourceMonster = !this.combat.isPlayerOnGroup(attackerId);
 
         switch (damageType) {
@@ -92,25 +87,11 @@ class DamageMeter {
             default:
                 const isMiss = (damageType === 'Miss');
                 if (!DamageUtils.allCombatSplotchDamageTypes.includes(damageType)) console.log(`[DaelIS][WARNING]: New type of Hit ${damageType}`);
-                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, defenderId, damage, damageType, isCritical, isMiss);
-                else this.combat.addDamageReceived(defenderId, attackerId, damage, damageType, isCritical, isMiss);
+                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, defenderId, damage, damageType, isCritical, isMiss, abilityID);
+                else this.combat.addDamageReceived(defenderId, attackerId, damage, damageType, isCritical, isMiss, abilityID);
                 break;
         }
         this._updateMeter();
-    }
-
-    _parseCombatAttack(combatAttack) {
-        if (!this.combat.inCombat()) return;
-        if (this.combat.group.length === 0) {
-            console.log("[DaelIS][WARNING]: Received a combat:attack message before group info.");
-            return;
-        }
-
-        //42["combat:attack",{"id":xxxxx,"length":3000,"ability":2}]
-        const attackerId = combatAttack.id;
-        const abilityId = combatAttack.ability;
-        if (this.combat.isPlayerOnGroup(attackerId)) this.combat.updatePlayerAbility(attackerId, abilityId);
-        else this.combat.updateMonsterAbility(attackerId, abilityId);
     }
 
     _parseUpdatePlayer(playerInfo) {

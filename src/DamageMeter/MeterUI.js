@@ -4,13 +4,11 @@ class MeterUI {
     CSS_FILE_URL = 'https://daelidle.github.io/ISscripts/src/DamageMeter/css/damagemeter.css';
     meterSwitchIcon = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/meter_switch.png';
     breakdownIcon = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/breakdown.png';
-    config;
     cssFileClass = 'CssMeterUiFile';
     cssClass = 'CssMeterUi';
     observer;
 
-    constructor(config) {
-        this.config = config;
+    constructor() {
         this.breakdownModal = new MeterUIBreakdownModal();
     }
 
@@ -144,20 +142,4 @@ class MeterUI {
     setupBreakdownModalTriggers(selectedBreakdownType){
         this.breakdownModal.setupBreakdownModalTriggers(selectedBreakdownType);
     }
-
-    showExtensionSettings(){
-        const title = "Damage Meter Configuration";
-        const checked = (this.config.showActivitySummary) ? 'checked' : '';
-        const message = `<div class="daelidle_config_extensions "><input type="checkbox" class="daelis_meter_config" data-field="showActivitySummary" ${checked}>showActivitySummary</div>`;
-        displayPopup(title, message, () => this._processNewConfig(), () => {});
-    }
-
-    _processNewConfig(){
-        const showActivitySummary = document.getElementsByClassName('daelis_meter_config')[0];
-        if (showActivitySummary === undefined) return;
-
-        this.config.showActivitySummary = showActivitySummary.checked;
-        this.config.save();
-    }
-
 }
