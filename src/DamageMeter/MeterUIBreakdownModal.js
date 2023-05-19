@@ -16,6 +16,7 @@ class MeterUIBreakdownModal {
             height: auto;
             flex-basis: auto;
             justify-content: center;
+            overflow: initial;
         }
         .daelis-meters-breakdown-tab-container > div{
             min-width: 250px;
