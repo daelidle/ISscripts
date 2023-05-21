@@ -107,7 +107,10 @@ class DamageMeter {
         this.combat.resetGroup();
         for (const player of Object.values(groupInfo.value.groupMemberData)) {
             const playerId = player.id;
-            if (!this.combat.isPlayerOnGroup(playerId)) this.combat.addPlayerToGroup(playerId, player.username, player.combatStats.attackSpeed);
+            if (!this.combat.isPlayerOnGroup(playerId)) {
+                if (!player.combatStats) continue;
+                this.combat.addPlayerToGroup(playerId, player.username, player.combatStats.attackSpeed);
+            }
             this.combat.setPlayerCurrentHP(playerId, player.currentHealth);
         }
     }

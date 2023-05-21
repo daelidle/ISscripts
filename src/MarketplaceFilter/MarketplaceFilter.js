@@ -44,7 +44,7 @@ class MarketplaceFilter {
 
     _injectFilterHtml(originalFilterInput) {
         this.originalFilterInput = originalFilterInput;
-        if (this.originalFilterInput === null) return;
+        if (!this.originalFilterInput) return;
 
         const daelisFilter = document.getElementById('daelis-marketplace-filter');
         if (daelisFilter !== null) return;

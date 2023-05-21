@@ -45,7 +45,7 @@ class InventoryFilter {
 
     _injectFilterHtml() {
         this.originalFilterInput = document.getElementsByClassName('anchor-inventory-filter')[0];
-        if (this.originalFilterInput === null) return;
+        if (!this.originalFilterInput) return;
 
         const daelisFilter = document.getElementById('daelis-inventory-filter');
         if (daelisFilter !== null) return;

@@ -110,10 +110,12 @@ class Combat {
         if (healing > this.group[playerName].maxHeal) this.group[playerName].maxHeal = healing;
     }
     updateMonster(monstersData) {
+        if (!monstersData) return;
         monstersData.forEach(monsterData => {
             if (monsterData.faction?.includes('playerSummon')){
                 // We are dealing with a summoned Mercenary
                 if (!this.isPlayerOnGroup(monsterData.id)) {
+                    if (!this.daelis.gameData) return;
                     const monsterWeapon = this.daelis.gameData.items[monsterData?.playerEquipment?.weapon];
                     const attackSpeed = monsterWeapon?.equipmentStats?.attackSpeed ?? 3;
                     this.addPlayerToGroup(monsterData.id, monsterData.monsterName, attackSpeed);
