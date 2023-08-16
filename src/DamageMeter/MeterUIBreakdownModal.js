@@ -88,15 +88,15 @@ class MeterUIBreakdownModal {
         let abilitiesHtml = '';
         for (const [abilityId, abilityStats] of Object.entries(breakdown)) {
             const ability = abilities[abilityId];
-            const numHitsAndMisses = abilityStats.hits + abilityStats.misses;
-            const averageDamage = abilityStats.damage / numHitsAndMisses;
+            const averageDamage = abilityStats.damage / abilityStats.attacks;
+            const averageDPS = ability?.baseSpeedCoeff ? averageDamage / (ability.baseSpeedCoeff * weaponSpeed) : -1;
             abilitiesHtml += `<div class="daelis-meters-breakdown-row">
                 <div class="dmb-ability-image"><img src="${ability?.abilityImage ?? this.unknownAbilityIcon }">${ability?.abilityName ?? 'Unknown Ability'}</div>
                 <div class="dmb-ability-damage">${abilityStats.damage.toLocaleString()}</div>
                 <div class="dmb-ability-average-damage">${toFixedLocale(averageDamage)}</div>
-                <div class="dmb-ability-average-dps ${dpsCssClass}">${!ability?.baseSpeedCoeff ? 'N/A' : toFixedLocale(averageDamage / (ability.baseSpeedCoeff * weaponSpeed))}</div>
-                <div class="dmb-ability-hit">${toFixedLocale(abilityStats.hits / numHitsAndMisses * 100)}%</div>
-                <div class="dmb-ability-crit">${toFixedLocale(abilityStats.criticals / abilityStats.hits * 100)}%</div>
+                <div class="dmb-ability-average-dps ${dpsCssClass}">${averageDPS === -1 ? 'N/A' : toFixedLocale(averageDPS)}</div>
+                <div class="dmb-ability-hit">${toFixedLocale(abilityStats.hits / (abilityStats.hits + abilityStats.misses) * 100)}%</div>
+                <div class="dmb-ability-crit">${abilityStats.hits === 0 ? 0 : toFixedLocale(abilityStats.criticals / abilityStats.hits * 100)}%</div>
                 <div class="dmb-ability-total-contribution">${toFixedLocale(abilityStats.damage / totalDamage * 100)}%</div>
             </div>`;
         }

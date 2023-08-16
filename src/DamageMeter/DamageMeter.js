@@ -5,6 +5,19 @@ const meterTypes = {
     HEALER: 3
 }
 
+class Damage {
+    damageType;
+    attackerId;
+    defenderId;
+    damage;
+    isCritical;
+    isMiss;
+    abilityID;
+    isAoEAttack;
+    isPrimaryAoETarget;
+    isSplashAoEDamage;
+}
+
 class DamageMeter {
     static meta = {name: 'Damage Meter', description: 'Shows a damage meter on solo/group combat screen with additional combat information', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/meta_image.png'};
     customModalClass = 'daelis_meter_breakdown_modal';
@@ -72,23 +85,27 @@ class DamageMeter {
             return;
         }
 
-        const damageType = combatHit.damageType;
-        const attackerId = combatHit.attackerID;
-        const defenderId = combatHit.id;
-        const damage = combatHit.hit;
-        const isCritical = combatHit.crit;
-        const abilityID = combatHit.abilityID;
-        const isSourceMonster = !this.combat.isPlayerOnGroup(attackerId);
+        const damageMessage = new Damage();
+        damageMessage.damageType = combatHit.damageType;
+        damageMessage.attackerId = combatHit.attackerID;
+        damageMessage.defenderId = combatHit.id;
+        damageMessage.damage = combatHit.hit;
+        damageMessage.isCritical = combatHit.crit;
+        damageMessage.abilityId = combatHit.abilityID;
+        damageMessage.isAoEAttack = combatHit.primaryInAOE !== undefined;
+        damageMessage.isPrimaryAoETarget = damageMessage.isAoEAttack && combatHit.primaryInAOE;
+        damageMessage.isSplashAoEDamage = damageMessage.isAoEAttack && !combatHit.primaryInAOE;
 
-        switch (damageType) {
+        const isSourceMonster = !this.combat.isPlayerOnGroup(damageMessage.attackerId);
+        switch (damageMessage.damageType) {
             case 'Heal':
-                if (!isSourceMonster) this.combat.addHealing(attackerId, damage);
+                if (!isSourceMonster) this.combat.addHealing(damageMessage);
                 break;
             default:
-                const isMiss = (damageType === 'Miss');
-                if (!DamageUtils.allCombatSplotchDamageTypes.includes(damageType)) console.log(`[DaelIS][WARNING]: New type of Hit ${damageType}`);
-                if (!isSourceMonster) this.combat.addDamageDealt(attackerId, defenderId, damage, damageType, isCritical, isMiss, abilityID);
-                else this.combat.addDamageReceived(defenderId, attackerId, damage, damageType, isCritical, isMiss, abilityID);
+                damageMessage.isMiss = (damageMessage.damageType === 'Miss');
+                if (!DamageUtils.allCombatSplotchDamageTypes.includes(damageMessage.damageType)) console.log(`[DaelIS][WARNING]: New type of Hit ${damageMessage.damageType}`);
+                if (!isSourceMonster) this.combat.addDamageDealt(damageMessage);
+                else this.combat.addDamageReceived(damageMessage);
                 break;
         }
         this._updateMeter();
