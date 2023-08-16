@@ -121,15 +121,16 @@ class DamageMeter {
 
     _parseUpdateGroup(groupInfo) {
         if (!groupInfo?.value?.groupMemberData) return;
-        this.combat.resetGroup();
+        const newGroupMembers = [];
         for (const player of Object.values(groupInfo.value.groupMemberData)) {
-            const playerId = player.id;
-            if (!this.combat.isPlayerOnGroup(playerId)) {
+            newGroupMembers.push(player.username);
+            if (!this.combat.isPlayerOnGroup(player.id)) {
                 if (!player.combatStats) continue;
-                this.combat.addPlayerToGroup(playerId, player.username, player.combatStats.attackSpeed);
+                this.combat.addPlayerToGroup(player.id, player.username, player.combatStats.attackSpeed);
             }
-            this.combat.setPlayerCurrentHP(playerId, player.currentHealth);
+            this.combat.setPlayerCurrentHP(player.id, player.currentHealth);
         }
+        this.combat.removeOldMembersFromGroup(newGroupMembers);
     }
 
     _parseUpdateGroupMember(playerInfo) {

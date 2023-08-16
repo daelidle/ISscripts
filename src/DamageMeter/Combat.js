@@ -55,6 +55,16 @@ class Combat {
         this.group[playerName].currentHP = hp;
     }
 
+    removeOldMembersFromGroup(newGroupMembers){
+        const oldMembers = [];
+        for (const playerName in this.group) {
+            if (!newGroupMembers.includes(playerName)) {
+                oldMembers.push(playerName);
+            }
+        }
+        for (const playerName of oldMembers) delete this.group[playerName];
+    }
+
     addDamageDealt(damageMessage){
         const playerName = this._getPlayerName(damageMessage.attackerId);
         const player = this.group[playerName];
