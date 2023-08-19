@@ -132,6 +132,9 @@ class InventoryFilter {
                     border-color: rgb(99, 179, 237);
                     box-shadow: rgb(99, 179, 237) 0px 0px 0px 1px;
                 }
+                .inventory-panel {
+                    grid-template-rows: min-content min-content 1fr;
+                }
             </style>`;
         injectCSS(css, this.cssClass);
     }
