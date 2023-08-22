@@ -68,11 +68,10 @@ class Combat {
     addDamageDealt(damageMessage){
         const playerName = this._getPlayerName(damageMessage.attackerId);
         const player = this.group[playerName];
-        player.damageDealt += damageMessage.damage;
+
         // If we reconnect in the middle of a fight we may get a damage message before getting the monster info message
         const monsterHealth = this.spawnedMonsters[damageMessage.defenderId]?.monsterHealth ?? damageMessage.damage;
-        player.effectiveDamageDealt += Math.min(damageMessage.damage, monsterHealth);
-        if (damageMessage.damage > player.maxHit) player.maxHit = damageMessage.damage;
+        const effectiveDamage = Math.min(damageMessage.damage, monsterHealth);
 
         const ability = damageMessage.abilityId ?? this.UNKNOWN_ABILITY_ID;
         if (!player.damageDealtBreakdown[ability]) {
@@ -80,15 +79,19 @@ class Combat {
             player.effectiveDamageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
         }
 
-        if (!damageMessage.isAoEAttack || (damageMessage.isAoEAttack && damageMessage.isPrimaryAoETarget)) {
+        if (!damageMessage.isOverTime && !damageMessage.isSplashAoEDamage) {
             player.damageDealtBreakdown[ability].attacks++;
             player.effectiveDamageDealtBreakdown[ability].attacks++;
         }
 
         if (!damageMessage.isMiss) {
+            player.damageDealt += damageMessage.damage;
+            if (damageMessage.damage > player.maxHit) player.maxHit = damageMessage.damage;
+            player.effectiveDamageDealt += effectiveDamage
+
             player.damageDealtBreakdown[ability].damage += damageMessage.damage;
             player.damageDealtBreakdown[ability].hits++;
-            player.effectiveDamageDealtBreakdown[ability].damage += Math.min(damageMessage.damage, monsterHealth);
+            player.effectiveDamageDealtBreakdown[ability].damage += effectiveDamage;
             player.effectiveDamageDealtBreakdown[ability].hits++;
             if (damageMessage.isCritical){
                 player.damageDealtBreakdown[ability].criticals++;

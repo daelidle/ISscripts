@@ -13,6 +13,7 @@ class Damage {
     isCritical;
     isMiss;
     abilityID;
+    isOverTime;
     isAoEAttack;
     isPrimaryAoETarget;
     isSplashAoEDamage;
@@ -92,7 +93,8 @@ class DamageMeter {
         damageMessage.damage = combatHit.hit;
         damageMessage.isCritical = combatHit.crit;
         damageMessage.abilityId = combatHit.abilityID;
-        damageMessage.isAoEAttack = combatHit.primaryInAOE !== undefined;
+        damageMessage.isOverTime = combatHit.isOverTime;
+        damageMessage.isAoEAttack = combatHit.isAoE;
         damageMessage.isPrimaryAoETarget = damageMessage.isAoEAttack && combatHit.primaryInAOE;
         damageMessage.isSplashAoEDamage = damageMessage.isAoEAttack && !combatHit.primaryInAOE;
 
