@@ -76,7 +76,7 @@ class DaelIS {
             }
         };
 
-        const gameContentContainer = document.getElementsByClassName("game-content")[0];
+        const gameContentContainer = document.getElementsByClassName("game-container")[0].parentElement;
         const config = {attributes: true, childList: true, subtree: true };
         const observer = new MutationObserver(callback);
         observer.observe(gameContentContainer, config);

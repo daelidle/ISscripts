@@ -27,10 +27,11 @@ class DaelISConfigUI {
             </div>
         </div>`;
 
-        const navDrawerContainer = document.getElementsByClassName("nav-drawer-container")[0];
-        for (let menuItem of navDrawerContainer.children){
+        const navDrawerElements = document.getElementsByClassName("css-1y6ic72");
+        for (let menuItem of navDrawerElements){
             if (menuItem.innerText.includes('Settings')){
                 menuItem.insertAdjacentHTML('afterend', menuHtml);
+                console.log("Inserting menu Daelis");
             }
         }
         document.getElementById(menuId).addEventListener('click', () => this.displayConfigScreen());

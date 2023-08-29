@@ -149,7 +149,7 @@ class MarketplaceFilter {
         };
 
         // Observe Play Area DOM changes
-        const playAreaContainer = document.getElementsByClassName("combine-main-area")[0];
+        const playAreaContainer = document.getElementsByClassName("play-area-container")[0].parentElement;
         const config = {attributes: true, childList: true, subtree: true };
         this.observer = new MutationObserver(callback);
         this.observer.observe(playAreaContainer, config);
