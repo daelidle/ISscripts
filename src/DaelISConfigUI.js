@@ -9,32 +9,48 @@ class DaelISConfigUI {
     extensionImageContainerClass = 'daelis_config_extension_image';
     extensionSettingsClass = 'daelis_config_extension_settings_button';
     cssClass = 'CssDaelISConfigUI';
+    menuId = 'daelis_menu_config';
+    observer;
 
     constructor(daelis) {
         this.daelis = daelis;
     }
 
     injectMenuOption() {
+        if (document.getElementById(this.menuId) !== null) return;
+
         this.injectCSS();
-        const menuId = 'daelis_menu_config';
-        if (document.getElementById(menuId) !== null) return;
+        this.addMutationObserver();
+    }
+
+    addMutationObserver(){
+        const self = this;
 
         const menuHtml = `
-        <div class="drawer-item active noselect" id="${menuId}">
-            <div class="drawer-item-left">
-                <img class="drawer-item-icon" src="${this.configMenuIconUrl}">
-                DaelIS
-            </div>
-        </div>`;
+        <div class="anchor-drawer-daelis" id="${self.menuId}">
+            <img class="chakra-image" src="${this.configMenuIconUrl}">
+            <div class="daelis-menu-text">DaelIS</div>
+        </div>    
+        `;
+        const callback = function(mutationsList, observer) {
+            console.log("DAELIS: Mutation detected");
+            if (self.observer) self.observer.disconnect();
+            const preexistentMenu = document.getElementById(self.menuId);
+            if (preexistentMenu !== null) preexistentMenu.remove();
 
-        const navDrawerElements = document.getElementsByClassName("css-1y6ic72");
-        for (let menuItem of navDrawerElements){
-            if (menuItem.innerText.includes('Settings')){
-                menuItem.insertAdjacentHTML('afterend', menuHtml);
+            const navDrawerSettings = document.getElementsByClassName("anchor-drawer-settings");
+            if(navDrawerSettings.length > 0){
+                navDrawerSettings[0].insertAdjacentHTML('afterend', menuHtml);
+                document.getElementById(self.menuId).addEventListener('click', () => self.displayConfigScreen());
                 console.log("Inserting menu Daelis");
             }
-        }
-        document.getElementById(menuId).addEventListener('click', () => this.displayConfigScreen());
+            self.addMutationObserver();
+        };
+
+        const combineMainAreaContainer = document.getElementsByClassName("anchor-drawer-settings")[0]?.parentElement;
+        const config = {attributes: true, childList: true, subtree: true };
+        this.observer = new MutationObserver(callback);
+        this.observer.observe(combineMainAreaContainer, config);
     }
 
     displayConfigScreen() {
@@ -134,6 +150,24 @@ class DaelISConfigUI {
             .${this.customPopupClass} .MuiPaper-root {
                 max-width: 75%;
                 max-height: 100%;
+            }
+            .anchor-drawer-daelis {
+                cursor: pointer;
+                margin-top: 5px;
+                height: 30px;
+                text-align: left;
+                display: flex;
+                vertical-align: middle;
+                line-height: 30px;
+                font-size: 16px;
+                padding: 0px 10px;
+            }
+            .anchor-drawer-daelis img {
+                width: 25px;
+                object-fit: contain;
+            }
+            .daelis-menu-text {
+                margin-left: 10px;
             }
         </style>`;
         injectCSS(css, this.cssClass);
