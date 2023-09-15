@@ -10,7 +10,6 @@ class DaelISConfigUI {
     extensionSettingsClass = 'daelis_config_extension_settings_button';
     cssClass = 'CssDaelISConfigUI';
     menuId = 'daelis_menu_config';
-    observer;
 
     constructor(daelis) {
         this.daelis = daelis;
@@ -18,39 +17,20 @@ class DaelISConfigUI {
 
     injectMenuOption() {
         if (document.getElementById(this.menuId) !== null) return;
-
         this.injectCSS();
-        this.addMutationObserver();
-    }
-
-    addMutationObserver(){
-        const self = this;
 
         const menuHtml = `
-        <div class="anchor-drawer-daelis" id="${self.menuId}">
+        <div class="anchor-drawer-daelis" id="${this.menuId}">
             <img class="chakra-image" src="${this.configMenuIconUrl}">
             <div class="daelis-menu-text">DaelIS</div>
         </div>    
         `;
-        const callback = function(mutationsList, observer) {
-            console.log("DAELIS: Mutation detected");
-            if (self.observer) self.observer.disconnect();
-            const preexistentMenu = document.getElementById(self.menuId);
-            if (preexistentMenu !== null) preexistentMenu.remove();
 
-            const navDrawerSettings = document.getElementsByClassName("anchor-drawer-settings");
-            if(navDrawerSettings.length > 0){
-                navDrawerSettings[0].insertAdjacentHTML('afterend', menuHtml);
-                document.getElementById(self.menuId).addEventListener('click', () => self.displayConfigScreen());
-                console.log("Inserting menu Daelis");
-            }
-            self.addMutationObserver();
-        };
-
-        const combineMainAreaContainer = document.getElementsByClassName("anchor-drawer-settings")[0]?.parentElement;
-        const config = {attributes: true, childList: true, subtree: true };
-        this.observer = new MutationObserver(callback);
-        this.observer.observe(combineMainAreaContainer, config);
+        const userscriptSettingsAnchor = document.getElementsByClassName("anchor-userscript-settings");
+        for (let anchorPoint of userscriptSettingsAnchor) {
+            anchorPoint.insertAdjacentHTML('beforeend', menuHtml);
+            document.getElementById(this.menuId).addEventListener('click', () => this.displayConfigScreen());
+        }
     }
 
     displayConfigScreen() {
