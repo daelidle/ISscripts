@@ -52,10 +52,14 @@ class DisplayPricesInventory {
         const regex = /\d+(.+)(vault|stockpile|tacklebox)/;
         Array.from(inventoryDiv).forEach(inventory => {
             inventory.querySelectorAll(".item").forEach(item => {
-                let itemName = regex.exec(item.attributes['data-for'].nodeValue)[1];
-
-                const price = priceData[itemName];
-                this._addPriceDivToItem(item, price);
+                try{
+                    let itemName = regex.exec(item.attributes['data-for'].nodeValue)[1];
+                    const price = priceData[itemName];
+                    this._addPriceDivToItem(item, price);
+                } catch (e) {
+                    console.log("[DaelIS][WARNING] Couldn't get item name from inventory item");
+                    console.log(item);
+                }
             });
         });
     }
