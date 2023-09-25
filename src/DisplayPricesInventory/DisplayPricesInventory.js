@@ -49,7 +49,7 @@ class DisplayPricesInventory {
     _addPriceToInventory(priceData) {
         let inventoryDiv = document.getElementsByClassName("inventory-panel");
         if (inventoryDiv.length === 0) return;
-        const regex = /\d+(.+)(vault|stockpile|tacklebox)/;
+        const regex = /\d+(.+)(vault|stockpile|tacklebox|ammo|augmentingItemSlot)/;
         Array.from(inventoryDiv).forEach(inventory => {
             inventory.querySelectorAll(".item").forEach(item => {
                 try{
