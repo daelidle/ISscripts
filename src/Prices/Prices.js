@@ -1,39 +1,65 @@
 class Prices {
+    API_REFRESH_RATE = 10 * 60 * 1000;
     cachedPrices;
-    priceDataRefreshRate;
     items;
+    apiUpdateTimer;
 
     constructor(items) {
         this.cachedPrices = {};
         this.items = items;
-        this.priceDataRefreshRate = 10 * 60 * 1000;
-        this._exposeUpdatedPrices();
         this.getPriceData();
-        setInterval(() => { this.getPriceData(); }, this.priceDataRefreshRate);
     }
 
     async getPriceData() {
-        this.cachedPrices = await this.getApiPriceData();
+        const apiData = await this.getApiPriceData();
+        this.cachedPrices = apiData.priceData;
         this._exposeUpdatedPrices();
+
+        const nextUpdateDelta = apiData.nextUpdate - Date.now();
+        this.apiUpdateTimer = setTimeout(() => {
+            this.getPriceData();
+        }, nextUpdateDelta);
     }
 
     async getApiPriceData() {
         const apiEndPoint = "/api/market/manifest";
         const priceData = {};
+        const fallbackNextUpdate = new Date(Date.now() + this.API_REFRESH_RATE);
+        let nextUpdate = undefined;
 
-        const manifest = await getJSON(apiEndPoint);
-        if (manifest.status.toLowerCase().includes("success")) {
-            const apiPriceData = manifest['manifest'];
-            apiPriceData.forEach(data => {
-                const name = this.items[data.itemID].name ?? data.name;
-                priceData[name] = data["minPrice"];
-            });
+        try {
+            const response = await getJSON(apiEndPoint);
+            if (response.status.toLowerCase().includes("success")) {
+                const apiPriceData = response['manifest'];
+                apiPriceData.forEach(data => {
+                    const name = this.items[data.itemID].name ?? data.name;
+                    if (!priceData[name]) priceData[name] = {};
+                    priceData[name][data.league] = data.minPrice;
+                });
+            }
+            if (response.timestamp && response.timestamp.length > 0) {
+                const lastUpdate = new Date(response.timestamp);
+                const apiNextUpdate = new Date(lastUpdate.getTime() + this.API_REFRESH_RATE);
+                if (apiNextUpdate - Date.now() < 0) {
+                    console.log(`[DaelIS][WARN] Api refresh rate changed? At current rate it should have updated at ${apiNextUpdate.toLocaleString()}. Last API update was at ${lastUpdate.toLocaleString()}. Fallback refreshing at ${fallbackNextUpdate.toLocaleString()}`);
+                } else {
+                    nextUpdate = apiNextUpdate;
+                }
+            }
+        } catch (e) {
+            console.log("[DaelIS][WARNING] Couldn't get price data from API");
+            console.log(e);
         }
 
-        return priceData;
+        if (!nextUpdate) nextUpdate = fallbackNextUpdate;
+        return {priceData, nextUpdate};
     }
 
-    _exposeUpdatedPrices(){
+    _exposeUpdatedPrices() {
         window.ISprices = this.cachedPrices;
+    }
+
+    cancelUpdate() {
+        clearTimeout(this.apiUpdateTimer);
     }
 }

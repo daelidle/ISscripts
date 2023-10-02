@@ -9,7 +9,7 @@ class DaelIS {
     configUi;
     gameData;
     isGameReady;
-    
+
     LocalStorageConfigurationKey = "DaelISConfig";
     defaultConfiguration = {
         "CustomTooltip.js": true,
@@ -42,15 +42,24 @@ class DaelIS {
         }
     }
 
-    getPlayerState(){
+    getPlayerState() {
         return this.state.state;
     }
 
-    getItemPrices(){
-        return this.prices.cachedPrices;
+    getItemPrices() {
+        const league = this.getPlayerState().league ?? 1;
+
+        const prices = {};
+        for (const [itemName, itemLeaguesData] of Object.entries(this.prices.cachedPrices)) {
+            for (const [itemLeague, itemPrice] of Object.entries(itemLeaguesData)) {
+                if (parseInt(itemLeague) === league) prices[itemName] = itemPrice;
+            }
+        }
+
+        return prices;
     }
 
-    generateTooltip(item, compactVersion = false){
+    generateTooltip(item, compactVersion = false) {
         return this.tooltip.generateTooltip(item, compactVersion);
     }
 
@@ -68,7 +77,7 @@ class DaelIS {
 
     setupDisconnectTracker() {
         const that = this;
-        const callback = function(mutationsList, observer) {
+        const callback = function (mutationsList, observer) {
             const loadingAnimation = document.getElementsByClassName("loading-animation");
             if (loadingAnimation.length > 0) {
                 that.isGameReady = false;
@@ -77,7 +86,7 @@ class DaelIS {
         };
 
         const gameContentContainer = document.getElementsByClassName("game-container")[0].parentElement;
-        const config = {attributes: true, childList: true, subtree: true };
+        const config = {attributes: true, childList: true, subtree: true};
         const observer = new MutationObserver(callback);
         observer.observe(gameContentContainer, config);
     }
@@ -106,7 +115,7 @@ class DaelIS {
         this.state.onMessage(message);
         if (!this.state.isStateInitialized()) return;
 
-        if(message.event === 'update:player' && message.data['portion'] === 'all'){
+        if (message.event === 'update:player' && message.data['portion'] === 'all') {
             this.onPlayerStateInitialized();
             return;
         }
@@ -136,7 +145,7 @@ class DaelIS {
         });
     }
 
-    onFirstGameReady(){
+    onFirstGameReady() {
         this.setupDisconnectTracker();
         this.gameData = window.Idlescape.data;
         this.prices = new Prices(this.gameData.items);
@@ -161,7 +170,7 @@ class DaelIS {
         if (typeof (extension.onExtensionStop) == "function") extension.onExtensionStop();
     }
 
-    _configurationLoad(){
+    _configurationLoad() {
         this.config = loadConfig(this.LocalStorageConfigurationKey);
         if (this.config === null) {
             this.config = this.defaultConfiguration;
@@ -169,7 +178,7 @@ class DaelIS {
         }
     }
 
-    _configurationSave(){
+    _configurationSave() {
         saveConfig(this.LocalStorageConfigurationKey, this.config);
     }
 }
