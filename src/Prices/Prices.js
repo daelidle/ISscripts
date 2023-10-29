@@ -39,7 +39,7 @@ class Prices {
             }
             if (response.timestamp && response.timestamp.length > 0) {
                 const lastUpdate = new Date(response.timestamp);
-                const apiNextUpdate = new Date(lastUpdate.getTime() + this.API_REFRESH_RATE);
+                const apiNextUpdate = new Date(lastUpdate.getTime() + (this.API_REFRESH_RATE * 2) + (10 * 1000));
                 if (apiNextUpdate - Date.now() < 0) {
                     console.log(`[DaelIS][WARN] Api refresh rate changed? At current rate it should have updated at ${apiNextUpdate.toLocaleString()}. Last API update was at ${lastUpdate.toLocaleString()}. Fallback refreshing at ${fallbackNextUpdate.toLocaleString()}`);
                 } else {
