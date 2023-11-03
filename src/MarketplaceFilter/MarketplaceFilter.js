@@ -1,5 +1,9 @@
 class MarketplaceFilter {
-    static meta = {name: 'Marketplace Filter', description: 'Adds icons to marketplace filter to allow easy filtering using just clicks.', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/MarketplaceFilter/meta_image.png'};
+    static meta = {
+        name: 'Marketplace Filter',
+        description: 'Adds icons to marketplace filter to allow easy filtering using just clicks.',
+        image: 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/MarketplaceFilter/meta_image.png'
+    };
 
     currentFilter = [];
     currentInputValue = '';
@@ -7,12 +11,12 @@ class MarketplaceFilter {
     cssClass = 'CssMarketplaceFilter';
     observer;
 
-    onGameReady(isFirstGameReady){
+    onGameReady(isFirstGameReady) {
         this._applyCSS();
         this._setUpMeterMutationObserver();
     }
 
-    onExtensionStop(){
+    onExtensionStop() {
         this.observer.disconnect();
         this._removeCSS();
         const daelisFilter = document.getElementById('daelis-marketplace-filter');
@@ -20,7 +24,7 @@ class MarketplaceFilter {
         this.originalFilterInput.classList.remove("hidden");
     }
 
-    _onClickedFilter(element){
+    _onClickedFilter(element) {
         const clickedFilter = element.dataset.filter;
         if (clickedFilter === 'clearFilter') this._resetFilters();
         else {
@@ -31,12 +35,12 @@ class MarketplaceFilter {
         this._applyFilter();
     }
 
-    _onCustomFilterChange(input){
+    _onCustomFilterChange(input) {
         this.currentInputValue = input.value;
         this._applyFilter();
     }
 
-    _applyFilter(){
+    _applyFilter() {
         let filter = this.currentFilter.join('|');
         if (this.currentInputValue.length > 0) filter = this.currentInputValue;
         setReactNativeValue(this.originalFilterInput, filter);
@@ -71,9 +75,13 @@ class MarketplaceFilter {
         this.originalFilterInput.parentNode.insertAdjacentHTML('beforeend', filterHtml);
         const that = this;
         Array.from(document.getElementsByClassName("daelis-marketplace-filter-image")).forEach(element =>
-            element.addEventListener("click", function() { that._onClickedFilter(this)}, false)
+            element.addEventListener("click", function () {
+                that._onClickedFilter(this)
+            }, false)
         );
-        document.getElementById('daelis_marketplace_filter_custom_values').addEventListener('input', function() { that._onCustomFilterChange(this)}, false);
+        document.getElementById('daelis_marketplace_filter_custom_values').addEventListener('input', function () {
+            that._onCustomFilterChange(this)
+        }, false);
     }
 
     _applyCSS() {
@@ -135,11 +143,11 @@ class MarketplaceFilter {
         document.getElementsByClassName(this.cssClass)[0]?.remove();
     }
 
-    _setUpMeterMutationObserver(){
+    _setUpMeterMutationObserver() {
         const self = this;
-        const callback = function(mutationsList, observer) {
+        const callback = function (mutationsList, observer) {
             const marketplaceDiv = document.getElementsByClassName('marketplace-container');
-            if (marketplaceDiv.length > 0){
+            if (marketplaceDiv.length > 0) {
                 const marketplaceFilter = marketplaceDiv[0].getElementsByClassName('anchor-marketplace-filter');
                 if (marketplaceFilter.length === 0) self._resetFilters();
                 else self._injectFilterHtml(marketplaceFilter[0]);
@@ -149,8 +157,10 @@ class MarketplaceFilter {
         };
 
         // Observe Play Area DOM changes
-        const playAreaContainer = document.getElementsByClassName("play-area-container")[0].parentElement;
-        const config = {attributes: true, childList: true, subtree: true };
+        const desktopContainer = document.getElementsByClassName("play-area-container");
+        const mobileContainer = document.getElementsByClassName("mobile-layout");
+        const playAreaContainer = desktopContainer.length > 0 ? desktopContainer[0].parentElement : mobileContainer[0].parentElement;
+        const config = {attributes: true, childList: true, subtree: true};
         this.observer = new MutationObserver(callback);
         this.observer.observe(playAreaContainer, config);
     }

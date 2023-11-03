@@ -1,13 +1,16 @@
 function onGameReady(callback) {
-    const gameContainer = document.getElementsByClassName("play-area-container");
-    if(gameContainer.length === 0) {
-        setTimeout(function(){onGameReady(callback);}, 250 );
+    const desktopContainer = document.getElementsByClassName("play-area-container");
+    const mobileContainer = document.getElementsByClassName("mobile-layout");
+    if (desktopContainer.length === 0 && mobileContainer.length === 0) {
+        setTimeout(function () {
+            onGameReady(callback);
+        }, 250);
     } else {
         callback();
     }
 }
 
-function injectCSS(css, customClass=''){
+function injectCSS(css, customClass = '') {
     if (customClass.length !== 0) document.getElementsByClassName(customClass)[0]?.remove();
 
     css = css.trim();
@@ -18,11 +21,11 @@ function injectCSS(css, customClass=''){
     head.insertAdjacentHTML('beforeend', css);
 }
 
-function isIronManCharacter(){
+function isIronManCharacter() {
     return document.getElementsByClassName("header-league-icon")[0].getAttribute("src").includes("ironman");
 }
 
-function shortenNumber(number){
+function shortenNumber(number) {
     if (Math.abs(number) < 1e4) return number;
 
     const SYMBOL = ["", "K", "M", "B", "T", "P", "E"];
@@ -33,10 +36,10 @@ function shortenNumber(number){
 
     let scaled = number / scale;
 
-    return `${toFixedLocale(scaled,0, 1)}${suffix}`;
+    return `${toFixedLocale(scaled, 0, 1)}${suffix}`;
 }
 
-function expandNumber(numberString){
+function expandNumber(numberString) {
     const currentLocale = Intl.NumberFormat().resolvedOptions().locale;
     const decimalSeparator = getNumberSeparators(currentLocale, 'decimal');
     const groupSeparator = getNumberSeparators(currentLocale, 'group');
@@ -63,16 +66,16 @@ function getNumberSeparators(locale, separatorType) {
         .value;
 }
 
-function base64encode( str ) {
-    return window.btoa(unescape(encodeURIComponent( str )));
+function base64encode(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
 }
 
-function base64decode( str ) {
-    return decodeURIComponent(escape(window.atob( str )));
+function base64decode(str) {
+    return decodeURIComponent(escape(window.atob(str)));
 }
 
 
-function timeForHumans (seconds) {
+function timeForHumans(seconds) {
     // https://stackoverflow.com/questions/8211744/convert-time-interval-given-in-seconds-into-more-human-readable-form
     let levels = [
         [Math.floor(seconds / 31536000), 'years'],
@@ -84,27 +87,27 @@ function timeForHumans (seconds) {
     let returnText = '';
 
     for (let i = 0, max = levels.length; i < max; i++) {
-        if ( levels[i][0] === 0 ) continue;
-        returnText += ' ' + levels[i][0] + ' ' + (levels[i][0] === 1 ? levels[i][1].substr(0, levels[i][1].length-1): levels[i][1]);
+        if (levels[i][0] === 0) continue;
+        returnText += ' ' + levels[i][0] + ' ' + (levels[i][0] === 1 ? levels[i][1].substr(0, levels[i][1].length - 1) : levels[i][1]);
     }
     if (returnText.length === 0) returnText = 'less than a second';
     return returnText.trim();
 }
 
-async function getJSON (url) {
+async function getJSON(url) {
     let response;
     try {
         response = await fetch(url);
-        if(response.ok) return await response.json();
-    } catch(error) {
+        if (response.ok) return await response.json();
+    } catch (error) {
         // console.log("[DaelIS][WARNING]: Api returned an invalid JSON: "+ response);
     }
     return {};
 }
 
 function getReact(dom) {
-    for(let key in dom) {
-        if( key.startsWith("__reactFiber$") ){
+    for (let key in dom) {
+        if (key.startsWith("__reactFiber$")) {
             return dom[key];
         }
     }
@@ -113,7 +116,7 @@ function getReact(dom) {
 function setReactNativeValue(element, value) {
     let lastValue = element.value;
     element.value = value;
-    let event = new Event("input", { target: element, bubbles: true });
+    let event = new Event("input", {target: element, bubbles: true});
     // React 15
     event.simulated = true;
     // React 16
@@ -152,10 +155,13 @@ function copyTextToClipboard(text) {
         _fallbackCopyTextToClipboard(text);
         return;
     }
-    navigator.clipboard.writeText(text).then(function() {}, function(err) { console.error('copyTextToClipboard: Could not copy text: ', err);});
+    navigator.clipboard.writeText(text).then(function () {
+    }, function (err) {
+        console.error('copyTextToClipboard: Could not copy text: ', err);
+    });
 }
 
-function stringCapitalize(string){
+function stringCapitalize(string) {
     if (!string || string.length === 0) return '';
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -169,5 +175,5 @@ function digitToEnglish(number) {
 
 function toFixedLocale(number, minimumFractionDigits = 0, maximumFractionDigits = 2) {
     return number.toLocaleString(undefined,
-        { minimumFractionDigits: minimumFractionDigits, maximumFractionDigits: maximumFractionDigits })
+        {minimumFractionDigits: minimumFractionDigits, maximumFractionDigits: maximumFractionDigits})
 }

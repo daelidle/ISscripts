@@ -1,5 +1,9 @@
 class DisplayPricesInventory {
-    static meta = {name: 'Display Prices Inventory', description: 'Display minimum buy prices on items on inventory, marketplace and scrollcrafting screens', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DisplayPricesInventory/meta_image.png'};
+    static meta = {
+        name: 'Display Prices Inventory',
+        description: 'Display minimum buy prices on items on inventory, marketplace and scrollcrafting screens',
+        image: 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DisplayPricesInventory/meta_image.png'
+    };
     daelis;
     observer;
     intervalId;
@@ -13,26 +17,30 @@ class DisplayPricesInventory {
         this.addMutationObserver();
         this._updateInventoryPrices();
         const refreshRate = 10 * 60 * 1000;
-        this.intervalId = setInterval(() => { this._updateInventoryPrices(); }, refreshRate);
+        this.intervalId = setInterval(() => {
+            this._updateInventoryPrices();
+        }, refreshRate);
     }
 
-    onExtensionStop(){
+    onExtensionStop() {
         this.observer.disconnect();
         clearInterval(this.intervalId);
         Array.from(document.getElementsByClassName("price")).forEach(priceDiv => priceDiv.remove());
     }
 
-    addMutationObserver(){
+    addMutationObserver() {
         const self = this;
-        const callback = function(mutationsList, observer) {
+        const callback = function (mutationsList, observer) {
             if (document.getElementsByClassName("marketplace-container").length > 0 ||
                 document.getElementsByClassName("scrollcrafting-main").length > 0 ||
                 document.getElementsByClassName("inventory-panel").length > 0) self._updateInventoryPrices();
         };
 
         // Observe Play Area DOM changes
-        const combineMainAreaContainer = document.getElementsByClassName("play-area-container")[0].parentElement;
-        const config = {attributes: true, childList: true, subtree: true };
+        const desktopContainer = document.getElementsByClassName("play-area-container");
+        const mobileContainer = document.getElementsByClassName("mobile-layout");
+        const combineMainAreaContainer = desktopContainer.length > 0 ? desktopContainer[0].parentElement : mobileContainer[0].parentElement;
+        const config = {attributes: true, childList: true, subtree: true};
         this.observer = new MutationObserver(callback);
         this.observer.observe(combineMainAreaContainer, config);
     }
@@ -52,7 +60,7 @@ class DisplayPricesInventory {
         const regex = /\d+(.+)(vault|stockpile|tacklebox|ammo|augmentingItemSlot)/;
         Array.from(inventoryDiv).forEach(inventory => {
             inventory.querySelectorAll(".item").forEach(item => {
-                try{
+                try {
                     let itemName = regex.exec(item.attributes['data-for'].nodeValue)[1];
                     const price = priceData[itemName];
                     this._addPriceDivToItem(item, price);
@@ -88,8 +96,8 @@ class DisplayPricesInventory {
         })
     }
 
-    _addPriceDivToItem(item, price){
-        if(item.getElementsByClassName("price").length === 0){
+    _addPriceDivToItem(item, price) {
+        if (item.getElementsByClassName("price").length === 0) {
             // If the div was not created yet, create it with adapted CSS style and also move down the enchant icon
             const newNode = document.createElement("div");
             newNode.className = "price";
@@ -101,7 +109,7 @@ class DisplayPricesInventory {
             const lastNode = item.lastElementNode;
             item.insertBefore(newNode, lastNode);
             const enchantNode = item.getElementsByClassName("item-enchant").item(0);
-            if (enchantNode != null){
+            if (enchantNode != null) {
                 enchantNode.style.position = "absolute";
                 enchantNode.style.top = "8px";
                 enchantNode.style.left = "0px";
