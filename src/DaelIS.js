@@ -148,7 +148,7 @@ class DaelIS {
     onFirstGameReady() {
         this.setupDisconnectTracker();
         this.gameData = window.Idlescape.data;
-        this.prices = new Prices(this.gameData.items);
+        this.prices = new Prices();
         this.tooltip = new Tooltip(this);
         this.configUi = new DaelISConfigUI(this);
         this.configUi.injectMenuOption();

@@ -50,24 +50,21 @@ class DisplayPricesInventory {
         this.observer.disconnect();
         this._addPriceToInventory(itemPrices);
         this._addPriceToMarketplace(itemPrices);
-        this._addPriceToScrollcrafting(itemPrices);
+        //this._addPriceToScrollcrafting(itemPrices);
         this.addMutationObserver();
     }
 
     _addPriceToInventory(priceData) {
         let inventoryDiv = document.getElementsByClassName("inventory-panel");
         if (inventoryDiv.length === 0) return;
-        const regex = /\d+(.+)(vault|stockpile|tacklebox|ammo|augmentingItemSlot)/;
+
         Array.from(inventoryDiv).forEach(inventory => {
             inventory.querySelectorAll(".item").forEach(item => {
-                try {
-                    let itemName = regex.exec(item.attributes['data-for'].nodeValue)[1];
-                    const price = priceData[itemName];
-                    this._addPriceDivToItem(item, price);
-                } catch (e) {
-                    console.log("[DaelIS][WARNING] Couldn't get item name from inventory item");
-                    console.log(item);
-                }
+                const itemId = item.dataset.itemid;
+                if (!itemId) return;
+
+                const price = priceData[itemId];
+                this._addPriceDivToItem(item, price);
             });
         });
     }
@@ -75,11 +72,12 @@ class DisplayPricesInventory {
     _addPriceToMarketplace(priceData) {
         let marketplaceDiv = document.getElementsByClassName("marketplace-container");
         if (marketplaceDiv.length === 0) return;
-        marketplaceDiv[0].querySelectorAll(".item-icon").forEach(item => {
-            const itemName = item.attributes['alt'].nodeValue;
 
-            item = item.parentNode;
-            const price = priceData[itemName];
+        marketplaceDiv[0].querySelectorAll(".item").forEach(item => {
+            const itemId = item.dataset.itemid;
+            if (!itemId) return;
+
+            const price = priceData[itemId];
             this._addPriceDivToItem(item, price);
         })
     }

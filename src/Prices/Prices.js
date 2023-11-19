@@ -4,9 +4,8 @@ class Prices {
     items;
     apiUpdateTimer;
 
-    constructor(items) {
+    constructor() {
         this.cachedPrices = {};
-        this.items = items;
         this.getPriceData();
     }
 
@@ -32,9 +31,8 @@ class Prices {
             if (response.status.toLowerCase().includes("success")) {
                 const apiPriceData = response['manifest'];
                 apiPriceData.forEach(data => {
-                    const name = this.items[data.itemID].name ?? data.name;
-                    if (!priceData[name]) priceData[name] = {};
-                    priceData[name][data.league] = data.minPrice;
+                    if (!priceData[data.itemID]) priceData[data.itemID] = {};
+                    priceData[data.itemID][data.league] = data.minPrice;
                 });
             }
             if (response.timestamp && response.timestamp.length > 0) {
