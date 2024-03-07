@@ -16,6 +16,7 @@ class NoGatheringIronman {
     onGameReady(isFirstGameReady) {
         if (!this.isValidPlayer()) return;
         this.injectCSS();
+        this.setupMutationObserver();
         this.blockGatheringSkills();
     }
 
@@ -35,7 +36,7 @@ class NoGatheringIronman {
     }
 
     injectCSS() {
-        const NGIStyle = "<style>.theme-mining .resource-wrapper{display: none;}.theme-foraging .resource-wrapper{display: none;}.theme-fishing .resource-wrapper{display: none;}</style>";
+        const NGIStyle = "<style>.mining-container .resource-container{display: none;}.foraging-container .resource-container{display: none;}.fishing-container .resource-container{display: none;}</style>";
         injectCSS(NGIStyle, this.cssClass);
     }
 
@@ -43,25 +44,25 @@ class NoGatheringIronman {
         document.getElementsByClassName(this.cssClass)[0]?.remove();
     }
 
-    blockGatheringSkills() {
-        const callback = function (mutationsList, observer) {
-            document.querySelectorAll(".theme-mining").forEach(e => {
-                e.querySelectorAll(".resource-wrapper").forEach(e => e.parentNode.removeChild(e))
-            });
-            document.querySelectorAll(".theme-foraging").forEach(e => {
-                e.querySelectorAll(".resource-wrapper").forEach(e => e.parentNode.removeChild(e))
-            });
-            document.querySelectorAll(".theme-fishing").forEach(e => {
-                e.querySelectorAll(".resource-wrapper").forEach(e => e.parentNode.removeChild(e))
-            });
-        };
-
+    setupMutationObserver() {
         // Observe Play Area DOM changes
         const desktopContainer = document.getElementsByClassName("play-area-container");
         const mobileContainer = document.getElementsByClassName("mobile-layout");
         const playAreaContainer = desktopContainer.length > 0 ? desktopContainer[0] : mobileContainer[0];
         const config = {attributes: true, childList: true, subtree: true};
-        this.observer = new MutationObserver(callback);
+        this.observer = new MutationObserver(this.blockGatheringSkills);
         this.observer.observe(playAreaContainer, config);
+    }
+
+    blockGatheringSkills() {
+        document.querySelectorAll(".mining-container").forEach(e => {
+            e.querySelectorAll(".resource-container").forEach(e => e.parentNode.removeChild(e))
+        });
+        document.querySelectorAll(".foraging-container").forEach(e => {
+            e.querySelectorAll(".resource-container").forEach(e => e.parentNode.removeChild(e))
+        });
+        document.querySelectorAll(".fishing-container").forEach(e => {
+            e.querySelectorAll(".resource-container").forEach(e => e.parentNode.removeChild(e))
+        });
     }
 }
