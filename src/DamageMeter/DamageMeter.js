@@ -20,7 +20,11 @@ class Damage {
 }
 
 class DamageMeter {
-    static meta = {name: 'Damage Meter', description: 'Shows a damage meter on solo/group combat screen with additional combat information', image:'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/meta_image.png'};
+    static meta = {
+        name: 'Damage Meter',
+        description: 'Shows a damage meter on solo/group combat screen with additional combat information',
+        image: 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/DamageMeter/meta_image.png'
+    };
     customModalClass = 'daelis_meter_breakdown_modal';
     combat;
     currentType;
@@ -35,18 +39,18 @@ class DamageMeter {
         window.damageMeter = this;
     }
 
-    onGameReady(isFirstGameReady){
+    onGameReady(isFirstGameReady) {
         this.ui.setupUI(this.customModalClass);
     }
 
-    onExtensionStop(){
+    onExtensionStop() {
         this.ui.removeUI()
         this.combat.resetGroup();
         window.damageMeter = undefined;
     }
 
-    onMessage(message){
-        switch (message.event){
+    onMessage(message) {
+        switch (message.event) {
             case "combat:splotch":
                 this._parseCombatHit(message.data);
                 break;
@@ -114,7 +118,7 @@ class DamageMeter {
     }
 
     _parseUpdatePlayer(playerInfo) {
-        if (Array.isArray(playerInfo['portion']) && playerInfo['portion'].includes("actionQueue")) {
+        if (playerInfo['portion'] === "actionQueue") {
             // New Action message
             const combatStatus = this._parseCombatStatusFromActionQueue(playerInfo['value']);
             this.combat._changeCombatStatus(combatStatus);
@@ -150,7 +154,7 @@ class DamageMeter {
         return actionQueue.actionType === 'Action-Combat';
     }
 
-    _updateMeter(){
+    _updateMeter() {
         let uiPlayers = [];
         let type = this.currentType;
         const players = this.combat._getPlayersOrderedByType(type);
@@ -161,16 +165,44 @@ class DamageMeter {
             let uiPlayer;
             switch (type) {
                 case meterTypes.DPS:
-                    uiPlayer = {order: order, name: playerStats.name, amount: playerStats.damageDealt, perSecond: playerStats.dps, contribution: playerStats.contributionDealt, max: playerStats.maxHit};
+                    uiPlayer = {
+                        order: order,
+                        name: playerStats.name,
+                        amount: playerStats.damageDealt,
+                        perSecond: playerStats.dps,
+                        contribution: playerStats.contributionDealt,
+                        max: playerStats.maxHit
+                    };
                     break;
                 case meterTypes.EDPS:
-                    uiPlayer = {order: order, name: playerStats.name, amount: playerStats.effectiveDamageDealt, perSecond: playerStats.edps, contribution: playerStats.contributionEffectiveDealt, max: playerStats.maxHit};
+                    uiPlayer = {
+                        order: order,
+                        name: playerStats.name,
+                        amount: playerStats.effectiveDamageDealt,
+                        perSecond: playerStats.edps,
+                        contribution: playerStats.contributionEffectiveDealt,
+                        max: playerStats.maxHit
+                    };
                     break;
                 case meterTypes.TANK:
-                    uiPlayer = {order: order, name: playerStats.name, amount: playerStats.damageReceived, perSecond: playerStats.aps, contribution: playerStats.contributionReceived, max: playerStats.maxReceived};
+                    uiPlayer = {
+                        order: order,
+                        name: playerStats.name,
+                        amount: playerStats.damageReceived,
+                        perSecond: playerStats.aps,
+                        contribution: playerStats.contributionReceived,
+                        max: playerStats.maxReceived
+                    };
                     break;
                 case meterTypes.HEALER:
-                    uiPlayer = {order: order, name: playerStats.name, amount: playerStats.healing, perSecond: playerStats.hps, contribution: playerStats.contributionHeal, max: playerStats.maxHeal};
+                    uiPlayer = {
+                        order: order,
+                        name: playerStats.name,
+                        amount: playerStats.healing,
+                        perSecond: playerStats.hps,
+                        contribution: playerStats.contributionHeal,
+                        max: playerStats.maxHeal
+                    };
                     break;
             }
             uiPlayers.push(uiPlayer);
@@ -180,20 +212,22 @@ class DamageMeter {
         this.ui._updateMeter(uiPlayers, type);
     }
 
-    showBreakdownModal(icon){
+    showBreakdownModal(icon) {
         const playerName = icon.dataset.playername;
         const player = this.combat.group[playerName];
         const modalHtml = this.ui.generateBreakdownModal(player, this.daelis.gameData.abilities);
-        displayCompletePopup(modalHtml.title, modalHtml.message, null, '', 'Close', () => {}, () => {}, this.customModalClass);
+        displayCompletePopup(modalHtml.title, modalHtml.message, null, '', 'Close', () => {
+        }, () => {
+        }, this.customModalClass);
         this.ui.setupBreakdownModalTriggers('dps');
     }
 
-    changeMeterType(){
+    changeMeterType() {
         this.currentType = (this.currentType + 1) % 4;
         this._updateMeter();
     }
 
-    showExtensionSettings(){
+    showExtensionSettings() {
         this.ui.showExtensionSettings();
     }
 }
