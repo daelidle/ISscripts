@@ -51,7 +51,10 @@ class MarketplaceFilter {
         if (!this.originalFilterInput) return;
 
         const daelisFilter = document.getElementById('daelis-marketplace-filter');
-        if (daelisFilter !== null) return;
+        if (daelisFilter !== null) {
+            if (!this.originalFilterInput.classList.contains('hidden')) this.originalFilterInput.classList.add('hidden');
+            return;
+        }
 
         const filterClear = 'https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/MarketplaceFilter/filter_remove.png';
 
