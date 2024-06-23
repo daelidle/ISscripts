@@ -24,7 +24,7 @@ class BestiaryExporter {
     onMessage(message) {
         switch (message.event) {
             case "bestiary:send":
-                this.currentBestiaryInfo = message.data;
+                this.currentBestiaryInfo = this.parseBestiaryData(message.data);
                 break;
             default:
                 break;
@@ -68,7 +68,23 @@ class BestiaryExporter {
         combatZonesContainer[0].insertBefore(exportBestiaryButton, lastNode);
 
         exportBestiaryButton.addEventListener("click", function () {
-            copyTextToClipboard(JSON.stringify(context.currentBestiaryInfo));
+            const lootString = JSON.stringify(context.currentBestiaryInfo.monsterLoot);
+            const statsString = JSON.stringify(context.currentBestiaryInfo.monsterStats);
+            copyTextToClipboard(`${lootString}\n\n${statsString}`);
         }, false);
+    }
+
+    parseBestiaryData(bestiaryData) {
+        if (!bestiaryData.monsters) return;
+
+        const monsterLoot = {};
+        const monsterStats = {};
+
+        for (const monster of bestiaryData.monsters) {
+            monsterLoot[monster.id] = monster.loot;
+            monsterStats[monster.id] = monster.combatStatsData;
+        }
+
+        return {monsterLoot, monsterStats};
     }
 }
