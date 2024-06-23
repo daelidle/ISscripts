@@ -18,7 +18,8 @@ class DaelIS {
         "InventoryFilter": true,
         "LoadoutViewer": true,
         "DamageMeter": true,
-        "NoGatheringIronman": false
+        "NoGatheringIronman": false,
+        "BestiaryExporter": false,
     }
 
     constructor() {

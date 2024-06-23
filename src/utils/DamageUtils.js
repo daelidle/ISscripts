@@ -5,7 +5,7 @@ class DamageUtils {
     static magicalDamageTypes = ['Chaos', 'Nature', 'Fire', 'Ice', 'Lightning'];
     static allStandardDamageTypes = DamageUtils.mainDamageTypes.concat(DamageUtils.physicalDamageTypes, DamageUtils.magicalDamageTypes);
     static otherTypes = ['Typeless', 'Heal', 'Poison', 'Deflect', 'Miss', 'Thorns'];
-    static allCombatSplotchDamageTypes = DamageUtils.mainDamageTypes.concat(DamageUtils.otherTypes);
+    static allCombatSplotchDamageTypes = DamageUtils.allStandardDamageTypes.concat(DamageUtils.otherTypes);
 
     static generateAffinityDictionary(prefix, description) {
         const affinities = {};

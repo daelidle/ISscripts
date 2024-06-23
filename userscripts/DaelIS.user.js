@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      2.1.29
+// @version      2.2.0
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
@@ -16,6 +16,7 @@
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelIS.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelISConfigUI.js
+// @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/BestiaryExporter/BestiaryExporter.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/MeterUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/MeterUIBreakdownModal.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DamageMeter/DamageMeter.js
@@ -61,6 +62,7 @@
      */
 
     const daelIS = new DaelIS();
+    daelIS.addExtension(BestiaryExporter);
     daelIS.addExtension(DamageMeter);
     daelIS.addExtension(DisplayPricesInventory);
     daelIS.addExtension(MarketplaceFilter);
