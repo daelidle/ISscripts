@@ -23,12 +23,15 @@ class Combat {
     daelis;
     group;
     spawnedMonsters;
+    monsterImageCache = {};
     onCombat = false;
     combatStartTimestamp;
     combatFinishTimestamp = null;
     characterIdToName = {};
     UNKNOWN_ABILITY_ID = -100;
     BREAKDOWN_BASE_DICTIONARY = {attacks: 0, damage: 0, hits: 0, criticals: 0, misses: 0};
+    UNKNOWN_MONSTER_NAME = 'Unknown';
+    GLOBAL_KEY = 'Global';
 
     constructor(daelis) {
         this.group = {};
@@ -37,25 +40,25 @@ class Combat {
         this.daelis = daelis;
     }
 
-    inCombat(){
+    inCombat() {
         return this.onCombat;
     }
 
-    isPlayerOnGroup(playerId){
+    isPlayerOnGroup(playerId) {
         return (playerId in this.characterIdToName);
     }
 
-    addPlayerToGroup(playerId, playerName, weaponAttackSpeed){
+    addPlayerToGroup(playerId, playerName, weaponAttackSpeed) {
         this.characterIdToName[playerId] = playerName;
         this.group[playerName] = new Player(playerName, weaponAttackSpeed);
     }
 
-    setPlayerCurrentHP(playerId, hp){
+    setPlayerCurrentHP(playerId, hp) {
         const playerName = this._getPlayerName(playerId);
         this.group[playerName].currentHP = hp;
     }
 
-    removeOldMembersFromGroup(newGroupMembers){
+    removeOldMembersFromGroup(newGroupMembers) {
         const oldMembers = [];
         for (const playerName in this.group) {
             if (!newGroupMembers.includes(playerName)) {
@@ -65,23 +68,30 @@ class Combat {
         for (const playerName of oldMembers) delete this.group[playerName];
     }
 
-    addDamageDealt(damageMessage){
+    addDamageDealt(damageMessage) {
         const playerName = this._getPlayerName(damageMessage.attackerId);
         const player = this.group[playerName];
 
         // If we reconnect in the middle of a fight we may get a damage message before getting the monster info message
+        const monsterName = this.spawnedMonsters[damageMessage.defenderId]?.monsterName ?? this.UNKNOWN_MONSTER_NAME;
         const monsterHealth = this.spawnedMonsters[damageMessage.defenderId]?.monsterHealth ?? damageMessage.damage;
         const effectiveDamage = Math.min(damageMessage.damage, monsterHealth);
-
         const ability = damageMessage.abilityId ?? this.UNKNOWN_ABILITY_ID;
-        if (!player.damageDealtBreakdown[ability]) {
-            player.damageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
-            player.effectiveDamageDealtBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
+
+        if (!_.has(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}`)) {
+            _.setWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+            _.setWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+        }
+        if (!_.has(player.damageDealtBreakdown, `${monsterName}.${ability}`)) {
+            _.setWith(player.damageDealtBreakdown, `${monsterName}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+            _.setWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
         }
 
         if (!damageMessage.isOverTime && !damageMessage.isSplashAoEDamage) {
-            player.damageDealtBreakdown[ability].attacks++;
-            player.effectiveDamageDealtBreakdown[ability].attacks++;
+            _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.attacks`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.attacks`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.attacks`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.attacks`, n => n + 1, Object);
         }
 
         if (!damageMessage.isMiss) {
@@ -89,17 +99,25 @@ class Combat {
             if (damageMessage.damage > player.maxHit) player.maxHit = damageMessage.damage;
             player.effectiveDamageDealt += effectiveDamage
 
-            player.damageDealtBreakdown[ability].damage += damageMessage.damage;
-            player.damageDealtBreakdown[ability].hits++;
-            player.effectiveDamageDealtBreakdown[ability].damage += effectiveDamage;
-            player.effectiveDamageDealtBreakdown[ability].hits++;
-            if (damageMessage.isCritical){
-                player.damageDealtBreakdown[ability].criticals++;
-                player.effectiveDamageDealtBreakdown[ability].criticals++;
+            _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.damage`, n => n + damageMessage.damage, Object);
+            _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.hits`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.damage`, n => n + damageMessage.damage, Object);
+            _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.hits`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.damage`, n => n + effectiveDamage, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.hits`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.damage`, n => n + effectiveDamage, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.hits`, n => n + 1, Object);
+            if (damageMessage.isCritical) {
+                _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.criticals`, n => n + 1, Object);
+                _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.criticals`, n => n + 1, Object);
+                _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.criticals`, n => n + 1, Object);
+                _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.criticals`, n => n + 1, Object);
             }
         } else {
-            player.damageDealtBreakdown[ability].misses++;
-            player.effectiveDamageDealtBreakdown[ability].misses++;
+            _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.misses`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.misses`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.misses`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.misses`, n => n + 1, Object);
         }
     }
 
@@ -107,18 +125,30 @@ class Combat {
         const playerName = this._getPlayerName(damageMessage.defenderId);
         if (!playerName) return; // We still haven't received the full group player message
 
-        this.group[playerName].damageReceived += damageMessage.damage;
-        if (damageMessage.damage > this.group[playerName].maxReceived) this.group[playerName].maxReceived = damageMessage.damage;
+        const player = this.group[playerName];
+        player.damageReceived += damageMessage.damage;
+        if (damageMessage.damage > player.maxReceived) player.maxReceived = damageMessage.damage;
 
+        const monsterName = this.spawnedMonsters[damageMessage.attackerId]?.monsterName ?? this.UNKNOWN_MONSTER_NAME;
         const ability = damageMessage.abilityId ?? this.UNKNOWN_ABILITY_ID;
-        if (!this.group[playerName].damageReceivedBreakdown[ability]) this.group[playerName].damageReceivedBreakdown[ability] = {...this.BREAKDOWN_BASE_DICTIONARY};
-        this.group[playerName].damageReceivedBreakdown[ability].attacks++;
+
+        if (!_.has(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}`)) _.setWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+        if (!_.has(player.damageReceivedBreakdown, `${monsterName}.${ability}`)) _.setWith(player.damageReceivedBreakdown, `${monsterName}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+        _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.attacks`, n => n + 1, Object);
+        _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.attacks`, n => n + 1, Object);
+
         if (!damageMessage.isMiss) {
-            this.group[playerName].damageReceivedBreakdown[ability].damage += damageMessage.damage;
-            this.group[playerName].damageReceivedBreakdown[ability].hits++;
-            if (damageMessage.isCritical) this.group[playerName].damageReceivedBreakdown[ability].criticals++;
+            _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.damage`, n => n + damageMessage.damage, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.hits`, n => n + 1, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.damage`, n => n + damageMessage.damage, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.hits`, n => n + 1, Object);
+            if (damageMessage.isCritical) {
+                _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.criticals`, n => n + 1, Object);
+                _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.criticals`, n => n + 1, Object);
+            }
         } else {
-            this.group[playerName].damageReceivedBreakdown[ability].misses++;
+            _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.misses`, n => n + 1, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.misses`, n => n + 1, Object);
         }
     }
 
@@ -127,10 +157,11 @@ class Combat {
         this.group[playerName].healing += damageMessage.damage;
         if (damageMessage.damage > this.group[playerName].maxHeal) this.group[playerName].maxHeal = damageMessage.damage;
     }
+
     updateMonster(monstersData) {
         if (!monstersData) return;
         monstersData.forEach(monsterData => {
-            if (monsterData.faction?.includes('playerSummon')){
+            if (monsterData.faction?.includes('playerSummon')) {
                 // We are dealing with a summoned Mercenary
                 if (!this.isPlayerOnGroup(monsterData.id)) {
                     if (!this.daelis.gameData) return;
@@ -140,13 +171,20 @@ class Combat {
                 }
                 this.setPlayerCurrentHP(monsterData.id, monsterData.monsterHealth);
             } else {
-                if (!(monsterData.id in this.spawnedMonsters)) this.spawnedMonsters[monsterData.id] = monsterData;
-                else this.spawnedMonsters[monsterData.id].monsterHealth = monsterData.monsterHealth;
+                if (!this.monsterImageCache[monsterData.monsterName]) {
+                    this.monsterImageCache[monsterData.monsterName] = monsterData.image;
+                }
+                if (!(monsterData.id in this.spawnedMonsters)) {
+                    this.spawnedMonsters[monsterData.id] = {
+                        monsterHealth: monsterData.monsterHealth,
+                        monsterName: monsterData.monsterName
+                    };
+                } else this.spawnedMonsters[monsterData.id].monsterHealth = monsterData.monsterHealth;
             }
         });
     }
 
-    monsterDead(monsterId){
+    monsterDead(monsterId) {
         delete this.spawnedMonsters[monsterId];
     }
 
@@ -154,7 +192,7 @@ class Combat {
         return this.characterIdToName[playerId];
     }
 
-    _generateCombatStats(){
+    _generateCombatStats() {
         let combatStats = {};
         let combatDurationSeconds = (new Date().getTime() - this.combatStartTimestamp.getTime()) / 1000;
         let players = Object.values(this.group);
@@ -183,7 +221,7 @@ class Combat {
             playerStats.contributionDealt = (totalDealt === 0) ? 0 : Math.round((player.damageDealt / totalDealt) * 100);
             playerStats.contributionEffectiveDealt = (totalEffectiveDealt === 0) ? 0 : Math.round((player.effectiveDamageDealt / totalEffectiveDealt) * 100);
             playerStats.contributionReceived = (totalReceived === 0) ? 0 : Math.round((player.damageReceived / totalReceived) * 100);
-            playerStats.contributionHeal =  (totalHeal === 0) ? 0 : Math.round((player.healing / totalHeal) * 100);
+            playerStats.contributionHeal = (totalHeal === 0) ? 0 : Math.round((player.healing / totalHeal) * 100);
             playerStats.dps = (combatDurationSeconds === 0) ? 0 : toFixedLocale(player.damageDealt / combatDurationSeconds);
             playerStats.edps = (combatDurationSeconds === 0) ? 0 : toFixedLocale(player.effectiveDamageDealt / combatDurationSeconds);
             playerStats.aps = (combatDurationSeconds === 0) ? 0 : toFixedLocale(player.damageReceived / combatDurationSeconds);
@@ -194,7 +232,7 @@ class Combat {
         return combatStats;
     }
 
-    _getPlayersOrderedByType(meterType){
+    _getPlayersOrderedByType(meterType) {
         let players = Object.values(this.group);
         switch (meterType) {
             case meterTypes.DPS:
@@ -213,7 +251,7 @@ class Combat {
         return players;
     }
 
-    _changeCombatStatus(combatStatus){
+    _changeCombatStatus(combatStatus) {
         if (this.onCombat === combatStatus) return;
         this.onCombat = combatStatus;
         if (this.onCombat) {
@@ -223,12 +261,12 @@ class Combat {
         }
     }
 
-    resetGroup(){
+    resetGroup() {
         this.group = {};
         this.characterIdToName = {};
     }
 
-    _startCombat(){
+    _startCombat() {
         this.combatStartTimestamp = new Date();
         this.spawnedMonsters = {};
         Object.keys(this.group).forEach(playerName => this.group[playerName] = new Player(playerName, this.group[playerName].weaponAttackSpeed));

@@ -6,7 +6,7 @@ class MeterUIBreakdownModal {
     activeChart = null;
     cssClass = 'CssMeterUIBreakdownModal';
 
-    setupCss(){
+    setupCss() {
         const css = `<style>     
         div[class^="${this.tabClassPrefix}"] span {
             width: 100%;
@@ -57,25 +57,25 @@ class MeterUIBreakdownModal {
         injectCSS(css, this.cssClass);
     }
 
-    removeCss(){
+    removeCss() {
         document.getElementsByClassName(this.cssClass)[0]?.remove();
     }
 
-    generatePlayerBreakdownPanelHtml(abilities, weaponAttackSpeed, damageDealtBreakdown, effectiveDamageDealtBreakdown, damageReceivedBreakdown){
+    generatePlayerBreakdownPanelHtml(abilities, weaponAttackSpeed, damageDealtBreakdown, effectiveDamageDealtBreakdown, damageReceivedBreakdown) {
         const tabsHtml = `<div class="nav-tab-container daelis-meters-breakdown-tab-container">
                             <div class="${this.tabClassPrefix}dps nav-tab nav-tab-flex text-center noselect" data-type="dps"><span>Damage</span></div>
                             <div class="${this.tabClassPrefix}edps nav-tab nav-tab-flex text-center noselect" data-type="edps"><span>Effective Damage</span></div>
                             <div class="${this.tabClassPrefix}tank nav-tab nav-tab-flex text-center noselect" data-type="tank"><span>Damage Taken</span></div>
                         </div>`;
         const breakdownHtml = `<div class="daelis_meter_breakdown">
-                                <div class="${(this.breakdownTypeClassPrefix)}dps">${this._generateBreakdownHtml(abilities, damageDealtBreakdown, weaponAttackSpeed)}</div>
-                                <div class="${(this.breakdownTypeClassPrefix)}edps hidden">${this._generateBreakdownHtml(abilities, effectiveDamageDealtBreakdown, weaponAttackSpeed)}</div>
-                                <div class="${(this.breakdownTypeClassPrefix)}tank hidden">${this._generateBreakdownHtml(abilities, damageReceivedBreakdown)}</div>
+                                <div class="${(this.breakdownTypeClassPrefix)}dps">${this._generateBreakdownHtml(abilities, damageDealtBreakdown['Global'], weaponAttackSpeed)}</div>
+                                <div class="${(this.breakdownTypeClassPrefix)}edps hidden">${this._generateBreakdownHtml(abilities, effectiveDamageDealtBreakdown['Global'], weaponAttackSpeed)}</div>
+                                <div class="${(this.breakdownTypeClassPrefix)}tank hidden">${this._generateBreakdownHtml(abilities, damageReceivedBreakdown['Global'])}</div>
                                </div>`;
 
-        this.chartData['dps'] = this._generateChartData(abilities, damageDealtBreakdown, 'Damage Breakdown');
-        this.chartData['edps'] = this._generateChartData(abilities, effectiveDamageDealtBreakdown, 'Effective Damage Breakdown');
-        this.chartData['tank'] = this._generateChartData(abilities, damageReceivedBreakdown, 'Damage Taken Breakdown');
+        this.chartData['dps'] = this._generateChartData(abilities, damageDealtBreakdown['Global'], 'Damage Breakdown');
+        this.chartData['edps'] = this._generateChartData(abilities, effectiveDamageDealtBreakdown['Global'], 'Effective Damage Breakdown');
+        this.chartData['tank'] = this._generateChartData(abilities, damageReceivedBreakdown['Global'], 'Damage Taken Breakdown');
 
         return `${tabsHtml}<br/>${breakdownHtml}`;
     }
@@ -91,7 +91,7 @@ class MeterUIBreakdownModal {
             const averageDamage = abilityStats.damage / abilityStats.attacks;
             const averageDPS = ability?.baseSpeedCoeff ? averageDamage / (ability.baseSpeedCoeff * weaponSpeed) : -1;
             abilitiesHtml += `<div class="daelis-meters-breakdown-row">
-                <div class="dmb-ability-image"><img src="${ability?.abilityImage ?? this.unknownAbilityIcon }">${ability?.abilityName ?? 'Unknown Ability'}</div>
+                <div class="dmb-ability-image"><img src="${ability?.abilityImage ?? this.unknownAbilityIcon}">${ability?.abilityName ?? 'Unknown Ability'}</div>
                 <div class="dmb-ability-damage">${abilityStats.damage.toLocaleString()}</div>
                 <div class="dmb-ability-average-damage">${toFixedLocale(averageDamage)}</div>
                 <div class="dmb-ability-average-dps ${dpsCssClass}">${averageDPS === -1 ? 'N/A' : toFixedLocale(averageDPS)}</div>
@@ -130,33 +130,37 @@ class MeterUIBreakdownModal {
         return data;
     }
 
-    setupBreakdownModalTriggers(selectedBreakdownType){
+    setupBreakdownModalTriggers(selectedBreakdownType) {
         if (!selectedBreakdownType) selectedBreakdownType = 'dps';
-        document.getElementsByClassName(this.breakdownTypeClassPrefix+selectedBreakdownType)[0].classList.remove('hidden');
-        document.getElementsByClassName(this.tabClassPrefix+selectedBreakdownType)[0].classList.add('selected-tab');
+        document.getElementsByClassName(this.breakdownTypeClassPrefix + selectedBreakdownType)[0].classList.remove('hidden');
+        document.getElementsByClassName(this.tabClassPrefix + selectedBreakdownType)[0].classList.add('selected-tab');
 
         const that = this;
-        document.querySelectorAll(`[class^="${this.tabClassPrefix}"]`).forEach(tab => tab.addEventListener("click",function(){
+        document.querySelectorAll(`[class^="${this.tabClassPrefix}"]`).forEach(tab => tab.addEventListener("click", function () {
             that.selectedTabUiChanges(this.dataset.type);
-        },false));
+        }, false));
 
         this._showChart(selectedBreakdownType);
     }
 
-    selectedTabUiChanges(selectedType){
+    selectedTabUiChanges(selectedType) {
         document.querySelectorAll(`[class^="${this.tabClassPrefix}"]`).forEach(tab => tab.classList.remove('selected-tab'));
         document.querySelectorAll(`[class^="${this.breakdownTypeClassPrefix}"]`).forEach(breakdown => breakdown.classList.add('hidden'));
-        document.getElementsByClassName(this.tabClassPrefix+selectedType)[0].classList.add('selected-tab');
-        document.getElementsByClassName(this.breakdownTypeClassPrefix+selectedType)[0].classList.remove('hidden');
+        document.getElementsByClassName(this.tabClassPrefix + selectedType)[0].classList.add('selected-tab');
+        document.getElementsByClassName(this.breakdownTypeClassPrefix + selectedType)[0].classList.remove('hidden');
 
         this._showChart(selectedType);
     }
 
-    _showChart(selectedType){
-        const chartAnchor = document.querySelectorAll(`.${this.breakdownTypeClassPrefix+selectedType} .dmb-chart`)[0];
+    _showChart(selectedType) {
+        const chartAnchor = document.querySelectorAll(`.${this.breakdownTypeClassPrefix + selectedType} .dmb-chart`)[0];
         if (chartAnchor) {
             if (this.activeChart) this.activeChart.destroy();
-            this.activeChart = new Chart(chartAnchor, {type: 'pie', data: this.chartData[selectedType], options: {plugins: {legend: {labels: {color: "#FFF"}}}}});
+            this.activeChart = new Chart(chartAnchor, {
+                type: 'pie',
+                data: this.chartData[selectedType],
+                options: {plugins: {legend: {labels: {color: "#FFF"}}}}
+            });
         }
     }
 }
