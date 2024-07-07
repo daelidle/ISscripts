@@ -81,6 +81,8 @@ class MeterUIBreakdownModal {
     }
 
     _generateBreakdownHtml(abilities, breakdown, weaponSpeed) {
+        if (!breakdown) breakdown = {};
+
         let totalDamage = 0;
         for (const abilityStats of Object.values(breakdown)) totalDamage += abilityStats.damage;
 
@@ -121,6 +123,7 @@ class MeterUIBreakdownModal {
 
     _generateChartData(abilities, breakdown, label) {
         const data = {labels: [], datasets: [{label: label, data: []}]};
+        if (!breakdown) breakdown = {};
 
         for (const [abilityId, abilityStats] of Object.entries(breakdown)) {
             const ability = abilities[abilityId];
