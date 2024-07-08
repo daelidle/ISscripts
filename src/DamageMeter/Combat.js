@@ -185,7 +185,8 @@ class Combat {
     }
 
     monsterDead(monsterId) {
-        delete this.spawnedMonsters[monsterId];
+        // Delay the monster removal to allow for the combat:splotch messages to be processed
+        setTimeout(() => delete this.spawnedMonsters[monsterId], 1000);
     }
 
     _getPlayerName(playerId) {

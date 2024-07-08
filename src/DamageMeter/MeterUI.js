@@ -135,13 +135,9 @@ class MeterUI {
                    </div>`;
     }
 
-    generateBreakdownModal(player, abilities) {
+    generateBreakdownModal(player, abilities, monsters) {
         const title = `${player.name}'s Damage Breakdown`;
-        const message = this.breakdownModal.generatePlayerBreakdownPanelHtml(abilities, player.weaponAttackSpeed, player.damageDealtBreakdown, player.effectiveDamageDealtBreakdown, player.damageReceivedBreakdown);
+        const message = this.breakdownModal.generatePlayerBreakdownPanelHtml(abilities, player.weaponAttackSpeed, player.damageDealtBreakdown, player.effectiveDamageDealtBreakdown, player.damageReceivedBreakdown, monsters);
         return {'title': title, 'message': message}
-    }
-
-    setupBreakdownModalTriggers(selectedBreakdownType) {
-        this.breakdownModal.setupBreakdownModalTriggers(selectedBreakdownType);
     }
 }

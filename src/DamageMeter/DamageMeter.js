@@ -215,11 +215,12 @@ class DamageMeter {
     showBreakdownModal(icon) {
         const playerName = icon.dataset.playername;
         const player = this.combat.group[playerName];
-        const modalHtml = this.ui.generateBreakdownModal(player, this.daelis.gameData.abilities);
+        const modalHtml = this.ui.generateBreakdownModal(player, this.daelis.gameData.abilities, this.combat.monsterImageCache);
         displayCompletePopup(modalHtml.title, modalHtml.message, null, '', 'Close', () => {
         }, () => {
         }, this.customModalClass);
-        this.ui.setupBreakdownModalTriggers('dps');
+        tabbis();
+        this.ui.breakdownModal._drawChart(`dps.${this.combat.GLOBAL_KEY}`);
     }
 
     changeMeterType() {

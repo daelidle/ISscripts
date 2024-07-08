@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Idlescape - DaelIS Userscripts
 // @namespace    DaelIS
-// @version      2.2.3
+// @version      2.2.4
 // @description  Collection of utilities and QOL improvements for Idlescape.
 // @author       Dael
 // @icon         https://raw.githubusercontent.com/daelidle/ISscripts/main/assets/images/config-icon.png
@@ -14,6 +14,7 @@
 // @require      https://cdn.jsdelivr.net/npm/chart.js@4.2.1
 // @require      https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
 // @require      https://raw.githubusercontent.com/HighOnMikey/idlescape-socketio-listener/main/src/idlescape-listener.js
+// @require      https://raw.githubusercontent.com/jenstornell/tabbis.js/master/assets/js/dist/tabbis.es5.min.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelIS.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/DaelISConfigUI.js
 // @require      https://raw.githubusercontent.com/daelidle/ISscripts/main/src/BestiaryExporter/BestiaryExporter.js
