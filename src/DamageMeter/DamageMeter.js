@@ -220,7 +220,7 @@ class DamageMeter {
         }, () => {
         }, this.customModalClass);
         tabbis();
-        this.ui.breakdownModal._drawChart(`dps.${this.combat.GLOBAL_KEY}`);
+        this.ui.breakdownModal._drawChart(`dps.${GLOBAL_KEY}`);
     }
 
     changeMeterType() {

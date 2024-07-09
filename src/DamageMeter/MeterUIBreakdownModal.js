@@ -107,6 +107,7 @@ class MeterUIBreakdownModal {
         const breakDownHtmls = {};
         const breakDownTabs = {};
         for (const [breakdownName, breakdownStats] of Object.entries(breakdowns)) {
+            if (breakdownName === UNKNOWN_MONSTER_NAME) continue;
             breakDownHtmls[breakdownName] = this._generateBreakdownHtml(abilities, breakdownStats, weaponSpeed, breakdownType, breakdownName);
             const tabImage = monsters[breakdownName] ? `<img src="${monsters[breakdownName]}"/>` : '';
             breakDownTabs[breakdownName] = `<div class="nav-tab nav-tab-flex text-center daelis-tab-image" data-type="${breakdownType}.${breakdownName}"><span>${tabImage}${breakdownName}</span></div>`;
@@ -160,6 +161,7 @@ class MeterUIBreakdownModal {
         if (!breakdowns) breakdowns = {};
 
         for (const [breakdownName, breakdownStats] of Object.entries(breakdowns)) {
+            if (breakdownName === UNKNOWN_MONSTER_NAME) continue;
             const data = {labels: [], datasets: [{label: label, data: []}]};
             for (const [abilityId, abilityStats] of Object.entries(breakdownStats)) {
                 const ability = abilities[abilityId];

@@ -19,6 +19,9 @@ class Player {
     }
 }
 
+const UNKNOWN_MONSTER_NAME = 'Unknown';
+const GLOBAL_KEY = 'Global';
+
 class Combat {
     daelis;
     group;
@@ -30,8 +33,6 @@ class Combat {
     characterIdToName = {};
     UNKNOWN_ABILITY_ID = -100;
     BREAKDOWN_BASE_DICTIONARY = {attacks: 0, damage: 0, hits: 0, criticals: 0, misses: 0};
-    UNKNOWN_MONSTER_NAME = 'Unknown';
-    GLOBAL_KEY = 'Global';
 
     constructor(daelis) {
         this.group = {};
@@ -73,25 +74,27 @@ class Combat {
         const player = this.group[playerName];
 
         // If we reconnect in the middle of a fight we may get a damage message before getting the monster info message
-        const monsterName = this.spawnedMonsters[damageMessage.defenderId]?.monsterName ?? this.UNKNOWN_MONSTER_NAME;
+        const monsterName = this.spawnedMonsters[damageMessage.defenderId]?.monsterName ?? UNKNOWN_MONSTER_NAME;
         const monsterHealth = this.spawnedMonsters[damageMessage.defenderId]?.monsterHealth ?? damageMessage.damage;
         const effectiveDamage = Math.min(damageMessage.damage, monsterHealth);
         const ability = damageMessage.abilityId ?? this.UNKNOWN_ABILITY_ID;
+        const globalAbility = `${GLOBAL_KEY}.${ability}`;
+        const monsterAbility = `${monsterName}.${ability}`;
 
-        if (!_.has(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}`)) {
-            _.setWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
-            _.setWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+        if (!_.has(player.damageDealtBreakdown, globalAbility)) {
+            _.setWith(player.damageDealtBreakdown, globalAbility, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+            _.setWith(player.effectiveDamageDealtBreakdown, globalAbility, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
         }
-        if (!_.has(player.damageDealtBreakdown, `${monsterName}.${ability}`)) {
-            _.setWith(player.damageDealtBreakdown, `${monsterName}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
-            _.setWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+        if (!_.has(player.damageDealtBreakdown, monsterAbility)) {
+            _.setWith(player.damageDealtBreakdown, monsterAbility, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+            _.setWith(player.effectiveDamageDealtBreakdown, monsterAbility, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
         }
 
         if (!damageMessage.isOverTime && !damageMessage.isSplashAoEDamage) {
-            _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.attacks`, n => n + 1, Object);
-            _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.attacks`, n => n + 1, Object);
-            _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.attacks`, n => n + 1, Object);
-            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.attacks`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${globalAbility}.attacks`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${monsterAbility}.attacks`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${globalAbility}.attacks`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterAbility}.attacks`, n => n + 1, Object);
         }
 
         if (!damageMessage.isMiss) {
@@ -99,25 +102,25 @@ class Combat {
             if (damageMessage.damage > player.maxHit) player.maxHit = damageMessage.damage;
             player.effectiveDamageDealt += effectiveDamage
 
-            _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.damage`, n => n + damageMessage.damage, Object);
-            _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.hits`, n => n + 1, Object);
-            _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.damage`, n => n + damageMessage.damage, Object);
-            _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.hits`, n => n + 1, Object);
-            _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.damage`, n => n + effectiveDamage, Object);
-            _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.hits`, n => n + 1, Object);
-            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.damage`, n => n + effectiveDamage, Object);
-            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.hits`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${globalAbility}.damage`, n => n + damageMessage.damage, Object);
+            _.updateWith(player.damageDealtBreakdown, `${globalAbility}.hits`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${monsterAbility}.damage`, n => n + damageMessage.damage, Object);
+            _.updateWith(player.damageDealtBreakdown, `${monsterAbility}.hits`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${globalAbility}.damage`, n => n + effectiveDamage, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${globalAbility}.hits`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterAbility}.damage`, n => n + effectiveDamage, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterAbility}.hits`, n => n + 1, Object);
             if (damageMessage.isCritical) {
-                _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.criticals`, n => n + 1, Object);
-                _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.criticals`, n => n + 1, Object);
-                _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.criticals`, n => n + 1, Object);
-                _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.criticals`, n => n + 1, Object);
+                _.updateWith(player.damageDealtBreakdown, `${globalAbility}.criticals`, n => n + 1, Object);
+                _.updateWith(player.damageDealtBreakdown, `${monsterAbility}.criticals`, n => n + 1, Object);
+                _.updateWith(player.effectiveDamageDealtBreakdown, `${globalAbility}.criticals`, n => n + 1, Object);
+                _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterAbility}.criticals`, n => n + 1, Object);
             }
         } else {
-            _.updateWith(player.damageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.misses`, n => n + 1, Object);
-            _.updateWith(player.damageDealtBreakdown, `${monsterName}.${ability}.misses`, n => n + 1, Object);
-            _.updateWith(player.effectiveDamageDealtBreakdown, `${this.GLOBAL_KEY}.${ability}.misses`, n => n + 1, Object);
-            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterName}.${ability}.misses`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${globalAbility}.misses`, n => n + 1, Object);
+            _.updateWith(player.damageDealtBreakdown, `${monsterAbility}.misses`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${globalAbility}.misses`, n => n + 1, Object);
+            _.updateWith(player.effectiveDamageDealtBreakdown, `${monsterAbility}.misses`, n => n + 1, Object);
         }
     }
 
@@ -129,26 +132,28 @@ class Combat {
         player.damageReceived += damageMessage.damage;
         if (damageMessage.damage > player.maxReceived) player.maxReceived = damageMessage.damage;
 
-        const monsterName = this.spawnedMonsters[damageMessage.attackerId]?.monsterName ?? this.UNKNOWN_MONSTER_NAME;
+        const monsterName = this.spawnedMonsters[damageMessage.attackerId]?.monsterName ?? UNKNOWN_MONSTER_NAME;
         const ability = damageMessage.abilityId ?? this.UNKNOWN_ABILITY_ID;
+        const globalAbility = `${GLOBAL_KEY}.${ability}`;
+        const monsterAbility = `${monsterName}.${ability}`;
 
-        if (!_.has(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}`)) _.setWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
-        if (!_.has(player.damageReceivedBreakdown, `${monsterName}.${ability}`)) _.setWith(player.damageReceivedBreakdown, `${monsterName}.${ability}`, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
-        _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.attacks`, n => n + 1, Object);
-        _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.attacks`, n => n + 1, Object);
+        if (!_.has(player.damageReceivedBreakdown, globalAbility)) _.setWith(player.damageReceivedBreakdown, globalAbility, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+        if (!_.has(player.damageReceivedBreakdown, monsterAbility)) _.setWith(player.damageReceivedBreakdown, monsterAbility, {...this.BREAKDOWN_BASE_DICTIONARY}, Object);
+        _.updateWith(player.damageReceivedBreakdown, `${globalAbility}.attacks`, n => n + 1, Object);
+        _.updateWith(player.damageReceivedBreakdown, `${monsterAbility}.attacks`, n => n + 1, Object);
 
         if (!damageMessage.isMiss) {
-            _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.damage`, n => n + damageMessage.damage, Object);
-            _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.hits`, n => n + 1, Object);
-            _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.damage`, n => n + damageMessage.damage, Object);
-            _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.hits`, n => n + 1, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${globalAbility}.damage`, n => n + damageMessage.damage, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${globalAbility}.hits`, n => n + 1, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${monsterAbility}.damage`, n => n + damageMessage.damage, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${monsterAbility}.hits`, n => n + 1, Object);
             if (damageMessage.isCritical) {
-                _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.criticals`, n => n + 1, Object);
-                _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.criticals`, n => n + 1, Object);
+                _.updateWith(player.damageReceivedBreakdown, `${globalAbility}.criticals`, n => n + 1, Object);
+                _.updateWith(player.damageReceivedBreakdown, `${monsterAbility}.criticals`, n => n + 1, Object);
             }
         } else {
-            _.updateWith(player.damageReceivedBreakdown, `${this.GLOBAL_KEY}.${ability}.misses`, n => n + 1, Object);
-            _.updateWith(player.damageReceivedBreakdown, `${monsterName}.${ability}.misses`, n => n + 1, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${globalAbility}.misses`, n => n + 1, Object);
+            _.updateWith(player.damageReceivedBreakdown, `${monsterAbility}.misses`, n => n + 1, Object);
         }
     }
 
