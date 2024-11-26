@@ -227,8 +227,4 @@ class DamageMeter {
         this.currentType = (this.currentType + 1) % 4;
         this._updateMeter();
     }
-
-    showExtensionSettings() {
-        this.ui.showExtensionSettings();
-    }
 }
