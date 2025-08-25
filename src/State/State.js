@@ -45,16 +45,31 @@ class State {
     parseUpdateInventoryMessage(message) {
         if (!this.initialStateReceived) return;
 
-        const item = message.data['item'];
         const inventoryType = message.data['inventory'];
-        const action = message.data['action'];
+        for (const job of message.data['changedItems']) {
+            const action = job['job']; // 'ADD' | 'MODIFY' | 'SENDALL';
+            const item = job['item'];
 
-        if (action === "update" || action === "increase") {
-            for (const [position, inventoryItem] of Object.entries(this.state[inventoryType])) {
-                if (inventoryItem.id === item.id) this.state[inventoryType][position] = item;
+            switch (action) {
+                case "SENDALL":
+                    break;
+                case "ADD":
+                    this.state[inventoryType].push(item);
+                    break;
+                case "MODIFY":
+                    const index = this.state[inventoryType].findIndex((inventoryItem) => inventoryItem.id === item.id);
+                    if (index !== -1) {
+                        if (item?.stackSize) {
+                            this.state[inventoryType][index] = item;
+                        } else {
+                            this.state[inventoryType].splice(index, 1);
+                        }
+                    }
+                    break;
+                default:
+                    console.warn(`[DaelIS][WARN] Unknown inventory action: ${action}`);
+                    break;
             }
-        } else if (action === "delete") {
-            this.state[inventoryType] = this.state[inventoryType].filter(inventoryItem => inventoryItem.id !== item.id);
         }
     }
 
