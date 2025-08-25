@@ -52,6 +52,7 @@
 // @match        https://play.idlescape.com/*
 // @match        https://www.play.idlescape.com/*
 // @match        https://dev.idlescape.com/*
+// @match        https://www.dev.idlescape.com/*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
