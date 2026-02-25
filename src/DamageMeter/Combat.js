@@ -166,7 +166,8 @@ class Combat {
     updateMonster(monstersData) {
         if (!monstersData) return;
         monstersData.forEach(monsterData => {
-            if (monsterData.faction?.includes('playerSummon')) {
+            if (monsterData.faction?.includes('player')) return;
+            else if (monsterData.faction?.includes('playerSummon')) {
                 // We are dealing with a summoned Mercenary
                 if (!this.isPlayerOnGroup(monsterData.id)) {
                     if (!this.daelis.gameData) return;
@@ -176,15 +177,16 @@ class Combat {
                 }
                 this.setPlayerCurrentHP(monsterData.id, monsterData.monsterHealth);
             } else {
-                if (!this.monsterImageCache[monsterData.monsterName]) {
-                    this.monsterImageCache[monsterData.monsterName] = monsterData.image;
+                const combatStats = monsterData?.runtime?.combatStats;
+                if (!this.monsterImageCache[combatStats.name]) {
+                    this.monsterImageCache[combatStats.name] = this.daelis.gameData.monsters[combatStats.monsterListID]?.image;
                 }
                 if (!(monsterData.id in this.spawnedMonsters)) {
                     this.spawnedMonsters[monsterData.id] = {
-                        monsterHealth: monsterData.monsterHealth,
-                        monsterName: monsterData.monsterName
+                        monsterHealth: combatStats.monsterCurrentHealth,
+                        monsterName: combatStats.name
                     };
-                } else this.spawnedMonsters[monsterData.id].monsterHealth = monsterData.monsterHealth;
+                } else this.spawnedMonsters[monsterData.id].monsterHealth = combatStats.monsterCurrentHealth;
             }
         });
     }

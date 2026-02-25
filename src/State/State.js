@@ -46,26 +46,41 @@ class State {
         if (!this.initialStateReceived) return;
 
         const inventoryType = message.data['inventory'];
-        for (const job of message.data['changedItems']) {
-            const action = job['job']; // 'ADD' | 'MODIFY' | 'SENDALL';
-            const item = job['item'];
+        const inventory = this.state[inventoryType];
+        for (const change of message.data['changedItems']) {
+            const action = change['job']; // 'ADD' | 'MODIFY' | 'REMOVE';
 
             switch (action) {
-                case "SENDALL":
-                    break;
                 case "ADD":
-                    this.state[inventoryType].push(item);
+                    inventory.push(change.item);
                     break;
                 case "MODIFY":
-                    const index = this.state[inventoryType].findIndex((inventoryItem) => inventoryItem.id === item.id);
+                    const itemId = change.inventoryItemId ?? change.item?.inventoryItemId;
+                    const index = inventory.findIndex((inventoryItem) => inventoryItem.inventoryItemId === itemId);
                     if (index !== -1) {
-                        if (item?.stackSize) {
-                            this.state[inventoryType][index] = item;
-                        } else {
-                            this.state[inventoryType].splice(index, 1);
+                        if (change.changes) {
+                            Object.assign(inventory[index], change.changes);
+
+                            if (!inventory[index].stackSize) {
+                                inventory.splice(index, 1);
+                            }
+                        } else if (change.item) {
+                            if (change.item.stackSize) {
+                                inventory[index] = change.item;
+                            } else {
+                                inventory.splice(index, 1);
+                            }
                         }
                     }
                     break;
+                case 'REMOVE': {
+                    const itemId = change.inventoryItemId ?? change.item?.inventoryItemId;
+                    const index = inventory.findIndex((item) => item.inventoryItemId === itemId);
+                    if (index !== -1) {
+                        inventory.splice(index, 1);
+                    }
+                    break;
+                }
                 default:
                     console.warn(`[DaelIS][WARN] Unknown inventory action: ${action}`);
                     break;

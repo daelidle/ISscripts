@@ -51,17 +51,20 @@ class DamageMeter {
 
     onMessage(message) {
         switch (message.event) {
+            case "batch:messages":
+                for (const batchedMessage of message.data) {
+                    this.onMessage(batchedMessage);
+                }
+                break;
             case "combat:splotch":
-                this._parseCombatHit(message.data);
+                for (const splotch of message.args) {
+                    this._parseCombatHit(splotch);
+                }
                 break;
-            case "combat:spawnMonster":
-                this.combat.updateMonster(message.data);
-                break;
-            case "combat:updateMonster":
-                this.combat.updateMonster([message.data]);
-                break;
-            case "combat:removeMonster":
-                this.combat.monsterDead(message.data.id);
+            case "update:player:batch":
+                for (const batchedMessage of message.data) {
+                    this._parseUpdatePlayer(batchedMessage);
+                }
                 break;
             case "update:player":
                 this._parseUpdatePlayer(message.data);
@@ -122,6 +125,9 @@ class DamageMeter {
             // New Action message
             const combatStatus = this._parseCombatStatusFromActionQueue(playerInfo['value']);
             this.combat._changeCombatStatus(combatStatus);
+            
+            const entities = playerInfo?.value?.info?.combatSnapshot?.entities;
+            this.combat.updateMonster(entities);
         }
     }
 
